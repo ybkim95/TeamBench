@@ -1,0 +1,44 @@
+CONFIGURATION POLICY DOCUMENT
+Version: 2.1
+Effective Date: 2026-01-01
+Classification: INTERNAL
+
+=== MANDATORY CONFIGURATION RULES ===
+
+Rule 1: Connection Limits
+  max_connections must be set between 100 and 500 (inclusive).
+  Values outside this range are a compliance violation.
+
+Rule 2: Timeout
+  timeout_sec must be exactly 30 seconds.
+  No other value is acceptable.
+
+Rule 3: SSL/TLS
+  ssl_enabled must be true.
+  Plaintext connections are prohibited by security policy.
+
+Rule 4: Logging
+  log_level must be set to "warn" or "error".
+  "info" and "debug" levels are prohibited in production.
+
+Rule 5: Retry Policy
+  retry_count must be exactly 3.
+  Higher values cause cascading failures. Lower values reduce resilience.
+
+Rule 6: CORS
+  cors_origins must be an empty list [].
+  Wildcard origins ("*") are prohibited. Specific origins must be
+  configured through the gateway, not the application.
+
+Rule 7: Rate Limiting
+  rate_limit_rpm must be between 60 and 120 (inclusive).
+  This ensures fair usage without blocking legitimate traffic.
+
+Rule 8: Authentication
+  auth_method must be "jwt".
+  "basic" and "none" are deprecated and prohibited.
+
+=== END OF POLICY ===
+
+No additional configuration keys are permitted beyond the 8 listed above.
+Any extra keys constitute a policy violation.

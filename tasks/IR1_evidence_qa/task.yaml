@@ -1,0 +1,11 @@
+task_id: IR1_evidence_qa
+domain: ir
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: easy
+languages: [python]
+tags: [information-retrieval, qa, evidence-grounding]
+workspace_file_count: 2
+lines_changed_expected: 15
+parameterized: false

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Search</title></head>
+<body>
+  <h1>Search Results</h1>
+  <p>You searched for: {{ user_input }}</p>
+  <form action="/search" method="get">
+    <input type="text" name="name" placeholder="Search users...">
+    <button type="submit">Search</button>
+  </form>
+</body>
+</html>

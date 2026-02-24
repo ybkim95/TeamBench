@@ -1,0 +1,11 @@
+task_id: GO1_concurrency_fix
+domain: software
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: expert
+languages: [go]
+tags: [concurrency, goroutine, race-condition, deadlock, go]
+workspace_file_count: 4
+lines_changed_expected: 40
+parameterized: false

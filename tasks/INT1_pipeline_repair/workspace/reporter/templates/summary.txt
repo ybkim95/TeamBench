@@ -1,0 +1,14 @@
+==================================================
+DATA PROCESSING REPORT
+==================================================
+
+Total records processed: {{ total_records }}
+
+RECORDS (sorted by score, descending):
+--------------------------------------------------
+{% for record in records %}
+{{ loop.index }}. {{ record.full_name }} ({{ record.email }}) - Score: {{ record.score }}
+{% endfor %}
+
+==================================================
+END OF REPORT

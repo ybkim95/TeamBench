@@ -1,0 +1,34 @@
+# Runtime artifacts
+shared/runs/
+shared/campaigns/
+shared/batch_results.json
+*.pyc
+__pycache__/
+.omc/
+.pytest_cache/
+
+# Virtual environment
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+*.log
+
+# Node
+node_modules/
+package-lock.json
+
+# SQLite
+*.db
+
+# Empty corpus fallback (created at runtime)
+.empty_corpus/

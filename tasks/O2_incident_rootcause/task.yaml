@@ -1,0 +1,11 @@
+task_id: O2_incident_rootcause
+domain: ops
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [incident-response, root-cause-analysis, debugging]
+workspace_file_count: 3
+lines_changed_expected: 35
+parameterized: false

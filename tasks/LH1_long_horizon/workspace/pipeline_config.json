@@ -1,0 +1,20 @@
+{
+  "steps": [
+    {"id": 1, "name": "init", "action": "create_workspace"},
+    {"id": 2, "name": "load_data", "action": "load"},
+    {"id": 3, "name": "validate_schema", "action": "validate"},
+    {"id": 4, "name": "normalize", "action": "transform"},
+    {"id": 5, "name": "enrich", "action": "transform"},
+    {"id": 6, "name": "filter", "action": "transform"},
+    {"id": 7, "name": "aggregate", "action": "transform"},
+    {"id": 8, "name": "compute_stats", "action": "analyze"},
+    {"id": 9, "name": "format_output", "action": "transform"},
+    {"id": 10, "name": "generate_report", "action": "report"},
+    {"id": 11, "name": "compress", "action": "package"},
+    {"id": 12, "name": "checksum", "action": "verify"},
+    {"id": 13, "name": "archive", "action": "store"},
+    {"id": 14, "name": "notify", "action": "notify"},
+    {"id": 15, "name": "finalize", "action": "finalize"}
+  ],
+  "max_total_executions": 19
+}

@@ -1,0 +1,11 @@
+task_id: INT1_pipeline_repair
+domain: integration
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [pipeline, integration, multi-component]
+workspace_file_count: 5
+lines_changed_expected: 45
+parameterized: false

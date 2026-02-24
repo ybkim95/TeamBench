@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TeamBench Leaderboard Entry",
+  "type": "object",
+  "required": ["team_id", "models", "tasks", "aggregate"],
+  "properties": {
+    "team_id": {
+      "type": "string",
+      "description": "Unique identifier for this team configuration"
+    },
+    "models": {
+      "type": "object",
+      "required": ["planner", "executor", "verifier"],
+      "properties": {
+        "planner": {"type": "string"},
+        "executor": {"type": "string"},
+        "verifier": {"type": "string"}
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["task_id", "pass", "seed"],
+        "properties": {
+          "task_id": {"type": "string"},
+          "pass": {"type": "boolean"},
+          "seed": {"type": "integer"},
+          "difficulty": {
+            "type": "string",
+            "enum": ["easy", "medium", "hard", "expert"]
+          },
+          "languages": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "partial_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "secondary": {"type": "object"},
+          "failure_modes": {"type": "array", "items": {"type": "string"}},
+          "elapsed_sec": {"type": "number"},
+          "total_turns": {"type": "integer"}
+        }
+      }
+    },
+    "aggregate": {
+      "type": "object",
+      "required": ["success_rate"],
+      "properties": {
+        "success_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "pass_at_k": {"type": "number", "minimum": 0, "maximum": 1},
+        "avg_partial_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "avg_messages": {"type": "number"},
+        "avg_runtime_sec": {"type": "number"},
+        "verifier_error_catch_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "tni": {
+          "type": "number",
+          "description": "Teamwork Necessity Index: (S_team - S_restricted) / max(eps, S_full - S_restricted)"
+        },
+        "per_difficulty": {
+          "type": "object",
+          "description": "Success rate breakdown by difficulty tier",
+          "properties": {
+            "easy": {"type": "number", "minimum": 0, "maximum": 1},
+            "medium": {"type": "number", "minimum": 0, "maximum": 1},
+            "hard": {"type": "number", "minimum": 0, "maximum": 1},
+            "expert": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        },
+        "per_domain": {
+          "type": "object",
+          "description": "Success rate breakdown by domain",
+          "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}
+        },
+        "per_language": {
+          "type": "object",
+          "description": "Success rate for tasks involving each language",
+          "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    }
+  }
+}

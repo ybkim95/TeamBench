@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note-Taking App</title>
+  <style>
+    body { font-family: sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; }
+    h1 { font-size: 1.5rem; }
+    form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    input, textarea { padding: 8px; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 8px 16px; font-size: 1rem; cursor: pointer; }
+    #notes-list .note { border: 1px solid #ddd; border-radius: 4px; padding: 12px; margin-bottom: 12px; }
+    #notes-list .note h3 { margin: 0 0 4px; }
+    #notes-list .note p  { margin: 0 0 8px; color: #555; }
+    #notes-list .note small { color: #999; }
+    .delete-btn { background: #e55; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; cursor: pointer; float: right; }
+  </style>
+</head>
+<body>
+  <h1>Notes</h1>
+
+  <form id="note-form">
+    <input  id="note-title"   type="text"     placeholder="Title"   required />
+    <textarea id="note-content" rows="3"       placeholder="Content"></textarea>
+    <button type="submit">Add Note</button>
+  </form>
+
+  <div id="notes-list"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

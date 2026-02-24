@@ -1,0 +1,11 @@
+task_id: NEG1_tradeoff_config
+domain: config
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [tradeoff-analysis, negotiation, configuration]
+workspace_file_count: 3
+lines_changed_expected: 25
+parameterized: false

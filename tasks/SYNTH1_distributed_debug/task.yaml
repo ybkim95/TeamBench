@@ -1,0 +1,11 @@
+task_id: SYNTH1_distributed_debug
+domain: debugging
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: expert
+languages: [python]
+tags: [distributed-systems, debugging, log-analysis]
+workspace_file_count: 6
+lines_changed_expected: 50
+parameterized: false

@@ -1,0 +1,105 @@
+version: "3.9"
+
+services:
+  planner:
+    build: ./images/planner
+    container_name: teambench_planner
+    environment:
+      - ROLE=planner
+      - RUN_DIR=/run
+    volumes:
+      # Planner: spec is read-only access only
+      - type: bind
+        source: ${TASK_DIR}/spec.md
+        target: /task/spec.md
+        read_only: true
+      - type: bind
+        source: ${TASK_DIR}/brief.md
+        target: /task/brief.md
+        read_only: true
+      # Corpus: read-only (for P1/P2 policy/requirements documents)
+      # Only mounted if CORPUS_DIR is set; defaults to empty dir created by setup
+      - type: bind
+        source: ${CORPUS_DIR:-./.empty_corpus}
+        target: /task/corpus
+        read_only: true
+
+      # Messages: read-write (collaboration channel)
+      - type: bind
+        source: ${RUN_DIR}/messages
+        target: /shared/messages
+
+      # Planner has NO access to workspace/reports (not mounted at all)
+      - type: bind
+        source: ${RUN_DIR}/submission
+        target: /shared/submission
+        read_only: true
+
+    network_mode: "none"
+    command: ["sleep", "infinity"]
+
+  executor:
+    build: ./images/executor
+    container_name: teambench_executor
+    environment:
+      - ROLE=executor
+      - RUN_DIR=/run
+    volumes:
+      # Executor: workspace & reports read-write
+      - type: bind
+        source: ${RUN_DIR}/workspace
+        target: /shared/workspace
+      - type: bind
+        source: ${RUN_DIR}/reports
+        target: /shared/reports
+
+      # Messages: read-write
+      - type: bind
+        source: ${RUN_DIR}/messages
+        target: /shared/messages
+
+      # Executor has NO access to full spec (brief only)
+      - type: bind
+        source: ${TASK_DIR}/brief.md
+        target: /task/brief.md
+        read_only: true
+
+    # Network disabled by default (override per-task if needed)
+    network_mode: "none"
+    command: ["sleep", "infinity"]
+
+  verifier:
+    build: ./images/verifier
+    container_name: teambench_verifier
+    environment:
+      - ROLE=verifier
+      - RUN_DIR=/run
+    volumes:
+      # Verifier: reports read-only + workspace read-only
+      - type: bind
+        source: ${RUN_DIR}/reports
+        target: /shared/reports
+        read_only: true
+      - type: bind
+        source: ${RUN_DIR}/workspace
+        target: /shared/workspace
+        read_only: true
+
+      # Messages: read-write
+      - type: bind
+        source: ${RUN_DIR}/messages
+        target: /shared/messages
+
+      # Submission: write (attestation goes here)
+      - type: bind
+        source: ${RUN_DIR}/submission
+        target: /shared/submission
+
+      # Verifier can read full spec for verification
+      - type: bind
+        source: ${TASK_DIR}/spec.md
+        target: /task/spec.md
+        read_only: true
+
+    network_mode: "none"
+    command: ["sleep", "infinity"]

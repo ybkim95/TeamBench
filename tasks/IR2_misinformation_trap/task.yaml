@@ -1,0 +1,11 @@
+task_id: IR2_misinformation_trap
+domain: ir
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [misinformation-detection, adversarial, fact-checking]
+workspace_file_count: 2
+lines_changed_expected: 15
+parameterized: false

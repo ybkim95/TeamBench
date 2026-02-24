@@ -1,0 +1,11 @@
+task_id: JS1_api_migration
+domain: software
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [javascript, json]
+tags: [api-migration, express, breaking-changes, nodejs]
+workspace_file_count: 6
+lines_changed_expected: 45
+parameterized: false

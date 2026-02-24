@@ -1,0 +1,11 @@
+task_id: D2_data_quality
+domain: data
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: medium
+languages: [python]
+tags: [data-cleaning, validation, csv]
+workspace_file_count: 2
+lines_changed_expected: 30
+parameterized: false

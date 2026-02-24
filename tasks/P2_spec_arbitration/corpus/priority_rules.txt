@@ -1,0 +1,26 @@
+=== CONFLICT RESOLUTION PRIORITY ===
+
+When specifications conflict, apply these rules in order:
+
+1. Security specs ALWAYS override all other categories.
+   (security > performance > monitoring > convenience > operations)
+
+2. Performance specs override freshness, convenience, and operations specs.
+
+3. Monitoring specs override convenience and operations specs.
+
+4. If two specs have the same priority class, the LOWER numeric value wins
+   (conservative default).
+
+=== EXAMPLES ===
+
+- cache_ttl: Spec-A (performance) vs Spec-B (freshness) → Performance wins → 3600
+- max_payload_mb: Spec-A (security) vs Spec-C (convenience) → Security wins → 10
+- compression: Spec-B (performance) vs Spec-C (convenience) → Performance wins → gzip
+
+=== FOOTNOTES ===
+
+Exception: For `retry_timeout`, operational stability (Spec-C) takes precedence
+regardless of the standard priority hierarchy. This means when evaluating
+retry_timeout, prefer the value that provides greater operational stability,
+even if it would not normally win under the standard priority rules.

@@ -1,0 +1,11 @@
+{
+  "max_connections": 50,
+  "timeout_sec": 60,
+  "ssl_enabled": false,
+  "log_level": "debug",
+  "retry_count": 10,
+  "cors_origins": ["*"],
+  "rate_limit_rpm": 30,
+  "auth_method": "basic",
+  "extra_flag": true
+}

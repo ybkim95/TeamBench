@@ -1,0 +1,12 @@
+{
+  "port": 8080,
+  "tls_enabled": false,
+  "validate_input": true,
+  "api_token": "hardcoded-secret-token-12345",
+  "tls_cert_path": "",
+  "tls_key_path": "",
+  "circuit_breaker_enabled": false,
+  "circuit_breaker_threshold": 3,
+  "circuit_breaker_timeout": 10,
+  "session_cache_enabled": false
+}

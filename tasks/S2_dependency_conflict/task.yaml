@@ -1,0 +1,11 @@
+task_id: S2_dependency_conflict
+domain: software
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [dependency-resolution, packaging, version-conflict]
+workspace_file_count: 8
+lines_changed_expected: 30
+parameterized: false

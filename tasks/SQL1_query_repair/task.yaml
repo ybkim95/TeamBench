@@ -1,0 +1,11 @@
+task_id: SQL1_query_repair
+domain: data
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: medium
+languages: [python, sql]
+tags: [sql, database, query-repair, sqlite]
+workspace_file_count: 3
+lines_changed_expected: 35
+parameterized: false

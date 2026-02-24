@@ -1,0 +1,11 @@
+task_id: SEC1_vuln_patch
+domain: security
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [vulnerability, patching, secure-coding, owasp]
+workspace_file_count: 4
+lines_changed_expected: 30
+parameterized: false

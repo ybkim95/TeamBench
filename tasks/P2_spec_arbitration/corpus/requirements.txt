@@ -1,0 +1,24 @@
+=== SPEC-A (Security & Performance) ===
+Priority class: security, performance
+
+cache_ttl = 3600        # Performance: cache aggressively
+max_payload_mb = 10     # Security: limit payload size
+encryption = aes256     # Security: mandatory encryption
+retry_timeout = 30      # Security: fail fast to prevent resource exhaustion
+
+=== SPEC-B (Performance & Monitoring) ===
+Priority class: performance, monitoring
+
+cache_ttl = 0           # Freshness: always serve latest (CONFLICTS with Spec-A)
+compression = gzip      # Performance: reduce bandwidth
+log_format = json       # Monitoring: structured logs
+retry_timeout = 60      # Performance: allow retries to complete (CONFLICTS with Spec-A)
+log_retention_days = 30 # Monitoring: keep logs for analysis
+
+=== SPEC-C (Convenience & Operations) ===
+Priority class: convenience, operations
+
+max_payload_mb = 50     # Convenience: allow large uploads (CONFLICTS with Spec-A)
+compression = none      # Convenience: simplify debugging (CONFLICTS with Spec-B)
+backup_enabled = true   # Operations: enable backups
+log_retention_days = 7  # Convenience: save storage (CONFLICTS with Spec-B)

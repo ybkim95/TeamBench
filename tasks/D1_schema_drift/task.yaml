@@ -1,0 +1,11 @@
+task_id: D1_schema_drift
+domain: data
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: medium
+languages: [python]
+tags: [etl, csv, schema-mapping, dedup]
+workspace_file_count: 6
+lines_changed_expected: 40
+parameterized: true

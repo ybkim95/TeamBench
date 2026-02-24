@@ -1,0 +1,11 @@
+task_id: P2_spec_arbitration
+domain: policy
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [conflict-resolution, requirements, prioritization]
+workspace_file_count: 2
+lines_changed_expected: 25
+parameterized: false

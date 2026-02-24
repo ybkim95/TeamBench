@@ -1,0 +1,11 @@
+task_id: LH1_long_horizon
+domain: long
+network: false
+time_limit_sec: 1800
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [multi-step, pipeline, orchestration]
+workspace_file_count: 3
+lines_changed_expected: 60
+parameterized: false
