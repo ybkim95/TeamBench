@@ -4,7 +4,7 @@
 # This is the reference implementation for the seed-aware grading pattern.
 #
 # Args: $1=WORKSPACE $2=REPORTS $3=SUBMISSION $4=TASK_DIR [$5=EXPECTED_JSON]
-set -euo pipefail
+set -o pipefail
 WORKSPACE="$1"
 REPORTS="$2"
 SUBMISSION="$3"

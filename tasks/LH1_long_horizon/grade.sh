@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -o pipefail
 WORKSPACE="$1"
 REPORTS="$2"
 SUBMISSION="$3"

@@ -91,9 +91,9 @@ class TaskGenerator(ABC):
             with open(os.path.join(task_dir, "brief.md"), "w") as f:
                 f.write(generated.brief_md)
 
-        # Write corpus files
+        # Write corpus files (default to workspace/corpus so graders can find them)
         if generated.corpus_files:
-            c_dir = corpus_dir if corpus_dir else (os.path.join(task_dir, "corpus") if task_dir else "")
+            c_dir = corpus_dir if corpus_dir else (os.path.join(task_dir, "corpus") if task_dir else os.path.join(workspace_dir, "corpus"))
             if c_dir:
                 os.makedirs(c_dir, exist_ok=True)
                 for rel_path, content in generated.corpus_files.items():

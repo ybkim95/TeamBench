@@ -34,18 +34,20 @@ def run_single_task(
     adapter: ToolCallAdapter,
     max_turns: int,
     max_remediation: int,
+    seed: int = 0,
 ) -> dict:
     """Run agent evaluation on a single task. Returns result dict."""
     model_name = getattr(adapter, "model", "unknown")
     print(f"\n{'='*60}")
     print(f"  TASK: {task_name}")
     print(f"  MODEL: {model_name}")
+    print(f"  SEED: {seed}")
     print(f"{'='*60}")
 
     start_time = time.time()
 
     # Stage workspace
-    run_id, run_dir, task_dir = setup_run(task_name, tasks_dir, runs_dir)
+    run_id, run_dir, task_dir = setup_run(task_name, tasks_dir, runs_dir, seed=seed)
     print(f"  Run ID: {run_id}")
     print(f"  Run dir: {run_dir}")
 
@@ -70,6 +72,7 @@ def run_single_task(
         "task_id": task_name,
         "run_id": run_id,
         "model": model_name,
+        "seed": seed,
         "agent_verdict": orch_result.verdict,
         "grader_verdict": "pass" if score.get("pass") else "fail",
         "total_turns": orch_result.total_turns,
@@ -110,6 +113,7 @@ def main() -> None:
     ap.add_argument("--max-turns", type=int, default=20, help="Max turns per phase")
     ap.add_argument("--max-remediation", type=int, default=2, help="Max remediation loops")
     ap.add_argument("--temperature", type=float, default=0.2, help="Model temperature")
+    ap.add_argument("--seed", type=int, default=0, help="Seed for parameterized task generation")
     args = ap.parse_args()
 
     tasks_dir = os.path.abspath(args.tasks_dir)
@@ -142,6 +146,7 @@ def main() -> None:
                 adapter=adapter,
                 max_turns=args.max_turns,
                 max_remediation=args.max_remediation,
+                seed=args.seed,
             )
             all_results.append(result)
         except Exception as e:
