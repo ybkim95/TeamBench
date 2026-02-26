@@ -1,0 +1,11 @@
+task_id: P4_data_retention
+domain: policy
+network: false
+time_limit_sec: 1800
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [data-retention, policy-enforcement, sqlite, gdpr, compliance, deletion-order, legal-hold, pii-anonymization]
+workspace_file_count: 2
+lines_changed_expected: 80
+parameterized: true

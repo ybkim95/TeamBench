@@ -1,0 +1,16 @@
+{
+  "routes": {
+    "critical": {
+      "type": "slack",
+      "channel": "#alerts-warning"
+    },
+    "warning": {
+      "type": "pagerduty",
+      "key": "pd-prod-critical"
+    },
+    "info": {
+      "type": "pagerduty",
+      "key": "pd-prod-critical"
+    }
+  }
+}

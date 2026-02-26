@@ -1,0 +1,11 @@
+task_id: TEST3_integration
+domain: testing
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [integration-tests, api-contract, tni-pattern-d, mutation-testing]
+workspace_file_count: 4
+lines_changed_expected: 100
+parameterized: true

@@ -1,0 +1,11 @@
+task_id: O4_monitoring
+domain: ops
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python, json]
+tags: [monitoring, alerting, sla, incident-response, configuration]
+workspace_file_count: 3
+lines_changed_expected: 40
+parameterized: true

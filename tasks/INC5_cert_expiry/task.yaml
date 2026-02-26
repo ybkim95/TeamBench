@@ -1,0 +1,13 @@
+task_id: INC5_cert_expiry
+domain: incident_response
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2, 3]
+difficulty: medium
+roles: [planner, executor, verifier]
+languages: [python, json, bash]
+tags: [certificates, tls, ssl, pki, cert-chain, trust-store, security, configuration]
+workspace_file_count: 10
+lines_changed_expected: 40
+parameterized: true
+grading: tasks/INC5_cert_expiry/grade.sh

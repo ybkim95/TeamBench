@@ -1,0 +1,11 @@
+task_id: SEC6_csrf_protection
+domain: security
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: medium
+languages: [python]
+tags: [csrf, web-security, flask, secure-coding, owasp]
+workspace_file_count: 2
+lines_changed_expected: 60
+parameterized: true

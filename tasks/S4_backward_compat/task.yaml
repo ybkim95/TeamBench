@@ -1,0 +1,11 @@
+task_id: S4_backward_compat
+domain: software
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [backward-compatibility, api-stability, feature-addition, library-design]
+workspace_file_count: 10
+lines_changed_expected: 40
+parameterized: true

@@ -1,0 +1,13 @@
+task_id: SPEC3_data_model
+domain: specification
+difficulty: medium
+roles: [planner, executor, verifier]
+grading: tasks/SPEC3_data_model/grade.sh
+languages: [python]
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2, 3]
+parameterized: true
+workspace_file_count: 3
+lines_changed_expected: 100
+tags: [specification, data-model, sqlalchemy, orm, erd, implementation]

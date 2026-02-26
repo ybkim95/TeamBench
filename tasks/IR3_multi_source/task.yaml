@@ -1,0 +1,11 @@
+task_id: IR3_multi_source
+domain: ir
+network: false
+time_limit_sec: 1200
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [json]
+tags: [multi-source, authority-hierarchy, cross-reference, adversarial, fact-checking]
+workspace_file_count: 2
+lines_changed_expected: 30
+parameterized: true

@@ -1,0 +1,22 @@
+[1]  Solaris Policy Foundation — Nova Technical Architecture Specification
+[2]  Document type: Approved Technical Spec
+[3]  Author: Tara (Technical Lead)
+[4]
+[5]  ARCHITECTURE OVERVIEW
+[6]  Architecture style: event-driven
+[7]  Inter-service communication: Apache Kafka
+[8]  Container orchestration: Nomad
+[9]  Primary datastore: CockroachDB
+[10]
+[11] TECHNOLOGY STACK
+[12] - Backend language: TypeScript 5.4
+[13] - API framework: Hono 4.2
+[14] - Frontend framework: Nuxt 3.11
+[15] - Runtime environment: Node 20
+[16]
+[17] DESIGN DECISIONS
+[18] The event-driven architecture was chosen after a formal RFC process.
+[19] All inter-service calls use Apache Kafka for type safety and performance.
+[20] The CockroachDB datastore supports the required ACID guarantees.
+[21] Technical lead responsible: Tara
+[22] This specification is the single source of truth for technical decisions.

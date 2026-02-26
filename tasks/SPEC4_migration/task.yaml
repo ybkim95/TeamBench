@@ -1,0 +1,11 @@
+task_id: SPEC4_migration
+domain: data
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [database, sqlite, schema-migration, ddl, data-preservation, foreign-keys, indexes, type-coercion]
+workspace_file_count: 2
+lines_changed_expected: 80
+parameterized: true

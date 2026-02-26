@@ -1,0 +1,11 @@
+task_id: CR4_api_review
+domain: code_review
+difficulty: hard
+languages: [python]
+network: false
+time_limit_sec: 1200
+seeds: [0, 1, 2]
+parameterized: true
+workspace_file_count: 4
+lines_changed_expected: 80
+tags: [code-review, api-design, rest, http-methods, status-codes, pagination, versioning, error-schema]

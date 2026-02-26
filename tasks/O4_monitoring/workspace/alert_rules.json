@@ -1,0 +1,22 @@
+{
+  "grouping_window_minutes": 10,
+  "services": {
+    "api-gateway": {
+      "p99_latency_ms": {
+        "warning": 1000,
+        "critical": 1500,
+        "comparison": "gt"
+      },
+      "error_rate_pct": {
+        "warning": 20.0,
+        "critical": 40.0,
+        "comparison": "gt"
+      },
+      "availability_pct": {
+        "warning": 90.0,
+        "critical": 85.0,
+        "comparison": "lt"
+      }
+    }
+  }
+}
