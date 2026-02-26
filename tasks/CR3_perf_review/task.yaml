@@ -1,0 +1,11 @@
+task_id: CR3_perf_review
+domain: code_review
+difficulty: medium
+languages: [python]
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+parameterized: true
+workspace_file_count: 4
+lines_changed_expected: 30
+tags: [code-review, performance, optimization, profiling]

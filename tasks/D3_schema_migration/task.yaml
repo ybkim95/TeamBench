@@ -1,0 +1,11 @@
+task_id: D3_schema_migration
+domain: data
+network: false
+time_limit_sec: 900
+seeds: [0, 42, 7]
+difficulty: hard
+languages: [python]
+tags: [database, sqlite, schema-migration, ddl, data-preservation]
+workspace_file_count: 2
+lines_changed_expected: 60
+parameterized: true

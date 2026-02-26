@@ -1,0 +1,11 @@
+task_id: P3_access_control
+domain: policy
+network: false
+time_limit_sec: 1200
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [rbac, access-control, flask, policy-enforcement, security]
+workspace_file_count: 2
+lines_changed_expected: 60
+parameterized: true
