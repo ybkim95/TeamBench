@@ -1,0 +1,12 @@
+task_id: D4_data_pipeline
+domain: data
+network: false
+time_limit_sec: 1200
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [data-validation, pipeline, cross-field-constraints, deduplication, regex, csv]
+workspace_file_count: 3
+lines_changed_expected: 60
+parameterized: true
+tni_patterns: [A, C]

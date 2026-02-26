@@ -1,0 +1,11 @@
+task_id: SEC4_input_validation
+domain: security
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [input-validation, owasp, sql-injection, xss, path-traversal, ssrf, secure-coding]
+workspace_file_count: 5
+lines_changed_expected: 60
+parameterized: true

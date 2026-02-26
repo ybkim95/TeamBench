@@ -1,0 +1,11 @@
+task_id: SEC3_crypto_upgrade
+domain: security
+network: false
+time_limit_sec: 1200
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [cryptography, crypto-upgrade, deprecated-primitives, migration, pbkdf2, aes-gcm, secure-coding]
+workspace_file_count: 6
+lines_changed_expected: 60
+parameterized: true

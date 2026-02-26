@@ -1,0 +1,13 @@
+task_id: PIPE2_api_gateway
+domain: pipeline
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2, 3]
+difficulty: medium
+languages: [python]
+tags: [api-gateway, routing, config, auth, rate-limiting, path-rewrite]
+workspace_file_count: 12
+lines_changed_expected: 20
+parameterized: true
+roles: [planner, executor, verifier]
+grading: tasks/PIPE2_api_gateway/grade.sh

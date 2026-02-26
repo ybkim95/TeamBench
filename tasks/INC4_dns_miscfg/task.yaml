@@ -1,0 +1,13 @@
+task_id: INC4_dns_miscfg
+domain: incident_response
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2, 3]
+difficulty: hard
+roles: [planner, executor, verifier]
+languages: [python, json, bash]
+tags: [dns, networking, firewall, routing, microservices, configuration]
+workspace_file_count: 12
+lines_changed_expected: 50
+parameterized: true
+grading: tasks/INC4_dns_miscfg/grade.sh

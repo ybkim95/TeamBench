@@ -1,0 +1,11 @@
+task_id: NEG2_cost_perf
+domain: operations
+network: false
+time_limit_sec: 600
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [cost-optimization, performance, multi-criteria, configuration]
+workspace_file_count: 2
+lines_changed_expected: 8
+parameterized: true

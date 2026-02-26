@@ -1,0 +1,11 @@
+task_id: LH3_multi_service
+domain: operations
+network: false
+time_limit_sec: 2700
+seeds: [0, 1, 2]
+difficulty: expert
+languages: [python]
+tags: [multi-service, microservices, distributed, debugging, bug-fix]
+workspace_file_count: 9
+lines_changed_expected: 30
+parameterized: true

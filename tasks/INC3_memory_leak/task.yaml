@@ -1,0 +1,13 @@
+task_id: INC3_memory_leak
+domain: incident_response
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2, 3]
+difficulty: hard
+roles: [planner, executor, verifier]
+languages: [python]
+tags: [memory-leak, heap-profiling, debugging, python, gc]
+workspace_file_count: 3
+lines_changed_expected: 10
+parameterized: true
+grading: tasks/INC3_memory_leak/grade.sh

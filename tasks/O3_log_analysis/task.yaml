@@ -1,0 +1,11 @@
+task_id: O3_log_analysis
+domain: ops
+network: false
+time_limit_sec: 1200
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [log-analysis, root-cause-analysis, debugging, incident-response]
+workspace_file_count: 3
+lines_changed_expected: 5
+parameterized: true

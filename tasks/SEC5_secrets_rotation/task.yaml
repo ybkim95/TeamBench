@@ -1,0 +1,11 @@
+task_id: SEC5_secrets_rotation
+domain: security
+network: false
+time_limit_sec: 1200
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [secrets, vault, rotation, hardcoded-credentials, secure-coding]
+workspace_file_count: 8
+lines_changed_expected: 80
+parameterized: true

@@ -1,0 +1,11 @@
+task_id: CR2_style_enforce
+domain: code_review
+difficulty: easy
+languages: [python]
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+parameterized: true
+workspace_file_count: 3
+lines_changed_expected: 40
+tags: [code-review, style, naming, type-hints, imports, docstrings]
