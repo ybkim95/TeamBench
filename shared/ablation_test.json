@@ -1,0 +1,148 @@
+{
+  "model": "gemini-2.5-flash",
+  "tasks": [
+    "P1_policy_config"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-02-26T15:44:02.500320+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.93,
+    "p_restricted": 0.43,
+    "p_full": 0.5,
+    "p_no_verify": 0.5,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.5,
+    "tni": 0.14,
+    "team_uplift": 0.07,
+    "collab_efficiency": 0.0753,
+    "planning_value": 0.5,
+    "verification_value": 0.0,
+    "interpretation": {
+      "tni": "Teamwork provides modest improvement.",
+      "team_uplift": "Team adds +7.0% over single agent",
+      "collab_efficiency": "Team reaches 7.5% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +50.0% partial score",
+      "verification_value": "Verification adds +0.0% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 0,
+      "total": 1,
+      "success_rate": 0.0
+    },
+    "restricted": {
+      "passes": 0,
+      "total": 1,
+      "success_rate": 0.0
+    },
+    "team_no_verify": {
+      "passes": 0,
+      "total": 1,
+      "success_rate": 0.0
+    },
+    "team_no_plan": {
+      "passes": 0,
+      "total": 1,
+      "success_rate": 0.0
+    },
+    "full": {
+      "passes": 0,
+      "total": 1,
+      "success_rate": 0.0
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_153346_7b069f20",
+      "run_dir": "shared/ablation_runs/P1_policy_config/20260226_153346_7b069f20",
+      "pass": false,
+      "partial_score": 0.93,
+      "elapsed_sec": 42.3,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_153429_fc991601",
+      "run_dir": "shared/ablation_runs/P1_policy_config/20260226_153429_fc991601",
+      "pass": false,
+      "partial_score": 0.43,
+      "elapsed_sec": 108.4,
+      "failure_modes": [
+        "policy_rules_fail",
+        "rule_max_connections",
+        "rule_timeout_sec",
+        "rule_retry_count",
+        "rule_cors_origins",
+        "rule_auth_method",
+        "rule_session_timeout_min",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_153619_93a745d4",
+      "run_dir": "shared/ablation_runs/P1_policy_config/20260226_153619_93a745d4",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 174.0,
+      "failure_modes": [
+        "missing_config_json"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_153913_a7619164",
+      "run_dir": "shared/ablation_runs/P1_policy_config/20260226_153913_a7619164",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 20.2,
+      "failure_modes": [
+        "missing_config_json",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_153934_089b3ecd",
+      "run_dir": "shared/ablation_runs/P1_policy_config/20260226_153934_089b3ecd",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 266.0,
+      "failure_modes": [
+        "wrong_keys",
+        "policy_rules_fail",
+        "rule_timeout_sec",
+        "rule_cors_origins",
+        "rule_session_timeout_min",
+        "rule_min_password_length",
+        "bad_attestation"
+      ],
+      "error": null
+    }
+  ]
+}

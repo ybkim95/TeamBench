@@ -1,0 +1,547 @@
+{
+  "model": "gemini-2.5-flash",
+  "tasks": [
+    "S1_hidden_spec",
+    "SEC1_vuln_patch",
+    "D1_schema_drift",
+    "IR1_evidence_qa",
+    "LH2_budgeted_workflow"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-02-26T16:42:23.041769+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.328,
+    "p_restricted": 0.384,
+    "p_full": 0.44,
+    "p_no_verify": 0.41,
+    "p_no_plan": 0.298,
+    "necessity_gap": -0.056,
+    "tni": 5.6,
+    "team_uplift": 0.056,
+    "collab_efficiency": 0.1707,
+    "planning_value": 0.142,
+    "verification_value": 0.03,
+    "interpretation": {
+      "tni": "Teamwork fully recovers the performance gap.",
+      "team_uplift": "Team adds +5.6% over single agent",
+      "collab_efficiency": "Team reaches 17.1% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +14.2% partial score",
+      "verification_value": "Verification adds +3.0% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    },
+    "restricted": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    },
+    "team_no_verify": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    },
+    "team_no_plan": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    },
+    "full": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_154538_c7407bc0",
+      "run_dir": "shared/ablation_runs/S1_hidden_spec/20260226_154538_c7407bc0",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 59.4,
+      "failure_modes": [
+        "hidden_spec_normal_key_order",
+        "hidden_spec_normal_status",
+        "hidden_spec_normal_types",
+        "hidden_spec_normal_meta",
+        "hidden_spec_items_not_stripped",
+        "hidden_spec_empty_exit_code",
+        "hidden_spec_empty_output",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_154639_907d2319",
+      "run_dir": "shared/ablation_runs/SEC1_vuln_patch/20260226_154639_907d2319",
+      "pass": false,
+      "partial_score": 0.42,
+      "elapsed_sec": 110.4,
+      "failure_modes": [
+        "hardcoded_secret_present",
+        "path_traversal_present",
+        "insecure_session",
+        "syntax_error",
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260226_154831_7443890c",
+      "run_dir": "shared/ablation_runs/D1_schema_drift/20260226_154831_7443890c",
+      "pass": false,
+      "partial_score": 0.44,
+      "elapsed_sec": 79.5,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260226_154953_740c36ea",
+      "run_dir": "shared/ablation_runs/IR1_evidence_qa/20260226_154953_740c36ea",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 99.1,
+      "failure_modes": [
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "LH2_budgeted_workflow",
+      "seed": 0,
+      "run_id": "20260226_155132_afc2c044",
+      "run_dir": "shared/ablation_runs/LH2_budgeted_workflow/20260226_155132_afc2c044",
+      "pass": false,
+      "partial_score": 0.11,
+      "elapsed_sec": 133.4,
+      "failure_modes": [
+        "validation_fail",
+        "wrong_files_fixed",
+        "not_all_valid",
+        "budget_exceeded",
+        "file_a_not_fixed",
+        "file_b_not_fixed",
+        "file_c_not_fixed",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_155347_b1c6ccba",
+      "run_dir": "shared/ablation_runs/S1_hidden_spec/20260226_155347_b1c6ccba",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 12.9,
+      "failure_modes": [
+        "hidden_spec_normal_key_order",
+        "hidden_spec_empty_exit_code",
+        "hidden_spec_empty_output",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_155401_2ad9b4f9",
+      "run_dir": "shared/ablation_runs/SEC1_vuln_patch/20260226_155401_2ad9b4f9",
+      "pass": false,
+      "partial_score": 0.42,
+      "elapsed_sec": 22.8,
+      "failure_modes": [
+        "sql_injection_present",
+        "hardcoded_secret_present",
+        "path_traversal_present",
+        "insecure_session",
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260226_155426_d5771aa8",
+      "run_dir": "shared/ablation_runs/D1_schema_drift/20260226_155426_d5771aa8",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 61.9,
+      "failure_modes": [
+        "wrong_columns",
+        "wrong_row_count",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "sort_order_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260226_155529_2dda5e7b",
+      "run_dir": "shared/ablation_runs/IR1_evidence_qa/20260226_155529_2dda5e7b",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 15.6,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "LH2_budgeted_workflow",
+      "seed": 0,
+      "run_id": "20260226_155546_cc0b5015",
+      "run_dir": "shared/ablation_runs/LH2_budgeted_workflow/20260226_155546_cc0b5015",
+      "pass": false,
+      "partial_score": 0.17,
+      "elapsed_sec": 20.7,
+      "failure_modes": [
+        "validation_fail",
+        "missing_report",
+        "file_a_not_fixed",
+        "file_c_not_fixed",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_155607_2007ff75",
+      "run_dir": "shared/ablation_runs/S1_hidden_spec/20260226_155607_2007ff75",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 199.0,
+      "failure_modes": [
+        "hidden_spec_normal_key_order",
+        "hidden_spec_normal_status",
+        "hidden_spec_normal_types",
+        "hidden_spec_normal_meta",
+        "hidden_spec_items_not_stripped",
+        "hidden_spec_empty_exit_code",
+        "hidden_spec_empty_output"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_155928_953a88a7",
+      "run_dir": "shared/ablation_runs/SEC1_vuln_patch/20260226_155928_953a88a7",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 68.2,
+      "failure_modes": [
+        "path_traversal_present",
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260226_160037_a202f7bf",
+      "run_dir": "shared/ablation_runs/D1_schema_drift/20260226_160037_a202f7bf",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 30.3,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260226_160110_6866fa8b",
+      "run_dir": "shared/ablation_runs/IR1_evidence_qa/20260226_160110_6866fa8b",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 155.5,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "LH2_budgeted_workflow",
+      "seed": 0,
+      "run_id": "20260226_160347_ce2ed24f",
+      "run_dir": "shared/ablation_runs/LH2_budgeted_workflow/20260226_160347_ce2ed24f",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 230.6,
+      "failure_modes": [
+        "validation_fail",
+        "wrong_files_fixed",
+        "not_all_valid",
+        "budget_exceeded",
+        "file_a_not_fixed",
+        "file_b_not_fixed",
+        "file_c_not_fixed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_160738_09a1a0d9",
+      "run_dir": "shared/ablation_runs/S1_hidden_spec/20260226_160738_09a1a0d9",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 47.6,
+      "failure_modes": [
+        "hidden_spec_normal_key_order",
+        "hidden_spec_normal_status",
+        "hidden_spec_normal_types",
+        "hidden_spec_normal_meta",
+        "hidden_spec_items_not_stripped",
+        "hidden_spec_empty_exit_code",
+        "hidden_spec_empty_output",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_160828_e55f3406",
+      "run_dir": "shared/ablation_runs/SEC1_vuln_patch/20260226_160828_e55f3406",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 112.9,
+      "failure_modes": [
+        "hardcoded_secret_present",
+        "insecure_session",
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260226_161022_8aa4fec1",
+      "run_dir": "shared/ablation_runs/D1_schema_drift/20260226_161022_8aa4fec1",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 45.3,
+      "failure_modes": [
+        "wrong_columns",
+        "wrong_row_count",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260226_161109_f3080b45",
+      "run_dir": "shared/ablation_runs/IR1_evidence_qa/20260226_161109_f3080b45",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 43.0,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "LH2_budgeted_workflow",
+      "seed": 0,
+      "run_id": "20260226_161153_10ff4b96",
+      "run_dir": "shared/ablation_runs/LH2_budgeted_workflow/20260226_161153_10ff4b96",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 60.3,
+      "failure_modes": [
+        "validation_fail",
+        "wrong_files_fixed",
+        "not_all_valid",
+        "budget_exceeded",
+        "budget_log_exceeded",
+        "file_a_not_fixed",
+        "file_c_not_fixed",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_161254_8ef94ed5",
+      "run_dir": "shared/ablation_runs/S1_hidden_spec/20260226_161254_8ef94ed5",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 240.7,
+      "failure_modes": [
+        "hidden_spec_normal_key_order",
+        "hidden_spec_normal_status",
+        "hidden_spec_normal_types",
+        "hidden_spec_normal_meta",
+        "hidden_spec_items_not_stripped",
+        "hidden_spec_empty_exit_code",
+        "hidden_spec_empty_output"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_161658_63e728fc",
+      "run_dir": "shared/ablation_runs/SEC1_vuln_patch/20260226_161658_63e728fc",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 375.9,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260226_162315_781c8e0e",
+      "run_dir": "shared/ablation_runs/D1_schema_drift/20260226_162315_781c8e0e",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 243.9,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260226_162721_e832a951",
+      "run_dir": "shared/ablation_runs/IR1_evidence_qa/20260226_162721_e832a951",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 327.6,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "LH2_budgeted_workflow",
+      "seed": 0,
+      "run_id": "20260226_163250_e28e3d10",
+      "run_dir": "shared/ablation_runs/LH2_budgeted_workflow/20260226_163250_e28e3d10",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 571.7,
+      "failure_modes": [
+        "wrong_files_fixed",
+        "not_all_valid",
+        "budget_exceeded",
+        "budget_log_exceeded",
+        "bad_attestation"
+      ],
+      "error": null
+    }
+  ]
+}
