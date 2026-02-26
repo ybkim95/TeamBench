@@ -1,0 +1,199 @@
+{
+  "total_tasks": 80,
+  "by_difficulty": {
+    "easy": 2,
+    "expert": 10,
+    "hard": 49,
+    "medium": 19
+  },
+  "by_domain": {
+    "code_review": 4,
+    "config": 1,
+    "data": 9,
+    "debugging": 1,
+    "engineering": 1,
+    "incident": 2,
+    "incident_response": 5,
+    "integration": 1,
+    "ir": 4,
+    "javascript": 1,
+    "long": 4,
+    "multi_language": 1,
+    "operations": 3,
+    "ops": 5,
+    "pipeline": 4,
+    "policy": 5,
+    "security": 8,
+    "software": 13,
+    "specification": 3,
+    "testing": 5
+  },
+  "by_category": {
+    "Code Review": {
+      "count": 5,
+      "tasks": [
+        "CR1_review_respond",
+        "CR2_style_enforce",
+        "CR3_perf_review",
+        "CR4_api_review",
+        "CR5_test_coverage"
+      ]
+    },
+    "Data Engineering": {
+      "count": 8,
+      "tasks": [
+        "D1_schema_drift",
+        "D2_data_quality",
+        "D3_schema_migration",
+        "D4_data_pipeline",
+        "D5_query_optimize",
+        "D6_data_reconcile",
+        "SQL1_query_repair",
+        "SQL2_query_optimize"
+      ]
+    },
+    "Incident Response": {
+      "count": 7,
+      "tasks": [
+        "INC1_cascade_failure",
+        "INC2_data_corruption",
+        "INC3_memory_leak",
+        "INC4_dns_miscfg",
+        "INC5_cert_expiry",
+        "INC6_deadlock",
+        "INC7_rollback"
+      ]
+    },
+    "Information Retrieval": {
+      "count": 4,
+      "tasks": [
+        "IR1_evidence_qa",
+        "IR2_misinformation_trap",
+        "IR3_multi_source",
+        "IR4_temporal"
+      ]
+    },
+    "Long-Horizon": {
+      "count": 7,
+      "tasks": [
+        "LH1_long_horizon",
+        "LH2_budgeted_workflow",
+        "LH3_multi_service",
+        "LH4_staged_deploy",
+        "LH5_data_migration",
+        "SCALE1_codebase_migration",
+        "SYNTH1_distributed_debug"
+      ]
+    },
+    "Multi-language": {
+      "count": 3,
+      "tasks": [
+        "MULTI1_fullstack_fix",
+        "MULTI2_api_frontend",
+        "MULTI3_polyglot"
+      ]
+    },
+    "Operations": {
+      "count": 6,
+      "tasks": [
+        "O1_service_health",
+        "O2_incident_rootcause",
+        "O3_log_analysis",
+        "O4_monitoring",
+        "O5_container_debug",
+        "O6_perf_tuning"
+      ]
+    },
+    "Pipeline/Integration": {
+      "count": 5,
+      "tasks": [
+        "INT1_pipeline_repair",
+        "PIPE1_etl_fix",
+        "PIPE2_api_gateway",
+        "PIPE3_msg_queue",
+        "PIPE4_ci_cd"
+      ]
+    },
+    "Policy/Compliance": {
+      "count": 5,
+      "tasks": [
+        "P1_policy_config",
+        "P2_spec_arbitration",
+        "P3_access_control",
+        "P4_data_retention",
+        "P5_audit_logging"
+      ]
+    },
+    "Security": {
+      "count": 8,
+      "tasks": [
+        "SEC1_vuln_patch",
+        "SEC2_auth_bypass",
+        "SEC3_crypto_upgrade",
+        "SEC4_input_validation",
+        "SEC5_secrets_rotation",
+        "SEC6_csrf_protection",
+        "SEC7_rate_limiting",
+        "SEC8_dependency_audit"
+      ]
+    },
+    "Software Engineering": {
+      "count": 10,
+      "tasks": [
+        "GO1_concurrency_fix",
+        "GO2_race_condition",
+        "JS1_api_migration",
+        "JS2_xss_sanitize",
+        "S1_hidden_spec",
+        "S2_dependency_conflict",
+        "S3_refactor_extract",
+        "S4_backward_compat",
+        "S5_error_handling",
+        "S6_caching"
+      ]
+    },
+    "Spec-to-Implementation": {
+      "count": 5,
+      "tasks": [
+        "SPEC1_feature_impl",
+        "SPEC2_api_design",
+        "SPEC3_data_model",
+        "SPEC4_migration",
+        "SPEC5_config_system"
+      ]
+    },
+    "Testing": {
+      "count": 4,
+      "tasks": [
+        "TEST1_spec_to_tests",
+        "TEST2_regression",
+        "TEST3_integration",
+        "TEST4_property"
+      ]
+    },
+    "Tradeoff/Negotiation": {
+      "count": 3,
+      "tasks": [
+        "NEG1_tradeoff_config",
+        "NEG2_cost_perf",
+        "NEG3_tech_debt"
+      ]
+    }
+  },
+  "by_language": {
+    "bash": 5,
+    "dockerfile": 1,
+    "go": 3,
+    "html": 1,
+    "javascript": 4,
+    "json": 7,
+    "python": 76,
+    "sql": 3
+  },
+  "parameterized": 80,
+  "static": 0,
+  "avg_seeds": 3.1,
+  "total_instances": 251,
+  "has_grader": 80,
+  "has_setup": 80
+}
