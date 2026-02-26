@@ -1,0 +1,130 @@
+[
+  {
+    "task_id": "CR4_api_review",
+    "category": "Code Review",
+    "planning_value": 0.06,
+    "verification_value": 0.37,
+    "team_uplift": 0.06,
+    "team_gt_oracle": true
+  },
+  {
+    "task_id": "D1_schema_drift",
+    "category": "Data Engineering",
+    "planning_value": 0.12,
+    "verification_value": 0.12,
+    "team_uplift": 0.0,
+    "team_gt_oracle": true
+  },
+  {
+    "task_id": "INC1_cascade_failure",
+    "category": "Incident Response",
+    "planning_value": 0.1,
+    "verification_value": 0.0,
+    "team_uplift": 0.1,
+    "team_gt_oracle": true
+  },
+  {
+    "task_id": "INT1_pipeline_repair",
+    "category": "Integration",
+    "planning_value": -0.08,
+    "verification_value": -0.25,
+    "team_uplift": 0.0,
+    "team_gt_oracle": true
+  },
+  {
+    "task_id": "IR1_evidence_qa",
+    "category": "Information Retrieval",
+    "planning_value": 0.0,
+    "verification_value": -0.17,
+    "team_uplift": 0.0,
+    "team_gt_oracle": false
+  },
+  {
+    "task_id": "LH2_budgeted_workflow",
+    "category": "Long-Horizon",
+    "planning_value": 0.3,
+    "verification_value": 0.2,
+    "team_uplift": 0.33,
+    "team_gt_oracle": true
+  },
+  {
+    "task_id": "MULTI1_fullstack_fix",
+    "category": "Multi-language",
+    "planning_value": 0.25,
+    "verification_value": 0.75,
+    "team_uplift": 0.5,
+    "team_gt_oracle": true
+  },
+  {
+    "task_id": "NEG1_tradeoff_config",
+    "category": "Negotiation",
+    "planning_value": -0.1,
+    "verification_value": 0.0,
+    "team_uplift": -0.1,
+    "team_gt_oracle": false
+  },
+  {
+    "task_id": "O2_incident_rootcause",
+    "category": "Operations",
+    "planning_value": 0.2,
+    "verification_value": -0.2,
+    "team_uplift": 0.2,
+    "team_gt_oracle": false
+  },
+  {
+    "task_id": "P1_policy_config",
+    "category": "Policy",
+    "planning_value": 0.5,
+    "verification_value": 0.0,
+    "team_uplift": 0.07,
+    "team_gt_oracle": false
+  },
+  {
+    "task_id": "PIPE1_etl_fix",
+    "category": "Pipeline",
+    "planning_value": 0.09,
+    "verification_value": 0.0,
+    "team_uplift": 0.37,
+    "team_gt_oracle": false
+  },
+  {
+    "task_id": "S1_hidden_spec",
+    "category": "Software Eng.",
+    "planning_value": 0.12,
+    "verification_value": 0.0,
+    "team_uplift": -0.38,
+    "team_gt_oracle": true
+  },
+  {
+    "task_id": "S2_dependency_conflict",
+    "category": "Software Eng.",
+    "planning_value": -0.25,
+    "verification_value": -0.25,
+    "team_uplift": -0.25,
+    "team_gt_oracle": false
+  },
+  {
+    "task_id": "SEC1_vuln_patch",
+    "category": "Security",
+    "planning_value": 0.17,
+    "verification_value": 0.0,
+    "team_uplift": 0.33,
+    "team_gt_oracle": true
+  },
+  {
+    "task_id": "SPEC1_feature_impl",
+    "category": "Specification",
+    "planning_value": -0.09,
+    "verification_value": -0.09,
+    "team_uplift": -0.45,
+    "team_gt_oracle": false
+  },
+  {
+    "task_id": "TEST1_spec_to_tests",
+    "category": "Testing",
+    "planning_value": 0.1,
+    "verification_value": 0.0,
+    "team_uplift": 0.5,
+    "team_gt_oracle": true
+  }
+]

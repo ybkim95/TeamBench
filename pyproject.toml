@@ -16,6 +16,7 @@ gemini = ["google-genai>=1.0"]
 openai = ["openai>=1.0"]
 anthropic = ["anthropic>=0.20"]
 all = ["google-genai>=1.0", "openai>=1.0", "anthropic>=0.20"]
+analysis = ["matplotlib>=3.8", "numpy>=1.24"]
 dev = ["pytest>=7.0", "pyyaml>=6.0"]
 
 [project.scripts]

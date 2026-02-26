@@ -26,7 +26,7 @@ def create_adapter(model: str, temperature: float = 0.2, **kwargs):
         from harness.gemini_adapter import GeminiAdapter
         return GeminiAdapter(model=model, temperature=temperature, **kwargs)
 
-    if model_lower.startswith("gpt-") or model_lower.startswith("o1") or model_lower.startswith("o3"):
+    if model_lower.startswith(("gpt-", "o1", "o3", "o4")):
         from harness.adapters.openai_adapter import OpenAIAdapter
         return OpenAIAdapter(model=model, temperature=temperature, **kwargs)
 
@@ -40,5 +40,5 @@ def create_adapter(model: str, temperature: float = 0.2, **kwargs):
 
     raise ValueError(
         f"Cannot determine adapter for model '{model}'. "
-        "Use a model name starting with 'gemini-', 'gpt-', 'o1', 'o3', 'claude-', or 'mock'."
+        "Use a model name starting with 'gemini-', 'gpt-', 'o1', 'o3', 'o4', 'claude-', or 'mock'."
     )

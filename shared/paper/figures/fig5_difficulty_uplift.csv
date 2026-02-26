@@ -1,0 +1,17 @@
+task_id,difficulty,difficulty_num,oracle,full,team_uplift,category
+IR1_evidence_qa,easy,1,0.67,0.33,0.0,Information Retrieval
+D1_schema_drift,medium,2,0.44,0.5,0.0,Data Engineering
+P1_policy_config,medium,2,0.93,0.5,0.07,Policy
+PIPE1_etl_fix,medium,2,0.73,0.73,0.37,Pipeline
+TEST1_spec_to_tests,medium,2,0.7,0.8,0.5,Testing
+CR4_api_review,hard,3,0.56,0.62,0.06,Code Review
+INC1_cascade_failure,hard,3,0.8,0.9,0.1,Incident Response
+INT1_pipeline_repair,hard,3,0.08,0.42,0.0,Integration
+MULTI1_fullstack_fix,hard,3,0.75,1.0,0.5,Multi-language
+NEG1_tradeoff_config,hard,3,0.5,0.4,-0.1,Negotiation
+O2_incident_rootcause,hard,3,0.6,0.6,0.2,Operations
+S1_hidden_spec,hard,3,0.0,0.12,-0.38,Software Eng.
+S2_dependency_conflict,hard,3,0.25,0.0,-0.25,Software Eng.
+SEC1_vuln_patch,hard,3,0.42,0.75,0.33,Security
+SPEC1_feature_impl,hard,3,0.45,0.0,-0.45,Specification
+LH2_budgeted_workflow,expert,4,0.11,0.5,0.33,Long-Horizon

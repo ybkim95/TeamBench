@@ -1,0 +1,146 @@
+[
+  {
+    "task_id": "IR1_evidence_qa",
+    "difficulty": "easy",
+    "difficulty_num": 1,
+    "oracle": 0.67,
+    "full": 0.33,
+    "team_uplift": 0.0,
+    "category": "Information Retrieval"
+  },
+  {
+    "task_id": "D1_schema_drift",
+    "difficulty": "medium",
+    "difficulty_num": 2,
+    "oracle": 0.44,
+    "full": 0.5,
+    "team_uplift": 0.0,
+    "category": "Data Engineering"
+  },
+  {
+    "task_id": "P1_policy_config",
+    "difficulty": "medium",
+    "difficulty_num": 2,
+    "oracle": 0.93,
+    "full": 0.5,
+    "team_uplift": 0.07,
+    "category": "Policy"
+  },
+  {
+    "task_id": "PIPE1_etl_fix",
+    "difficulty": "medium",
+    "difficulty_num": 2,
+    "oracle": 0.73,
+    "full": 0.73,
+    "team_uplift": 0.37,
+    "category": "Pipeline"
+  },
+  {
+    "task_id": "TEST1_spec_to_tests",
+    "difficulty": "medium",
+    "difficulty_num": 2,
+    "oracle": 0.7,
+    "full": 0.8,
+    "team_uplift": 0.5,
+    "category": "Testing"
+  },
+  {
+    "task_id": "CR4_api_review",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.56,
+    "full": 0.62,
+    "team_uplift": 0.06,
+    "category": "Code Review"
+  },
+  {
+    "task_id": "INC1_cascade_failure",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.8,
+    "full": 0.9,
+    "team_uplift": 0.1,
+    "category": "Incident Response"
+  },
+  {
+    "task_id": "INT1_pipeline_repair",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.08,
+    "full": 0.42,
+    "team_uplift": 0.0,
+    "category": "Integration"
+  },
+  {
+    "task_id": "MULTI1_fullstack_fix",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.75,
+    "full": 1.0,
+    "team_uplift": 0.5,
+    "category": "Multi-language"
+  },
+  {
+    "task_id": "NEG1_tradeoff_config",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.5,
+    "full": 0.4,
+    "team_uplift": -0.1,
+    "category": "Negotiation"
+  },
+  {
+    "task_id": "O2_incident_rootcause",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.6,
+    "full": 0.6,
+    "team_uplift": 0.2,
+    "category": "Operations"
+  },
+  {
+    "task_id": "S1_hidden_spec",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.0,
+    "full": 0.12,
+    "team_uplift": -0.38,
+    "category": "Software Eng."
+  },
+  {
+    "task_id": "S2_dependency_conflict",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.25,
+    "full": 0.0,
+    "team_uplift": -0.25,
+    "category": "Software Eng."
+  },
+  {
+    "task_id": "SEC1_vuln_patch",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.42,
+    "full": 0.75,
+    "team_uplift": 0.33,
+    "category": "Security"
+  },
+  {
+    "task_id": "SPEC1_feature_impl",
+    "difficulty": "hard",
+    "difficulty_num": 3,
+    "oracle": 0.45,
+    "full": 0.0,
+    "team_uplift": -0.45,
+    "category": "Specification"
+  },
+  {
+    "task_id": "LH2_budgeted_workflow",
+    "difficulty": "expert",
+    "difficulty_num": 4,
+    "oracle": 0.11,
+    "full": 0.5,
+    "team_uplift": 0.33,
+    "category": "Long-Horizon"
+  }
+]

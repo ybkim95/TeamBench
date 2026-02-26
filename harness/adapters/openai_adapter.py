@@ -85,8 +85,8 @@ class OpenAIAdapter(ToolCallAdapter):
             "messages": oai_messages,
             "max_tokens": self.max_tokens,
         }
-        # o1/o3 models do not support temperature
-        if not self.model.startswith("o1") and not self.model.startswith("o3"):
+        # o-series reasoning models do not support temperature
+        if not self.model.startswith(("o1", "o3", "o4")):
             kwargs["temperature"] = self.temperature
         if oai_tools:
             kwargs["tools"] = oai_tools

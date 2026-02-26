@@ -1,0 +1,17 @@
+task_id,category,planning_value,verification_value,team_uplift,team_gt_oracle
+CR4_api_review,Code Review,0.06,0.37,0.06,True
+D1_schema_drift,Data Engineering,0.12,0.12,0.0,True
+INC1_cascade_failure,Incident Response,0.1,0.0,0.1,True
+INT1_pipeline_repair,Integration,-0.08,-0.25,0.0,True
+IR1_evidence_qa,Information Retrieval,0.0,-0.17,0.0,False
+LH2_budgeted_workflow,Long-Horizon,0.3,0.2,0.33,True
+MULTI1_fullstack_fix,Multi-language,0.25,0.75,0.5,True
+NEG1_tradeoff_config,Negotiation,-0.1,0.0,-0.1,False
+O2_incident_rootcause,Operations,0.2,-0.2,0.2,False
+P1_policy_config,Policy,0.5,0.0,0.07,False
+PIPE1_etl_fix,Pipeline,0.09,0.0,0.37,False
+S1_hidden_spec,Software Eng.,0.12,0.0,-0.38,True
+S2_dependency_conflict,Software Eng.,-0.25,-0.25,-0.25,False
+SEC1_vuln_patch,Security,0.17,0.0,0.33,True
+SPEC1_feature_impl,Specification,-0.09,-0.09,-0.45,False
+TEST1_spec_to_tests,Testing,0.1,0.0,0.5,True

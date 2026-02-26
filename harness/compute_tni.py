@@ -51,9 +51,11 @@ class TaskMetrics:
     @property
     def tni(self) -> float:
         gap = self.necessity_gap
-        if abs(gap) < 0.01:
+        if abs(gap) < 0.05:
             return float("nan")
-        return (self.team_partial - self.restricted_partial) / max(0.01, gap)
+        raw = (self.team_partial - self.restricted_partial) / gap
+        # Clamp to [-2, 2] to avoid extreme values when gap is small
+        return max(-2.0, min(2.0, raw))
 
     @property
     def team_uplift(self) -> float:
@@ -176,17 +178,19 @@ def compute_from_runs_dir(runs_dir: str) -> list[TaskMetrics]:
     return results
 
 
-def compute_from_results_json(results_path: str) -> list[TaskMetrics]:
-    """Compute per-task metrics from ablation_results.json."""
-    with open(results_path) as f:
-        data = json.load(f)
+def compute_from_results_json(results_path: str | list[str]) -> list[TaskMetrics]:
+    """Compute per-task metrics from one or more ablation JSON files."""
+    paths = [results_path] if isinstance(results_path, str) else results_path
 
     task_cond_scores: dict[str, dict[str, float]] = defaultdict(dict)
-    for run in data.get("runs", []):
-        task_id = run["task_id"]
-        condition = run["condition"]
-        partial = run.get("partial_score", 1.0 if run.get("pass") else 0.0)
-        task_cond_scores[task_id][condition] = float(partial)
+    for path in paths:
+        with open(path) as f:
+            data = json.load(f)
+        for run in data.get("runs", []):
+            task_id = run["task_id"]
+            condition = run["condition"]
+            partial = run.get("partial_score", 1.0 if run.get("pass") else 0.0)
+            task_cond_scores[task_id][condition] = float(partial)
 
     results = []
     for task_id, cond_scores in sorted(task_cond_scores.items()):
@@ -324,7 +328,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Compute TeamBench TNI metrics")
 
     ap.add_argument("--runs-dir", help="Path to ablation_runs directory")
-    ap.add_argument("--ablation", help="Path to ablation_results.json")
+    ap.add_argument("--ablation", nargs="+", help="Path(s) to ablation result JSON files")
     ap.add_argument("--oracle", help="Path to oracle batch results")
     ap.add_argument("--restricted", help="Path to restricted batch results")
     ap.add_argument("--team", help="Path to team batch results")

@@ -2,24 +2,25 @@
 
 > A multi-domain benchmark for evaluating whether LLM agents can collaborate effectively under OS-enforced role separation.
 
-Unlike prior benchmarks that rely on prompt-based constraints, TeamBench uses **Docker containers with file-system mount policies** to enforce role boundaries. No single agent can simultaneously access the full specification, write to the workspace, and submit verification — forcing genuine teamwork.
+Unlike prior benchmarks that rely on prompt-based constraints, TeamBench uses **Docker containers with file-system mount policies** to enforce role boundaries. No single agent can simultaneously access the full specification, write to the workspace, and submit verification --- forcing genuine teamwork.
 
 ## Key Features
 
-- **22 tasks** across **8 domains** (software, ops, data, policy, IR, long-horizon, security, integration)
-- **OS-level enforcement** via Docker bind mounts — not prompt-based honor system
+- **80 tasks** across **14 categories** with **251 seeded instances**
+- **OS-level enforcement** via Docker bind mounts --- not prompt-based honor system
 - **Contamination-resistant** parameterized generation (infinite seed variants per task)
+- **8 programming languages**: Python, JavaScript, Go, SQL, Bash, JSON, Dockerfile, HTML
 - **Model-agnostic** adapters for Gemini, GPT, Claude (and any OpenAI-compatible API)
 - **5-condition ablation framework** with Teamwork Necessity Index (TNI)
-- **336 automated tests** validating generators, graders, and pipeline integrity
+- **Graded scoring** with partial credit and fine-grained failure mode taxonomy
 
 ## Why Teamwork Is Necessary
 
 | Constraint | Mechanism | Bypass-proof? |
 |---|---|---|
-| **Information Partition** | Planner sees `spec.md`; Executor sees only `brief.md` | Yes — file not mounted |
-| **Permission Partition** | Executor can write workspace; Planner/Verifier cannot | Yes — read-only mounts |
-| **Verification Independence** | Only Verifier can write `attestation.json`; no attestation = auto-fail | Yes — mount policy |
+| **Information Partition** | Planner sees `spec.md`; Executor sees only `brief.md` | Yes --- file not mounted |
+| **Permission Partition** | Executor can write workspace; Planner/Verifier cannot | Yes --- read-only mounts |
+| **Verification Independence** | Only Verifier can write `attestation.json`; no attestation = auto-fail | Yes --- mount policy |
 
 ### Teamwork Necessity Index (TNI)
 
@@ -42,32 +43,26 @@ TNI = (S_team - S_restricted) / max(epsilon, S_oracle - S_restricted)
 | **Executor** | `brief.md`, workspace, reports, messages | workspace, reports | Yes |
 | **Verifier** | `spec.md`, workspace (RO), reports (RO), messages | submission (`attestation.json`) | No |
 
-## Task Overview (22 Tasks, 8 Domains)
+## Task Distribution (80 Tasks, 14 Categories)
 
-| Domain | ID | Task | Difficulty | Languages |
-|---|---|---|---|---|
-| Software | S1 | Hidden Spec (edge cases in CLI app) | easy | Python |
-| Software | S2 | Dependency Conflict (version resolution) | medium | Python |
-| Ops | O1 | Service Health (fix broken server) | easy | Python, Bash |
-| Ops | O2 | Incident Root Cause (diagnose from logs) | medium | Python, JSON |
-| Data | D1 | Schema Drift (fix ETL pipeline) | easy | Python |
-| Data | D2 | Data Quality (clean dirty dataset) | easy | Python |
-| Policy | P1 | Policy-Driven Config (compliance rules) | easy | JSON |
-| Policy | P2 | Spec Arbitration (conflicting requirements) | medium | JSON |
-| IR | IR1 | Evidence QA (multi-doc retrieval) | easy | JSON |
-| IR | IR2 | Misinformation Trap (adversarial docs) | medium | JSON |
-| Long-Horizon | LH1 | Pipeline Workflow (10-15 step pipeline) | hard | Python, JSON |
-| Long-Horizon | LH2 | Budgeted Workflow (resource constraints) | hard | Python, JSON |
-| Security | SEC1 | Vulnerability Patch (OWASP fixes) | hard | Python |
-| Testing | TEST1 | Spec-to-Tests (write tests from spec) | hard | Python |
-| Integration | INT1 | Pipeline Repair (multi-component fix) | hard | Python, JSON |
-| Integration | SYNTH1 | Distributed Debug (cross-service bugs) | expert | Python |
-| Negotiation | NEG1 | Tradeoff Config (Pareto-optimal config) | expert | Python, JSON |
-| Scale | SCALE1 | Codebase Migration (20+ file refactor) | expert | Python |
-| Software | JS1 | API Migration (Express v4 to v5) | medium | JavaScript |
-| Data | SQL1 | Query Repair (fix broken SQL queries) | medium | SQL |
-| Software | GO1 | Concurrency Fix (race/deadlock bugs) | hard | Go |
-| Integration | MULTI1 | Fullstack Fix (Python + JS + Bash bugs) | medium | Python, JS, Bash |
+| Category | Count | Difficulty Range | Example Tasks |
+|---|---|---|---|
+| Software Engineering | 10 | medium--expert | Hidden spec, dependency conflict, refactoring, backward compat |
+| Data Engineering | 8 | medium--expert | Schema drift, data quality, pipeline repair, query optimization |
+| Security | 8 | medium--expert | Vuln patch, auth bypass, crypto upgrade, CSRF, rate limiting |
+| Incident Response | 7 | medium--expert | Cascade failure, data corruption, memory leak, deadlock |
+| Long-Horizon | 7 | hard--expert | Multi-step pipeline, budgeted workflow, staged deploy, data migration |
+| Operations | 6 | medium--expert | Service health, root cause, log analysis, container debug |
+| Code Review | 5 | easy--hard | Review respond, style enforce, perf review, API review |
+| Pipeline/Integration | 5 | medium--hard | ETL fix, API gateway, message queue, CI/CD |
+| Policy/Compliance | 5 | medium--hard | Policy config, spec arbitration, access control, audit logging |
+| Specification | 5 | medium--hard | Feature impl, API design, data model, config system |
+| Information Retrieval | 4 | easy--hard | Evidence QA, misinformation trap, multi-source, temporal |
+| Testing | 4 | medium--hard | Spec-to-tests, regression, integration, property-based |
+| Multi-language | 3 | hard | Fullstack fix, API+frontend, polyglot |
+| Negotiation | 3 | hard | Tradeoff config, cost-perf balance, tech debt |
+
+**Difficulty distribution**: 49 hard, 19 medium, 10 expert, 2 easy
 
 ## Quick Start
 
@@ -87,17 +82,20 @@ pip install -e ".[dev]"
 ### Run with LLM Agent (API key required)
 
 ```bash
+# Set API keys
+export GEMINI_API_KEY=...   # or OPENAI_API_KEY / ANTHROPIC_API_KEY
+
 # Single task
-teambench run --model gemini-2.5-flash --task P1_policy_config --seed 0
+python -m harness.run_agent --model gemini-2.5-flash --task P1_policy_config --seed 0
 
-# All tasks
-teambench run --model gpt-4o --task all --seeds 0 1 2
+# Batch (all tasks, 3 seeds)
+python -m harness.run_all --model gemini-2.5-flash --seeds 0 1 2
 
-# Multi-model batch
-teambench batch --models gemini-2.5-flash gpt-4o claude-3-5-sonnet --seeds 0 1 2
+# Ablation study (5 conditions x selected tasks)
+python -m harness.ablation --model gemini-2.5-flash --seeds 0 1 2
 
-# Ablation study (5 conditions x all tasks)
-teambench ablation --model gemini-2.5-flash --seeds 0 1 2
+# Compute TNI from ablation results
+python -m harness.compute_tni --ablation shared/ablation_results.json
 ```
 
 ### Run with Docker (OS-enforced role separation)
@@ -120,11 +118,12 @@ docker compose down
 ### Validate Infrastructure (no API keys needed)
 
 ```bash
-# Run all tests (generators, graders, pipeline)
-pytest tests/ -v
+# Run full validation
+python -m harness.run_all --seeds 0  # Grades unmodified workspaces (all should fail)
 
-# Validate all tasks
-teambench validate --task all
+# Generate benchmark statistics
+python -m harness.benchmark_stats --json
+python -m harness.benchmark_stats --latex
 ```
 
 ## Model Adapters
@@ -149,7 +148,7 @@ Built-in adapters (auto-selected by model name prefix):
 | `gemini-*` | GeminiAdapter | `GEMINI_API_KEY` |
 | `gpt-*`, `o1*`, `o3*` | OpenAIAdapter | `OPENAI_API_KEY` |
 | `claude-*` | AnthropicAdapter | `ANTHROPIC_API_KEY` |
-| `mock-*` | MockAdapter | (none — for testing) |
+| `mock-*` | MockAdapter | (none --- for testing) |
 
 ## Contamination Resistance
 
@@ -169,7 +168,7 @@ r42 = gen.generate(seed=42) # rate_limit=210, timeout=15, auth=oauth2
 assert gen.generate(seed=0).expected == r0.expected
 ```
 
-This makes data contamination through training data memorization ineffective.
+80 generators produce 251 instances (seeds [0,1,2]) with deterministic reproducibility.
 
 ## Ablation Framework
 
@@ -184,7 +183,10 @@ Five conditions to quantify the value of each architectural component:
 | **Full** | Planner + Executor + Verifier + remediation | Full team |
 
 ```bash
-teambench ablation --model gpt-4o --seeds 0 1 2 --output shared/ablation_results.json
+python -m harness.ablation --model gemini-2.5-flash --seeds 0 1 2
+
+# Generate paper tables from ablation results
+python -m harness.paper_tables --ablation shared/ablation_results.json --output-dir shared/paper/
 ```
 
 ## Scoring
@@ -195,8 +197,8 @@ Each task produces `score.json`:
 {
   "pass": true,
   "primary": {"success": 1},
-  "secondary": {"partial_score": 0.85},
-  "failure_modes": []
+  "secondary": {"partial_score": 0.85, "checks_passed": 6, "checks_total": 7},
+  "failure_modes": ["hidden_spec_edge_case_x"]
 }
 ```
 
@@ -207,7 +209,7 @@ Each task produces `score.json`:
 | Metric | Description |
 |---|---|
 | **Success Rate** | Binary pass/fail ratio |
-| **Partial Score** | Fractional credit (0-1) for partial solutions |
+| **Partial Score** | Fractional credit (0--1) for partial solutions |
 | **Pass@k** | Stability: P(at least 1 pass in k seeded runs) |
 | **TNI** | Teamwork Necessity Index (ablation-derived) |
 | **Planning Value** | S_full - S_no_plan |
@@ -219,28 +221,28 @@ Each task produces `score.json`:
 
 | Code | Description |
 |---|---|
-| FM1 | Spec Omission — Executor missed requirements only in spec |
-| FM2 | Overfit to Visible — Passed obvious checks, failed hidden ones |
-| FM3 | Execution Loop — Agent retried without making progress |
-| FM4 | Unsafe Change — Introduced security/policy violation |
-| FM5 | Evidence Hallucination — Cited non-existent evidence |
-| FM6 | Poor Repair — Failed remediation after verifier feedback |
-| FM7 | Verification Failure — Verifier approved incorrect output |
+| FM1 | Spec Omission --- Executor missed requirements only in spec |
+| FM2 | Overfit to Visible --- Passed obvious checks, failed hidden ones |
+| FM3 | Execution Loop --- Agent retried without making progress |
+| FM4 | Unsafe Change --- Introduced security/policy violation |
+| FM5 | Evidence Hallucination --- Cited non-existent evidence |
+| FM6 | Poor Repair --- Failed remediation after verifier feedback |
+| FM7 | Verification Failure --- Verifier approved incorrect output |
 
 ## Repository Structure
 
 ```
 TeamBench/
   harness/
-    cli.py                  # Unified CLI: teambench run/grade/batch/ablation/validate
     run_agent.py             # Agent driver (model -> orchestrator -> grader)
     run_all.py               # Batch runner with setup_run/grade_run
     orchestrator.py          # 3-phase protocol: Plan -> Execute -> Verify
     agent_loop.py            # Single-agent tool-calling loop
     agent_interface.py       # ToolCallAdapter ABC, role configs, tools
     ablation.py              # 5-condition ablation framework + TNI
-    statistics.py            # Bootstrap CIs, McNemar test, Pass@k
-    analysis.py              # Post-hoc campaign analysis
+    compute_tni.py           # Per-task TNI computation and reporting
+    paper_tables.py          # LaTeX table generation for paper
+    benchmark_stats.py       # Task distribution analysis
     adapters/
       __init__.py            # create_adapter() factory
       openai_adapter.py      # GPT/O1/O3 adapter
@@ -251,51 +253,46 @@ TeamBench/
     base.py                  # TaskGenerator ABC, GeneratedTask dataclass
     primitives.py            # SeededRandom, NamePool, ValuePool
     registry.py              # Auto-discovery of gen_*.py generators
-    gen_*.py                 # 22 parameterized generators (one per task)
+    gen_*.py                 # 80 parameterized generators (one per task)
   tasks/
     {TASK_ID}/
       task.yaml              # Metadata (domain, difficulty, languages, tags)
       spec.md                # Full specification (Planner + Verifier)
       brief.md               # Summary (Executor only)
-      setup.sh               # Workspace preparation (legacy, generators preferred)
+      setup.sh               # Workspace preparation
       grade.sh               # Deterministic grader -> score.json
       workspace/             # Initial (buggy) code/data
       corpus/                # Offline documents (IR/policy tasks)
-  tests/
-    test_contamination.py    # Cross-seed diversity + determinism
-    test_task_structure.py   # Schema validation for all 22 tasks
-    test_grader_correctness.py  # Graders don't false-positive
-    test_e2e_pipeline.py     # Full pipeline integration test
   leaderboard/
     schema.json              # Submission format
     aggregate.py             # Aggregation with dimensional breakdowns
   docker-compose.yml         # 3-container sandbox (P/E/V)
   images/{planner,executor,verifier}/Dockerfile
-  pyproject.toml             # Build config, CLI entry point
 ```
 
 ## Adding New Tasks
 
 1. Create `generators/gen_my_task.py` implementing `TaskGenerator`
 2. Create `tasks/MY_TASK/` with `task.yaml`, `spec.md`, `brief.md`, `setup.sh`, `grade.sh`, `workspace/`
-3. Run `teambench validate --task MY_TASK` to verify
-4. Run `pytest tests/test_contamination.py -v` to check cross-seed diversity
+3. Run `python -m harness.run_all --tasks MY_TASK --seeds 0` to validate the grader
+4. Verify cross-seed diversity with `generators/registry.py`
 
 ## Pre-registered Hypotheses
 
 1. **Teamwork is necessary**: TNI > 0.5 across most tasks (restricted baseline significantly underperforms)
-2. **Cross-family synergy**: Mixed teams (Gemini + Claude + GPT) outperform homogeneous teams
-3. **Role specialization**: Some models excel as Planner vs. Executor vs. Verifier
-4. **Verification value**: Removing the Verifier significantly reduces pass rate
-5. **Difficulty calibration**: Expert tasks have < 20% pass rate; easy tasks have > 60%
+2. **Planning value**: Removing the Planner significantly reduces partial scores
+3. **Verification value**: Removing the Verifier significantly reduces pass rate
+4. **Cross-family synergy**: Mixed teams (Gemini + Claude + GPT) outperform homogeneous teams
+5. **Role specialization**: Some models excel as Planner vs. Executor vs. Verifier
+6. **Difficulty calibration**: Expert tasks have < 20% pass rate; easy tasks have > 60%
 
 ## Citation
 
 ```bibtex
-@article{teambench2025,
-  title={TeamBench: A Benchmark for Evaluating OS-Enforced Teamwork Among Heterogeneous LLM Agents},
-  author={...},
-  year={2025},
+@article{teambench2026,
+  title={TeamBench: OS-Enforced Teamwork Benchmark for Heterogeneous LLM Agent Teams},
+  author={Kim, Youngbin and others},
+  year={2026},
   note={https://github.com/ybkim95/TeamBench}
 }
 ```

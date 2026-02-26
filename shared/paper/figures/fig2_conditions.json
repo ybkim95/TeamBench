@@ -1,0 +1,146 @@
+[
+  {
+    "task_id": "CR4_api_review",
+    "category": "Code Review",
+    "oracle": 0.56,
+    "restricted": 0.56,
+    "full": 0.62,
+    "no_plan": 0.56,
+    "no_verify": 0.25
+  },
+  {
+    "task_id": "D1_schema_drift",
+    "category": "Data Engineering",
+    "oracle": 0.44,
+    "restricted": 0.5,
+    "full": 0.5,
+    "no_plan": 0.38,
+    "no_verify": 0.38
+  },
+  {
+    "task_id": "INC1_cascade_failure",
+    "category": "Incident Response",
+    "oracle": 0.8,
+    "restricted": 0.8,
+    "full": 0.9,
+    "no_plan": 0.8,
+    "no_verify": 0.9
+  },
+  {
+    "task_id": "INT1_pipeline_repair",
+    "category": "Integration",
+    "oracle": 0.08,
+    "restricted": 0.42,
+    "full": 0.42,
+    "no_plan": 0.5,
+    "no_verify": 0.67
+  },
+  {
+    "task_id": "IR1_evidence_qa",
+    "category": "Information Retrieval",
+    "oracle": 0.67,
+    "restricted": 0.33,
+    "full": 0.33,
+    "no_plan": 0.33,
+    "no_verify": 0.5
+  },
+  {
+    "task_id": "LH2_budgeted_workflow",
+    "category": "Long-Horizon",
+    "oracle": 0.11,
+    "restricted": 0.17,
+    "full": 0.5,
+    "no_plan": 0.2,
+    "no_verify": 0.3
+  },
+  {
+    "task_id": "MULTI1_fullstack_fix",
+    "category": "Multi-language",
+    "oracle": 0.75,
+    "restricted": 0.5,
+    "full": 1.0,
+    "no_plan": 0.75,
+    "no_verify": 0.25
+  },
+  {
+    "task_id": "NEG1_tradeoff_config",
+    "category": "Negotiation",
+    "oracle": 0.5,
+    "restricted": 0.5,
+    "full": 0.4,
+    "no_plan": 0.5,
+    "no_verify": 0.4
+  },
+  {
+    "task_id": "O2_incident_rootcause",
+    "category": "Operations",
+    "oracle": 0.6,
+    "restricted": 0.4,
+    "full": 0.6,
+    "no_plan": 0.4,
+    "no_verify": 0.8
+  },
+  {
+    "task_id": "P1_policy_config",
+    "category": "Policy",
+    "oracle": 0.93,
+    "restricted": 0.43,
+    "full": 0.5,
+    "no_plan": 0.0,
+    "no_verify": 0.5
+  },
+  {
+    "task_id": "PIPE1_etl_fix",
+    "category": "Pipeline",
+    "oracle": 0.73,
+    "restricted": 0.36,
+    "full": 0.73,
+    "no_plan": 0.64,
+    "no_verify": 0.73
+  },
+  {
+    "task_id": "S1_hidden_spec",
+    "category": "Software Eng.",
+    "oracle": 0.0,
+    "restricted": 0.5,
+    "full": 0.12,
+    "no_plan": 0.0,
+    "no_verify": 0.12
+  },
+  {
+    "task_id": "S2_dependency_conflict",
+    "category": "Software Eng.",
+    "oracle": 0.25,
+    "restricted": 0.25,
+    "full": 0.0,
+    "no_plan": 0.25,
+    "no_verify": 0.25
+  },
+  {
+    "task_id": "SEC1_vuln_patch",
+    "category": "Security",
+    "oracle": 0.42,
+    "restricted": 0.42,
+    "full": 0.75,
+    "no_plan": 0.58,
+    "no_verify": 0.75
+  },
+  {
+    "task_id": "SPEC1_feature_impl",
+    "category": "Specification",
+    "oracle": 0.45,
+    "restricted": 0.45,
+    "full": 0.0,
+    "no_plan": 0.09,
+    "no_verify": 0.09
+  },
+  {
+    "task_id": "TEST1_spec_to_tests",
+    "category": "Testing",
+    "oracle": 0.7,
+    "restricted": 0.3,
+    "full": 0.8,
+    "no_plan": 0.7,
+    "no_verify": 0.8
+  }
+]

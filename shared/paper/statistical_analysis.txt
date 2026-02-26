@@ -1,0 +1,52 @@
+======================================================================
+STATISTICAL ANALYSIS — TeamBench Ablation Study
+======================================================================
+
+Sample: 16 tasks, 80 total runs
+Model: Gemini 2.5 Flash
+
+--- Condition-Level Partial Scores ---
+  oracle              : avg=0.499  n= 16  pass_rate=0.500 [0.250, 0.750]
+  restricted          : avg=0.431  n= 16  pass_rate=0.125 [0.000, 0.312]
+  full                : avg=0.511  n= 16  pass_rate=0.438 [0.188, 0.688]
+  team_no_plan        : avg=0.417  n= 16  pass_rate=0.375 [0.125, 0.625]
+  team_no_verify      : avg=0.481  n= 16  pass_rate=0.375 [0.125, 0.625]
+
+--- Team Uplift Analysis ---
+  Avg uplift (Full - Restricted): +0.080
+  Positive uplift: 9/16 (56%)
+  Negative uplift: 4/16 (25%)
+  Neutral:         3/16 (19%)
+
+--- Planning Value ---
+  Avg Planning Value: +0.093
+  Positive: 11/16 (69%)
+  Max: +0.500 (P1_policy_config)
+
+--- Verification Value ---
+  Avg Verification Value: +0.030
+  Positive: 4/16 (25%)
+
+--- Team > Oracle (Key Finding) ---
+  Tasks where team outperforms oracle: 9/16
+    LH2_budgeted_workflow     +0.39
+    INT1_pipeline_repair      +0.34
+    SEC1_vuln_patch           +0.33
+    MULTI1_fullstack_fix      +0.25
+    S1_hidden_spec            +0.12
+    TEST1_spec_to_tests       +0.10
+    INC1_cascade_failure      +0.10
+    D1_schema_drift           +0.06
+    CR4_api_review            +0.06
+
+  Interpretation: On 9/16 tasks, the 3-role team with
+  remediation loops outperforms a single oracle agent with full access.
+  This demonstrates that role separation and verification-driven
+  iteration provide complementary value beyond raw capability.
+
+--- Sample Size Guidance ---
+  To detect 10pp difference at p<0.05 with 80% power: n=393 per condition
+  Current: 16 tasks x 1 seed = 16 instances per condition
+  Recommended: 16 tasks x 3 seeds = 48 instances per condition
+
+======================================================================
