@@ -39,7 +39,7 @@ for MODEL in $MODELS; do
     log "Log: $LOG"
 
     cd "$ROOT"
-    "$PYTHON" -m harness.ablation \
+    PYTHONUNBUFFERED=1 "$PYTHON" -m harness.ablation \
         --model "$MODEL" \
         --tasks $EA_TASKS \
         --seeds $SEEDS \
