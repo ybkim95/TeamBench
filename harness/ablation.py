@@ -685,9 +685,10 @@ def run_full_ablation(
     output: str,
     max_turns: int = 20,
     max_remediation: int = 2,
+    conditions: Optional[list[AblationCondition]] = None,
 ) -> dict:
     """
-    Run all 5 ablation conditions for given tasks and seeds.
+    Run ablation conditions for given tasks and seeds.
 
     Args:
         model: model name (determines adapter)
@@ -697,6 +698,7 @@ def run_full_ablation(
         output: path to write ablation_results.json
         max_turns: max turns per agent phase
         max_remediation: max remediation loops (used for FULL condition)
+        conditions: which conditions to run (None = all)
 
     Returns:
         Full ablation results dict.
@@ -708,7 +710,7 @@ def run_full_ablation(
 
     adapter = create_adapter(model=model, temperature=0.2)
 
-    conditions = list(AblationCondition)
+    conditions = conditions if conditions is not None else list(AblationCondition)
 
     print(f"TeamBench Ablation Study")
     print(f"Model: {model}")
@@ -854,7 +856,28 @@ def main() -> None:
     ap.add_argument("--output", default="shared/ablation_results.json", help="Output path")
     ap.add_argument("--max-turns", type=int, default=20, help="Max turns per phase")
     ap.add_argument("--max-remediation", type=int, default=2, help="Max remediation loops")
+    ap.add_argument(
+        "--conditions",
+        nargs="+",
+        default=None,
+        choices=[c.value for c in AblationCondition],
+        help="Conditions to run (default: all). E.g. --conditions expertise_full expertise_oracle",
+    )
     args = ap.parse_args()
+
+    conditions = (
+        [AblationCondition(c) for c in args.conditions] if args.conditions else None
+    )
+
+    # Load .env if present
+    env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+    if os.path.isfile(env_path):
+        with open(env_path) as ef:
+            for line in ef:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, _, v = line.partition("=")
+                    os.environ.setdefault(k.strip(), v.strip())
 
     run_full_ablation(
         model=args.model,
@@ -864,6 +887,7 @@ def main() -> None:
         output=args.output,
         max_turns=args.max_turns,
         max_remediation=args.max_remediation,
+        conditions=conditions,
     )
 
 

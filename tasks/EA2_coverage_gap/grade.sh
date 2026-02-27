@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-WORKSPACE="${WORKSPACE_DIR:-/workspace}"
-REPORTS="${REPORTS_DIR:-/reports}"
+WORKSPACE="${1:-${WORKSPACE_DIR:-/workspace}}"
+REPORTS="${2:-${REPORTS_DIR:-/reports}}"
+SUBMISSION="${3:-/submission}"
+TASK_DIR="${4:-/task}"
 
 cd "$WORKSPACE"
 

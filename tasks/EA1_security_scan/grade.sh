@@ -2,8 +2,10 @@
 # EA1 grader: verify security fixes and false positive preservation
 set -euo pipefail
 
-WORKSPACE="${WORKSPACE_DIR:-/workspace}"
-REPORTS="${REPORTS_DIR:-/reports}"
+WORKSPACE="${1:-${WORKSPACE_DIR:-/workspace}}"
+REPORTS="${2:-${REPORTS_DIR:-/reports}}"
+SUBMISSION="${3:-/submission}"
+TASK_DIR="${4:-/task}"
 
 pass=true
 partial=0
