@@ -1,0 +1,67 @@
+{
+  "model": "gemini-2.5-flash",
+  "tasks": [
+    "EA5_dependency_audit"
+  ],
+  "seeds": [
+    5
+  ],
+  "completed": "2026-02-27T22:14:57.514511+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.0,
+    "p_restricted": 0.0,
+    "p_full": 0.0,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.0,
+    "tni": 0.0,
+    "team_uplift": 0.0,
+    "collab_efficiency": 0.0,
+    "planning_value": 0.0,
+    "verification_value": 0.0,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.57,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.57,
+    "testing_value": 0.57,
+    "expertise_tni": 57.0,
+    "interpretation": {
+      "tni": "Teamwork provides minimal improvement.",
+      "team_uplift": "Team adds +0.0% over single agent",
+      "collab_efficiency": "Team reaches 0.0% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +0.0% partial score",
+      "verification_value": "Verification adds +0.0% partial score"
+    }
+  },
+  "per_condition": {
+    "expertise_full": {
+      "passes": 0,
+      "total": 1,
+      "success_rate": 0.0
+    }
+  },
+  "runs": [
+    {
+      "condition": "expertise_full",
+      "task_id": "EA5_dependency_audit",
+      "seed": 5,
+      "run_id": "20260227_220858_382c2c4a",
+      "run_dir": "shared/ea_results/ablation_runs/EA5_dependency_audit/20260227_220858_382c2c4a",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 352.7,
+      "failure_modes": [],
+      "error": null
+    }
+  ]
+}
