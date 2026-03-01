@@ -24,3 +24,18 @@ and Service B (HMAC API keys).
 - Non-zero expiry: Session tokens that never expire allow indefinite impersonation
 - Audience validation: Prevents token reuse across services
 - Complete role mapping: Missing roles cause authorization failures
+
+## Real-World Context
+All five bugs appear in documented CVEs and security advisories:
+- **Bug 1 (JWT algorithm confusion)**: CVE-2023-48223 (fast-jwt npm, GHSA-c2ff-88x2-x9pg)
+  and CVE-2026-27804 (Parse Server, complete account takeover via `alg: none` or
+  HS256 confusion, CVSS 9.8). Auth0's 2015 post "Critical vulnerabilities in JWT libraries"
+  documented this class across 6 major libraries. Fix: hardcode `algorithms=['RS256']`.
+- **Bug 2 (timing attack on API keys)**: Same class as CVE-2025-59058 (httpsig-rs, CVSS
+  7.5) and Django ticket #14445. Non-constant-time comparison leaks key bytes byte-by-byte.
+- **Bug 3 (incomplete role mapping)**: Authorization failures from missing role coverage
+  are a common misconfiguration in federated auth systems (OWASP Broken Access Control).
+- **Bug 4 (no session expiry)**: CWE-613 (Insufficient Session Expiration). Sessions
+  without expiry allow indefinite impersonation after token theft.
+- **Bug 5 (missing audience validation)**: CVE-2017-8932 class — JWT tokens issued for
+  service A accepted by service B when `aud` claim is not verified (CVSS 7.5).

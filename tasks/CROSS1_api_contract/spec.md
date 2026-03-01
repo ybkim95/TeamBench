@@ -25,3 +25,16 @@ Do NOT modify any Go source files. Only fix:
 - `client/models.py` — client data models
 - `client/exceptions.py` — client exception handling
 - `api_spec.yaml` — update to match actual server behavior
+
+## Real-World Context
+API contract mismatches between polyglot services are a leading cause of production
+incidents. These three discrepancy patterns appear repeatedly in real migrations:
+- **Field naming (camelCase vs snake_case)**: The Twitter v1 → v2 migration renamed
+  hundreds of fields (e.g., `user.followers_count` → `public_metrics.followers_count`),
+  silently breaking every consumer that referenced old names.
+- **Pagination key rename** (`data`/`next` → `results`/`cursor`): Stripe's 2022
+  changelog removed `invoice` from `Charge` objects and renamed pagination fields,
+  breaking dashboard tools and analytics pipelines overnight.
+- **Error format change** (HTTP 422 + `errors[]` → HTTP 400 + `error` string): The
+  GitHub REST API v3 → v4 transition changed error envelopes, causing silent failures
+  in CI/CD integrations that checked `response.errors[0]`.

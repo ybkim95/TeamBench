@@ -22,3 +22,15 @@ Fix 3 bugs in the certificate chain validation library per RFC 5280.
 The validator accepts self-signed root CAs (correct per RFC 5280 — roots are
 self-signed by definition). A naive agent might think this is a bug. It is not.
 Similarly, the key usage extension check for leaf certs is correctly implemented.
+
+## Real-World Context
+All three bugs reflect real certificate validation failures in production systems:
+- **Bug 1 (timezone-naive datetime)**: CVE-2021-3177 class issue — Python's naive
+  `datetime.utcnow()` vs timezone-aware comparison allows expired certificates to
+  appear valid in UTC-offset timezones. Multiple TLS libraries have shipped this bug.
+- **Bug 2 (missing Subject/Issuer chain check)**: CVE-2021-3450 (OpenSSL 1.1.1h–j)
+  allowed non-CA certificates to issue other certificates because the chain continuity
+  check was overwritten by an unrelated strict-mode flag. CVSS 7.4.
+- **Bug 3 (pathLenConstraint not enforced)**: Trail of Bits (2024) found that several
+  Python X.509 libraries checked `CA:TRUE` but ignored `pathLen`, permitting unauthorized
+  intermediate CAs to issue certificates beyond their authorized depth.

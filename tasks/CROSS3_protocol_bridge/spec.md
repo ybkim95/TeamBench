@@ -47,3 +47,24 @@ Service A returns HTTP status codes. Service B uses gRPC-style integer error cod
 | 404         | NOT_FOUND           | 5           |
 | 429         | RESOURCE_EXHAUSTED  | 8           |
 | 5xx         | INTERNAL            | 13          |
+
+## Real-World Context
+JSON-to-gRPC transcoding bridges are a common integration layer in microservice
+architectures, and the 6 bugs in this task reflect bugs documented in real transcoding
+implementations:
+- **int64 truncation (Bug 1)**: JavaScript's `JSON.parse()` silently truncates 64-bit
+  integers beyond `Number.MAX_SAFE_INTEGER` (2^53-1). This caused data loss in the
+  Twitter Snowflake ID migration (2010) and is documented in the gRPC-Gateway project
+  FAQ. Fix: serialize int64 as strings in JSON.
+- **bytes base64 handling (Bug 2)**: Proto3 `bytes` fields must be base64-encoded in
+  JSON (RFC 4648). The gRPC-Gateway library had exactly this bug in v1.x — binary
+  fields were passed through raw, corrupting payloads. CVE-class issue in several
+  open-source gRPC-JSON bridges.
+- **oneof variant mapping (Bug 3)**: Proto3 `oneof` fields in JSON use the field name
+  as the key, not the oneof name. Incorrect mapping silently drops the value.
+- **enum integer vs string (Bug 4)**: Proto3 JSON canonical form uses enum names
+  (strings), not integers. Several gRPC web clients (grpc-web, grpc-gateway) have
+  shipped this mismatch causing 0-value enums for all inputs.
+- **Error code mapping (Bugs 5–6)**: gRPC status codes (google.rpc.Code) are a
+  strict mapping from HTTP status; 404→NOT_FOUND(5) and 429→RESOURCE_EXHAUSTED(8)
+  are specified in google.rpc.Code and commonly misimplemented.

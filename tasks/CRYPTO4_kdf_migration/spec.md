@@ -22,3 +22,15 @@ compatibility with all existing users.
 See `auth_system/migrator.py` and `auth_system/verifier.py` for the bugs described in
 the supporting documentation. The format marker bug and hex-salt handling bug are subtle
 and will cause cascading failures if not fixed.
+
+## Real-World Context
+MD5→Argon2 migrations with backward compatibility are a recurring real-world challenge:
+- **WordPress trac #39499 (2017)**: Proposed migrating from 8,192-round salted MD5
+  (phpass) to Argon2i. The transparent upgrade-on-login pattern (authenticate with old
+  hash, re-hash with Argon2 on success) is the industry standard for zero-downtime
+  migrations without forcing password resets.
+- **Keycloak KDF upgrade**: Migrating from PBKDF2-SHA1 to Argon2id required format
+  markers and multi-format verifiers — identical to the format-marker bug in this task.
+- **The hex-salt bug** mirrors a real Django migration issue where legacy `md5(password
+  + salt)` stored the salt as hex in the database, but the migration code decoded it
+  as base64, producing incorrect hashes for all legacy users.

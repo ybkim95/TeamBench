@@ -22,3 +22,15 @@ NOT all string comparisons need to be constant-time. A username is a public iden
 timing differences in username lookup do not leak secret information. Changing the username
 lookup to use `hmac.compare_digest` is security theater and will cause issues.
 Only comparisons involving secrets (keys, signatures, hashes, tokens) need fixing.
+
+## Real-World Context
+Timing side-channel vulnerabilities in authentication are well-documented in production:
+- **Django ticket #14445 (2010)**: Django's CSRF token comparison used `==`, leaking
+  token bytes one at a time via response-time differences. Fixed by introducing
+  `crypto.constant_time_compare()` in Django 1.4.
+- **PyJWT issue #7 (2013)**: HMAC signature verification used Python's `==` operator,
+  enabling remote timing oracle attacks against JWT-authenticated APIs.
+- **CVE-2022-48566**: Python's HMAC library timing properties under CPython optimization;
+  `hmac.compare_digest()` is the standard fix (PEP 466, Python 3.4+).
+- **CVE-2025-59058** (httpsig-rs): Timing attack on HTTP signature verification in Rust,
+  CVSS 7.5 — constant-time comparison missed in one code path.

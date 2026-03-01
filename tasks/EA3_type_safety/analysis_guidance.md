@@ -11,11 +11,25 @@
 - `app/utils.py`: 4 errors (missing annotations, bare Dict)
 - `app/dynamic.py`: 3 errors (dynamic dispatch, any-return, operator)
 
-## False Positives (Errors Needing type:ignore, NOT code changes)
-- `app/dynamic.py` line ~10: dynamic getattr call — add `# type: ignore[no-untyped-call]`
-- `app/dynamic.py` line ~22: plugin registry return — add `# type: ignore[no-any-return]`
-- `app/dynamic.py` line ~31: runtime cast — add `# type: ignore[operator]`
+## Intentional Dynamic Patterns (require suppression, NOT code changes)
+Three locations in `app/dynamic.py` use genuinely dynamic Python patterns that cannot
+be fully typed without changing the design. These need suppression, not refactoring:
+- `app/dynamic.py` line ~10: dynamic `getattr` dispatch
+- `app/dynamic.py` line ~22: plugin registry heterogeneous return
+- `app/dynamic.py` line ~31: runtime callable invocation
 
 ## Key Distinction
 12 errors need real code fixes (add type annotations, fix literal types, fix return values).
-3 errors in `app/dynamic.py` should get `# type: ignore` comments — NOT code changes.
+3 locations in `app/dynamic.py` need suppression — NOT code changes.
+
+## CRITICAL: The Unused-Ignore Trap
+**If the dynamic.py parameters are typed as `Any`, mypy will NOT report errors at those
+locations — making `# type: ignore` comments become "unused-ignore" errors under `--strict`.**
+
+Two valid approaches to suppress these without triggering unused-ignore:
+1. **Use `cast()`**: `return cast(ReturnType, plugin_registry[key])` — no type:ignore needed
+2. **Use specific non-Any types** that genuinely conflict, then add `# type: ignore[...]`
+
+Approach 1 (`cast()`) is often simpler and avoids the unused-ignore problem entirely.
+Do NOT tell the executor to add `# type: ignore` blindly — check whether the parameter
+types are `Any` first. If they are `Any`, recommend `cast()` instead.
