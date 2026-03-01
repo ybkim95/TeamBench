@@ -1,0 +1,286 @@
+{
+  "model": "gemini-3-flash-preview",
+  "tasks": [
+    "EA3_type_safety"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "completed": "2026-03-01T16:16:51.791337+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.0,
+    "p_restricted": 0.0,
+    "p_full": 0.0,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.0,
+    "tni": 0.0,
+    "team_uplift": 0.0,
+    "collab_efficiency": 0.0,
+    "planning_value": 0.0,
+    "verification_value": 0.0,
+    "s_expertise_full": 0.6667,
+    "s_expertise_no_analysis": 1.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.9,
+    "p_expertise_no_analysis": 1.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.7,
+    "analysis_value": -0.1,
+    "testing_value": 0.9,
+    "expertise_tni": 1.2857,
+    "interpretation": {
+      "tni": "Teamwork provides minimal improvement.",
+      "team_uplift": "Team adds +0.0% over single agent",
+      "collab_efficiency": "Team reaches 0.0% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +0.0% partial score",
+      "verification_value": "Verification adds +0.0% partial score"
+    }
+  },
+  "per_condition": {
+    "expertise_full": {
+      "passes": 4,
+      "total": 6,
+      "success_rate": 0.6667
+    },
+    "expertise_no_analysis": {
+      "passes": 6,
+      "total": 6,
+      "success_rate": 1.0
+    },
+    "expertise_oracle": {
+      "passes": 0,
+      "total": 6,
+      "success_rate": 0.0
+    }
+  },
+  "runs": [
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 0,
+      "run_id": "20260301_144422_4cb598fc",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_144422_4cb598fc",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 512.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 1,
+      "run_id": "20260301_145300_0278b5c2",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_145300_0278b5c2",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 489.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 2,
+      "run_id": "20260301_150114_fa85fcc0",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_150114_fa85fcc0",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 279.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 3,
+      "run_id": "20260301_150559_e3394e56",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_150559_e3394e56",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 636.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 4,
+      "run_id": "20260301_151643_30ea2e28",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_151643_30ea2e28",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 415.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 5,
+      "run_id": "20260301_152343_2595db5d",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_152343_2595db5d",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 406.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 0,
+      "run_id": "20260301_153035_ca1d170e",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_153035_ca1d170e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 164.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 1,
+      "run_id": "20260301_153329_1480c731",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_153329_1480c731",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 202.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 2,
+      "run_id": "20260301_153656_f1941357",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_153656_f1941357",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 244.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 3,
+      "run_id": "20260301_154106_d6ea7321",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_154106_d6ea7321",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 285.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 4,
+      "run_id": "20260301_154558_c8e490f9",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_154558_c8e490f9",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 216.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 5,
+      "run_id": "20260301_154940_49a42254",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_154940_49a42254",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 153.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 0,
+      "run_id": "20260301_155217_40f4c616",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_155217_40f4c616",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 210.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 1,
+      "run_id": "20260301_155552_4ad8cdf6",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_155552_4ad8cdf6",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 221.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 2,
+      "run_id": "20260301_155938_91b5c677",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_155938_91b5c677",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 216.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 3,
+      "run_id": "20260301_160319_48366757",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_160319_48366757",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 187.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 4,
+      "run_id": "20260301_160631_a965c045",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_160631_a965c045",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 232.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 5,
+      "run_id": "20260301_161032_cc57ab64",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_161032_cc57ab64",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 374.2,
+      "failure_modes": [],
+      "error": null
+    }
+  ]
+}

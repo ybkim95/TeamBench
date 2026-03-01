@@ -1,0 +1,212 @@
+{
+  "model": "gemini-3-flash-preview",
+  "tasks": [
+    "EA3_type_safety"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "completed": "2026-03-01T17:15:05.489234+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.0,
+    "p_restricted": 0.0,
+    "p_full": 0.0,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.0,
+    "tni": 0.0,
+    "team_uplift": 0.0,
+    "collab_efficiency": 0.0,
+    "planning_value": 0.0,
+    "verification_value": 0.0,
+    "s_expertise_full": 0.25,
+    "s_expertise_no_analysis": 1.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.6,
+    "p_expertise_no_analysis": 1.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.7,
+    "analysis_value": -0.4,
+    "testing_value": 0.6,
+    "expertise_tni": 0.8571,
+    "interpretation": {
+      "tni": "Teamwork provides minimal improvement.",
+      "team_uplift": "Team adds +0.0% over single agent",
+      "collab_efficiency": "Team reaches 0.0% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +0.0% partial score",
+      "verification_value": "Verification adds +0.0% partial score"
+    }
+  },
+  "per_condition": {
+    "expertise_full": {
+      "passes": 1,
+      "total": 4,
+      "success_rate": 0.25
+    },
+    "expertise_no_analysis": {
+      "passes": 4,
+      "total": 4,
+      "success_rate": 1.0
+    },
+    "expertise_oracle": {
+      "passes": 0,
+      "total": 4,
+      "success_rate": 0.0
+    }
+  },
+  "runs": [
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 0,
+      "run_id": "20260301_162219_d1f05ffe",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_162219_d1f05ffe",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 512.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 1,
+      "run_id": "20260301_163055_dbea7446",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_163055_dbea7446",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 409.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 2,
+      "run_id": "20260301_163749_214541ee",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_163749_214541ee",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 313.0,
+      "failure_modes": [],
+      "error": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    },
+    {
+      "condition": "expertise_full",
+      "task_id": "EA3_type_safety",
+      "seed": 3,
+      "run_id": "20260301_164302_bb7682fe",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_164302_bb7682fe",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 410.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 0,
+      "run_id": "20260301_164956_93b92d1d",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_164956_93b92d1d",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 132.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 1,
+      "run_id": "20260301_165213_9ee0264f",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_165213_9ee0264f",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 135.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 2,
+      "run_id": "20260301_165433_13f13b60",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_165433_13f13b60",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 144.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_no_analysis",
+      "task_id": "EA3_type_safety",
+      "seed": 3,
+      "run_id": "20260301_165704_21d0bf9d",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_165704_21d0bf9d",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 164.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 0,
+      "run_id": "20260301_165953_9209c511",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_165953_9209c511",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 251.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 1,
+      "run_id": "20260301_170410_51fdb0b4",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_170410_51fdb0b4",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 200.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 2,
+      "run_id": "20260301_170734_fd1adc8c",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_170734_fd1adc8c",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 176.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "expertise_oracle",
+      "task_id": "EA3_type_safety",
+      "seed": 3,
+      "run_id": "20260301_171034_540e3d45",
+      "run_dir": "shared/ea_results/ablation_runs/EA3_type_safety/20260301_171034_540e3d45",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 264.5,
+      "failure_modes": [],
+      "error": null
+    }
+  ]
+}
