@@ -1,8 +1,6 @@
 {
-  "n_records": 750,
+  "n_records": 600,
   "models": [
-    "gemini-2.0-flash",
-    "gemini-2.0-flash-lite",
     "gemini-2.5-flash",
     "gemini-2.5-pro",
     "gemini-3-flash-preview"
@@ -13,50 +11,6 @@
     "gemini-3-flash-preview"
   ],
   "per_model": {
-    "gemini-2.0-flash": {
-      "n": 60,
-      "full_rate": 0.016666666666666666,
-      "oracle_rate": 0.03333333333333333,
-      "no_analysis_rate": 0.0,
-      "tni": -0.017241379310344827,
-      "analysis_value": 0.016666666666666666,
-      "p_full_vs_oracle": 0.8783121687831217,
-      "p_full_vs_no_anal": 0.49605039496050396,
-      "full_ci": [
-        0.0,
-        0.05
-      ],
-      "oracle_ci": [
-        0.0,
-        0.08333333333333333
-      ],
-      "tni_ci": [
-        -0.07407407407407408,
-        0.03389830508474577
-      ]
-    },
-    "gemini-2.0-flash-lite": {
-      "n": 30,
-      "full_rate": 0.0,
-      "oracle_rate": 0.0,
-      "no_analysis_rate": 0.0,
-      "tni": 0.0,
-      "analysis_value": 0.0,
-      "p_full_vs_oracle": 1.0,
-      "p_full_vs_no_anal": 1.0,
-      "full_ci": [
-        0.0,
-        0.0
-      ],
-      "oracle_ci": [
-        0.0,
-        0.0
-      ],
-      "tni_ci": [
-        0.0,
-        0.0
-      ]
-    },
     "gemini-2.5-flash": {
       "n": 100,
       "full_rate": 0.24,
@@ -102,34 +56,34 @@
       ]
     },
     "gemini-3-flash-preview": {
-      "n": 30,
-      "full_rate": 0.7666666666666667,
-      "oracle_rate": 0.3,
-      "no_analysis_rate": 0.6666666666666666,
-      "tni": 0.6666666666666669,
-      "analysis_value": 0.10000000000000009,
+      "n": 70,
+      "full_rate": 0.7,
+      "oracle_rate": 0.32857142857142857,
+      "no_analysis_rate": 0.5714285714285714,
+      "tni": 0.553191489361702,
+      "analysis_value": 0.12857142857142856,
       "p_full_vs_oracle": 9.999000099990002e-05,
-      "p_full_vs_no_anal": 0.28787121287871215,
+      "p_full_vs_no_anal": 0.08249175082491751,
       "full_ci": [
-        0.6,
-        0.9
+        0.5857142857142857,
+        0.8
       ],
       "oracle_ci": [
-        0.13333333333333333,
-        0.4666666666666667
+        0.21428571428571427,
+        0.44285714285714284
       ],
       "tni_ci": [
-        0.38888888888888884,
-        0.8695652173913045
+        0.36111111111111105,
+        0.7142857142857143
       ]
     }
   },
   "pooled": {
-    "n_full": 160,
-    "tni": 0.2285714285714286,
+    "n_full": 200,
+    "tni": 0.26506024096385544,
     "tni_ci": [
-      0.12857142857142856,
-      0.32142857142857145
+      0.16981132075471703,
+      0.3563218390804598
     ],
     "tni_significant": true
   }
