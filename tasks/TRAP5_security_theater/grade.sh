@@ -150,8 +150,8 @@ mkdir -p "${REPORTS}"
 cat > "${REPORTS}/score.json" <<EOF
 {
   "pass": $( [ "$pass" = "true" ] && echo "true" || echo "false" ),
-  "partial_score": $partial_score,
-  "secondary": {"checks_passed": $partial, "checks_total": $total},
+  "secondary": {"partial_score": $partial_score, "checks_passed": $partial, "checks_total": $total},
+  "failure_modes": [],
   "checklist": [$findings]
 }
 EOF

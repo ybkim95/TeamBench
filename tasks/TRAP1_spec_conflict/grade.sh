@@ -42,7 +42,7 @@ fi
 
 # ── Inline Python test harness ────────────────────────────────────────────────
 # We import the Flask app directly and test endpoints via the test client.
-python3 - <<'PYEOF'
+(python3 - <<'PYEOF'
 import sys, os, json
 
 os.chdir(sys.argv[0] if False else os.environ.get("WORKSPACE_DIR", os.getcwd()))
@@ -138,13 +138,14 @@ mkdir -p "${REPORTS}"
 cat > "${REPORTS}/score.json" <<EOF
 {
   "pass": $( [ "$pass" = "true" ] && echo "true" || echo "false" ),
-  "partial_score": $partial_score,
   "secondary": {
+    "partial_score": $partial_score,
     "checks_passed": $partial,
     "checks_total": $total,
     "strict_endpoints": ["users","items","orders","reports"],
     "relaxed_endpoints": ["batch-import","search","webhooks"]
   },
+  "failure_modes": [],
   "checklist": [$findings]
 }
 EOF

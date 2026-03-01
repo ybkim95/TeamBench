@@ -243,8 +243,8 @@ mkdir -p "${REPORTS}"
 cat > "${REPORTS}/score.json" <<EOF
 {
   "pass": $( [ "$pass" = "true" ] && echo "true" || echo "false" ),
-  "partial_score": $partial_score,
   "secondary": {
+    "partial_score": $partial_score,
     "checks_passed": $partial,
     "checks_total": $total,
     "measurement_fix": $( [ "$c1_pass" = "pass" ] && echo "true" || echo "false" ),
