@@ -115,7 +115,10 @@ def grade_run(task_name: str, task_dir: str, run_dir: str) -> dict:
     subprocess.run(grade_args, check=False, capture_output=True, text=True, env=grade_env)
 
     if os.path.isfile(score_path):
-        return json.loads(pathlib.Path(score_path).read_text())
+        try:
+            return json.loads(pathlib.Path(score_path).read_text())
+        except json.JSONDecodeError:
+            pass  # fall through to grader_no_score
 
     return {
         "pass": False,

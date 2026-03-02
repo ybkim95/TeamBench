@@ -1,0 +1,374 @@
+{
+  "model": "gemini-2.5-flash",
+  "tasks": [
+    "P1_policy_config",
+    "SEC1_vuln_patch",
+    "SQL1_query_repair",
+    "S1_hidden_spec",
+    "LH1_long_horizon"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-02-26T07:05:45.445722+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "necessity_gap": 0.0,
+    "tni": 0.0,
+    "planning_value": 0.0,
+    "verification_value": 0.0,
+    "interpretation": {
+      "tni": "Teamwork provides minimal improvement.",
+      "planning_value": "Planning adds +0.0% pass rate",
+      "verification_value": "Verification adds +0.0% pass rate"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    },
+    "restricted": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    },
+    "team_no_verify": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    },
+    "team_no_plan": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    },
+    "full": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_055526_0039f674",
+      "pass": false,
+      "elapsed_sec": 19.4,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_055546_114b3006",
+      "pass": false,
+      "elapsed_sec": 75.7,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SQL1_query_repair",
+      "seed": 0,
+      "run_id": "20260226_055704_c027f96a",
+      "pass": false,
+      "elapsed_sec": 103.1,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_055850_4f83787b",
+      "pass": false,
+      "elapsed_sec": 26.1,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "LH1_long_horizon",
+      "seed": 0,
+      "run_id": "20260226_055917_e63050f1",
+      "pass": false,
+      "elapsed_sec": 62.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_060020_af1ee384",
+      "pass": false,
+      "elapsed_sec": 15.4,
+      "failure_modes": [
+        "policy_rules_fail",
+        "rule_max_connections",
+        "rule_timeout_sec",
+        "rule_retry_count",
+        "rule_cors_origins",
+        "rule_rate_limit_rpm",
+        "rule_auth_method",
+        "rule_session_timeout_min",
+        "rule_min_password_length",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_060037_6f244286",
+      "pass": false,
+      "elapsed_sec": 22.3,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SQL1_query_repair",
+      "seed": 0,
+      "run_id": "20260226_060101_18aef94c",
+      "pass": false,
+      "elapsed_sec": 23.4,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_060128_5765cf8e",
+      "pass": false,
+      "elapsed_sec": 33.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "LH1_long_horizon",
+      "seed": 0,
+      "run_id": "20260226_060203_836c55d0",
+      "pass": false,
+      "elapsed_sec": 43.7,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_060249_12beaf93",
+      "pass": false,
+      "elapsed_sec": 108.7,
+      "failure_modes": [
+        "missing_config_json"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_060438_ef580927",
+      "pass": false,
+      "elapsed_sec": 99.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SQL1_query_repair",
+      "seed": 0,
+      "run_id": "20260226_060618_ea893f3f",
+      "pass": false,
+      "elapsed_sec": 206.3,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_060946_139ba76b",
+      "pass": false,
+      "elapsed_sec": 122.9,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "LH1_long_horizon",
+      "seed": 0,
+      "run_id": "20260226_061150_d4aa1c49",
+      "pass": false,
+      "elapsed_sec": 318.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_061711_abffe527",
+      "pass": false,
+      "elapsed_sec": 120.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_061922_27502e29",
+      "pass": false,
+      "elapsed_sec": 66.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SQL1_query_repair",
+      "seed": 0,
+      "run_id": "20260226_062030_998942d8",
+      "pass": false,
+      "elapsed_sec": 178.9,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_062331_35c5f2ad",
+      "pass": false,
+      "elapsed_sec": 47.2,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "LH1_long_horizon",
+      "seed": 0,
+      "run_id": "20260226_062419_7d71be1e",
+      "pass": false,
+      "elapsed_sec": 88.1,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_062548_b00c5fb6",
+      "pass": false,
+      "elapsed_sec": 425.1,
+      "failure_modes": [
+        "wrong_keys",
+        "policy_rules_fail",
+        "rule_timeout_sec",
+        "rule_cors_origins",
+        "rule_session_timeout_min",
+        "rule_min_password_length",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_063256_a73e56bc",
+      "pass": false,
+      "elapsed_sec": 505.9,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SQL1_query_repair",
+      "seed": 0,
+      "run_id": "20260226_064123_309ad974",
+      "pass": false,
+      "elapsed_sec": 333.1,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_064711_c0af0708",
+      "pass": false,
+      "elapsed_sec": 444.9,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "LH1_long_horizon",
+      "seed": 0,
+      "run_id": "20260226_065438_7bac7ddf",
+      "pass": false,
+      "elapsed_sec": 666.2,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    }
+  ]
+}

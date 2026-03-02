@@ -106,7 +106,7 @@ if not found_rs256_only:
 sys.exit(0)
 PYEOF
 then
-    check "C3" "Bug 1 fixed: algorithms=[\"RS256\"] only — HS256 rejected" "pass"
+    check "C3" "Bug 1 fixed: algorithms=[RS256] only — HS256 rejected" "pass"
 else
     check "C3" "Bug 1 not fixed: HS256 still accepted or RS256-only not enforced in auth.py" "fail"
 fi

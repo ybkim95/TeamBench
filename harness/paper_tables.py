@@ -48,6 +48,11 @@ CATEGORY_MAP = {
     "MULTI": "Multi-language",
     "TEST": "Testing",
     "IR": "Information Retrieval",
+    "EA": "Expertise-Asymmetry",
+    "TRAP": "Adversarial",
+    "CROSS": "Cross-System",
+    "CRYPTO": "Security",
+    "DIST": "Distributed",
 }
 
 
