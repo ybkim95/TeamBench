@@ -521,8 +521,8 @@ checkpoint **overrides** the .json post-quota).
 
 Open-weight models were served two ways depending on the model size and
 which path was working at the time. Filename suffix `-or` means the run
-was dispatched against OpenRouter; no `-or` suffix means local vLLM on the
-<redacted-hostname> shared GPU node (vLLM 0.19.0 unless noted otherwise). Both
+was dispatched against OpenRouter; no `-or` suffix means local vLLM on a
+shared GPU node (vLLM 0.19.0 unless noted otherwise). Both
 serving paths use the same agent harness, the same per-role step budgets,
 and the same graders; only the model server differs.
 
