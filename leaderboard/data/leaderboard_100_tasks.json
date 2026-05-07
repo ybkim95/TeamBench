@@ -1,0 +1,810 @@
+{
+  "version": "2.0",
+  "n_tasks": 100,
+  "selection_date": "2026-04-10",
+  "categories": {
+    "Adversarial": {
+      "quota": 3,
+      "selected": 3,
+      "pool_size": 7,
+      "with_ablation": 3,
+      "difficulty": {
+        "hard": 3
+      }
+    },
+    "Code Review": {
+      "quota": 3,
+      "selected": 3,
+      "pool_size": 6,
+      "with_ablation": 3,
+      "difficulty": {
+        "hard": 2,
+        "medium": 1
+      }
+    },
+    "Cross-System Integration": {
+      "quota": 3,
+      "selected": 3,
+      "pool_size": 5,
+      "with_ablation": 3,
+      "difficulty": {
+        "hard": 3
+      }
+    },
+    "Data Engineering": {
+      "quota": 5,
+      "selected": 5,
+      "pool_size": 15,
+      "with_ablation": 5,
+      "difficulty": {
+        "expert": 1,
+        "hard": 4
+      }
+    },
+    "Distributed Systems": {
+      "quota": 3,
+      "selected": 3,
+      "pool_size": 7,
+      "with_ablation": 3,
+      "difficulty": {
+        "expert": 3
+      }
+    },
+    "GitHub Issues (Real-World)": {
+      "quota": 12,
+      "selected": 12,
+      "pool_size": 221,
+      "with_ablation": 12,
+      "difficulty": {
+        "medium": 12
+      }
+    },
+    "Incident Response": {
+      "quota": 6,
+      "selected": 6,
+      "pool_size": 26,
+      "with_ablation": 6,
+      "difficulty": {
+        "expert": 1,
+        "hard": 5
+      }
+    },
+    "Information Retrieval": {
+      "quota": 3,
+      "selected": 3,
+      "pool_size": 8,
+      "with_ablation": 3,
+      "difficulty": {
+        "hard": 3
+      }
+    },
+    "Integration": {
+      "quota": 1,
+      "selected": 1,
+      "pool_size": 1,
+      "with_ablation": 0,
+      "difficulty": {
+        "hard": 1
+      }
+    },
+    "Long-Horizon": {
+      "quota": 3,
+      "selected": 3,
+      "pool_size": 6,
+      "with_ablation": 3,
+      "difficulty": {
+        "expert": 2,
+        "hard": 1
+      }
+    },
+    "Multi-language": {
+      "quota": 3,
+      "selected": 3,
+      "pool_size": 6,
+      "with_ablation": 3,
+      "difficulty": {
+        "hard": 3
+      }
+    },
+    "Negotiation": {
+      "quota": 1,
+      "selected": 1,
+      "pool_size": 1,
+      "with_ablation": 1,
+      "difficulty": {
+        "hard": 1
+      }
+    },
+    "Operations": {
+      "quota": 5,
+      "selected": 5,
+      "pool_size": 17,
+      "with_ablation": 5,
+      "difficulty": {
+        "expert": 3,
+        "hard": 2
+      }
+    },
+    "Other (Misc)": {
+      "quota": 17,
+      "selected": 17,
+      "pool_size": 422,
+      "with_ablation": 1,
+      "difficulty": {
+        "hard": 4,
+        "medium": 13
+      }
+    },
+    "Pipeline": {
+      "quota": 3,
+      "selected": 3,
+      "pool_size": 6,
+      "with_ablation": 3,
+      "difficulty": {
+        "hard": 3
+      }
+    },
+    "Policy": {
+      "quota": 3,
+      "selected": 3,
+      "pool_size": 9,
+      "with_ablation": 3,
+      "difficulty": {
+        "hard": 3
+      }
+    },
+    "Real Data Science": {
+      "quota": 8,
+      "selected": 8,
+      "pool_size": 90,
+      "with_ablation": 0,
+      "difficulty": {
+        "hard": 8
+      }
+    },
+    "Security": {
+      "quota": 6,
+      "selected": 6,
+      "pool_size": 32,
+      "with_ablation": 6,
+      "difficulty": {
+        "expert": 4,
+        "hard": 2
+      }
+    },
+    "Software Eng.": {
+      "quota": 6,
+      "selected": 6,
+      "pool_size": 31,
+      "with_ablation": 6,
+      "difficulty": {
+        "expert": 2,
+        "hard": 4
+      }
+    },
+    "Specification": {
+      "quota": 2,
+      "selected": 2,
+      "pool_size": 3,
+      "with_ablation": 2,
+      "difficulty": {
+        "hard": 1,
+        "medium": 1
+      }
+    },
+    "Testing": {
+      "quota": 4,
+      "selected": 4,
+      "pool_size": 12,
+      "with_ablation": 4,
+      "difficulty": {
+        "hard": 4
+      }
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "TRAP1_spec_conflict",
+      "category": "Adversarial",
+      "refined_category": "Adversarial",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "TRAP5_security_theater",
+      "category": "Adversarial",
+      "refined_category": "Adversarial",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "TRAP6_deprecated_api",
+      "category": "Adversarial",
+      "refined_category": "Adversarial",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "CR4_api_review",
+      "category": "Code Review",
+      "refined_category": "Code Review",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "CR6_review_checklist",
+      "category": "Code Review",
+      "refined_category": "Code Review",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "CR1_review_respond",
+      "category": "Code Review",
+      "refined_category": "Code Review",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "CROSS1_api_contract",
+      "category": "Cross-System Integration",
+      "refined_category": "Cross-System Integration",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "CROSS2_schema_evolution",
+      "category": "Cross-System Integration",
+      "refined_category": "Cross-System Integration",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "CROSS3_protocol_bridge",
+      "category": "Cross-System Integration",
+      "refined_category": "Cross-System Integration",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "D6_data_reconcile",
+      "category": "Data Engineering",
+      "refined_category": "Data Engineering",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "D3_schema_migration",
+      "category": "Data Engineering",
+      "refined_category": "Data Engineering",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "D4_data_pipeline",
+      "category": "Data Engineering",
+      "refined_category": "Data Engineering",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "D5_query_optimize",
+      "category": "Data Engineering",
+      "refined_category": "Data Engineering",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "D7_etl_reconciliation",
+      "category": "Data Engineering",
+      "refined_category": "Data Engineering",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "DIST1_queue_race",
+      "category": "Distributed Systems",
+      "refined_category": "Distributed Systems",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "DIST2_consensus_partition",
+      "category": "Distributed Systems",
+      "refined_category": "Distributed Systems",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "SYNTH1_distributed_debug",
+      "category": "Distributed Systems",
+      "refined_category": "Distributed Systems",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "GH1000_numpy_19869",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1001_numpy_30855",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1002_scipy_24753",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1003_scipy_24496",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1004_dask_11665",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1005_ray_60236",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1006_spaCy_13068",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1007_spaCy_13040",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1008_spaCy_12749",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1009_spaCy_12486",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1010_great_expectati_10406",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH1011_great_expectati_8062",
+      "category": "Other",
+      "refined_category": "GitHub Issues (Real-World)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "INC6_deadlock",
+      "category": "Incident Response",
+      "refined_category": "Incident Response",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "INC10_rollback_plan",
+      "category": "Incident Response",
+      "refined_category": "Incident Response",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "INC1_cascade_failure",
+      "category": "Incident Response",
+      "refined_category": "Incident Response",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "INC2_data_corruption",
+      "category": "Incident Response",
+      "refined_category": "Incident Response",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "INC3_memory_leak",
+      "category": "Incident Response",
+      "refined_category": "Incident Response",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "INC4_dns_miscfg",
+      "category": "Incident Response",
+      "refined_category": "Incident Response",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "IR2_misinformation_trap",
+      "category": "Information Retrieval",
+      "refined_category": "Information Retrieval",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "IR3_multi_source",
+      "category": "Information Retrieval",
+      "refined_category": "Information Retrieval",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "IR4_temporal",
+      "category": "Information Retrieval",
+      "refined_category": "Information Retrieval",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "INT1_pipeline_repair",
+      "category": "Integration",
+      "refined_category": "Integration",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "LH2_budgeted_workflow",
+      "category": "Long-Horizon",
+      "refined_category": "Long-Horizon",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "LH5_data_migration",
+      "category": "Long-Horizon",
+      "refined_category": "Long-Horizon",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "LH4_staged_deploy",
+      "category": "Long-Horizon",
+      "refined_category": "Long-Horizon",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "category": "Multi-language",
+      "refined_category": "Multi-language",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "JS2_xss_sanitize",
+      "category": "Multi-language",
+      "refined_category": "Multi-language",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "MULTI2_microservice_debug",
+      "category": "Multi-language",
+      "refined_category": "Multi-language",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "NEG1_tradeoff_config",
+      "category": "Negotiation",
+      "refined_category": "Negotiation",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "LH3_multi_service",
+      "category": "Operations",
+      "refined_category": "Operations",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "O6_perf_tuning",
+      "category": "Operations",
+      "refined_category": "Operations",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "TRAP3_metric_mirage",
+      "category": "Operations",
+      "refined_category": "Operations",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "CROSS7_config_drift",
+      "category": "Operations",
+      "refined_category": "Operations",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "MULTI5_deploy_pipeline",
+      "category": "Operations",
+      "refined_category": "Operations",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "API1_version_compat",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "GH14_celery_chain_fail",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "INFRA2_cicd_repair",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "TS1_type_mismatch",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "GH103_redis-py_3998",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH112_redis-py_3996",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH120_redis-py_3863",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH121_quart_302",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH128_mitmproxy_8046",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH12_click_envvar_flag",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH136_mitmproxy_8054",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH139_marshmallow_2894",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH13_starlette_bg_block",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH140_marshmallow_2874",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH141_urllib3_3736",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH143_mitmproxy_8095",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH144_psycopg_1247",
+      "category": "Other",
+      "refined_category": "Other (Misc)",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "PIPE2_data_pipeline",
+      "category": "Pipeline",
+      "refined_category": "Pipeline",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "PIPE3_msg_queue",
+      "category": "Pipeline",
+      "refined_category": "Pipeline",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "PIPE3_stream_processing",
+      "category": "Pipeline",
+      "refined_category": "Pipeline",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "P2_spec_arbitration",
+      "category": "Policy",
+      "refined_category": "Policy",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "P3_access_control",
+      "category": "Policy",
+      "refined_category": "Policy",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "P4_data_retention",
+      "category": "Policy",
+      "refined_category": "Policy",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "RDS10_survey_analysis",
+      "category": "Other",
+      "refined_category": "Real Data Science",
+      "difficulty": "hard",
+      "seed_suffix": true
+    },
+    {
+      "task_id": "RDS11_survivorship_bias",
+      "category": "Other",
+      "refined_category": "Real Data Science",
+      "difficulty": "hard",
+      "seed_suffix": true
+    },
+    {
+      "task_id": "RDS12_simpsons_income",
+      "category": "Other",
+      "refined_category": "Real Data Science",
+      "difficulty": "hard",
+      "seed_suffix": true
+    },
+    {
+      "task_id": "CRYPTO1_nonce_reuse",
+      "category": "Security",
+      "refined_category": "Security",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "CRYPTO3_cert_chain",
+      "category": "Security",
+      "refined_category": "Security",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "CRYPTO4_kdf_migration",
+      "category": "Security",
+      "refined_category": "Security",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "SEC8_dependency_audit",
+      "category": "Security",
+      "refined_category": "Security",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "CRYPTO5_tls_config",
+      "category": "Security",
+      "refined_category": "Security",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "CRYPTO6_token_validation",
+      "category": "Security",
+      "refined_category": "Security",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "GO1_concurrency_fix",
+      "category": "Software Eng.",
+      "refined_category": "Software Eng.",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "SCALE1_codebase_migration",
+      "category": "Software Eng.",
+      "refined_category": "Software Eng.",
+      "difficulty": "expert"
+    },
+    {
+      "task_id": "GH10_retry_backoff",
+      "category": "Software Eng.",
+      "refined_category": "Software Eng.",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "GH11_middleware_order",
+      "category": "Software Eng.",
+      "refined_category": "Software Eng.",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "GH1_flask_session_ctx",
+      "category": "Software Eng.",
+      "refined_category": "Software Eng.",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "GH2_click_flag_value",
+      "category": "Software Eng.",
+      "refined_category": "Software Eng.",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "SPEC5_config_system",
+      "category": "Specification",
+      "refined_category": "Specification",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "SPEC2_api_design",
+      "category": "Specification",
+      "refined_category": "Specification",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "GH7_fixture_scope_leak",
+      "category": "Testing",
+      "refined_category": "Testing",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "TEST2_regression",
+      "category": "Testing",
+      "refined_category": "Testing",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "TEST3_integration",
+      "category": "Testing",
+      "refined_category": "Testing",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "TEST4_property",
+      "category": "Testing",
+      "refined_category": "Testing",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "RDS13_smote_leakage",
+      "category": "Other",
+      "refined_category": "Real Data Science",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "RDS14_housing_leakage",
+      "category": "Other",
+      "refined_category": "Real Data Science",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "RDS15_taxi_circular",
+      "category": "Other",
+      "refined_category": "Real Data Science",
+      "difficulty": "medium"
+    },
+    {
+      "task_id": "RDS16_retail_phacking",
+      "category": "Other",
+      "refined_category": "Real Data Science",
+      "difficulty": "hard"
+    },
+    {
+      "task_id": "RDS17_macro_spurious",
+      "category": "Other",
+      "refined_category": "Real Data Science",
+      "difficulty": "hard"
+    }
+  ]
+}
