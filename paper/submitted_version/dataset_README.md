@@ -65,7 +65,7 @@ The release includes deterministic shell-script graders, parameterized seeded wo
 
 | File | Rows | Description |
 |---|---|---|
-| `teambench_dataset.json` | 931 | Canonical full release: every seeded instance with `task_id`, `title`, `category`, `difficulty`, `has_generator`, `ablation_scores` (when available), `tni`, `classification`. |
+| `teambench_dataset.json` | 931 | Canonical full release: every seeded instance with `task_id`, `title`, `category`, `difficulty`, `has_generator`, `ablation_scores` (when available; columns `oracle`/`restricted`/`team`/`team_no_plan`/`team_no_verify`), `tni` (= `(S_team − S_restricted) / max(0.05, S_solo − S_restricted)`; null when the necessity gap is below 0.05), and `classification` (`HIGH-TNI`/`TEAM-HELPS`/`NEUTRAL`/`TEAM-HURTS`). |
 | `data/train.json` | 153 | Originally-authored core templates with complete 5-condition reference ablation data (used in capability analysis, Section 5 of the paper). |
 | `data/test.json` | 120 | Hard subset for stratified leaderboard evaluation. |
 | `croissant.json` | -- | NeurIPS 2026 dataset metadata (Croissant 1.0 + RAI). |
@@ -128,32 +128,40 @@ The full task definitions (briefs, full specifications, generators, graders, san
 
 ## Five-Condition Ablation
 
-Each core task is evaluated under five conditions:
+Each core task is evaluated under five conditions. The paper and website use the human-readable names (Solo, Restricted, Full Team, etc.); this dataset and the `harness` CLI store the machine names (`oracle`, `restricted`, etc.). The mapping is:
 
-| Condition | Roles | Purpose |
-|---|---|---|
-| `oracle` | Single powerful agent, full tool access | Capability ceiling |
-| `restricted` | Single agent, executor-only tool access | Capability floor |
-| `team` | Planner -> Executor -> Verifier | Full team |
-| `team_no_plan` | Executor -> Verifier | Isolates planner contribution |
-| `team_no_verify` | Planner -> Executor | Isolates verifier contribution |
+| Paper / Website name | Dataset / CLI key | Roles | Purpose |
+|---|---|---|---|
+| Solo               | `oracle`         | Single agent, full tool access      | Capability ceiling |
+| Restricted         | `restricted`     | Single agent, executor-only tools   | Capability floor |
+| Full Team          | `team`           | Planner + Executor + Verifier       | Full team |
+| Team, No Plan      | `team_no_plan`   | Executor + Verifier                 | Isolates planner contribution |
+| Team, No Evaluate  | `team_no_verify` | Planner + Executor                  | Isolates verifier contribution |
 
 Scores are in `[0, 1]` (fraction of grader checks passed).
 
+Ablation columns are populated for the 153 originally-authored core templates and the 120-task hard leaderboard subset. GitHub-derived rows ship with `ablation_scores: null` because they are scored against upstream patches rather than the 5-condition pipeline.
+
 ## TNI Metric
 
+The Teamwork Necessity Index measures how much of the Solo-versus-Restricted gap the team recovers:
+
 ```
-TNI = (team - oracle) / (1 - restricted)
+TNI = (S_team − S_restricted) / max(ε, S_solo − S_restricted),   ε = 0.05
 ```
+
+`S_solo` is the `oracle` column in this dataset. The denominator is the "necessity gap": when Solo barely beats Restricted, TNI is unstable, so we only report it when the gap exceeds `ε`. `TNI = 1` recovers the full single-agent advantage; `TNI > 1` exceeds it. This matches Equation 1 of the paper.
+
+Classification bands (from `harness/compute_tni.py`):
 
 | Band | Rule | Interpretation |
 |---|---|---|
-| `HIGH-TNI` | TNI >= 0.5 and team > oracle | Team substantially exceeds oracle |
-| `TEAM-HELPS` | team > oracle but TNI < 0.5 | Team helps modestly |
-| `NEUTRAL` | absolute(team - oracle) <= 0.05 | No clear team effect |
-| `TEAM-HURTS` | team < oracle | Coordination overhead hurts |
+| `HIGH-TNI`   | necessity gap > 0.1 and TNI > 0.2 | Coordination is necessary and the team recovers a substantial fraction of the necessity gap |
+| `TEAM-HELPS` | team uplift > +0.05 (vs Restricted)  | Team helps |
+| `NEUTRAL`    | absolute(team uplift) <= 0.05         | No clear team effect |
+| `TEAM-HURTS` | team uplift < −0.05 (vs Restricted)   | Coordination overhead hurts |
 
-Of the 153 core tasks: 16 HIGH-TNI, 53 TEAM-HELPS, 50 NEUTRAL, 28 TEAM-HURTS, 6 unrated.
+where `team uplift = S_team − S_restricted`. Tasks with `ablation_scores: null` are unrated.
 
 ## Headline Findings
 
