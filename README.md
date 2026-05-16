@@ -134,7 +134,7 @@ python -m harness.ablation \
 
 1. Run the full sweep across the 5 conditions on the 90 leaderboard tasks (`leaderboard/data/leaderboard_90_tasks.json`).
 2. Open a PR adding `shared/ablation_results/lb90_<your-model>_seed0.json`.
-3. Scores are server-side verified by re-running the deterministic graders; the leaderboard only ranks verified submissions.
+3. Maintainers manually re-run the deterministic graders to verify the submission before adding the model to the leaderboard; the leaderboard only ranks verified submissions.
 
 ---
 
