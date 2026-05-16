@@ -1,0 +1,50 @@
+{
+  "repo": "pallets/quart",
+  "pr_number": 302,
+  "pr_url": "https://github.com/pallets/quart/pull/302",
+  "issue_number": 301,
+  "base_sha": "d5b5a99d7e1cfb123ae582a3cd8c59f782e08cd4",
+  "head_sha": "4fb0aefa21fe8bb4543fce2b12a283af647681cb",
+  "additions": 15,
+  "deletions": 5,
+  "changed_files": [
+    "src/quart/wrappers/response.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "src/quart/wrappers/response.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/quart",
+    "repo_short": "quart",
+    "parameterized_identifiers": [
+      "begin",
+      "bytes",
+      "data",
+      "data_body",
+      "exc_type",
+      "exc_value",
+      "iter",
+      "iterable",
+      "make_conditional"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T22:47:06Z"
+}

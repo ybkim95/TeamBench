@@ -1,0 +1,14 @@
+task_id: INFRA2_cicd_repair
+domain: Pipeline/Integration
+category: Pipeline/Integration
+difficulty: hard
+languages: [yaml]
+description: "Fix broken GitHub Actions CI/CD pipeline: 4-5 real bugs (docker tag, missing env var, wrong artifact path, bad conditional, shallow clone) plus 2 flaky-test patterns that must be preserved (continue-on-error, long timeout)"
+tni_pattern: B
+parameterized: true
+seeds: [0, 1, 2]
+network: false
+time_limit_sec: 900
+tags: [yaml, github-actions, ci-cd, devops, flaky-tests, docker]
+workspace_file_count: 3
+lines_changed_expected: 6

@@ -1,0 +1,185 @@
+*******
+Authors
+*******
+
+Leads
+=====
+
+- Steven Loria `@sloria <https://github.com/sloria>`_
+- Jérôme Lafréchoux  `@lafrech <https://github.com/lafrech>`_
+- Jared Deckard `@deckar01 <https://github.com/deckar01>`_
+
+Contributors (chronological)
+============================
+
+- Sebastian Vetter `@elbaschid <https://github.com/elbaschid>`_
+- Eduard Carreras `@ecarreras <https://github.com/ecarreras>`_
+- Joakim Ekberg `@kalasjocke <https://github.com/kalasjocke>`_
+- Mark Grey `@DeaconDesperado <https://github.com/DeaconDesperado>`_
+- Anders Steinlein `@asteinlein <https://github.com/asteinlein>`_
+- Cyril Thomas `@Ketouem <https://github.com/Ketouem>`_
+- Austin Macdonald `@asmacdo <https://github.com/asmacdo>`_
+- Josh Carp `@jmcarp <https://github.com/jmcarp>`_
+- `@amikholap <https://github.com/amikholap>`_
+- Sven-Hendrik Haase `@svenstaro <https://github.com/svenstaro>`_
+- Eric Wang `@ewang <https://github.com/ewang>`_
+- `@philtay <https://github.com/philtay>`_
+- `@malexer <https://github.com/malexer>`_
+- Andriy Yurchuk `@Ch00k <https://github.com/Ch00k>`_
+- Vesa Uimonen `@vesauimonen <https://github.com/vesauimonen>`_
+- David Lord `@davidism <https://github.com/davidism>`_
+- Daniel Castro `@0xDCA <https://github.com/0xDCA>`_
+- Ben Jones `@RealSalmon <https://github.com/RealSalmon>`_
+- Patrick Woods `@hakjoon <https://github.com/hakjoon>`_
+- Lukas Heiniger `@3rdcycle <https://github.com/3rdcycle>`_
+- Ryan Lowe `@ryanlowe0 <https://github.com/ryanlowe0>`_
+- Jimmy Jia `@taion <https://github.com/taion>`_
+- `@lustdante <https://github.com/lustdante>`_
+- Sergey Aganezov, Jr. `@sergey-aganezov-jr <https://github.com/sergey-aganezov-jr>`_
+- Kevin Stone `@kevinastone <https://github.com/kevinastone>`_
+- Alex Morken `@alexmorken <https://github.com/alexmorken>`_
+- Sergey Polzunov `@traut <https://github.com/traut>`_
+- Kelvin Hammond `@kelvinhammond <https://github.com/kelvinhammond>`_
+- Matt Stobo `@mwstobo <https://github.com/mwstobo>`_
+- Max Orhai `@max-orhai <https://github.com/max-orhai>`_
+- Praveen `@praveen-p <https://github.com/praveen-p>`_
+- Stas Sușcov `@stas <https://github.com/stas>`_
+- Florian `@floqqi <https://github.com/floqqi>`_
+- Evgeny Sureev `@evgeny-sureev <https://github.com/evgeny-sureev>`_
+- Matt Bachmann `@Bachmann1234 <https://github.com/Bachmann1234>`_
+- Daniel Imhoff `@dwieeb <https://github.com/dwieeb>`_
+- Juan Rossi `@juanrossi <https://github.com/juanrossi>`_
+- Andrew Haigh `@nelfin <https://github.com/nelfin>`_
+- `@Mise <https://github.com/Mise>`_
+- Taylor Edmiston `@tedmiston <https://github.com/tedmiston>`_
+- Francisco Demartino `@franciscod <https://github.com/franciscod>`_
+- Eric Wang `@ewang <https://github.com/ewang>`_
+- Eugene Prikazchikov `@eprikazc <https://github.com/eprikazc>`_
+- Damian Heard `@DamianHeard <https://github.com/DamianHeard>`_
+- Alec Reiter `@justanr <https://github.com/justanr>`_
+- Dan Sutherland `@d-sutherland <https://github.com/d-sutherland>`_
+- Jeff Widman `@jeffwidman <https://github.com/jeffwidman>`_
+- Simeon Visser `@svisser <https://github.com/svisser>`_
+- Taylan Develioglu `@tdevelioglu <https://github.com/tdevelioglu>`_
+- Danilo Akamine `@daniloakamine <https://github.com/daniloakamine>`_
+- Maxim Kulkin `@maximkulkin <https://github.com/maximkulkin>`_
+- `@immerrr <https://github.com/immerrr>`_
+- Mike Yumatov `@yumike <https://github.com/yumike>`_
+- Tim Mundt `@Tim-Erwin <https://github.com/Tim-Erwin>`_
+- Russell Davies `@russelldavies <https://github.com/russelldavies>`_
+- Jared Deckard `@deckar01 <https://github.com/deckar01>`_
+- David Thornton `@davidthornton <https://github.com/davidthornton>`_
+- Vuong Hoang `@vuonghv <https://github.com/vuonghv>`_
+- David Bertouille `@dbertouille <https://github.com/dbertouille>`_
+- Alexandre Bonnetain `@Shir0kamii <https://github.com/Shir0kamii>`_
+- Tuukka Mustonen `@tuukkamustonen <https://github.com/tuukkamustonen>`_
+- Tero Vuotila `@tvuotila <https://github.com/tvuotila>`_
+- Paul Zumbrun `@pauljz <https://github.com/pauljz>`_
+- Gary Wilson Jr. `@gdub <https://github.com/gdub>`_
+- Sabine Maennel `@sabinem <https://github.com/sabinem>`_
+- Victor Varvaryuk `@mindojo-victor <https://github.com/mindojo-victor>`_
+- Jāzeps Baško `@jbasko <https://github.com/jbasko>`_
+- `@podhmo <https://github.com/podhmo>`_
+- Dmitry Orlov `@mosquito <https://github.com/mosquito>`_
+- Yuri Heupa `@YuriHeupa <https://github.com/YuriHeupa>`_
+- Roy Williams `@rowillia <https://github.com/rowillia>`_
+- Vlad Frolov `@frol <https://github.com/frol>`_
+- Erling Børresen `@erlingbo <https://github.com/erlingbo>`_
+- Jérôme Lafréchoux  `@lafrech <https://github.com/lafrech>`_
+- Roy Williams `@rowillia <https://github.com/rowillia>`_
+- `@dradetsky <https://github.com/dradetsky>`_
+- Michal Kononenko `@MichalKononenko <https://github.com/MichalKononenko>`_
+- Yoichi NAKAYAMA `@yoichi <https://github.com/yoichi>`_
+- Bernhard M. Wiedemann `@bmwiedemann <https://github.com/bmwiedemann>`_
+- Scott Werner `@scottwernervt <https://github.com/scottwernervt>`_
+- Leonardo Fedalto `@Fedalto <https://github.com/Fedalto>`_
+- `@sduthil <https://github.com/sduthil>`_
+- Steven Sklar `@sklarsa <https://github.com/sklarsa>`_
+- Alisson Silveira `@4lissonsilveira <https://github.com/4lissonsilveira>`_
+- Harlov Nikita `@harlov <https://github.com/harlov>`_
+- `@stj <https://github.com/stj>`_
+- Tomasz Magulski `@magul <https://github.com/magul>`_
+- Suren Khorenyan `@mahenzon <https://github.com/mahenzon>`_
+- Jeffrey Berger `@JeffBerger <https://github.com/JeffBerger>`_
+- Felix Yan `@felixonmars <https://github.com/felixonmars>`_
+- Prasanjit Prakash `@ikilledthecat <https://github.com/ikilledthecat>`_
+- Guillaume Gelin `@ramnes <https://github.com/ramnes>`_
+- Maxim Novikov `@m-novikov <https://github.com/m-novikov>`_
+- James Remeika `@remeika <https://github.com/remeika>`_
+- Karandeep Singh Nagra `@knagra <https://github.com/knagra>`_
+- Dushyant Rijhwani `@dushr <https://github.com/dushr>`_
+- Viktor Kerkez `@alefnula <https://github.com/alefnula>`_
+- Victor Gavro `@vgavro <https://github.com/vgavro>`_
+- Kamil Gałuszka `@galuszkak <https://github.com/galuszkak>`_
+- David Watson `@arbor-dwatson <https://github.com/arbor-dwatson>`_
+- Jan Margeta `@jmargeta <https://github.com/jmargeta>`_
+- AlexV `@asmodehn <https://github.com/asmodehn>`_
+- `@toffan <https://github.com/toffan>`_
+- Hampus Dunström `@Dunstrom <https://github.com/Dunstrom>`_
+- Robert Jensen `@r1b <https://github.com/r1b>`_
+- Arijit Basu `@sayanarijit <https://github.com/sayanarijit>`_
+- Sanjay P `@snjypl <https://github.com/snjypl>`_
+- Víctor Zabalza `@zblz <https://github.com/zblz>`_
+- Riley Gibbs `@rileyjohngibbs <https://github.com/rileyjohngibbs>`_
+- Henry Doupe `@hdoupe <https://github.com/hdoupe>`_
+- `@miniscruff <https://github.com/miniscruff>`_
+- `@maxalbert <https://github.com/maxalbert>`_
+- Kim Gustyr `@khvn26 <https://github.com/khvn26>`_
+- Bryce Drennan `@brycedrennan <https://github.com/brycedrennan>`_
+- Tim Shaffer `@timster <https://github.com/timster>`_
+- Hugo van Kemenade `@hugovk <https://github.com/hugovk>`_
+- Maciej Urbański `@rooterkyberian <https://github.com/rooterkyberian>`_
+- Kostas Konstantopoulos `@kdop <https://github.com/kdop>`_
+- Stephen J. Fuhry `@fuhrysteve <https://github.com/fuhrysteve>`_
+- `@dursk <https://github.com/dursk>`_
+- Ezra MacDonald `@macdonaldezra <https://github.com/macdonaldezra>`_
+- Stanislav Rogovskiy `@atmo <https://github.com/atmo>`_
+- Cristi Scoarta `@cristi23 <https://github.com/cristi23>`_
+- Anthony Sottile `@asottile <https://github.com/asottile>`_
+- Charles-Axel Dein `@charlax <https://github.com/charlax>`_
+- `@phrfpeixoto <https://github.com/phrfpeixoto>`_
+- `@jceresini <https://github.com/jceresini>`_
+- Nikolay Shebanov `@killthekitten <https://github.com/killthekitten>`_
+- Taneli Hukkinen `@hukkinj1 <https://github.com/hukkinj1>`_
+- `@Reskov <https://github.com/Reskov>`_
+- Albert Tugushev `@atugushev <https://github.com/atugushev>`_
+- `@dfirst <https://github.com/dfirst>`_
+- Tim Gates `@timgates42 <https://github.com/timgates42>`_
+- Nathan `@nbanmp <https://github.com/nbanmp>`_
+- Ronan Murphy `@Resinderate <https://github.com/Resinderate>`_
+- Laurie Opperman `@EpicWink <https://github.com/EpicWink>`_
+- Ram Rachum `@cool-RR <https://github.com/cool-RR>`_
+- `@weeix <https://github.com/weeix>`_
+- Juan Norris `@juannorris <https://github.com/juannorris>`_
+- 장준영 `@jun0jang <https://github.com/jun0jang>`_
+- `@ebargtuo <https://github.com/ebargtuo>`_
+- Michał Getka `@mgetka <https://github.com/mgetka>`_
+- Nadège Michel `@nadege <https://github.com/nadege>`_
+- Tamara `@infinityxxx <https://github.com/infinityxxx>`_
+- Stephen Rosen `@sirosen <https://github.com/sirosen>`_
+- Vladimir Mikhaylov `@vemikhaylov <https://github.com/vemikhaylov>`_
+- Stephen Eaton `@madeinoz67 <https://github.com/madeinoz67>`_
+- Antonio Lassandro `@lassandroan <https://github.com/lassandroan>`_
+- Javier Fernández `@jfernandz <https://github.com/jfernandz>`_
+- Michael Dimchuk  `@michaeldimchuk <https://github.com/michaeldimchuk>`_
+- Jochen Kupperschmidt  `@homeworkprod <https://github.com/homeworkprod>`_
+- `@yourun-proger <https://github.com/yourun-proger>`_
+- Ryan Morehart `@traherom <https://github.com/traherom>`_
+- Ben Windsor `@bwindsor <https://github.com/bwindsor>`_
+- Kevin Kirsche `@kkirsche <https://github.com/kkirsche>`_
+- Isira Seneviratne `@Isira-Seneviratne <https://github.com/Isira-Seneviratne>`_
+- Karthikeyan Singaravelan `@tirkarthi  <https://github.com/tirkarthi>`_
+- Marco Satti `@marcosatti  <https://github.com/marcosatti>`_
+- Ivo Reumkens `@vanHoi <https://github.com/vanHoi>`_
+- Aditya Tewary `@aditkumar72 <https://github.com/aditkumar72>`_
+- Sebastien Lovergne `@TheBigRoomXXL <https://github.com/TheBigRoomXXL>`_
+- Peter C `@somethingnew2-0 <https://github.com/somethingnew2-0>`_
+- Marcel Jackwerth `@mrcljx` <https://github.com/mrcljx>`_
+- Fares Abubaker `@Fares-Abubaker <https://github.com/Fares-Abubaker>`_
+- Dharanikumar Sekar `@dharani7998 <https://github.com/dharani7998>`_
+- Nicolas Simonds `@0xDEC0DE <https://github.com/0xDEC0DE>`_
+- Florian Laport `@Florian-Laport <https://github.com/Florian-Laport>`_
+- `@agentgodzilla <https://github.com/agentgodzilla>`_
+- Xiao `@T90REAL <https://github.com/T90REAL>`_
+- jfo `@jafournier <https://github.com/jafournier>`_
+- thanhlecongg `@thanhlecongg <https://github.com/thanhlecongg>`_

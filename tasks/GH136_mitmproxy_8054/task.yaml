@@ -1,0 +1,13 @@
+task_id: GH136_mitmproxy_8054
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Add ZIP content view for issue #8051"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/mitmproxy/mitmproxy/pull/8054"
+source_issue: "https://github.com/mitmproxy/mitmproxy/issues/8051"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

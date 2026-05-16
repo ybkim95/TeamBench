@@ -1,0 +1,13 @@
+task_id: GH141_urllib3_3736
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix `HTTPResponse.read_chunked` when leftover data is present in decoder's buffer"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/urllib3/urllib3/pull/3736"
+source_issue: "https://github.com/urllib3/urllib3/issues/3734"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

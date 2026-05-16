@@ -1,0 +1,54 @@
+{
+  "repo": "marshmallow-code/marshmallow",
+  "pr_number": 2894,
+  "pr_url": "https://github.com/marshmallow-code/marshmallow/pull/2894",
+  "issue_number": 2868,
+  "base_sha": "ba8b512b24ebf4789099f1afafe9256b1bda950e",
+  "head_sha": "9a5e935e2b7e28efd93ec15fafabc1e17ed50970",
+  "additions": 20,
+  "deletions": 2,
+  "changed_files": [
+    "AUTHORS.rst",
+    "CHANGELOG.rst",
+    "src/marshmallow/fields.py",
+    "tests/test_deserialization.py"
+  ],
+  "test_files": [
+    "tests/test_deserialization.py"
+  ],
+  "source_files": [
+    "src/marshmallow/fields.py"
+  ],
+  "parameterization": {
+    "repo": "marshmallow-code/marshmallow",
+    "repo_short": "marshmallow",
+    "parameterized_identifiers": [
+      "behavior",
+      "chronological",
+      "constant",
+      "deserialize",
+      "dump_default",
+      "emmanuel",
+      "ferdman",
+      "field",
+      "fields",
+      "fixes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:48:10Z"
+}

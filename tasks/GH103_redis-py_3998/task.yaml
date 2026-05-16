@@ -1,0 +1,13 @@
+task_id: GH103_redis-py_3998
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fixing security concern in __repr__ methods for ConnectionPools - passwords might leak in plain text logs"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/redis/redis-py/pull/3998"
+source_issue: "https://github.com/redis/redis-py/issues/3993"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

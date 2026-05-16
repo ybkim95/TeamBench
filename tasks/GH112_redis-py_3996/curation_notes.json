@@ -1,0 +1,52 @@
+{
+  "repo": "redis/redis-py",
+  "pr_number": 3996,
+  "pr_url": "https://github.com/redis/redis-py/pull/3996",
+  "issue_number": 3992,
+  "base_sha": "a72e3f00f0b47b7916f96e27c6c3ec7c31b31393",
+  "head_sha": "86656b392e650efcd7a02ff832000e48113c91da",
+  "additions": 110,
+  "deletions": 0,
+  "changed_files": [
+    "redis/observability/__init__.py",
+    "tests/test_observability/test_public_api.py"
+  ],
+  "test_files": [
+    "tests/test_observability/test_public_api.py"
+  ],
+  "source_files": [
+    "redis/observability/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "redis/redis-py",
+    "repo_short": "redis-py",
+    "parameterized_identifiers": [
+      "accessible",
+      "actually",
+      "collecting",
+      "config",
+      "contains",
+      "correctly",
+      "expected",
+      "expected_exports",
+      "exported",
+      "exporting"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:46:36Z"
+}

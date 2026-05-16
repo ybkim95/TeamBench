@@ -1,0 +1,53 @@
+{
+  "repo": "mitmproxy/mitmproxy",
+  "pr_number": 8046,
+  "pr_url": "https://github.com/mitmproxy/mitmproxy/pull/8046",
+  "issue_number": 7579,
+  "base_sha": "c4f81b711898ab25a919c3af0e79f2fe50e492c3",
+  "head_sha": "025f29693dad8dab37617c05643f9763314e8216",
+  "additions": 27,
+  "deletions": 2,
+  "changed_files": [
+    "CHANGELOG.md",
+    "mitmproxy/addons/modifybody.py",
+    "test/mitmproxy/addons/test_modifybody.py"
+  ],
+  "test_files": [
+    "test/mitmproxy/addons/test_modifybody.py"
+  ],
+  "source_files": [
+    "mitmproxy/addons/modifybody.py"
+  ],
+  "parameterization": {
+    "repo": "mitmproxy/mitmproxy",
+    "repo_short": "mitmproxy",
+    "parameterized_identifiers": [
+      "adding",
+      "addon",
+      "algorithms",
+      "assigning",
+      "backslash",
+      "comments",
+      "compression",
+      "configure",
+      "console",
+      "contain"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:47:32Z"
+}

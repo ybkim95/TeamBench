@@ -1,0 +1,12 @@
+task_id: GH7_fixture_scope_leak
+domain: testing
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [github-issue, pytest, fixtures, scope, isolation, mutation]
+workspace_file_count: 3
+lines_changed_expected: 15
+parameterized: false
+source: "https://github.com/pytest-dev/pytest/issues/7160"

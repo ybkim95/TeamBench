@@ -1,0 +1,13 @@
+task_id: GH112_redis-py_3996
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Expose basic Otel classes and funtions to be importable through redis.observability to match the examples in the readthedocs"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/redis/redis-py/pull/3996"
+source_issue: "https://github.com/redis/redis-py/issues/3992"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -53,7 +53,11 @@ def main() -> None:
             gen = get_generator(args.task)
             result = gen.generate(seed=args.seed)
             gen.write_to_disk(result, workspace_dir=workspace, reports_dir=reports)
-            # Write seed-specific spec.md and brief.md to task_dir for Docker mount
+            # Write seed-specific spec.md and brief.md to task_dir for Docker mount.
+            # Ensure task_dir exists: on a fresh clone, a generator-driven task may
+            # ship without a populated tasks/<TASK_ID>/ directory, so create it
+            # on demand instead of failing with FileNotFoundError.
+            os.makedirs(task_dir, exist_ok=True)
             with open(os.path.join(task_dir, "spec.md"), "w") as f:
                 f.write(result.spec_md)
             with open(os.path.join(task_dir, "brief.md"), "w") as f:

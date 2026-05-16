@@ -1,0 +1,13 @@
+task_id: GH121_quart_302
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "avoid ResourceWarning in `DataBody.__aiter__` "
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/quart/pull/302"
+source_issue: "https://github.com/pallets/quart/issues/301"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,39 @@
+{
+  "score": 0.625,
+  "passed": 5,
+  "total": 8,
+  "details": [
+    {
+      "check": "testclient.py has valid Python syntax",
+      "passed": true
+    },
+    {
+      "check": "hmac still used for session signing",
+      "passed": true
+    },
+    {
+      "check": "no eval/exec in testclient.py",
+      "passed": true
+    },
+    {
+      "check": "test_session_works_without_redirect passes",
+      "passed": true
+    },
+    {
+      "check": "test_session_signing_intact passes",
+      "passed": true
+    },
+    {
+      "check": "test_session_persists_on_redirect passes",
+      "passed": false
+    },
+    {
+      "check": "test_session_persists_multi_redirect passes",
+      "passed": false
+    },
+    {
+      "check": "cookies updated inside redirect loop (structural check)",
+      "passed": false
+    }
+  ]
+}

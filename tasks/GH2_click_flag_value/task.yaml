@@ -1,0 +1,12 @@
+task_id: GH2_click_flag_value
+domain: swe
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [github-issue, click, cli, regression, option-parsing]
+workspace_file_count: 3
+lines_changed_expected: 12
+parameterized: false
+source: "https://github.com/pallets/click/issues/3084"

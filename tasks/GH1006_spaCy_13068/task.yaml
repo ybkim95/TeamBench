@@ -1,0 +1,13 @@
+task_id: GH1006_spaCy_13068
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix displacy span stacking"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/explosion/spaCy/pull/13068"
+source_issue: "https://github.com/explosion/spaCy/issues/13056"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

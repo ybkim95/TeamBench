@@ -1,0 +1,54 @@
+{
+  "repo": "mitmproxy/mitmproxy",
+  "pr_number": 8054,
+  "pr_url": "https://github.com/mitmproxy/mitmproxy/pull/8054",
+  "issue_number": 8051,
+  "base_sha": "a7621021191011de7c95771459688de3ecd67c10",
+  "head_sha": "cb5879e372ba10dfff7584b24bde5e6c62299c24",
+  "additions": 79,
+  "deletions": 0,
+  "changed_files": [
+    "mitmproxy/contentviews/__init__.py",
+    "mitmproxy/contentviews/_view_zip.py",
+    "test/mitmproxy/contentviews/test__view_zip.py"
+  ],
+  "test_files": [
+    "test/mitmproxy/contentviews/test__view_zip.py"
+  ],
+  "source_files": [
+    "mitmproxy/contentviews/__init__.py",
+    "mitmproxy/contentviews/_view_zip.py"
+  ],
+  "parameterization": {
+    "repo": "mitmproxy/mitmproxy",
+    "repo_short": "mitmproxy",
+    "parameterized_identifiers": [
+      "application",
+      "base",
+      "buffer",
+      "bytes",
+      "content",
+      "content_type",
+      "contentviews",
+      "data",
+      "empty",
+      "example"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:47:59Z"
+}

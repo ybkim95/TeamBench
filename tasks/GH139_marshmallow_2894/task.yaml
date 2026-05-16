@@ -1,0 +1,13 @@
+task_id: GH139_marshmallow_2894
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix Constant field rejecting None values during load"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/marshmallow-code/marshmallow/pull/2894"
+source_issue: "https://github.com/marshmallow-code/marshmallow/issues/2868"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

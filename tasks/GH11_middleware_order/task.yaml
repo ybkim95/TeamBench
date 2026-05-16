@@ -1,0 +1,12 @@
+task_id: GH11_middleware_order
+domain: swe
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [github-issue, express, middleware, error-handling, pipeline]
+workspace_file_count: 3
+lines_changed_expected: 18
+parameterized: false
+source: "https://github.com/pallets/werkzeug/issues/2547"

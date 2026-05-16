@@ -1,0 +1,8 @@
+task_id: GH12_click_envvar_flag
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Boolean flag with envvar always evaluates True due to string non-empty check"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]

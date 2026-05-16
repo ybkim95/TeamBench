@@ -1,0 +1,13 @@
+task_id: GH128_mitmproxy_8046
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix modify_body crash when replacement contains backslash sequences"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/mitmproxy/mitmproxy/pull/8046"
+source_issue: "https://github.com/mitmproxy/mitmproxy/issues/7579"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

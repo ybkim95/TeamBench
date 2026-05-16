@@ -1,0 +1,8 @@
+task_id: GH14_celery_chain_fail
+category: Real-World GitHub
+difficulty: hard
+languages: [python]
+description: "Chain of groups silently swallows first-group failures via chord-to-chain conversion"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]

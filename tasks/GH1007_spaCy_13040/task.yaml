@@ -1,0 +1,13 @@
+task_id: GH1007_spaCy_13040
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Revert 'Load the cli module lazily for spacy.info (#12962)'"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/explosion/spaCy/pull/13040"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,57 @@
+{
+  "repo": "mitmproxy/mitmproxy",
+  "pr_number": 8095,
+  "pr_url": "https://github.com/mitmproxy/mitmproxy/pull/8095",
+  "issue_number": 5746,
+  "base_sha": "50ba950494e79d8049a691c8d5373d1a3c232ea1",
+  "head_sha": "4d65b4a093cf479768321a2973938f03efb9163c",
+  "additions": 124,
+  "deletions": 0,
+  "changed_files": [
+    "CHANGELOG.md",
+    "mitmproxy/tools/console/consoleaddons.py",
+    "mitmproxy/tools/console/defaultkeys.py",
+    "mitmproxy/tools/console/statusbar.py",
+    "test/mitmproxy/tools/console/test_statusbar.py"
+  ],
+  "test_files": [
+    "test/mitmproxy/tools/console/test_statusbar.py"
+  ],
+  "source_files": [
+    "mitmproxy/tools/console/consoleaddons.py",
+    "mitmproxy/tools/console/defaultkeys.py",
+    "mitmproxy/tools/console/statusbar.py"
+  ],
+  "parameterization": {
+    "repo": "mitmproxy/mitmproxy",
+    "repo_short": "mitmproxy",
+    "parameterized_identifiers": [
+      "add_option",
+      "adding",
+      "again",
+      "appropriate",
+      "bar2",
+      "bodies",
+      "bottom",
+      "callback",
+      "cols",
+      "command"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:48:24Z"
+}

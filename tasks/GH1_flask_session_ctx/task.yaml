@@ -1,0 +1,12 @@
+task_id: GH1_flask_session_ctx
+domain: swe
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [github-issue, flask, session, testing, redirect]
+workspace_file_count: 4
+lines_changed_expected: 15
+parameterized: false
+source: "https://github.com/pallets/flask/issues/5786"

@@ -1,0 +1,53 @@
+{
+  "repo": "marshmallow-code/marshmallow",
+  "pr_number": 2874,
+  "pr_url": "https://github.com/marshmallow-code/marshmallow/pull/2874",
+  "issue_number": 2870,
+  "base_sha": "880d87f6acc389aa80c223dae4013f7eed05ab13",
+  "head_sha": "bc06327b3de6186e76961d984630ea1b9aaab894",
+  "additions": 10,
+  "deletions": 1,
+  "changed_files": [
+    "AUTHORS.rst",
+    "src/marshmallow/validate.py",
+    "tests/test_validate.py"
+  ],
+  "test_files": [
+    "tests/test_validate.py"
+  ],
+  "source_files": [
+    "src/marshmallow/validate.py"
+  ],
+  "parameterization": {
+    "repo": "marshmallow-code/marshmallow",
+    "repo_short": "marshmallow",
+    "parameterized_identifiers": [
+      "absolute",
+      "agentgodzilla",
+      "chronological",
+      "default_message",
+      "default_schemes",
+      "error",
+      "example",
+      "file",
+      "github",
+      "http"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:48:14Z"
+}

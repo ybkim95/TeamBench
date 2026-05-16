@@ -1,0 +1,48 @@
+{
+  "score": 0.7,
+  "passed": 7,
+  "failed": 3,
+  "total": 10,
+  "details": [
+    {
+      "check": "Python syntax valid in cli_parser.py",
+      "status": "pass"
+    },
+    {
+      "check": "'=' sign handling present in cli_parser.py (tokenizer intact)",
+      "status": "pass"
+    },
+    {
+      "check": "No eval/exec introduced in cli_parser.py",
+      "status": "pass"
+    },
+    {
+      "check": "test_flag_value_without_arg: --verbose uses flag_value='DEBUG'",
+      "status": "fail"
+    },
+    {
+      "check": "test_flag_value_with_explicit_arg: --verbose INFO uses explicit value",
+      "status": "pass"
+    },
+    {
+      "check": "test_flag_value_with_equals: --verbose=WARNING works",
+      "status": "pass"
+    },
+    {
+      "check": "test_regular_flag_still_works: boolean is_flag=True still works",
+      "status": "pass"
+    },
+    {
+      "check": "test_positional_not_consumed: flag_value does not steal positional arg",
+      "status": "fail"
+    },
+    {
+      "check": "test_help_generation: --help text still generated correctly",
+      "status": "pass"
+    },
+    {
+      "check": "Attestation: _consume_option_value guards pop with 'not is_flag and flag_value is None'",
+      "status": "fail"
+    }
+  ]
+}

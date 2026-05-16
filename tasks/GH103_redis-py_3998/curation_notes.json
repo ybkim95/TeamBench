@@ -1,0 +1,57 @@
+{
+  "repo": "redis/redis-py",
+  "pr_number": 3998,
+  "pr_url": "https://github.com/redis/redis-py/pull/3998",
+  "issue_number": 3993,
+  "base_sha": "18b53522d67ded549bd4d6e2977ab8d8b67e879b",
+  "head_sha": "49e480f804bdc4404793d7060f297d06f4126f4e",
+  "additions": 83,
+  "deletions": 2,
+  "changed_files": [
+    ".github/workflows/integration.yaml",
+    "redis/asyncio/connection.py",
+    "redis/connection.py",
+    "tests/test_asyncio/test_connection_pool.py",
+    "tests/test_connection_pool.py"
+  ],
+  "test_files": [
+    "tests/test_asyncio/test_connection_pool.py",
+    "tests/test_connection_pool.py"
+  ],
+  "source_files": [
+    "redis/asyncio/connection.py",
+    "redis/connection.py"
+  ],
+  "parameterization": {
+    "repo": "redis/redis-py",
+    "repo_short": "redis-py",
+    "parameterized_identifiers": [
+      "avoid",
+      "client",
+      "client_name",
+      "conn_kwargs",
+      "connection_class",
+      "connection_kwargs",
+      "credential_provider",
+      "crit",
+      "defined",
+      "dependency"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:46:07Z"
+}

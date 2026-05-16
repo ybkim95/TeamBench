@@ -1,0 +1,247 @@
+"""
+Simplified Flask-like test client with session support.
+
+This module implements a minimal web framework test harness including:
+- Session serialization via HMAC-signed JSON cookies
+- A lightweight App with route registration and request context
+- A TestClient for issuing requests in tests
+
+There is a known bug in TestClient.open(): when following redirects,
+the session cookie from the response is not carried forward to the
+next request, causing session data to be lost across redirects.
+"""
+
+import base64
+import hashlib
+import hmac
+import json
+import urllib.parse
+from typing import Any, Dict, Optional
+
+
+# ---------------------------------------------------------------------------
+# Session
+# ---------------------------------------------------------------------------
+
+class Session(dict):
+    """A dict subclass that tracks whether it has been modified."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.modified = False
+
+    def __setitem__(self, key, value):
+        super().__setitem__(key, value)
+        self.modified = True
+
+    def __delitem__(self, key):
+        super().__delitem__(key)
+        self.modified = True
+
+
+# ---------------------------------------------------------------------------
+# SessionInterface
+# ---------------------------------------------------------------------------
+
+class SessionInterface:
+    """
+    Serialize/deserialize session data as an HMAC-signed cookie.
+
+    Cookie format:  base64(json_payload).base64(hmac_signature)
+
+    The signing is correct and must not be changed.
+    """
+
+    COOKIE_NAME = "session"
+    SEPARATOR = "."
+
+    def __init__(self, secret_key: str):
+        self._key = secret_key.encode()
+
+    def _sign(self, payload: bytes) -> str:
+        sig = hmac.new(self._key, payload, hashlib.sha256).digest()
+        return base64.urlsafe_b64encode(sig).decode()
+
+    def _verify(self, payload: bytes, signature: str) -> bool:
+        expected = self._sign(payload)
+        return hmac.compare_digest(expected, signature)
+
+    def serialize(self, session: Session) -> Optional[str]:
+        if not session:
+            return None
+        payload = base64.urlsafe_b64encode(
+            json.dumps(dict(session)).encode()
+        )
+        sig = self._sign(payload)
+        return payload.decode() + self.SEPARATOR + sig
+
+    def deserialize(self, cookie_value: str) -> Session:
+        try:
+            payload_b64, sig = cookie_value.rsplit(self.SEPARATOR, 1)
+            payload = payload_b64.encode()
+            if not self._verify(payload, sig):
+                return Session()
+            data = json.loads(base64.urlsafe_b64decode(payload).decode())
+            return Session(data)
+        except Exception:
+            return Session()
+
+
+# ---------------------------------------------------------------------------
+# Request context
+# ---------------------------------------------------------------------------
+
+class RequestContext:
+    """Holds per-request state: path, method, headers, session."""
+
+    def __init__(self, path: str, method: str, cookies: Dict[str, str],
+                 session_iface: SessionInterface):
+        self.path = path
+        self.method = method
+        self.cookies = cookies
+        self._session_iface = session_iface
+        raw = cookies.get(SessionInterface.COOKIE_NAME, "")
+        self.session: Session = (
+            session_iface.deserialize(raw) if raw else Session()
+        )
+
+    def build_response_cookies(self) -> list:
+        """Return a list of Set-Cookie strings for modified session data."""
+        if not self.session.modified:
+            return []
+        value = self._session_iface.serialize(self.session)
+        if value is None:
+            return [f"{SessionInterface.COOKIE_NAME}=; Path=/; HttpOnly"]
+        return [f"{SessionInterface.COOKIE_NAME}={value}; Path=/; HttpOnly"]
+
+
+# ---------------------------------------------------------------------------
+# Response
+# ---------------------------------------------------------------------------
+
+class Response:
+    """Minimal HTTP response container."""
+
+    def __init__(self, status: int, body: str = "",
+                 headers: Optional[Dict[str, str]] = None,
+                 set_cookie_headers: Optional[list] = None):
+        self.status = status
+        self.body = body
+        self.headers: Dict[str, str] = headers or {}
+        self.set_cookie_headers: list = set_cookie_headers or []
+
+    def is_redirect(self) -> bool:
+        return self.status in (301, 302, 303, 307, 308)
+
+    def location(self) -> Optional[str]:
+        return self.headers.get("Location")
+
+
+# ---------------------------------------------------------------------------
+# App
+# ---------------------------------------------------------------------------
+
+class App:
+    """
+    Minimal WSGI-like application with route registration.
+
+    Routes receive a RequestContext and must return a dict with:
+      - "status": int
+      - "body": str  (optional)
+      - "headers": dict  (optional, e.g. {"Location": "/other"})
+    """
+
+    def __init__(self, secret_key: str):
+        self.secret_key = secret_key
+        self._routes: Dict[str, Any] = {}
+        self._session_iface = SessionInterface(secret_key)
+
+    def route(self, path: str):
+        """Decorator to register a route handler."""
+        def decorator(fn):
+            self._routes[path] = fn
+            return fn
+        return decorator
+
+    def handle(self, path: str, method: str,
+               cookies: Dict[str, str]) -> Response:
+        """Dispatch a request and return a Response."""
+        parsed = urllib.parse.urlparse(path)
+        clean_path = parsed.path
+
+        handler = self._routes.get(clean_path)
+        if handler is None:
+            return Response(404, body="Not Found")
+
+        ctx = RequestContext(clean_path, method, cookies, self._session_iface)
+        result = handler(ctx)
+
+        status = result.get("status", 200)
+        body = result.get("body", "")
+        headers = dict(result.get("headers", {}))
+        set_cookie = ctx.build_response_cookies()
+
+        return Response(status, body=body, headers=headers,
+                        set_cookie_headers=set_cookie)
+
+
+# ---------------------------------------------------------------------------
+# TestClient  (contains the redirect-session bug)
+# ---------------------------------------------------------------------------
+
+class TestClient:
+    """
+    Test client for App.
+
+    Usage::
+
+        client = TestClient(app)
+        resp = client.open("/path", follow_redirects=True)
+        assert resp.body == "expected"
+
+    Known bug: when follow_redirects=True, session cookies set by a redirect
+    response are NOT carried forward to subsequent requests.  The client's
+    self.cookies is not updated from response Set-Cookie headers during the
+    redirect loop, so the session appears empty on the redirect target.
+    """
+
+    def __init__(self, app: App):
+        self.app = app
+        self.cookies: Dict[str, str] = {}
+
+    def open(self, path: str, method: str = "GET",
+             follow_redirects: bool = False) -> Response:
+        """Issue a request, optionally following redirects."""
+        current_path = path
+        current_method = method
+
+        response = self.app.handle(current_path, current_method,
+                                   dict(self.cookies))
+
+        if follow_redirects:
+            max_hops = 10
+            hops = 0
+            while response.is_redirect() and hops < max_hops:
+                location = response.location()
+                if not location:
+                    break
+
+                # BUG: response.set_cookie_headers contains the session cookie
+                # from the previous response, but we never update self.cookies
+                # here.  The next request is built with the stale self.cookies,
+                # so the session data set in the previous handler is lost.
+
+                current_path = location
+                current_method = "GET" if response.status in (301, 302, 303) else current_method
+                response = self.app.handle(current_path, current_method,
+                                           dict(self.cookies))
+                hops += 1
+
+        # Update cookie jar from the *final* response only (too late for
+        # intermediate redirects — this is part of the bug).
+        for header in response.set_cookie_headers:
+            name, _, rest = header.partition("=")
+            value = rest.split(";")[0]
+            self.cookies[name.strip()] = value.strip()
+
+        return response

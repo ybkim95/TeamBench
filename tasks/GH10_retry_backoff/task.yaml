@@ -1,0 +1,12 @@
+task_id: GH10_retry_backoff
+domain: swe
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [github-issue, celery, retry, backoff, overflow, task-queue]
+workspace_file_count: 3
+lines_changed_expected: 15
+parameterized: false
+source: "https://github.com/celery/celery/issues/7101"

@@ -1,0 +1,8 @@
+task_id: GH13_starlette_bg_block
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Background tasks block subsequent requests via BaseHTTPMiddleware call_next lifecycle"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
