@@ -57,7 +57,9 @@ dataset_info:
 
 ## Overview
 
-**TeamBench** is a benchmark of **851 task templates** that expand to **931 seeded evaluation instances** across **19 base categories**. It evaluates whether LLM-based agent **teams** outperform a single oracle agent under **OS-enforced role separation** (Planner / Executor / Verifier in isolated sandboxes with distinct tool allow-lists), and reports the **Teamwork Necessity Index (TNI)**: a paired metric that quantifies how much a task requires coordinated multi-agent effort beyond what a capable single agent achieves alone.
+**TeamBench** is a benchmark of **851 task templates** that expand to **931 seeded evaluation instances** across **19 base categories** (the leaderboard uses **21 refined categories**; see paper §3.1). It evaluates whether LLM-based agent **teams** outperform a single oracle agent under **OS-enforced role separation** (Planner / Executor / Verifier in isolated sandboxes with distinct tool allow-lists), and reports the **Teamwork Necessity Index (TNI)**: a paired metric that quantifies how much a task requires coordinated multi-agent effort beyond what a capable single agent achieves alone.
+
+**Category-distribution caveat.** Of the 851 templates, 733 are GitHub-derived (`GH*`) and are aggregated into a single `Other` category in the `category` column; the remaining 118 originally-authored templates split across 18 fine-grained categories (Security, Software Engineering, Distributed Systems, Adversarial, and so on; see the *Domain Distribution* table below). The "19 base categories" number counts `Other` + the 18 fine-grained labels; readers analysing category-level distributions should keep this in mind.
 
 The release includes deterministic shell-script graders, parameterized seeded workspace generators, full reference ablation data on a 153-task core, role-mixing studies, and a 40-session human pilot under matched role separation.
 

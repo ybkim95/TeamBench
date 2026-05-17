@@ -726,10 +726,11 @@ def cmd_submit(result_file: str) -> None:
     safe_model = model.replace("/", "_").replace(":", "_")
     click.echo("\nSubmission instructions:")
     click.echo("  1. Commit your result file to your fork.")
-    click.echo("  2. Place the result file at:  shared/submissions/<your_model>.json")
+    click.echo("  2. Place the result file at:  shared/ablation_results/lb90_<your_model>_seed0.json")
     click.echo("  3. Open a pull request to the main TeamBench repository.")
-    click.echo("  4. CI will verify the schema and compute leaderboard rankings.")
-    click.echo(f"\n  Suggested path: shared/submissions/{safe_model}.json")
+    click.echo("  4. Maintainers manually re-run the deterministic graders to verify your submission")
+    click.echo("     before adding the model to the leaderboard.")
+    click.echo(f"\n  Suggested path: shared/ablation_results/lb90_{safe_model}_seed0.json")
 
 
 if __name__ == "__main__":
