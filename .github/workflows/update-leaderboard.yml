@@ -4,8 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'shared/submissions/*.json'
+      - 'shared/ablation_results/lb90_*.json'
       - 'shared/ablation_results/crossmodel_*.json'
+      - 'shared/submissions/*.json'
 
   workflow_dispatch:
     inputs:

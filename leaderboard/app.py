@@ -190,30 +190,36 @@ python -m harness.paper_tables \\
 
 ### 5. Submit
 
-Upload `shared/ablation_results/lb90_<your-model>_seed0.json` from the Submit tab, or open a Pull Request adding the same file to `shared/ablation_results/` in the GitHub repo. We manually re-run the deterministic graders to verify the submission before adding it to the leaderboard.
+Open a Pull Request on GitHub adding your `shared/ablation_results/lb90_<your-model>_seed0.json` file. A validation workflow checks schema and integrity automatically; a maintainer then manually re-runs the deterministic graders before merging, and the leaderboard data is regenerated on merge to `main`.
                     """
                 )
 
             with gr.Tab("Submit"):
                 gr.Markdown(
-                    "Submit a results JSON produced by `python -m harness.ablation` "
-                    "(the file at `shared/ablation_results/lb90_<your-model>_seed0.json`). "
-                    "Submissions are manually re-graded against the deterministic graders before being added to the leaderboard."
-                )
-                with gr.Row():
-                    model_in = gr.Textbox(label="Model name *", placeholder="e.g. claude-sonnet-4-6")
-                    team_in = gr.Textbox(label="Team / organization *", placeholder="e.g. Anthropic, Google DeepMind, your-lab")
-                with gr.Row():
-                    framework_in = gr.Textbox(label="Framework (optional)", placeholder="e.g. langgraph, crewai, custom")
-                    contact_in = gr.Textbox(label="Contact email (optional)", placeholder="you@example.com")
-                description_in = gr.Textbox(label="Description (optional)", placeholder="Tools, prompts, framework version, anything reviewers should know.", lines=2)
-                file_in = gr.File(label="Results JSON (the file harness.ablation wrote)", file_types=[".json"])
-                btn = gr.Button("Submit for grading", variant="primary")
-                out = gr.Markdown("")
-                btn.click(
-                    fn=validate_submission,
-                    inputs=[file_in, model_in, team_in, contact_in, framework_in, description_in],
-                    outputs=out,
+                    """
+### How to submit
+
+Submissions are accepted exclusively through GitHub Pull Requests. We previously
+ran an upload form here, but Hugging Face Spaces use ephemeral storage and no
+maintainer was polling the directory, so uploads were effectively lost. To avoid
+that, we have switched to the GitHub flow:
+
+1. Run the LB90 sweep locally and produce
+   `shared/ablation_results/lb90_<your-model>_seed0.json`.
+2. Open a Pull Request adding that file at the same path in the GitHub repo:
+   <https://github.com/ybkim95/TeamBench/pulls>
+3. The `Validate Leaderboard Submission` workflow runs automatically and
+   comments the schema/integrity result on the PR.
+4. A maintainer manually re-runs the deterministic graders against your
+   submission before merging.
+5. On merge, the `Update Leaderboard` workflow regenerates
+   `leaderboard/data/leaderboard_data.json`; this Space picks up the new
+   numbers on its next launch.
+
+If you cannot open a PR directly (e.g. inside a corporate firewall), open an
+issue at <https://github.com/ybkim95/TeamBench/issues> and attach the JSON
+there; we will route it into a PR on your behalf.
+                    """
                 )
 
         gr.Markdown(

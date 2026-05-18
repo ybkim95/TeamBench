@@ -3,6 +3,7 @@ name: Validate Leaderboard Submission
 on:
   pull_request:
     paths:
+      - 'shared/ablation_results/lb90_*.json'
       - 'shared/submissions/*.json'
 
 permissions:
@@ -25,8 +26,9 @@ jobs:
       - name: Find submission files
         id: find
         run: |
-          # Get list of added/modified submission files in this PR
-          FILES=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...HEAD -- 'shared/submissions/*.json')
+          # Get list of added/modified submission files in this PR.
+          # Canonical path is shared/ablation_results/lb90_*.json; legacy shared/submissions/*.json still accepted.
+          FILES=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...HEAD -- 'shared/ablation_results/lb90_*.json' 'shared/submissions/*.json')
           if [ -z "$FILES" ]; then
             echo "No submission files found in PR"
             exit 0
