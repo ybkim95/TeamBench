@@ -1376,7 +1376,14 @@ def run_full_ablation(
     # condition -> list of float (partial scores 0.0-1.0)
     condition_partial: dict[AblationCondition, list[float]] = {c: [] for c in conditions}
 
-    runs_base = os.path.join(os.path.dirname(output), "ablation_runs")
+    # Run directories go to local disk when TEAMBENCH_RUNS_DIR is set. Two
+    # reasons, both measured: the docker sandbox cannot bind-mount anything
+    # under this repository (NFS exported with root_squash, so the daemon's
+    # mkdir is denied), and staging a full upstream checkout onto NFS is far
+    # slower than onto local disk.
+    runs_base = os.environ.get("TEAMBENCH_RUNS_DIR") or \
+        os.path.join(os.path.dirname(output), "ablation_runs")
+    os.makedirs(runs_base, exist_ok=True)
 
     # --- Resume: scan existing run dirs for completed (condition, task, seed) ---
     # Checkpoint is append-only and may contain multiple entries per key (e.g.
@@ -1483,6 +1490,17 @@ def run_full_ablation(
                     "elapsed_sec": run_record.elapsed_sec,
                     "failure_modes": run_record.score.get("failure_modes", []),
                     "error": run_record.error,
+                    # The per-check results, not just the aggregate. Without
+                    # them a completed campaign can only ever be read on the
+                    # guard-inflated scale: 303 of 374 checks across the
+                    # verified core pass on an untouched workspace, so the
+                    # do-nothing floor for partial_score is 0.815 and every
+                    # condition is compressed against it. Recovering the
+                    # checklist afterwards means re-reading run directories
+                    # that may already have been cleaned up, which is how the
+                    # previous sweep became unrescorable.
+                    "checks": ((run_record.score.get("secondary") or {}).get("checks")
+                               or run_record.score.get("checklist") or []),
                 }
                 all_runs.append(run_entry)
 

@@ -156,6 +156,40 @@ def _kill_process_group(proc) -> None:
 _SANDBOX_IMAGE = os.environ.get("TEAMBENCH_SANDBOX_IMAGE", "python:3.11-slim")
 
 
+_MOUNT_OK: dict = {}
+
+
+def _docker_can_mount(path: str) -> bool:
+    """Can the daemon actually bind-mount this path?
+
+    `docker info` succeeding is not enough. This repository lives on NFS
+    exported with root_squash, and the daemon runs as root, so every mount of a
+    path under it fails with
+
+        error while creating mount source path '...': mkdir ...: permission denied
+
+    Without this probe the sandbox reports itself active, every single shell
+    command returns a docker error instead of running, and the agents look as
+    though they simply could not use a shell. /tmp is local and mounts fine, so
+    the fix is to stage runs there; this probe is the guard that makes the
+    failure loud if that is ever forgotten.
+    """
+    root = os.path.abspath(path)
+    key = root.split(os.sep)[1] if os.sep in root[1:] else root
+    if key in _MOUNT_OK:
+        return _MOUNT_OK[key]
+    try:
+        r = subprocess.run(
+            ["docker", "run", "--rm", "--network", "none",
+             "-v", f"{root}:/probe:ro", "alpine:latest", "true"],
+            capture_output=True, timeout=90)
+        ok = r.returncode == 0
+    except Exception:
+        ok = False
+    _MOUNT_OK[key] = ok
+    return ok
+
+
 def _docker_available() -> bool:
     if os.environ.get("TEAMBENCH_NO_SANDBOX"):
         return False
@@ -196,10 +230,38 @@ class RunCommandTool(Tool):
         self.image = image or _SANDBOX_IMAGE
         # Resolved once so the per-call path stays cheap, and so the run log can
         # record whether isolation was actually in force.
-        self.sandbox_active = bool(sandbox) and _docker_available()
+        # A task staged from upstream carries its own pinned dependency
+        # environment, recorded next to the workspace by harness/core_staging.py.
+        # Without it the agent has no pytest and none of the repo's test
+        # dependencies, so the Verifier cannot do the one thing it exists to do
+        # and the experiment would measure agents that cannot run tests.
+        self.deps_env = None
+        try:
+            meta_p = os.path.join(os.path.dirname(os.path.abspath(cwd)),
+                                  "core_env.json")
+            if os.path.isfile(meta_p):
+                import json as _json
+                d = (_json.load(open(meta_p)) or {}).get("deps_env")
+                if d and os.path.isdir(os.path.join(d, "bin")):
+                    self.deps_env = d
+        except Exception:
+            self.deps_env = None
+
+        self.sandbox_active = (bool(sandbox) and _docker_available()
+                               and _docker_can_mount(self.cwd)
+                               and (self.deps_env is None
+                                    or _docker_can_mount(self.deps_env)))
         if sandbox and not self.sandbox_active:
-            print("  [sandbox] WARNING: docker unavailable, shell runs unconfined "
+            print("  [sandbox] WARNING: docker unavailable or cannot bind-mount "
+                  f"{self.cwd} (NFS root_squash?), shell runs unconfined "
                   "on the host; role separation is NOT enforced for this run")
+
+    def _container_source_roots(self) -> list:
+        """Source roots as seen inside the container, where cwd is /workspace."""
+        roots = ["/workspace"]
+        if os.path.isdir(os.path.join(self.cwd, "src")):
+            roots.insert(0, "/workspace/src")
+        return roots
 
     def execute(self, cmd: str = "", **kwargs) -> ToolResult:
         if not cmd:
@@ -222,6 +284,19 @@ class RunCommandTool(Tool):
         run_env = os.environ.copy()
         venv_bin = os.path.dirname(os.path.abspath(_sys.executable))
         run_env["PATH"] = venv_bin + os.pathsep + run_env.get("PATH", "")
+        if self.deps_env:
+            # Same reasoning as the sandboxed branch: a staged task's pinned
+            # environment must be first on PATH, ahead of the harness's own venv,
+            # or `pytest` resolves to the harness interpreter which has none of
+            # the repository's test dependencies.
+            run_env["PATH"] = (os.path.join(self.deps_env, "bin") + os.pathsep
+                               + run_env["PATH"])
+            roots = [os.path.abspath(self.cwd)]
+            src = os.path.join(self.cwd, "src")
+            if os.path.isdir(src):
+                roots.insert(0, os.path.abspath(src))
+            run_env["PYTHONPATH"] = os.pathsep.join(
+                roots + ([run_env["PYTHONPATH"]] if run_env.get("PYTHONPATH") else []))
         # start_new_session puts the shell in its own process group so that a
         # timeout can kill the whole tree. Without it, subprocess.run(shell=True)
         # kills only the shell and leaves grandchildren running: an agent issuing
@@ -236,10 +311,42 @@ class RunCommandTool(Tool):
                 "docker", "run", "--rm", "--network", "none",
                 "--user", f"{os.getuid()}:{os.getgid()}",
                 "-v", f"{os.path.abspath(self.cwd)}:/workspace",
+            ]
+            inner = cmd
+            if self.deps_env:
+                # Mounted read-only at the SAME absolute path it has on the
+                # host, because a venv's pyvenv.cfg and console-script shebangs
+                # hardcode that path and would not survive relocation.
+                # The CACHE ROOT is mounted, not just the task's venv. The
+                # venv's bin/python is a symlink into the sibling interpreter
+                # directory, so mounting the venv alone leaves it dangling and
+                # `python` silently falls back to the image's own interpreter,
+                # which has none of the task's dependencies.
+                #
+                # This survives the `--tmpfs /tmp:exec` below even though the
+                # cache lives under /tmp: docker orders bind mounts by depth, so
+                # the tmpfs is established first and the bind lands on top of it.
+                cache_root = os.path.dirname(os.path.dirname(self.deps_env))
+                argv += ["-v", f"{cache_root}:{cache_root}:ro"]
+                # The environment is exported INSIDE the command, not with
+                # `docker -e`. `bash -lc` is a login shell: it sources
+                # /etc/profile, which overwrites PATH, so a -e PATH silently has
+                # no effect and `python` resolves to the image's interpreter with
+                # none of the task's dependencies.
+                #
+                # PYTHONPATH carries the source roots because the package under
+                # test is deliberately NOT installed: the agent must import the
+                # working tree it edits, and a src/ layout is not importable from
+                # the workspace root.
+                pypath = ":".join(self._container_source_roots())
+                inner = (f'export PATH="{self.deps_env}/bin:$PATH"; '
+                         f'export PYTHONPATH="{pypath}${{PYTHONPATH:+:$PYTHONPATH}}"; '
+                         f'{cmd}')
+            argv += [
                 "-w", "/workspace",
                 "--tmpfs", "/tmp:exec",
                 "--memory", "2g", "--pids-limit", "512",
-                self.image, "bash", "-lc", cmd,
+                self.image, "bash", "-lc", inner,
             ]
             proc = subprocess.Popen(argv, text=True, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE, start_new_session=True)

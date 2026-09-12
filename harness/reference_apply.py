@@ -678,6 +678,38 @@ def merge3(base: str, ours: str, theirs: str, tmpdir: str, tag: str) -> str | No
 # Public entry point
 # ---------------------------------------------------------------------------
 
+def _apply_direct(task_id: str, patch_path: str, workspace: str) -> dict:
+    """Apply the reference patch straight to an upstream checkout.
+
+    `git apply` first, then the three-way merge, matching what
+    scripts/build_verified_core.py does when it decides whether a task
+    discriminates. Verification and grading must agree.
+    """
+    import subprocess as _sp
+
+    def _git(*args):
+        return _sp.run(["git", *args], cwd=workspace, capture_output=True,
+                       text=True, timeout=300)
+
+    if not os.path.isdir(os.path.join(workspace, ".git")):
+        _git("init", "-q")
+        _git("-c", "user.email=t@t", "-c", "user.name=t", "add", "-A")
+        _git("-c", "user.email=t@t", "-c", "user.name=t", "commit", "-qm", "base")
+    r = _git("apply", patch_path)
+    method = "direct"
+    if r.returncode:
+        r = _git("apply", "-3", patch_path)
+        method = "direct-3way"
+    changed = [x for x in (_git("diff", "--name-only").stdout or "").split() if x]
+    return {"applied": r.returncode == 0, "method": method,
+            "base_source": "upstream checkout at base_sha",
+            "written_paths": changed,
+            "no_effective_change": not changed,
+            "notes": ["staged from upstream; reparameterisation not applicable"]
+                     + ([] if r.returncode == 0
+                        else ["git apply failed: " + (r.stderr or "")[-200:]])}
+
+
 def build_reference_workspace(task_id: str, task_dir: str, workspace: str,
                               seed: int = 0) -> dict:
     """
@@ -712,6 +744,23 @@ def build_reference_workspace(task_id: str, task_dir: str, workspace: str,
     out["files_total"] = len(fds)
     if not fds:
         out["notes"].append("patch parsed to zero file diffs")
+        return out
+
+    # A task staged from upstream needs none of the machinery below. That
+    # machinery exists for generator-backed tasks, where the staged workspace is
+    # parameterised by seed and the patch was written against the unparameterised
+    # upstream, so the patch has to be applied to a base tree and the result
+    # mapped across. An upstream checkout at base_sha IS the patch's base, and
+    # reparameterisation has no meaning for it.
+    #
+    # Taking the general path anyway used tasks/<id>/workspace as the base, i.e.
+    # the vendored fragment, and produced a partially applied reference:
+    # measured 0.71 on GH112_redis-py_3996 where a direct `git apply` to the
+    # staged tree scores 1.0. Every core task therefore failed G3 as
+    # "grader rejects reference".
+    if os.path.isfile(os.path.join(os.path.dirname(os.path.abspath(workspace)),
+                                   "core_env.json")):
+        out.update(_apply_direct(task_id, patch_path, workspace))
         return out
 
     staged_files = _read_tree(workspace)

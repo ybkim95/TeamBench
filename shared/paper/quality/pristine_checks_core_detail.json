@@ -1,0 +1,1207 @@
+[
+ {
+  "task": "GH112_redis-py_3996",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|redis/observability/__init__.py has at least 5 lines (not wiped)",
+   "C8|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source"
+  ],
+  "pristine_partial": 0.43,
+  "pristine_pass": false,
+  "n_discriminative": 4
+ },
+ {
+  "task": "GH139_marshmallow_2894",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/marshmallow/fields.py has at least 1042 lines (not wiped)",
+   "C8|key symbols still defined in src/marshmallow/fields.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/marshmallow/fields.py has at least 1042 lines (not wiped)",
+   "C8|key symbols still defined in src/marshmallow/fields.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "pristine_partial": 0.88,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH103_redis-py_3998",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|redis/asyncio/connection.py has at least 801 lines (not wiped)",
+   "C8|redis/connection.py has at least 1715 lines (not wiped)",
+   "C9|key symbols still defined in redis/asyncio/connection.py",
+   "C10|key symbols still defined in redis/connection.py",
+   "C11|fix pattern present: fix introduces expected string",
+   "C12|old buggy pattern removed: old pattern removed by fix"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|redis/asyncio/connection.py has at least 801 lines (not wiped)",
+   "C8|redis/connection.py has at least 1715 lines (not wiped)",
+   "C9|key symbols still defined in redis/asyncio/connection.py",
+   "C10|key symbols still defined in redis/connection.py",
+   "C11|fix pattern present: fix introduces expected string"
+  ],
+  "pristine_partial": 0.82,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH140_marshmallow_2874",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/marshmallow/validate.py has at least 342 lines (not wiped)",
+   "C8|key symbols still defined in src/marshmallow/validate.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/marshmallow/validate.py has at least 342 lines (not wiped)",
+   "C8|key symbols still defined in src/marshmallow/validate.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH28_jinja_1852",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/compiler.py has at least 988 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/compiler.py",
+   "C9|fix pattern present: fix introduces expected string",
+   "C10|old buggy pattern removed: old pattern removed by fix"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/compiler.py has at least 988 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/compiler.py"
+  ],
+  "pristine_partial": 0.67,
+  "pristine_pass": false,
+  "n_discriminative": 3
+ },
+ {
+  "task": "GH17_aiohttp_10151",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/web_protocol.py has at least 385 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/web_protocol.py",
+   "C9|old buggy pattern removed: old '<=' comparison replaced with '<'"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/web_protocol.py has at least 385 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/web_protocol.py"
+  ],
+  "pristine_partial": 0.75,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH30_werkzeug_3109",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/routing/exceptions.py has at least 87 lines (not wiped)",
+   "C8|src/werkzeug/routing/matcher.py has at least 104 lines (not wiped)",
+   "C9|key symbols still defined in src/werkzeug/routing/exceptions.py",
+   "C10|key symbols still defined in src/werkzeug/routing/matcher.py",
+   "C11|old buggy pattern removed: old pattern removed by fix"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/routing/exceptions.py has at least 87 lines (not wiped)",
+   "C8|src/werkzeug/routing/matcher.py has at least 104 lines (not wiped)",
+   "C9|key symbols still defined in src/werkzeug/routing/exceptions.py",
+   "C10|key symbols still defined in src/werkzeug/routing/matcher.py",
+   "C11|old buggy pattern removed: old pattern removed by fix"
+  ],
+  "pristine_partial": 0.9,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH25_aiohttp_12245",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/client.py has at least 872 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/client.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/client.py has at least 872 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/client.py"
+  ],
+  "pristine_partial": 0.75,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH32_jinja_1664",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/compiler.py has at least 990 lines (not wiped)",
+   "C8|src/jinja2/parser.py has at least 520 lines (not wiped)",
+   "C9|key symbols still defined in src/jinja2/compiler.py",
+   "C10|key symbols still defined in src/jinja2/parser.py",
+   "C11|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/compiler.py has at least 990 lines (not wiped)",
+   "C8|src/jinja2/parser.py has at least 520 lines (not wiped)",
+   "C9|key symbols still defined in src/jinja2/compiler.py",
+   "C10|key symbols still defined in src/jinja2/parser.py",
+   "C11|fix pattern present: fix introduces expected string"
+  ],
+  "pristine_partial": 0.9,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH29_aiohttp_12217",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/client.py has at least 825 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/client.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/client.py has at least 825 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/client.py"
+  ],
+  "pristine_partial": 0.75,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH33_jinja_1663",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/loaders.py has at least 342 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/loaders.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/loaders.py has at least 342 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/loaders.py"
+  ],
+  "pristine_partial": 0.75,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH35_jinja_1665",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/idtracking.py has at least 160 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/idtracking.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/idtracking.py has at least 160 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/idtracking.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH371_arrow_1194",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/arrow.py has at least 933 lines (not wiped)",
+   "C8|key symbols still defined in arrow/arrow.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/arrow.py has at least 933 lines (not wiped)",
+   "C8|key symbols still defined in arrow/arrow.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH363_celery_10040",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|celery/backends/redis.py has at least 360 lines (not wiped)",
+   "C8|key symbols still defined in celery/backends/redis.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|celery/backends/redis.py has at least 360 lines (not wiped)",
+   "C8|key symbols still defined in celery/backends/redis.py"
+  ],
+  "pristine_partial": 0.75,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH37_pydantic_12816",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|pydantic/main.py has at least 919 lines (not wiped)",
+   "C8|key symbols still defined in pydantic/main.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|pydantic/main.py has at least 919 lines (not wiped)",
+   "C8|key symbols still defined in pydantic/main.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "pristine_partial": 0.88,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH394_arrow_1218",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3320 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py",
+   "C9|fix pattern present: fix introduces expected string",
+   "C10|old buggy pattern removed: old pattern removed by fix"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3320 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py"
+  ],
+  "pristine_partial": 0.67,
+  "pristine_pass": false,
+  "n_discriminative": 3
+ },
+ {
+  "task": "GH39_jinja_1762",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/filters.py has at least 939 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/filters.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/filters.py has at least 939 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/filters.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH381_celery_10013",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|celery/backends/redis.py has at least 357 lines (not wiped)",
+   "C8|key symbols still defined in celery/backends/redis.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|celery/backends/redis.py has at least 357 lines (not wiped)",
+   "C8|key symbols still defined in celery/backends/redis.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH442_arrow_1172",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3266 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3266 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH415_arrow_852",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/parser.py has at least 294 lines (not wiped)",
+   "C8|key symbols still defined in arrow/parser.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/parser.py has at least 294 lines (not wiped)",
+   "C8|key symbols still defined in arrow/parser.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "pristine_partial": 0.88,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH444_arrow_1184",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3240 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py",
+   "C9|fix pattern present: fix introduces expected string",
+   "C10|old buggy pattern removed: old pattern removed by fix"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3240 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py"
+  ],
+  "pristine_partial": 0.67,
+  "pristine_pass": false,
+  "n_discriminative": 3
+ },
+ {
+  "task": "GH405_narwhals_1515",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|narwhals/_pandas_like/series.py has at least 706 lines (not wiped)",
+   "C8|narwhals/dependencies.py has at least 196 lines (not wiped)",
+   "C9|key symbols still defined in narwhals/_pandas_like/series.py",
+   "C10|key symbols still defined in narwhals/dependencies.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|narwhals/_pandas_like/series.py has at least 706 lines (not wiped)",
+   "C8|narwhals/dependencies.py has at least 196 lines (not wiped)",
+   "C9|key symbols still defined in narwhals/_pandas_like/series.py",
+   "C10|key symbols still defined in narwhals/dependencies.py"
+  ],
+  "pristine_partial": 0.89,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH47_jinja_1706",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/loaders.py has at least 344 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/loaders.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/loaders.py has at least 344 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/loaders.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "pristine_partial": 0.88,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH46_pydantic_12951",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|pydantic/_internal/_generate_schema.py has at least 1440 lines (not wiped)",
+   "C8|key symbols still defined in pydantic/_internal/_generate_schema.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|pydantic/_internal/_generate_schema.py has at least 1440 lines (not wiped)",
+   "C8|key symbols still defined in pydantic/_internal/_generate_schema.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH516_attrs_1513",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/attr/validators.py has at least 374 lines (not wiped)",
+   "C8|key symbols still defined in src/attr/validators.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/attr/validators.py has at least 374 lines (not wiped)",
+   "C8|key symbols still defined in src/attr/validators.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH525_arrow_1186",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3240 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py",
+   "C9|fix pattern present: fix introduces expected string",
+   "C10|old buggy pattern removed: old pattern removed by fix"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3240 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py"
+  ],
+  "pristine_partial": 0.67,
+  "pristine_pass": false,
+  "n_discriminative": 3
+ },
+ {
+  "task": "GH52_jinja_1702",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/runtime.py has at least 528 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/runtime.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/runtime.py has at least 528 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/runtime.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH539_redis-py_3969",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|redis/asyncio/client.py has at least 953 lines (not wiped)",
+   "C8|key symbols still defined in redis/asyncio/client.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|redis/asyncio/client.py has at least 953 lines (not wiped)",
+   "C8|key symbols still defined in redis/asyncio/client.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH540_redis-py_3968",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|redis/asyncio/connection.py has at least 793 lines (not wiped)",
+   "C8|key symbols still defined in redis/asyncio/connection.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|redis/asyncio/connection.py has at least 793 lines (not wiped)",
+   "C8|key symbols still defined in redis/asyncio/connection.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH558_marshmallow_2861",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/marshmallow/constants.py has at least 11 lines (not wiped)",
+   "C8|no trivially-empty (pass-only) function bodies in source"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/marshmallow/constants.py has at least 11 lines (not wiped)",
+   "C8|no trivially-empty (pass-only) function bodies in source"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH566_jinja_1537",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/nativetypes.py has at least 59 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/nativetypes.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/nativetypes.py has at least 59 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/nativetypes.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH54_pydantic_12817",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|pydantic/main.py has at least 917 lines (not wiped)",
+   "C8|key symbols still defined in pydantic/main.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|pydantic/main.py has at least 917 lines (not wiped)",
+   "C8|key symbols still defined in pydantic/main.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH56_werkzeug_3066",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/sansio/multipart.py has at least 162 lines (not wiped)",
+   "C8|key symbols still defined in src/werkzeug/sansio/multipart.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/sansio/multipart.py has at least 162 lines (not wiped)",
+   "C8|key symbols still defined in src/werkzeug/sansio/multipart.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH60_starlette_3148",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|starlette/templating.py has at least 78 lines (not wiped)",
+   "C8|key symbols still defined in starlette/templating.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|starlette/templating.py has at least 78 lines (not wiped)",
+   "C8|key symbols still defined in starlette/templating.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH569_celery_10023",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|celery/fixups/django.py has at least 114 lines (not wiped)",
+   "C8|key symbols still defined in celery/fixups/django.py",
+   "C9|fix pattern present: fix introduces expected string",
+   "C10|old buggy pattern removed: old pattern removed by fix"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|celery/fixups/django.py has at least 114 lines (not wiped)",
+   "C8|key symbols still defined in celery/fixups/django.py"
+  ],
+  "pristine_partial": 0.67,
+  "pristine_pass": false,
+  "n_discriminative": 3
+ },
+ {
+  "task": "GH626_werkzeug_3081",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/sansio/multipart.py has at least 166 lines (not wiped)",
+   "C8|key symbols still defined in src/werkzeug/sansio/multipart.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/sansio/multipart.py has at least 166 lines (not wiped)",
+   "C8|key symbols still defined in src/werkzeug/sansio/multipart.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH642_marshmallow_2854",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/marshmallow/fields.py has at least 1040 lines (not wiped)",
+   "C8|key symbols still defined in src/marshmallow/fields.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/marshmallow/fields.py has at least 1040 lines (not wiped)",
+   "C8|key symbols still defined in src/marshmallow/fields.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH64_werkzeug_3008",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/routing/map.py has at least 493 lines (not wiped)",
+   "C8|key symbols still defined in src/werkzeug/routing/map.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/routing/map.py has at least 493 lines (not wiped)",
+   "C8|key symbols still defined in src/werkzeug/routing/map.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH1118_mlflow_22053",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error"
+  ],
+  "pristine_partial": 0.75,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH684_starlette_3144",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|starlette/responses.py has at least 282 lines (not wiped)",
+   "C8|key symbols still defined in starlette/responses.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|starlette/responses.py has at least 282 lines (not wiped)",
+   "C8|key symbols still defined in starlette/responses.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "pristine_partial": 0.88,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH613_celery_10038",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|celery/app/base.py has at least 762 lines (not wiped)",
+   "C8|celery/app/task.py has at least 618 lines (not wiped)",
+   "C9|key symbols still defined in celery/app/base.py",
+   "C10|key symbols still defined in celery/app/task.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|celery/app/base.py has at least 762 lines (not wiped)",
+   "C8|celery/app/task.py has at least 618 lines (not wiped)",
+   "C9|key symbols still defined in celery/app/base.py",
+   "C10|key symbols still defined in celery/app/task.py"
+  ],
+  "pristine_partial": 0.78,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH729_werkzeug_3038",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/routing/exceptions.py has at least 76 lines (not wiped)",
+   "C8|src/werkzeug/routing/matcher.py has at least 101 lines (not wiped)",
+   "C9|key symbols still defined in src/werkzeug/routing/exceptions.py",
+   "C10|key symbols still defined in src/werkzeug/routing/matcher.py",
+   "C11|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/werkzeug/routing/exceptions.py has at least 76 lines (not wiped)",
+   "C8|src/werkzeug/routing/matcher.py has at least 101 lines (not wiped)",
+   "C9|key symbols still defined in src/werkzeug/routing/exceptions.py",
+   "C10|key symbols still defined in src/werkzeug/routing/matcher.py"
+  ],
+  "pristine_partial": 0.8,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH71_starlette_3189",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|starlette/responses.py has at least 280 lines (not wiped)",
+   "C8|key symbols still defined in starlette/responses.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|starlette/responses.py has at least 280 lines (not wiped)",
+   "C8|key symbols still defined in starlette/responses.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "pristine_partial": 0.88,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH732_arrow_1190",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3239 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py",
+   "C9|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/locales.py has at least 3239 lines (not wiped)",
+   "C8|key symbols still defined in arrow/locales.py"
+  ],
+  "pristine_partial": 0.75,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH808_jinja_2062",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/utils.py has at least 382 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/utils.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|src/jinja2/utils.py has at least 382 lines (not wiped)",
+   "C8|key symbols still defined in src/jinja2/utils.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH97_arrow_1201",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/__init__.py has at least 19 lines (not wiped)",
+   "C8|arrow/formatter.py has at least 70 lines (not wiped)",
+   "C9|key symbols still defined in arrow/formatter.py",
+   "C10|fix pattern present: fix introduces expected string"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|arrow/__init__.py has at least 19 lines (not wiped)",
+   "C8|arrow/formatter.py has at least 70 lines (not wiped)",
+   "C9|key symbols still defined in arrow/formatter.py"
+  ],
+  "pristine_partial": 0.78,
+  "pristine_pass": false,
+  "n_discriminative": 2
+ },
+ {
+  "task": "GH801_aiohttp_11861",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/connector.py has at least 917 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/connector.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/connector.py has at least 917 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/connector.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ },
+ {
+  "task": "GH802_aiohttp_11860",
+  "status": "ok",
+  "all": [
+   "C1|test suite passes",
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/connector.py has at least 907 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/connector.py"
+  ],
+  "free": [
+   "C2|source files are valid Python",
+   "C3|test files present and intact",
+   "C5|source modules import without error",
+   "C6|no hardcoded magic / cheating markers in source",
+   "C7|aiohttp/connector.py has at least 907 lines (not wiped)",
+   "C8|key symbols still defined in aiohttp/connector.py"
+  ],
+  "pristine_partial": 0.86,
+  "pristine_pass": false,
+  "n_discriminative": 1
+ }
+]

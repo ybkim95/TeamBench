@@ -37,10 +37,16 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 Q = os.path.join(REPO, "shared", "paper", "quality")
-CACHE = os.path.join(REPO, ".cache", "core")
+# Local disk, not the repository. The docker sandbox cannot bind-mount anything
+# under this repo (NFS with root_squash denies the daemon's mkdir), so a cache
+# kept there is invisible to the agent's shell. Everything the container needs
+# has to live somewhere mountable, at the SAME absolute path inside and out.
+CACHE = os.environ.get("TEAMBENCH_CORE_CACHE") or os.path.join(
+    tempfile.gettempdir(), "teambench_core")
 META_NAME = "core_env.json"
 
 _CORE = None
@@ -104,6 +110,38 @@ def deps_env(repo: str, sha: str) -> str:
     return os.path.join(CACHE, "deps", repo.replace("/", "_") + "@" + sha[:12])
 
 
+def local_interpreter(recorded: str | None) -> str:
+    """An interpreter that exists on local disk, copied out of the repo if needed.
+
+    A venv records `home = <interpreter dir>` in pyvenv.cfg and its console
+    scripts hardcode that path. If the interpreter lives on NFS the venv is
+    unusable inside the sandbox, so the interpreter is mirrored into the same
+    local cache as the dependency environments and the venv is built from there.
+    """
+    cache_py = os.path.join(CACHE, "python")
+    if os.path.isfile(os.path.join(cache_py, "bin", "python3")):
+        return os.path.join(cache_py, "bin", "python3")
+    src = None
+    if recorded and "/.cache/pythons/" in recorded and os.access(recorded, os.X_OK):
+        src = os.path.dirname(os.path.dirname(recorded))
+    else:
+        pool = os.path.join(REPO, ".cache", "pythons")
+        if os.path.isdir(pool):
+            cands = sorted(os.listdir(pool), reverse=True)
+            for c in cands:
+                if os.access(os.path.join(pool, c, "bin", "python3"), os.X_OK):
+                    src = os.path.join(pool, c)
+                    break
+    if not src:
+        return sys.executable          # unsandboxed runs still work
+    os.makedirs(CACHE, exist_ok=True)
+    tmp = cache_py + ".partial"
+    shutil.rmtree(tmp, ignore_errors=True)
+    shutil.copytree(src, tmp, symlinks=True)
+    os.replace(tmp, cache_py)
+    return os.path.join(cache_py, "bin", "python3")
+
+
 def ensure_deps(row: dict, timeout: int = 1800) -> str:
     """Build the dependency environment once per (repo, base_sha).
 
@@ -122,8 +160,7 @@ def ensure_deps(row: dict, timeout: int = 1800) -> str:
     if os.path.isfile(stamp):
         return d
     os.makedirs(os.path.dirname(d), exist_ok=True)
-    base_py = row.get("python") if os.access(row.get("python") or "", os.X_OK) \
-        else sys.executable
+    base_py = local_interpreter(row.get("python"))
     _sh([base_py, "-m", "venv", d], timeout=timeout)
     pip = os.path.join(d, "bin", "pip")
     _sh([pip, "install", "-q", "-U", "pip", "setuptools", "wheel"], timeout=timeout)

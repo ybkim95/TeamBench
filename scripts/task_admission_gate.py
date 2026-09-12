@@ -42,11 +42,13 @@ the two agree. The result is stored in the ledger's ``meta.parity_check``.
 THE SEVEN GATES
 ---------------
 
-G1  pristine floor
+G1  pristine floor (discriminative scale; see the note at its evaluation)
     Stage the pristine seed-0 workspace exactly as ``harness.run_all.setup_run``
     does, make NO edits of any kind, and run the real ``grade.sh``.
     Recorded: ``floor`` = ``score.json -> secondary.partial_score``.
-    PASS iff ``floor == 0.0``.
+    PASS iff the task has at least one discriminative check, so that an
+    empty submission scores 0 on the checks that are actually scored. The
+    raw floor, guards included, is recorded alongside it.
     Any credit awarded for doing nothing is a defect: it is score an agent
     receives without acting, so it inflates every condition equally and
     compresses the dynamic range of the benchmark.
@@ -252,7 +254,7 @@ HARNESS_GRADE_CAP_S = 300
 
 GATE_IDS = ["G1", "G2", "G3", "G4", "G5", "G6", "G7"]
 GATE_TITLES = {
-    "G1": "pristine floor is 0.0",
+    "G1": "an empty submission scores 0 on the discriminative checks",
     "G2": "pristine does not pass",
     "G3": "reference solution scores 1.0",
     "G4": "grader is deterministic",
@@ -265,9 +267,11 @@ GATE_TITLES = {
 # ---------------------------------------------------------------------------
 # Grader invocation
 # ---------------------------------------------------------------------------
-# invoke_grader() below is a line-for-line copy of harness.run_all.grade_run()
-# with exactly one change: the 300 s literal passed to communicate() is replaced
-# by the `timeout_s` argument, and wall-clock time is measured. Run this script
+# invoke_grader() below is a copy of harness.run_all.grade_run() with two
+# changes: the 300 s literal passed to communicate() is replaced by the
+# `timeout_s` argument with wall-clock time measured, and the staged-core hook
+# below. The duplication is the reason the second change was needed at all, so
+# --parity-check matters: run it after touching either copy. Run this script
 # with --parity-check to have it assert, on live tasks, that invoke_grader() and
 # the unmodified harness grade_run() return identical scores.
 
@@ -296,6 +300,23 @@ def invoke_grader(task_name: str, task_dir: str, run_dir: str, timeout_s: int) -
     grade_env = os.environ.copy()
     venv_bin = os.path.dirname(os.path.abspath(sys.executable))
     grade_env["PATH"] = venv_bin + os.pathsep + grade_env.get("PATH", "")
+
+    # The one behaviour this copy had drifted from. harness.run_all.grade_run
+    # now restores a staged task's held-out tests before grading and points the
+    # grader at that task's pinned dependency environment. Without it the gate
+    # grades a workspace whose discriminating test is absent, so the pristine
+    # floor looks high and applying the reference changes nothing: G1, G3 and G6
+    # all fail for a reason that has nothing to do with the task.
+    try:
+        from harness.core_staging import grade_prepare
+        core_env = grade_prepare(run_dir)
+        if core_env.get("PATH"):
+            grade_env["PATH"] = core_env["PATH"] + os.pathsep + grade_env["PATH"]
+        if core_env.get("PYTHONPATH"):
+            grade_env["PYTHONPATH"] = core_env["PYTHONPATH"] + os.pathsep + \
+                grade_env.get("PYTHONPATH", "")
+    except ImportError:
+        pass
 
     timed_out = False
     t0 = time.monotonic()
@@ -819,7 +840,34 @@ def evaluate_task(entry: dict, cfg: dict) -> dict:
     if floor is None:
         rec["gates"]["G1"] = {"verdict": "error", "detail": "grader emitted no partial_score", "floor": None}
     else:
-        rec["gates"]["G1"] = {"verdict": "pass" if floor == 0.0 else "fail", "floor": floor}
+        # G1 used to require `floor == 0.0` on the RAW partial_score. That is
+        # unreachable for any task that has a guard check, because guards pass
+        # on an untouched workspace by definition: measured across the verified
+        # core, 303 of 374 checks (81%) are guards and the mean raw floor is
+        # 0.815. The gate was asking for something no well-formed task can
+        # satisfy.
+        #
+        # The property actually worth gating is the one the benchmark now
+        # reports: doing nothing scores zero on the DISCRIMINATIVE checks, the
+        # ones that fail on a pristine workspace. That is zero by construction,
+        # so the substantive half of the test is that the discriminative set is
+        # non-empty; a task with no discriminative check cannot tell any two
+        # submissions apart and must not be admitted.
+        #
+        # The raw floor is kept in the record, unchanged, because it is the
+        # measure of how much of a reported score was credit for not
+        # vandalising the workspace.
+        checks_a1 = (score_a1.get("secondary") or {}).get("checks") \
+            or score_a1.get("checklist") or []
+        n_guard = sum(1 for c in checks_a1 if isinstance(c, dict) and c.get("ok"))
+        n_disc = sum(1 for c in checks_a1 if isinstance(c, dict) and not c.get("ok"))
+        rec["gates"]["G1"] = {
+            "verdict": "pass" if n_disc > 0 else "fail",
+            "floor": floor,
+            "discriminative_floor": 0.0 if n_disc > 0 else None,
+            "n_guard": n_guard, "n_discriminative": n_disc,
+            "criterion": "discriminative set non-empty; scored floor is 0 by construction",
+        }
 
     # G2
     rec["gates"]["G2"] = {"verdict": "fail" if pass_a1 else "pass", "pristine_pass": pass_a1}

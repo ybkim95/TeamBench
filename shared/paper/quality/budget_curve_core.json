@@ -1,0 +1,256 @@
+{
+ "rows": [
+  {
+   "budget": 20,
+   "condition": "oracle",
+   "n": 16,
+   "passes": 1,
+   "pass_rate": 0.0625,
+   "pass_ci95": [
+    0.01111905730833121,
+    0.2832926836802987
+   ],
+   "raw_mean": 0.823125,
+   "disc_mean": 0.09375,
+   "inadmissible": 0
+  },
+  {
+   "budget": 60,
+   "condition": "oracle",
+   "n": 7,
+   "passes": 1,
+   "pass_rate": 0.14285714285714285,
+   "pass_ci95": [
+    0.02567895594897479,
+    0.51313450331903
+   ],
+   "raw_mean": 0.8271428571428572,
+   "disc_mean": 0.2857142857142857,
+   "inadmissible": 0
+  },
+  {
+   "budget": 140,
+   "condition": "oracle",
+   "n": 5,
+   "passes": 1,
+   "pass_rate": 0.2,
+   "pass_ci95": [
+    0.03622316096978745,
+    0.6244717358814613
+   ],
+   "raw_mean": 0.85,
+   "disc_mean": 0.4,
+   "inadmissible": 0
+  }
+ ],
+ "per_task": {
+  "140": {
+   "oracle": {
+    "GH103_redis-py_3998": {
+     "raw": 0.91,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 127.2
+    },
+    "GH1118_mlflow_22053": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 438.1
+    },
+    "GH112_redis-py_3996": {
+     "raw": 0.71,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 80.1
+    },
+    "GH139_marshmallow_2894": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 472.1
+    },
+    "GH140_marshmallow_2874": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 263.8
+    }
+   }
+  },
+  "20": {
+   "oracle": {
+    "GH103_redis-py_3998": {
+     "raw": 0.82,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 140.2
+    },
+    "GH1118_mlflow_22053": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 553.9
+    },
+    "GH112_redis-py_3996": {
+     "raw": 0.71,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 31.9
+    },
+    "GH139_marshmallow_2894": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 97.7
+    },
+    "GH140_marshmallow_2874": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 35.1
+    },
+    "GH17_aiohttp_10151": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 153.2
+    },
+    "GH25_aiohttp_12245": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 201.2
+    },
+    "GH28_jinja_1852": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 64.9
+    },
+    "GH29_aiohttp_12217": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 97.2
+    },
+    "GH30_werkzeug_3109": {
+     "raw": 0.9,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 72.4
+    },
+    "GH32_jinja_1664": {
+     "raw": 0.9,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 137.7
+    },
+    "GH33_jinja_1663": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 177.4
+    },
+    "GH35_jinja_1665": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 200.6
+    },
+    "GH363_celery_10040": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 180.5
+    },
+    "GH371_arrow_1194": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 59.3
+    },
+    "GH37_pydantic_12816": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 60.2
+    }
+   }
+  },
+  "60": {
+   "oracle": {
+    "GH103_redis-py_3998": {
+     "raw": 0.82,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 41.6
+    },
+    "GH1118_mlflow_22053": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1112.4
+    },
+    "GH112_redis-py_3996": {
+     "raw": 0.71,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 90.8
+    },
+    "GH139_marshmallow_2894": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 94.3
+    },
+    "GH140_marshmallow_2874": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 58.1
+    },
+    "GH17_aiohttp_10151": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 800.0
+    },
+    "GH25_aiohttp_12245": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 228.4
+    }
+   }
+  }
+ }
+}
