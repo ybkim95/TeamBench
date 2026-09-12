@@ -65,8 +65,84 @@ _THIRD_PARTY_PRESERVE = frozenset({
     "deno", "node", "npm", "cargo", "rustc",
 })
 
-# Python builtins to never rename
-_PYTHON_BUILTINS = frozenset(dir(__builtins__) if isinstance(__builtins__, dict) else dir(__builtins__))
+# Python builtins to never rename.
+#
+# This was `frozenset(dir(__builtins__) if isinstance(__builtins__, dict) else dir(__builtins__))`,
+# whose two branches are identical and which, inside an imported module, evaluates
+# `dir()` on the builtins DICT rather than the builtins module. It therefore
+# returned 45 dict dunder methods instead of the ~150 builtin names, leaving
+# `len`, `str`, `set`, `ValueError`, `isinstance` and every stdlib import target
+# eligible for renaming. Staged workspaces emitted lines such as
+#   from typing import Any_v2, Dict_core, List_ext
+# which parse but raise ImportError, so 593 of 650 GitHub-sourced tasks (91.2%)
+# could not be executed by any agent under any condition.
+#
+# Also exclude the standard library's own module names, since the renamer sees
+# them as ordinary symbols in `from <module> import <name>` targets.
+import builtins as _builtins
+import importlib as _importlib
+import sys as _sys
+
+
+def _stdlib_exported_names() -> frozenset:
+    """Every public name exported by an importable stdlib module.
+
+    Protecting only builtins and module NAMES is not enough: the renamer also
+    sees the targets of `from <stdlib module> import <name>`, which is how
+    `from pathlib import Path_base` and `from __future__ import annotations_new`
+    were emitted. Those parse and then fail at import.
+    """
+    # `this` prints the Zen of Python and `antigravity` opens a browser on import.
+    # Importing them here would pollute the stdout of every process that loads a
+    # generator, including graders whose score is parsed from stdout.
+    side_effects = {"this", "antigravity", "idlelib", "turtledemo", "tkinter"}
+    # Submodules whose members are imported by name but do not appear in dir() of
+    # the parent package: `from unittest.mock import patch`, `from urllib.parse
+    # import quote_from_bytes`, `from http.client import HTTPResponse`.
+    submodules = [
+        "unittest.mock", "urllib.parse", "urllib.request", "urllib.error",
+        "http.client", "http.server", "http.cookies", "os.path",
+        "collections.abc", "concurrent.futures", "importlib.util",
+        "importlib.metadata", "xml.etree.ElementTree", "xml.dom.minidom",
+        "email.mime.text", "email.utils", "logging.handlers", "logging.config",
+        "json.decoder", "json.encoder", "sqlite3.dbapi2", "multiprocessing.pool",
+        "distutils.version", "ctypes.util", "wsgiref.simple_server",
+    ]
+    names = set()
+    for mod in list(_sys.stdlib_module_names) + submodules:
+        if mod in side_effects or (mod.startswith("_") and mod != "__future__"):
+            continue
+        try:
+            m = _importlib.import_module(mod)
+        except Exception:
+            continue  # optional or platform-specific module
+        try:
+            names.update(n for n in dir(m) if not n.startswith("__"))
+        except Exception:
+            continue
+    return frozenset(names)
+
+
+_PYTHON_BUILTINS = (
+    frozenset(dir(_builtins))
+    | frozenset(_sys.stdlib_module_names)
+    | _stdlib_exported_names()
+    | frozenset({
+        # dunder attributes that appear at module scope
+        "__name__", "__file__", "__doc__", "__package__", "__spec__",
+        "__loader__", "__builtins__", "__all__", "__version__", "__path__",
+        # __future__ features, which are import targets but not module members
+        "annotations", "division", "print_function", "unicode_literals",
+        "absolute_import", "generator_stop", "nested_scopes", "with_statement",
+        # typing names newer than the interpreter running the generator, which
+        # therefore do not appear in dir(typing) here but do appear in the
+        # upstream sources we parameterise
+        "Required", "NotRequired", "Unpack", "Self", "TypeAlias", "TypeGuard",
+        "LiteralString", "Never", "assert_type", "assert_never", "reveal_type",
+        "dataclass_transform", "override", "TypeAliasType", "ParamSpec",
+        "Concatenate", "TypedDict", "Annotated", "Final", "final",
+    })
+)
 
 # Common comment templates for noise injection
 _COMMENT_TEMPLATES = [

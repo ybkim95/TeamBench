@@ -26,7 +26,7 @@ from harness.agent_interface import (
     RoleConfig,
 )
 from harness.agent_interface import ToolCallAdapter
-from harness.agent_loop import AgentLoop, AgentTurn
+from harness.agent_loop import AgentLoop, AgentTurn, TurnBudget
 
 
 @dataclass
@@ -88,12 +88,17 @@ class TaskOrchestrator:
         run_dir: str,
         adapter: ToolCallAdapter,
         max_turns_per_phase: int = 20,
+        total_turns: int = 60,
+        budget: TurnBudget | None = None,
         max_remediation_loops: int = 2,
     ):
         self.task_dir = task_dir
         self.run_dir = run_dir
         self.adapter = adapter
         self.max_turns_per_phase = max_turns_per_phase
+        # One budget for the whole run, shared across planning, execution,
+        # verification and every remediation round. See agent_loop.TurnBudget.
+        self.budget = budget if budget is not None else TurnBudget(total_turns)
         self.max_remediation_loops = max_remediation_loops
 
         # Run directories
@@ -131,7 +136,7 @@ class TaskOrchestrator:
             messages_dir=self.messages,
             log_dir=os.path.join(self.run_dir, "logs", "planner"),
             max_turns=self.max_turns_per_phase,
-        )
+         budget=self.budget,)
 
         planner_prompt = (
             f"You are the Planner for task: {task_id}\n\n"
@@ -173,7 +178,7 @@ class TaskOrchestrator:
             messages_dir=self.messages,
             log_dir=os.path.join(self.run_dir, "logs", "executor"),
             max_turns=self.max_turns_per_phase,
-        )
+         budget=self.budget,)
 
         executor_prompt = (
             f"You are the Executor for task: {task_id}\n\n"
@@ -215,7 +220,7 @@ class TaskOrchestrator:
                 messages_dir=self.messages,
                 log_dir=os.path.join(self.run_dir, "logs", "verifier", f"attempt_{loop_num}"),
                 max_turns=self.max_turns_per_phase,
-            )
+             budget=self.budget,)
 
             verifier_prompt = (
                 f"You are the Verifier for task: {task_id}\n\n"
@@ -274,7 +279,7 @@ class TaskOrchestrator:
                     messages_dir=self.messages,
                     log_dir=os.path.join(self.run_dir, "logs", "executor", f"remediation_{loop_num}"),
                     max_turns=self.max_turns_per_phase,
-                )
+                 budget=self.budget,)
 
                 remediation_prompt = (
                     f"You are the Executor for task: {task_id}\n\n"
@@ -399,6 +404,8 @@ class ExpertiseOrchestrator:
         run_dir: str,
         adapter: ToolCallAdapter,
         max_planner_turns: int = 15,
+        total_turns: int = 60,
+        budget: TurnBudget | None = None,
         max_executor_turns: int = 20,
         max_verifier_turns: int = 15,
         max_remediation_loops: int = 2,
@@ -410,6 +417,7 @@ class ExpertiseOrchestrator:
         self.run_dir = run_dir
         self.adapter = adapter
         self.max_planner_turns = max_planner_turns
+        self.budget = budget if budget is not None else TurnBudget(total_turns)
         self.max_executor_turns = max_executor_turns
         self.max_verifier_turns = max_verifier_turns
         self.max_remediation_loops = max_remediation_loops
@@ -457,7 +465,7 @@ class ExpertiseOrchestrator:
             messages_dir=self.messages,
             log_dir=os.path.join(self.run_dir, "logs", "planner_analysis"),
             max_turns=self.max_planner_turns,
-        )
+         budget=self.budget,)
 
         planner_analysis_prompt = (
             f"You are the Planner for task: {task_id}\n\n"
@@ -525,7 +533,7 @@ class ExpertiseOrchestrator:
             messages_dir=self.messages,
             log_dir=os.path.join(self.run_dir, "logs", "executor"),
             max_turns=self.max_executor_turns,
-        )
+         budget=self.budget,)
         executor_turns = executor_loop.run(executor_prompt)
         all_executor_turns.extend(executor_turns)
 
@@ -570,7 +578,7 @@ class ExpertiseOrchestrator:
                 messages_dir=self.messages,
                 log_dir=os.path.join(self.run_dir, "logs", "verifier", f"attempt_{loop_num}"),
                 max_turns=self.max_verifier_turns,
-            )
+             budget=self.budget,)
 
             verifier_prompt = (
                 f"You are the Verifier for task: {task_id}\n\n"
@@ -609,7 +617,7 @@ class ExpertiseOrchestrator:
                     messages_dir=self.messages,
                     log_dir=os.path.join(self.run_dir, "logs", "executor", f"remediation_{loop_num}"),
                     max_turns=self.max_executor_turns,
-                )
+                 budget=self.budget,)
                 remediation_prompt = (
                     f"You are the Executor for task: {task_id}\n\n"
                     f"## Brief\n{brief_text}\n\n"
@@ -667,7 +675,7 @@ class ExpertiseOrchestrator:
             messages_dir=self.messages,
             log_dir=os.path.join(self.run_dir, "logs", f"planner_qa_{qa_round}"),
             max_turns=self.qa_turns_per_round,
-        )
+         budget=self.budget,)
 
         qa_prompt = (
             f"You are the Planner for task: {task_id} — Q&A Phase\n\n"
@@ -818,6 +826,8 @@ class VariableEnforcementOrchestrator:
         share_tools: bool,
         share_history: bool,
         max_turns_per_phase: int = 20,
+        total_turns: int = 60,
+        budget: TurnBudget | None = None,
         max_remediation_loops: int = 2,
     ):
         self.task_dir = task_dir
@@ -826,6 +836,9 @@ class VariableEnforcementOrchestrator:
         self.share_tools = share_tools
         self.share_history = share_history
         self.max_turns_per_phase = max_turns_per_phase
+        # One budget for the whole run, shared across planning, execution,
+        # verification and every remediation round. See agent_loop.TurnBudget.
+        self.budget = budget if budget is not None else TurnBudget(total_turns)
         self.max_remediation_loops = max_remediation_loops
 
         self.workspace = os.path.join(run_dir, "workspace")
@@ -958,7 +971,7 @@ class VariableEnforcementOrchestrator:
             messages_dir=self.messages,
             log_dir=os.path.join(self.run_dir, "logs", "planner"),
             max_turns=self.max_turns_per_phase,
-        )
+         budget=self.budget,)
         planner_prompt = (
             f"You are the Planner for task: {task_id}\n\n"
             f"## Full Specification\n{spec_text}\n\n"
@@ -988,7 +1001,7 @@ class VariableEnforcementOrchestrator:
             messages_dir=self.messages,
             log_dir=os.path.join(self.run_dir, "logs", "executor"),
             max_turns=self.max_turns_per_phase,
-        )
+         budget=self.budget,)
         executor_prompt = (
             f"You are the Executor for task: {task_id}\n\n"
             f"## Brief\n{brief_text}\n\n"
@@ -1021,7 +1034,7 @@ class VariableEnforcementOrchestrator:
                 messages_dir=self.messages,
                 log_dir=os.path.join(self.run_dir, "logs", "verifier", f"attempt_{loop_num}"),
                 max_turns=self.max_turns_per_phase,
-            )
+             budget=self.budget,)
             verifier_prompt = (
                 f"You are the Verifier for task: {task_id}\n\n"
                 f"## Full Specification\n{spec_text}\n\n"
@@ -1070,7 +1083,7 @@ class VariableEnforcementOrchestrator:
                         self.run_dir, "logs", "executor", f"remediation_{loop_num}",
                     ),
                     max_turns=self.max_turns_per_phase,
-                )
+                 budget=self.budget,)
                 remediation_prompt = (
                     f"You are the Executor for task: {task_id}\n\n"
                     f"## Brief\n{brief_text}\n\n"

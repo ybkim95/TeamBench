@@ -44,6 +44,25 @@ def setup_run(task_name: str, tasks_dir: str, runs_dir: str, seed: int = 0) -> t
     for d in [workspace, reports, messages, submission]:
         os.makedirs(d, exist_ok=True)
 
+    # TeamBench-Core tasks are checked out from upstream at base_sha instead of
+    # copied from tasks/<id>/workspace. The vendored copy contains only the files
+    # the pull request touched, so its test suite cannot even be collected, and
+    # for 40 tasks it also ships the very test the PR adds, handing the agent the
+    # acceptance criterion. See harness/core_staging.py.
+    try:
+        from harness.core_staging import is_core_task, stage as _core_stage
+        if is_core_task(task_name):
+            meta = _core_stage(task_name, run_dir)
+            if meta and meta.get("status") == "ok":
+                with open(os.path.join(run_dir, "run_meta.json"), "w") as f:
+                    json.dump({"task_id": task_name, "run_id": run_id,
+                               "seed": seed, "staged_from": "upstream",
+                               "repo": meta["repo"], "base_sha": meta["base_sha"]},
+                              f, indent=2)
+                return run_id, run_dir, task_dir
+    except ImportError:
+        pass
+
     # Try parameterized generator first, fall back to static workspace + setup.sh
     generated = False
     try:
@@ -112,10 +131,38 @@ def grade_run(task_name: str, task_dir: str, run_dir: str) -> dict:
     venv_bin = os.path.dirname(os.path.abspath(_sys.executable))
     grade_env["PATH"] = venv_bin + os.pathsep + grade_env.get("PATH", "")
 
+    # For a task staged from upstream: restore the held-out tests over whatever
+    # the agent left behind, and point the grader at that task's own dependency
+    # environment. The restore is a copy, not a patch, so an agent cannot raise
+    # its score by weakening a test.
     try:
-        subprocess.run(grade_args, check=False, capture_output=True, text=True, env=grade_env, timeout=60)
+        from harness.core_staging import grade_prepare
+        core_env = grade_prepare(run_dir)
+        if core_env.get("PATH"):
+            grade_env["PATH"] = core_env["PATH"] + os.pathsep + grade_env["PATH"]
+        if core_env.get("PYTHONPATH"):
+            grade_env["PYTHONPATH"] = core_env["PYTHONPATH"] + os.pathsep + \
+                grade_env.get("PYTHONPATH", "")
+    except ImportError:
+        pass
+
+    # 60 s was too tight: several graders legitimately take 40-120 s (pytest suites,
+    # multi-language builds), and a timeout silently became grader_no_score, i.e. a
+    # scored failure. That biased conditions unequally (Full Team 17.9% vs
+    # team_no_verify 4.2% on LB100). Distinguish a real hang from a slow grader.
+    grade_timed_out = False
+    # start_new_session + killpg: graders spawn pytest/python children, and killing
+    # only the top-level bash leaves them running (see _kill_process_group).
+    _proc = subprocess.Popen(
+        grade_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        text=True, env=grade_env, start_new_session=True,
+    )
+    try:
+        _proc.communicate(timeout=300)
     except subprocess.TimeoutExpired:
-        pass  # grader hung; fall through to grader_no_score
+        grade_timed_out = True
+        from harness.agent_interface import _kill_process_group
+        _kill_process_group(_proc)
 
     if os.path.isfile(score_path):
         try:
@@ -127,7 +174,7 @@ def grade_run(task_name: str, task_dir: str, run_dir: str) -> dict:
         "pass": False,
         "primary": {"success": 0},
         "secondary": {},
-        "failure_modes": ["grader_no_score"],
+        "failure_modes": ["grader_timeout" if grade_timed_out else "grader_no_score"],
     }
 
 

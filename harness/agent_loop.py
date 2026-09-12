@@ -87,6 +87,37 @@ def _log_turn(log_dir: str, role: str, turn: AgentTurn) -> None:
         json.dump(asdict(turn), f, indent=2, default=str)
 
 
+class TurnBudget:
+    """A total LLM-turn allowance shared across every phase of one run.
+
+    Before this existed, each role got its own `max_turns`, so the conditions
+    compared in the ablation ran at wildly different compute: Solo 20 turns,
+    Restricted 30, the two-role teams 40, and Full Team up to 140 once the two
+    remediation rounds are counted. Any Solo-versus-Team difference measured that
+    way is confounded with a 7x compute gap. One TurnBudget is created per run and
+    handed to every AgentLoop the condition builds, so all conditions spend from
+    the same pool.
+    """
+
+    def __init__(self, total: int):
+        self.total = int(total)
+        self.used = 0
+
+    def consume(self, n: int = 1) -> bool:
+        """Take n turns. Returns False when the budget is exhausted."""
+        if self.used + n > self.total:
+            return False
+        self.used += n
+        return True
+
+    @property
+    def remaining(self) -> int:
+        return max(0, self.total - self.used)
+
+    def __repr__(self) -> str:
+        return f"TurnBudget(used={self.used}/{self.total})"
+
+
 class AgentLoop:
     """Run a single agent role in a tool-calling loop."""
 
@@ -98,6 +129,7 @@ class AgentLoop:
         log_dir: str | None = None,
         max_turns: int = 30,
         lenient_mode: bool = False,
+        budget: "TurnBudget | None" = None,
     ):
         self.config = role_config
         self.adapter = adapter
@@ -105,6 +137,7 @@ class AgentLoop:
         self.log_dir = log_dir or os.path.join("logs", role_config.role)
         self.max_turns = max_turns
         self.lenient_mode = lenient_mode
+        self.budget = budget
         self._seen_msg_count = 0
 
     def run(
@@ -139,6 +172,12 @@ class AgentLoop:
         max_repeated_tool = 3  # Break if same tool+args repeated N times
 
         for turn_num in range(self.max_turns):
+            # A run-level budget, when supplied, is authoritative over the per-phase
+            # cap. Every ablation condition is constructed with one TurnBudget shared
+            # across all of its phases, so a three-role team and a single agent spend
+            # from the same pool and the Solo-vs-Team contrast is compute-matched.
+            if self.budget is not None and not self.budget.consume():
+                break
             turn = AgentTurn(turn=turn_num, role=self.config.role)
 
             # Poll for new messages

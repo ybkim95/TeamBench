@@ -1,0 +1,25 @@
+{
+  "results": [
+    {
+      "hypothesis": "H1_scaling",
+      "test_statistic": -0.6286185570937107,
+      "p_value": 1.0,
+      "effect_size": 0.6286185570937107,
+      "interpretation": "Correlation r=-0.629 suggests strong inverse scaling (weaker models benefit more)",
+      "significant": false
+    },
+    {
+      "hypothesis": "H2_compute_control",
+      "test_statistic": 0.0,
+      "p_value": 0.5,
+      "effect_size": 0.0,
+      "interpretation": "Team vs Oracle-3x difference: 0.000 (no clear advantage)",
+      "significant": false
+    }
+  ],
+  "summary": {
+    "total_experiments": 45,
+    "significant_findings": 0,
+    "total_hypotheses": 2
+  }
+}

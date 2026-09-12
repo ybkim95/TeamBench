@@ -1,0 +1,29 @@
+# Pinned dependency set for TeamBench deterministic graders.
+#
+# 675 of 821 graders ran `pip install` at grade time, so a score depended on
+# whatever the network served that day and on whether the host had a network
+# at all. This file freezes the union of everything the graders import, so the
+# grading environment is built once, up front, and graders never fetch.
+#
+# Regenerate with: python scripts/make_graders_hermetic.py --freeze
+aiohttp==3.13.5
+anyio==4.15.0
+argon2-cffi==25.1.0
+click==8.3.2
+# coverage  NOT INSTALLED
+cryptography==44.0.3
+flask==3.1.0
+gunicorn==26.2.0
+httpx==0.28.1
+pip-audit==2.10.0
+pydantic==2.13.5
+pyjwt==2.12.1
+pylint==4.0.5
+pytest==7.4.0
+pytest-asyncio==0.23.8
+# pytest-cov  NOT INSTALLED
+python-dotenv==1.2.2
+pyyaml==6.0.3
+requests==2.34.2
+ruff==0.16.6
+starlette==0.52.1

@@ -194,6 +194,10 @@ print('pass' if d.get('$id', False) else 'fail')
 finalize_grader() {
     local reports_dir="${REPORTS:-/reports}"
     local partial_score
+    # hardened-by: scripts/repair_graders.py: guard a zero denominator so a grader whose checks
+    # were all removed still emits a well-formed score.json instead of
+    # dying on ZeroDivisionError and producing no score at all.
+    if [ "${_GRADER_TOTAL:-0}" -le 0 ]; then _GRADER_TOTAL=1; fi
     partial_score=$(python3 -c "print(round($_GRADER_PARTIAL / $_GRADER_TOTAL, 2))")
 
     # Remove trailing comma from findings
@@ -212,4 +216,77 @@ finalize_grader() {
   "checklist": [$_GRADER_FINDINGS]
 }
 EOF
+}
+
+# ── tb_require(pkg...) ──────────────────────────────────────────────────────
+# Assert that grader dependencies are importable. Never installs, never touches
+# the network. A missing dependency is an ENVIRONMENT failure, not a submission
+# failure, so it is reported as such instead of being charged to the agent.
+tb_require() {
+    local missing=""
+    for _pkg in "$@"; do
+        local _mod
+        case "$_pkg" in
+            pyyaml) _mod=yaml ;;
+            pyjwt|PyJWT) _mod=jwt ;;
+            pytest-cov) _mod=pytest_cov ;;
+            pytest-asyncio) _mod=pytest_asyncio ;;
+            python-dotenv) _mod=dotenv ;;
+            argon2-cffi) _mod=argon2 ;;
+            pip-audit) _mod=pip_audit ;;
+            *) _mod=$(echo "$_pkg" | tr '-' '_') ;;
+        esac
+        python3 -c "import ${_mod}" 2>/dev/null || missing="${missing} ${_pkg}"
+    done
+    if [ -n "${missing}" ]; then
+        echo "GRADER ENVIRONMENT INCOMPLETE, missing:${missing}" >&2
+        echo "  build it with: pip install -r harness/requirements.graders.txt" >&2
+        _GRADER_ENV_MISSING="${missing}"
+        return 1
+    fi
+    return 0
+}
+
+# tb_import_module <path/to/source_file.py>
+#
+# Import a source file BY ITS DOTTED MODULE NAME. Exit 0 if it imports.
+#
+# The check this replaces did:
+#     spec = importlib.util.spec_from_file_location('mod', src_path)
+#     spec.loader.exec_module(module_from_spec(spec))
+# which loads a package-internal file as a detached top-level module called
+# 'mod'. Every relative import inside it then raises
+#     ImportError: attempted relative import with no known parent package
+# so the check could never pass, whatever the submission did: measured failing
+# with the maintainers' own merged fix applied on 37 of 59 staged tasks, which
+# also made the grader's overall `pass` unreachable and capped partial_score
+# below 1.0. Importing by package name resolves relative imports the way Python
+# does, and still answers the question the check is asking.
+#
+# A timeout is applied because importing a package runs its __init__, and a few
+# repos load a model or open a socket there.
+tb_import_module() {
+    timeout 60 python3 - "$1" <<'TBPYEOF'
+import importlib, os, sys
+
+rel = sys.argv[1].replace(os.sep, "/")
+if rel.endswith(".py"):
+    rel = rel[:-3]
+parts = [p for p in rel.split("/") if p not in ("", ".")]
+# `src/` and `lib/` are layout, not part of the module path
+while parts and parts[0] in ("src", "lib"):
+    parts.pop(0)
+if parts and parts[-1] == "__init__":
+    parts.pop()
+if not parts:
+    sys.exit(0)
+for root in ("src", "lib", "."):
+    if os.path.isdir(root):
+        sys.path.insert(0, os.path.abspath(root))
+try:
+    importlib.import_module(".".join(parts))
+except Exception as e:
+    sys.stderr.write("%s: %s\n" % (type(e).__name__, str(e)[:160]))
+    sys.exit(1)
+TBPYEOF
 }

@@ -44,7 +44,7 @@ from harness.agent_interface import (
     make_executor_config,
     make_verifier_config,
 )
-from harness.agent_loop import AgentLoop
+from harness.agent_loop import AgentLoop, TurnBudget
 from harness.orchestrator import TaskOrchestrator, OrchestratorResult, PhaseResult, _relay_planner_text
 from harness.run_all import discover_tasks, setup_run, grade_run
 
@@ -213,13 +213,29 @@ def run_ablation_condition(
     max_turns: int = 20,
     max_remediation: int = 2,
     model_config: Optional[dict] = None,
+    total_turns: int = 60,
 ) -> OrchestratorResult:
     """
     Configure and run the orchestrator differently per ablation condition.
 
     Returns an OrchestratorResult with verdict set based on attestation.
+
+    Compute matching: `total_turns` is the LLM-turn allowance for the ENTIRE run and
+    is identical across conditions. It is enforced by a single TurnBudget shared by
+    every phase, so a three-role team with two remediation rounds and a single Solo
+    agent spend from the same pool. `max_turns` remains the per-phase ceiling, which
+    stops one role from consuming the whole run, but it is no longer what determines
+    a condition's total compute. Before this change Solo ran at 20 turns against a
+    Full Team at up to 140, and every Solo-versus-Team contrast in the paper was
+    confounded with that gap.
     """
     task_id = os.path.basename(task_dir)
+    budget = TurnBudget(total_turns)
+    # Per-phase caps are derived from the shared budget so that a condition's
+    # nominal phases divide it evenly. The budget is what actually binds; these
+    # caps only stop one role from starving the roles that follow it.
+    phase_turns_2 = total_turns // 2   # two-role teams
+    phase_turns_3 = total_turns // 3   # three-role team
     spec_path = os.path.join(task_dir, "spec.md")
     brief_path = os.path.join(task_dir, "brief.md")
 
@@ -253,18 +269,17 @@ def run_ablation_condition(
             submission_dir=submission,
             task_dir=task_dir,
         )
-        budget_matched_turns = 50  # 15 + 25 + 10 (Planner + Executor + Verifier)
-        run_max_turns = (
-            budget_matched_turns
-            if condition == AblationCondition.ORACLE_BUDGET_MATCHED
-            else max_turns
-        )
+        # A single-role condition has one phase, so its per-phase cap must equal the
+        # run budget or it stops early and the comparison is not compute-matched.
+        # ORACLE_BUDGET_MATCHED previously hardcoded 50 against a real team ceiling
+        # of 140; it is now redundant with the shared budget and kept only as a label.
+        run_max_turns = total_turns
         loop = AgentLoop(
             role_config=oracle_config,
             adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, condition.value),
-            max_turns=run_max_turns,
+            max_turns=run_max_turns, budget=budget,
         )
         prompt = (
             f"You are the Oracle for task: {task_id}\n\n"
@@ -272,8 +287,8 @@ def run_ablation_condition(
             f"## Instructions\n"
             f"Before outputting code or commands, write a `<thinking>` block analyzing the codebase against the spec.\n"
             f"Explicitly list any intentional design choices vs. real bugs, and determine your plan of action.\n"
-            f"After thinking, complete the task requirements. Then write attestation.json with:\n"
-            f'  write(path="attestation.json", content=\'{{"task_id":"{task_id}","verdict":"pass","checklist":[]}}\')\n'
+            f"After thinking, complete the task requirements. Then write attestation.json to the submission directory:\n"
+            f'  write(path="../submission/attestation.json", content=\'{{"task_id":"{task_id}","verdict":"pass","checklist":[]}}\')\n'
             f"Output DONE when complete."
         )
         turns = loop.run(prompt)
@@ -298,7 +313,7 @@ def run_ablation_condition(
             adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "restricted"),
-            max_turns=max(max_turns, 30),
+            max_turns=total_turns, budget=budget,  # single-role: may spend the whole run budget
         )
         prompt = (
             f"You are a Restricted agent for task: {task_id}\n\n"
@@ -322,7 +337,7 @@ def run_ablation_condition(
             role_config=planner_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "planner"),
-            max_turns=max_turns,
+            max_turns=phase_turns_2, budget=budget,
         )
         planner_prompt = (
             f"You are the Planner for task: {task_id}\n\n"
@@ -345,7 +360,7 @@ def run_ablation_condition(
             role_config=executor_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "executor"),
-            max_turns=max_turns,
+            max_turns=phase_turns_2, budget=budget,
         )
         executor_prompt = (
             f"You are the Executor for task: {task_id}\n\n"
@@ -372,7 +387,7 @@ def run_ablation_condition(
             role_config=executor_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "executor"),
-            max_turns=max_turns,
+            max_turns=phase_turns_2, budget=budget,
         )
         executor_prompt = (
             f"You are the Executor for task: {task_id}\n\n"
@@ -395,7 +410,7 @@ def run_ablation_condition(
             role_config=verifier_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "verifier", "attempt_0"),
-            max_turns=max_turns,
+            max_turns=phase_turns_2, budget=budget,
         )
         verifier_prompt = (
             f"You are the Verifier for task: {task_id}\n\n"
@@ -415,8 +430,8 @@ def run_ablation_condition(
             task_dir=task_dir,
             run_dir=run_dir,
             adapter=adapter,
-            max_turns_per_phase=max_turns,
-            max_remediation_loops=max_remediation,
+            max_turns_per_phase=phase_turns_3,
+            max_remediation_loops=max_remediation, budget=budget,
         )
         return orchestrator.run()
 
@@ -442,7 +457,7 @@ def run_ablation_condition(
             share_tools=share_tools,
             share_history=share_history,
             max_turns_per_phase=max_turns,
-            max_remediation_loops=max_remediation,
+            max_remediation_loops=max_remediation, budget=budget,
         )
         return orch.run()
 
@@ -456,7 +471,7 @@ def run_ablation_condition(
             max_planner_turns=15,
             max_executor_turns=max_turns,
             max_verifier_turns=15,
-            max_remediation_loops=max_remediation,
+            max_remediation_loops=max_remediation, budget=budget,
         )
         return orch.run()
 
@@ -471,7 +486,7 @@ def run_ablation_condition(
             role_config=executor_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "executor"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         executor_prompt = (
             f"You are the Executor for task: {task_id}\n\n"
@@ -493,7 +508,7 @@ def run_ablation_condition(
             role_config=verifier_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "verifier", "attempt_0"),
-            max_turns=15,
+            max_turns=15, budget=budget,
         )
         verifier_prompt = (
             f"You are the Verifier for task: {task_id}\n\n"
@@ -521,7 +536,7 @@ def run_ablation_condition(
             role_config=planner_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "planner"),
-            max_turns=15,
+            max_turns=15, budget=budget,
         )
         planner_prompt = (
             f"You are the Planner for task: {task_id}\n\n"
@@ -543,7 +558,7 @@ def run_ablation_condition(
             role_config=executor_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "executor"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         executor_prompt = (
             f"You are the Executor for task: {task_id}\n\n"
@@ -565,7 +580,7 @@ def run_ablation_condition(
             role_config=verifier_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "verifier", "attempt_0"),
-            max_turns=15,
+            max_turns=15, budget=budget,
         )
         verifier_prompt = (
             f"You are the Verifier for task: {task_id}\n\n"
@@ -588,7 +603,7 @@ def run_ablation_condition(
             role_config=oracle_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "expertise_oracle"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         prompt = (
             f"You are the Oracle for task: {task_id}\n\n"
@@ -617,7 +632,7 @@ def run_ablation_condition(
             adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "oracle_cot"),
-            max_turns=max_turns * 2,  # 2x turns to match team compute
+            max_turns=total_turns, budget=budget,  # single-role: may spend the whole run budget
         )
         prompt = (
             f"You are an expert Oracle agent for task: {task_id}\n\n"
@@ -663,7 +678,7 @@ def run_ablation_condition(
             adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "oracle_2pass_plan"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         plan_prompt = (
             f"You are an Oracle agent for task: {task_id} — PLANNING PASS\n\n"
@@ -692,7 +707,7 @@ def run_ablation_condition(
             adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "oracle_2pass_exec"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         exec_prompt = (
             f"You are an Oracle agent for task: {task_id} — EXECUTION PASS\n\n"
@@ -731,7 +746,7 @@ def run_ablation_condition(
                 role_config=planner_config, adapter=adapter,
                 messages_dir=messages,
                 log_dir=os.path.join(logs, "planner", f"round_{round_num}"),
-                max_turns=turns_per_round,
+                max_turns=turns_per_round, budget=budget,
             )
             if round_num == 0:
                 planner_prompt = (
@@ -769,7 +784,7 @@ def run_ablation_condition(
                 role_config=executor_config, adapter=adapter,
                 messages_dir=messages,
                 log_dir=os.path.join(logs, "executor", f"round_{round_num}"),
-                max_turns=turns_per_round,
+                max_turns=turns_per_round, budget=budget,
             )
             is_final = round_num == max_rounds - 1
             executor_prompt = (
@@ -807,7 +822,7 @@ def run_ablation_condition(
             role_config=planner_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "planner"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         planner_prompt = (
             f"You are the Planner for task: {task_id}\n\n"
@@ -845,7 +860,7 @@ def run_ablation_condition(
             role_config=executor_config_a, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "executor_a"),
-            max_turns=half_turns,
+            max_turns=half_turns, budget=budget,
         )
         exec_prompt = (
             f"You are Executor A for task: {task_id}\n\n"
@@ -868,7 +883,7 @@ def run_ablation_condition(
             role_config=executor_config_b, adapter=adapter,
             messages_dir=messages_b,
             log_dir=os.path.join(logs, "executor_b"),
-            max_turns=half_turns,
+            max_turns=half_turns, budget=budget,
         )
         exec_b_turns = exec_loop_b.run(exec_prompt.replace("Executor A", "Executor B"))
         phase2b = PhaseResult(phase="execution_b", turns=exec_b_turns)
@@ -884,7 +899,7 @@ def run_ablation_condition(
             role_config=verifier_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "verifier"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         verifier_prompt = (
             f"You are the Verifier for task: {task_id}\n\n"
@@ -922,7 +937,7 @@ def run_ablation_condition(
                 role_config=verifier_config, adapter=adapter,
                 messages_dir=messages,
                 log_dir=os.path.join(logs, "verifier_b"),
-                max_turns=max_turns,
+                max_turns=max_turns, budget=budget,
             )
             verifier_b_turns = verifier_loop_b.run(verifier_prompt)
             phase3b = PhaseResult(phase="verification_b", turns=verifier_b_turns)
@@ -942,7 +957,7 @@ def run_ablation_condition(
             role_config=verifier_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "verifier_gap_analysis"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         gap_prompt = (
             f"You are the Gap Analyst for task: {task_id}\n\n"
@@ -976,7 +991,7 @@ def run_ablation_condition(
             role_config=executor_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "executor"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         executor_prompt = (
             f"You are the Executor for task: {task_id}\n\n"
@@ -997,7 +1012,7 @@ def run_ablation_condition(
             role_config=verifier_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "verifier_final"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         verifier_prompt = (
             f"You are the Verifier for task: {task_id}\n\n"
@@ -1025,7 +1040,7 @@ def run_ablation_condition(
             role_config=oracle_config, adapter=adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "self_check"),
-            max_turns=max_turns * 2,  # 2x turns to match team compute budget
+            max_turns=total_turns, budget=budget,  # single-role: may spend the whole run budget
         )
         prompt = (
             f"You are a Self-Checking agent for task: {task_id}\n\n"
@@ -1094,7 +1109,7 @@ def run_ablation_condition(
             role_config=planner_config, adapter=planner_adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "planner"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         planner_prompt = (
             f"You are the Planner for task: {task_id}\n\n"
@@ -1119,7 +1134,7 @@ def run_ablation_condition(
             role_config=executor_config, adapter=executor_adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "executor"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         executor_prompt = (
             f"You are the Executor for task: {task_id}\n\n"
@@ -1144,7 +1159,7 @@ def run_ablation_condition(
             role_config=verifier_config, adapter=verifier_adapter,
             messages_dir=messages,
             log_dir=os.path.join(logs, "verifier", "attempt_0"),
-            max_turns=max_turns,
+            max_turns=max_turns, budget=budget,
         )
         verifier_prompt = (
             f"You are the Verifier for task: {task_id}\n\n"
@@ -1308,6 +1323,7 @@ def run_full_ablation(
     max_remediation: int = 2,
     conditions: Optional[list[AblationCondition]] = None,
     model_config: Optional[dict] = None,
+    total_turns: int = 60,
 ) -> dict:
     """
     Run ablation conditions for given tasks and seeds.
@@ -1432,7 +1448,7 @@ def run_full_ablation(
                         adapter=adapter,
                         max_turns=max_turns,
                         max_remediation=max_remediation,
-                        model_config=model_config if condition == AblationCondition.HETERO else None,
+                        model_config=model_config if condition == AblationCondition.HETERO else None, total_turns=total_turns,
                     )
 
                     elapsed = time.time() - start_time

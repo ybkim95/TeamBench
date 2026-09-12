@@ -137,14 +137,69 @@ class Tool(ABC):
         raise NotImplementedError
 
 
+def _kill_process_group(proc) -> None:
+    """Kill a Popen and every descendant it spawned, then reap it."""
+    import signal
+    try:
+        os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+    except (ProcessLookupError, PermissionError, OSError):
+        try:
+            proc.kill()
+        except Exception:
+            pass
+    try:
+        proc.communicate(timeout=10)
+    except Exception:
+        pass
+
+
+_SANDBOX_IMAGE = os.environ.get("TEAMBENCH_SANDBOX_IMAGE", "python:3.11-slim")
+
+
+def _docker_available() -> bool:
+    if os.environ.get("TEAMBENCH_NO_SANDBOX"):
+        return False
+    try:
+        return subprocess.run(["docker", "info"], capture_output=True,
+                              timeout=20).returncode == 0
+    except Exception:
+        return False
+
+
 class RunCommandTool(Tool):
-    """Execute a shell command in the workspace."""
+    """Execute a shell command in the workspace.
+
+    Confinement
+    -----------
+    With `sandbox=True` the command runs inside a container whose only bind mount
+    is the workspace, with networking disabled. Without it the command runs
+    directly on the host with `cwd` set to the workspace, which confines nothing:
+    a probe suite against the unsandboxed tool read the task's spec.md, the
+    grader script, reports/expected.json and the extracted reference patch, and
+    deleted a workspace file, i.e. 6 of 7 boundary probes succeeded. Since the
+    read and write tools are enforced but the shell is not, an unsandboxed shell
+    defeats the role partition on its own.
+
+    Sandboxing is opt-in per role so that roles which legitimately need host
+    tooling (the analysis Planner's static analysers) can keep them, and it
+    degrades to the host shell with a recorded warning when Docker is absent, so
+    a run never silently claims isolation it did not have.
+    """
     name = "run"
 
-    def __init__(self, cwd: str, allowed: bool = True, allowed_commands: list[str] | None = None):
+    def __init__(self, cwd: str, allowed: bool = True, allowed_commands: list[str] | None = None,
+                 sandbox: bool = False, image: str | None = None):
         self.cwd = cwd
         self.allowed = allowed
         self.allowed_commands = allowed_commands
+        self.sandbox = sandbox
+        self.image = image or _SANDBOX_IMAGE
+        # Resolved once so the per-call path stays cheap, and so the run log can
+        # record whether isolation was actually in force.
+        self.sandbox_active = bool(sandbox) and _docker_available()
+        if sandbox and not self.sandbox_active:
+            print("  [sandbox] WARNING: docker unavailable, shell runs unconfined "
+                  "on the host; role separation is NOT enforced for this run")
 
     def execute(self, cmd: str = "", **kwargs) -> ToolResult:
         if not cmd:
@@ -163,45 +218,110 @@ class RunCommandTool(Tool):
                            f"Allowed: {', '.join(self.allowed_commands)}",
                     exit_code=1,
                 )
-        try:
-            import sys as _sys
-            run_env = os.environ.copy()
-            venv_bin = os.path.dirname(os.path.abspath(_sys.executable))
-            run_env["PATH"] = venv_bin + os.pathsep + run_env.get("PATH", "")
-            res = subprocess.run(
-                cmd, shell=True, cwd=self.cwd,
-                text=True, capture_output=True, timeout=60,
-                env=run_env,
+        import sys as _sys
+        run_env = os.environ.copy()
+        venv_bin = os.path.dirname(os.path.abspath(_sys.executable))
+        run_env["PATH"] = venv_bin + os.pathsep + run_env.get("PATH", "")
+        # start_new_session puts the shell in its own process group so that a
+        # timeout can kill the whole tree. Without it, subprocess.run(shell=True)
+        # kills only the shell and leaves grandchildren running: an agent issuing
+        # `find / -name x` leaked one orphan per timeout, and a long campaign
+        # accumulated hundreds, loading the host badly enough to cause unrelated
+        # grader timeouts.
+        if self.sandbox_active:
+            # Only the workspace crosses the boundary. No network, no host paths,
+            # and the container runs as the invoking uid so files written inside
+            # stay owned by the caller rather than root.
+            argv = [
+                "docker", "run", "--rm", "--network", "none",
+                "--user", f"{os.getuid()}:{os.getgid()}",
+                "-v", f"{os.path.abspath(self.cwd)}:/workspace",
+                "-w", "/workspace",
+                "--tmpfs", "/tmp:exec",
+                "--memory", "2g", "--pids-limit", "512",
+                self.image, "bash", "-lc", cmd,
+            ]
+            proc = subprocess.Popen(argv, text=True, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE, start_new_session=True)
+        else:
+            proc = subprocess.Popen(
+                cmd, shell=True, cwd=self.cwd, text=True,
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                env=run_env, start_new_session=True,
             )
-            return ToolResult(stdout=res.stdout, stderr=res.stderr, exit_code=res.returncode)
+        try:
+            out, err = proc.communicate(timeout=60)
+            return ToolResult(stdout=out, stderr=err, exit_code=proc.returncode)
         except subprocess.TimeoutExpired:
+            _kill_process_group(proc)
             return ToolResult(stderr="Command timed out (60s).", exit_code=124)
+
+
+def _is_contained(abs_path: str, roots: list[str]) -> bool:
+    """True iff abs_path is inside one of roots.
+
+    Uses a component-wise containment test rather than str.startswith. A prefix
+    test both admits '..' escapes (when the caller forgot to normalise) and
+    admits sibling directories: '/run/workspace_leak' startswith '/run/workspace'.
+    Symlinks are resolved so that a link planted inside the workspace cannot
+    point out of it.
+    """
+    try:
+        real = os.path.realpath(abs_path)
+    except OSError:
+        return False
+    for root in roots:
+        try:
+            root_real = os.path.realpath(root)
+        except OSError:
+            continue
+        if real == root_real or real.startswith(root_real.rstrip(os.sep) + os.sep):
+            return True
+    return False
 
 
 class ReadFileTool(Tool):
     """Read a file from an allowed path."""
     name = "read"
 
-    def __init__(self, allowed_roots: list[str], path_map: dict[str, str] | None = None, base_dir: str = ""):
+    def __init__(self, allowed_roots: list[str], path_map: dict[str, str] | None = None, base_dir: str = "",
+                 allowed_files: list[str] | None = None, denied_names: set[str] | None = None):
         self.allowed_roots = [os.path.abspath(r) for r in allowed_roots]
         self.path_map = path_map or {}
         self.base_dir = os.path.abspath(base_dir) if base_dir else self.allowed_roots[0]
+        # Individual files readable outside allowed_roots (e.g. the Executor's brief,
+        # which lives in the task dir alongside the spec it must never see).
+        self.allowed_files = {os.path.realpath(p) for p in (allowed_files or [])}
+        # Basenames that are never readable by this role, whatever the root grants.
+        # expected.json is the grader's answer key and lives in reports/.
+        self.denied_names = denied_names if denied_names is not None else {"expected.json"}
+        # Path components that are never readable by any role. tasks/<id>/reference/
+        # holds the extracted gold patch and reference solution (see
+        # scripts/deleak_specs.py); the Planner and Verifier hold the task dir as a
+        # read root for spec.md, so without this the de-leak would just relocate the
+        # answer rather than withhold it.
+        self.denied_dirs = {"reference"}
 
     def _resolve(self, path: str) -> str:
         # Apply path mapping (e.g., /shared/workspace -> actual run dir)
         for prefix, replacement in self.path_map.items():
             if path.startswith(prefix):
-                return os.path.join(replacement, path[len(prefix):].lstrip("/"))
+                return os.path.normpath(os.path.join(replacement, path[len(prefix):].lstrip("/")))
         # Resolve relative paths against base_dir
         if not os.path.isabs(path):
-            return os.path.join(self.base_dir, path)
-        return os.path.abspath(path)
+            return os.path.normpath(os.path.join(self.base_dir, path))
+        return os.path.normpath(os.path.abspath(path))
 
     def execute(self, path: str = "", **kwargs) -> ToolResult:
         if not path:
             return ToolResult(stderr="Error: 'path' parameter is required", exit_code=1)
         abs_path = self._resolve(path)
-        if not any(abs_path.startswith(root) for root in self.allowed_roots):
+        if os.path.basename(abs_path) in self.denied_names:
+            return ToolResult(stderr=f"Permission denied: cannot read {path}", exit_code=1)
+        if self.denied_dirs & set(os.path.normpath(abs_path).split(os.sep)):
+            return ToolResult(stderr=f"Permission denied: cannot read {path}", exit_code=1)
+        if os.path.realpath(abs_path) not in self.allowed_files \
+                and not _is_contained(abs_path, self.allowed_roots):
             return ToolResult(stderr=f"Permission denied: cannot read {path}", exit_code=1)
         try:
             with open(abs_path, "r", encoding="utf-8") as f:
@@ -233,7 +353,7 @@ class WriteFileTool(Tool):
         if not content and content != "":
             return ToolResult(stderr="Error: 'content' parameter is required", exit_code=1)
         abs_path = self._resolve(path)
-        if not any(abs_path.startswith(root) for root in self.allowed_roots):
+        if not _is_contained(os.path.dirname(abs_path) or abs_path, self.allowed_roots):
             return ToolResult(stderr=f"Permission denied: cannot write {path}", exit_code=1)
         try:
             os.makedirs(os.path.dirname(abs_path), exist_ok=True)
@@ -516,9 +636,15 @@ def make_executor_config(
             "Ask the Planner for clarification if requirements are unclear."
         ),
         tools=[
-            RunCommandTool(cwd=workspace_dir, allowed=True),
+            RunCommandTool(cwd=workspace_dir, allowed=True, sandbox=True),
             ReadFileTool(
-                allowed_roots=[workspace_dir, reports_dir, messages_dir, os.path.dirname(brief_path)],
+                # The task dir holds spec.md (Planner/Verifier only) and reference/
+                # (grader only), so it is NOT a root. The Executor gets brief.md as a
+                # single-file grant instead. Removing this was the fix for the
+                # information partition being unenforced: with the task dir as a root,
+                # read(path='<abs task dir>/spec.md') returned the full specification.
+                allowed_roots=[workspace_dir, reports_dir, messages_dir],
+                allowed_files=[brief_path],
                 path_map=pm,
             ),
             WriteFileTool(allowed_roots=[workspace_dir, reports_dir], path_map=pm),
@@ -557,7 +683,7 @@ def make_verifier_config(
             "When done, output DONE."
         ),
         tools=[
-            RunCommandTool(cwd=workspace_dir, allowed=True),
+            RunCommandTool(cwd=workspace_dir, allowed=True, sandbox=True),
             ReadFileTool(
                 allowed_roots=[
                     os.path.dirname(spec_path), workspace_dir, reports_dir, messages_dir, submission_dir,

@@ -1,0 +1,37 @@
+{
+  "key_findings": {
+    "equalizer_effect": {
+      "correlation": -0.7367929756327107,
+      "description": "Inverse correlation between model intelligence and team benefit",
+      "strength": "strong"
+    },
+    "scaling_law": {
+      "equation": "Team Benefit = 28.8 + -0.244 \u00d7 Intelligence",
+      "slope": -0.2444798318141172,
+      "intercept": 28.820971461742435,
+      "interpretation": "Each point of intelligence reduces team benefit by 0.24%"
+    },
+    "tier_analysis": {
+      "frontier_models": {
+        "threshold": "\u226590 intelligence",
+        "avg_benefit": 3.2999999999999994,
+        "recommendation": "Deploy as solo agents"
+      },
+      "mid_tier_models": {
+        "threshold": "70-89 intelligence",
+        "avg_benefit": 10.344444444444445,
+        "recommendation": "Teams provide significant benefit"
+      },
+      "lower_tier_models": {
+        "threshold": "<70 intelligence",
+        "avg_benefit": 13.6125,
+        "recommendation": "Teams are essential for production use"
+      }
+    }
+  },
+  "deployment_guidance": {
+    "when_to_use_teams": "Models with intelligence index < 85",
+    "cost_threshold": "Team coordination justified when benefit > 5%",
+    "production_recommendation": "Solo for GPT-4+ tier, teams for everything else"
+  }
+}
