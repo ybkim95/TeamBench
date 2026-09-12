@@ -1,0 +1,54 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 30521,
+  "pr_url": "https://github.com/numpy/numpy/pull/30521",
+  "issue_number": null,
+  "base_sha": "d0de6a1a90bb7740cc410144795b203720c82028",
+  "head_sha": "2b46d07223d654c3316da78eefa12a081a66781a",
+  "additions": 20,
+  "deletions": 1,
+  "changed_files": [
+    "numpy/_core/numeric.py",
+    "numpy/_core/tests/test_numeric.py"
+  ],
+  "test_files": [
+    "numpy/_core/tests/test_numeric.py"
+  ],
+  "source_files": [
+    "numpy/_core/numeric.py"
+  ],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "allowed",
+      "appear",
+      "applying",
+      "array_like",
+      "arrays",
+      "asarray",
+      "axes",
+      "axes_a",
+      "axes_b",
+      "axis"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:59:57Z"
+}

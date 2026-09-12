@@ -1,0 +1,92 @@
+diff --git a/narwhals/_pandas_like/dataframe.py b/narwhals/_pandas_like/dataframe.py
+index 37298d5d18..3dd662bad9 100644
+--- a/narwhals/_pandas_like/dataframe.py
++++ b/narwhals/_pandas_like/dataframe.py
+@@ -422,6 +422,8 @@ def select(self: PandasLikeDataFrame, *exprs: PandasLikeExpr) -> PandasLikeDataF
+         new_series = align_series_full_broadcast(*new_series)
+         namespace = self.__narwhals_namespace__()
+         df = namespace._concat_horizontal([s.native for s in new_series])
++        # `concat` creates a new object, so fine to modify `.columns.name` inplace.
++        df.columns.name = self.native.columns.name
+         return self._with_native(df, validate_column_names=True)
+ 
+     def drop_nulls(
+@@ -480,6 +482,8 @@ def with_columns(
+         to_concat.extend(self._extract_comparand(s) for s in name_columns.values())
+         namespace = self.__narwhals_namespace__()
+         df = namespace._concat_horizontal(to_concat)
++        # `concat` creates a new object, so fine to modify `.columns.name` inplace.
++        df.columns.name = self.native.columns.name
+         return self._with_native(df, validate_column_names=False)
+ 
+     def rename(self, mapping: Mapping[str, str]) -> Self:
+diff --git a/tests/frame/join_test.py b/tests/frame/join_test.py
+index 43b5e1c4ba..98c4a7505c 100644
+--- a/tests/frame/join_test.py
++++ b/tests/frame/join_test.py
+@@ -9,7 +9,6 @@
+ import pytest
+ 
+ import narwhals as nw
+-from narwhals.utils import Implementation
+ from tests.utils import DUCKDB_VERSION
+ from tests.utils import PANDAS_VERSION
+ from tests.utils import POLARS_VERSION
+@@ -242,11 +241,14 @@ def test_cross_join_suffix(constructor: Constructor, suffix: str) -> None:
+ 
+ 
+ def test_cross_join_non_pandas() -> None:
++    _ = pytest.importorskip("modin")
++
++    import modin.pandas as mpd
++
+     data = {"antananarivo": [1, 3, 2]}
+-    df = nw.from_native(pd.DataFrame(data))
+-    # HACK to force testing for a non-pandas codepath
+-    df._compliant_frame._implementation = Implementation.MODIN
+-    result = df.join(df, how="cross")
++    df1 = nw.from_native(mpd.DataFrame(pd.DataFrame(data)), eager_only=True)
++    df2 = nw.from_native(mpd.DataFrame(pd.DataFrame(data)), eager_only=True)
++    result = df1.join(df2, how="cross")
+     expected = {
+         "antananarivo": [1, 1, 1, 3, 3, 3, 2, 2, 2],
+         "antananarivo_right": [1, 3, 2, 1, 3, 2, 1, 3, 2],
+diff --git a/tests/preserve_pandas_like_columns_name_attr_test.py b/tests/preserve_pandas_like_columns_name_attr_test.py
+new file mode 100644
+index 0000000000..507d2fec33
+--- /dev/null
++++ b/tests/preserve_pandas_like_columns_name_attr_test.py
+@@ -0,0 +1,33 @@
++from __future__ import annotations
++
++from typing import TYPE_CHECKING
++
++import pytest
++
++import narwhals.stable.v1 as nw
++
++if TYPE_CHECKING:
++    from tests.utils import Constructor
++
++
++def test_ops_preserve_column_index_name(
++    constructor: Constructor, request: pytest.FixtureRequest
++) -> None:
++    if not any(x in str(constructor) for x in ("pandas", "modin", "cudf", "dask")):
++        pytest.skip(
++            reason="Dataframe columns is a list and do not have a `name` like a pandas Index does"
++        )
++    if "dask" in str(constructor):
++        # https://github.com/dask/dask/issues/11874
++        request.applymarker(pytest.mark.xfail)
++
++    data = {"a": [1, 3, 2], "b": [4, 4, 6], "z": [7.0, 8.0, 9.0]}
++    df_native = constructor(data)
++    df_native.columns.name = "foo"  # type: ignore[union-attr]
++
++    df = nw.from_native(df_native)
++
++    result = df.with_columns(b=nw.col("a") + 1, c=nw.col("a") * 2).select("c", "b")
++
++    assert result.to_native().columns.name == "foo"  # type: ignore[union-attr]
++    assert result.lazy().collect(backend="pandas").to_native().columns.name == "foo"

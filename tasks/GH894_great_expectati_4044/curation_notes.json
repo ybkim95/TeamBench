@@ -1,0 +1,56 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 4044,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/4044",
+  "issue_number": 4040,
+  "base_sha": "0184e84ed770db4d88b1b5979440fd9dcd691ac1",
+  "head_sha": "adb7687dd5bdd40dec22987d281cd95d7bd68810",
+  "additions": 188,
+  "deletions": 4,
+  "changed_files": [
+    "great_expectations/expectations/core/expect_column_values_to_be_in_type_list.py",
+    "great_expectations/profile/base.py",
+    "tests/expectations/core/test_expect_column_values_to_be_in_type_list.py",
+    "tests/profile/test_jsonschema_profiler.py"
+  ],
+  "test_files": [
+    "tests/expectations/core/test_expect_column_values_to_be_in_type_list.py",
+    "tests/profile/test_jsonschema_profiler.py"
+  ],
+  "source_files": [
+    "great_expectations/expectations/core/expect_column_values_to_be_in_type_list.py",
+    "great_expectations/profile/base.py"
+  ],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "actual_column_type",
+      "append",
+      "aren",
+      "around",
+      "base",
+      "because",
+      "bugfix",
+      "column",
+      "comp_types",
+      "compared"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:19Z"
+}

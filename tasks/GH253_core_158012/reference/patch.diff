@@ -1,0 +1,90 @@
+diff --git a/homeassistant/components/ring/camera.py b/homeassistant/components/ring/camera.py
+index 156d82665d2bd..ee4ab050aca98 100644
+--- a/homeassistant/components/ring/camera.py
++++ b/homeassistant/components/ring/camera.py
+@@ -128,8 +128,9 @@ def _handle_coordinator_update(self) -> None:
+         self._device = self._get_coordinator_data().get_video_device(
+             self._device.device_api_id
+         )
++
+         history_data = self._device.last_history
+-        if history_data:
++        if history_data and self._device.has_subscription:
+             self._last_event = history_data[0]
+             # will call async_update to update the attributes and get the
+             # video url from the api
+@@ -154,8 +155,16 @@ async def async_camera_image(
+         self, width: int | None = None, height: int | None = None
+     ) -> bytes | None:
+         """Return a still image response from the camera."""
++        if self._video_url is None:
++            if not self._device.has_subscription:
++                raise HomeAssistantError(
++                    translation_domain=DOMAIN,
++                    translation_key="no_subscription",
++                )
++            return None
++
+         key = (width, height)
+-        if not (image := self._images.get(key)) and self._video_url is not None:
++        if not (image := self._images.get(key)):
+             image = await ffmpeg.async_get_image(
+                 self.hass,
+                 self._video_url,
+diff --git a/homeassistant/components/ring/strings.json b/homeassistant/components/ring/strings.json
+index 09f36d6dd7424..1159a8b906e69 100644
+--- a/homeassistant/components/ring/strings.json
++++ b/homeassistant/components/ring/strings.json
+@@ -151,6 +151,9 @@
+     "api_timeout": {
+       "message": "Timeout communicating with Ring API"
+     },
++    "no_subscription": {
++      "message": "Ring Protect subscription required for snapshots"
++    },
+     "sdp_m_line_index_required": {
+       "message": "Error negotiating stream for {device}"
+     }
+diff --git a/tests/components/ring/test_camera.py b/tests/components/ring/test_camera.py
+index 54638df9a4640..95ee0d4b5fd80 100644
+--- a/tests/components/ring/test_camera.py
++++ b/tests/components/ring/test_camera.py
+@@ -325,6 +325,38 @@ async def test_camera_image(
+         assert image.content == SMALLEST_VALID_JPEG_BYTES
+ 
+ 
++async def test_camera_live_view_no_subscription(
++    hass: HomeAssistant,
++    mock_ring_client,
++    mock_ring_devices,
++    freezer: FrozenDateTimeFactory,
++) -> None:
++    """Test live view camera skips recording URL when no subscription."""
++    await setup_platform(hass, Platform.CAMERA)
++
++    front_camera_mock = mock_ring_devices.get_device(765432)
++    # Set device to not have subscription
++    front_camera_mock.has_subscription = False
++
++    state = hass.states.get("camera.front_live_view")
++    assert state is not None
++
++    # Reset mock call counts
++    front_camera_mock.async_recording_url.reset_mock()
++
++    # Trigger coordinator update
++    freezer.tick(SCAN_INTERVAL)
++    async_fire_time_changed(hass)
++    await hass.async_block_till_done(wait_background_tasks=True)
++
++    # For cameras without subscription, recording URL should NOT be fetched
++    front_camera_mock.async_recording_url.assert_not_called()
++
++    # Requesting an image without subscription should raise an error
++    with pytest.raises(HomeAssistantError):
++        await async_get_image(hass, "camera.front_live_view")
++
++
+ @pytest.mark.usefixtures("entity_registry_enabled_by_default")
+ async def test_camera_stream_attributes(
+     hass: HomeAssistant,

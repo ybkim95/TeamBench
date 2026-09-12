@@ -1,0 +1,161 @@
+diff --git a/docs/routing.rst b/docs/routing.rst
+index 5df9e9741..57f2c904a 100644
+--- a/docs/routing.rst
++++ b/docs/routing.rst
+@@ -96,10 +96,13 @@ variables. Unlike the path, where multiple parts are separated by ``/``, the
+ domain is always matched as a single part.
+ 
+ If a duplicate rule is added to a map, a :exc:`.DuplicateRuleError` will be
+-raised. Rules are compared based on their path, subdomain or host, and websocket
+-mode. Variable parts are not equal if they use different converters, although
+-this heuristic may not be perfect depending on what the different converters can
+-actually match.
++raised. Rules are compared based on their path, subdomain or host, websocket
++mode, and methods. Variable parts are not equal if they use different
++converters, although this heuristic may not be perfect depending on what the
++different converters can actually match. Rules with equal or overlapping (but
++not exactly equal) methods are considered duplicates. The ``HEAD`` and
++``OPTIONS`` methods are not considered for the overlapping check, only for exact
++equality, as they are typically added automatically.
+ 
+ 
+ Rule Priority
+diff --git a/src/werkzeug/routing/exceptions.py b/src/werkzeug/routing/exceptions.py
+index 2967a521c..fd75ec764 100644
+--- a/src/werkzeug/routing/exceptions.py
++++ b/src/werkzeug/routing/exceptions.py
+@@ -37,7 +37,7 @@ def __init__(self, existing: Rule, duplicate: Rule) -> None:
+         """The new rule that duplicates the existing rule."""
+ 
+     def __str__(self) -> str:
+-        return str(self.existing)
++        return repr(self.existing)
+ 
+ 
+ class RoutingException(Exception):
+diff --git a/src/werkzeug/routing/matcher.py b/src/werkzeug/routing/matcher.py
+index ee7651db0..eb405a61e 100644
+--- a/src/werkzeug/routing/matcher.py
++++ b/src/werkzeug/routing/matcher.py
+@@ -53,7 +53,7 @@ def add(self, rule: Rule) -> None:
+                     state = new_state
+ 
+         for existing in state.rules:
+-            if rule == existing:
++            if rule.is_duplicate(existing):
+                 raise DuplicateRuleError(existing, rule)
+ 
+         state.rules.append(rule)
+diff --git a/src/werkzeug/routing/rules.py b/src/werkzeug/routing/rules.py
+index 18cfba1b1..1f7d074f0 100644
+--- a/src/werkzeug/routing/rules.py
++++ b/src/werkzeug/routing/rules.py
+@@ -906,27 +906,42 @@ def build_compare_key(self) -> tuple[int, int, int]:
+         """
+         return (1 if self.alias else 0, -len(self.arguments), -len(self.defaults or ()))
+ 
++    def is_duplicate(self, other: Rule) -> bool:
++        """Check if this rule would match in the same way as another rule.
++
++        .. versionadded:: 3.2
++
++        :meta private:
++        """
++        # merge_slashes doesn't matter, it modifies the rule before generating _parts.
++        #
++        # strict_slashes doesn't matter if two rules with and without trailing slash are
++        # present, their _parts are different. It can cause overlap between a static
++        # part in a rule with strict_slashes disabled and another rule with a variable
++        # part in the same place, but that's not a full duplicate.
++        #
++        # HEAD is added automatically to GET rules. Flask adds OPTIONS to every rule.
++        # Exclude these from the method overlap check otherwise it will always fail. The
++        # check for exact equality should catch most deliberate head and options routes.
++        return (
++            self.websocket == other.websocket
++            and (
++                self.methods == other.methods
++                or self.methods is None
++                or other.methods is None
++                or bool((self.methods & other.methods) - {"HEAD", "OPTIONS"})
++            )
++            and self._parts == other._parts
++        )
++
+     def __eq__(self, other: object) -> bool:
+         if not isinstance(other, type(self)):
+             return NotImplemented
+ 
+-        return self._parts == other._parts and self.websocket == other.websocket
++        return self._trace == other._trace
+ 
+     __hash__ = None  # type: ignore
+ 
+-    def __str__(self) -> str:
+-        out = self.rule
+-
+-        if self.map.subdomain_matching and self.subdomain:
+-            out = f"{self.subdomain} {out}"
+-        elif self.map.host_matching and self.host:
+-            out = f"{self.host} {out}"
+-
+-        if self.websocket:
+-            out = f"websocket {out}"
+-
+-        return f"{out} → {self.endpoint}"
+-
+     def __repr__(self) -> str:
+         if self.map is None:
+             return f"<{type(self).__name__} (unbound)>"
+diff --git a/tests/test_routing.py b/tests/test_routing.py
+index 4f31037cb..7d09da01a 100644
+--- a/tests/test_routing.py
++++ b/tests/test_routing.py
+@@ -259,6 +259,8 @@ def test_no_duplicates() -> None:
+             r.Rule("/", endpoint="index"),
+             r.Rule("/", endpoint="websocket", websocket=True),
+             r.Rule("/", endpoint="sub", subdomain="a"),
++            r.Rule("/method", methods=["GET"]),
++            r.Rule("/method", methods=["POST"]),
+         ]
+     )
+ 
+@@ -320,6 +322,38 @@ def test_no_duplicate_different_converters() -> None:
+     )
+ 
+ 
++def test_duplicate_method_overlap() -> None:
++    """Rules with overlapping methods are duplicates."""
++    with pytest.raises(DuplicateRuleError):
++        r.Map(
++            [
++                r.Rule("/", methods=["GET", "POST"], endpoint="a"),
++                r.Rule("/", methods=["POST", "PUT"], endpoint="b"),
++            ]
++        )
++
++
++def test_no_duplicate_head_options() -> None:
++    """Rules with overlapping HEAD and OPTIONS methods are not duplicates."""
++    r.Map(
++        [
++            r.Rule("/", methods=["GET", "OPTIONS"], endpoint="a"),
++            r.Rule("/", methods=["POST", "OPTIONS"], endpoint="b"),
++        ]
++    )
++
++
++def test_duplicate_options_exact() -> None:
++    """HEAD and OPTIONS methods are considered for duplicates as an exact match."""
++    with pytest.raises(DuplicateRuleError):
++        r.Map(
++            [
++                r.Rule("/", methods=["HEAD", "OPTIONS"], endpoint="a"),
++                r.Rule("/", methods=["HEAD", "OPTIONS"], endpoint="b"),
++            ]
++        )
++
++
+ def test_environ_defaults():
+     environ = create_environ("/foo")
+     assert environ["PATH_INFO"] == "/foo"

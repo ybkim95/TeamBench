@@ -1,0 +1,79 @@
+diff --git a/crates/js_api/src/gui/state_management.rs b/crates/js_api/src/gui/state_management.rs
+index e8944aac1c..e4fadbbe0f 100644
+--- a/crates/js_api/src/gui/state_management.rs
++++ b/crates/js_api/src/gui/state_management.rs
+@@ -298,7 +298,7 @@ impl DotrainOrderGui {
+             dotrain_order_gui
+                 .dotrain_order
+                 .dotrain_yaml()
+-                .get_order(&order_key)
++                .get_order_for_gui_deployment(&order_key, &state.selected_deployment)
+                 .and_then(|mut order| order.update_vault_id(is_input, index, vault_id))?;
+         }
+ 
+diff --git a/crates/settings/src/yaml/dotrain.rs b/crates/settings/src/yaml/dotrain.rs
+index 356e6f34fc..70e674f048 100644
+--- a/crates/settings/src/yaml/dotrain.rs
++++ b/crates/settings/src/yaml/dotrain.rs
+@@ -97,6 +97,25 @@ impl DotrainYaml {
+ 
+         OrderCfg::parse_from_yaml(self.documents.clone(), key, Some(&context))
+     }
++    pub fn get_order_for_gui_deployment(
++        &self,
++        order_key: &str,
++        deployment_key: &str,
++    ) -> Result<OrderCfg, YamlError> {
++        let mut context = Context::new();
++        self.expand_context_with_current_order(&mut context, Some(order_key.to_string()));
++        self.expand_context_with_current_deployment(&mut context, Some(deployment_key.to_string()));
++        self.expand_context_with_remote_networks(&mut context);
++        self.expand_context_with_remote_tokens(&mut context);
++
++        if let Some(select_tokens) =
++            GuiCfg::parse_select_tokens(self.documents.clone(), deployment_key)?
++        {
++            context.add_select_tokens(select_tokens.iter().map(|st| st.key.clone()).collect());
++        }
++
++        OrderCfg::parse_from_yaml(self.documents.clone(), order_key, Some(&context))
++    }
+ 
+     pub fn get_scenario_keys(&self) -> Result<Vec<String>, YamlError> {
+         Ok(self.get_scenarios()?.keys().cloned().collect())
+diff --git a/packages/ui-components/src/lib/__mocks__/stores.ts b/packages/ui-components/src/lib/__mocks__/stores.ts
+index 6bc2f75810..2e344e0538 100644
+--- a/packages/ui-components/src/lib/__mocks__/stores.ts
++++ b/packages/ui-components/src/lib/__mocks__/stores.ts
+@@ -6,12 +6,13 @@ import settingsYamlContent from '../__fixtures__/settings.yaml?raw';
+ import { type Config } from '@wagmi/core';
+ import { mockWeb3Config } from './mockWeb3Config';
+ 
+-vi.mock(import('@rainlanguage/orderbook'), async (importOriginal) => {
+-	const actual = await importOriginal();
+-	return {
+-		...actual
+-	};
+-});
++if (import.meta.vitest) {
++	vi.mock('@rainlanguage/orderbook', async (importOriginal) => {
++		return {
++			...(await importOriginal())
++		};
++	});
++}
+ 
+ // Parse the YAML settings
+ const parseResult = parseYaml([settingsYamlContent]);
+diff --git a/packages/ui-components/vite.config.ts b/packages/ui-components/vite.config.ts
+index ef13532ad8..3bb5f0ae50 100644
+--- a/packages/ui-components/vite.config.ts
++++ b/packages/ui-components/vite.config.ts
+@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => ({
+ 		globals: true,
+ 		environment: 'jsdom',
+ 		include: ['src/**/*.{test,spec}.ts'],
++		exclude: ['src/lib/__mocks__/**/*.ts'],
+ 		// Extend jest-dom matchers
+ 		setupFiles: ['./test-setup.ts'],
+ 		// load env vars

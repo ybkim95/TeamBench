@@ -1,0 +1,13 @@
+task_id: GH1130_sktime_6713
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[MNT] skip failing test `test_wrapper_series_mtype` on `gluonts` datatype"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/6713"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

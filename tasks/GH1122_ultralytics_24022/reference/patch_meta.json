@@ -1,0 +1,15 @@
+{
+ "task": "GH1122_ultralytics_24022",
+ "patch": "tasks/GH1122_ultralytics_24022/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "ultralytics/ultralytics",
+ "pr_number": 24022,
+ "base_sha": "f256d8db18b4b450665b549eff15f31e4549a078",
+ "head_sha": "f066f0ab729429d381cb03cf6719e6bda178334f",
+ "bytes": 3801,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

@@ -1,0 +1,53 @@
+{
+  "repo": "munich-quantum-toolkit/bench",
+  "pr_number": 709,
+  "pr_url": "https://github.com/munich-quantum-toolkit/bench/pull/709",
+  "issue_number": 654,
+  "base_sha": "8516fe211ca67ee55b0cf203a09570ece669b63e",
+  "head_sha": "190a41e0cfc3068c319ed080d3aef0fbdfd0fcf2",
+  "additions": 35,
+  "deletions": 4,
+  "changed_files": [
+    "CHANGELOG.md",
+    "src/mqt/bench/benchmark_generation.py",
+    "tests/test_bench.py"
+  ],
+  "test_files": [
+    "tests/test_bench.py"
+  ],
+  "source_files": [
+    "src/mqt/bench/benchmark_generation.py"
+  ],
+  "parameterization": {
+    "repo": "munich-quantum-toolkit/bench",
+    "repo_short": "bench",
+    "parameterized_identifiers": [
+      "active",
+      "active_qubits",
+      "adheres",
+      "all_gates_in_basis",
+      "barrier",
+      "bench",
+      "benchmark",
+      "burgholzer",
+      "changelogs",
+      "circuit"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:15:42Z"
+}

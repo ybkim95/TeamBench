@@ -1,0 +1,36 @@
+diff --git a/arrow/locales.py b/arrow/locales.py
+index d29d9f45..c1b7869b 100644
+--- a/arrow/locales.py
++++ b/arrow/locales.py
+@@ -660,14 +660,14 @@ class GreekLocale(Locale):
+ 
+     timeframes = {
+         "now": "τώρα",
+-        "second": "ένα δεύτερο",
++        "second": "ένα δευτερόλεπτο",
+         "seconds": "{0} δευτερόλεπτα",
+         "minute": "ένα λεπτό",
+         "minutes": "{0} λεπτά",
+         "hour": "μία ώρα",
+         "hours": "{0} ώρες",
+-        "day": "μία μέρα",
+-        "days": "{0} μέρες",
++        "day": "μία ημέρα",
++        "days": "{0} ημέρες",
+         "week": "μία εβδομάδα",
+         "weeks": "{0} εβδομάδες",
+         "month": "ένα μήνα",
+diff --git a/tests/test_locales.py b/tests/test_locales.py
+index 3e0035b0..2122b9c7 100644
+--- a/tests/test_locales.py
++++ b/tests/test_locales.py
+@@ -3189,3 +3189,9 @@ def test_format_relative_future(self):
+ 
+     def test_month_abbreviation(self):
+         assert self.locale.month_abbreviations[5] == "Μαΐ"
++
++    def test_format_timeframe(self):
++        assert self.locale._format_timeframe("second", 1) == "ένα δευτερόλεπτο"
++        assert self.locale._format_timeframe("seconds", 3) == "3 δευτερόλεπτα"
++        assert self.locale._format_timeframe("day", 1) == "μία ημέρα"
++        assert self.locale._format_timeframe("days", 6) == "6 ημέρες"

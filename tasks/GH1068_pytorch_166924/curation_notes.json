@@ -1,0 +1,56 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 166924,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/166924",
+  "issue_number": 166176,
+  "base_sha": "593377555eefa9073a6785acc79b95b5460a3313",
+  "head_sha": "abd9ef2686bebcbe324fbc78f5b009159c14cf04",
+  "additions": 153,
+  "deletions": 89,
+  "changed_files": [
+    "test/dynamo/test_ctx_manager.py",
+    "test/dynamo/test_repros.py",
+    "torch/_dynamo/resume_execution.py",
+    "torch/_dynamo/symbolic_convert.py"
+  ],
+  "test_files": [
+    "test/dynamo/test_ctx_manager.py",
+    "test/dynamo/test_repros.py"
+  ],
+  "source_files": [
+    "torch/_dynamo/resume_execution.py",
+    "torch/_dynamo/symbolic_convert.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "added",
+      "after",
+      "allowed",
+      "although",
+      "ambiguous",
+      "anywhere",
+      "append",
+      "argnames",
+      "argnames_null",
+      "attr1"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:03:08Z"
+}

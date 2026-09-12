@@ -1,0 +1,52 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 171247,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/171247",
+  "issue_number": 170756,
+  "base_sha": "0138d6823a9dbbc202c318db74ac7218ecddb001",
+  "head_sha": "7af4795e6e69ac1e0f897b06a20253a7c1b3cd18",
+  "additions": 13,
+  "deletions": 4,
+  "changed_files": [
+    "test/inductor/test_torchinductor.py",
+    "torch/_inductor/utils.py"
+  ],
+  "test_files": [
+    "test/inductor/test_torchinductor.py"
+  ],
+  "source_files": [
+    "torch/_inductor/utils.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "assert_close",
+      "atomic",
+      "atomic_add",
+      "better",
+      "bf16",
+      "bfloat16",
+      "code",
+      "compile",
+      "cuda",
+      "device"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:08:32Z"
+}

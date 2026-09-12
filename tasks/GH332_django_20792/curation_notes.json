@@ -1,0 +1,53 @@
+{
+  "repo": "django/django",
+  "pr_number": 20792,
+  "pr_url": "https://github.com/django/django/pull/20792",
+  "issue_number": null,
+  "base_sha": "1786cd881ff4ad9458d56180ae555d92c14e5af8",
+  "head_sha": "8bd08cf1f1afb0925b30b8bb74d68fd7f4673785",
+  "additions": 50,
+  "deletions": 0,
+  "changed_files": [
+    "django/test/signals.py",
+    "tests/logging_tests/tests.py"
+  ],
+  "test_files": [
+    "django/test/signals.py",
+    "tests/logging_tests/tests.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "django/django",
+    "repo_short": "django",
+    "parameterized_identifiers": [
+      "apps",
+      "asgiref",
+      "auth",
+      "called",
+      "changes",
+      "conf",
+      "configuration",
+      "configure_logging",
+      "connections",
+      "contrib"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:10:59Z"
+}

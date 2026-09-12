@@ -1,0 +1,15 @@
+{
+ "task": "GH951_darts_1465",
+ "patch": "tasks/GH951_darts_1465/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "unit8co/darts",
+ "pr_number": 1465,
+ "base_sha": "ce45c15aa0febd7bc679eab3c991f2fdfaf106a2",
+ "head_sha": "d2f311da77d9e289805fd68259046b2b61c038a8",
+ "bytes": 2600175,
+ "files_changed": 4,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

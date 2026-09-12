@@ -1,0 +1,55 @@
+{
+  "repo": "alteryx/featuretools",
+  "pr_number": 2025,
+  "pr_url": "https://github.com/alteryx/featuretools/pull/2025",
+  "issue_number": null,
+  "base_sha": "54c2ba8a80193f0b05f271fd493fd7c90fc34f82",
+  "head_sha": "5e6bdc94898ed15f6caf329c79cc178d2f242adc",
+  "additions": 130,
+  "deletions": 7,
+  "changed_files": [
+    "docs/source/release_notes.rst",
+    "featuretools/primitives/standard/binary_transform.py",
+    "featuretools/tests/primitive_tests/test_transform_features.py"
+  ],
+  "test_files": [
+    "featuretools/tests/primitive_tests/test_transform_features.py"
+  ],
+  "source_files": [
+    "featuretools/primitives/standard/binary_transform.py"
+  ],
+  "parameterization": {
+    "repo": "alteryx/featuretools",
+    "repo_short": "featuretools",
+    "parameterized_identifiers": [
+      "additional",
+      "astype",
+      "autonormalize",
+      "base_feature_names",
+      "because",
+      "been",
+      "behavior",
+      "binary",
+      "calculating",
+      "calculation"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:15:06Z"
+}

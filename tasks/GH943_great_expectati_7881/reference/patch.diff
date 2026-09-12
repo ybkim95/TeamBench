@@ -1,0 +1,236 @@
+diff --git a/great_expectations/data_context/data_context/cloud_data_context.py b/great_expectations/data_context/data_context/cloud_data_context.py
+index acda1babb671..4d1d9b457d80 100644
+--- a/great_expectations/data_context/data_context/cloud_data_context.py
++++ b/great_expectations/data_context/data_context/cloud_data_context.py
+@@ -13,6 +13,7 @@
+     Tuple,
+     Union,
+     cast,
++    overload,
+ )
+ 
+ import requests
+@@ -548,6 +549,33 @@ def create_expectation_suite(
+ 
+         return expectation_suite
+ 
++    @overload
++    def delete_expectation_suite(
++        self,
++        expectation_suite_name: str = ...,
++        ge_cloud_id: None = ...,
++        id: None = ...,
++    ) -> bool:
++        ...
++
++    @overload
++    def delete_expectation_suite(
++        self,
++        expectation_suite_name: None = ...,
++        ge_cloud_id: str = ...,
++        id: None = ...,
++    ) -> bool:
++        ...
++
++    @overload
++    def delete_expectation_suite(
++        self,
++        expectation_suite_name: None = ...,
++        ge_cloud_id: None = ...,
++        id: str = ...,
++    ) -> bool:
++        ...
++
+     def delete_expectation_suite(
+         self,
+         expectation_suite_name: str | None = None,
+@@ -569,6 +597,7 @@ def delete_expectation_suite(
+         key = GXCloudIdentifier(
+             resource_type=GXCloudRESTResource.EXPECTATION_SUITE,
+             id=id,
++            resource_name=expectation_suite_name,
+         )
+ 
+         return self.expectations_store.remove_key(key)
+diff --git a/great_expectations/data_context/store/gx_cloud_store_backend.py b/great_expectations/data_context/store/gx_cloud_store_backend.py
+index 1bd39eda9822..a5fe4b3f4f65 100644
+--- a/great_expectations/data_context/store/gx_cloud_store_backend.py
++++ b/great_expectations/data_context/store/gx_cloud_store_backend.py
+@@ -469,28 +469,45 @@ def remove_key(self, key):
+             key = key.to_tuple()
+ 
+         id = key[1]
+-
+-        data = {
+-            "data": {
+-                "type": self.ge_cloud_resource_type,
+-                "id": id,
+-                "attributes": {
+-                    "deleted": True,
+-                },
+-            }
+-        }
+-
+-        url = construct_url(
+-            base_url=self.ge_cloud_base_url,
+-            organization_id=self.ge_cloud_credentials["organization_id"],
+-            resource_name=self.ge_cloud_resource_name,
+-            id=id,
+-        )
++        if len(key) == 3:
++            resource_object_name = key[2]
++        else:
++            resource_object_name = None
+ 
+         try:
+-            response = self._session.delete(url, json=data)
+-            response.raise_for_status()
+-            return True
++            # prefer deletion by id if id present
++            if id:
++                data = {
++                    "data": {
++                        "type": self.ge_cloud_resource_type,
++                        "id": id,
++                        "attributes": {
++                            "deleted": True,
++                        },
++                    }
++                }
++
++                url = construct_url(
++                    base_url=self.ge_cloud_base_url,
++                    organization_id=self.ge_cloud_credentials["organization_id"],
++                    resource_name=self.ge_cloud_resource_name,
++                    id=id,
++                )
++                response = self._session.delete(url, json=data)
++                response.raise_for_status()
++                return True
++            # delete by name
++            elif resource_object_name:
++                url = construct_url(
++                    base_url=self.ge_cloud_base_url,
++                    organization_id=self.ge_cloud_credentials["organization_id"],
++                    resource_name=self.ge_cloud_resource_name,
++                )
++                response = self._session.delete(
++                    url, params={"name": resource_object_name}
++                )
++                response.raise_for_status()
++                return True
+         except requests.HTTPError as http_exc:
+             logger.exception(http_exc)
+             raise StoreBackendError(
+diff --git a/tests/data_context/cloud_data_context/test_expectation_suite_crud.py b/tests/data_context/cloud_data_context/test_expectation_suite_crud.py
+index 3a5608401678..5dbe7a5390d4 100644
+--- a/tests/data_context/cloud_data_context/test_expectation_suite_crud.py
++++ b/tests/data_context/cloud_data_context/test_expectation_suite_crud.py
+@@ -366,7 +366,7 @@ def test_create_expectation_suite_namespace_collision_raises_error(
+ 
+ @pytest.mark.unit
+ @pytest.mark.cloud
+-def test_delete_expectation_suite_deletes_suite_in_cloud(
++def test_delete_expectation_suite_by_id_deletes_suite_in_cloud(
+     empty_base_data_context_in_cloud_mode: CloudDataContext,
+     suite_1: SuiteIdentifierTuple,
+ ) -> None:
+@@ -385,6 +385,26 @@ def test_delete_expectation_suite_deletes_suite_in_cloud(
+     }
+ 
+ 
++@pytest.mark.unit
++@pytest.mark.cloud
++def test_delete_expectation_suite_by_name_deletes_suite_in_cloud(
++    empty_base_data_context_in_cloud_mode: CloudDataContext,
++    suite_1: SuiteIdentifierTuple,
++) -> None:
++    context = empty_base_data_context_in_cloud_mode
++    suite_name = suite_1.name
++
++    with mock.patch("requests.Session.delete", autospec=True) as mock_delete:
++        context.delete_expectation_suite(expectation_suite_name=suite_name)
++
++    assert (
++        mock_delete.call_args[0][1]
++        == "https://app.test.greatexpectations.io/organizations/bd20fead-2c31-4392"
++        "-bcd1-f1e87ad5a79c/expectation-suites"
++    )
++    assert mock_delete.call_args[1]["params"] == {"name": suite_name}
++
++
+ @pytest.mark.unit
+ @pytest.mark.cloud
+ def test_delete_expectation_suite_nonexistent_suite_raises_error(
+diff --git a/tests/data_context/store/test_gx_cloud_store_backend.py b/tests/data_context/store/test_gx_cloud_store_backend.py
+index 385f417fc34b..c54f07334806 100644
+--- a/tests/data_context/store/test_gx_cloud_store_backend.py
++++ b/tests/data_context/store/test_gx_cloud_store_backend.py
+@@ -280,7 +280,7 @@ def test_list_keys(
+ 
+ @pytest.mark.cloud
+ @pytest.mark.unit
+-def test_remove_key(
++def test_remove_key_with_only_id(
+     construct_ge_cloud_store_backend: Callable[
+         [GXCloudRESTResource], GXCloudStoreBackend
+     ],
+@@ -312,6 +312,58 @@ def test_remove_key(
+         )
+ 
+ 
++@pytest.mark.cloud
++@pytest.mark.unit
++def test_remove_key_with_id_and_name(
++    construct_ge_cloud_store_backend: Callable[
++        [GXCloudRESTResource], GXCloudStoreBackend
++    ],
++) -> None:
++    store_backend = construct_ge_cloud_store_backend(GXCloudRESTResource.CHECKPOINT)
++
++    with mock.patch("requests.Session.delete", autospec=True) as mock_delete:
++        mock_response = mock_delete.return_value
++        mock_response.status_code = 200
++
++        store_backend.remove_key(
++            ("checkpoint", "0ccac18e-7631-4bdd-8a42-3c35cce574c6", "checkpoint_name")
++        )
++        mock_delete.assert_called_with(
++            mock.ANY,  # requests.Session object
++            f"{CLOUD_DEFAULT_BASE_URL}organizations/51379b8b-86d3-4fe7-84e9-e1a52f4a414c/checkpoints/0ccac18e-7631"
++            "-4bdd"
++            "-8a42-3c35cce574c6",
++            json={
++                "data": {
++                    "type": "checkpoint",
++                    "id": "0ccac18e-7631-4bdd-8a42-3c35cce574c6",
++                    "attributes": {"deleted": True},
++                }
++            },
++        )
++
++
++@pytest.mark.cloud
++@pytest.mark.unit
++def test_remove_key_with_only_name(
++    construct_ge_cloud_store_backend: Callable[
++        [GXCloudRESTResource], GXCloudStoreBackend
++    ],
++) -> None:
++    store_backend = construct_ge_cloud_store_backend(GXCloudRESTResource.CHECKPOINT)
++
++    with mock.patch("requests.Session.delete", autospec=True) as mock_delete:
++        mock_response = mock_delete.return_value
++        mock_response.status_code = 200
++
++        store_backend.remove_key(("checkpoint", "", "checkpoint_name"))
++        mock_delete.assert_called_with(
++            mock.ANY,  # requests.Session object
++            f"{CLOUD_DEFAULT_BASE_URL}organizations/51379b8b-86d3-4fe7-84e9-e1a52f4a414c/checkpoints",
++            params={"name": "checkpoint_name"},
++        )
++
++
+ @pytest.mark.cloud
+ @pytest.mark.unit
+ def test_appropriate_casting_of_str_resource_type_to_GXCloudRESTResource(

@@ -1,0 +1,40 @@
+diff --git a/features/src/autogluon/features/generators/abstract.py b/features/src/autogluon/features/generators/abstract.py
+--- a/features/src/autogluon/features/generators/abstract.py
++++ b/features/src/autogluon/features/generators/abstract.py
+@@ -518,7 +518,8 @@ def _remove_features_in(self, features: list):
+                 self._feature_metadata_before_post = self._feature_metadata_before_post.keep_features(features_to_keep)
+ 
+             self.feature_metadata_in = self.feature_metadata_in.remove_features(features=features)
+-            self.features_in = self.feature_metadata_in.get_features()
++            features_in_new = set(self.feature_metadata_in.get_features())
++            self.features_in = [f for f in self.features_in if f in features_in_new]
+             if self._pre_astype_generator:
+                 self._pre_astype_generator._remove_features_out(features)
+ 
+
+diff --git a/features/src/autogluon/features/generators/astype.py b/features/src/autogluon/features/generators/astype.py
+--- a/features/src/autogluon/features/generators/astype.py
++++ b/features/src/autogluon/features/generators/astype.py
+@@ -181,15 +181,20 @@ def _convert_to_bool_fast_batch(self, X: DataFrame) -> DataFrame:
+         for feature in self._bool_features_list:
+             X_bool_list.append((X[feature] == self._bool_features[feature]).astype(np.int8))
+         X_bool = pd.concat(X_bool_list, axis=1)
+-        return pd.concat([X[self._non_bool_features_list], X_bool], axis=1)
++
++        # TODO: re-order columns to features_in required because `feature_interactions=False` to avoid error when feature prune.
++        #  Note that this is slower than avoiding the re-order, but avoiding the re-order is very complicated to do correctly.
++        return pd.concat([X[self._non_bool_features_list], X_bool], axis=1)[self.features_in]
+ 
+     def _convert_to_bool_fast_realtime(self, X: DataFrame) -> DataFrame:
+         """Optimized for when X is <= 100 rows"""
+         X_bool_features_np = X[self._bool_features_list].to_numpy(dtype='object')
+         X_bool_numpy = X_bool_features_np == self._bool_features_val_np
+         X_bool = pd.DataFrame(X_bool_numpy, columns=self._bool_features_list, dtype=np.int8, index=X.index)
+ 
+-        return pd.concat([X[self._non_bool_features_list], X_bool], axis=1)
++        # TODO: re-order columns to features_in required because `feature_interactions=False` to avoid error when feature prune.
++        #  Note that this is slower than avoiding the re-order, but avoiding the re-order is very complicated to do correctly.
++        return pd.concat([X[self._non_bool_features_list], X_bool], axis=1)[self.features_in]
+ 
+     @staticmethod
+     def get_default_infer_features_in_args() -> dict:

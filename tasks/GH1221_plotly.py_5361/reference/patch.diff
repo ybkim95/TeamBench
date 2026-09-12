@@ -1,0 +1,26 @@
+diff --git a/plotly/matplotlylib/mplexporter/tests/test_utils.py b/plotly/matplotlylib/mplexporter/tests/test_utils.py
+index 1373dd46795..9c302d74918 100644
+--- a/plotly/matplotlylib/mplexporter/tests/test_utils.py
++++ b/plotly/matplotlylib/mplexporter/tests/test_utils.py
+@@ -1,6 +1,7 @@
++import matplotlib.pyplot as plt
+ from numpy.testing import assert_allclose, assert_equal
++
+ from .. import utils
+-import matplotlib.pyplot as plt
+ 
+ 
+ def test_path_data():
+diff --git a/plotly/matplotlylib/tests/test_renderer.py b/plotly/matplotlylib/tests/test_renderer.py
+index 72116813acd..0d63e4815b9 100644
+--- a/plotly/matplotlylib/tests/test_renderer.py
++++ b/plotly/matplotlylib/tests/test_renderer.py
+@@ -1,7 +1,6 @@
++import matplotlib.pyplot as plt
+ import plotly.tools as tls
+ 
+-from . import plt
+-
+ 
+ def test_native_legend_enabled_when_matplotlib_legend_present():
+     """Test that when matplotlib legend is present, Plotly uses native legend."""

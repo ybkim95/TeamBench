@@ -1,0 +1,13 @@
+task_id: GH920_pytorch_lightni_21223
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix logged sparsity calculation in `ModelPruning`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Lightning-AI/pytorch-lightning/pull/21223"
+source_issue: "https://github.com/Lightning-AI/pytorch-lightning/issues/13595"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

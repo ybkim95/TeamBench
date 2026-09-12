@@ -1,0 +1,15 @@
+{
+ "task": "GH1210_wandb_11242",
+ "patch": "tasks/GH1210_wandb_11242/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "wandb/wandb",
+ "pr_number": 11242,
+ "base_sha": "d97f1b427260e666ef8d1de62d3f92583e952f92",
+ "head_sha": "532ec6b1b0b53184e657c9314b2443b3ef78e8d8",
+ "bytes": 23729,
+ "files_changed": 6,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

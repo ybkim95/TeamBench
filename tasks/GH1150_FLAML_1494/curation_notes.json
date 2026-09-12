@@ -1,0 +1,52 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1494,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1494",
+  "issue_number": 1246,
+  "base_sha": "fa1a32afb6fbc6e429226b1407dcd2d832dafc6d",
+  "head_sha": "b0c2c74150d8c57cd514ed896862d0ddf67f73af",
+  "additions": 125,
+  "deletions": 1,
+  "changed_files": [
+    "flaml/tune/searcher/search_thread.py",
+    "test/tune/test_search_thread.py"
+  ],
+  "test_files": [
+    "test/tune/test_search_thread.py"
+  ],
+  "source_files": [
+    "flaml/tune/searcher/search_thread.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "added",
+      "binary",
+      "booster",
+      "case",
+      "config",
+      "configurations",
+      "const",
+      "containing",
+      "crucial",
+      "deeply"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:09:36Z"
+}

@@ -1,0 +1,79 @@
+diff --git a/boto3/session.py b/boto3/session.py
+index 1e3d3611c4..f073c5347d 100644
+--- a/boto3/session.py
++++ b/boto3/session.py
+@@ -319,18 +319,25 @@ def client(
+         :return: Service client instance
+ 
+         """
++        create_client_kwargs = {
++            'region_name': region_name,
++            'api_version': api_version,
++            'use_ssl': use_ssl,
++            'verify': verify,
++            'endpoint_url': endpoint_url,
++            'aws_access_key_id': aws_access_key_id,
++            'aws_secret_access_key': aws_secret_access_key,
++            'aws_session_token': aws_session_token,
++            'config': config,
++            'aws_account_id': aws_account_id,
++        }
++        if aws_account_id is None:
++            # Remove aws_account_id for lambda for arbitrary
++            # botocore version mismatches.
++            del create_client_kwargs['aws_account_id']
++
+         return self._session.create_client(
+-            service_name,
+-            region_name=region_name,
+-            api_version=api_version,
+-            use_ssl=use_ssl,
+-            verify=verify,
+-            endpoint_url=endpoint_url,
+-            aws_access_key_id=aws_access_key_id,
+-            aws_secret_access_key=aws_secret_access_key,
+-            aws_session_token=aws_session_token,
+-            config=config,
+-            aws_account_id=aws_account_id,
++            service_name, **create_client_kwargs
+         )
+ 
+     def resource(
+diff --git a/tests/unit/test_session.py b/tests/unit/test_session.py
+index 7157eb4956..ec87c4d441 100644
+--- a/tests/unit/test_session.py
++++ b/tests/unit/test_session.py
+@@ -272,7 +272,32 @@ def test_create_client_with_args(self):
+             region_name='us-west-2',
+             api_version=None,
+             config=None,
+-            aws_account_id=None,
++        )
++
++    def test_create_client_with_aws_account_id(self):
++        bc_session = self.bc_session_cls.return_value
++
++        session = Session(region_name='us-east-1')
++        session.client(
++            'sqs',
++            region_name='us-west-2',
++            aws_access_key_id="AKID1236MYFOOADKID",
++            aws_secret_access_key="S3cr3tK3y",
++            aws_account_id="1234567",
++        )
++
++        bc_session.create_client.assert_called_with(
++            'sqs',
++            aws_access_key_id="AKID1236MYFOOADKID",
++            aws_secret_access_key="S3cr3tK3y",
++            endpoint_url=None,
++            use_ssl=True,
++            aws_session_token=None,
++            verify=None,
++            region_name='us-west-2',
++            api_version=None,
++            config=None,
++            aws_account_id="1234567",
+         )
+ 
+     def test_create_resource_with_args(self):

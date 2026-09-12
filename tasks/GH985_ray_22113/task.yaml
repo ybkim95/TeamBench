@@ -1,0 +1,13 @@
+task_id: GH985_ray_22113
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fixed MRO for `DerivedActorClass`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/ray-project/ray/pull/22113"
+source_issue: "https://github.com/ray-project/ray/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

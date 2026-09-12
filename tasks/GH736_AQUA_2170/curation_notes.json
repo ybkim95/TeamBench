@@ -1,0 +1,55 @@
+{
+  "repo": "DestinE-Climate-DT/AQUA",
+  "pr_number": 2170,
+  "pr_url": "https://github.com/DestinE-Climate-DT/AQUA/pull/2170",
+  "issue_number": 2168,
+  "base_sha": "549d9569633ff34139ae359c7a9292e08b76efe4",
+  "head_sha": "9964f4842f4b907a52e8585cb4e87b7bccb9ab33",
+  "additions": 10,
+  "deletions": 12,
+  "changed_files": [
+    "CHANGELOG.md",
+    "src/aqua/reader/reader.py",
+    "tests/seaice/test_seaice.py",
+    "tests/test_basic.py"
+  ],
+  "test_files": [
+    "tests/seaice/test_seaice.py",
+    "tests/test_basic.py"
+  ],
+  "source_files": [
+    "src/aqua/reader/reader.py"
+  ],
+  "parameterization": {
+    "repo": "DestinE-Climate-DT/AQUA",
+    "repo_short": "AQUA",
+    "parameterized_identifiers": [
+      "abs_rel",
+      "adjustments",
+      "already",
+      "antarctic",
+      "applied",
+      "approx",
+      "approx_rel",
+      "areas",
+      "cases",
+      "catalog"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:36:18Z"
+}

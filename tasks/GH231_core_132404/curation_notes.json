@@ -1,0 +1,64 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 132404,
+  "pr_url": "https://github.com/home-assistant/core/pull/132404",
+  "issue_number": 127966,
+  "base_sha": "c9ad87d4643a0d3f000ed6f83c8f442bb49a35a9",
+  "head_sha": "8aa8648c082cd5a696ae6dc6bd664268c142a13c",
+  "additions": 85,
+  "deletions": 22,
+  "changed_files": [
+    "homeassistant/bootstrap.py",
+    "homeassistant/components/ffmpeg/__init__.py",
+    "homeassistant/helpers/system_info.py",
+    "homeassistant/util/package.py",
+    "homeassistant/util/system_info.py",
+    "tests/helpers/test_system_info.py",
+    "tests/util/test_package.py",
+    "tests/util/test_system_info.py"
+  ],
+  "test_files": [
+    "tests/helpers/test_system_info.py",
+    "tests/util/test_package.py",
+    "tests/util/test_system_info.py"
+  ],
+  "source_files": [
+    "homeassistant/bootstrap.py",
+    "homeassistant/components/ffmpeg/__init__.py",
+    "homeassistant/helpers/system_info.py",
+    "homeassistant/util/package.py",
+    "homeassistant/util/system_info.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "annotations",
+      "anyio",
+      "async_dispatcher_send",
+      "async_get_mac_ver",
+      "async_get_system_info",
+      "async_get_user_site",
+      "async_import_module",
+      "avoid",
+      "backend",
+      "being"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:45Z"
+}

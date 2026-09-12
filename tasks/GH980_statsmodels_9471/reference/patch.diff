@@ -1,0 +1,156 @@
+diff --git a/statsmodels/discrete/conditional_models.py b/statsmodels/discrete/conditional_models.py
+--- a/statsmodels/discrete/conditional_models.py
++++ b/statsmodels/discrete/conditional_models.py
+@@ -2,15 +2,20 @@
+ Conditional logistic, Poisson, and multinomial logit regression
+ """
+ 
++import collections
++import itertools
++import warnings
++
+ import numpy as np
++
+ import statsmodels.base.model as base
+-import statsmodels.regression.linear_model as lm
+ import statsmodels.base.wrapper as wrap
+-from statsmodels.discrete.discrete_model import (MultinomialResults,
+-      MultinomialResultsWrapper)
+-import collections
+-import warnings
+-import itertools
++from statsmodels.discrete.discrete_model import (
++    MultinomialResults,
++    MultinomialResultsWrapper,
++)
++from statsmodels.formula.formulatools import advance_eval_env
++import statsmodels.regression.linear_model as lm
+ 
+ 
+ class _ConditionalModel(base.LikelihoodModel):
+@@ -208,7 +213,7 @@ def from_formula(cls,
+ 
+         if "0+" not in formula.replace(" ", ""):
+             warnings.warn("Conditional models should not include an intercept")
+-
++        advance_eval_env(kwargs)
+         model = super().from_formula(
+             formula, data=data, groups=groups, *args, **kwargs)
+ 
+
+diff --git a/statsmodels/duration/hazard_regression.py b/statsmodels/duration/hazard_regression.py
+--- a/statsmodels/duration/hazard_regression.py
++++ b/statsmodels/duration/hazard_regression.py
+@@ -14,13 +14,14 @@
+ hazards model.
+ http://www.mwsug.org/proceedings/2006/stats/MWSUG-2006-SD08.pdf
+ """
++from statsmodels.compat.pandas import Appender
++
+ import numpy as np
+ 
+ from statsmodels.base import model
+ import statsmodels.base.model as base
++from statsmodels.formula.formulatools import advance_eval_env
+ from statsmodels.tools.decorators import cache_readonly
+-from statsmodels.compat.pandas import Appender
+-
+ 
+ _predict_docstring = """
+     Returns predicted values from the proportional hazards
+@@ -423,7 +424,7 @@ def from_formula(cls, formula, data, status=None, entry=None,
+             if term in ("0", "1"):
+                 import warnings
+                 warnings.warn("PHReg formulas should not include any '0' or '1' terms")
+-
++        advance_eval_env(kwargs)
+         mod = super().from_formula(formula, data,
+                     status=status, entry=entry, strata=strata,
+                     offset=offset, subset=subset, ties=ties,
+
+diff --git a/statsmodels/formula/formulatools.py b/statsmodels/formula/formulatools.py
+--- a/statsmodels/formula/formulatools.py
++++ b/statsmodels/formula/formulatools.py
+@@ -5,6 +5,8 @@
+ # if users want to pass in a different formula framework, they can
+ # add their handler here. how to do it interactively?
+ 
++__all__ = ["handle_formula_data", "formula_handler", "advance_eval_env"]
++
+ # this is a mutable object, so editing it should show up in the below
+ formula_handler = {}
+ 
+@@ -77,3 +79,21 @@ def make_hypotheses_matrices(model_results, test_formula):
+     exog_names = model_results.model.exog_names
+     lc = mgr.get_linear_constraints(test_formula, exog_names)
+     return lc
++
++
++def advance_eval_env(kwargs):
++    """
++    Adjusts the keyword arguments for from_formula to account for the patsy
++    eval environment being passed down once on the stack. Adjustments are
++    made in place.
++    Parameters
++    ----------
++    kwargs : dict
++        The dictionary of keyword arguments passed to `from_formula`.
++    """
++
++    eval_env = kwargs.get("eval_env", None)
++    if eval_env is None:
++        kwargs["eval_env"] = 2
++    elif eval_env == -1:
++        kwargs["eval_env"] = FormulaManager().get_empty_eval_env()
+
+diff --git a/statsmodels/genmod/generalized_estimating_equations.py b/statsmodels/genmod/generalized_estimating_equations.py
+--- a/statsmodels/genmod/generalized_estimating_equations.py
++++ b/statsmodels/genmod/generalized_estimating_equations.py
+@@ -46,6 +46,7 @@
+     margeff_cov_with_se,
+ )
+ from statsmodels.formula._manager import FormulaManager
++from statsmodels.formula.formulatools import advance_eval_env
+ from statsmodels.genmod import cov_struct as cov_structs, families
+ from statsmodels.genmod.families.links import Link
+ import statsmodels.genmod.families.varfuncs as varfuncs
+@@ -762,6 +763,7 @@ def from_formula(cls, formula, groups, data, subset=None,
+             family = kwargs["family"]
+             del kwargs["family"]
+ 
++        advance_eval_env(kwargs)
+         model = super().from_formula(formula, data=data, subset=subset,
+                                      groups=groups, time=time,
+                                      offset=offset,
+
+diff --git a/statsmodels/genmod/qif.py b/statsmodels/genmod/qif.py
+--- a/statsmodels/genmod/qif.py
++++ b/statsmodels/genmod/qif.py
+@@ -1,12 +1,14 @@
+-import numpy as np
+ from collections import defaultdict
++
++import numpy as np
++
+ import statsmodels.base.model as base
++import statsmodels.base.wrapper as wrap
++from statsmodels.formula.formulatools import advance_eval_env
+ from statsmodels.genmod import families
++from statsmodels.genmod.families import links, varfuncs
+ from statsmodels.genmod.generalized_linear_model import GLM
+-from statsmodels.genmod.families import links
+-from statsmodels.genmod.families import varfuncs
+ import statsmodels.regression.linear_model as lm
+-import statsmodels.base.wrapper as wrap
+ from statsmodels.tools.decorators import cache_readonly
+ 
+ 
+@@ -329,7 +331,7 @@ def from_formula(cls, formula, groups, data, subset=None,
+ 
+         if isinstance(groups, str):
+             groups = data[groups]
+-
++        advance_eval_env(kwargs)
+         model = super().from_formula(
+                    formula, data=data, subset=subset,
+                    groups=groups, *args, **kwargs)

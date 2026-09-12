@@ -1,0 +1,57 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 33200,
+  "pr_url": "https://github.com/huggingface/transformers/pull/33200",
+  "issue_number": 33825,
+  "base_sha": "c409cd81777fb27aadc043ed3d8339dbc020fb3b",
+  "head_sha": "4c34d752402cdb3a518038a6452e32e02e6c05d6",
+  "additions": 147,
+  "deletions": 23,
+  "changed_files": [
+    "docs/source/en/model_doc/superpoint.md",
+    "src/transformers/models/superpoint/image_processing_superpoint.py",
+    "src/transformers/models/superpoint/modeling_superpoint.py",
+    "tests/models/superpoint/test_image_processing_superpoint.py",
+    "tests/models/superpoint/test_modeling_superpoint.py"
+  ],
+  "test_files": [
+    "tests/models/superpoint/test_image_processing_superpoint.py",
+    "tests/models/superpoint/test_modeling_superpoint.py"
+  ],
+  "source_files": [
+    "src/transformers/models/superpoint/image_processing_superpoint.py",
+    "src/transformers/models/superpoint/modeling_superpoint.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "absolute",
+      "according",
+      "all_above_zero",
+      "all_below_image_size",
+      "alpha",
+      "append",
+      "autodoc",
+      "axis",
+      "batch",
+      "batch_size"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:01Z"
+}

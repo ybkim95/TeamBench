@@ -1,0 +1,13 @@
+task_id: GH862_pytorch_lightni_21192
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix lightning cli crashing when trainer defaults contain callback"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Lightning-AI/pytorch-lightning/pull/21192"
+source_issue: "https://github.com/Lightning-AI/pytorch-lightning/issues/21189"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

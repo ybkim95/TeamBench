@@ -1,0 +1,93 @@
+diff --git a/docs/news.rst b/docs/news.rst
+index e5836cfe6..bccc0b3cf 100644
+--- a/docs/news.rst
++++ b/docs/news.rst
+@@ -7,6 +7,16 @@
+ ``psycopg`` release notes
+ =========================
+ 
++Future releases
++---------------
++
++Psycopg 3.3.4 (unreleased)
++^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++- Fix possible spurious connection timeout in systems with very long uptimes
++  in C extension (:ticket:`#1280`).
++
++
+ Current release
+ ---------------
+ 
+diff --git a/psycopg_c/psycopg_c/_psycopg/generators.pyx b/psycopg_c/psycopg_c/_psycopg/generators.pyx
+index 0ea40157f..ea3082681 100644
+--- a/psycopg_c/psycopg_c/_psycopg/generators.pyx
++++ b/psycopg_c/psycopg_c/_psycopg/generators.pyx
+@@ -38,7 +38,7 @@ def connect(conninfo: str, *, timeout: float = 0.0) -> PQGenConn[abc.PGconn]:
+     cdef int conn_status = libpq.PQstatus(pgconn_ptr)
+     cdef int poll_status
+     cdef object wait, ready
+-    cdef float deadline = 0.0
++    cdef double deadline = 0.0
+ 
+     if timeout:
+         deadline = monotonic() + timeout
+@@ -89,7 +89,7 @@ def connect(conninfo: str, *, timeout: float = 0.0) -> PQGenConn[abc.PGconn]:
+ def cancel(pq.PGcancelConn cancel_conn, *, timeout: float = 0.0) -> PQGenConn[None]:
+     cdef libpq.PGcancelConn *pgcancelconn_ptr = cancel_conn.pgcancelconn_ptr
+     cdef int status
+-    cdef float deadline = 0.0
++    cdef double deadline = 0.0
+ 
+     if timeout:
+         deadline = monotonic() + timeout
+diff --git a/tests/test_connection.py b/tests/test_connection.py
+index 7312a11c7..940f465e3 100644
+--- a/tests/test_connection.py
++++ b/tests/test_connection.py
+@@ -122,6 +122,20 @@ def test_connect_timeout(conn_cls, proxy):
+     assert elapsed == pytest.approx(2.0, 0.1)
+ 
+ 
++@pytest.mark.skipif(pq.__impl__ == "python", reason="only affects C extension")
++def test_connect_timeout_large_monotonic(conn_cls, dsn, monkeypatch):
++    # Regression: deadline was stored as C float (32-bit). At ~777 days of
++    # process uptime the float32 ULP reaches 8 s, so a 2-second timeout is
++    # silently rounded away, causing ConnectionTimeout to fire immediately.
++    # 2^26 = 67_108_864 s ≈ 777 days is the minimum value where this occurs
++    # with psycopg's enforced 2-second minimum connect_timeout.
++    from psycopg._cmodule import _psycopg
++
++    monkeypatch.setattr(_psycopg, "monotonic", lambda: 67108864.5)
++    with conn_cls.connect(dsn, connect_timeout=2):
++        pass
++
++
+ @pytest.mark.slow
+ @pytest.mark.timing
+ def test_multi_hosts(conn_cls, proxy, dsn, monkeypatch):
+diff --git a/tests/test_connection_async.py b/tests/test_connection_async.py
+index 122228a49..d54bf09ea 100644
+--- a/tests/test_connection_async.py
++++ b/tests/test_connection_async.py
+@@ -117,6 +117,20 @@ async def test_connect_timeout(aconn_cls, proxy):
+     assert elapsed == pytest.approx(2.0, 0.1)
+ 
+ 
++@pytest.mark.skipif(pq.__impl__ == "python", reason="only affects C extension")
++async def test_connect_timeout_large_monotonic(aconn_cls, dsn, monkeypatch):
++    # Regression: deadline was stored as C float (32-bit). At ~777 days of
++    # process uptime the float32 ULP reaches 8 s, so a 2-second timeout is
++    # silently rounded away, causing ConnectionTimeout to fire immediately.
++    # 2^26 = 67_108_864 s ≈ 777 days is the minimum value where this occurs
++    # with psycopg's enforced 2-second minimum connect_timeout.
++    from psycopg._cmodule import _psycopg
++
++    monkeypatch.setattr(_psycopg, "monotonic", lambda: 67108864.5)
++    async with await aconn_cls.connect(dsn, connect_timeout=2):
++        pass
++
++
+ @pytest.mark.slow
+ @pytest.mark.timing
+ async def test_multi_hosts(aconn_cls, proxy, dsn, monkeypatch):

@@ -1,0 +1,53 @@
+{
+  "repo": "urllib3/urllib3",
+  "pr_number": 3769,
+  "pr_url": "https://github.com/urllib3/urllib3/pull/3769",
+  "issue_number": 3764,
+  "base_sha": "10ae8a9c1a88e4c1581d291395b2902e9c9fab36",
+  "head_sha": "f1f17b48b725bbb4875f3e256aca6838daecf620",
+  "additions": 28,
+  "deletions": 5,
+  "changed_files": [
+    "changelog/3764.bugfix.rst",
+    "src/urllib3/response.py",
+    "test/test_response.py"
+  ],
+  "test_files": [
+    "test/test_response.py"
+  ],
+  "source_files": [
+    "src/urllib3/response.py"
+  ],
+  "parameterization": {
+    "repo": "urllib3/urllib3",
+    "repo_short": "urllib3",
+    "parameterized_identifiers": [
+      "accept",
+      "addition",
+      "annotation",
+      "auto_close",
+      "buf2",
+      "buf3",
+      "buffer",
+      "bytearray",
+      "bytes",
+      "closed"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:45:48Z"
+}

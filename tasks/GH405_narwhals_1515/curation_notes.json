@@ -1,0 +1,56 @@
+{
+  "repo": "narwhals-dev/narwhals",
+  "pr_number": 1515,
+  "pr_url": "https://github.com/narwhals-dev/narwhals/pull/1515",
+  "issue_number": 1493,
+  "base_sha": "1d9ac1c8adb745baa27df935fe2e41cf4e423b2a",
+  "head_sha": "502f4775877d94682bbd9eaa2da4493704b32b3b",
+  "additions": 17,
+  "deletions": 2,
+  "changed_files": [
+    "narwhals/_pandas_like/series.py",
+    "narwhals/dependencies.py",
+    "narwhals/series.py",
+    "tests/series_only/slice_test.py"
+  ],
+  "test_files": [
+    "tests/series_only/slice_test.py"
+  ],
+  "source_files": [
+    "narwhals/_pandas_like/series.py",
+    "narwhals/dependencies.py",
+    "narwhals/series.py"
+  ],
+  "parameterization": {
+    "repo": "narwhals-dev/narwhals",
+    "repo_short": "narwhals",
+    "parameterized_identifiers": [
+      "chunked_array",
+      "constructor_eager",
+      "dependencies",
+      "doing",
+      "dtype",
+      "dtypes",
+      "eager_only",
+      "from_native",
+      "generic",
+      "get_numpy"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:15:35Z"
+}

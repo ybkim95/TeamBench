@@ -1,0 +1,53 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 2989,
+  "pr_url": "https://github.com/unit8co/darts/pull/2989",
+  "issue_number": 2988,
+  "base_sha": "807d22c7c62247dae2628010f94d694796f04ec9",
+  "head_sha": "5bb4013c5ac684b9e9241b44c4cde8d2237e7695",
+  "additions": 72,
+  "deletions": 31,
+  "changed_files": [
+    "CHANGELOG.md",
+    "darts/dataprocessing/transformers/static_covariates_transformer.py",
+    "darts/tests/dataprocessing/transformers/test_static_covariates_transformer.py"
+  ],
+  "test_files": [
+    "darts/tests/dataprocessing/transformers/test_static_covariates_transformer.py"
+  ],
+  "source_files": [
+    "darts/dataprocessing/transformers/static_covariates_transformer.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "acting",
+      "acts",
+      "actual",
+      "actuals",
+      "always",
+      "apply",
+      "array",
+      "assert_frame_equal",
+      "assigned",
+      "axis"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:05:23Z"
+}

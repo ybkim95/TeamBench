@@ -1,0 +1,13 @@
+task_id: GH255_core_157960
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Add support for health_overview API endpoint to Tractive integration"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/157960"
+source_issue: "https://github.com/home-assistant/core/issues/151651"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH367_aiohttp_12241
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[PR #12240/345d2537 backport][3.13] Reject duplicate singleton headers in C extension parser"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/aio-libs/aiohttp/pull/12241"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

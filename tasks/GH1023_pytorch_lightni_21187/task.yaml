@@ -1,0 +1,13 @@
+task_id: GH1023_pytorch_lightni_21187
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix edgecase in batch size scaling tuner alg"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Lightning-AI/pytorch-lightning/pull/21187"
+source_issue: "https://github.com/Lightning-AI/pytorch-lightning/issues/18426"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

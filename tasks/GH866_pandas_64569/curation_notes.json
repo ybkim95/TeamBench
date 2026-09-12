@@ -1,0 +1,53 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64569,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64569",
+  "issue_number": 64180,
+  "base_sha": "5fca3b9f39e4836cdb7dc4eeb2b13094e6d66b2d",
+  "head_sha": "cc587a403d9764b47ee84232e57c33cfab49c6ef",
+  "additions": 81,
+  "deletions": 64,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/io/pytables.py",
+    "pandas/tests/io/pytables/test_put.py"
+  ],
+  "test_files": [
+    "pandas/tests/io/pytables/test_put.py"
+  ],
+  "source_files": [
+    "pandas/io/pytables.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "append",
+      "array",
+      "asi8",
+      "assert_frame_equal",
+      "assert_series_equal",
+      "astype",
+      "atom",
+      "attr",
+      "attribute",
+      "both"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:05Z"
+}

@@ -1,0 +1,54 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24706,
+  "pr_url": "https://github.com/scipy/scipy/pull/24706",
+  "issue_number": null,
+  "base_sha": "fe4d79ecda5026a365ec6734113d3e18baeafbdc",
+  "head_sha": "5fd5c6ba93cb31adafff06e49b815faf3ae45881",
+  "additions": 41,
+  "deletions": 5,
+  "changed_files": [
+    "scipy/sparse/csgraph/_validation.py",
+    "scipy/sparse/csgraph/tests/test_connected_components.py"
+  ],
+  "test_files": [
+    "scipy/sparse/csgraph/tests/test_connected_components.py"
+  ],
+  "source_files": [
+    "scipy/sparse/csgraph/_validation.py"
+  ],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "array",
+      "asarray",
+      "assert_allclose",
+      "assert_equal",
+      "astype",
+      "blocksize",
+      "bsr_array",
+      "connected_components",
+      "connection",
+      "copy"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:51:55Z"
+}

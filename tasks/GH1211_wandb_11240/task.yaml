@@ -1,0 +1,13 @@
+task_id: GH1211_wandb_11240
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "chore: fix test_public_api_uses_api_key"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/wandb/wandb/pull/11240"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

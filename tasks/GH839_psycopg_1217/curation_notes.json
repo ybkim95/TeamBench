@@ -1,0 +1,57 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1217,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1217",
+  "issue_number": null,
+  "base_sha": "05674cca2857e2303a2dcc23db88987dd20bc442",
+  "head_sha": "97388568ff1292caf09b90e9b5ab1334eb8a1d62",
+  "additions": 10,
+  "deletions": 2,
+  "changed_files": [
+    "docs/news.rst",
+    "psycopg/psycopg/_capabilities.py",
+    "psycopg/psycopg/connection.py",
+    "psycopg/psycopg/connection_async.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "psycopg/psycopg/_capabilities.py",
+    "psycopg/psycopg/connection.py",
+    "psycopg/psycopg/connection_async.py"
+  ],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "access",
+      "attribute",
+      "built",
+      "cancel_safe",
+      "capabilities",
+      "check",
+      "concurrent",
+      "connect",
+      "connection",
+      "copy"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:42:13Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH260_attrs_1496
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix `optional` validator to accept tuples of len > 1"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/python-attrs/attrs/pull/1496"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

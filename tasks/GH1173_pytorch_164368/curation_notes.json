@@ -1,0 +1,54 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 164368,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/164368",
+  "issue_number": null,
+  "base_sha": "e70d9f53226b703ea5e397358ac246eaf66537f0",
+  "head_sha": "04425d26d6cbbbea2195af6d0e71bb088308e4f0",
+  "additions": 89,
+  "deletions": 7,
+  "changed_files": [
+    "test/inductor/test_flex_attention.py",
+    "torch/nn/attention/flex_attention.py"
+  ],
+  "test_files": [
+    "test/inductor/test_flex_attention.py"
+  ],
+  "source_files": [
+    "torch/nn/attention/flex_attention.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "across",
+      "atol",
+      "attn_mask",
+      "avoid",
+      "base_mask",
+      "batch",
+      "block_mask",
+      "block_offset",
+      "broadcast",
+      "caches"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:11:31Z"
+}

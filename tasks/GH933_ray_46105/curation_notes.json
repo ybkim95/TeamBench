@@ -1,0 +1,54 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 46105,
+  "pr_url": "https://github.com/ray-project/ray/pull/46105",
+  "issue_number": 45912,
+  "base_sha": "29f1016c3a468512771af543097d90e03d65c61e",
+  "head_sha": "df5749963603f01d5330bafb5c24b2da68beef2b",
+  "additions": 48,
+  "deletions": 9,
+  "changed_files": [
+    "python/ray/serve/_private/logging_utils.py",
+    "python/ray/serve/schema.py",
+    "python/ray/serve/tests/test_logging.py"
+  ],
+  "test_files": [
+    "python/ray/serve/tests/test_logging.py"
+  ],
+  "source_files": [
+    "python/ray/serve/_private/logging_utils.py",
+    "python/ray/serve/schema.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "applied",
+      "asctime_formatter",
+      "bind",
+      "cannot",
+      "caused",
+      "component_log_fmt",
+      "copy",
+      "create",
+      "deepcopy",
+      "deployment"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:52:24Z"
+}

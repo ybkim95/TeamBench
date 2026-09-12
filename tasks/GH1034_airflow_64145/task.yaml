@@ -1,0 +1,13 @@
+task_id: GH1034_airflow_64145
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix FAB DB manager discovery in migration-only contexts"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/apache/airflow/pull/64145"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

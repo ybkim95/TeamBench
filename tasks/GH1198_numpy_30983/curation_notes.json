@@ -1,0 +1,56 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 30983,
+  "pr_url": "https://github.com/numpy/numpy/pull/30983",
+  "issue_number": null,
+  "base_sha": "cca8519c8f960b4cd1de2a933b79d76834fc626f",
+  "head_sha": "ec119cbdd5c4a67e1ace6c456be72693d5d9884d",
+  "additions": 64,
+  "deletions": 27,
+  "changed_files": [
+    "numpy/f2py/cfuncs.py",
+    "numpy/f2py/tests/src/regression/complex_struct_compat.f90",
+    "numpy/f2py/tests/src/regression/complex_struct_compat.pyf",
+    "numpy/f2py/tests/test_regression.py"
+  ],
+  "test_files": [
+    "numpy/f2py/tests/test_regression.py"
+  ],
+  "source_files": [
+    "numpy/f2py/cfuncs.py"
+  ],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "access",
+      "array",
+      "assert_array_equal",
+      "callprotoargument",
+      "callstatement",
+      "callstatements",
+      "char",
+      "character",
+      "cmplx",
+      "compatibility"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:18Z"
+}

@@ -1,0 +1,15 @@
+{
+ "task": "GH548_ruff_14098",
+ "patch": "tasks/GH548_ruff_14098/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "astral-sh/ruff",
+ "pr_number": 14098,
+ "base_sha": "6c56a7a868a0c48e613bc879d0ceee7a2d62c01a",
+ "head_sha": "d4f6a81367c1c3810c7c895ddac449421a335839",
+ "bytes": 5824,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

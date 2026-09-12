@@ -1,0 +1,13 @@
+task_id: GH1004_dask_11665
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix filtering on parquet file containing a struct column"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/dask/dask/pull/11665"
+source_issue: "https://github.com/dask/dask/issues/11652"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

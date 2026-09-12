@@ -1,0 +1,52 @@
+{
+  "repo": "Kludex/starlette",
+  "pr_number": 3179,
+  "pr_url": "https://github.com/Kludex/starlette/pull/3179",
+  "issue_number": null,
+  "base_sha": "a1fd9d822dc49857e9f39ea5b0970aeed6c8f669",
+  "head_sha": "57242eea68b55af3d6adecfa64b23d38b0c9dbd5",
+  "additions": 6,
+  "deletions": 6,
+  "changed_files": [
+    "starlette/formparsers.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "starlette/formparsers.py"
+  ],
+  "parameterization": {
+    "repo": "Kludex/starlette",
+    "repo_short": "starlette",
+    "parameterized_identifiers": [
+      "bytearray",
+      "callbacks",
+      "clear",
+      "decode",
+      "extend",
+      "field_name",
+      "field_value",
+      "items",
+      "latin",
+      "message_bytes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:32:57Z"
+}

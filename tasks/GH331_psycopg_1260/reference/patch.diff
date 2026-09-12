@@ -1,0 +1,35 @@
+diff --git a/docs/news.rst b/docs/news.rst
+index 72d1f4322..1eacac5ec 100644
+--- a/docs/news.rst
++++ b/docs/news.rst
+@@ -13,8 +13,10 @@ Current release
+ Psycopg 3.3.3 (unreleased)
+ ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+-Retain `Error.pgconn` when raising a single exception for multiple connection
+-attempt errors (:ticket:`#1246`).
++- Retain `Error.pgconn` when raising a single exception for multiple connection
++  attempt errors (:ticket:`#1246`).
++- Return a proper error when server sends ``ErrorResponse`` for a ``Sync`` after
++  a ``Parse`` (:ticket:`#1260`).
+ 
+ 
+ Psycopg 3.3.2
+diff --git a/psycopg/psycopg/_cursor_base.py b/psycopg/psycopg/_cursor_base.py
+index 18b2193f7..29cf1406e 100644
+--- a/psycopg/psycopg/_cursor_base.py
++++ b/psycopg/psycopg/_cursor_base.py
+@@ -289,9 +289,10 @@ def _maybe_prepare_gen(
+             if prep is Prepare.SHOULD:
+                 self._send_prepare(name, pgq)
+                 if not self._conn._pipeline:
+-                    (result,) = yield from execute(self._pgconn)
+-                    if result.status == FATAL_ERROR:
+-                        raise e.error_from_result(result, encoding=self._encoding)
++                    results = yield from execute(self._pgconn)
++                    for result in results:
++                        if result.status == FATAL_ERROR:
++                            raise e.error_from_result(result, encoding=self._encoding)
+             # Then execute it.
+             self._send_query_prepared(name, pgq, binary=binary)
+ 

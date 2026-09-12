@@ -1,0 +1,51 @@
+{
+  "repo": "tile-ai/TileOPs",
+  "pr_number": 296,
+  "pr_url": "https://github.com/tile-ai/TileOPs/pull/296",
+  "issue_number": 295,
+  "base_sha": "ef8c3ab2022aaf7e53c413be78617ba2d91e005d",
+  "head_sha": "3f539eb69ffb20089c34fce77001733dc52ae653",
+  "additions": 16,
+  "deletions": 3,
+  "changed_files": [
+    "tileops/kernels/deepseek_nsa/gqa_window_sliding.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "tileops/kernels/deepseek_nsa/gqa_window_sliding.py"
+  ],
+  "parameterization": {
+    "repo": "tile-ai/TileOPs",
+    "repo_short": "TileOPs",
+    "parameterized_identifiers": [
+      "block_m",
+      "block_n",
+      "blocks",
+      "bound",
+      "causal",
+      "ceildiv",
+      "copy",
+      "entirely",
+      "has_window",
+      "is_causal"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:19:30Z"
+}

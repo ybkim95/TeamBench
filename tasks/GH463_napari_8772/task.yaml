@@ -1,0 +1,13 @@
+task_id: GH463_napari_8772
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix: Fire world unit updates after removing layer"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/napari/napari/pull/8772"
+source_issue: "https://github.com/napari/napari/issues/8771"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

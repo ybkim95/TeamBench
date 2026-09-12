@@ -1,0 +1,12 @@
+diff --git a/numpy/ma/core.py b/numpy/ma/core.py
+--- a/numpy/ma/core.py
++++ b/numpy/ma/core.py
+@@ -2590,7 +2590,7 @@ def flatten_sequence(iterable):
+ 
+         """
+         for elm in iter(iterable):
+-            if hasattr(elm, '__iter__'):
++            if hasattr(elm, "__iter__") and not isinstance(elm, (str, bytes)):
+                 yield from flatten_sequence(elm)
+             else:
+                 yield elm

@@ -1,0 +1,13 @@
+task_id: GH247_core_142977
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix Automation/Script: sequence within a parallel ignoring enabled flag"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/142977"
+source_issue: "https://github.com/home-assistant/core/issues/125438"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

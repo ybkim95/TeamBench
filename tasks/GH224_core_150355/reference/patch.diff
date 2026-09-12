@@ -1,0 +1,274 @@
+diff --git a/homeassistant/components/deconz/entity.py b/homeassistant/components/deconz/entity.py
+index fef973d612c39..0d9247bedacdb 100644
+--- a/homeassistant/components/deconz/entity.py
++++ b/homeassistant/components/deconz/entity.py
+@@ -177,7 +177,7 @@ def device_info(self) -> DeviceInfo:
+         """Return a device description for device registry."""
+         return DeviceInfo(
+             identifiers={(DOMAIN, self._group_identifier)},
+-            manufacturer="Dresden Elektronik",
++            manufacturer="dresden elektronik",
+             model="deCONZ group",
+             name=self.group.name,
+             via_device=(DOMAIN, self.hub.api.config.bridge_id),
+diff --git a/homeassistant/components/deconz/hub/hub.py b/homeassistant/components/deconz/hub/hub.py
+index f82f1d857fdd9..3fb864e7019eb 100644
+--- a/homeassistant/components/deconz/hub/hub.py
++++ b/homeassistant/components/deconz/hub/hub.py
+@@ -14,7 +14,6 @@
+ from homeassistant.config_entries import SOURCE_HASSIO
+ from homeassistant.core import Event, HomeAssistant, callback
+ from homeassistant.helpers import device_registry as dr, entity_registry as er
+-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC
+ from homeassistant.helpers.dispatcher import async_dispatcher_send
+ 
+ from ..const import CONF_MASTER_GATEWAY, DOMAIN, HASSIO_CONFIGURATION_URL, PLATFORMS
+@@ -169,17 +168,8 @@ def async_connection_status_callback(self, available: bool) -> None:
+ 
+     async def async_update_device_registry(self) -> None:
+         """Update device registry."""
+-        if self.api.config.mac is None:
+-            return
+-
+         device_registry = dr.async_get(self.hass)
+ 
+-        # Host device
+-        device_registry.async_get_or_create(
+-            config_entry_id=self.config_entry.entry_id,
+-            connections={(CONNECTION_NETWORK_MAC, self.api.config.mac)},
+-        )
+-
+         # Gateway service
+         configuration_url = f"http://{self.config.host}:{self.config.port}"
+         if self.config_entry.source == SOURCE_HASSIO:
+@@ -189,11 +179,10 @@ async def async_update_device_registry(self) -> None:
+             configuration_url=configuration_url,
+             entry_type=dr.DeviceEntryType.SERVICE,
+             identifiers={(DOMAIN, self.api.config.bridge_id)},
+-            manufacturer="Dresden Elektronik",
++            manufacturer="dresden elektronik",
+             model=self.api.config.model_id,
+             name=self.api.config.name,
+             sw_version=self.api.config.software_version,
+-            via_device=(CONNECTION_NETWORK_MAC, self.api.config.mac),
+         )
+ 
+     @staticmethod
+diff --git a/homeassistant/components/deconz/light.py b/homeassistant/components/deconz/light.py
+index 1eb827f85d64b..9b74008d42635 100644
+--- a/homeassistant/components/deconz/light.py
++++ b/homeassistant/components/deconz/light.py
+@@ -396,7 +396,7 @@ def device_info(self) -> DeviceInfo:
+         """Return a device description for device registry."""
+         return DeviceInfo(
+             identifiers={(DOMAIN, self.unique_id)},
+-            manufacturer="Dresden Elektronik",
++            manufacturer="dresden elektronik",
+             model="deCONZ group",
+             name=self._device.name,
+             via_device=(DOMAIN, self.hub.api.config.bridge_id),
+diff --git a/homeassistant/components/deconz/services.py b/homeassistant/components/deconz/services.py
+index 1f032f3866a08..b3c900c07c4b1 100644
+--- a/homeassistant/components/deconz/services.py
++++ b/homeassistant/components/deconz/services.py
+@@ -11,7 +11,6 @@
+     device_registry as dr,
+     entity_registry as er,
+ )
+-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC
+ from homeassistant.util.read_only_dict import ReadOnlyDict
+ 
+ from .const import CONF_BRIDGE_ID, DOMAIN, LOGGER
+@@ -120,8 +119,8 @@ async def async_configure_service(hub: DeconzHub, data: ReadOnlyDict) -> None:
+         "field": "/lights/1/state",
+         "data": {"on": true}
+     }
+-    See Dresden Elektroniks REST API documentation for details:
+-    http://dresden-elektronik.github.io/deconz-rest-doc/rest/
++    See deCONZ REST-API documentation for details:
++    https://dresden-elektronik.github.io/deconz-rest-doc/
+     """
+     field = data.get(SERVICE_FIELD, "")
+     entity_id = data.get(SERVICE_ENTITY)
+@@ -162,14 +161,6 @@ async def async_remove_orphaned_entries_service(hub: DeconzHub) -> None:
+         )
+     ]
+ 
+-    # Don't remove the Gateway host entry
+-    if hub.api.config.mac:
+-        hub_host = device_registry.async_get_device(
+-            connections={(CONNECTION_NETWORK_MAC, hub.api.config.mac)},
+-        )
+-        if hub_host and hub_host.id in devices_to_be_removed:
+-            devices_to_be_removed.remove(hub_host.id)
+-
+     # Don't remove the Gateway service entry
+     hub_service = device_registry.async_get_device(
+         identifiers={(DOMAIN, hub.api.config.bridge_id)}
+diff --git a/tests/components/deconz/snapshots/test_hub.ambr b/tests/components/deconz/snapshots/test_hub.ambr
+index 59e77c4fb1260..884ce49edb692 100644
+--- a/tests/components/deconz/snapshots/test_hub.ambr
++++ b/tests/components/deconz/snapshots/test_hub.ambr
+@@ -19,7 +19,7 @@
+     }),
+     'labels': set({
+     }),
+-    'manufacturer': 'Dresden Elektronik',
++    'manufacturer': 'dresden elektronik',
+     'model': 'deCONZ',
+     'model_id': None,
+     'name': 'deCONZ mock gateway',
+diff --git a/tests/components/deconz/test_deconz_event.py b/tests/components/deconz/test_deconz_event.py
+index 438fe8c17f561..49f9517fe058c 100644
+--- a/tests/components/deconz/test_deconz_event.py
++++ b/tests/components/deconz/test_deconz_event.py
+@@ -76,14 +76,14 @@ async def test_deconz_events(
+ ) -> None:
+     """Test successful creation of deconz events."""
+     assert len(hass.states.async_all()) == 3
+-    # 5 switches + 2 additional devices for deconz service and host
++    # 5 switches + 1 additional device for deconz gateway
+     assert (
+         len(
+             dr.async_entries_for_config_entry(
+                 device_registry, config_entry_setup.entry_id
+             )
+         )
+-        == 7
++        == 6
+     )
+     assert hass.states.get("sensor.switch_2_battery").state == "100"
+     assert hass.states.get("sensor.switch_3_battery").state == "100"
+@@ -233,14 +233,14 @@ async def test_deconz_alarm_events(
+ ) -> None:
+     """Test successful creation of deconz alarm events."""
+     assert len(hass.states.async_all()) == 4
+-    # 1 alarm control device + 2 additional devices for deconz service and host
++    # 1 alarm control device + 1 additional device for deconz gateway
+     assert (
+         len(
+             dr.async_entries_for_config_entry(
+                 device_registry, config_entry_setup.entry_id
+             )
+         )
+-        == 3
++        == 2
+     )
+ 
+     captured_events = async_capture_events(hass, CONF_DECONZ_ALARM_EVENT)
+@@ -362,7 +362,7 @@ async def test_deconz_presence_events(
+                 device_registry, config_entry_setup.entry_id
+             )
+         )
+-        == 3
++        == 2
+     )
+ 
+     device = device_registry.async_get_device(
+@@ -439,7 +439,7 @@ async def test_deconz_relative_rotary_events(
+                 device_registry, config_entry_setup.entry_id
+             )
+         )
+-        == 3
++        == 2
+     )
+ 
+     device = device_registry.async_get_device(
+@@ -508,5 +508,5 @@ async def test_deconz_events_bad_unique_id(
+                 device_registry, config_entry_setup.entry_id
+             )
+         )
+-        == 2
++        == 1
+     )
+diff --git a/tests/components/deconz/test_services.py b/tests/components/deconz/test_services.py
+index 558eb628705b5..32a6510db08cf 100644
+--- a/tests/components/deconz/test_services.py
++++ b/tests/components/deconz/test_services.py
+@@ -56,7 +56,7 @@ async def test_configure_service_with_field(
+         {
+             "name": "Test",
+             "state": {"reachable": True},
+-            "type": "Light",
++            "type": "Dimmable light",
+             "uniqueid": "00:00:00:00:00:00:00:01-00",
+         }
+     ],
+@@ -85,7 +85,7 @@ async def test_configure_service_with_entity(
+         {
+             "name": "Test",
+             "state": {"reachable": True},
+-            "type": "Light",
++            "type": "Dimmable light",
+             "uniqueid": "00:00:00:00:00:00:00:01-00",
+         }
+     ],
+@@ -204,7 +204,7 @@ async def test_service_refresh_devices(
+             "1": {
+                 "name": "Light 1 name",
+                 "state": {"reachable": True},
+-                "type": "Light",
++                "type": "Dimmable light",
+                 "uniqueid": "00:00:00:00:00:00:00:01-00",
+             }
+         },
+@@ -270,7 +270,7 @@ async def test_service_refresh_devices_trigger_no_state_update(
+             "1": {
+                 "name": "Light 1 name",
+                 "state": {"reachable": True},
+-                "type": "Light",
++                "type": "Dimmable light",
+                 "uniqueid": "00:00:00:00:00:00:00:01-00",
+             }
+         },
+@@ -301,7 +301,7 @@ async def test_service_refresh_devices_trigger_no_state_update(
+         {
+             "name": "Light 0 name",
+             "state": {"reachable": True},
+-            "type": "Light",
++            "type": "Dimmable light",
+             "uniqueid": "00:00:00:00:00:00:00:01-00",
+         }
+     ],
+@@ -327,7 +327,12 @@ async def test_remove_orphaned_entries_service(
+     """Test service works and also don't remove more than expected."""
+     device = device_registry.async_get_or_create(
+         config_entry_id=config_entry_setup.entry_id,
+-        connections={(dr.CONNECTION_NETWORK_MAC, "123")},
++        identifiers={(DOMAIN, BRIDGE_ID)},
++    )
++
++    device_registry.async_get_or_create(
++        config_entry_id=config_entry_setup.entry_id,
++        identifiers={(DOMAIN, "orphaned")},
+     )
+ 
+     assert (
+@@ -338,7 +343,7 @@ async def test_remove_orphaned_entries_service(
+                 if config_entry_setup.entry_id in entry.config_entries
+             ]
+         )
+-        == 5  # Host, gateway, light, switch and orphan
++        == 4  # Gateway, light, switch and orphan
+     )
+ 
+     entity_registry.async_get_or_create(
+@@ -374,7 +379,7 @@ async def test_remove_orphaned_entries_service(
+                 if config_entry_setup.entry_id in entry.config_entries
+             ]
+         )
+-        == 4  # Host, gateway, light and switch
++        == 3  # Gateway, light and switch
+     )
+ 
+     assert (
+diff --git a/tests/components/unifi/test_services.py b/tests/components/unifi/test_services.py
+index 8f06359fb6bbe..95a0fce6c5986 100644
+--- a/tests/components/unifi/test_services.py
++++ b/tests/components/unifi/test_services.py
+@@ -1,4 +1,4 @@
+-"""deCONZ service tests."""
++"""UniFi service tests."""
+ 
+ from typing import Any
+ from unittest.mock import PropertyMock, patch

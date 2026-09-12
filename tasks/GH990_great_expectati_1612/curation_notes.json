@@ -1,0 +1,58 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 1612,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/1612",
+  "issue_number": null,
+  "base_sha": "e9e561cd57c3ef2428aa0d73b81c89bf700df5f6",
+  "head_sha": "9113fb4f28717c56a45433d02a698b8f16f4e3b2",
+  "additions": 117,
+  "deletions": 4,
+  "changed_files": [
+    "great_expectations/data_context/store/database_store_backend.py",
+    "great_expectations/data_context/store/expectations_store.py",
+    "tests/data_context/store/test_database_store_backend.py",
+    "tests/data_context/store/test_expectations_store.py"
+  ],
+  "test_files": [
+    "tests/data_context/store/test_database_store_backend.py",
+    "tests/data_context/store/test_expectations_store.py"
+  ],
+  "source_files": [
+    "great_expectations/data_context/store/database_store_backend.py",
+    "great_expectations/data_context/store/expectations_store.py"
+  ],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "allow_update",
+      "already",
+      "caplog",
+      "changes",
+      "check",
+      "class_name",
+      "cols",
+      "column",
+      "columns",
+      "configuration"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:57:11Z"
+}

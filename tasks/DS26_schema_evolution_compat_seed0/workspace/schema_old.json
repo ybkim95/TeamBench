@@ -1,0 +1,24 @@
+{
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "int32"
+    },
+    {
+      "name": "ts",
+      "type": "int32"
+    },
+    {
+      "name": "user",
+      "type": "string"
+    },
+    {
+      "name": "action",
+      "type": "string"
+    },
+    {
+      "name": "value",
+      "type": "float32"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 19085,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/19085",
+  "issue_number": 8245,
+  "base_sha": "e5736afb316038c43301d2c53ce39f9a89b64495",
+  "head_sha": "20ad4d09fc58763bebb179b1f0e2cc167e6d4e4f",
+  "additions": 77,
+  "deletions": 27,
+  "changed_files": [
+    "doc/whats_new/v1.1.rst",
+    "sklearn/metrics/_ranking.py",
+    "sklearn/metrics/tests/test_ranking.py"
+  ],
+  "test_files": [
+    "sklearn/metrics/tests/test_ranking.py"
+  ],
+  "source_files": [
+    "sklearn/metrics/_ranking.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "array",
+      "assert_allclose",
+      "assert_almost_equal",
+      "attained",
+      "auc_prc",
+      "average",
+      "classification",
+      "could",
+      "decreasing",
+      "divide"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:49Z"
+}

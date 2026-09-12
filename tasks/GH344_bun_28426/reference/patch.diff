@@ -1,0 +1,49 @@
+diff --git a/src/bun.js/api/bun/socket/Handlers.zig b/src/bun.js/api/bun/socket/Handlers.zig
+index 29d5bde504fd..2ddbc2b96928 100644
+--- a/src/bun.js/api/bun/socket/Handlers.zig
++++ b/src/bun.js/api/bun/socket/Handlers.zig
+@@ -300,7 +300,7 @@ pub const SocketConfig = struct {
+         if (result.fd != null) {
+             // If a user passes a file descriptor then prefer it over hostname or unix
+         } else if (generated.unix_.get()) |unix| {
+-            bun.assertf(unix.length() > 0, "truthy bindgen string shouldn't be empty", .{});
++            if (unix.length() == 0) return global.throwInvalidArguments("Expected a non-empty \"unix\" path", .{});
+             result.hostname_or_unix = unix.toUTF8(bun.default_allocator);
+             const slice = result.hostname_or_unix.slice();
+             if (strings.hasPrefixComptime(slice, "file://") or
+@@ -312,7 +312,7 @@ pub const SocketConfig = struct {
+                 result.hostname_or_unix = .init(bun.default_allocator, without_prefix);
+             }
+         } else if (generated.hostname.get()) |hostname| {
+-            bun.assertf(hostname.length() > 0, "truthy bindgen string shouldn't be empty", .{});
++            if (hostname.length() == 0) return global.throwInvalidArguments("Expected a non-empty \"hostname\"", .{});
+             result.hostname_or_unix = hostname.toUTF8(bun.default_allocator);
+             const slice = result.hostname_or_unix.slice();
+             result.port = generated.port orelse bun.URL.parse(slice).getPort() orelse {
+diff --git a/test/js/bun/net/socket.test.ts b/test/js/bun/net/socket.test.ts
+index 8568ed984009..26172c586dcf 100644
+--- a/test/js/bun/net/socket.test.ts
++++ b/test/js/bun/net/socket.test.ts
+@@ -782,3 +782,22 @@ it("should not leak memory", async () => {
+ it("should not leak memory when connect() fails again", async () => {
+   await expectMaxObjectTypeCount(expect, "TCPSocket", 5, 50);
+ });
++
++it("should throw on empty hostname from truthy non-string value", () => {
++  const socket = { data() {}, open() {}, close() {} };
++  // A truthy value whose toString() returns "" should throw, not crash
++  for (const hostname of [[], new String("")]) {
++    expect(() => Bun.listen({ hostname: hostname as any, port: 0, socket })).toThrow('Expected a non-empty "hostname"');
++    expect(() => Bun.connect({ hostname: hostname as any, port: 0, socket })).toThrow(
++      'Expected a non-empty "hostname"',
++    );
++  }
++});
++
++it("should throw on empty unix path from truthy non-string value", () => {
++  const socket = { data() {}, open() {}, close() {} };
++  // unix uses a strict string type in bindgen, so non-string values are rejected before
++  // reaching the empty-string check — the error message differs from hostname
++  expect(() => Bun.listen({ unix: [] as any, socket })).toThrow("SocketOptions.unix must be a string");
++  expect(() => Bun.connect({ unix: [] as any, socket })).toThrow("SocketOptions.unix must be a string");
++});

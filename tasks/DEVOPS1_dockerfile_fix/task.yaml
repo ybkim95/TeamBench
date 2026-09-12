@@ -1,0 +1,14 @@
+task_id: DEVOPS1_dockerfile_fix
+domain: ops
+category: Operations
+difficulty: medium
+languages: [dockerfile, python, bash]
+description: "Fix a multi-stage Dockerfile with 5 bugs: wrong base image, wrong COPY stage, wrong EXPOSE port, pip install in wrong stage, and WORKDIR mismatch"
+tni_pattern: B
+parameterized: true
+seeds: [0, 1, 2]
+network: false
+time_limit_sec: 900
+tags: [docker, dockerfile, multi-stage, devops, containerisation]
+workspace_file_count: 5
+lines_changed_expected: 8

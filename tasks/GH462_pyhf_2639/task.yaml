@@ -1,0 +1,13 @@
+task_id: GH462_pyhf_2639
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: Use Click v8.x native shell completion"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scikit-hep/pyhf/pull/2639"
+source_issue: "https://github.com/scikit-hep/pyhf/issues/2622"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

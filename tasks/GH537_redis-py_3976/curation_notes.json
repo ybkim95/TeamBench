@@ -1,0 +1,64 @@
+{
+  "repo": "redis/redis-py",
+  "pr_number": 3976,
+  "pr_url": "https://github.com/redis/redis-py/pull/3976",
+  "issue_number": null,
+  "base_sha": "ecec46deb61831dd674cad9d8d6290d24e685ea8",
+  "head_sha": "80cbc0b3f75a617e85ddb6cf5972b7bab79418d3",
+  "additions": 1,
+  "deletions": 86,
+  "changed_files": [
+    "redis/asyncio/client.py",
+    "redis/asyncio/cluster.py",
+    "redis/asyncio/observability/recorder.py",
+    "redis/commands/core.py",
+    "tests/test_asyncio/test_cluster.py",
+    "tests/test_asyncio/test_observability/test_recorder.py",
+    "tests/test_asyncio/test_pipeline.py"
+  ],
+  "test_files": [
+    "tests/test_asyncio/test_cluster.py",
+    "tests/test_asyncio/test_observability/test_recorder.py",
+    "tests/test_asyncio/test_pipeline.py"
+  ],
+  "source_files": [
+    "redis/asyncio/client.py",
+    "redis/asyncio/cluster.py",
+    "redis/asyncio/observability/recorder.py",
+    "redis/commands/core.py"
+  ],
+  "parameterization": {
+    "repo": "redis/redis-py",
+    "repo_short": "redis-py",
+    "parameterized_identifiers": [
+      "actual_response",
+      "actual_retry_attempts",
+      "address",
+      "anything",
+      "assert_called_once",
+      "async_recorder",
+      "attempts",
+      "attribute",
+      "attributes",
+      "attrs"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:24:36Z"
+}

@@ -1,0 +1,198 @@
+diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+index d53253810c5..f27e82577eb 100644
+--- a/.pre-commit-config.yaml
++++ b/.pre-commit-config.yaml
+@@ -1,7 +1,7 @@
+ minimum_pre_commit_version: "4.4.0"
+ repos:
+ - repo: https://github.com/astral-sh/ruff-pre-commit
+-  rev: "v0.14.14"
++  rev: "v0.15.7"
+   hooks:
+     - id: ruff-check
+       args: ["--fix"]
+@@ -13,7 +13,7 @@ repos:
+     -   id: end-of-file-fixer
+     -   id: check-yaml
+ - repo: https://github.com/woodruffw/zizmor-pre-commit
+-  rev: v1.22.0
++  rev: v1.23.1
+   hooks:
+     - id: zizmor
+       args: ["--fix", "--no-progress"]
+@@ -23,7 +23,7 @@ repos:
+     -   id: blacken-docs
+         additional_dependencies: [black==24.1.1]
+ -   repo: https://github.com/codespell-project/codespell
+-    rev: v2.4.1
++    rev: v2.4.2
+     hooks:
+     -   id: codespell
+         args: ["--toml=pyproject.toml"]
+@@ -67,7 +67,7 @@ repos:
+           - exceptiongroup>=1.0.0rc8
+         # Manual because passing pyright is a work in progress.
+         stages: [manual]
+-- repo: https://github.com/tox-dev/pyproject-fmt
++- repo: https://github.com/pytest-dev/pyproject-fmt
+   rev: "v2.12.1"
+   hooks:
+     - id: pyproject-fmt
+diff --git a/pyproject.toml b/pyproject.toml
+index 7ae76a3c8dd..e51cafbd747 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -161,6 +161,7 @@ lint.ignore = [
+     "PLW2901", # for loop variable overwritten by assignment target
+     # ruff ignore
+     "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`
++    "RUF061", # Use context-manager form of `pytest.raises()`
+ ]
+ lint.per-file-ignores."src/_pytest/_py/**/*.py" = [
+     "B",
+@@ -169,6 +170,8 @@ lint.per-file-ignores."src/_pytest/_py/**/*.py" = [
+ lint.per-file-ignores."src/_pytest/_version.py" = [
+     "I001",
+ ]
++# 'Unnecessary membership test on empty collection', always voluntary in tests
++lint.per-file-ignores."testing/**/*.py" = [ "RUF060" ]
+ # can't be disabled on a line-by-line basis in file
+ lint.per-file-ignores."testing/code/test_source.py" = [
+     "F841",
+@@ -217,31 +220,30 @@ disable = [
+     "comparison-with-callable",
+     "comparison-with-itself",                 # PLR0124 from ruff
+     "condition-evals-to-constant",
+-    "consider-alternative-union-syntax",
+     "confusing-consecutive-elif",
++    "consider-alternative-union-syntax",
++    "consider-ternary-expression",
+     "consider-using-assignment-expr",
+     "consider-using-dict-items",
+-    "consider-using-from-import",
++    "consider-using-from-import",             # not activated by default, PLR0402 disabled in ruff
+     "consider-using-f-string",
+     "consider-using-in",
+     "consider-using-namedtuple-or-dataclass",
+     "consider-using-ternary",
+     "consider-using-tuple",
+     "consider-using-with",
+-    "consider-using-from-import",             # not activated by default, PLR0402 disabled in ruff
+-    "consider-ternary-expression",
+     "cyclic-import",
+-    "differing-param-doc",
+-    "docstring-first-line-empty",
+     "deprecated-argument",
+     "deprecated-attribute",
+     "deprecated-class",
++    "differing-param-doc",
+     "disallowed-name",                        # foo / bar are used often in tests
++    "docstring-first-line-empty",
+     "duplicate-code",
+     "else-if-used",                           # not activated by default, PLR5501 disabled in ruff
+     "empty-comment",                          # not activated by default, PLR2044 disabled in ruff
+-    "eval-used",
+     "eq-without-hash",                        # PLW1641 disabled in ruff
++    "eval-used",
+     "exec-used",
+     "expression-not-assigned",
+     "fixme",
+@@ -258,13 +260,13 @@ disable = [
+     "line-too-long",
+     "magic-value-comparison",                 # not activated by default, PLR2004 disabled in ruff
+     "method-hidden",
++    "misplaced-bare-raise",                   # PLE0704 from ruff
++    "misplaced-comparison-constant",
+     "missing-docstring",
+     "missing-param-doc",
+     "missing-raises-doc",
+     "missing-timeout",
+     "missing-type-doc",
+-    "misplaced-bare-raise",                   # PLE0704 from ruff
+-    "misplaced-comparison-constant",
+     "multiple-statements",                    # multiple-statements-on-one-line-colon (E701) from ruff
+     "no-else-break",
+     "no-else-continue",
+@@ -329,10 +331,10 @@ disable = [
+     "use-dict-literal",
+     "use-implicit-booleaness-not-comparison",
+     "use-implicit-booleaness-not-len",
+-    "use-set-for-membership",
+     "useless-else-on-loop",                   # PLC0414 disabled in ruff
+     "useless-import-alias",
+     "useless-return",
++    "use-set-for-membership",
+     "using-constant-test",
+     "while-used",
+     "wrong-import-order",                     # handled by isort / ruff
+diff --git a/src/_pytest/config/findpaths.py b/src/_pytest/config/findpaths.py
+index 3c628a09c2d..e74546c6e28 100644
+--- a/src/_pytest/config/findpaths.py
++++ b/src/_pytest/config/findpaths.py
+@@ -233,7 +233,7 @@ def is_option(x: str) -> bool:
+         return x.startswith("-")
+ 
+     def get_file_part_from_node_id(x: str) -> str:
+-        return x.split("::")[0]
++        return x.split("::", maxsplit=1)[0]
+ 
+     def get_dir_from_path(path: Path) -> Path:
+         if path.is_dir():
+diff --git a/src/_pytest/terminal.py b/src/_pytest/terminal.py
+index bb6f35633b9..e9049bb82ec 100644
+--- a/src/_pytest/terminal.py
++++ b/src/_pytest/terminal.py
+@@ -476,7 +476,7 @@ def hasopt(self, char: str) -> bool:
+         return char in self.reportchars
+ 
+     def write_fspath_result(self, nodeid: str, res: str, **markup: bool) -> None:
+-        fspath = self.config.rootpath / nodeid.split("::")[0]
++        fspath = self.config.rootpath / nodeid.split("::", maxsplit=1)[0]
+         if self.currentfspath is None or fspath != self.currentfspath:
+             if self.currentfspath is not None and self._show_progress_info:
+                 self._write_progress_information_filling_space()
+@@ -1034,7 +1034,9 @@ def mkrel(nodeid: str) -> str:
+         # fspath comes from testid which has a "/"-normalized path.
+         if fspath:
+             res = mkrel(nodeid)
+-            if self.verbosity >= 2 and nodeid.split("::")[0] != nodes.norm_sep(fspath):
++            if self.verbosity >= 2 and (
++                nodeid.split("::", maxsplit=1)[0] != nodes.norm_sep(fspath)
++            ):
+                 res += " <- " + bestrelpath(self.startpath, Path(fspath))
+         else:
+             res = "[location]"
+diff --git a/src/_pytest/timing.py b/src/_pytest/timing.py
+index 51c3db23f6f..639bd99bd3e 100644
+--- a/src/_pytest/timing.py
++++ b/src/_pytest/timing.py
+@@ -32,12 +32,14 @@ class Instant:
+ 
+     # Creation time of this instant, using time.time(), to measure actual time.
+     # Note: using a `lambda` to correctly get the mocked time via `MockTiming`.
+-    time: float = dataclasses.field(default_factory=lambda: time(), init=False)
++    # pylint: disable-next=lambda-assignment
++    time: float = dataclasses.field(default_factory=lambda: time(), init=False)  # noqa: PLW0108
+ 
+     # Performance counter tick of the instant, used to measure precise elapsed time.
+     # Note: using a `lambda` to correctly get the mocked time via `MockTiming`.
+     perf_count: float = dataclasses.field(
+-        default_factory=lambda: perf_counter(), init=False
++        default_factory=lambda: perf_counter(),  # noqa: PLW0108
++        init=False,
+     )
+ 
+     def elapsed(self) -> Duration:
+diff --git a/testing/_py/test_local.py b/testing/_py/test_local.py
+index 6b7d756a45c..c32e71f6542 100644
+--- a/testing/_py/test_local.py
++++ b/testing/_py/test_local.py
+@@ -1388,7 +1388,7 @@ def test_stat_helpers(self, tmpdir, monkeypatch):
+ 
+     def test_stat_non_raising(self, tmpdir):
+         path1 = tmpdir.join("file")
+-        pytest.raises(error.ENOENT, lambda: path1.stat())
++        pytest.raises(error.ENOENT, path1.stat)
+         res = path1.stat(raising=False)
+         assert res is None
+ 

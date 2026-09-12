@@ -28,7 +28,8 @@ check() {
 }
 
 # Install dependencies if needed
-pip install pytest cryptography 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require pytest cryptography || true
 
 # -------------------------------------------------------------------
 # C1: pytest tests/ passes overall
@@ -252,3 +253,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

@@ -1,0 +1,12 @@
+diff --git a/plotly/basedatatypes.py b/plotly/basedatatypes.py
+--- a/plotly/basedatatypes.py
++++ b/plotly/basedatatypes.py
+@@ -3908,7 +3908,7 @@ def write_image(self, *args, **kwargs):
+                 warnings.warn(
+                     ENGINE_PARAM_DEPRECATION_MSG, DeprecationWarning, stacklevel=2
+                 )
+-            return pio.write_image(self, *args, **kwargs)
++        return pio.write_image(self, *args, **kwargs)
+ 
+     # Static helpers
+     # --------------

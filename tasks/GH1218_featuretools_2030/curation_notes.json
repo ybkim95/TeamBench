@@ -1,0 +1,67 @@
+{
+  "repo": "alteryx/featuretools",
+  "pr_number": 2030,
+  "pr_url": "https://github.com/alteryx/featuretools/pull/2030",
+  "issue_number": null,
+  "base_sha": "6e819333b7631487f3e30684162abe0a4faf6dc3",
+  "head_sha": "e59dfac44983c2cbb9abb15b57d554e17c08f58e",
+  "additions": 23,
+  "deletions": 14,
+  "changed_files": [
+    ".github/workflows/unit_tests_with_latest_deps.yml",
+    "docs/source/release_notes.rst",
+    "featuretools/entityset/deserialize.py",
+    "featuretools/entityset/serialize.py",
+    "featuretools/tests/entityset_tests/test_serialization.py",
+    "featuretools/tests/primitive_tests/test_feature_serialization.py",
+    "featuretools/tests/primitive_tests/test_transform_features.py",
+    "featuretools/tests/requirement_files/latest_requirements.txt",
+    "featuretools/tests/requirement_files/minimum_core_requirements.txt",
+    "featuretools/tests/requirement_files/minimum_spark_requirements.txt",
+    "featuretools/tests/requirement_files/minimum_test_requirements.txt",
+    "setup.cfg"
+  ],
+  "test_files": [
+    "featuretools/tests/entityset_tests/test_serialization.py",
+    "featuretools/tests/primitive_tests/test_feature_serialization.py",
+    "featuretools/tests/primitive_tests/test_transform_features.py"
+  ],
+  "source_files": [
+    "featuretools/entityset/deserialize.py",
+    "featuretools/entityset/serialize.py"
+  ],
+  "parameterization": {
+    "repo": "alteryx/featuretools",
+    "repo_short": "featuretools",
+    "parameterized_identifiers": [
+      "action",
+      "astype",
+      "autonormalize",
+      "avoid",
+      "bucket",
+      "calls",
+      "check_primitive",
+      "checking",
+      "click",
+      "codecov"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:15:01Z"
+}

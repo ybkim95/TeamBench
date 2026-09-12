@@ -1,0 +1,93 @@
+diff --git a/changelog/3743.bugfix.rst b/changelog/3743.bugfix.rst
+new file mode 100644
+index 0000000000..4a8e1390e9
+--- /dev/null
++++ b/changelog/3743.bugfix.rst
+@@ -0,0 +1 @@
++Started treating ``Retry-After`` times greater than 6 hours as 6 hours by default.
+\ No newline at end of file
+diff --git a/src/urllib3/util/retry.py b/src/urllib3/util/retry.py
+index 0456cceba4..b21b4b64eb 100644
+--- a/src/urllib3/util/retry.py
++++ b/src/urllib3/util/retry.py
+@@ -178,6 +178,11 @@ class Retry:
+         Sequence of headers to remove from the request when a response
+         indicating a redirect is returned before firing off the redirected
+         request.
++
++    :param int retry_after_max: Number of seconds to allow as the maximum for
++        Retry-After headers. Defaults to :attr:`Retry.DEFAULT_RETRY_AFTER_MAX`.
++        Any Retry-After headers larger than this value will be limited to this
++        value.
+     """
+ 
+     #: Default methods to be used for ``allowed_methods``
+@@ -196,6 +201,10 @@ class Retry:
+     #: Default maximum backoff time.
+     DEFAULT_BACKOFF_MAX = 120
+ 
++    # This is undocumented in the RFC. Setting to 6 hours matches other popular libraries.
++    #: Default maximum allowed value for Retry-After headers in seconds
++    DEFAULT_RETRY_AFTER_MAX: typing.Final[int] = 21600
++
+     # Backward compatibility; assigned outside of the class.
+     DEFAULT: typing.ClassVar[Retry]
+ 
+@@ -219,6 +228,7 @@ def __init__(
+             str
+         ] = DEFAULT_REMOVE_HEADERS_ON_REDIRECT,
+         backoff_jitter: float = 0.0,
++        retry_after_max: int = DEFAULT_RETRY_AFTER_MAX,
+     ) -> None:
+         self.total = total
+         self.connect = connect
+@@ -235,6 +245,7 @@ def __init__(
+         self.allowed_methods = allowed_methods
+         self.backoff_factor = backoff_factor
+         self.backoff_max = backoff_max
++        self.retry_after_max = retry_after_max
+         self.raise_on_redirect = raise_on_redirect
+         self.raise_on_status = raise_on_status
+         self.history = history or ()
+@@ -256,6 +267,7 @@ def new(self, **kw: typing.Any) -> Self:
+             status_forcelist=self.status_forcelist,
+             backoff_factor=self.backoff_factor,
+             backoff_max=self.backoff_max,
++            retry_after_max=self.retry_after_max,
+             raise_on_redirect=self.raise_on_redirect,
+             raise_on_status=self.raise_on_status,
+             history=self.history,
+@@ -320,6 +332,10 @@ def parse_retry_after(self, retry_after: str) -> float:
+ 
+         seconds = max(seconds, 0)
+ 
++        # Check the seconds do not exceed the specified maximum
++        if seconds > self.retry_after_max:
++            seconds = self.retry_after_max
++
+         return seconds
+ 
+     def get_retry_after(self, response: BaseHTTPResponse) -> float | None:
+diff --git a/test/test_retry.py b/test/test_retry.py
+index 85206b90ca..c46bcc0bb0 100644
+--- a/test/test_retry.py
++++ b/test/test_retry.py
+@@ -181,6 +181,18 @@ def test_configurable_backoff_max(self) -> None:
+         retry = retry.increment(method="GET")
+         assert retry.get_backoff_time() == max_backoff
+ 
++    def test_configurable_retry_after_max(self) -> None:
++        """Configurable retry after is computed correctly"""
++        max_retry_after = Retry.DEFAULT_RETRY_AFTER_MAX
++
++        retry = Retry()
++        assert retry.parse_retry_after(str(max_retry_after)) == max_retry_after
++        assert retry.parse_retry_after(str(max_retry_after + 1)) == max_retry_after
++
++        retry = Retry(retry_after_max=1)
++        assert retry.parse_retry_after(str(1)) == 1
++        assert retry.parse_retry_after(str(2)) == 1
++
+     def test_backoff_jitter(self) -> None:
+         """Backoff with jitter is computed correctly"""
+         max_backoff = 1

@@ -1,0 +1,15 @@
+{
+ "task": "GH258_fastapi_15088",
+ "patch": "tasks/GH258_fastapi_15088/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "fastapi/fastapi",
+ "pr_number": 15088,
+ "base_sha": "11614be9021aa4ac078d4d0693a8b5250a1010d8",
+ "head_sha": "3be85e8d1fd2d9b0866263bb28e301858044bac1",
+ "bytes": 2938,
+ "files_changed": 1,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

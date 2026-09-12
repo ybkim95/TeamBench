@@ -1,0 +1,13 @@
+task_id: GH218_core_160825
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Add back support for coolmaster speeds that don't have a direct HA equivalent"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/160825"
+source_issue: "https://github.com/home-assistant/core/issues/160818"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

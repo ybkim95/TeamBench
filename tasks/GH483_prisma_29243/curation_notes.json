@@ -1,0 +1,55 @@
+{
+  "repo": "prisma/prisma",
+  "pr_number": 29243,
+  "pr_url": "https://github.com/prisma/prisma/pull/29243",
+  "issue_number": 29215,
+  "base_sha": "fd2de831a8b155f4a45fb343bd7134ae26a7c1af",
+  "head_sha": "cc7a63bd0c4c1c12851865e350efbd695dcec0b1",
+  "additions": 121,
+  "deletions": 14,
+  "changed_files": [
+    ".github/workflows/build-engine-branch.yml",
+    "packages/client-engine-runtime/src/interpreter/render-query.test.ts",
+    "packages/client-engine-runtime/src/interpreter/render-query.ts",
+    "packages/client-engine-runtime/src/query-plan.ts",
+    "packages/client/tests/functional/issues/29215-case-insensitive-in/_matrix.ts",
+    "packages/client/tests/functional/issues/29215-case-insensitive-in/prisma/_schema.ts",
+    "packages/client/tests/functional/issues/29215-case-insensitive-in/tests.ts"
+  ],
+  "test_files": [],
+  "source_files": [],
+  "parameterization": {
+    "repo": "prisma/prisma",
+    "repo_short": "prisma",
+    "parameterized_identifiers": [
+      "action",
+      "arity",
+      "array",
+      "attachment",
+      "banned",
+      "binaryen",
+      "case",
+      "chunk",
+      "chunkable",
+      "chunking"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:21:27Z"
+}

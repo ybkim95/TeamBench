@@ -1,0 +1,13 @@
+task_id: GH1000_numpy_19869
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: ensure np.median does not drop subclass for NaN result."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/numpy/numpy/pull/19869"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,57 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64683,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64683",
+  "issue_number": null,
+  "base_sha": "c44750bf8cfda0f95b50376c6402ee075b114ed5",
+  "head_sha": "4879497c0a09445ceff6ed8c1dd5e00fab05fbb9",
+  "additions": 43,
+  "deletions": 7,
+  "changed_files": [
+    "doc/source/whatsnew/v3.0.2.rst",
+    "pandas/core/array_algos/masked_reductions.py",
+    "pandas/core/arrays/string_.py",
+    "pandas/tests/arrays/string_/test_string.py"
+  ],
+  "test_files": [
+    "pandas/tests/arrays/string_/test_string.py"
+  ],
+  "source_files": [
+    "pandas/core/array_algos/masked_reductions.py",
+    "pandas/core/arrays/string_.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "argument",
+      "arrays",
+      "attr",
+      "axis",
+      "backed",
+      "check_below_min_count",
+      "column",
+      "columns",
+      "copy",
+      "core"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:54:12Z"
+}

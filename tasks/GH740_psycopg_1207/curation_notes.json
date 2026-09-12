@@ -1,0 +1,57 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1207,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1207",
+  "issue_number": 1205,
+  "base_sha": "13c1d7048d330892f2e65f7d99c3bf72cb445a6a",
+  "head_sha": "f799f4c1063ffdc3e889a30004e34261e8ab5208",
+  "additions": 28,
+  "deletions": 6,
+  "changed_files": [
+    "docs/news.rst",
+    "psycopg/psycopg/_conninfo_attempts.py",
+    "psycopg/psycopg/_conninfo_attempts_async.py",
+    "tests/test_connection.py",
+    "tests/test_connection_async.py"
+  ],
+  "test_files": [
+    "tests/test_connection.py",
+    "tests/test_connection_async.py"
+  ],
+  "source_files": [
+    "psycopg/psycopg/_conninfo_attempts.py",
+    "psycopg/psycopg/_conninfo_attempts_async.py"
+  ],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "aconn_cls",
+      "anything",
+      "attempt",
+      "attempts",
+      "case",
+      "close",
+      "column",
+      "conn",
+      "conn_cls",
+      "connect"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:36:33Z"
+}

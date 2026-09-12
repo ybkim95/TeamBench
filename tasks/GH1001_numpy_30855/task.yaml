@@ -1,0 +1,13 @@
+task_id: GH1001_numpy_30855
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: fix infinite recursion in np.ma.flatten_structured_array"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/numpy/numpy/pull/30855"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

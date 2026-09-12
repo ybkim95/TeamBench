@@ -1,0 +1,13 @@
+task_id: GH863_pytorch_lightni_21147
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix TQDM progress bar showing the wrong total when using a finite and iterable dataloader"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Lightning-AI/pytorch-lightning/pull/21147"
+source_issue: "https://github.com/Lightning-AI/pytorch-lightning/issues/20695"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

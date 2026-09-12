@@ -1,0 +1,13 @@
+task_id: GH865_pytorch_lightni_6877
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[Fix] Ensure we set the eval/train flag correctly on accelerator model "
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Lightning-AI/pytorch-lightning/pull/6877"
+source_issue: "https://github.com/Lightning-AI/pytorch-lightning/issues/6876"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

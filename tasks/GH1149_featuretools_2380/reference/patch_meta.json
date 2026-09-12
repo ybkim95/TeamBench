@@ -1,0 +1,15 @@
+{
+ "task": "GH1149_featuretools_2380",
+ "patch": "tasks/GH1149_featuretools_2380/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "alteryx/featuretools",
+ "pr_number": 2380,
+ "base_sha": "4a88d6f1de9ded010778a3ea4663019ae31de5a6",
+ "head_sha": "b90db9cf7c1aeab6071e67ef56e318e825dfe63f",
+ "bytes": 21830,
+ "files_changed": 11,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

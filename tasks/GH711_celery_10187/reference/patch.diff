@@ -1,0 +1,47 @@
+diff --git a/celery/utils/functional.py b/celery/utils/functional.py
+index 762685b60cd..f9a4d4600d5 100644
+--- a/celery/utils/functional.py
++++ b/celery/utils/functional.py
+@@ -399,6 +399,12 @@ def fun_takes_argument(name, fun, position=None):
+ 
+ def fun_accepts_kwargs(fun):
+     """Return true if function accepts arbitrary keyword arguments."""
++    # inspect.signature evaluates annotations in Python 3.14+ (PEP 649),
++    # which raises NameError for types only imported under TYPE_CHECKING.
++    # Check co_flags directly to avoid touching annotations entirely.
++    code = getattr(fun, '__code__', None)
++    if code is not None:
++        return bool(code.co_flags & inspect.CO_VARKEYWORDS)
+     return any(
+         p for p in inspect.signature(fun).parameters.values()
+         if p.kind == p.VAR_KEYWORD
+diff --git a/t/unit/utils/test_functional.py b/t/unit/utils/test_functional.py
+index fc2baa861e4..3b97a12b2b9 100644
+--- a/t/unit/utils/test_functional.py
++++ b/t/unit/utils/test_functional.py
+@@ -487,6 +487,25 @@ def test_accepts(self, fun):
+     def test_rejects(self, fun):
+         assert not fun_accepts_kwargs(fun)
+ 
++    @pytest.mark.skipif(sys.version_info < (3, 14), reason="PEP 649 deferred annotations require Python 3.14+")
++    def test_type_checking_annotation(self):
++        # Regression test for https://github.com/celery/celery/discussions/10099
++        # On Python 3.14+, annotations are deferred (PEP 649). Calling
++        # fun_accepts_kwargs on a function whose annotations reference
++        # TYPE_CHECKING-only types must not raise NameError.
++        #
++        # This reproduces the failure seen with on_after_finalize.connect:
++        #   def setup_periodic_tasks(sender: Celery, **kwargs: object) -> None: ...
++        # where 'Celery' is only imported under TYPE_CHECKING.
++        local = {}
++        exec('def f(sender: Celery, **kwargs: object) -> None: pass', {}, local)
++        f = local['f']
++        assert fun_accepts_kwargs(f) is True
++
++        exec('def g(sender: Celery) -> None: pass', {}, local)
++        g = local['g']
++        assert fun_accepts_kwargs(g) is False
++
+ 
+ @pytest.mark.parametrize('value,expected', [
+     (5, True),

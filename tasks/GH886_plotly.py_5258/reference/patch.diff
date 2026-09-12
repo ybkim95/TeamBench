@@ -1,0 +1,12 @@
+diff --git a/plotly/io/_renderers.py b/plotly/io/_renderers.py
+--- a/plotly/io/_renderers.py
++++ b/plotly/io/_renderers.py
+@@ -485,7 +485,7 @@ def show(fig, renderer=None, validate=True, **kwargs):
+         )
+ 
+     default_renderer = env_renderer
+-elif ipython:
++elif ipython and ipython.get_ipython():
+     # Try to detect environment so that we can enable a useful
+     # default renderer
+     if not default_renderer:

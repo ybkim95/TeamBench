@@ -1,0 +1,13 @@
+task_id: GH278_arrow_1182
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "#1178: changes to address datetime.utcnow deprecation warning"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/arrow-py/arrow/pull/1182"
+source_issue: "https://github.com/arrow-py/arrow/issues/1178"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

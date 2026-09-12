@@ -1,0 +1,51 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 158204,
+  "pr_url": "https://github.com/home-assistant/core/pull/158204",
+  "issue_number": 157882,
+  "base_sha": "2448ce19700943a985a69d04897dbb777f5fbb0c",
+  "head_sha": "a825a5c4d584ad06580e582f73ea4b786eae20cb",
+  "additions": 46,
+  "deletions": 8,
+  "changed_files": [
+    "homeassistant/components/ecowitt/sensor.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "homeassistant/components/ecowitt/sensor.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "aioecowitt",
+      "async_add_entities",
+      "count",
+      "dailyrainin",
+      "dailyrainmm",
+      "dataclasses",
+      "datetime",
+      "description",
+      "drain_piezo",
+      "drain_piezomm"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T23:37:38Z"
+}

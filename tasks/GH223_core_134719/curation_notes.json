@@ -1,0 +1,57 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 134719,
+  "pr_url": "https://github.com/home-assistant/core/pull/134719",
+  "issue_number": null,
+  "base_sha": "50a2eba66e78095a0c6a02b92a3c95b419eb9d06",
+  "head_sha": "84387d63cdd1ce8e0715e5e5d4e6f67d2d8583f6",
+  "additions": 40,
+  "deletions": 22,
+  "changed_files": [
+    "homeassistant/components/ccm15/climate.py",
+    "homeassistant/components/ccm15/coordinator.py",
+    "homeassistant/components/ccm15/manifest.json",
+    "requirements_all.txt",
+    "requirements_test_all.txt"
+  ],
+  "test_files": [],
+  "source_files": [
+    "homeassistant/components/ccm15/climate.py",
+    "homeassistant/components/ccm15/coordinator.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "ac_index",
+      "ac_mode",
+      "aosmith",
+      "assistant",
+      "async_request_refresh",
+      "async_set_fan_mode",
+      "async_set_hvac_mode",
+      "async_set_state",
+      "async_set_temperature",
+      "async_turn_off"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T23:39:12Z"
+}

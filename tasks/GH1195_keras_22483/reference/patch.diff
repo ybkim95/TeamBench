@@ -1,0 +1,50 @@
+diff --git a/keras/src/backend/common/dtypes_test.py b/keras/src/backend/common/dtypes_test.py
+index a113992b9458..5f9c7bc1c24f 100644
+--- a/keras/src/backend/common/dtypes_test.py
++++ b/keras/src/backend/common/dtypes_test.py
+@@ -201,6 +201,7 @@ def test_invalid_dtype_in_least_upper_bound(self):
+     def test_empty_lub_in_least_upper_bound(self):
+         dtype1 = "float32"
+         dtype2 = "int32"
++        dtypes._least_upper_bound.cache_clear()
+         with patch.dict(
+             dtypes.LATTICE_UPPER_BOUNDS,
+             {"float32": set(), "int32": set()},
+@@ -210,6 +211,7 @@ def test_empty_lub_in_least_upper_bound(self):
+                 ValueError, "no available implicit dtype promotion path"
+             ):
+                 dtypes._least_upper_bound(dtype1, dtype2)
++        dtypes._least_upper_bound.cache_clear()
+ 
+     def test_valid_dtype_leading_to_single_lub_element(self):
+         self.assertEqual(
+diff --git a/keras/src/backend/openvino/excluded_concrete_tests.txt b/keras/src/backend/openvino/excluded_concrete_tests.txt
+index acc936fd1bee..721b4cdfbace 100644
+--- a/keras/src/backend/openvino/excluded_concrete_tests.txt
++++ b/keras/src/backend/openvino/excluded_concrete_tests.txt
+@@ -33,25 +33,6 @@ ConvLSTMTest::test_correctness
+ CoreOpsCallsTests::test_unstack_basic_functionality
+ CTCTest::test_correctness
+ CTCTest::test_dtype_arg
+-DTypePolicyMapTest::test_basic_usage
+-DtypesTest::test_empty_lub_in_least_upper_bound
+-DtypesTest::test_result_type_with_float64_bfloat16
+-DtypesTest::test_result_type_with_float64_float16
+-DtypesTest::test_result_type_with_float64_float32
+-DtypesTest::test_result_type_with_float64_float64
+-DtypesTest::test_result_type_with_float64_int16
+-DtypesTest::test_result_type_with_float64_int32
+-DtypesTest::test_result_type_with_float64_int64
+-DtypesTest::test_result_type_with_float64_int8
+-DtypesTest::test_result_type_with_float64_uint16
+-DtypesTest::test_result_type_with_float64_uint8
+-DtypesTest::test_result_type_with_int64_int16
+-DtypesTest::test_result_type_with_int64_int32
+-DtypesTest::test_result_type_with_int64_int64
+-DtypesTest::test_result_type_with_int64_int8
+-DtypesTest::test_result_type_with_int64_uint16
+-DtypesTest::test_result_type_with_int64_uint32
+-DtypesTest::test_result_type_with_int64_uint8
+ EarlyStoppingTest::test_early_stopping
+ EarlyStoppingTest::test_early_stopping_reuse
+ FalseNegativesTest::test_unweighted

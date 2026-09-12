@@ -1,0 +1,56 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12879,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12879",
+  "issue_number": 12031,
+  "base_sha": "0b7b855b5ef468c2d0f7928df7fe37f732ff18e7",
+  "head_sha": "796db88745266a0e46cad66beeeaa7fd2d331fbe",
+  "additions": 60,
+  "deletions": 0,
+  "changed_files": [
+    "pydantic/mypy.py",
+    "tests/mypy/modules/create_model_var.py",
+    "tests/mypy/outputs/mypy-plugin_ini/create_model_var.py",
+    "tests/mypy/test_mypy.py"
+  ],
+  "test_files": [
+    "tests/mypy/modules/create_model_var.py",
+    "tests/mypy/outputs/mypy-plugin_ini/create_model_var.py",
+    "tests/mypy/test_mypy.py"
+  ],
+  "source_files": [
+    "pydantic/mypy.py"
+  ],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "add_symbol_table_node",
+      "arg_expr",
+      "arg_name",
+      "arg_names",
+      "argument",
+      "assigned",
+      "back",
+      "base",
+      "base_fullname",
+      "base_info"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:35:49Z"
+}

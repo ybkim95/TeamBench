@@ -1,0 +1,235 @@
+diff --git a/lib/matplotlib/image.py b/lib/matplotlib/image.py
+index 690b28ff5e12..0ae6eab12361 100644
+--- a/lib/matplotlib/image.py
++++ b/lib/matplotlib/image.py
+@@ -209,9 +209,15 @@ def _resample(
+ 
+     # When an output pixel falls exactly on the edge between two input pixels, the Agg
+     # resampler will use the right input pixel as the nearest neighbor.  We want the
+-    # left input pixel to be chosen instead, so we flip the supplied transform.
++    # left input pixel to be chosen instead, so we flip the input data and the supplied
++    # transform.  If origin != 'upper', the transform will already include a flip in the
++    # vertical direction.
+     if interpolation == 'nearest':
+-        transform += Affine2D().translate(-out.shape[1], -out.shape[0]).scale(-1, -1)
++        transform = Affine2D().translate(-data.shape[1], 0).scale(-1, 1) + transform
++        data = np.flip(data, axis=1)
++        if image_obj.origin == 'upper':
++            transform = Affine2D().translate(0, -data.shape[0]).scale(1, -1) + transform
++            data = np.flip(data, axis=0)
+ 
+     _image.resample(data, out, transform,
+                     _interpd_[interpolation],
+@@ -220,10 +226,6 @@ def _resample(
+                     image_obj.get_filternorm(),
+                     image_obj.get_filterrad())
+ 
+-    # Because we flipped the supplied transform, we then flip the output image back.
+-    if interpolation == 'nearest':
+-        out = np.flip(out, axis=(0, 1))
+-
+     return out
+ 
+ 
+@@ -408,7 +410,13 @@ def _make_image(self, A, in_bbox, out_bbox, clip_bbox, magnification=1.0,
+         magnified_extents = clipped_bbox.extents * magnification
+         if ((not unsampled) and round_to_pixel_border):
+             # Round to the nearest output pixel
+-            magnified_bbox = Bbox.from_extents((magnified_extents + 0.5).astype(int))
++            # Add a tiny fudge amount to account for numerical precision loss
++            # on the two sides away from the Agg anchor point (x0, y1)
++            x0 = np.floor(magnified_extents[0] + 0.5)  # round half up
++            y0 = np.ceil(magnified_extents[1] - 0.5 - 1e-8)  # round half down
++            x1 = np.floor(magnified_extents[2] + 0.5 + 1e-8)  # round half up
++            y1 = np.ceil(magnified_extents[3] - 0.5)  # round half down
++            magnified_bbox = Bbox.from_extents([x0, y0, x1, y1])
+         else:
+             magnified_bbox = Bbox.from_extents(magnified_extents)
+ 
+diff --git a/lib/matplotlib/tests/baseline_images/test_axes/specgram_magnitude_freqs.png b/lib/matplotlib/tests/baseline_images/test_axes/specgram_magnitude_freqs.png
+index 7722f72e13c5..3406a1baf496 100644
+Binary files a/lib/matplotlib/tests/baseline_images/test_axes/specgram_magnitude_freqs.png and b/lib/matplotlib/tests/baseline_images/test_axes/specgram_magnitude_freqs.png differ
+diff --git a/lib/matplotlib/tests/baseline_images/test_axes/specgram_magnitude_freqs_linear.png b/lib/matplotlib/tests/baseline_images/test_axes/specgram_magnitude_freqs_linear.png
+index 74507682cbdd..70e503305782 100644
+Binary files a/lib/matplotlib/tests/baseline_images/test_axes/specgram_magnitude_freqs_linear.png and b/lib/matplotlib/tests/baseline_images/test_axes/specgram_magnitude_freqs_linear.png differ
+diff --git a/lib/matplotlib/tests/baseline_images/test_image/alignment_half_display_pixels.png b/lib/matplotlib/tests/baseline_images/test_image/alignment_half_display_pixels.png
+new file mode 100644
+index 000000000000..e822ced620f2
+Binary files /dev/null and b/lib/matplotlib/tests/baseline_images/test_image/alignment_half_display_pixels.png differ
+diff --git a/lib/matplotlib/tests/baseline_images/test_image/image_bounds_handling.png b/lib/matplotlib/tests/baseline_images/test_image/image_bounds_handling.png
+index 1296975ba64c..3a817f331c42 100644
+Binary files a/lib/matplotlib/tests/baseline_images/test_image/image_bounds_handling.png and b/lib/matplotlib/tests/baseline_images/test_image/image_bounds_handling.png differ
+diff --git a/lib/matplotlib/tests/test_image.py b/lib/matplotlib/tests/test_image.py
+index 65efa396bce4..649e345b3613 100644
+--- a/lib/matplotlib/tests/test_image.py
++++ b/lib/matplotlib/tests/test_image.py
+@@ -1677,6 +1677,8 @@ def test__resample_valid_output():
+ @pytest.mark.parametrize("data, interpolation, expected",
+     [(np.array([[0.1, 0.3, 0.2]]), mimage.NEAREST,
+       np.array([[0.1, 0.1, 0.1, 0.3, 0.3, 0.3, 0.3, 0.2, 0.2, 0.2]])),
++     (np.array([[0.1, 0.2, 0.3, 0.4, 0.5, 0.6]]), mimage.NEAREST,
++      np.array([[0.1, 0.2, 0.2, 0.3, 0.4, 0.4, 0.5, 0.6, 0.6]])),
+      (np.array([[0.1, 0.3, 0.2]]), mimage.BILINEAR,
+       np.array([[0.1, 0.1, 0.15, 0.21, 0.27, 0.285, 0.255, 0.225, 0.2, 0.2]])),
+      (np.array([[0.1, 0.9]]), mimage.BILINEAR,
+@@ -1906,6 +1908,64 @@ def test_nn_pixel_alignment(nonaffine_identity):
+             axs[i, j].hlines(seps, -1, N, lw=0.5, color='red', ls='dashed')
+ 
+ 
++@image_comparison(['alignment_half_display_pixels.png'], style='mpl20')
++def test_alignment_half_display_pixels(nonaffine_identity):
++    # All values in this test are chosen carefully so that many display pixels are
++    # aligned with an edge or a corner of an input pixel
++
++    # Layout:
++    # Top row is origin='upper', bottom row is origin='lower'
++    # Column 1: affine transform, anchored at whole pixel
++    # Column 2: affine transform, anchored at half pixel
++    # Column 3: nonaffine transform, anchored at whole pixel
++    # Column 4: nonaffine transform, anchored at half pixel
++    # Column 5: affine transform, anchored at half pixel, interpolation='hanning'
++
++    # Each axes patch is magenta, so seeing a magenta line at an edge of the image
++    # means that the image is not filling the axes
++
++    fig = plt.figure(figsize=(5, 2), dpi=100)
++    fig.set_facecolor('g')
++
++    corner_x = [0.01, 0.199, 0.41, 0.599, 0.809]
++    corner_y = [0.05, 0.53]
++
++    axs = []
++    for cy in corner_y:
++        for ix, cx in enumerate(corner_x):
++            my = cy + 0.0125 if ix in [1, 3, 4] else cy
++            axs.append(fig.add_axes([cx, my, 0.17, 0.425], xticks=[], yticks=[]))
++
++    # Verify that each axes has been created with the correct width/height and that all
++    # four corners are on whole pixels (columns 1 and 3) or half pixels (columns 2, 4,
++    # and 5)
++    for i, ax in enumerate(axs):
++        extents = ax.get_window_extent().extents
++        assert_allclose(extents[2:4] - extents[0:2], 85, rtol=0, atol=1e-13)
++        assert_allclose(extents % 1, 0.5 if i % 5 in [1, 3, 4] else 0,
++                        rtol=0, atol=1e-13)
++
++    N = 10
++
++    data = np.arange(N**2).reshape((N, N)) % 9
++    seps = np.arange(-0.5, N)
++
++    for i, ax in enumerate(axs):
++        ax.set_facecolor('m')
++
++        transform = nonaffine_identity + ax.transData if i % 4 >= 2 else ax.transData
++        ax.imshow(data, cmap='Blues',
++                  interpolation='hanning' if i % 5 == 4 else 'nearest',
++                  origin='upper' if i >= 5 else 'lower',
++                  transform=transform)
++
++        ax.vlines(seps, -0.5, N - 0.5, lw=0.5, color='red', ls=(0, (2, 4)))
++        ax.hlines(seps, -0.5, N - 0.5, lw=0.5, color='red', ls=(0, (2, 4)))
++
++        for spine in ax.spines:
++            ax.spines[spine].set_linestyle((0, (5, 10)))
++
++
+ @image_comparison(['image_bounds_handling.png'], tol=0.006)
+ def test_image_bounds_handling(nonaffine_identity):
+     # TODO: The second and third panels in the bottom row show that the handling of
+diff --git a/lib/mpl_toolkits/axes_grid1/tests/baseline_images/test_axes_grid1/imagegrid_cbar_mode.png b/lib/mpl_toolkits/axes_grid1/tests/baseline_images/test_axes_grid1/imagegrid_cbar_mode.png
+index 156bfeb97e3d..e855c0cc7b0c 100644
+Binary files a/lib/mpl_toolkits/axes_grid1/tests/baseline_images/test_axes_grid1/imagegrid_cbar_mode.png and b/lib/mpl_toolkits/axes_grid1/tests/baseline_images/test_axes_grid1/imagegrid_cbar_mode.png differ
+diff --git a/src/_image_resample.h b/src/_image_resample.h
+index 217f4a6ce86e..eaaf2306ae9f 100644
+--- a/src/_image_resample.h
++++ b/src/_image_resample.h
+@@ -589,8 +589,9 @@ class lookup_distortion
+             if (dx >= 0 && dx < m_out_width &&
+                 dy >= 0 && dy < m_out_height) {
+                 const double *coord = m_mesh + (int(dy) * m_out_width + int(dx)) * 2;
+-                *x = int(coord[0] * agg::image_subpixel_scale + offset);
+-                *y = int(coord[1] * agg::image_subpixel_scale + offset);
++                // Add a tiny fudge amount to account for numerical precision loss
++                *x = int(coord[0] * agg::image_subpixel_scale + offset + 1e-8);
++                *y = int(coord[1] * agg::image_subpixel_scale + offset + 1e-8);
+             }
+         }
+     }
+@@ -780,10 +781,15 @@ void resample(
+             params.affine.transform(&right, &top);
+             if (left > right) { std::swap(left, right); }
+             if (bottom > top) { std::swap(top, bottom); }
+-            if (round(left) < left) { left = round(left); }
+-            if (round(right) > right) { right = round(right); }
+-            if (round(bottom) < bottom) { bottom = round(bottom); }
+-            if (round(top) > top) { top = round(top); }
++            // Add a tiny fudge amount to account for numerical precision loss
++            int rleft = agg::iround(left - 1e-8);
++            int rright = agg::iround(right + 1e-8);
++            int rbottom = agg::iround(bottom - 1e-8);
++            int rtop = agg::iround(top + 1e-8);
++            if (rleft < left) { left = rleft; }
++            if (rright > right) { right = rright; }
++            if (rbottom < bottom) { bottom = rbottom; }
++            if (rtop > top) { top = rtop; }
+             path.move_to(left, bottom);
+             path.line_to(right, bottom);
+             path.line_to(right, top);
+diff --git a/src/agg_workaround.h b/src/agg_workaround.h
+index ef989ac198a3..f1cba6f570d8 100644
+--- a/src/agg_workaround.h
++++ b/src/agg_workaround.h
+@@ -80,6 +80,7 @@ class accurate_interpolator_affine_nn
+     void begin(double x, double y, unsigned len)
+     {
+         m_len = len - 1;
++        m_cur = 0;
+ 
+         m_stx1 = x;
+         m_sty1 = y;
+@@ -98,6 +99,7 @@ class accurate_interpolator_affine_nn
+     void resynchronize(double xe, double ye, unsigned len)
+     {
+         m_len = len - 1;
++        m_cur = 0;
+ 
+         m_trans->transform(&xe, &ye);
+         m_stx2 = xe * subpixel_scale;
+@@ -107,9 +109,7 @@ class accurate_interpolator_affine_nn
+     //----------------------------------------------------------------
+     void operator++()
+     {
+-        m_stx1 += (m_stx2 - m_stx1) / m_len;
+-        m_sty1 += (m_sty2 - m_sty1) / m_len;
+-        m_len--;
++        m_cur++;
+     }
+ 
+     //----------------------------------------------------------------
+@@ -117,13 +117,22 @@ class accurate_interpolator_affine_nn
+     {
+         // Truncate instead of round because this interpolator needs to
+         // match the definitions for nearest-neighbor interpolation
+-        *x = int(m_stx1);
+-        *y = int(m_sty1);
++        if (m_cur == m_len)
++        {
++            *x = int(m_stx2);
++            *y = int(m_sty2);
++        }
++        else
++        {
++            // Add a tiny fudge amount to account for numerical precision loss
++            *x = int(m_stx1 + (m_stx2 - m_stx1) * m_cur / m_len + 1e-8);
++            *y = int(m_sty1 + (m_sty2 - m_sty1) * m_cur / m_len + 1e-8);
++        }
+     }
+ 
+ private:
+     trans_type* m_trans;
+-    unsigned m_len;
++    unsigned m_len, m_cur;
+     double m_stx1, m_sty1, m_stx2, m_sty2;
+ };
+ #endif

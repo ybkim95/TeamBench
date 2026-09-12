@@ -1,0 +1,52 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 22113,
+  "pr_url": "https://github.com/ray-project/ray/pull/22113",
+  "issue_number": 1234,
+  "base_sha": "018ebbf4cbf354436a02b5d3fc607a0c14441d26",
+  "head_sha": "e19467503fa5deab92986ed2108dc71710713e82",
+  "additions": 44,
+  "deletions": 4,
+  "changed_files": [
+    "python/ray/actor.py",
+    "python/ray/tests/test_actor.py"
+  ],
+  "test_files": [
+    "python/ray/tests/test_actor.py"
+  ],
+  "source_files": [
+    "python/ray/actor.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "actor",
+      "attr",
+      "base",
+      "bases",
+      "call",
+      "cases",
+      "class_name",
+      "classes",
+      "cloudpickle",
+      "conditions"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:41Z"
+}

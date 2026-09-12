@@ -1,0 +1,13 @@
+task_id: GH26_werkzeug_3078
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "initialize `_pin` in debugger"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/werkzeug/pull/3078"
+source_issue: "https://github.com/pallets/werkzeug/issues/3075"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

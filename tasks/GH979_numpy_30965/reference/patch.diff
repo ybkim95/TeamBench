@@ -1,0 +1,94 @@
+diff --git a/doc/release/upcoming_changes/30965.improvement.rst b/doc/release/upcoming_changes/30965.improvement.rst
+new file mode 100644
+index 000000000000..aae0f8beaa6c
+--- /dev/null
++++ b/doc/release/upcoming_changes/30965.improvement.rst
+@@ -0,0 +1,4 @@
++``f2py`` modules now show allocatable arrays in ``dir()``
++---------------------------------------------------------
++Allocatable module variables wrapped by ``f2py`` now appear in ``dir()``
++output, matching their accessibility by name.
+diff --git a/numpy/f2py/src/fortranobject.c b/numpy/f2py/src/fortranobject.c
+index f368b18292d7..d8151db0c4e4 100644
+--- a/numpy/f2py/src/fortranobject.c
++++ b/numpy/f2py/src/fortranobject.c
+@@ -576,6 +576,47 @@ fortran_repr(PyFortranObject *fp)
+     return repr;
+ }
+ 
++static PyObject *
++fortran_dir(PyFortranObject *fp, PyObject *Py_UNUSED(args))
++{
++    int i;
++    PyObject *dir_list = PyDict_Keys(fp->dict);
++    if (dir_list == NULL) {
++        return NULL;
++    }
++    for (i = 0; i < fp->len; i++) {
++        PyObject *name = PyUnicode_FromString(fp->defs[i].name);
++        if (name == NULL) {
++            Py_DECREF(dir_list);
++            return NULL;
++        }
++        int contains = PySequence_Contains(dir_list, name);
++        if (contains == -1) {
++            Py_DECREF(name);
++            Py_DECREF(dir_list);
++            return NULL;
++        }
++        if (!contains) {
++            if (PyList_Append(dir_list, name) < 0) {
++                Py_DECREF(name);
++                Py_DECREF(dir_list);
++                return NULL;
++            }
++        }
++        Py_DECREF(name);
++    }
++    if (PyList_Sort(dir_list) < 0) {
++        Py_DECREF(dir_list);
++        return NULL;
++    }
++    return dir_list;
++}
++
++static PyMethodDef fortran_methods[] = {
++        {"__dir__", (PyCFunction)fortran_dir, METH_NOARGS, NULL},
++        {NULL, NULL, 0, NULL}
++};
++
+ PyTypeObject PyFortran_Type = {
+         PyVarObject_HEAD_INIT(NULL, 0).tp_name = "fortran",
+         .tp_basicsize = sizeof(PyFortranObject),
+@@ -583,6 +624,7 @@ PyTypeObject PyFortran_Type = {
+         .tp_getattr = (getattrfunc)fortran_getattr,
+         .tp_setattr = (setattrfunc)fortran_setattr,
+         .tp_repr = (reprfunc)fortran_repr,
++        .tp_methods = fortran_methods,
+         .tp_call = (ternaryfunc)fortran_call,
+ };
+ 
+diff --git a/numpy/f2py/tests/test_modules.py b/numpy/f2py/tests/test_modules.py
+index 36b6060bcfc7..25d9a6778950 100644
+--- a/numpy/f2py/tests/test_modules.py
++++ b/numpy/f2py/tests/test_modules.py
+@@ -58,12 +58,19 @@ class TestModuleAndSubroutine(util.F2PyTest):
+     sources = [
+         util.getpath("tests", "src", "modules", "gh25337", "data.f90"),
+         util.getpath("tests", "src", "modules", "gh25337", "use_data.f90"),
++        util.getpath("tests", "src", "regression", "datonly.f90"),
+     ]
+ 
+     def test_gh25337(self):
+         self.module.data.set_shift(3)
+         assert "data" in dir(self.module)
+ 
++    def test_allocatable_in_dir(self):
++        # gh-27696: allocatable arrays should appear in dir()
++        names = dir(self.module.datonly)
++        assert "data_array" in names
++        assert "max_value" in names
++
+ 
+ @pytest.mark.slow
+ class TestUsedModule(util.F2PyTest):

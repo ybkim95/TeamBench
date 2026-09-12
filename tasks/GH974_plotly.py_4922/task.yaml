@@ -1,0 +1,13 @@
+task_id: GH974_plotly.py_4922
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: Skip base64 conversion for empty arrays (fixes #4919)"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/plotly/plotly.py/pull/4922"
+source_issue: "https://github.com/plotly/plotly.py/issues/4919"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

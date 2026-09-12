@@ -1,0 +1,15 @@
+{
+ "task": "GH847_clinica_1519",
+ "patch": "tasks/GH847_clinica_1519/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "aramis-lab/clinica",
+ "pr_number": 1519,
+ "base_sha": "9844626439f2f49b92b713ce82075c415dc6bb77",
+ "head_sha": "114dc1a4f9049ccdaa16687548881b9d0cae8f41",
+ "bytes": 3692,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

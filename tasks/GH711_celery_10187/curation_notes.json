@@ -1,0 +1,54 @@
+{
+  "repo": "celery/celery",
+  "pr_number": 10187,
+  "pr_url": "https://github.com/celery/celery/pull/10187",
+  "issue_number": null,
+  "base_sha": "8eec5af31b191c113a0622326a9dbf916a5f3538",
+  "head_sha": "7d8bbef534c3891e6b126fd59ff5c253ec6a583a",
+  "additions": 25,
+  "deletions": 0,
+  "changed_files": [
+    "celery/utils/functional.py",
+    "t/unit/utils/test_functional.py"
+  ],
+  "test_files": [
+    "t/unit/utils/test_functional.py"
+  ],
+  "source_files": [
+    "celery/utils/functional.py"
+  ],
+  "parameterization": {
+    "repo": "celery/celery",
+    "repo_short": "celery",
+    "parameterized_identifiers": [
+      "accepts",
+      "annotations",
+      "arbitrary",
+      "arguments",
+      "avoid",
+      "celery",
+      "co_flags",
+      "code",
+      "connect",
+      "deferred"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:34:51Z"
+}

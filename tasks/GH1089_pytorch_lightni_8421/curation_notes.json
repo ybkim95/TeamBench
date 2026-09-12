@@ -1,0 +1,55 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 8421,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/8421",
+  "issue_number": null,
+  "base_sha": "adaa32f47aadf1efb8943c627950a5c6590bcb1c",
+  "head_sha": "20320a381dc3765fde641eb6db58241e583c61e2",
+  "additions": 13,
+  "deletions": 1,
+  "changed_files": [
+    "CHANGELOG.md",
+    "pytorch_lightning/utilities/enums.py",
+    "tests/utilities/test_enums.py"
+  ],
+  "test_files": [
+    "tests/utilities/test_enums.py"
+  ],
+  "source_files": [
+    "pytorch_lightning/utilities/enums.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "accumulation",
+      "based",
+      "batch",
+      "call",
+      "cannot",
+      "case",
+      "didn",
+      "enable",
+      "example",
+      "format"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:04:47Z"
+}

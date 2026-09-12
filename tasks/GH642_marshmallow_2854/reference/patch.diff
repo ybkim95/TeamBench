@@ -1,0 +1,155 @@
+diff --git a/AUTHORS.rst b/AUTHORS.rst
+index 2459c8c0d..37fa3021a 100644
+--- a/AUTHORS.rst
++++ b/AUTHORS.rst
+@@ -180,4 +180,5 @@ Contributors (chronological)
+ - Nicolas Simonds `@0xDEC0DE <https://github.com/0xDEC0DE>`_
+ - Florian Laport `@Florian-Laport <https://github.com/Florian-Laport>`_
+ - `@agentgodzilla <https://github.com/agentgodzilla>`_
+-- Xiao `@T90REAL <https://github.com/T90REAL>`_
+\ No newline at end of file
++- Xiao `@T90REAL <https://github.com/T90REAL>`_
++- jfo `@jafournier <https://github.com/jafournier>`_
+diff --git a/CHANGELOG.rst b/CHANGELOG.rst
+index 7b62c7220..cf156c092 100644
+--- a/CHANGELOG.rst
++++ b/CHANGELOG.rst
+@@ -1,6 +1,15 @@
+ Changelog
+ =========
+ 
++
++4.2.0 (unreleased)
++------------------
++
++Other changes:
++
++- ``many`` argument of ``Nested`` properly overrides schema instance
++  value (:pr:`2854`). Thanks :user:`jafournier` for the PR.
++
+ 4.1.2 (2025-12-19)
+ ------------------
+ 
+diff --git a/src/marshmallow/fields.py b/src/marshmallow/fields.py
+index 16ca9bd5d..5d3d64a98 100644
+--- a/src/marshmallow/fields.py
++++ b/src/marshmallow/fields.py
+@@ -482,6 +482,9 @@ class ParentSchema(Schema):
+     :param only: A list or tuple of fields to marshal. If `None`, all fields are marshalled.
+         This parameter takes precedence over ``exclude``.
+     :param many: Whether the field is a collection of objects.
++        If `None` (default), and nested `Schema` instance is provided, ``many`` is not overridden.
++        If `None` (default), and `Schema` subclass is provided, schema instance sets ``many`` as False.
++        If `True | False` nested `[nested_field].schema.many` is overridden.
+     :param unknown: Whether to exclude, include, or raise an error for unknown
+         fields in the data. Use `EXCLUDE`, `INCLUDE` or `RAISE`.
+     :param kwargs: The same keyword arguments that :class:`Field` receives.
+@@ -502,7 +505,7 @@ def __init__(
+         *,
+         only: types.StrSequenceOrSet | None = None,
+         exclude: types.StrSequenceOrSet = (),
+-        many: bool = False,
++        many: bool | None = None,
+         unknown: types.UnknownOption | None = None,
+         **kwargs: Unpack[_BaseFieldKwargs],
+     ):
+@@ -537,7 +540,7 @@ def schema(self) -> Schema:
+ 
+             if isinstance(nested, Schema):
+                 self._schema = copy.copy(nested)
+-                # Respect only and exclude passed from parent and re-initialize fields
++                # Respect only and exclude and many passed from parent and re-initialize fields
+                 set_class = typing.cast("type[set]", self._schema.set_class)
+                 if self.only is not None:
+                     if self._schema.only is not None:
+@@ -548,6 +551,8 @@ def schema(self) -> Schema:
+                 if self.exclude:
+                     original = self._schema.exclude
+                     self._schema.exclude = set_class(self.exclude) | set_class(original)
++                if self.many is not None:
++                    self._schema.many = self.many
+                 self._schema._init_fields()
+             else:
+                 if isinstance(nested, type) and issubclass(nested, Schema):
+@@ -560,7 +565,7 @@ def schema(self) -> Schema:
+                 else:
+                     schema_class = class_registry.get_class(nested, all=False)
+                 self._schema = schema_class(
+-                    many=self.many,
++                    many=bool(self.many),
+                     only=self.only,
+                     exclude=self.exclude,
+                     load_only=self._nested_normalized_option("load_only"),
+diff --git a/tests/test_schema.py b/tests/test_schema.py
+index 55c3c0ff3..ff2811737 100644
+--- a/tests/test_schema.py
++++ b/tests/test_schema.py
+@@ -2,7 +2,7 @@
+ import math
+ import random
+ from collections import OrderedDict
+-from typing import NamedTuple
++from typing import NamedTuple, cast
+ 
+ import pytest
+ import simplejson as json
+@@ -1003,6 +1003,30 @@ class UserSchema(Schema):
+     books = [{"id": 1, "title": "First book"}, {"id": 2, "title": "Second book"}]
+     user = {"id": 1, "name": "Peter", "books": books}
+ 
++    assert cast("fields.Nested", UserSchema().fields["books"]).schema.many
++
++    user_dump = UserSchema().dump(user)
++    assert user_dump["books"] == books
++
++    user_load = UserSchema().load(user_dump)
++    assert user_load == user
++
++
++def test_nested_many_should_override_schema_many_case1():
++    class BookSchema(Schema):
++        id = fields.Int()
++        title = fields.String()
++
++    class UserSchema(Schema):
++        id = fields.Int()
++        name = fields.String()
++        books = fields.Nested(BookSchema(), many=True)
++
++    books = [{"id": 1, "title": "First book"}, {"id": 2, "title": "Second book"}]
++    user = {"id": 1, "name": "Peter", "books": books}
++
++    assert cast("fields.Nested", UserSchema().fields["books"]).schema.many
++
+     user_dump = UserSchema().dump(user)
+     assert user_dump["books"] == books
+ 
+@@ -1010,6 +1034,28 @@ class UserSchema(Schema):
+     assert user_load == user
+ 
+ 
++def test_nested_many_should_override_schema_many_case2():
++    class BookSchema(Schema):
++        id = fields.Int()
++        title = fields.String()
++
++    class UserSchema(Schema):
++        id = fields.Int()
++        name = fields.String()
++        book = fields.Nested(BookSchema(many=True), many=False)
++
++    book = {"id": 1, "title": "First book"}
++    user = {"id": 1, "name": "Peter", "book": book}
++
++    assert not cast("fields.Nested", UserSchema().fields["book"]).schema.many
++
++    user_dump = UserSchema().dump(user)
++    assert user_dump["book"] == book
++
++    user_load = UserSchema().load(user_dump)
++    assert user_load == user
++
++
+ def test_nested_instance_only():
+     class ArtistSchema(Schema):
+         first = fields.Str()

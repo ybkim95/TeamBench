@@ -1,0 +1,178 @@
+diff --git a/alembic/versions/a3a28d52a24f_add_unique_watched_seconds_to_progress.py b/alembic/versions/a3a28d52a24f_add_unique_watched_seconds_to_progress.py
+new file mode 100644
+index 0000000..b0dd29c
+--- /dev/null
++++ b/alembic/versions/a3a28d52a24f_add_unique_watched_seconds_to_progress.py
+@@ -0,0 +1,39 @@
++"""add unique_watched_seconds to progress table
++
++Revision ID: a3a28d52a24f
++Revises: 81526e4abbc5
++Create Date: 2025-12-09 12:00:00.000000
++
++"""
++from typing import Sequence, Union
++
++from alembic import op
++import sqlalchemy as sa
++
++
++# revision identifiers, used by Alembic.
++revision: str = 'a3a28d52a24f'
++down_revision: Union[str, Sequence[str], None] = '81526e4abbc5'
++branch_labels: Union[str, Sequence[str], None] = None
++depends_on: Union[str, Sequence[str], None] = None
++
++
++def upgrade() -> None:
++    """Upgrade schema."""
++    # Add unique_watched_seconds column with default value 0
++    op.add_column('progresses', sa.Column('unique_watched_seconds', sa.Integer(), nullable=False, server_default='0', comment='유니크 시청 시간 (초) - 진행률 계산용'))
++
++    # Update existing records: set unique_watched_seconds to min(last_position, lecture.duration_seconds)
++    op.execute("""
++        UPDATE progresses p
++        SET unique_watched_seconds = LEAST(
++            p.last_position,
++            (SELECT l.duration_seconds FROM lectures l WHERE l.id = p.lecture_id)
++        )
++    """)
++
++
++def downgrade() -> None:
++    """Downgrade schema."""
++    # Drop the unique_watched_seconds column
++    op.drop_column('progresses', 'unique_watched_seconds')
+diff --git a/app/models/progress.py b/app/models/progress.py
+index 8ea3e08..6ae12f7 100644
+--- a/app/models/progress.py
++++ b/app/models/progress.py
+@@ -39,7 +39,8 @@ class Progress(Base):
+     lecture_id = Column(Integer, ForeignKey("lectures.id", ondelete="CASCADE"), nullable=False, index=True, comment="강의 ID")
+ 
+     # 진행 정보
+-    watched_seconds = Column(Integer, nullable=False, default=0, comment="총 시청 시간 (초)")
++    watched_seconds = Column(Integer, nullable=False, default=0, comment="총 시청 시간 (초) - 반복 재생 포함 누적")
++    unique_watched_seconds = Column(Integer, nullable=False, default=0, comment="최대 도달 위치 (초) - 진행률 계산용, 되감기 시에도 감소하지 않음")
+     last_position = Column(Integer, nullable=False, default=0, comment="마지막 시청 위치 (초)")
+     is_completed = Column(Boolean, nullable=False, default=False, comment="완료 여부")
+ 
+diff --git a/app/services/enrollment_service.py b/app/services/enrollment_service.py
+index fd2fc6f..f2c68f8 100644
+--- a/app/services/enrollment_service.py
++++ b/app/services/enrollment_service.py
+@@ -79,12 +79,19 @@ async def create_progress(
+         # 새로운 진행 기록 생성
+         now = get_current_utc_datetime()
+ 
++        # last_position을 duration_seconds 이하로 제한
++        last_position = min(data.last_position, lecture.duration_seconds) if lecture.duration_seconds > 0 else 0
++
++        # 진행률 계산용 시청 시간 (최대 도달 위치 추적)
++        # 첫 생성 시 last_position을 초기값으로 설정
++        unique_watched_seconds = last_position
++
+         # 시청률이 95% 이상이면 자동으로 완료 처리
+         is_completed = data.is_completed
+         completed_at = None
+ 
+         if lecture.duration_seconds > 0:
+-            completion_rate = (data.watched_seconds / lecture.duration_seconds) * 100
++            completion_rate = (unique_watched_seconds / lecture.duration_seconds) * 100
+             if completion_rate >= 95 or data.is_completed:
+                 is_completed = True
+                 completed_at = now
+@@ -95,7 +102,8 @@ async def create_progress(
+             user_id=user_id,
+             lecture_id=data.lecture_id,
+             watched_seconds=data.watched_seconds,
+-            last_position=data.last_position,
++            unique_watched_seconds=unique_watched_seconds,
++            last_position=last_position,
+             is_completed=is_completed,
+             last_watched_at=now,
+             completed_at=completed_at
+@@ -135,14 +143,22 @@ async def update_progress(
+         if not progress:
+             raise ProgressNotFoundError('학습 진행 기록을 찾을 수 없습니다')
+ 
++        # last_position을 duration_seconds 이하로 제한
++        last_position = min(data.last_position, progress.lecture.duration_seconds) if progress.lecture.duration_seconds > 0 else 0
++
++        # 진행률 계산용 시청 시간 (최대 도달 위치 추적)
++        # 사용자가 되감기를 해도 이전 최대 위치를 유지하여 진행률이 감소하지 않도록 함
++        unique_watched_seconds = max(progress.unique_watched_seconds or 0, last_position)
++
+         # 업데이트
+         progress.watched_seconds = data.watched_seconds
+-        progress.last_position = data.last_position
++        progress.unique_watched_seconds = unique_watched_seconds
++        progress.last_position = last_position
+         progress.last_watched_at = get_current_utc_datetime()
+ 
+         # 시청률이 95% 이상이면 자동으로 완료 처리
+         if progress.lecture.duration_seconds > 0:
+-            completion_rate = (data.watched_seconds / progress.lecture.duration_seconds) * 100
++            completion_rate = (unique_watched_seconds / progress.lecture.duration_seconds) * 100
+             if completion_rate >= 95 or data.is_completed:
+                 progress.is_completed = True
+                 if progress.completed_at is None:
+@@ -216,12 +232,18 @@ async def get_course_progress(
+             for lecture in sorted(chapter.lectures, key=lambda l: l.order_number):
+                 progress = progress_dict.get(lecture.id)
+ 
++                # watched_seconds는 누적 시청 시간 (분석용)
+                 watched_seconds = progress.watched_seconds if progress else 0
++                # unique_watched_seconds는 최대 도달 위치 (진행률 계산용)
++                unique_watched_seconds = progress.unique_watched_seconds if progress else 0
+                 last_position = progress.last_position if progress else 0
+                 is_completed = progress.is_completed if progress else False
+                 lecture_last_watched = progress.last_watched_at if progress else None
+ 
+-                completion_rate = (watched_seconds / lecture.duration_seconds * 100) if lecture.duration_seconds > 0 else 0
++                # unique_watched_seconds를 사용하여 completion_rate 계산
++                completion_rate = (unique_watched_seconds / lecture.duration_seconds * 100) if lecture.duration_seconds > 0 else 0
++                # 100% 초과 방지
++                completion_rate = min(completion_rate, 100.0)
+ 
+                 lectures_data.append(LectureProgressSummary(
+                     lecture_id=lecture.id,
+@@ -234,7 +256,8 @@ async def get_course_progress(
+                     last_watched_at=lecture_last_watched
+                 ))
+ 
+-                chapter_watched += watched_seconds
++                # 챕터 진행률 계산에는 unique_watched_seconds 사용
++                chapter_watched += unique_watched_seconds
+                 chapter_duration += lecture.duration_seconds
+                 if is_completed:
+                     chapter_completed += 1
+@@ -386,10 +409,14 @@ async def _build_progress_response(
+     ) -> ProgressResponse:
+         """학습 진행 응답 생성"""
+ 
++        # unique_watched_seconds를 사용하여 completion_rate 계산
+         completion_rate = (
+-            progress.watched_seconds / lecture.duration_seconds * 100
++            progress.unique_watched_seconds / lecture.duration_seconds * 100
+         ) if lecture.duration_seconds > 0 else 0
+ 
++        # 100% 초과 방지
++        completion_rate = min(completion_rate, 100.0)
++
+         # 시청률이 95% 이상이면 완료로 간주
+         is_completed = progress.is_completed
+         if lecture.duration_seconds > 0 and completion_rate >= 95:
+@@ -413,10 +440,10 @@ async def _get_total_watched_duration(
+         user_id: int,
+         course_id: int
+     ) -> int:
+-        """총 시청 시간 반환 (초)"""
++        """총 유니크 시청 시간 반환 (초) - 진행률 계산용"""
+ 
+         result = await self.db.execute(
+-            select(func.sum(Progress.watched_seconds))
++            select(func.sum(Progress.unique_watched_seconds))
+             .join(Lecture, Progress.lecture_id == Lecture.id)
+             .join(Chapter, Lecture.chapter_id == Chapter.id)
+             .where(

@@ -1,0 +1,78 @@
+diff --git a/django/contrib/admin/utils.py b/django/contrib/admin/utils.py
+index e604a2775030..3d5b023dea64 100644
+--- a/django/contrib/admin/utils.py
++++ b/django/contrib/admin/utils.py
+@@ -294,6 +294,7 @@ def lookup_field(name, obj, model_admin=None):
+     except (FieldDoesNotExist, FieldIsAForeignKeyColumnName):
+         # For non-regular field values, the value is either a method,
+         # property, related field, or returned via a callable.
++        f = None
+         if callable(name):
+             attr = name
+             value = attr(obj)
+@@ -312,10 +313,12 @@ def lookup_field(name, obj, model_admin=None):
+                         attr = getattr(attr, part, sentinel)
+                         if attr is sentinel:
+                             return None, None, None
++                    # The final field is needed for displaying boolean icons.
++                    if LOOKUP_SEP in name:
++                        f = get_fields_from_path(opts.model, name)[-1]
+                 value = attr
+             if hasattr(model_admin, "model") and hasattr(model_admin.model, name):
+                 attr = getattr(model_admin.model, name)
+-        f = None
+     else:
+         attr = None
+         value = getattr(obj, name)
+diff --git a/tests/admin_changelist/models.py b/tests/admin_changelist/models.py
+index 0b594300d2a3..d5d0633122cc 100644
+--- a/tests/admin_changelist/models.py
++++ b/tests/admin_changelist/models.py
+@@ -17,6 +17,7 @@ class Child(models.Model):
+     parent = models.ForeignKey(Parent, models.SET_NULL, editable=False, null=True)
+     name = models.CharField(max_length=30, blank=True)
+     age = models.IntegerField(null=True, blank=True)
++    is_active = models.BooleanField(default=True)
+ 
+ 
+ class GrandChild(models.Model):
+diff --git a/tests/admin_changelist/tests.py b/tests/admin_changelist/tests.py
+index f0518494490d..ef0f8a0570ed 100644
+--- a/tests/admin_changelist/tests.py
++++ b/tests/admin_changelist/tests.py
+@@ -1768,6 +1768,35 @@ class ChildAdmin(admin.ModelAdmin):
+         cl = m.get_changelist_instance(request)
+         self.assertEqual(cl.get_ordering_field_columns(), {2: "asc"})
+ 
++    def test_list_display_related_field_boolean_display(self):
++        """
++        Related boolean fields (parent__is_active) display boolean icons.
++        """
++        parent = Parent.objects.create(name="Test Parent")
++        child_active = Child.objects.create(
++            name="Active Child", parent=parent, is_active=True
++        )
++        child_inactive = Child.objects.create(
++            name="Inactive Child", parent=parent, is_active=False
++        )
++
++        class GrandChildAdmin(admin.ModelAdmin):
++            list_display = ["name", "parent__is_active"]
++
++        GrandChild.objects.create(name="GrandChild of Active", parent=child_active)
++        GrandChild.objects.create(name="GrandChild of Inactive", parent=child_inactive)
++
++        m = GrandChildAdmin(GrandChild, custom_site)
++        request = self._mocked_authenticated_request("/grandchild/", self.superuser)
++        response = m.changelist_view(request)
++
++        # Boolean icons are rendered using img tags with specific alt text.
++        self.assertContains(response, 'alt="True"')
++        self.assertContains(response, 'alt="False"')
++        # Ensure "True" and "False" text are NOT in the response.
++        self.assertNotContains(response, ">True<")
++        self.assertNotContains(response, ">False<")
++
+ 
+ class GetAdminLogTests(TestCase):
+     def test_custom_user_pk_not_named_id(self):

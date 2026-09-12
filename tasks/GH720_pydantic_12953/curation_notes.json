@@ -1,0 +1,56 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12953,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12953",
+  "issue_number": null,
+  "base_sha": "d4d370897ca71c344cdbd7b2f5a6e687a6518b92",
+  "head_sha": "5882c65348fb34070a1bf3f1f42f19e3806702f8",
+  "additions": 12,
+  "deletions": 12,
+  "changed_files": [
+    "pydantic/_internal/_model_construction.py",
+    "pydantic/plugin/_loader.py",
+    "pydantic/plugin/_schema_validator.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "pydantic/_internal/_model_construction.py",
+    "pydantic/plugin/_loader.py",
+    "pydantic/plugin/_schema_validator.py"
+  ],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "abstract",
+      "actually",
+      "after",
+      "annotation",
+      "arcane",
+      "argument",
+      "around",
+      "attribute",
+      "attributes",
+      "avoid"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:35:21Z"
+}

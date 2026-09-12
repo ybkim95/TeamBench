@@ -1,0 +1,34 @@
+diff --git a/src/marshmallow/validate.py b/src/marshmallow/validate.py
+index 5d36519a6..b00fba5b1 100644
+--- a/src/marshmallow/validate.py
++++ b/src/marshmallow/validate.py
+@@ -214,8 +214,8 @@ def __call__(self, value: str) -> str:
+ 
+         # Hostname is optional for file URLS. If absent it means `localhost`.
+         # Fill it in for the validation if needed
+-        if scheme == "file" and value.startswith("file:///"):
+-            matched = regex.search(value.replace("file:///", "file://localhost/", 1))
++        if scheme == "file" and value.lower().startswith("file:///"):
++            matched = regex.search("file://localhost/" + value[8:])
+         else:
+             matched = regex.search(value)
+ 
+diff --git a/tests/test_validate.py b/tests/test_validate.py
+index d878b1180..e5cb33a3f 100644
+--- a/tests/test_validate.py
++++ b/tests/test_validate.py
+@@ -224,6 +224,14 @@ def test_url_custom_scheme_case_insensitive():
+         "file:///tmp/test%20file.txt",
+         "file:///",
+         "file://localhost/",
++        "FILE:///tmp/tmp1234",
++        "FILE://localhost/tmp/tmp1234",
++        "FILE:///C:/Users/test/file.txt",
++        "FILE://localhost/C:/Program%20Files/file.exe",
++        "FILE:///home/user/documents/test.pdf",
++        "FILE:///tmp/test%20file.txt",
++        "FILE:///",
++        "FILE://localhost/",
+     ),
+ )
+ def test_url_accepts_valid_file_urls(valid_url):

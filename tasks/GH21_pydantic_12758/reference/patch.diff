@@ -1,0 +1,72 @@
+diff --git a/pydantic-core/src/validators/union.rs b/pydantic-core/src/validators/union.rs
+index 2f7d12d26e8..b234cf35601 100644
+--- a/pydantic-core/src/validators/union.rs
++++ b/pydantic-core/src/validators/union.rs
+@@ -110,6 +110,7 @@ impl UnionValidator {
+         let old_fields_set_count = state.fields_set_count;
+ 
+         let mut errors = MaybeErrors::new(self.custom_error.as_ref());
++        let mut should_omit = false;
+ 
+         let mut best_match: Option<(Py<PyAny>, Exactness, Option<usize>)> = None;
+ 
+@@ -156,6 +157,11 @@ impl UnionValidator {
+                         }
+                     }
+                 },
++                Err(ValError::Omit) => {
++                    if best_match.is_none() {
++                        should_omit = true;
++                    }
++                }
+                 Err(ValError::LineErrors(lines)) => {
+                     // if we don't yet know this validation will succeed, record the error
+                     if best_match.is_none() {
+@@ -177,7 +183,10 @@ impl UnionValidator {
+             }
+             return Ok(best_match);
+         }
+-
++        // if there were no successful matches, but there was at least one omit, return omit instead of errors
++        if best_match.is_none() && should_omit {
++            return Err(ValError::Omit);
++        }
+         // no matches, build errors
+         Err(errors.into_val_error(input))
+     }
+diff --git a/tests/types/test_union.py b/tests/types/test_union.py
+index 2816098b66e..0e333dcde42 100644
+--- a/tests/types/test_union.py
++++ b/tests/types/test_union.py
+@@ -74,3 +74,31 @@ class Container2(pydantic.BaseModel):
+     # as nested unions were individually attempted with each of strict and lax checking,
+     # and the discriminators also incurred an extra attempt at each check level too.
+     assert MyModel.field_a_serializer_calls == 2
++
++
++def test_list_union_omit():
++    OmitList = list[Union[pydantic.OnErrorOmit[int], pydantic.OnErrorOmit[bool]]]
++    ta = pydantic.TypeAdapter(OmitList)
++    assert ta.validate_python([1, 'True', 'foo', '2', False, 'bar']) == [1, True, 2, False]
++
++
++def test_list_union_omit_one_member():
++    OmitList = list[Union[pydantic.OnErrorOmit[int], bool]]
++    ta = pydantic.TypeAdapter(OmitList)
++    assert ta.validate_python([1, 'True', 'foo', '2', False, 'bar']) == [1, True, 2, False]
++
++
++def test_typed_dict_union_omit():
++    class TD(TypedDict):
++        # arguably this should fail on schema build since `x` is a
++        # required field, and setting the type to `OnErrorOmit`
++        # effectively makes it optional.
++        x: Union[pydantic.OnErrorOmit[int], pydantic.OnErrorOmit[bool]]
++
++    ta = pydantic.TypeAdapter(TD)
++    assert ta.validate_python({'x': 1}) == {'x': 1}
++    assert ta.validate_python({'x': 'True'}) == {'x': True}
++
++    # test to document the behaviour that if all options in the union fail,
++    # the field is omitted, even if it is required in the TypedDict.
++    assert ta.validate_python({'x': 'foo'}) == {}

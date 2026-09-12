@@ -1,0 +1,87 @@
+diff --git a/boto3/session.py b/boto3/session.py
+index f073c5347d..88ef698953 100644
+--- a/boto3/session.py
++++ b/boto3/session.py
+@@ -81,23 +81,21 @@ def __init__(
+         if profile_name is not None:
+             self._session.set_config_variable('profile', profile_name)
+ 
+-        creds = (
+-            aws_access_key_id,
+-            aws_secret_access_key,
+-            aws_session_token,
+-            aws_account_id,
+-        )
+-        if any(creds):
+-            if self._account_id_set_without_credentials(
+-                aws_account_id, aws_access_key_id, aws_secret_access_key
+-            ):
++        credentials_kwargs = {
++            "aws_access_key_id": aws_access_key_id,
++            "aws_secret_access_key": aws_secret_access_key,
++            "aws_session_token": aws_session_token,
++            "aws_account_id": aws_account_id,
++        }
++
++        if any(credentials_kwargs.values()):
++            if self._account_id_set_without_credentials(**credentials_kwargs):
+                 raise NoCredentialsError()
+-            self._session.set_credentials(
+-                aws_access_key_id,
+-                aws_secret_access_key,
+-                aws_session_token,
+-                aws_account_id,
+-            )
++
++            if aws_account_id is None:
++                del credentials_kwargs["aws_account_id"]
++
++            self._session.set_credentials(*credentials_kwargs.values())
+ 
+         if region_name is not None:
+             self._session.set_config_variable('region', region_name)
+@@ -332,8 +330,8 @@ def client(
+             'aws_account_id': aws_account_id,
+         }
+         if aws_account_id is None:
+-            # Remove aws_account_id for lambda for arbitrary
+-            # botocore version mismatches.
++            # Remove aws_account_id for arbitrary
++            # botocore version mismatches in AWS Lambda.
+             del create_client_kwargs['aws_account_id']
+ 
+         return self._session.create_client(
+@@ -562,10 +560,15 @@ def _register_default_handlers(self):
+         )
+ 
+     def _account_id_set_without_credentials(
+-        self, account_id, access_key, secret_key
++        self,
++        *,
++        aws_account_id,
++        aws_access_key_id,
++        aws_secret_access_key,
++        **kwargs,
+     ):
+-        if account_id is None:
++        if aws_account_id is None:
+             return False
+-        elif access_key is None or secret_key is None:
++        elif aws_access_key_id is None or aws_secret_access_key is None:
+             return True
+         return False
+diff --git a/tests/unit/test_session.py b/tests/unit/test_session.py
+index ec87c4d441..f189b87948 100644
+--- a/tests/unit/test_session.py
++++ b/tests/unit/test_session.py
+@@ -70,9 +70,7 @@ def test_credentials_can_be_set(self):
+ 
+         assert self.bc_session_cls.called
+         assert bc_session.set_credentials.called
+-        bc_session.set_credentials.assert_called_with(
+-            'key', 'secret', 'token', None
+-        )
++        bc_session.set_credentials.assert_called_with('key', 'secret', 'token')
+ 
+     def test_credentials_can_be_set_with_account_id(self):
+         bc_session = self.bc_session_cls.return_value

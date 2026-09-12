@@ -1,0 +1,13 @@
+task_id: GH407_bench_709
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "🐛 Fix native gates handling for mirror circuits"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/munich-quantum-toolkit/bench/pull/709"
+source_issue: "https://github.com/munich-quantum-toolkit/bench/issues/654"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

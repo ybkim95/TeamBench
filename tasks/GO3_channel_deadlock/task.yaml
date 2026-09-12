@@ -1,0 +1,11 @@
+task_id: GO3_channel_deadlock
+domain: software
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [go]
+tags: [concurrency, goroutine, channel, deadlock, waitgroup, go, pipeline]
+workspace_file_count: 4
+lines_changed_expected: 20
+parameterized: true

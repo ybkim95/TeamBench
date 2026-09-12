@@ -1,0 +1,13 @@
+task_id: GH38_pydantic_12905
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Patch unset attributes with `MISSING` during model serialization with `exclude_unset`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pydantic/pydantic/pull/12905"
+source_issue: "https://github.com/pydantic/pydantic/issues/12888"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

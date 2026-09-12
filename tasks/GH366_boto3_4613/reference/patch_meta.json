@@ -1,0 +1,15 @@
+{
+ "task": "GH366_boto3_4613",
+ "patch": "tasks/GH366_boto3_4613/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "boto/boto3",
+ "pr_number": 4613,
+ "base_sha": "e4f97c942f318b33b5a60875c0ce2f78a95e1e69",
+ "head_sha": "c1d11ea47791b41002bae354cf65f698013f8300",
+ "bytes": 2160,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

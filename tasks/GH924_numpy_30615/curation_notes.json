@@ -1,0 +1,55 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 30615,
+  "pr_url": "https://github.com/numpy/numpy/pull/30615",
+  "issue_number": 25588,
+  "base_sha": "b996b34012a8625cc922e0ac3e1e440343e6691a",
+  "head_sha": "ef33a6d51d60457fca175065ef71e918b66505cf",
+  "additions": 58,
+  "deletions": 8,
+  "changed_files": [
+    "doc/release/upcoming_changes/30615.deprecation.rst",
+    "numpy/_core/src/multiarray/item_selection.c",
+    "numpy/_core/tests/test_deprecations.py",
+    "numpy/_core/tests/test_item_selection.py",
+    "numpy/_core/tests/test_regression.py"
+  ],
+  "test_files": [
+    "numpy/_core/tests/test_deprecations.py",
+    "numpy/_core/tests/test_item_selection.py",
+    "numpy/_core/tests/test_regression.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "a_original",
+      "above",
+      "affects",
+      "allows",
+      "already",
+      "also",
+      "arange",
+      "argsort_method",
+      "argument",
+      "array"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:51:43Z"
+}

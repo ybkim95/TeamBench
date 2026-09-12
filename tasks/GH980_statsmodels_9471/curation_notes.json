@@ -1,0 +1,78 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9471,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9471",
+  "issue_number": 9047,
+  "base_sha": "91d84c294de2b507d6a5778b6bf2e77ad9b574ed",
+  "head_sha": "4e64b9627ea97e564d93f9c0ff993a972c6a81a1",
+  "additions": 219,
+  "deletions": 18,
+  "changed_files": [
+    "statsmodels/discrete/conditional_models.py",
+    "statsmodels/discrete/tests/test_conditional.py",
+    "statsmodels/duration/hazard_regression.py",
+    "statsmodels/duration/tests/test_phreg.py",
+    "statsmodels/formula/formulatools.py",
+    "statsmodels/genmod/generalized_estimating_equations.py",
+    "statsmodels/genmod/qif.py",
+    "statsmodels/genmod/tests/test_gee.py",
+    "statsmodels/genmod/tests/test_qif.py",
+    "statsmodels/miscmodels/ordinal_model.py",
+    "statsmodels/miscmodels/tests/test_ordinal_model.py",
+    "statsmodels/othermod/betareg.py",
+    "statsmodels/othermod/tests/test_beta.py",
+    "statsmodels/regression/mixed_linear_model.py",
+    "statsmodels/regression/tests/test_lme.py"
+  ],
+  "test_files": [
+    "statsmodels/discrete/tests/test_conditional.py",
+    "statsmodels/duration/tests/test_phreg.py",
+    "statsmodels/genmod/tests/test_gee.py",
+    "statsmodels/genmod/tests/test_qif.py",
+    "statsmodels/miscmodels/tests/test_ordinal_model.py",
+    "statsmodels/othermod/tests/test_beta.py",
+    "statsmodels/regression/tests/test_lme.py"
+  ],
+  "source_files": [
+    "statsmodels/discrete/conditional_models.py",
+    "statsmodels/duration/hazard_regression.py",
+    "statsmodels/formula/formulatools.py",
+    "statsmodels/genmod/generalized_estimating_equations.py",
+    "statsmodels/genmod/qif.py",
+    "statsmodels/miscmodels/ordinal_model.py",
+    "statsmodels/othermod/betareg.py",
+    "statsmodels/regression/mixed_linear_model.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "account",
+      "advance_eval_env",
+      "append",
+      "apply",
+      "arange",
+      "arguments",
+      "assert_allclose",
+      "assert_almost_equal",
+      "astype",
+      "atol"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:21Z"
+}

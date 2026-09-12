@@ -1,0 +1,52 @@
+{
+  "repo": "celery/celery",
+  "pr_number": 10155,
+  "pr_url": "https://github.com/celery/celery/pull/10155",
+  "issue_number": 7280,
+  "base_sha": "7ca0e0f18abedeba2b3142a1cdc9c1d3300cc190",
+  "head_sha": "4abc0df3ddde4a557ab1db7970ce3920d65981d1",
+  "additions": 13,
+  "deletions": 2,
+  "changed_files": [
+    "celery/app/base.py",
+    "docs/reference/celery.rst"
+  ],
+  "test_files": [],
+  "source_files": [
+    "celery/app/base.py"
+  ],
+  "parameterization": {
+    "repo": "celery/celery",
+    "repo_short": "celery",
+    "parameterized_identifiers": [
+      "after",
+      "applications",
+      "been",
+      "bound",
+      "built",
+      "celery",
+      "configuration",
+      "creating",
+      "currently",
+      "data"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T22:35:54Z"
+}

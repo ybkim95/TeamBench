@@ -1,0 +1,52 @@
+{
+  "repo": "plotly/plotly.py",
+  "pr_number": 4914,
+  "pr_url": "https://github.com/plotly/plotly.py/pull/4914",
+  "issue_number": 4913,
+  "base_sha": "8f50e2be6d613b98776b1835b8a745753802aa15",
+  "head_sha": "ba09922d3c81bd01bc6d4815ad81e9e132b572b2",
+  "additions": 41,
+  "deletions": 10,
+  "changed_files": [
+    "packages/python/plotly/plotly/express/_core.py",
+    "packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py"
+  ],
+  "test_files": [
+    "packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py"
+  ],
+  "source_files": [
+    "packages/python/plotly/plotly/express/_core.py"
+  ],
+  "parameterization": {
+    "repo": "plotly/plotly.py",
+    "repo_short": "plotly.py",
+    "parameterized_identifiers": [
+      "adding",
+      "alias",
+      "color",
+      "columns",
+      "constructor",
+      "convertible",
+      "data",
+      "data_frame",
+      "date",
+      "datetime_columns"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:57:23Z"
+}

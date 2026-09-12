@@ -1,0 +1,12 @@
+diff --git a/great_expectations/render/renderer/suite_edit_notebook_renderer.py b/great_expectations/render/renderer/suite_edit_notebook_renderer.py
+--- a/great_expectations/render/renderer/suite_edit_notebook_renderer.py
++++ b/great_expectations/render/renderer/suite_edit_notebook_renderer.py
+@@ -338,6 +338,8 @@ def _fix_path_in_batch_kwargs(batch_kwargs):
+             batch_kwargs = dict(batch_kwargs)
+         if batch_kwargs and "path" in batch_kwargs.keys():
+             base_dir = batch_kwargs["path"]
++            if base_dir[0:5] in ["s3://", "gs://"]:
++                return batch_kwargs
+             if not os.path.isabs(base_dir):
+                 batch_kwargs["path"] = os.path.join("..", "..", base_dir)
+ 

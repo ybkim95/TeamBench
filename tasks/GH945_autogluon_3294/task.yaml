@@ -1,0 +1,13 @@
+task_id: GH945_autogluon_3294
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix `predict_multi` crashing when `inverse_transform=False`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/autogluon/autogluon/pull/3294"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,28 @@
+diff --git a/scipy/spatial/transform/_rotation_cy.pyx b/scipy/spatial/transform/_rotation_cy.pyx
+index db0063a8c1b4..ce2f17ab92c9 100644
+--- a/scipy/spatial/transform/_rotation_cy.pyx
++++ b/scipy/spatial/transform/_rotation_cy.pyx
+@@ -1075,7 +1075,7 @@ def reduce(double[:, :] quat, left=None, right=None):
+ 
+ @cython.embedsignature(True)
+ @cython.boundscheck(False)
+-def apply(double[:, :] quat, double[:, :] vectors, bint inverse=False) -> double[:, :]:
++def apply(double[:, :] quat, const double[:, :] vectors, bint inverse=False) -> double[:, :]:
+     cdef Py_ssize_t n_vectors = len(vectors)
+     cdef Py_ssize_t n_rotations = len(quat)
+ 
+diff --git a/scipy/spatial/transform/tests/test_rotation.py b/scipy/spatial/transform/tests/test_rotation.py
+index 90a6109321a4..f667d3f5563c 100644
+--- a/scipy/spatial/transform/tests/test_rotation.py
++++ b/scipy/spatial/transform/tests/test_rotation.py
+@@ -3189,3 +3189,10 @@ def test_non_writeable():
+     q = np.array([0, 0, 0, 1.0])
+     q.flags.writeable = False
+     Rotation.from_quat(q)  # Regression test against gh-24354, should not raise
++
++
++def test_gh_24751():
++    points = np.array([[0.0, 0.0, 0.0]])
++    points.flags.writeable = False
++    rot = Rotation.from_euler("z", 0.0)
++    rot.apply(points)

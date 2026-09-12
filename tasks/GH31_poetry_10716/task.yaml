@@ -1,0 +1,13 @@
+task_id: GH31_poetry_10716
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix(env): support posix-compliant shells in `env activate` on Windows"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/python-poetry/poetry/pull/10716"
+source_issue: "https://github.com/python-poetry/poetry/issues/10395"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,98 @@
+diff --git a/arrow/locales.py b/arrow/locales.py
+index 63b2d48c..5d31aa24 100644
+--- a/arrow/locales.py
++++ b/arrow/locales.py
+@@ -4015,16 +4015,18 @@ class ThaiLocale(Locale):
+     timeframes = {
+         "now": "ขณะนี้",
+         "second": "วินาที",
+-        "seconds": "{0} ไม่กี่วินาที",
+-        "minute": "1 นาที",
++        "seconds": "{0} วินาที",
++        "minute": "นาที",
+         "minutes": "{0} นาที",
+-        "hour": "1 ชั่วโมง",
++        "hour": "ชั่วโมง",
+         "hours": "{0} ชั่วโมง",
+-        "day": "1 วัน",
++        "day": "วัน",
+         "days": "{0} วัน",
+-        "month": "1 เดือน",
++        "week": "สัปดาห์",
++        "weeks": "{0} สัปดาห์",
++        "month": "เดือน",
+         "months": "{0} เดือน",
+-        "year": "1 ปี",
++        "year": "ปี",
+         "years": "{0} ปี",
+     }
+ 
+@@ -4059,8 +4061,17 @@ class ThaiLocale(Locale):
+         "ธ.ค.",
+     ]
+ 
+-    day_names = ["", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์", "อาทิตย์"]
+-    day_abbreviations = ["", "จ", "อ", "พ", "พฤ", "ศ", "ส", "อา"]
++    day_names = [
++        "",
++        "วันจันทร์",
++        "วันอังคาร",
++        "วันพุธ",
++        "วันพฤหัสบดี",
++        "วันศุกร์",
++        "วันเสาร์",
++        "วันอาทิตย์",
++    ]
++    day_abbreviations = ["", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส.", "อา."]
+ 
+     meridians = {"am": "am", "pm": "pm", "AM": "AM", "PM": "PM"}
+ 
+diff --git a/tests/test_locales.py b/tests/test_locales.py
+index 6db3ad26..37444a02 100644
+--- a/tests/test_locales.py
++++ b/tests/test_locales.py
+@@ -1498,6 +1498,44 @@ def test_format_relative_future(self):
+         result = self.locale._format_relative("1 ชั่วโมง", "hour", -1)
+         assert result == "1 ชั่วโมง ที่ผ่านมา"
+ 
++    def test_format_timeframe(self):
++        # Now
++        assert self.locale._format_timeframe("now", 0) == "ขณะนี้"
++        # Second(s)
++        assert self.locale._format_timeframe("second", 1) == "วินาที"
++        assert self.locale._format_timeframe("seconds", 2) == "2 วินาที"
++        # Minute(s)
++        assert self.locale._format_timeframe("minute", 1) == "นาที"
++        assert self.locale._format_timeframe("minutes", 5) == "5 นาที"
++        # Hour(s)
++        assert self.locale._format_timeframe("hour", 1) == "ชั่วโมง"
++        assert self.locale._format_timeframe("hours", 3) == "3 ชั่วโมง"
++        # Day(s)
++        assert self.locale._format_timeframe("day", 1) == "วัน"
++        assert self.locale._format_timeframe("days", 7) == "7 วัน"
++        # Week(s)
++        assert self.locale._format_timeframe("week", 1) == "สัปดาห์"
++        assert self.locale._format_timeframe("weeks", 2) == "2 สัปดาห์"
++        # Month(s)
++        assert self.locale._format_timeframe("month", 1) == "เดือน"
++        assert self.locale._format_timeframe("months", 4) == "4 เดือน"
++        # Year(s)
++        assert self.locale._format_timeframe("year", 1) == "ปี"
++        assert self.locale._format_timeframe("years", 10) == "10 ปี"
++
++    def test_weekday(self):
++        dt = arrow.Arrow(2015, 4, 11, 17, 30, 0)
++        # These values depend on the actual Thai locale implementation
++        # Replace with correct Thai names if available
++        assert self.locale.day_name(dt.isoweekday()) == "วันเสาร์"
++        assert self.locale.day_abbreviation(dt.isoweekday()) == "ส."
++
++    def test_ordinal_number(self):
++        # Thai ordinal numbers are not commonly used, but test for fallback
++        assert self.locale.ordinal_number(1) == "1"
++        assert self.locale.ordinal_number(10) == "10"
++        assert self.locale.ordinal_number(0) == "0"
++
+ 
+ @pytest.mark.usefixtures("lang_locale")
+ class TestBengaliLocale:

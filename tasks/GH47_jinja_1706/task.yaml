@@ -1,0 +1,13 @@
+task_id: GH47_jinja_1706
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Improve the PackageLoader error message"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/jinja/pull/1706"
+source_issue: "https://github.com/pallets/jinja/issues/1705"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,54 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 20272,
+  "pr_url": "https://github.com/scipy/scipy/pull/20272",
+  "issue_number": null,
+  "base_sha": "6a6be8622f1bc8a2399240f5309b1ec484572f56",
+  "head_sha": "4d2372dd6abc03b79176f1ccc32b22721662e568",
+  "additions": 15,
+  "deletions": 1,
+  "changed_files": [
+    "scipy/optimize/_trustregion_exact.py",
+    "scipy/optimize/tests/test_trustregion_exact.py"
+  ],
+  "test_files": [
+    "scipy/optimize/tests/test_trustregion_exact.py"
+  ],
+  "source_files": [
+    "scipy/optimize/_trustregion_exact.py"
+  ],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "already_factorized",
+      "array",
+      "assert_allclose",
+      "assert_array_equal",
+      "assert_equal",
+      "bounds",
+      "damping",
+      "factor",
+      "factorization",
+      "get_lapack_funcs"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:54:20Z"
+}

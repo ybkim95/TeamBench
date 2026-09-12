@@ -1,0 +1,15 @@
+{
+ "task": "GH416_pytest_14290",
+ "patch": "tasks/GH416_pytest_14290/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "pytest-dev/pytest",
+ "pr_number": 14290,
+ "base_sha": "295d9da900a0dbe8b4093d6a6bc977cd567aa4b0",
+ "head_sha": "af80fa56c2aef4455cfb8e6b38562171271f1b6a",
+ "bytes": 2296,
+ "files_changed": 1,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

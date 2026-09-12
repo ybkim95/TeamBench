@@ -1,0 +1,53 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 165288,
+  "pr_url": "https://github.com/home-assistant/core/pull/165288",
+  "issue_number": 162701,
+  "base_sha": "e16b6ab026ea1324231e1ab0b39f0c644cd1cb78",
+  "head_sha": "23af604a07ee76ad2337e33f8288ed054f9a871a",
+  "additions": 29,
+  "deletions": 3,
+  "changed_files": [
+    "homeassistant/components/freebox/config_flow.py",
+    "homeassistant/components/freebox/strings.json",
+    "tests/components/freebox/test_config_flow.py"
+  ],
+  "test_files": [
+    "tests/components/freebox/test_config_flow.py"
+  ],
+  "source_files": [
+    "homeassistant/components/freebox/config_flow.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "abort",
+      "aborts",
+      "again",
+      "already_configured",
+      "api_domain",
+      "api_version",
+      "async_abort",
+      "async_configure",
+      "async_init",
+      "async_step_user"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:07:02Z"
+}

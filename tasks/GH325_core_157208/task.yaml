@@ -1,0 +1,13 @@
+task_id: GH325_core_157208
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix elkm1 connection cleanup on setup failure"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/157208"
+source_issue: "https://github.com/home-assistant/core/issues/156892"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

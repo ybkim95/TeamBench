@@ -1,0 +1,54 @@
+{
+  "repo": "ultralytics/ultralytics",
+  "pr_number": 23780,
+  "pr_url": "https://github.com/ultralytics/ultralytics/pull/23780",
+  "issue_number": null,
+  "base_sha": "ba983b5bf6a4b5603c7193accbdc092c7207172d",
+  "head_sha": "42e7437a84d84745c7435935fcc5f088bcc50d48",
+  "additions": 5,
+  "deletions": 2,
+  "changed_files": [
+    "tests/test_cuda.py",
+    "ultralytics/models/sam/predict.py"
+  ],
+  "test_files": [
+    "tests/test_cuda.py"
+  ],
+  "source_files": [
+    "ultralytics/models/sam/predict.py"
+  ],
+  "parameterization": {
+    "repo": "ultralytics/ultralytics",
+    "repo_short": "ultralytics",
+    "parameterized_identifiers": [
+      "caches",
+      "cast",
+      "created",
+      "device",
+      "dtype",
+      "eval",
+      "first",
+      "float",
+      "get_model",
+      "half"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:52:36Z"
+}

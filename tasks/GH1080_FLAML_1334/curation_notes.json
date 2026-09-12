@@ -1,0 +1,56 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1334,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1334",
+  "issue_number": null,
+  "base_sha": "a17c6e392e4d076dcb0100f6f57fbe1e7e1aeac1",
+  "head_sha": "082e7dafd2106796210ba9e70f80acc32528e526",
+  "additions": 27,
+  "deletions": 31,
+  "changed_files": [
+    "notebook/autogen_chatgpt_gpt4.ipynb",
+    "notebook/autogen_openai_completion.ipynb",
+    "notebook/research/autogen_code.ipynb",
+    "notebook/research/math_level5counting.ipynb",
+    "notebook/tune_huggingface.ipynb",
+    "test/autogen/oai/test_completion.py"
+  ],
+  "test_files": [
+    "test/autogen/oai/test_completion.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "able",
+      "after",
+      "already",
+      "another",
+      "apply",
+      "architecture",
+      "argmax",
+      "avoid",
+      "axis",
+      "base"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:04:02Z"
+}

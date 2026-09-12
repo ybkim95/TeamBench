@@ -1,0 +1,55 @@
+{
+  "repo": "umccr/orcabus",
+  "pr_number": 350,
+  "pr_url": "https://github.com/umccr/orcabus/pull/350",
+  "issue_number": 349,
+  "base_sha": "56ceae4861ee8257a5f978c90647263f8073503f",
+  "head_sha": "1e777b6166738e9f6879678e10c7eec5f6006d93",
+  "additions": 33,
+  "deletions": 33,
+  "changed_files": [
+    "config/constants.ts",
+    "lib/workload/components/event-workflowrunstatechange-internal-to-inputmaker-sfn/lambdas/generate_workflow_run_name_py/generate_workflow_run_name.py",
+    "lib/workload/stateless/stacks/bclconvert-interop-qc-pipeline-manager/scripts/trigger_bclconvert_interop_qc.sh",
+    "lib/workload/stateless/stacks/bssh-icav2-fastq-copy-manager/lambdas/query_bclconvert_outputs_handler_py/query_bclconvert_outputs_handler.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "lib/workload/components/event-workflowrunstatechange-internal-to-inputmaker-sfn/lambdas/generate_workflow_run_name_py/generate_workflow_run_name.py",
+    "lib/workload/stateless/stacks/bssh-icav2-fastq-copy-manager/lambdas/query_bclconvert_outputs_handler_py/query_bclconvert_outputs_handler.py"
+  ],
+  "parameterization": {
+    "repo": "umccr/orcabus",
+    "repo_short": "orcabus",
+    "parameterized_identifiers": [
+      "a324",
+      "a474",
+      "a7c67a80",
+      "adcc",
+      "adec",
+      "allowlist",
+      "analysis",
+      "analysis_cache",
+      "analysis_cache_uri",
+      "analysis_data"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:38:31Z"
+}

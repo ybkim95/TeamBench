@@ -1,0 +1,90 @@
+diff --git a/django/test/signals.py b/django/test/signals.py
+index cb78b76114d4..f594ae434b2e 100644
+--- a/django/test/signals.py
++++ b/django/test/signals.py
+@@ -5,6 +5,7 @@
+ from asgiref.local import Local
+ 
+ from django.apps import apps
++from django.conf import settings
+ from django.core.exceptions import ImproperlyConfigured
+ from django.core.signals import setting_changed
+ from django.db import connections, router
+@@ -13,6 +14,7 @@
+ from django.utils import timezone
+ from django.utils.formats import FORMAT_SETTINGS, reset_format_cache
+ from django.utils.functional import empty
++from django.utils.log import configure_logging
+ 
+ template_rendered = Signal()
+ 
+@@ -251,3 +253,9 @@ def user_model_swapped(*, setting, **kwargs):
+             from django.contrib.auth import views
+ 
+             views.UserModel = UserModel
++
++
++@receiver(setting_changed)
++def update_logging_config(*, setting, **kwargs):
++    if setting in {"LOGGING", "LOGGING_CONFIG"}:
++        configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+diff --git a/tests/logging_tests/tests.py b/tests/logging_tests/tests.py
+index a4de7424f826..9690147e8180 100644
+--- a/tests/logging_tests/tests.py
++++ b/tests/logging_tests/tests.py
+@@ -573,6 +573,10 @@ class SetupConfigureLogging(SimpleTestCase):
+     Calling django.setup() initializes the logging configuration.
+     """
+ 
++    def tearDown(self):
++        super().tearDown()
++        dictConfig.called = False
++
+     def test_configure_initializes_logging(self):
+         from django import setup
+ 
+@@ -586,6 +590,44 @@ def test_configure_initializes_logging(self):
+             setup()
+         self.assertTrue(dictConfig.called)
+ 
++    def test_logging_settings_changed(self):
++        """
++        Logging is reconfigured when LOGGING or LOGGING_CONFIG changes.
++        """
++        new_logging_info = {
++            "version": 1,
++            "disable_existing_loggers": False,
++            "loggers": {
++                "django.test_custom_logger": {
++                    "level": "INFO",
++                }
++            },
++        }
++        new_logging_warning = {
++            "version": 1,
++            "disable_existing_loggers": False,
++            "loggers": {
++                "django.test_custom_logger": {
++                    "level": "WARNING",
++                }
++            },
++        }
++        logger = logging.getLogger("django.test_custom_logger")
++
++        with override_settings(LOGGING=new_logging_info):
++            self.assertEqual(logger.level, logging.INFO)
++
++        # Repeating the operation works.
++        with override_settings(LOGGING=new_logging_warning):
++            self.assertEqual(logger.level, logging.WARNING)
++
++        # The default unconfigured level is NOTSET.
++        self.assertEqual(logger.level, logging.NOTSET)
++
++        self.assertIs(dictConfig.called, False)
++        with override_settings(LOGGING_CONFIG="logging_tests.tests.dictConfig"):
++            self.assertIs(dictConfig.called, True)
++
+ 
+ @override_settings(DEBUG=True, ROOT_URLCONF="logging_tests.urls")
+ class SecurityLoggerTest(LoggingAssertionMixin, SimpleTestCase):

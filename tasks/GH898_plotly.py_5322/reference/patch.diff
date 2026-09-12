@@ -1,0 +1,12 @@
+diff --git a/plotly/matplotlylib/mplexporter/tests/test_utils.py b/plotly/matplotlylib/mplexporter/tests/test_utils.py
+index 5659163084a..1373dd46795 100644
+--- a/plotly/matplotlylib/mplexporter/tests/test_utils.py
++++ b/plotly/matplotlylib/mplexporter/tests/test_utils.py
+@@ -1,6 +1,6 @@
+ from numpy.testing import assert_allclose, assert_equal
+-from . import plt
+ from .. import utils
++import matplotlib.pyplot as plt
+ 
+ 
+ def test_path_data():

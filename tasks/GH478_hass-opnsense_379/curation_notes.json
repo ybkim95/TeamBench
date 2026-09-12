@@ -1,0 +1,51 @@
+{
+  "repo": "travisghansen/hass-opnsense",
+  "pr_number": 379,
+  "pr_url": "https://github.com/travisghansen/hass-opnsense/pull/379",
+  "issue_number": 378,
+  "base_sha": "6f67b90fd91af94a39127994decdb36b439eb8f5",
+  "head_sha": "3c01b6529d728ea4ef1b794ac25bed01742ab71c",
+  "additions": 15,
+  "deletions": 2,
+  "changed_files": [
+    "custom_components/opnsense/pyopnsense/__init__.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "custom_components/opnsense/pyopnsense/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "travisghansen/hass-opnsense",
+    "repo_short": "hass-opnsense",
+    "parameterized_identifiers": [
+      "boottime",
+      "compile",
+      "datetime",
+      "days",
+      "debug",
+      "diagnostics",
+      "format",
+      "get_telemetry_system",
+      "hours",
+      "hours_str"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:21:09Z"
+}

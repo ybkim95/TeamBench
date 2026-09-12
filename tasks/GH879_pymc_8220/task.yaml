@@ -1,0 +1,13 @@
+task_id: GH879_pymc_8220
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix crash in vectorize_over_posterior when using ZeroSumNormal distributions"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pymc-devs/pymc/pull/8220"
+source_issue: "https://github.com/pymc-devs/pymc/issues/8219"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

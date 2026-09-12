@@ -1,0 +1,54 @@
+{
+  "repo": "python-poetry/poetry",
+  "pr_number": 10719,
+  "pr_url": "https://github.com/python-poetry/poetry/pull/10719",
+  "issue_number": null,
+  "base_sha": "197571e5831bc4fae45124e490093308f1678d7d",
+  "head_sha": "c042d81331fc339231e1a61456d111fc92346520",
+  "additions": 147,
+  "deletions": 2,
+  "changed_files": [
+    "src/poetry/vcs/git/backend.py",
+    "tests/vcs/git/test_backend.py"
+  ],
+  "test_files": [
+    "tests/vcs/git/test_backend.py"
+  ],
+  "source_files": [
+    "src/poetry/vcs/git/backend.py"
+  ],
+  "parameterization": {
+    "repo": "python-poetry/poetry",
+    "repo_short": "poetry",
+    "parameterized_identifiers": [
+      "add_object",
+      "again",
+      "annotated",
+      "annotations",
+      "another",
+      "as_uri",
+      "author",
+      "client",
+      "clone",
+      "clone_dir"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:24:08Z"
+}

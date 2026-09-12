@@ -1,0 +1,244 @@
+diff --git a/homeassistant/components/coolmaster/climate.py b/homeassistant/components/coolmaster/climate.py
+index ef3bb99f39df2..39b9f5ea2abf1 100644
+--- a/homeassistant/components/coolmaster/climate.py
++++ b/homeassistant/components/coolmaster/climate.py
+@@ -124,7 +124,9 @@ def hvac_mode(self):
+     @property
+     def fan_mode(self):
+         """Return the fan setting."""
+-        return CM_TO_HA_FAN[self._unit.fan_speed]
++
++        # Normalize to lowercase for lookup, and pass unknown values through.
++        return CM_TO_HA_FAN.get(self._unit.fan_speed.lower(), self._unit.fan_speed)
+ 
+     @property
+     def fan_modes(self):
+diff --git a/tests/components/coolmaster/conftest.py b/tests/components/coolmaster/conftest.py
+index 1f4e2c748d8a5..db46c4c0ef996 100644
+--- a/tests/components/coolmaster/conftest.py
++++ b/tests/components/coolmaster/conftest.py
+@@ -41,9 +41,48 @@
+         "clean_filter": True,
+         "swing": "horizontal",
+     },
++    "L1.102": {
++        "is_on": True,
++        "thermostat": 20,
++        "temperature": 25,
++        "temperature_unit": "celsius",
++        "fan_speed": "vlow",
++        "mode": "cool",
++        "error_code": None,
++        "clean_filter": False,
++        "swing": None,
++    },
++    "L1.103": {
++        "is_on": True,
++        "thermostat": 25,
++        "temperature": 25,
++        "temperature_unit": "celsius",
++        "fan_speed": "Med",  # Test case insensitivity for fan speed
++        "mode": "cool",
++        "error_code": None,
++        "clean_filter": False,
++        "swing": None,
++    },
++    "L1.104": {
++        "is_on": True,
++        "thermostat": 25,
++        "temperature": 25,
++        "temperature_unit": "celsius",
++        "fan_speed": "ULTRA",  # Test unknown fan speed handling
++        "mode": "cool",
++        "error_code": None,
++        "clean_filter": False,
++        "swing": None,
++    },
+ }
+ 
+ 
++@pytest.fixture
++def unit_count():
++    """Fixture to expose the number of pre-defined units."""
++    return len(TEST_UNITS)
++
++
+ class CoolMasterNetUnitMock:
+     """Mock for CoolMasterNetUnit."""
+ 
+diff --git a/tests/components/coolmaster/test_climate.py b/tests/components/coolmaster/test_climate.py
+index 0f5c18ffb3887..35188a8da4542 100644
+--- a/tests/components/coolmaster/test_climate.py
++++ b/tests/components/coolmaster/test_climate.py
+@@ -16,6 +16,7 @@
+     DOMAIN as CLIMATE_DOMAIN,
+     FAN_HIGH,
+     FAN_LOW,
++    FAN_MEDIUM,
+     SERVICE_SET_FAN_MODE,
+     SERVICE_SET_HVAC_MODE,
+     SERVICE_SET_SWING_MODE,
+@@ -44,6 +45,9 @@ async def test_climate_state(
+     """Test the Coolmaster climate state."""
+     assert hass.states.get("climate.l1_100").state == HVACMode.OFF
+     assert hass.states.get("climate.l1_101").state == HVACMode.HEAT
++    assert hass.states.get("climate.l1_102").state == HVACMode.COOL
++    assert hass.states.get("climate.l1_103").state == HVACMode.COOL
++    assert hass.states.get("climate.l1_104").state == HVACMode.COOL
+ 
+ 
+ async def test_climate_friendly_name(
+@@ -53,6 +57,9 @@ async def test_climate_friendly_name(
+     """Test the Coolmaster climate friendly name."""
+     assert hass.states.get("climate.l1_100").attributes[ATTR_FRIENDLY_NAME] == "L1.100"
+     assert hass.states.get("climate.l1_101").attributes[ATTR_FRIENDLY_NAME] == "L1.101"
++    assert hass.states.get("climate.l1_102").attributes[ATTR_FRIENDLY_NAME] == "L1.102"
++    assert hass.states.get("climate.l1_103").attributes[ATTR_FRIENDLY_NAME] == "L1.103"
++    assert hass.states.get("climate.l1_104").attributes[ATTR_FRIENDLY_NAME] == "L1.104"
+ 
+ 
+ async def test_climate_supported_features(
+@@ -82,6 +89,9 @@ async def test_climate_temperature(
+     """Test the Coolmaster climate current temperature."""
+     assert hass.states.get("climate.l1_100").attributes[ATTR_CURRENT_TEMPERATURE] == 25
+     assert hass.states.get("climate.l1_101").attributes[ATTR_CURRENT_TEMPERATURE] == 10
++    assert hass.states.get("climate.l1_102").attributes[ATTR_CURRENT_TEMPERATURE] == 25
++    assert hass.states.get("climate.l1_103").attributes[ATTR_CURRENT_TEMPERATURE] == 25
++    assert hass.states.get("climate.l1_104").attributes[ATTR_CURRENT_TEMPERATURE] == 25
+ 
+ 
+ async def test_climate_thermostat(
+@@ -91,6 +101,9 @@ async def test_climate_thermostat(
+     """Test the Coolmaster climate thermostat."""
+     assert hass.states.get("climate.l1_100").attributes[ATTR_TEMPERATURE] == 20
+     assert hass.states.get("climate.l1_101").attributes[ATTR_TEMPERATURE] == 20
++    assert hass.states.get("climate.l1_102").attributes[ATTR_TEMPERATURE] == 20
++    assert hass.states.get("climate.l1_103").attributes[ATTR_TEMPERATURE] == 25
++    assert hass.states.get("climate.l1_104").attributes[ATTR_TEMPERATURE] == 25
+ 
+ 
+ async def test_climate_hvac_modes(
+@@ -103,10 +116,16 @@ async def test_climate_hvac_modes(
+         HVACMode.COOL,
+         HVACMode.HEAT,
+     ]
+-    assert (
+-        hass.states.get("climate.l1_101").attributes[ATTR_HVAC_MODES]
+-        == hass.states.get("climate.l1_100").attributes[ATTR_HVAC_MODES]
+-    )
++    for unit in (
++        "climate.l1_101",
++        "climate.l1_102",
++        "climate.l1_103",
++        "climate.l1_104",
++    ):
++        assert (
++            hass.states.get(unit).attributes[ATTR_HVAC_MODES]
++            == hass.states.get("climate.l1_100").attributes[ATTR_HVAC_MODES]
++        )
+ 
+ 
+ async def test_climate_fan_mode(
+@@ -116,6 +135,9 @@ async def test_climate_fan_mode(
+     """Test the Coolmaster climate fan mode."""
+     assert hass.states.get("climate.l1_100").attributes[ATTR_FAN_MODE] == FAN_LOW
+     assert hass.states.get("climate.l1_101").attributes[ATTR_FAN_MODE] == FAN_HIGH
++    assert hass.states.get("climate.l1_102").attributes[ATTR_FAN_MODE] == "vlow"
++    assert hass.states.get("climate.l1_103").attributes[ATTR_FAN_MODE] == FAN_MEDIUM
++    assert hass.states.get("climate.l1_104").attributes[ATTR_FAN_MODE] == "ULTRA"
+ 
+ 
+ async def test_climate_fan_modes(
+@@ -124,10 +146,16 @@ async def test_climate_fan_modes(
+ ) -> None:
+     """Test the Coolmaster climate fan modes."""
+     assert hass.states.get("climate.l1_100").attributes[ATTR_FAN_MODES] == FAN_MODES
+-    assert (
+-        hass.states.get("climate.l1_101").attributes[ATTR_FAN_MODES]
+-        == hass.states.get("climate.l1_100").attributes[ATTR_FAN_MODES]
+-    )
++    for unit in (
++        "climate.l1_101",
++        "climate.l1_102",
++        "climate.l1_103",
++        "climate.l1_104",
++    ):
++        assert (
++            hass.states.get(unit).attributes[ATTR_FAN_MODES]
++            == hass.states.get("climate.l1_100").attributes[ATTR_FAN_MODES]
++        )
+ 
+ 
+ async def test_climate_swing_mode(
+diff --git a/tests/components/coolmaster/test_init.py b/tests/components/coolmaster/test_init.py
+index cd3693c513ccc..895881f2c4b8b 100644
+--- a/tests/components/coolmaster/test_init.py
++++ b/tests/components/coolmaster/test_init.py
+@@ -10,12 +10,11 @@
+ 
+ 
+ async def test_load_entry(
+-    hass: HomeAssistant,
+-    load_int: ConfigEntry,
++    hass: HomeAssistant, load_int: ConfigEntry, unit_count: int
+ ) -> None:
+     """Test Coolmaster initial load."""
+-    # 2 units times 4 entities (climate, binary_sensor, sensor, button).
+-    assert hass.states.async_entity_ids_count() == 8
++    # 4 units times 4 entities (climate, binary_sensor, sensor, button).
++    assert hass.states.async_entity_ids_count() == unit_count * 4
+     assert load_int.state is ConfigEntryState.LOADED
+ 
+ 
+@@ -33,6 +32,7 @@ async def test_registry_cleanup(
+     hass: HomeAssistant,
+     load_int: ConfigEntry,
+     hass_ws_client: WebSocketGenerator,
++    unit_count: int,
+ ) -> None:
+     """Test being able to remove a disconnected device."""
+     entry_id = load_int.entry_id
+@@ -40,7 +40,9 @@ async def test_registry_cleanup(
+     live_id = "L1.100"
+     dead_id = "L2.200"
+ 
+-    assert len(dr.async_entries_for_config_entry(device_registry, entry_id)) == 2
++    assert (
++        len(dr.async_entries_for_config_entry(device_registry, entry_id)) == unit_count
++    )
+     device_registry.async_get_or_create(
+         config_entry_id=entry_id,
+         identifiers={(DOMAIN, dead_id)},
+@@ -50,7 +52,10 @@ async def test_registry_cleanup(
+         sw_version="1.0",
+     )
+ 
+-    assert len(dr.async_entries_for_config_entry(device_registry, entry_id)) == 3
++    assert (
++        len(dr.async_entries_for_config_entry(device_registry, entry_id))
++        == unit_count + 1
++    )
+ 
+     assert await async_setup_component(hass, "config", {})
+     client = await hass_ws_client(hass)
+@@ -59,7 +64,10 @@ async def test_registry_cleanup(
+     assert device is not None
+     response = await client.remove_device(device.id, entry_id)
+     assert not response["success"]
+-    assert len(dr.async_entries_for_config_entry(device_registry, entry_id)) == 3
++    assert (
++        len(dr.async_entries_for_config_entry(device_registry, entry_id))
++        == unit_count + 1
++    )
+     assert device_registry.async_get_device(identifiers={(DOMAIN, live_id)}) is not None
+ 
+     # Try to remove "L2.200" - succeeds since it is dead
+@@ -67,5 +75,7 @@ async def test_registry_cleanup(
+     assert device is not None
+     response = await client.remove_device(device.id, entry_id)
+     assert response["success"]
+-    assert len(dr.async_entries_for_config_entry(device_registry, entry_id)) == 2
++    assert (
++        len(dr.async_entries_for_config_entry(device_registry, entry_id)) == unit_count
++    )
+     assert device_registry.async_get_device(identifiers={(DOMAIN, dead_id)}) is None

@@ -1,0 +1,13 @@
+task_id: GH451_TileOPs_296
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BugFix][NSA] Fix missing loop_start in gqa_window_sliding KV loop"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/tile-ai/TileOPs/pull/296"
+source_issue: "https://github.com/tile-ai/TileOPs/issues/295"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

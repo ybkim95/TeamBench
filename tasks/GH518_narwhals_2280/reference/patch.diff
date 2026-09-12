@@ -1,0 +1,329 @@
+diff --git a/narwhals/_arrow/series.py b/narwhals/_arrow/series.py
+index 08ec2e514a..52d5683bc5 100644
+--- a/narwhals/_arrow/series.py
++++ b/narwhals/_arrow/series.py
+@@ -28,6 +28,7 @@
+ from narwhals._arrow.utils import nulls_like
+ from narwhals._arrow.utils import pad_series
+ from narwhals._compliant import EagerSeries
++from narwhals._expression_parsing import ExprKind
+ from narwhals.dependencies import is_numpy_array_1d
+ from narwhals.exceptions import InvalidOperationError
+ from narwhals.utils import Implementation
+@@ -131,13 +132,18 @@ def _change_version(self: Self, version: Version) -> Self:
+     def _from_native_series(
+         self: Self,
+         series: ArrowArray | ArrowChunkedArray,
++        *,
++        preserve_broadcast: bool = False,
+     ) -> Self:
+-        return self.__class__(
++        result = self.__class__(
+             chunked_array(series),
+             name=self._name,
+             backend_version=self._backend_version,
+             version=self._version,
+         )
++        if preserve_broadcast:
++            result._broadcast = self._broadcast
++        return result
+ 
+     @classmethod
+     def from_iterable(
+@@ -434,12 +440,14 @@ def to_numpy(self: Self, dtype: Any = None, *, copy: bool | None = None) -> _1DA
+         return self.native.to_numpy()
+ 
+     def alias(self: Self, name: str) -> Self:
+-        return self.__class__(
++        result = self.__class__(
+             self.native,
+             name=name,
+             backend_version=self._backend_version,
+             version=self._version,
+         )
++        result._broadcast = self._broadcast
++        return result
+ 
+     @property
+     def dtype(self: Self) -> DType:
+@@ -504,14 +512,16 @@ def is_between(
+         return self._from_native_series(res)
+ 
+     def is_null(self: Self) -> Self:
+-        return self._from_native_series(self.native.is_null())
++        return self._from_native_series(self.native.is_null(), preserve_broadcast=True)
+ 
+     def is_nan(self: Self) -> Self:
+-        return self._from_native_series(pc.is_nan(self.native))
++        return self._from_native_series(pc.is_nan(self.native), preserve_broadcast=True)
+ 
+     def cast(self: Self, dtype: DType | type[DType]) -> Self:
+         data_type = narwhals_to_native_dtype(dtype, self._version)
+-        return self._from_native_series(pc.cast(self.native, data_type))
++        return self._from_native_series(
++            pc.cast(self.native, data_type), preserve_broadcast=True
++        )
+ 
+     def null_count(self: Self, *, _return_py_scalar: bool = True) -> int:
+         return maybe_extract_py_scalar(self.native.null_count, _return_py_scalar)
+@@ -654,7 +664,7 @@ def fill_aux(
+             series = fill_func(self.native)
+         else:
+             series = fill_aux(self.native, limit, strategy)
+-        return self._from_native_series(series)
++        return self._from_native_series(series, preserve_broadcast=True)
+ 
+     def to_frame(self: Self) -> ArrowDataFrame:
+         from narwhals._arrow.dataframe import ArrowDataFrame
+@@ -817,9 +827,13 @@ def to_arrow(self: Self) -> ArrowArray:
+     def mode(self: Self) -> ArrowSeries:
+         plx = self.__narwhals_namespace__()
+         col_token = generate_temporary_column_name(n_bytes=8, columns=[self.name])
+-        return self.value_counts(
++        counts = self.value_counts(
+             name=col_token, normalize=False, sort=False, parallel=False
+-        ).filter(plx.col(col_token) == plx.col(col_token).max())[self.name]
++        )
++        return counts.filter(
++            plx.col(col_token)
++            == plx.col(col_token).max().broadcast(kind=ExprKind.AGGREGATION)
++        )[self.name]
+ 
+     def is_finite(self: Self) -> Self:
+         return self._from_native_series(pc.is_finite(self.native))
+diff --git a/narwhals/_arrow/utils.py b/narwhals/_arrow/utils.py
+index ce10365f5c..4ef749a241 100644
+--- a/narwhals/_arrow/utils.py
++++ b/narwhals/_arrow/utils.py
+@@ -13,6 +13,7 @@
+ import pyarrow as pa
+ import pyarrow.compute as pc
+ 
++from narwhals.exceptions import ShapeError
+ from narwhals.utils import _SeriesNamespace
+ from narwhals.utils import import_dtypes_module
+ from narwhals.utils import isinstance_or_issubclass
+@@ -260,10 +261,9 @@ def align_series_full_broadcast(*series: ArrowSeries) -> Sequence[ArrowSeries]:
+     if fast_path:
+         return series
+ 
+-    is_max_length_gt_1 = max_length > 1
+     reshaped = []
+-    for s, length in zip(series, lengths):
+-        if is_max_length_gt_1 and length == 1:
++    for s in series:
++        if s._broadcast:
+             value = s.native[0]
+             if s._backend_version < (13,) and hasattr(value, "as_py"):
+                 value = value.as_py()
+@@ -271,6 +271,9 @@ def align_series_full_broadcast(*series: ArrowSeries) -> Sequence[ArrowSeries]:
+                 s._from_native_series(pa.array([value] * max_length, type=s._type))
+             )
+         else:
++            if (actual_len := len(s)) != max_length:
++                msg = f"Expected object of length {max_length}, got {actual_len}."
++                raise ShapeError(msg)
+             reshaped.append(s)
+ 
+     return reshaped
+diff --git a/narwhals/_compliant/series.py b/narwhals/_compliant/series.py
+index 4e1ef8f354..6d4ed55972 100644
+--- a/narwhals/_compliant/series.py
++++ b/narwhals/_compliant/series.py
+@@ -280,6 +280,19 @@ class EagerSeries(CompliantSeries[NativeSeriesT_co], Protocol[NativeSeriesT_co])
+     def _from_scalar(self, value: Any) -> Self:
+         return self.from_iterable([value], name=self.name, context=self)
+ 
++    def _from_native_series(
++        self, series: Any, *, preserve_broadcast: bool = False
++    ) -> Self:
++        """Return a new `CompliantSeries`, wrapping the native `series`.
++
++        In cases when operations are known to not affect whether a result should
++        be broadcast, we can pass `preverse_broadcast=True`.
++        Set this with care - it should only be set for unary expressions which don't
++        change length or order, such as `.alias` or `.fill_null`. If in doubt, don't
++        set it, you probably don't need it.
++        """
++        ...
++
+     def __narwhals_namespace__(self) -> EagerNamespace[Any, Self, Any]: ...
+ 
+     def _to_expr(self) -> EagerExpr[Any, Any]:
+diff --git a/narwhals/_expression_parsing.py b/narwhals/_expression_parsing.py
+index abc8b7a771..d10f090728 100644
+--- a/narwhals/_expression_parsing.py
++++ b/narwhals/_expression_parsing.py
+@@ -421,7 +421,7 @@ def apply_n_ary_operation(
+     )
+     kinds = [infer_kind(comparand, str_as_lit=str_as_lit) for comparand in comparands]
+ 
+-    broadcast = any(kind.preserves_length() for kind in kinds)
++    broadcast = any(not kind.is_scalar_like() for kind in kinds)
+     compliant_exprs = (
+         compliant_expr.broadcast(kind)
+         if broadcast and is_compliant_expr(compliant_expr) and is_scalar_like(kind)
+diff --git a/narwhals/_pandas_like/series.py b/narwhals/_pandas_like/series.py
+index e5a237be1c..af4972ccad 100644
+--- a/narwhals/_pandas_like/series.py
++++ b/narwhals/_pandas_like/series.py
+@@ -158,13 +158,18 @@ def _change_version(self: Self, version: Version) -> Self:
+             version=version,
+         )
+ 
+-    def _from_native_series(self: Self, series: Any) -> Self:
+-        return self.__class__(
++    def _from_native_series(
++        self: Self, series: Any, *, preserve_broadcast: bool = False
++    ) -> Self:
++        result = self.__class__(
+             series,
+             implementation=self._implementation,
+             backend_version=self._backend_version,
+             version=self._version,
+         )
++        if preserve_broadcast:
++            result._broadcast = self._broadcast
++        return result
+ 
+     @classmethod
+     def from_iterable(
+@@ -284,7 +289,9 @@ def cast(self: Self, dtype: DType | type[DType]) -> Self:
+             backend_version=self._backend_version,
+             version=self._version,
+         )
+-        return self._from_native_series(self.native.astype(pd_dtype))
++        return self._from_native_series(
++            self.native.astype(pd_dtype), preserve_broadcast=True
++        )
+ 
+     def item(self: Self, index: int | None) -> Any:
+         # cuDF doesn't have Series.item().
+@@ -540,12 +547,12 @@ def len(self: Self) -> int:
+     # Transformations
+ 
+     def is_null(self: Self) -> PandasLikeSeries:
+-        return self._from_native_series(self.native.isna())
++        return self._from_native_series(self.native.isna(), preserve_broadcast=True)
+ 
+     def is_nan(self: Self) -> PandasLikeSeries:
+         ser = self.native
+         if self.dtype.is_numeric():
+-            return self._from_native_series(ser != ser)  # noqa: PLR0124
++            return self._from_native_series(ser != ser, preserve_broadcast=True)  # noqa: PLR0124
+         msg = f"`.is_nan` only supported for numeric dtype and not {self.dtype}, did you mean `.is_null`?"
+         raise InvalidOperationError(msg)
+ 
+@@ -558,12 +565,15 @@ def fill_null(
+         ser = self.native
+         if value is not None:
+             _, value = align_and_extract_native(self, value)
+-            res_ser = self._from_native_series(ser.fillna(value=value))
++            res_ser = self._from_native_series(
++                ser.fillna(value=value), preserve_broadcast=True
++            )
+         else:
+             res_ser = self._from_native_series(
+                 ser.ffill(limit=limit)
+                 if strategy == "forward"
+-                else ser.bfill(limit=limit)
++                else ser.bfill(limit=limit),
++                preserve_broadcast=True,
+             )
+ 
+         return res_ser
+@@ -661,7 +671,8 @@ def alias(self: Self, name: str | Hashable) -> Self:
+                     name,
+                     implementation=self._implementation,
+                     backend_version=self._backend_version,
+-                )
++                ),
++                preserve_broadcast=True,
+             )
+         return self
+ 
+diff --git a/narwhals/_pandas_like/utils.py b/narwhals/_pandas_like/utils.py
+index fbeeca1d78..d4069611d1 100644
+--- a/narwhals/_pandas_like/utils.py
++++ b/narwhals/_pandas_like/utils.py
+@@ -15,6 +15,7 @@
+ 
+ from narwhals.exceptions import ColumnNotFoundError
+ from narwhals.exceptions import DuplicateError
++from narwhals.exceptions import ShapeError
+ from narwhals.utils import Implementation
+ from narwhals.utils import Version
+ from narwhals.utils import import_dtypes_module
+@@ -249,6 +250,11 @@ def set_index(
+ 
+     We can set `copy` / `inplace` based on implementation/version.
+     """
++    if isinstance(index, implementation.to_native_namespace().Index) and (
++        expected_len := len(index)
++    ) != (actual_len := len(obj)):
++        msg = f"Expected object of length {expected_len}, got length: {actual_len}"
++        raise ShapeError(msg)
+     if implementation is Implementation.CUDF:  # pragma: no cover
+         obj = obj.copy(deep=False)  # type: ignore[attr-defined]
+         obj.index = index  # type: ignore[attr-defined]
+@@ -611,9 +617,8 @@ def align_series_full_broadcast(
+ 
+     idx = series[lengths.index(max_length)].native.index
+     reindexed = []
+-    max_length_gt_1 = max_length > 1
+-    for s, length in zip(series, lengths):
+-        if max_length_gt_1 and length == 1:
++    for s in series:
++        if s._broadcast:
+             reindexed.append(
+                 s._from_native_series(
+                     native_namespace.Series(
+diff --git a/tests/expr_and_series/mode_test.py b/tests/expr_and_series/mode_test.py
+index c20a57c6d8..a18c8292da 100644
+--- a/tests/expr_and_series/mode_test.py
++++ b/tests/expr_and_series/mode_test.py
+@@ -3,6 +3,8 @@
+ import pytest
+ 
+ import narwhals.stable.v1 as nw
++from narwhals.exceptions import ShapeError
++from tests.utils import POLARS_VERSION
+ from tests.utils import ConstructorEager
+ from tests.utils import assert_equal_data
+ 
+@@ -12,25 +14,23 @@
+ }
+ 
+ 
+-def test_mode_single_expr(
+-    constructor_eager: ConstructorEager, request: pytest.FixtureRequest
+-) -> None:
+-    if "pyarrow_table" in str(constructor_eager):
+-        # TODO(unassigned): reimplement mode for pyarrow
+-        request.applymarker(pytest.mark.xfail)
++def test_mode_single_expr(constructor_eager: ConstructorEager) -> None:
+     df = nw.from_native(constructor_eager(data))
+     result = df.select(nw.col("a").mode()).sort("a")
+     expected = {"a": [1, 2]}
+     assert_equal_data(result, expected)
+ 
+ 
+-def test_mode_series(
+-    constructor_eager: ConstructorEager, request: pytest.FixtureRequest
+-) -> None:
+-    if "pyarrow_table" in str(constructor_eager):
+-        # TODO(unassigned): reimplement mode for pyarrow
+-        request.applymarker(pytest.mark.xfail)
++def test_mode_series(constructor_eager: ConstructorEager) -> None:
+     series = nw.from_native(constructor_eager(data), eager_only=True)["a"]
+     result = series.mode().sort()
+     expected = {"a": [1, 2]}
+     assert_equal_data({"a": result}, expected)
++
++
++def test_mode_different_lengths(constructor_eager: ConstructorEager) -> None:
++    if "polars" in str(constructor_eager) and POLARS_VERSION < (1, 10):
++        pytest.skip()
++    df = nw.from_native(constructor_eager({"a": [1, 1, 2], "b": [4, 5, 6]}))
++    with pytest.raises(ShapeError):
++        df.select(nw.col("a", "b").mode())

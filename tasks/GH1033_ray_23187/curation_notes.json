@@ -1,0 +1,52 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 23187,
+  "pr_url": "https://github.com/ray-project/ray/pull/23187",
+  "issue_number": 1234,
+  "base_sha": "0c74ecad12ad8154878b0fbcec82825861977100",
+  "head_sha": "d0f727c196de03bc5e1d73f7cabfa07d71d0eb9d",
+  "additions": 39,
+  "deletions": 0,
+  "changed_files": [
+    "python/ray/tests/test_actor_pool.py",
+    "python/ray/util/actor_pool.py"
+  ],
+  "test_files": [
+    "python/ray/tests/test_actor_pool.py"
+  ],
+  "source_files": [
+    "python/ray/util/actor_pool.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "calling",
+      "double",
+      "elem",
+      "func",
+      "gen_next",
+      "gen_next_unordered",
+      "get_next",
+      "get_next_unordered",
+      "github",
+      "has_next"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:00:30Z"
+}

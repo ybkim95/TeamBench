@@ -1,0 +1,45 @@
+diff --git a/changelog/13192.bugfix.rst b/changelog/13192.bugfix.rst
+new file mode 100644
+index 00000000000..cc7f9bc5487
+--- /dev/null
++++ b/changelog/13192.bugfix.rst
+@@ -0,0 +1 @@
++Fixed `|` (pipe) not being treated as a regex meta-character that needs escaping in :func:`pytest.raises(match=...) <pytest.raises>`.
+diff --git a/src/_pytest/raises.py b/src/_pytest/raises.py
+index 7c246fde280..75eea7d8cc9 100644
+--- a/src/_pytest/raises.py
++++ b/src/_pytest/raises.py
+@@ -363,14 +363,14 @@ def _check_raw_type(
+ 
+ def is_fully_escaped(s: str) -> bool:
+     # we know we won't compile with re.VERBOSE, so whitespace doesn't need to be escaped
+-    metacharacters = "{}()+.*?^$[]"
++    metacharacters = "{}()+.*?^$[]|"
+     return not any(
+         c in metacharacters and (i == 0 or s[i - 1] != "\\") for (i, c) in enumerate(s)
+     )
+ 
+ 
+ def unescape(s: str) -> str:
+-    return re.sub(r"\\([{}()+-.*?^$\[\]\s\\])", r"\1", s)
++    return re.sub(r"\\([{}()+-.*?^$\[\]\s\\|])", r"\1", s)
+ 
+ 
+ # These classes conceptually differ from ExceptionInfo in that ExceptionInfo is tied, and
+diff --git a/testing/python/raises.py b/testing/python/raises.py
+index 6b2a765e7fb..43a10d8a4f6 100644
+--- a/testing/python/raises.py
++++ b/testing/python/raises.py
+@@ -430,3 +430,12 @@ def test_raises_match_compiled_regex(self) -> None:
+         pattern_with_flags = re.compile(r"INVALID LITERAL", re.IGNORECASE)
+         with pytest.raises(ValueError, match=pattern_with_flags):
+             int("asdf")
++
++    def test_pipe_is_treated_as_regex_metacharacter(self) -> None:
++        """| (pipe) must be recognized as a regex metacharacter."""
++        from _pytest.raises import is_fully_escaped
++        from _pytest.raises import unescape
++
++        assert not is_fully_escaped("foo|bar")
++        assert is_fully_escaped(r"foo\|bar")
++        assert unescape(r"foo\|bar") == "foo|bar"

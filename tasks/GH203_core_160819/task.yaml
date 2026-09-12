@@ -1,0 +1,13 @@
+task_id: GH203_core_160819
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Google Cast: detect state and attributes when device is doing active non-media casting"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/160819"
+source_issue: "https://github.com/home-assistant/core/issues/160814"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -30,7 +30,8 @@ check() {
 cd "${WORKSPACE}"
 
 # Install Python deps
-pip install flask pytest --quiet 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require flask pytest || true
 
 # ── C1: config.json retry_timeout is an integer, not a string ────────────
 if python3 -c "
@@ -202,3 +203,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

@@ -1,0 +1,13 @@
+task_id: GH57_sqlalchemy_13155
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "docs: fix RelationshipProperty comparator cross-references"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sqlalchemy/sqlalchemy/pull/13155"
+source_issue: "https://github.com/sqlalchemy/sqlalchemy/issues/13132"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

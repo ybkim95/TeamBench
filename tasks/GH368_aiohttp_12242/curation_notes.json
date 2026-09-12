@@ -1,0 +1,53 @@
+{
+  "repo": "aio-libs/aiohttp",
+  "pr_number": 12242,
+  "pr_url": "https://github.com/aio-libs/aiohttp/pull/12242",
+  "issue_number": null,
+  "base_sha": "0341d64536cbd3110793b90467aaea6a6fbf9b28",
+  "head_sha": "a7dac1852cf2e56393d64fb116c90b98944181d2",
+  "additions": 68,
+  "deletions": 0,
+  "changed_files": [
+    "CHANGES/12240.bugfix.rst",
+    "aiohttp/_http_parser.pyx",
+    "tests/test_http_parser.py"
+  ],
+  "test_files": [
+    "tests/test_http_parser.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "aio-libs/aiohttp",
+    "repo_short": "aiohttp",
+    "parameterized_identifiers": [
+      "abnf",
+      "access",
+      "admin",
+      "allow",
+      "allowed",
+      "bad_hdr",
+      "based",
+      "behavior",
+      "bypasses",
+      "bytes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:13:13Z"
+}

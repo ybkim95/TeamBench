@@ -1,0 +1,54 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 129230,
+  "pr_url": "https://github.com/home-assistant/core/pull/129230",
+  "issue_number": 117071,
+  "base_sha": "7d29bff1365c0a6930639986f9f94d4db1302833",
+  "head_sha": "57efd05aa19b17f44e6fbdb9c0ab3445d562bb8b",
+  "additions": 19,
+  "deletions": 14,
+  "changed_files": [
+    "homeassistant/components/roomba/config_flow.py",
+    "homeassistant/components/roomba/const.py",
+    "tests/components/roomba/test_config_flow.py"
+  ],
+  "test_files": [
+    "tests/components/roomba/test_config_flow.py"
+  ],
+  "source_files": [
+    "homeassistant/components/roomba/config_flow.py",
+    "homeassistant/components/roomba/const.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "address",
+      "async_block_till_done",
+      "async_configure",
+      "blid",
+      "certificates",
+      "certs",
+      "components",
+      "config_entries",
+      "config_entry",
+      "config_flow"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:40:50Z"
+}

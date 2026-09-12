@@ -1,0 +1,64 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1215,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1215",
+  "issue_number": null,
+  "base_sha": "47b4dec61a8fc0df5559d9037463f945af042796",
+  "head_sha": "4e1cc65540ffcf85c3681d11fd6e742053bede65",
+  "additions": 124,
+  "deletions": 7,
+  "changed_files": [
+    "docs/api/pool.rst",
+    "docs/news_pool.rst",
+    "psycopg/psycopg/_connection_base.py",
+    "psycopg_pool/psycopg_pool/base.py",
+    "psycopg_pool/psycopg_pool/pool.py",
+    "psycopg_pool/psycopg_pool/pool_async.py",
+    "tests/pool/test_pool_common.py",
+    "tests/pool/test_pool_common_async.py"
+  ],
+  "test_files": [
+    "tests/pool/test_pool_common.py",
+    "tests/pool/test_pool_common_async.py"
+  ],
+  "source_files": [
+    "psycopg/psycopg/_connection_base.py",
+    "psycopg_pool/psycopg_pool/base.py",
+    "psycopg_pool/psycopg_pool/pool.py",
+    "psycopg_pool/psycopg_pool/pool_async.py"
+  ],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "adapters",
+      "after",
+      "allow",
+      "already",
+      "automethod",
+      "avoid",
+      "backend",
+      "backend_pid",
+      "before",
+      "being"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:29:57Z"
+}

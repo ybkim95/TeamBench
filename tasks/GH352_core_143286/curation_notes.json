@@ -1,0 +1,52 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 143286,
+  "pr_url": "https://github.com/home-assistant/core/pull/143286",
+  "issue_number": 143149,
+  "base_sha": "72337e4c773d14acee25b4487807041c0637f1c6",
+  "head_sha": "6d40efafe2ac31be292ff38055afa56c0afccd65",
+  "additions": 18,
+  "deletions": 10,
+  "changed_files": [
+    "homeassistant/components/surepetcare/binary_sensor.py",
+    "tests/components/surepetcare/__init__.py"
+  ],
+  "test_files": [
+    "tests/components/surepetcare/__init__.py"
+  ],
+  "source_files": [
+    "homeassistant/components/surepetcare/binary_sensor.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "callback",
+      "device_rssi",
+      "household_id",
+      "hub_rssi",
+      "learn_mode",
+      "led_mode",
+      "locking",
+      "mode",
+      "name",
+      "online"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:12:13Z"
+}

@@ -1,0 +1,54 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 11421,
+  "pr_url": "https://github.com/dask/dask/pull/11421",
+  "issue_number": null,
+  "base_sha": "20eeeda610260287a0dd50e4dd7b6a3cd8e007f3",
+  "head_sha": "96306017e762767e0cef92e50f6ef075cc3cfb33",
+  "additions": 14,
+  "deletions": 1,
+  "changed_files": [
+    "dask/array/slicing.py",
+    "dask/array/tests/test_cupy_slicing.py"
+  ],
+  "test_files": [
+    "dask/array/tests/test_cupy_slicing.py"
+  ],
+  "source_files": [
+    "dask/array/slicing.py"
+  ],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "array",
+      "assert_eq",
+      "backend",
+      "check_graph",
+      "compute",
+      "config",
+      "crash",
+      "cupy",
+      "darr",
+      "dask"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:04:54Z"
+}

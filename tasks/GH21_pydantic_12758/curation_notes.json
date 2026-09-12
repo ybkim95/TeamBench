@@ -1,0 +1,50 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12758,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12758",
+  "issue_number": 12750,
+  "base_sha": "4f818e02fa95b854bc2ca295e04c10422d16cd44",
+  "head_sha": "ff87040d412541001863307ce4ff775ce995aee3",
+  "additions": 38,
+  "deletions": 1,
+  "changed_files": [
+    "pydantic-core/src/validators/union.rs",
+    "tests/types/test_union.py"
+  ],
+  "test_files": [
+    "tests/types/test_union.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "also",
+      "arguably",
+      "as_ref",
+      "attempt",
+      "attempted",
+      "behaviour",
+      "best_match",
+      "build",
+      "check",
+      "checking"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:33:22Z"
+}

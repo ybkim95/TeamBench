@@ -1,0 +1,13 @@
+task_id: GH958_scipy_24816
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: sparse.csgraph.reconstruct_path: raise for non-integral predecessors"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scipy/scipy/pull/24816"
+source_issue: "https://github.com/scipy/scipy/issues/23577"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

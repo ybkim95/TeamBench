@@ -1,0 +1,13 @@
+task_id: GH966_pymc_7890
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix `independent_rvs` determination in `vectorize_over_posterior`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pymc-devs/pymc/pull/7890"
+source_issue: "https://github.com/pymc-devs/pymc/issues/7889"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

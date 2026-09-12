@@ -1,0 +1,13 @@
+task_id: GH1148_featuretools_2432
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix serialization of `word_set` in `NumberOfCommonWords`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/alteryx/featuretools/pull/2432"
+source_issue: "https://github.com/alteryx/featuretools/issues/2428"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

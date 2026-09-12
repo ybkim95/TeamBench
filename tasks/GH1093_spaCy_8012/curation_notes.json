@@ -1,0 +1,54 @@
+{
+  "repo": "explosion/spaCy",
+  "pr_number": 8012,
+  "pr_url": "https://github.com/explosion/spaCy/pull/8012",
+  "issue_number": null,
+  "base_sha": "a71194362f4a1f40e158ae216f9e3f852347f53e",
+  "head_sha": "8c0f7431916f0620bf752d32cfca37627a29d3f0",
+  "additions": 92,
+  "deletions": 2,
+  "changed_files": [
+    "spacy/pipeline/tok2vec.py",
+    "spacy/tests/pipeline/test_tok2vec.py"
+  ],
+  "test_files": [
+    "spacy/tests/pipeline/test_tok2vec.py"
+  ],
+  "source_files": [
+    "spacy/pipeline/tok2vec.py"
+  ],
+  "parameterization": {
+    "repo": "explosion/spaCy",
+    "repo_short": "spaCy",
+    "parameterized_identifiers": [
+      "accumulate_gradient",
+      "actually",
+      "alloc2f",
+      "append",
+      "architectures",
+      "attrs",
+      "auto_fill",
+      "backprop",
+      "blue",
+      "cats"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:05:02Z"
+}

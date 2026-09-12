@@ -1,0 +1,13 @@
+task_id: GH692_flask_5903
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Abort if the instance folder cannot be created"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/flask/pull/5903"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

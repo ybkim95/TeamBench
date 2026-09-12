@@ -1,0 +1,259 @@
+diff --git a/homeassistant/components/renault/const.py b/homeassistant/components/renault/const.py
+index 201a07c678393..05f8099b16838 100644
+--- a/homeassistant/components/renault/const.py
++++ b/homeassistant/components/renault/const.py
+@@ -9,6 +9,9 @@
+ 
+ DEFAULT_SCAN_INTERVAL = 420  # 7 minutes
+ 
++# If throttled time to pause the updates, in seconds
++COOLING_UPDATES_SECONDS = 60 * 15  # 15 minutes
++
+ PLATFORMS = [
+     Platform.BINARY_SENSOR,
+     Platform.BUTTON,
+diff --git a/homeassistant/components/renault/coordinator.py b/homeassistant/components/renault/coordinator.py
+index a90331730bcf0..c768c43613370 100644
+--- a/homeassistant/components/renault/coordinator.py
++++ b/homeassistant/components/renault/coordinator.py
+@@ -12,6 +12,7 @@
+     AccessDeniedException,
+     KamereonResponseException,
+     NotSupportedException,
++    QuotaLimitException,
+ )
+ from renault_api.kamereon.models import KamereonVehicleDataAttributes
+ 
+@@ -20,6 +21,7 @@
+ 
+ if TYPE_CHECKING:
+     from . import RenaultConfigEntry
++    from .renault_hub import RenaultHub
+ 
+ T = TypeVar("T", bound=KamereonVehicleDataAttributes)
+ 
+@@ -37,6 +39,7 @@ def __init__(
+         self,
+         hass: HomeAssistant,
+         config_entry: RenaultConfigEntry,
++        hub: RenaultHub,
+         logger: logging.Logger,
+         *,
+         name: str,
+@@ -54,10 +57,24 @@ def __init__(
+         )
+         self.access_denied = False
+         self.not_supported = False
++        self.assumed_state = False
++
+         self._has_already_worked = False
++        self._hub = hub
+ 
+     async def _async_update_data(self) -> T:
+         """Fetch the latest data from the source."""
++
++        if self._hub.is_throttled():
++            if not self._has_already_worked:
++                raise UpdateFailed("Renault hub currently throttled: init skipped")
++            # we have been throttled and decided to cooldown
++            # so do not count this update as an error
++            # coordinator. last_update_success should still be ok
++            self.logger.debug("Renault hub currently throttled: scan skipped")
++            self.assumed_state = True
++            return self.data
++
+         try:
+             async with _PARALLEL_SEMAPHORE:
+                 data = await self.update_method()
+@@ -70,6 +87,16 @@ async def _async_update_data(self) -> T:
+                 self.access_denied = True
+             raise UpdateFailed(f"This endpoint is denied: {err}") from err
+ 
++        except QuotaLimitException as err:
++            # The data we got is not bad per see, initiate cooldown for all coordinators
++            self._hub.set_throttled()
++            if self._has_already_worked:
++                self.assumed_state = True
++                self.logger.warning("Renault API throttled")
++                return self.data
++
++            raise UpdateFailed(f"Renault API throttled: {err}") from err
++
+         except NotSupportedException as err:
+             # Disable because the vehicle does not support this Renault endpoint.
+             self.update_interval = None
+@@ -81,6 +108,7 @@ async def _async_update_data(self) -> T:
+             raise UpdateFailed(f"Error communicating with API: {err}") from err
+ 
+         self._has_already_worked = True
++        self.assumed_state = False
+         return data
+ 
+     async def async_config_entry_first_refresh(self) -> None:
+diff --git a/homeassistant/components/renault/entity.py b/homeassistant/components/renault/entity.py
+index 7beb91e960303..81d81a18b7f59 100644
+--- a/homeassistant/components/renault/entity.py
++++ b/homeassistant/components/renault/entity.py
+@@ -60,3 +60,8 @@ def __init__(
+     def _get_data_attr(self, key: str) -> StateType:
+         """Return the attribute value from the coordinator data."""
+         return cast(StateType, getattr(self.coordinator.data, key))
++
++    @property
++    def assumed_state(self) -> bool:
++        """Return True if unable to access real state of the entity."""
++        return self.coordinator.assumed_state
+diff --git a/homeassistant/components/renault/renault_hub.py b/homeassistant/components/renault/renault_hub.py
+index b37390526cff2..e5168fc81fdb6 100644
+--- a/homeassistant/components/renault/renault_hub.py
++++ b/homeassistant/components/renault/renault_hub.py
+@@ -27,7 +27,13 @@
+ if TYPE_CHECKING:
+     from . import RenaultConfigEntry
+ 
+-from .const import CONF_KAMEREON_ACCOUNT_ID, DEFAULT_SCAN_INTERVAL
++from time import time
++
++from .const import (
++    CONF_KAMEREON_ACCOUNT_ID,
++    COOLING_UPDATES_SECONDS,
++    DEFAULT_SCAN_INTERVAL,
++)
+ from .renault_vehicle import RenaultVehicleProxy
+ 
+ LOGGER = logging.getLogger(__name__)
+@@ -45,6 +51,24 @@ def __init__(self, hass: HomeAssistant, locale: str) -> None:
+         self._account: RenaultAccount | None = None
+         self._vehicles: dict[str, RenaultVehicleProxy] = {}
+ 
++        self._got_throttled_at_time: float | None = None
++
++    def set_throttled(self) -> None:
++        """We got throttled, we need to adjust the rate limit."""
++        if self._got_throttled_at_time is None:
++            self._got_throttled_at_time = time()
++
++    def is_throttled(self) -> bool:
++        """Check if we are throttled."""
++        if self._got_throttled_at_time is None:
++            return False
++
++        if time() - self._got_throttled_at_time > COOLING_UPDATES_SECONDS:
++            self._got_throttled_at_time = None
++            return False
++
++        return True
++
+     async def attempt_login(self, username: str, password: str) -> bool:
+         """Attempt login to Renault servers."""
+         try:
+@@ -99,6 +123,7 @@ async def async_initialise_vehicle(
+         vehicle = RenaultVehicleProxy(
+             hass=self._hass,
+             config_entry=config_entry,
++            hub=self,
+             vehicle=await renault_account.get_api_vehicle(vehicle_link.vin),
+             details=vehicle_link.vehicleDetails,
+             scan_interval=scan_interval,
+diff --git a/homeassistant/components/renault/renault_vehicle.py b/homeassistant/components/renault/renault_vehicle.py
+index 1cce0e4459f37..1ab9bf0bd5a11 100644
+--- a/homeassistant/components/renault/renault_vehicle.py
++++ b/homeassistant/components/renault/renault_vehicle.py
+@@ -20,6 +20,7 @@
+ 
+ if TYPE_CHECKING:
+     from . import RenaultConfigEntry
++    from .renault_hub import RenaultHub
+ 
+ from .const import DOMAIN
+ from .coordinator import RenaultDataUpdateCoordinator
+@@ -68,6 +69,7 @@ def __init__(
+         self,
+         hass: HomeAssistant,
+         config_entry: RenaultConfigEntry,
++        hub: RenaultHub,
+         vehicle: RenaultVehicle,
+         details: models.KamereonVehicleDetails,
+         scan_interval: timedelta,
+@@ -87,6 +89,7 @@ def __init__(
+         self.coordinators: dict[str, RenaultDataUpdateCoordinator] = {}
+         self.hvac_target_temperature = 21
+         self._scan_interval = scan_interval
++        self._hub = hub
+ 
+     @property
+     def details(self) -> models.KamereonVehicleDetails:
+@@ -104,6 +107,7 @@ async def async_initialise(self) -> None:
+             coord.key: RenaultDataUpdateCoordinator(
+                 self.hass,
+                 self.config_entry,
++                self._hub,
+                 LOGGER,
+                 name=f"{self.details.vin} {coord.key}",
+                 update_method=coord.update_method(self._vehicle),
+diff --git a/tests/components/renault/test_sensor.py b/tests/components/renault/test_sensor.py
+index fb5fc205a7b59..bce50ec4fbf28 100644
+--- a/tests/components/renault/test_sensor.py
++++ b/tests/components/renault/test_sensor.py
+@@ -10,7 +10,7 @@
+ from syrupy.assertion import SnapshotAssertion
+ 
+ from homeassistant.config_entries import ConfigEntry
+-from homeassistant.const import STATE_UNAVAILABLE, Platform
++from homeassistant.const import ATTR_ASSUMED_STATE, STATE_UNAVAILABLE, Platform
+ from homeassistant.core import HomeAssistant
+ from homeassistant.helpers import device_registry as dr, entity_registry as er
+ 
+@@ -184,7 +184,7 @@ async def test_sensor_throttling_during_setup(
+     for get_data_mock in patches.values():
+         get_data_mock.side_effect = None
+     patches["battery_status"].return_value.batteryLevel = 55
+-    freezer.tick(datetime.timedelta(minutes=10))
++    freezer.tick(datetime.timedelta(minutes=20))
+     async_fire_time_changed(hass)
+     await hass.async_block_till_done()
+ 
+@@ -196,6 +196,7 @@ async def test_sensor_throttling_after_init(
+     hass: HomeAssistant,
+     config_entry: ConfigEntry,
+     vehicle_type: str,
++    caplog: pytest.LogCaptureFixture,
+     freezer: FrozenDateTimeFactory,
+ ) -> None:
+     """Test for Renault sensors with a throttling error during setup."""
+@@ -209,8 +210,11 @@ async def test_sensor_throttling_after_init(
+     # Initial state
+     entity_id = "sensor.reg_number_battery"
+     assert hass.states.get(entity_id).state == "60"
++    assert not hass.states.get(entity_id).attributes.get(ATTR_ASSUMED_STATE)
++    assert "Renault API throttled: scan skipped" not in caplog.text
+ 
+     # Test QuotaLimitException state
++    caplog.clear()
+     for get_data_mock in patches.values():
+         get_data_mock.side_effect = QuotaLimitException(
+             "err.func.wired.overloaded", "You have reached your quota limit"
+@@ -219,14 +223,21 @@ async def test_sensor_throttling_after_init(
+     async_fire_time_changed(hass)
+     await hass.async_block_till_done()
+ 
+-    assert hass.states.get(entity_id).state == STATE_UNAVAILABLE
++    assert hass.states.get(entity_id).state == "60"
++    assert hass.states.get(entity_id).attributes.get(ATTR_ASSUMED_STATE)
++    assert "Renault API throttled" in caplog.text
++    assert "Renault hub currently throttled: scan skipped" in caplog.text
+ 
+     # Test QuotaLimitException recovery, with new battery level
++    caplog.clear()
+     for get_data_mock in patches.values():
+         get_data_mock.side_effect = None
+     patches["battery_status"].return_value.batteryLevel = 55
+-    freezer.tick(datetime.timedelta(minutes=10))
++    freezer.tick(datetime.timedelta(minutes=20))
+     async_fire_time_changed(hass)
+     await hass.async_block_till_done()
+ 
+     assert hass.states.get(entity_id).state == "55"
++    assert not hass.states.get(entity_id).attributes.get(ATTR_ASSUMED_STATE)
++    assert "Renault API throttled" not in caplog.text
++    assert "Renault hub currently throttled: scan skipped" not in caplog.text

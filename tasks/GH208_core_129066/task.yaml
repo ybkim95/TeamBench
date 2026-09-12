@@ -1,0 +1,13 @@
+task_id: GH208_core_129066
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix race condition in statistics that created spikes"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/129066"
+source_issue: "https://github.com/home-assistant/core/issues/119738"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH60_starlette_3148
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Enable `autoescape` by default in `Jinja2Templates`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Kludex/starlette/pull/3148"
+source_issue: "https://github.com/Kludex/starlette/issues/3146"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,53 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 126242,
+  "pr_url": "https://github.com/home-assistant/core/pull/126242",
+  "issue_number": 115056,
+  "base_sha": "58bb2fa327c413c44a68b3098bddbb3cb3a78381",
+  "head_sha": "f6f533f3a4efe968cf16f54d11c63818054d4c55",
+  "additions": 98,
+  "deletions": 26,
+  "changed_files": [
+    "homeassistant/components/tuya/light.py",
+    "tests/components/tuya/snapshots/test_light.ambr",
+    "tests/components/tuya/test_light.py"
+  ],
+  "test_files": [
+    "tests/components/tuya/test_light.py"
+  ],
+  "source_files": [
+    "homeassistant/components/tuya/light.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "adjustable",
+      "anything",
+      "assertion",
+      "async_block_till_done",
+      "async_call",
+      "attributes",
+      "both",
+      "brightness",
+      "capabilities",
+      "check"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:37:50Z"
+}

@@ -1,0 +1,54 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 1758,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/1758",
+  "issue_number": null,
+  "base_sha": "38f06827172de4c323efd0085b99be756d0ac3be",
+  "head_sha": "f138dc515f3141a55c0c6ffbf612fb1b6bc3a109",
+  "additions": 43,
+  "deletions": 5,
+  "changed_files": [
+    "mlflow/store/sqlalchemy_store.py",
+    "tests/store/test_sqlalchemy_store.py"
+  ],
+  "test_files": [
+    "tests/store/test_sqlalchemy_store.py"
+  ],
+  "source_files": [
+    "mlflow/store/sqlalchemy_store.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "allow",
+      "assert_called_with",
+      "auto",
+      "column",
+      "columns",
+      "config",
+      "db_type",
+      "db_types",
+      "dbmodels",
+      "decorate"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:52:07Z"
+}

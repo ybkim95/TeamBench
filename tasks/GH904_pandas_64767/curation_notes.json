@@ -1,0 +1,53 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64767,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64767",
+  "issue_number": 21136,
+  "base_sha": "eb5671454ebb33edb799915d85a45c19244fc690",
+  "head_sha": "5eeb659c881c735683e5a2ee5efe4df31bf5281e",
+  "additions": 33,
+  "deletions": 1,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/core/indexes/multi.py",
+    "pandas/tests/indexes/multi/test_sorting.py"
+  ],
+  "test_files": [
+    "pandas/tests/indexes/multi/test_sorting.py"
+  ],
+  "source_files": [
+    "pandas/core/indexes/multi.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "actual",
+      "argsort",
+      "ascending",
+      "based",
+      "before",
+      "being",
+      "between",
+      "called",
+      "code",
+      "codes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:05Z"
+}

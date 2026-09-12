@@ -29,7 +29,8 @@ check() {
 
 cd "${WORKSPACE}"
 
-pip install starlette httpx pytest pytest-asyncio anyio --quiet 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require starlette httpx pytest pytest-asyncio anyio || true
 
 # C1: app.py and middleware.py valid Python
 result=$(python3 -c "
@@ -186,3 +187,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

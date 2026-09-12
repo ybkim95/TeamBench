@@ -1,0 +1,13 @@
+task_id: GH979_numpy_30965
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Show allocatable arrays in `dir()` for f2py modules"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/numpy/numpy/pull/30965"
+source_issue: "https://github.com/numpy/numpy/issues/27696"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,12 @@
+task_id: GH3_httpx_auth_leak
+domain: security
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [github-issue, httpx, security, auth-header, redirect, cwe-200]
+workspace_file_count: 3
+lines_changed_expected: 20
+parameterized: false
+source: "https://github.com/encode/httpx/issues/2033"

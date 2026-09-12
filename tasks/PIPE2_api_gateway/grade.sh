@@ -15,7 +15,7 @@ mkdir -p "$REPORTS"
 PYTHON="${PYTHON:-}"
 if [ -z "$PYTHON" ]; then
   for candidate in \
-      "$(dirname "$0")/../../../../venv/bin/python" \
+      "$(dirname "$0")/../../../..python3" \
       "python3"; do
     if "$candidate" -c "import json" >/dev/null 2>&1; then
       PYTHON="$candidate"
@@ -201,12 +201,14 @@ check "$PYTHON -m pytest tests/test_routes.py -q --tb=no 2>&1 | tail -1 | grep -
 fi  # end if config loads
 
 # ── Check 12: Attestation ─────────────────────────────────────────────────────
-check "$PYTHON -c \"
-import json, sys
-att_path = sys.argv[1] + '/attestation.json'
-att = json.load(open(att_path))
-assert att.get('verdict') == 'pass'
-\" '$SUBMISSION'" "bad_attestation"
+# ── Attestation recorded as METADATA, never scored ───────────────────────
+# de-scored-by: scripts/repair_graders.py (R3 attestation-is-protocol)
+# attestation.json is a PROTOCOL property of the run (already enforced as a
+# hard gate in harness/grade_task.py), not a property of the submitted
+# artifact. Scoring it let an agent buy partial credit by writing one JSON
+# file, which is the confound behind the withdrawn "removing the Verifier
+# improves partial score" result. Recorded here, excluded from partial_score.
+echo "metadata: attestation_present=$([ -f "${SUBMISSION:-}/attestation.json" ] && echo yes || echo no)"
 
 # ── Write score ───────────────────────────────────────────────────────────────
 PARTIAL=$("$PYTHON" -c "print(round($PASSED/max(1,$CHECKS), 2))")
@@ -229,3 +231,5 @@ cat > "$REPORTS/score.json" <<JSON
   "failure_modes": $FM
 }
 JSON
+
+# hermetic-by: scripts/make_graders_hermetic.py

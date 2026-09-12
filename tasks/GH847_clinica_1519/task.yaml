@@ -1,0 +1,13 @@
+task_id: GH847_clinica_1519
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[FIX] UKB-to-BIDS : Scans files creation for UKB-to-BIDS converter"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/aramis-lab/clinica/pull/1519"
+source_issue: "https://github.com/aramis-lab/clinica/issues/1508"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

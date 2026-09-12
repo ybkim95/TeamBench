@@ -1,0 +1,54 @@
+{
+  "repo": "explosion/spaCy",
+  "pr_number": 12486,
+  "pr_url": "https://github.com/explosion/spaCy/pull/12486",
+  "issue_number": null,
+  "base_sha": "d85df9d577bdd1b02a134a8b0024446bb7949641",
+  "head_sha": "3b21662e30792460956bbb252cba13850a445f47",
+  "additions": 50,
+  "deletions": 28,
+  "changed_files": [
+    "spacy/pipeline/spancat.py",
+    "spacy/tests/pipeline/test_spancat.py"
+  ],
+  "test_files": [
+    "spacy/tests/pipeline/test_spancat.py"
+  ],
+  "source_files": [
+    "spacy/pipeline/spancat.py"
+  ],
+  "parameterization": {
+    "repo": "explosion/spaCy",
+    "repo_short": "spaCy",
+    "parameterized_identifiers": [
+      "add_pipe",
+      "append",
+      "arange",
+      "array",
+      "asarray1i",
+      "assert_almost_equal",
+      "assert_array_equal",
+      "build_ngram_suggester",
+      "candidates",
+      "cast"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:58:35Z"
+}

@@ -1,0 +1,53 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 2987,
+  "pr_url": "https://github.com/unit8co/darts/pull/2987",
+  "issue_number": 2986,
+  "base_sha": "72edd1072379bc03862a72b9bd88dfb0137ea68c",
+  "head_sha": "4306d66b342f562afbc2510656643173c10c2734",
+  "additions": 82,
+  "deletions": 12,
+  "changed_files": [
+    "CHANGELOG.md",
+    "darts/tests/utils/torch_datasets/test_torch_datasets.py",
+    "darts/utils/data/torch_datasets/training_dataset.py"
+  ],
+  "test_files": [
+    "darts/tests/utils/torch_datasets/test_torch_datasets.py"
+  ],
+  "source_files": [
+    "darts/utils/data/torch_datasets/training_dataset.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "acting",
+      "acts",
+      "actual",
+      "actuals",
+      "always",
+      "available",
+      "backwards",
+      "both",
+      "bound",
+      "break"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:05:28Z"
+}

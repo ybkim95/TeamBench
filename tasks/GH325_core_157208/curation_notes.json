@@ -1,0 +1,53 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 157208,
+  "pr_url": "https://github.com/home-assistant/core/pull/157208",
+  "issue_number": 156892,
+  "base_sha": "6c4296a0de0f79d4e6b0f2591f321f724e49d421",
+  "head_sha": "55c6fc5c3b988c0c66ebe895935f34a00160acb0",
+  "additions": 76,
+  "deletions": 41,
+  "changed_files": [
+    "homeassistant/components/elkm1/__init__.py",
+    "homeassistant/components/elkm1/config_flow.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "homeassistant/components/elkm1/__init__.py",
+    "homeassistant/components/elkm1/config_flow.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "add_callback",
+      "add_handler",
+      "already",
+      "async_unload_entry",
+      "async_wait",
+      "asyncio",
+      "call_later",
+      "callback",
+      "cancel",
+      "changeset"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:10:34Z"
+}

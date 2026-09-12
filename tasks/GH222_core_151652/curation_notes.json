@@ -1,0 +1,59 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 151652,
+  "pr_url": "https://github.com/home-assistant/core/pull/151652",
+  "issue_number": 151642,
+  "base_sha": "6cbb881647bf9bc90adedc67e66bcc81c385d6c8",
+  "head_sha": "9c257acb3f154d1d5bfcb302d912b68cb59fee71",
+  "additions": 15,
+  "deletions": 21,
+  "changed_files": [
+    "homeassistant/components/aladdin_connect/__init__.py",
+    "homeassistant/components/aladdin_connect/coordinator.py",
+    "homeassistant/components/aladdin_connect/cover.py",
+    "homeassistant/components/aladdin_connect/manifest.json",
+    "requirements_all.txt",
+    "requirements_test_all.txt",
+    "tests/components/aladdin_connect/test_init.py"
+  ],
+  "test_files": [
+    "tests/components/aladdin_connect/test_init.py"
+  ],
+  "source_files": [
+    "homeassistant/components/aladdin_connect/__init__.py",
+    "homeassistant/components/aladdin_connect/coordinator.py",
+    "homeassistant/components/aladdin_connect/cover.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "aiohttp_client",
+      "aladdin_connect",
+      "annotations",
+      "assistant",
+      "async_close_cover",
+      "async_setup_entry",
+      "attribute",
+      "battery_level",
+      "client",
+      "closed"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:07Z"
+}

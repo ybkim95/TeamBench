@@ -1,0 +1,13 @@
+task_id: GH1021_transformers_17331
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix metric calculation in examples and setup tests to run on multi-gpu for no_trainer scripts"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/huggingface/transformers/pull/17331"
+source_issue: "https://github.com/huggingface/transformers/issues/17214"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

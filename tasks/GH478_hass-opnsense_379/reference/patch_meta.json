@@ -1,0 +1,15 @@
+{
+ "task": "GH478_hass-opnsense_379",
+ "patch": "tasks/GH478_hass-opnsense_379/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "travisghansen/hass-opnsense",
+ "pr_number": 379,
+ "base_sha": "6f67b90fd91af94a39127994decdb36b439eb8f5",
+ "head_sha": "3c01b6529d728ea4ef1b794ac25bed01742ab71c",
+ "bytes": 1988,
+ "files_changed": 1,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

@@ -1,0 +1,14 @@
+diff --git a/sktime/performance_metrics/forecasting/probabilistic/_classes.py b/sktime/performance_metrics/forecasting/probabilistic/_classes.py
+--- a/sktime/performance_metrics/forecasting/probabilistic/_classes.py
++++ b/sktime/performance_metrics/forecasting/probabilistic/_classes.py
+@@ -679,7 +679,9 @@ def _evaluate_by_index(self, y_true, y_pred, multioutput, **kwargs):
+ 
+         y_true_np = np.tile(y_true_np, no_scores)
+ 
+-        truth_array = (y_true_np > lower).astype(int) * (y_true_np < upper).astype(int)
++        truth_array = (y_true_np >= lower).astype(int) * (y_true_np <= upper).astype(
++            int
++        )
+ 
+         out_df = pd.DataFrame(
+             truth_array, columns=pd.MultiIndex.from_product([vars, scores])

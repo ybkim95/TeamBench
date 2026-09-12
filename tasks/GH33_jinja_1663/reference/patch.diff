@@ -1,0 +1,60 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 384c6122d..cd2a4ef08 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -35,6 +35,8 @@ Unreleased
+ -   Fix `copy`/`pickle` support for the internal ``missing`` object.
+     :issue:`2027`
+ -   ``Environment.overlay(enable_async)`` is applied correctly. :pr:`2061`
++-   The error message from ``FileSystemLoader`` includes the paths that were
++    searched. :issue:`1661`
+ 
+ 
+ Version 3.1.4
+diff --git a/src/jinja2/loaders.py b/src/jinja2/loaders.py
+index d2373e5e7..35799584c 100644
+--- a/src/jinja2/loaders.py
++++ b/src/jinja2/loaders.py
+@@ -204,7 +204,12 @@ def get_source(
+             if os.path.isfile(filename):
+                 break
+         else:
+-            raise TemplateNotFound(template)
++            plural = "path" if len(self.searchpath) == 1 else "paths"
++            paths_str = ", ".join(repr(p) for p in self.searchpath)
++            raise TemplateNotFound(
++                template,
++                f"{template!r} not found in search {plural}: {paths_str}",
++            )
+ 
+         with open(filename, encoding=self.encoding) as f:
+             contents = f.read()
+diff --git a/tests/test_loader.py b/tests/test_loader.py
+index e0cff6720..5a4e1a9da 100644
+--- a/tests/test_loader.py
++++ b/tests/test_loader.py
+@@ -179,6 +179,24 @@ def test_filename_normpath(self):
+         t = e.get_template("foo/test.html")
+         assert t.filename == str(self.searchpath / "foo" / "test.html")
+ 
++    def test_error_includes_paths(self, env, filesystem_loader):
++        env.loader = filesystem_loader
++
++        with pytest.raises(TemplateNotFound) as info:
++            env.get_template("missing")
++
++        e_str = str(info.value)
++        assert e_str.startswith("'missing' not found in search path: ")
++
++        filesystem_loader.searchpath.append("other")
++
++        with pytest.raises(TemplateNotFound) as info:
++            env.get_template("missing")
++
++        e_str = str(info.value)
++        assert e_str.startswith("'missing' not found in search paths: ")
++        assert ", 'other'" in e_str
++
+ 
+ class TestModuleLoader:
+     archive = None

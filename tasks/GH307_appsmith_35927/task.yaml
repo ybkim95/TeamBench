@@ -1,0 +1,13 @@
+task_id: GH307_appsmith_35927
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: API multipart spec flakiness"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/appsmithorg/appsmith/pull/35927"
+source_issue: "https://github.com/appsmithorg/appsmith/issues/35137"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

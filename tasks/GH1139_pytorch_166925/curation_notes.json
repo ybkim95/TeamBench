@@ -1,0 +1,52 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 166925,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/166925",
+  "issue_number": 166589,
+  "base_sha": "cbe1a35dbdfdc9b7490212bdd812f3e2f4ce9e2d",
+  "head_sha": "1f961fc6693619a64fc620c098fdefdcb425640a",
+  "additions": 30,
+  "deletions": 0,
+  "changed_files": [
+    "test/dynamo/test_decorators.py",
+    "torch/_dynamo/symbolic_convert.py"
+  ],
+  "test_files": [
+    "test/dynamo/test_decorators.py"
+  ],
+  "source_files": [
+    "torch/_dynamo/symbolic_convert.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "attempt",
+      "back",
+      "backend",
+      "because",
+      "block",
+      "break",
+      "cannot",
+      "case",
+      "checkpoint",
+      "cnts"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:08:39Z"
+}

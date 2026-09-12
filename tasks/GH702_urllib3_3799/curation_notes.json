@@ -1,0 +1,55 @@
+{
+  "repo": "urllib3/urllib3",
+  "pr_number": 3799,
+  "pr_url": "https://github.com/urllib3/urllib3/pull/3799",
+  "issue_number": null,
+  "base_sha": "6dc3f7d5a45e11a05180a5371d7b5acb98ca6aff",
+  "head_sha": "2236890af65f1956fb17ff223e3620e562799756",
+  "additions": 7,
+  "deletions": 3,
+  "changed_files": [
+    "changelog/3798.bugfix.rst",
+    "src/urllib3/_base_connection.py",
+    "test/with_dummyserver/test_chunked_transfer.py"
+  ],
+  "test_files": [
+    "test/with_dummyserver/test_chunked_transfer.py"
+  ],
+  "source_files": [
+    "src/urllib3/_base_connection.py"
+  ],
+  "parameterization": {
+    "repo": "urllib3/urllib3",
+    "repo_short": "urllib3",
+    "parameterized_identifiers": [
+      "alias",
+      "behavior",
+      "bodies",
+      "body",
+      "buffer",
+      "bytes",
+      "chunked",
+      "chunks",
+      "data",
+      "documented"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:34:17Z"
+}

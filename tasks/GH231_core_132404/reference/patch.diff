@@ -1,0 +1,213 @@
+diff --git a/homeassistant/bootstrap.py b/homeassistant/bootstrap.py
+index 1034223051c7d..f3a374372ac8f 100644
+--- a/homeassistant/bootstrap.py
++++ b/homeassistant/bootstrap.py
+@@ -89,7 +89,7 @@
+ )
+ from .helpers.dispatcher import async_dispatcher_send_internal
+ from .helpers.storage import get_internal_store_manager
+-from .helpers.system_info import async_get_system_info, is_official_image
++from .helpers.system_info import async_get_system_info
+ from .helpers.typing import ConfigType
+ from .setup import (
+     # _setup_started is marked as protected to make it clear
+@@ -106,6 +106,7 @@
+ from .util.hass_dict import HassKey
+ from .util.logging import async_activate_log_queue_handler
+ from .util.package import async_get_user_site, is_docker_env, is_virtual_env
++from .util.system_info import is_official_image
+ 
+ with contextlib.suppress(ImportError):
+     # Ensure anyio backend is imported to avoid it being imported in the event loop
+diff --git a/homeassistant/components/ffmpeg/__init__.py b/homeassistant/components/ffmpeg/__init__.py
+index 9a88317027e8f..99803e9636ceb 100644
+--- a/homeassistant/components/ffmpeg/__init__.py
++++ b/homeassistant/components/ffmpeg/__init__.py
+@@ -23,10 +23,10 @@
+     async_dispatcher_send,
+ )
+ from homeassistant.helpers.entity import Entity
+-from homeassistant.helpers.system_info import is_official_image
+ from homeassistant.helpers.typing import ConfigType
+ from homeassistant.loader import bind_hass
+ from homeassistant.util.signal_type import SignalType
++from homeassistant.util.system_info import is_official_image
+ 
+ DOMAIN = "ffmpeg"
+ 
+diff --git a/homeassistant/helpers/system_info.py b/homeassistant/helpers/system_info.py
+index 538664283322f..df9679dcb0803 100644
+--- a/homeassistant/helpers/system_info.py
++++ b/homeassistant/helpers/system_info.py
+@@ -5,7 +5,6 @@
+ from functools import cache
+ from getpass import getuser
+ import logging
+-import os
+ import platform
+ from typing import TYPE_CHECKING, Any
+ 
+@@ -13,6 +12,7 @@
+ from homeassistant.core import HomeAssistant
+ from homeassistant.loader import bind_hass
+ from homeassistant.util.package import is_docker_env, is_virtual_env
++from homeassistant.util.system_info import is_official_image
+ 
+ from .hassio import is_hassio
+ from .importlib import async_import_module
+@@ -23,12 +23,6 @@
+ _DATA_MAC_VER = "system_info_mac_ver"
+ 
+ 
+-@cache
+-def is_official_image() -> bool:
+-    """Return True if Home Assistant is running in an official container."""
+-    return os.path.isfile("/OFFICIAL_IMAGE")
+-
+-
+ @singleton(_DATA_MAC_VER)
+ async def async_get_mac_ver(hass: HomeAssistant) -> str:
+     """Return the macOS version."""
+diff --git a/homeassistant/util/package.py b/homeassistant/util/package.py
+index da0666290a140..9720bbd4ca3a5 100644
+--- a/homeassistant/util/package.py
++++ b/homeassistant/util/package.py
+@@ -15,6 +15,8 @@
+ 
+ from packaging.requirements import InvalidRequirement, Requirement
+ 
++from .system_info import is_official_image
++
+ _LOGGER = logging.getLogger(__name__)
+ 
+ 
+@@ -28,8 +30,13 @@ def is_virtual_env() -> bool:
+ 
+ @cache
+ def is_docker_env() -> bool:
+-    """Return True if we run in a docker env."""
+-    return Path("/.dockerenv").exists()
++    """Return True if we run in a container env."""
++    return (
++        Path("/.dockerenv").exists()
++        or Path("/run/.containerenv").exists()
++        or "KUBERNETES_SERVICE_HOST" in os.environ
++        or is_official_image()
++    )
+ 
+ 
+ def get_installed_versions(specifiers: set[str]) -> set[str]:
+diff --git a/homeassistant/util/system_info.py b/homeassistant/util/system_info.py
+new file mode 100644
+index 0000000000000..80621bd16a570
+--- /dev/null
++++ b/homeassistant/util/system_info.py
+@@ -0,0 +1,12 @@
++"""Util to gather system info."""
++
++from __future__ import annotations
++
++from functools import cache
++import os
++
++
++@cache
++def is_official_image() -> bool:
++    """Return True if Home Assistant is running in an official container."""
++    return os.path.isfile("/OFFICIAL_IMAGE")
+diff --git a/tests/helpers/test_system_info.py b/tests/helpers/test_system_info.py
+index 2c4b95302fcce..ad14083419995 100644
+--- a/tests/helpers/test_system_info.py
++++ b/tests/helpers/test_system_info.py
+@@ -9,17 +9,7 @@
+ from homeassistant.components import hassio
+ from homeassistant.const import __version__ as current_version
+ from homeassistant.core import HomeAssistant
+-from homeassistant.helpers.system_info import async_get_system_info, is_official_image
+-
+-
+-async def test_is_official_image() -> None:
+-    """Test is_official_image."""
+-    is_official_image.cache_clear()
+-    with patch("homeassistant.helpers.system_info.os.path.isfile", return_value=True):
+-        assert is_official_image() is True
+-    is_official_image.cache_clear()
+-    with patch("homeassistant.helpers.system_info.os.path.isfile", return_value=False):
+-        assert is_official_image() is False
++from homeassistant.helpers.system_info import async_get_system_info
+ 
+ 
+ async def test_get_system_info(hass: HomeAssistant) -> None:
+diff --git a/tests/util/test_package.py b/tests/util/test_package.py
+index b7497d620cd2b..e3635dd2bea0f 100644
+--- a/tests/util/test_package.py
++++ b/tests/util/test_package.py
+@@ -410,3 +410,47 @@ def test_check_package_previous_failed_install() -> None:
+     with patch("homeassistant.util.package.version", return_value=None):
+         assert not package.is_installed(installed_package)
+         assert not package.is_installed(f"{installed_package}=={installed_version}")
++
++
++@pytest.mark.parametrize("dockerenv", [True, False], ids=["dockerenv", "not_dockerenv"])
++@pytest.mark.parametrize(
++    "containerenv", [True, False], ids=["containerenv", "not_containerenv"]
++)
++@pytest.mark.parametrize(
++    "kubernetes_service_host", [True, False], ids=["kubernetes", "not_kubernetes"]
++)
++@pytest.mark.parametrize(
++    "is_official_image", [True, False], ids=["official_image", "not_official_image"]
++)
++async def test_is_docker_env(
++    dockerenv: bool,
++    containerenv: bool,
++    kubernetes_service_host: bool,
++    is_official_image: bool,
++) -> None:
++    """Test is_docker_env."""
++
++    def new_path_mock(path: str):
++        mock = Mock()
++        if path == "/.dockerenv":
++            mock.exists.return_value = dockerenv
++        elif path == "/run/.containerenv":
++            mock.exists.return_value = containerenv
++        return mock
++
++    env = {}
++    if kubernetes_service_host:
++        env["KUBERNETES_SERVICE_HOST"] = "True"
++
++    package.is_docker_env.cache_clear()
++    with (
++        patch("homeassistant.util.package.Path", side_effect=new_path_mock),
++        patch(
++            "homeassistant.util.package.is_official_image",
++            return_value=is_official_image,
++        ),
++        patch.dict(os.environ, env),
++    ):
++        assert package.is_docker_env() is any(
++            [dockerenv, containerenv, kubernetes_service_host, is_official_image]
++        )
+diff --git a/tests/util/test_system_info.py b/tests/util/test_system_info.py
+new file mode 100644
+index 0000000000000..270e91d37db3f
+--- /dev/null
++++ b/tests/util/test_system_info.py
+@@ -0,0 +1,15 @@
++"""Tests for the system info helper."""
++
++from unittest.mock import patch
++
++from homeassistant.util.system_info import is_official_image
++
++
++async def test_is_official_image() -> None:
++    """Test is_official_image."""
++    is_official_image.cache_clear()
++    with patch("homeassistant.util.system_info.os.path.isfile", return_value=True):
++        assert is_official_image() is True
++    is_official_image.cache_clear()
++    with patch("homeassistant.util.system_info.os.path.isfile", return_value=False):
++        assert is_official_image() is False

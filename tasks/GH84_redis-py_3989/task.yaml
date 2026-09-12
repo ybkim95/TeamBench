@@ -1,0 +1,13 @@
+task_id: GH84_redis-py_3989
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix async ClusterPipeline missing nodes_manager and set_response_callback required by JSON module"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/redis/redis-py/pull/3989"
+source_issue: "https://github.com/redis/redis-py/issues/3936"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

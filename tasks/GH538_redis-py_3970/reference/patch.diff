@@ -1,0 +1,190 @@
+diff --git a/redis/commands/core.py b/redis/commands/core.py
+index 5c58f11f3c..53971d8f1f 100644
+--- a/redis/commands/core.py
++++ b/redis/commands/core.py
+@@ -2,6 +2,7 @@
+ 
+ import datetime
+ import hashlib
++import inspect
+ 
+ # Try to import the xxhash library as an optional dependency
+ try:
+@@ -32,6 +33,9 @@
+     Union,
+ )
+ 
++from redis.asyncio.observability.recorder import (
++    record_streaming_lag_from_response as async_record_streaming_lag,
++)
+ from redis.exceptions import ConnectionError, DataError, NoScriptError, RedisError
+ from redis.typing import (
+     AbsExpiryT,
+@@ -4452,9 +4456,19 @@ def xread(
+         pieces.extend(values)
+         response = self.execute_command("XREAD", *pieces, keys=keys)
+ 
+-        record_streaming_lag_from_response(response=response)
++        if inspect.iscoroutine(response):
++            # Async client - wrap in coroutine that awaits and records
++            async def _record_and_return():
++                actual_response = await response
+ 
+-        return response
++                await async_record_streaming_lag(response=actual_response)
++                return actual_response
++
++            return _record_and_return()
++        else:
++            # Sync client
++            record_streaming_lag_from_response(response=response)
++            return response
+ 
+     def xreadgroup(
+         self,
+@@ -4516,13 +4530,27 @@ def xreadgroup(
+         pieces.extend(streams.values())
+         response = self.execute_command("XREADGROUP", *pieces, **options)
+ 
+-        record_streaming_lag_from_response(
+-            response=response,
+-            consumer_group=groupname,
+-            consumer_name=consumername,
+-        )
++        if inspect.iscoroutine(response):
++            # Async client - wrap in coroutine that awaits and records
++            async def _record_and_return():
++                actual_response = await response
+ 
+-        return response
++                await async_record_streaming_lag(
++                    response=actual_response,
++                    consumer_group=groupname,
++                    consumer_name=consumername,
++                )
++                return actual_response
++
++            return _record_and_return()
++        else:
++            # Sync client
++            record_streaming_lag_from_response(
++                response=response,
++                consumer_group=groupname,
++                consumer_name=consumername,
++            )
++            return response
+ 
+     def xrevrange(
+         self,
+diff --git a/tests/test_asyncio/test_commands.py b/tests/test_asyncio/test_commands.py
+index f75948e561..1d0917502b 100644
+--- a/tests/test_asyncio/test_commands.py
++++ b/tests/test_asyncio/test_commands.py
+@@ -8,6 +8,7 @@
+ import re
+ import sys
+ from string import ascii_letters
++from unittest.mock import AsyncMock, patch
+ 
+ import pytest
+ import pytest_asyncio
+@@ -5414,3 +5415,99 @@ async def test_floating_point_encoding(self, r: redis.Redis):
+         timestamp = 1349673917.939762
+         await r.zadd("a", {"a1": timestamp})
+         assert await r.zscore("a", "a1") == timestamp
++
++
++@pytest.mark.asyncio
++class TestAsyncXreadXreadgroupMetricsExport:
++    """Tests for xread/xreadgroup async commands to verify streaming lag metrics are exported."""
++
++    @skip_if_server_version_lt("5.0.0")
++    async def test_async_xread_exports_streaming_lag_metric(self, r: redis.Redis):
++        """Test that async xread exports streaming lag metric."""
++        stream = "test-stream-metrics"
++
++        # Add a message to the stream
++        await r.xadd(stream, {"foo": "bar"})
++
++        with patch(
++            "redis.commands.core.async_record_streaming_lag",
++            new_callable=AsyncMock,
++        ) as mock_recorder:
++            # Read from the stream
++            result = await r.xread(streams={stream: "0"})
++
++            # Verify the async recorder was called
++            mock_recorder.assert_awaited_once()
++            call_args = mock_recorder.call_args
++            # Verify response was passed to the recorder
++            assert call_args[1]["response"] is not None
++            # Verify result is returned correctly
++            assert result is not None
++
++        # Cleanup
++        await r.delete(stream)
++
++    @skip_if_server_version_lt("5.0.0")
++    async def test_async_xreadgroup_exports_streaming_lag_metric_with_consumer_info(
++        self, r: redis.Redis
++    ):
++        """Test that async xreadgroup exports streaming lag metric with consumer group info."""
++        stream = "test-stream-metrics-group"
++        group = "test-group"
++        consumer = "test-consumer"
++
++        # Add a message and create consumer group
++        await r.xadd(stream, {"foo": "bar"})
++        try:
++            await r.xgroup_create(stream, group, 0)
++        except ResponseError:
++            # Group may already exist
++            pass
++
++        with patch(
++            "redis.commands.core.async_record_streaming_lag",
++            new_callable=AsyncMock,
++        ) as mock_recorder:
++            # Read from the stream via consumer group
++            result = await r.xreadgroup(
++                groupname=group,
++                consumername=consumer,
++                streams={stream: ">"},
++            )
++
++            # Verify the async recorder was called with consumer info
++            mock_recorder.assert_awaited_once()
++            call_args = mock_recorder.call_args
++            assert call_args[1]["response"] is not None
++            assert call_args[1]["consumer_group"] == group
++            assert call_args[1]["consumer_name"] == consumer
++            # Verify result is returned correctly
++            assert result is not None
++
++        # Cleanup
++        await r.xgroup_destroy(stream, group)
++        await r.delete(stream)
++
++    @skip_if_server_version_lt("5.0.0")
++    async def test_async_xread_handles_empty_response(self, r: redis.Redis):
++        """Test that async xread handles empty response gracefully."""
++        stream = "test-stream-empty"
++
++        # Create an empty stream by adding and deleting a message
++        msg_id = await r.xadd(stream, {"foo": "bar"})
++        await r.xdel(stream, msg_id)
++
++        with patch(
++            "redis.commands.core.async_record_streaming_lag",
++            new_callable=AsyncMock,
++        ) as mock_recorder:
++            # Read from the stream starting after the deleted message
++            result = await r.xread(streams={stream: msg_id})
++
++            # Verify the async recorder was called (even with empty response)
++            mock_recorder.assert_awaited_once()
++            # Result should be None or empty
++            assert result is None or result == []
++
++        # Cleanup
++        await r.delete(stream)

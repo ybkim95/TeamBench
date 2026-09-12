@@ -1,0 +1,49 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index e31de857d..521f5a08a 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -41,6 +41,8 @@ Unreleased
+     contain the templates directory. :issue:`1705`
+ -   Improve annotations for methods returning copies. :pr:`1880`
+ -   ``urlize`` does not add ``mailto:`` to values like `@a@b`. :pr:`1870`
++-   Tests decorated with `@pass_context`` can be used with the ``|select``
++    filter. :issue:`1624`
+ 
+ 
+ Version 3.1.4
+diff --git a/src/jinja2/filters.py b/src/jinja2/filters.py
+index a92832a34..e5b5a00c5 100644
+--- a/src/jinja2/filters.py
++++ b/src/jinja2/filters.py
+@@ -1780,7 +1780,7 @@ def transfunc(x: V) -> V:
+         args = args[1 + off :]
+ 
+         def func(item: t.Any) -> t.Any:
+-            return context.environment.call_test(name, item, args, kwargs)
++            return context.environment.call_test(name, item, args, kwargs, context)
+ 
+     except LookupError:
+         func = bool  # type: ignore
+diff --git a/tests/test_regression.py b/tests/test_regression.py
+index 7bd4d1564..10df2d1bd 100644
+--- a/tests/test_regression.py
++++ b/tests/test_regression.py
+@@ -737,6 +737,18 @@ def test_nested_loop_scoping(self, env):
+         )
+         assert tmpl.render() == "hellohellohello"
+ 
++    def test_pass_context_with_select(self, env):
++        @pass_context
++        def is_foo(ctx, s):
++            assert ctx is not None
++            return s == "foo"
++
++        env.tests["foo"] = is_foo
++        tmpl = env.from_string(
++            "{% for x in ['one', 'foo'] | select('foo') %}{{ x }}{% endfor %}"
++        )
++        assert tmpl.render() == "foo"
++
+ 
+ @pytest.mark.parametrize("unicode_char", ["\N{FORM FEED}", "\x85"])
+ def test_unicode_whitespace(env, unicode_char):

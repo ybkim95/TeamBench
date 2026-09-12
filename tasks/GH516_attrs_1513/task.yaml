@@ -1,0 +1,13 @@
+task_id: GH516_attrs_1513
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix validators.disabled() to save/restore state on nesting"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/python-attrs/attrs/pull/1513"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

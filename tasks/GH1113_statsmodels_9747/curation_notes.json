@@ -1,0 +1,54 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9747,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9747",
+  "issue_number": null,
+  "base_sha": "681fe80221888e9d9c87e52515c51e354e890ae9",
+  "head_sha": "1f20627aa3be093b18c9232e1628c4034b26a19b",
+  "additions": 23,
+  "deletions": 0,
+  "changed_files": [
+    "statsmodels/emplike/descriptive.py",
+    "statsmodels/emplike/tests/test_descriptive.py"
+  ],
+  "test_files": [
+    "statsmodels/emplike/tests/test_descriptive.py"
+  ],
+  "source_files": [
+    "statsmodels/emplike/descriptive.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "array",
+      "asarray",
+      "assert_almost_equal",
+      "contain",
+      "data",
+      "datasets",
+      "endog",
+      "function",
+      "instance",
+      "mark"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:06:33Z"
+}

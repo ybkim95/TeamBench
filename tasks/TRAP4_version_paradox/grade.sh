@@ -23,7 +23,8 @@ check() {
 }
 
 cd "${WORKSPACE}"
-pip install pytest --quiet 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require pytest || true
 
 # C1: pytest passes
 if python -m pytest tests/ -q --tb=short 2>&1 | tail -5 | grep -qE "passed|no tests"; then
@@ -153,3 +154,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

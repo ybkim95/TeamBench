@@ -1,0 +1,56 @@
+{
+  "repo": "pallets/flask",
+  "pr_number": 5844,
+  "pr_url": "https://github.com/pallets/flask/pull/5844",
+  "issue_number": null,
+  "base_sha": "30da640ffe23b6e461fa91d387ffea6b9d9fa847",
+  "head_sha": "3709c4a9a87e6ce8c26dc4a951e1df52ac9ecad0",
+  "additions": 13,
+  "deletions": 4,
+  "changed_files": [
+    ".pre-commit-config.yaml",
+    "pyproject.toml",
+    "src/flask/app.py",
+    "src/flask/sessions.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "src/flask/app.py",
+    "src/flask/sessions.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/flask",
+    "repo_short": "flask",
+    "parameterized_identifiers": [
+      "application",
+      "astral",
+      "check",
+      "clear",
+      "codespell",
+      "commit",
+      "endpoint",
+      "env_list",
+      "environ",
+      "error"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:18:42Z"
+}

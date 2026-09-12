@@ -1,0 +1,46 @@
+{
+  "repo": "explosion/spaCy",
+  "pr_number": 13284,
+  "pr_url": "https://github.com/explosion/spaCy/pull/13284",
+  "issue_number": null,
+  "base_sha": "00e938a7c3a74c559d0cc5c33437b698f3b3e770",
+  "head_sha": "cc118baee0751f0ff3cfcd83fbd68da14d096e8f",
+  "additions": 6,
+  "deletions": 1,
+  "changed_files": [
+    "spacy/tests/serialize/test_serialize_extension_attrs.py"
+  ],
+  "test_files": [
+    "spacy/tests/serialize/test_serialize_extension_attrs.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "explosion/spaCy",
+    "repo_short": "spaCy",
+    "parameterized_identifiers": [
+      "default",
+      "doc_w_attrs",
+      "en_tokenizer",
+      "remove_extension",
+      "set_extension"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:03:34Z"
+}

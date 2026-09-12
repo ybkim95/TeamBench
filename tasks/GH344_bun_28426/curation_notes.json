@@ -1,0 +1,51 @@
+{
+  "repo": "oven-sh/bun",
+  "pr_number": 28426,
+  "pr_url": "https://github.com/oven-sh/bun/pull/28426",
+  "issue_number": null,
+  "base_sha": "73361607d70bd77041d0fc20e45a6dbe2373a677",
+  "head_sha": "c20364bff1147c6741d15ac90c693e13bacc8fae",
+  "additions": 21,
+  "deletions": 2,
+  "changed_files": [
+    "src/bun.js/api/bun/socket/Handlers.zig",
+    "test/js/bun/net/socket.test.ts"
+  ],
+  "test_files": [],
+  "source_files": [],
+  "parameterization": {
+    "repo": "oven-sh/bun",
+    "repo_short": "bun",
+    "parameterized_identifiers": [
+      "again",
+      "assertf",
+      "before",
+      "bindgen",
+      "check",
+      "close",
+      "connect",
+      "const",
+      "crash",
+      "data"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:11:40Z"
+}

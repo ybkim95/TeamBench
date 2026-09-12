@@ -1,0 +1,215 @@
+diff --git a/starlette/responses.py b/starlette/responses.py
+index 5f35fc434..5c35ccefa 100644
+--- a/starlette/responses.py
++++ b/starlette/responses.py
+@@ -439,11 +439,11 @@ async def _handle_multiple_ranges(
+                         chunk = await file.read(min(self.chunk_size, end - start))
+                         start += len(chunk)
+                         await send({"type": "http.response.body", "body": chunk, "more_body": True})
+-                    await send({"type": "http.response.body", "body": b"\n", "more_body": True})
++                    await send({"type": "http.response.body", "body": b"\r\n", "more_body": True})
+                 await send(
+                     {
+                         "type": "http.response.body",
+-                        "body": f"\n--{boundary}--\n".encode("latin-1"),
++                        "body": f"--{boundary}--".encode("latin-1"),
+                         "more_body": False,
+                     }
+                 )
+@@ -530,31 +530,36 @@ def generate_multipart(
+         Multipart response headers generator.
+ 
+         ```
+-        --{boundary}\n
+-        Content-Type: {content_type}\n
+-        Content-Range: bytes {start}-{end-1}/{max_size}\n
+-        \n
+-        ..........content...........\n
+-        --{boundary}\n
+-        Content-Type: {content_type}\n
+-        Content-Range: bytes {start}-{end-1}/{max_size}\n
+-        \n
+-        ..........content...........\n
+-        --{boundary}--\n
++        --{boundary}\r\n
++        Content-Type: {content_type}\r\n
++        Content-Range: bytes {start}-{end-1}/{max_size}\r\n
++        \r\n
++        ..........content...........\r\n
++        --{boundary}\r\n
++        Content-Type: {content_type}\r\n
++        Content-Range: bytes {start}-{end-1}/{max_size}\r\n
++        \r\n
++        ..........content...........\r\n
++        --{boundary}--
+         ```
+         """
+         boundary_len = len(boundary)
+-        static_header_part_len = 44 + boundary_len + len(content_type) + len(str(max_size))
++        static_header_part_len = 49 + boundary_len + len(content_type) + len(str(max_size))
+         content_length = sum(
+             (len(str(start)) + len(str(end - 1)) + static_header_part_len)  # Headers
+             + (end - start)  # Content
+             for start, end in ranges
+         ) + (
+-            5 + boundary_len  # --boundary--\n
++            4 + boundary_len  # --boundary--
+         )
+         return (
+             content_length,
+             lambda start, end: (
+-                f"--{boundary}\nContent-Type: {content_type}\nContent-Range: bytes {start}-{end - 1}/{max_size}\n\n"
++                f"""\
++--{boundary}\r
++Content-Type: {content_type}\r
++Content-Range: bytes {start}-{end - 1}/{max_size}\r
++\r
++"""
+             ).encode("latin-1"),
+         )
+diff --git a/tests/test_responses.py b/tests/test_responses.py
+index 096f336d6..9a25817bd 100644
+--- a/tests/test_responses.py
++++ b/tests/test_responses.py
+@@ -4,12 +4,14 @@
+ import sys
+ import time
+ from collections.abc import AsyncGenerator, AsyncIterator, Iterator
++from dataclasses import dataclass
+ from http.cookies import SimpleCookie
+ from pathlib import Path
+ from typing import Any
+ 
+ import anyio
+ import pytest
++from python_multipart import MultipartParser
+ 
+ from starlette import status
+ from starlette.background import BackgroundTask
+@@ -712,7 +714,7 @@ def test_file_response_range_multi(file_response_client: TestClient) -> None:
+     response = file_response_client.get("/", headers={"Range": "bytes=0-100, 200-300"})
+     assert response.status_code == 206
+     assert "content-range" not in response.headers
+-    assert response.headers["content-length"] == "439"
++    assert response.headers["content-length"] == "448"
+     assert response.headers["content-type"].startswith("multipart/byteranges; boundary=")
+ 
+ 
+@@ -720,7 +722,7 @@ def test_file_response_range_multi_head(file_response_client: TestClient) -> Non
+     response = file_response_client.head("/", headers={"Range": "bytes=0-100, 200-300"})
+     assert response.status_code == 206
+     assert "content-range" not in response.headers
+-    assert response.headers["content-length"] == "439"
++    assert response.headers["content-length"] == "448"
+     assert response.headers["content-type"].startswith("multipart/byteranges; boundary=")
+     assert response.content == b""
+ 
+@@ -777,6 +779,53 @@ def test_file_response_merge_ranges(file_response_client: TestClient) -> None:
+     assert response.headers["content-range"] == f"bytes 0-200/{len(README.encode('utf8'))}"
+ 
+ 
++@dataclass
++class MultipartPart:
++    headers: dict[bytes, bytes]
++    data: bytes
++
++
++def parse_multipart_data(data: bytes, boundary: bytes | str) -> list[MultipartPart]:
++    parts: list[MultipartPart] = []
++    done = False
++
++    current_headers: dict[bytes, bytes] = {}
++    current_header_field: bytes = b""
++
++    def on_part_begin() -> None:
++        nonlocal current_headers
++        current_headers = {}
++
++    def on_part_data(data: bytes, start: int, end: int) -> None:
++        parts.append(MultipartPart(current_headers, data[start:end]))
++
++    def on_header_field(data: bytes, start: int, end: int) -> None:
++        nonlocal current_header_field
++        current_header_field = data[start:end]
++
++    def on_header_value(data: bytes, start: int, end: int) -> None:
++        current_headers[current_header_field] = data[start:end]
++
++    def on_end() -> None:
++        nonlocal done
++        done = True
++
++    parser = MultipartParser(
++        boundary,
++        dict(
++            on_part_begin=on_part_begin,
++            on_part_data=on_part_data,
++            on_header_field=on_header_field,
++            on_header_value=on_header_value,
++            on_end=on_end,
++        ),
++    )
++    parser.write(data)
++    parser.finalize()
++    assert done
++    return parts
++
++
+ def test_file_response_insert_ranges(file_response_client: TestClient) -> None:
+     response = file_response_client.get("/", headers={"Range": "bytes=100-200, 0-50"})
+ 
+@@ -797,10 +846,25 @@ def test_file_response_insert_ranges(file_response_client: TestClient) -> None:
+         "Content-Range: bytes 100-200/526",
+         "",
+         "ds required in the Web framework. No redundant implementation means that you can freely customize fun",
+-        "",
+         f"--{boundary}--",
+     ]
+ 
++    parts = parse_multipart_data(response._content, boundary)
++    assert all(
++        value == b"text/plain; charset=utf-8"
++        for part in parts
++        for key, value in part.headers.items()
++        if key == b"Content-Type"
++    )
++    assert len(parts) == 2
++    assert parts[0].headers[b"Content-Range"] == b"bytes 0-50/526"
++    assert parts[0].data == "# BáiZé\n\nPowerful and exquisite WSGI/ASGI framewo".encode()
++    assert parts[1].headers[b"Content-Range"] == b"bytes 100-200/526"
++    assert (
++        parts[1].data
++        == b"ds required in the Web framework. No redundant implementation means that you can freely customize fun"
++    )
++
+ 
+ def test_file_response_range_without_dash(file_response_client: TestClient) -> None:
+     response = file_response_client.get("/", headers={"Range": "bytes=100, 0-50"})
+@@ -863,15 +927,15 @@ async def send(message: Message) -> None:
+ 
+     assert received_chunks == [
+         # Send the part headers.
+-        f"--{boundary}\nContent-Type: text/plain; charset=utf-8\nContent-Range: bytes 0-15/526\n\n".encode(),
++        f"--{boundary}\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Range: bytes 0-15/526\r\n\r\n".encode(),
+         # Send the first chunk (10 bytes).
+         b"# B\xc3\xa1iZ\xc3\xa9\n",
+         # Send the second chunk (6 bytes).
+         b"\nPower",
+         # Send the new line to separate the parts.
+-        b"\n",
++        b"\r\n",
+         # Send the part headers. We merge the ranges 20-35 and 35-50 into a single part.
+-        f"--{boundary}\nContent-Type: text/plain; charset=utf-8\nContent-Range: bytes 20-50/526\n\n".encode(),
++        f"--{boundary}\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Range: bytes 20-50/526\r\n\r\n".encode(),
+         # Send the first chunk (10 bytes).
+         b"and exquis",
+         # Send the second chunk (10 bytes).
+@@ -880,6 +944,6 @@ async def send(message: Message) -> None:
+         b"SGI framew",
+         # Send the last chunk (1 byte).
+         b"o",
+-        b"\n",
+-        f"\n--{boundary}--\n".encode(),
++        b"\r\n",
++        f"--{boundary}--".encode(),
+     ]

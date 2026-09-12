@@ -1,0 +1,40 @@
+diff --git a/changelog.d/1496.change.md b/changelog.d/1496.change.md
+new file mode 100644
+index 000000000..8faaabaaa
+--- /dev/null
++++ b/changelog.d/1496.change.md
+@@ -0,0 +1 @@
++Fix type annotations for `attrs.validators.optional()`, so it no longer rejects tuples with more than one validator.
+diff --git a/src/attr/validators.pyi b/src/attr/validators.pyi
+index 36a7e800c..18fb112c8 100644
+--- a/src/attr/validators.pyi
++++ b/src/attr/validators.pyi
+@@ -54,7 +54,7 @@ def optional(
+     validator: (
+         _ValidatorType[_T]
+         | list[_ValidatorType[_T]]
+-        | tuple[_ValidatorType[_T]]
++        | tuple[_ValidatorType[_T], ...]
+     ),
+ ) -> _ValidatorType[_T | None]: ...
+ def in_(options: Container[_T]) -> _ValidatorType[_T]: ...
+diff --git a/typing-examples/baseline.py b/typing-examples/baseline.py
+index 195b3262b..573ca99a0 100644
+--- a/typing-examples/baseline.py
++++ b/typing-examples/baseline.py
+@@ -94,6 +94,15 @@ class Validated:
+     num: int = attrs.field(validator=attrs.validators.ge(0))
+ 
+ 
++@attrs.define
++class ValidatedOptionalOverTuple:
++    num: int | None = attrs.field(
++        validator=attrs.validators.optional(
++            (attrs.validators.instance_of(int), attrs.validators.ge(0))  # ty:ignore [invalid-argument-type]
++        )
++    )
++
++
+ @attrs.define
+ class ValidatedInconsistentOr:
+     num: int | str = attrs.field(

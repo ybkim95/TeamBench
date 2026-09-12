@@ -1,0 +1,13 @@
+task_id: GH1156_matplotlib_31031
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "RadioButtons: fix self._clicked method (followup to #30997)"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/31031"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

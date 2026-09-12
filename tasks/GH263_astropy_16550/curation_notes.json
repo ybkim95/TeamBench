@@ -1,0 +1,57 @@
+{
+  "repo": "astropy/astropy",
+  "pr_number": 16550,
+  "pr_url": "https://github.com/astropy/astropy/pull/16550",
+  "issue_number": 15236,
+  "base_sha": "e85ba377e915ce14e78a535527f9d93957ec57b7",
+  "head_sha": "13501b6cdbe3d849d9b897ce7cae4c14b8ee0965",
+  "additions": 139,
+  "deletions": 9,
+  "changed_files": [
+    "astropy/io/fits/hdu/compressed/_tiled_compression.py",
+    "astropy/io/fits/hdu/compressed/compressed.py",
+    "astropy/io/fits/hdu/compressed/header.py",
+    "astropy/io/fits/hdu/compressed/tests/test_tiled_compression.py",
+    "docs/changes/io.fits/16550.bugfix.rst"
+  ],
+  "test_files": [
+    "astropy/io/fits/hdu/compressed/tests/test_tiled_compression.py"
+  ],
+  "source_files": [
+    "astropy/io/fits/hdu/compressed/_tiled_compression.py",
+    "astropy/io/fits/hdu/compressed/compressed.py",
+    "astropy/io/fits/hdu/compressed/header.py"
+  ],
+  "parameterization": {
+    "repo": "astropy/astropy",
+    "repo_short": "astropy",
+    "parameterized_identifiers": [
+      "added",
+      "allowed",
+      "apparently",
+      "array",
+      "assert_equal",
+      "astropy",
+      "astype",
+      "bintable_header",
+      "blank",
+      "blank_mask"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:06:34Z"
+}

@@ -1,0 +1,55 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64882,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64882",
+  "issue_number": null,
+  "base_sha": "6b478e45a07fa5b1f37da401e5dfd11672fa65ee",
+  "head_sha": "88cb66d6f3f4a37e58b8eb79a6e06f6807052c6a",
+  "additions": 15,
+  "deletions": 8,
+  "changed_files": [
+    "doc/source/whatsnew/v3.0.2.rst",
+    "pandas/core/indexes/range.py",
+    "pandas/tests/frame/methods/test_sort_index.py"
+  ],
+  "test_files": [
+    "pandas/tests/frame/methods/test_sort_index.py"
+  ],
+  "source_files": [
+    "pandas/core/indexes/range.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "again",
+      "arange",
+      "ascending",
+      "assert_frame_equal",
+      "both",
+      "called",
+      "caused",
+      "clause",
+      "datetime",
+      "dtype"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:51:33Z"
+}

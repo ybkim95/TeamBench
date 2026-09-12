@@ -1,7 +1,7 @@
 # GH140_marshmallow_2874: Fix: Case sensitivity in validator — Full Specification (Planner Only)
 
 ## Source
-- PR: https://github.com/marshmallow-code/marshmallow/pull/2874
+- PR: (withheld: the upstream fix is not part of the task)
 - Issue: https://github.com/marshmallow-code/marshmallow/issues/2870
 - Repo: https://github.com/marshmallow-code/marshmallow
 
@@ -31,32 +31,23 @@ marshmallow.exceptions.ValidationError: Not a valid URL.
 
 ## Issue Discussion (Root Cause Analysis)
 
-### Comment 1 (@sloria):
+### Comment 1 ([user]):
 
 I'm not sure on this one. Are there cases where the case-sensitivity might be desired 🤔 ? seems plausible
 
-### Comment 2 (@T90REAL):
+### Comment 2 ([user]):
 
 Thanks for your response. I just thought the current behavior was just a bit confusing that the validator lowercases the input but checks it against the raw list.
 
-### Comment 3 (@lafrech):
+### Comment 3 ([user]):
 
 I agree it would make sense to also lowercase the schemes. I'd consider this a bugfix.
 
 Would you like to send a PR?
 
-### Comment 4 (@T90REAL):
+### Comment 4 ([user]):
 
 Sure. I will send a PR later.
-
-## Files Changed in Fix
-
-- `AUTHORS.rst` (modified, +1/-0)
-- `src/marshmallow/validate.py` (modified, +1/-1)
-- `tests/test_validate.py` (modified, +8/-0)
-
-## `src/marshmallow/validate.py`
-[Code changes omitted — Planner should analyze the issue and guide the Executor]
 
 ## Acceptance Criteria
 
@@ -66,6 +57,6 @@ Sure. I will send a PR later.
 
 ## Important Notes
 
-- Only modify the source files listed above (not test files)
+- Only modify source files, not test files
 - The test files already encode the correct expected behaviour
 - Run `pytest -x -q` to verify your fix

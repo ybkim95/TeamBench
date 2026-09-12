@@ -1,0 +1,13 @@
+task_id: GH1139_pytorch_166925
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[dynamo] fix error_on_graph_break bug where non-empty checkpoint results in unwanted graph break resumption"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pytorch/pytorch/pull/166925"
+source_issue: "https://github.com/pytorch/pytorch/issues/166589"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

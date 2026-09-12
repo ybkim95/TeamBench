@@ -1,0 +1,15 @@
+{
+ "task": "GH263_astropy_16550",
+ "patch": "tasks/GH263_astropy_16550/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "astropy/astropy",
+ "pr_number": 16550,
+ "base_sha": "e85ba377e915ce14e78a535527f9d93957ec57b7",
+ "head_sha": "13501b6cdbe3d849d9b897ce7cae4c14b8ee0965",
+ "bytes": 10169,
+ "files_changed": 5,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

@@ -1,0 +1,55 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index feb1e6c3d..540d5cccb 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -14,6 +14,8 @@ Unreleased
+     ``Template.generate_async``. :pr:`1960`
+ -   Avoid leaving async generators unclosed in blocks, includes and extends.
+     :pr:`1960`
++-   The runtime uses the correct ``concat`` function for the current environment
++    when calling block references. :issue:`1701`
+ 
+ 
+ Version 3.1.4
+diff --git a/src/jinja2/runtime.py b/src/jinja2/runtime.py
+index d10fe9d06..c2c7c1937 100644
+--- a/src/jinja2/runtime.py
++++ b/src/jinja2/runtime.py
+@@ -367,7 +367,7 @@ def super(self) -> t.Union["BlockReference", "Undefined"]:
+ 
+     @internalcode
+     async def _async_call(self) -> str:
+-        rv = concat(
++        rv = self._context.environment.concat(  # type: ignore
+             [x async for x in self._stack[self._depth](self._context)]  # type: ignore
+         )
+ 
+@@ -381,7 +381,9 @@ def __call__(self) -> str:
+         if self._context.environment.is_async:
+             return self._async_call()  # type: ignore
+ 
+-        rv = concat(self._stack[self._depth](self._context))
++        rv = self._context.environment.concat(  # type: ignore
++            self._stack[self._depth](self._context)
++        )
+ 
+         if self._context.eval_ctx.autoescape:
+             return Markup(rv)
+diff --git a/tests/test_nativetypes.py b/tests/test_nativetypes.py
+index 8c8525251..136908180 100644
+--- a/tests/test_nativetypes.py
++++ b/tests/test_nativetypes.py
+@@ -160,3 +160,13 @@ def test_macro(env):
+     result = t.render()
+     assert result == 2
+     assert isinstance(result, int)
++
++
++def test_block(env):
++    t = env.from_string(
++        "{% block b %}{% for i in range(1) %}{{ loop.index }}{% endfor %}"
++        "{% endblock %}{{ self.b() }}"
++    )
++    result = t.render()
++    assert result == 11
++    assert isinstance(result, int)

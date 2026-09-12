@@ -1,0 +1,52 @@
+{
+  "repo": "plotly/plotly.py",
+  "pr_number": 4926,
+  "pr_url": "https://github.com/plotly/plotly.py/pull/4926",
+  "issue_number": 4925,
+  "base_sha": "3e47cf87c4e6174531a402ed41bf30dac129ef83",
+  "head_sha": "444eca4c13e8e3a3c1996321313a4306db87ada9",
+  "additions": 0,
+  "deletions": 0,
+  "changed_files": [
+    "packages/python/plotly/_plotly_utils/basevalidators.py",
+    "packages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py"
+  ],
+  "test_files": [
+    "packages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py"
+  ],
+  "source_files": [
+    "packages/python/plotly/_plotly_utils/basevalidators.py"
+  ],
+  "parameterization": {
+    "repo": "plotly/plotly.py",
+    "repo_short": "plotly.py",
+    "parameterized_identifiers": [
+      "array",
+      "array_ok",
+      "arrays",
+      "base64",
+      "bdata",
+      "called",
+      "calling",
+      "color",
+      "considered",
+      "converted"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:51:01Z"
+}

@@ -1,0 +1,53 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 21396,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/21396",
+  "issue_number": 21347,
+  "base_sha": "3876cc525d2678463199407ca48230d3eba09461",
+  "head_sha": "00f21f56251fddde8b917c6a8b0669661cc1d88e",
+  "additions": 47,
+  "deletions": 7,
+  "changed_files": [
+    "src/lightning/pytorch/CHANGELOG.md",
+    "src/lightning/pytorch/callbacks/stochastic_weight_avg.py",
+    "tests/tests_pytorch/callbacks/test_stochastic_weight_avg.py"
+  ],
+  "test_files": [
+    "tests/tests_pytorch/callbacks/test_stochastic_weight_avg.py"
+  ],
+  "source_files": [
+    "src/lightning/pytorch/callbacks/stochastic_weight_avg.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "actually",
+      "applied",
+      "average",
+      "backward",
+      "based",
+      "batch",
+      "batchnorm",
+      "been",
+      "before",
+      "callback"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:46:35Z"
+}

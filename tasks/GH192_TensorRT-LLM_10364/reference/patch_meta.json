@@ -1,0 +1,15 @@
+{
+ "task": "GH192_TensorRT-LLM_10364",
+ "patch": "tasks/GH192_TensorRT-LLM_10364/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "NVIDIA/TensorRT-LLM",
+ "pr_number": 10364,
+ "base_sha": "45d7022cc33903509fd8045bbc577d77dd1d3e2f",
+ "head_sha": "83ffeee11ad53fb403d367767cbc904135380faf",
+ "bytes": 8178,
+ "files_changed": 6,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

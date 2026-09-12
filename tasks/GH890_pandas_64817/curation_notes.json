@@ -1,0 +1,51 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64817,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64817",
+  "issue_number": 37800,
+  "base_sha": "389051d090579550f1a1259855f486d7f7e2159e",
+  "head_sha": "e06b40936124d29f1c960d710b8a708ee569d493",
+  "additions": 58,
+  "deletions": 0,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/_libs/index.pyx",
+    "pandas/tests/indexes/base_class/test_indexing.py"
+  ],
+  "test_files": [
+    "pandas/tests/indexes/base_class/test_indexing.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "adding",
+      "array",
+      "axis",
+      "base",
+      "bisect",
+      "bisect_right",
+      "boolean",
+      "booleans",
+      "case",
+      "cases"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:01Z"
+}

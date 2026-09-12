@@ -1,0 +1,15 @@
+{
+ "task": "GH1035_autogluon_5475",
+ "patch": "tasks/GH1035_autogluon_5475/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "autogluon/autogluon",
+ "pr_number": 5475,
+ "base_sha": "d258f3f44cce2050f5a42ae22747702930ba5a68",
+ "head_sha": "91c90e668caf106fd599ddd3e9d7297145636f4d",
+ "bytes": 9419,
+ "files_changed": 4,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

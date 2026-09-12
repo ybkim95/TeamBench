@@ -1,0 +1,483 @@
+diff --git a/.github/workflows/python-package.yml b/.github/workflows/python-package.yml
+index 51fcc40d79..959afba756 100644
+--- a/.github/workflows/python-package.yml
++++ b/.github/workflows/python-package.yml
+@@ -16,7 +16,7 @@ jobs:
+     strategy:
+       matrix:
+         os: [ubuntu-latest, macos-latest, windows-2019]
+-        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
++        python-version: ["3.7", "3.8", "3.9", "3.10"]
+ 
+     steps:
+       - uses: actions/checkout@v3
+diff --git a/flaml/automl/automl.py b/flaml/automl/automl.py
+index 0990172c5d..078ce67a20 100644
+--- a/flaml/automl/automl.py
++++ b/flaml/automl/automl.py
+@@ -141,31 +141,34 @@ def __init__(
+         if custom_hp is not None:
+             search_space.update(custom_hp)
+ 
+-        if (
+-            isinstance(starting_point, dict)
+-            and max_iter
+-            > 1  # If the number of starting point is larger than max iter, avoid the checking
+-            and not self.valid_starting_point(starting_point, search_space)
+-        ):
+-            logger.warning(
+-                "Starting point {} removed because it is outside of the search space".format(
+-                    starting_point
+-                )
+-            )
+-            starting_point = None
+-        elif isinstance(starting_point, list) and max_iter > len(
+-            starting_point
+-        ):  # If the number of starting point is larger than max iter, avoid the checking
+-            starting_point_len = len(starting_point)
+-            starting_point = [
+-                x for x in starting_point if self.valid_starting_point(x, search_space)
+-            ]
+-            if starting_point_len > len(starting_point):
++        if isinstance(starting_point, dict):
++            starting_point = AutoMLState.sanitize(starting_point)
++            if max_iter > 1 and not self.valid_starting_point(
++                starting_point, search_space
++            ):
++                # If the number of iterations is larger than 1, remove invalid point
+                 logger.warning(
+-                    "Starting points outside of the search space are removed. "
+-                    f"Remaining starting points for {learner_class}: {starting_point}"
++                    "Starting point {} removed because it is outside of the search space".format(
++                        starting_point
++                    )
+                 )
+-            starting_point = starting_point or None
++                starting_point = None
++        elif isinstance(starting_point, list):
++            starting_point = [AutoMLState.sanitize(x) for x in starting_point]
++            if max_iter > len(starting_point):
++                # If the number of starting points is no smaller than max iter, avoid the checking
++                starting_point_len = len(starting_point)
++                starting_point = [
++                    x
++                    for x in starting_point
++                    if self.valid_starting_point(x, search_space)
++                ]
++                if starting_point_len > len(starting_point):
++                    logger.warning(
++                        "Starting points outside of the search space are removed. "
++                        f"Remaining starting points for {learner_class}: {starting_point}"
++                    )
++                starting_point = starting_point or None
+ 
+         for name, space in search_space.items():
+             assert (
+@@ -238,7 +241,10 @@ def update(self, result, time_used):
+                 and trained_estimator.params.get(trained_estimator.ITER_HP)
+             )
+             if n_iter:
+-                config[trained_estimator.ITER_HP] = n_iter
++                if "ml" in config:
++                    config["ml"][trained_estimator.ITER_HP] = n_iter
++                else:
++                    config[trained_estimator.ITER_HP] = n_iter
+         else:
+             obj, time2eval, trained_estimator = np.inf, 0.0, None
+             metric_for_logging = config = None
+@@ -404,13 +410,13 @@ def _compute_with_config_base(config_w_resource, state, estimator):
+         tune.report(**result)
+         return result
+ 
+-    def sanitize(self, config: dict) -> dict:
++    @classmethod
++    def sanitize(cls, config: dict) -> dict:
+         """Make a config ready for passing to estimator."""
+         config = config.get("ml", config).copy()
+-        if "FLAML_sample_size" in config:
+-            del config["FLAML_sample_size"]
+-        if "learner" in config:
+-            del config["learner"]
++        config.pop("FLAML_sample_size", None)
++        config.pop("learner", None)
++        config.pop("_choice_", None)
+         return config
+ 
+     def _train_with_config(
+@@ -423,7 +429,7 @@ def _train_with_config(
+             sample_size = config_w_resource.get(
+                 "FLAML_sample_size", len(self.y_train_all)
+             )
+-        config = self.sanitize(config_w_resource)
++        config = AutoMLState.sanitize(config_w_resource)
+ 
+         this_estimator_kwargs = self.fit_kwargs_by_estimator.get(
+             estimator
+@@ -814,13 +820,15 @@ def best_iteration(self):
+     def best_config(self):
+         """A dictionary of the best configuration."""
+         state = self._search_states.get(self._best_estimator)
+-        return state and getattr(state, "best_config", None)
++        config = state and getattr(state, "best_config", None)
++        return config and AutoMLState.sanitize(config)
+ 
+     @property
+     def best_config_per_estimator(self):
+         """A dictionary of all estimators' best configuration."""
+         return {
+             e: e_search_state.best_config
++            and AutoMLState.sanitize(e_search_state.best_config)
+             for e, e_search_state in self._search_states.items()
+         }
+ 
+@@ -1569,7 +1577,7 @@ def get_estimator_from_log(self, log_file_name, record_id, task):
+         with training_log_reader(log_file_name) as reader:
+             record = reader.get_record(record_id)
+             estimator = record.learner
+-            config = record.config
++            config = AutoMLState.sanitize(record.config)
+ 
+         estimator, _ = train_estimator(
+             X_train=None,
+@@ -2083,6 +2091,7 @@ def train(config: dict, state):
+             # check memory constraints before training
+             if states[estimator].learner_class.size(config) <= mem_res:
+                 del config["learner"]
++                config.pop("_choice_", None)
+                 result = AutoMLState._compute_with_config_base(
+                     config, state=state, estimator=estimator
+                 )
+@@ -3517,7 +3526,7 @@ def _search(self):
+                         x[1].learner_class(
+                             task=self._state.task,
+                             n_jobs=self._state.n_jobs,
+-                            **self._state.sanitize(x[1].best_config),
++                            **AutoMLState.sanitize(x[1].best_config),
+                         ),
+                     )
+                     for x in search_states[:2]
+@@ -3528,7 +3537,7 @@ def _search(self):
+                         x[1].learner_class(
+                             task=self._state.task,
+                             n_jobs=self._state.n_jobs,
+-                            **self._state.sanitize(x[1].best_config),
++                            **AutoMLState.sanitize(x[1].best_config),
+                         ),
+                     )
+                     for x in search_states[2:]
+diff --git a/flaml/tune/searcher/blendsearch.py b/flaml/tune/searcher/blendsearch.py
+index e1227aa772..25f91a6754 100644
+--- a/flaml/tune/searcher/blendsearch.py
++++ b/flaml/tune/searcher/blendsearch.py
+@@ -653,10 +653,11 @@ def _expand_admissible_region(self, lower, upper, space):
+         for key in upper:
+             ub = upper[key]
+             if isinstance(ub, list):
+-                choice = space[key]["_choice_"]
+-                self._expand_admissible_region(
+-                    lower[key][choice], upper[key][choice], space[key]
+-                )
++                choice = space[key].get("_choice_")
++                if choice:
++                    self._expand_admissible_region(
++                        lower[key][choice], upper[key][choice], space[key]
++                    )
+             elif isinstance(ub, dict):
+                 self._expand_admissible_region(lower[key], ub, space[key])
+             else:
+diff --git a/test/automl/__init__.py b/test/automl/__init__.py
+new file mode 100644
+index 0000000000..e69de29bb2
+diff --git a/test/automl/test_multiclass.py b/test/automl/test_multiclass.py
+index f6bb383964..b9f7b177a5 100644
+--- a/test/automl/test_multiclass.py
++++ b/test/automl/test_multiclass.py
+@@ -146,6 +146,18 @@ def test_custom_learner(self):
+         MyRegularizedGreedyForest.search_space = lambda data_size, task: {}
+         automl.fit(X_train=X_train, y_train=y_train, **settings)
+ 
++        try:
++            import ray
++
++            del settings["time_budget"]
++            settings["max_iter"] = 5
++            # test the "_choice_" issue when using ray
++            automl.fit(
++                X_train=X_train, y_train=y_train, n_concurrent_trials=2, **settings
++            )
++        except ImportError:
++            return
++
+     def test_ensemble(self):
+         automl = AutoML()
+         automl.add_learner(learner_name="RGF", learner_class=MyRegularizedGreedyForest)
+@@ -171,8 +183,8 @@ def test_dataframe(self):
+     def test_custom_metric(self):
+         df, y = load_iris(return_X_y=True, as_frame=True)
+         df["label"] = y
+-        automl_experiment = AutoML()
+-        automl_settings = {
++        automl = AutoML()
++        settings = {
+             "dataframe": df,
+             "label": "label",
+             "time_budget": 5,
+@@ -188,16 +200,16 @@ def test_custom_metric(self):
+             "pred_time_limit": 1e-5,
+             "ensemble": True,
+         }
+-        automl_experiment.fit(**automl_settings)
+-        print(automl_experiment.classes_)
+-        print(automl_experiment.model)
+-        print(automl_experiment.config_history)
+-        print(automl_experiment.best_model_for_estimator("rf"))
+-        print(automl_experiment.best_iteration)
+-        print(automl_experiment.best_estimator)
+-        automl_experiment = AutoML()
+-        estimator = automl_experiment.get_estimator_from_log(
+-            automl_settings["log_file_name"], record_id=0, task="multiclass"
++        automl.fit(**settings)
++        print(automl.classes_)
++        print(automl.model)
++        print(automl.config_history)
++        print(automl.best_model_for_estimator("rf"))
++        print(automl.best_iteration)
++        print(automl.best_estimator)
++        automl = AutoML()
++        estimator = automl.get_estimator_from_log(
++            settings["log_file_name"], record_id=0, task="multiclass"
+         )
+         print(estimator)
+         (
+@@ -206,17 +218,20 @@ def test_custom_metric(self):
+             valid_loss_history,
+             config_history,
+             metric_history,
+-        ) = get_output_from_log(
+-            filename=automl_settings["log_file_name"], time_budget=6
+-        )
++        ) = get_output_from_log(filename=settings["log_file_name"], time_budget=6)
+         print(metric_history)
+         try:
+             import ray
+ 
+             df = ray.put(df)
+-            automl_settings["dataframe"] = df
+-            automl_settings["use_ray"] = True
+-            automl_experiment.fit(**automl_settings)
++            settings["dataframe"] = df
++            settings["use_ray"] = True
++            del settings["time_budget"]
++            settings["max_iter"] = 2
++            automl.fit(**settings)
++            estimator = automl.get_estimator_from_log(
++                settings["log_file_name"], record_id=1, task="multiclass"
++            )
+         except ImportError:
+             pass
+ 
+@@ -319,8 +334,8 @@ def test_roc_auc_ovo(self):
+         automl_experiment.fit(X_train=X_train, y_train=y_train, **automl_settings)
+ 
+     def test_roc_auc_ovr_weighted(self):
+-        automl_experiment = AutoML()
+-        automl_settings = {
++        automl = AutoML()
++        settings = {
+             "time_budget": 1,
+             "metric": "roc_auc_ovr_weighted",
+             "task": "classification",
+@@ -330,7 +345,7 @@ def test_roc_auc_ovr_weighted(self):
+             "model_history": True,
+         }
+         X_train, y_train = load_iris(return_X_y=True)
+-        automl_experiment.fit(X_train=X_train, y_train=y_train, **automl_settings)
++        automl.fit(X_train=X_train, y_train=y_train, **settings)
+ 
+     def test_roc_auc_ovo_weighted(self):
+         automl_experiment = AutoML()
+@@ -415,10 +430,10 @@ def test_time_limit(self):
+         automl_experiment.fit(X_train=X_train, y_train=y_train, **automl_settings)
+         print(automl_experiment.model)
+ 
+-    def test_fit_w_starting_point(self, as_frame=True):
+-        automl_experiment = AutoML()
+-        automl_settings = {
+-            "time_budget": 3,
++    def test_fit_w_starting_point(self, as_frame=True, n_concurrent_trials=1):
++        automl = AutoML()
++        settings = {
++            "max_iter": 3,
+             "metric": "accuracy",
+             "task": "classification",
+             "log_file_name": "test/iris.log",
+@@ -431,21 +446,26 @@ def test_fit_w_starting_point(self, as_frame=True):
+             # test drop column
+             X_train.columns = range(X_train.shape[1])
+             X_train[X_train.shape[1]] = np.zeros(len(y_train))
+-        automl_experiment.fit(X_train=X_train, y_train=y_train, **automl_settings)
+-        automl_val_accuracy = 1.0 - automl_experiment.best_loss
+-        print("Best ML leaner:", automl_experiment.best_estimator)
+-        print("Best hyperparmeter config:", automl_experiment.best_config)
++        automl.fit(
++            X_train=X_train,
++            y_train=y_train,
++            n_concurrent_trials=n_concurrent_trials,
++            **settings
++        )
++        automl_val_accuracy = 1.0 - automl.best_loss
++        print("Best ML leaner:", automl.best_estimator)
++        print("Best hyperparmeter config:", automl.best_config)
+         print("Best accuracy on validation data: {0:.4g}".format(automl_val_accuracy))
+         print(
+             "Training duration of best run: {0:.4g} s".format(
+-                automl_experiment.best_config_train_time
++                automl.best_config_train_time
+             )
+         )
+ 
+-        starting_points = automl_experiment.best_config_per_estimator
++        starting_points = automl.best_config_per_estimator
+         print("starting_points", starting_points)
+-        print("loss of the starting_points", automl_experiment.best_loss_per_estimator)
+-        automl_settings_resume = {
++        print("loss of the starting_points", automl.best_loss_per_estimator)
++        settings_resume = {
+             "time_budget": 2,
+             "metric": "accuracy",
+             "task": "classification",
+@@ -456,27 +476,34 @@ def test_fit_w_starting_point(self, as_frame=True):
+             "log_type": "all",
+             "starting_points": starting_points,
+         }
+-        new_automl_experiment = AutoML()
+-        new_automl_experiment.fit(
+-            X_train=X_train, y_train=y_train, **automl_settings_resume
+-        )
++        new_automl = AutoML()
++        new_automl.fit(X_train=X_train, y_train=y_train, **settings_resume)
+ 
+-        new_automl_val_accuracy = 1.0 - new_automl_experiment.best_loss
+-        print("Best ML leaner:", new_automl_experiment.best_estimator)
+-        print("Best hyperparmeter config:", new_automl_experiment.best_config)
++        new_automl_val_accuracy = 1.0 - new_automl.best_loss
++        print("Best ML leaner:", new_automl.best_estimator)
++        print("Best hyperparmeter config:", new_automl.best_config)
+         print(
+             "Best accuracy on validation data: {0:.4g}".format(new_automl_val_accuracy)
+         )
+         print(
+             "Training duration of best run: {0:.4g} s".format(
+-                new_automl_experiment.best_config_train_time
++                new_automl.best_config_train_time
+             )
+         )
+ 
+-    def test_fit_w_starting_points_list(self, as_frame=True):
+-        automl_experiment = AutoML()
+-        automl_settings = {
+-            "time_budget": 3,
++    def test_fit_w_starting_point_2(self, as_frame=True):
++        try:
++            import ray
++
++            self.test_fit_w_starting_points_list(as_frame, 2)
++            self.test_fit_w_starting_point(as_frame, 2)
++        except ImportError:
++            pass
++
++    def test_fit_w_starting_points_list(self, as_frame=True, n_concurrent_trials=1):
++        automl = AutoML()
++        settings = {
++            "max_iter": 3,
+             "metric": "accuracy",
+             "task": "classification",
+             "log_file_name": "test/iris.log",
+@@ -489,19 +516,24 @@ def test_fit_w_starting_points_list(self, as_frame=True):
+             # test drop column
+             X_train.columns = range(X_train.shape[1])
+             X_train[X_train.shape[1]] = np.zeros(len(y_train))
+-        automl_experiment.fit(X_train=X_train, y_train=y_train, **automl_settings)
+-        automl_val_accuracy = 1.0 - automl_experiment.best_loss
+-        print("Best ML leaner:", automl_experiment.best_estimator)
+-        print("Best hyperparmeter config:", automl_experiment.best_config)
++        automl.fit(
++            X_train=X_train,
++            y_train=y_train,
++            n_concurrent_trials=n_concurrent_trials,
++            **settings
++        )
++        automl_val_accuracy = 1.0 - automl.best_loss
++        print("Best ML leaner:", automl.best_estimator)
++        print("Best hyperparmeter config:", automl.best_config)
+         print("Best accuracy on validation data: {0:.4g}".format(automl_val_accuracy))
+         print(
+             "Training duration of best run: {0:.4g} s".format(
+-                automl_experiment.best_config_train_time
++                automl.best_config_train_time
+             )
+         )
+ 
+         starting_points = {}
+-        log_file_name = automl_settings["log_file_name"]
++        log_file_name = settings["log_file_name"]
+         with training_log_reader(log_file_name) as reader:
+             sample_size = 1000
+             for record in reader.records():
+@@ -513,7 +545,7 @@ def test_fit_w_starting_points_list(self, as_frame=True):
+                     starting_points[learner] = []
+                 starting_points[learner].append(config)
+         max_iter = sum([len(s) for k, s in starting_points.items()])
+-        automl_settings_resume = {
++        settings_resume = {
+             "time_budget": 2,
+             "metric": "accuracy",
+             "task": "classification",
+@@ -526,14 +558,12 @@ def test_fit_w_starting_points_list(self, as_frame=True):
+             "starting_points": starting_points,
+             "append_log": True,
+         }
+-        new_automl_experiment = AutoML()
+-        new_automl_experiment.fit(
+-            X_train=X_train, y_train=y_train, **automl_settings_resume
+-        )
++        new_automl = AutoML()
++        new_automl.fit(X_train=X_train, y_train=y_train, **settings_resume)
+ 
+-        new_automl_val_accuracy = 1.0 - new_automl_experiment.best_loss
+-        # print('Best ML leaner:', new_automl_experiment.best_estimator)
+-        # print('Best hyperparmeter config:', new_automl_experiment.best_config)
++        new_automl_val_accuracy = 1.0 - new_automl.best_loss
++        # print('Best ML leaner:', new_automl.best_estimator)
++        # print('Best hyperparmeter config:', new_automl.best_config)
+         print(
+             "Best accuracy on validation data: {0:.4g}".format(new_automl_val_accuracy)
+         )
+diff --git a/test/automl/test_python_log.py b/test/automl/test_python_log.py
+index 3681fcd455..5a1e9ec153 100644
+--- a/test/automl/test_python_log.py
++++ b/test/automl/test_python_log.py
+@@ -96,7 +96,7 @@ def test_logging_level(self):
+             )
+             print(min(trial.last_result["val_loss"] for trial in analysis.trials))
+             config = analysis.trials[-1].last_result["config"]["ml"]
+-            automl._state._train_with_config(config["learner"], config)
++            automl._state._train_with_config(config.pop("learner"), config)
+             for _ in range(3):
+                 print(
+                     search_alg._ls.complete_config(
+diff --git a/test/automl/test_training_log.py b/test/automl/test_training_log.py
+index ff1b426735..d8949e6d12 100644
+--- a/test/automl/test_training_log.py
++++ b/test/automl/test_training_log.py
+@@ -40,7 +40,9 @@ def test_training_log(
+             if automl.best_estimator:
+                 estimator, config = automl.best_estimator, automl.best_config
+                 model0 = automl.best_model_for_estimator(estimator)
+-                print(model0.params["n_estimators"], config)
++                print(model0.params)
++                if "n_estimators" in config:
++                    assert model0.params["n_estimators"] == config["n_estimators"]
+ 
+                 # train on full data with no time limit
+                 automl._state.time_budget = -1

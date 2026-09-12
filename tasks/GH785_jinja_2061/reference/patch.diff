@@ -1,0 +1,54 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 0a5694757..745b9690a 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -31,6 +31,7 @@ Unreleased
+     objects. :issue:`2025`
+ -   Fix `copy`/`pickle` support for the internal ``missing`` object.
+     :issue:`2027`
++-   ``Environment.overlay(enable_async)`` is applied correctly. :pr:`2061`
+ 
+ 
+ Version 3.1.4
+diff --git a/src/jinja2/environment.py b/src/jinja2/environment.py
+index f062e4074..821971779 100644
+--- a/src/jinja2/environment.py
++++ b/src/jinja2/environment.py
+@@ -406,7 +406,7 @@ def overlay(
+         cache_size: int = missing,
+         auto_reload: bool = missing,
+         bytecode_cache: t.Optional["BytecodeCache"] = missing,
+-        enable_async: bool = False,
++        enable_async: bool = missing,
+     ) -> "Environment":
+         """Create a new overlay environment that shares all the data with the
+         current environment except for cache and the overridden attributes.
+@@ -419,8 +419,11 @@ def overlay(
+         copied over so modifications on the original environment may not shine
+         through.
+ 
++        .. versionchanged:: 3.1.5
++            ``enable_async`` is applied correctly.
++
+         .. versionchanged:: 3.1.2
+-            Added the ``newline_sequence``,, ``keep_trailing_newline``,
++            Added the ``newline_sequence``, ``keep_trailing_newline``,
+             and ``enable_async`` parameters to match ``__init__``.
+         """
+         args = dict(locals())
+diff --git a/tests/test_api.py b/tests/test_api.py
+index ee11a8d69..4472b85ac 100644
+--- a/tests/test_api.py
++++ b/tests/test_api.py
+@@ -425,3 +425,11 @@ class CustomEnvironment(Environment):
+         env = CustomEnvironment()
+         tmpl = env.from_string("{{ foo }}")
+         assert tmpl.render() == "resolve-foo"
++
++
++def test_overlay_enable_async(env):
++    assert not env.is_async
++    assert not env.overlay().is_async
++    env_async = env.overlay(enable_async=True)
++    assert env_async.is_async
++    assert not env_async.overlay(enable_async=False).is_async

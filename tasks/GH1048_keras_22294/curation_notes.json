@@ -1,0 +1,52 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 22294,
+  "pr_url": "https://github.com/keras-team/keras/pull/22294",
+  "issue_number": 19687,
+  "base_sha": "db4508d7f84d610c6f19d2dcd329cdac738b4a85",
+  "head_sha": "a91e902e2650f5dba4e70ec4156bb7affa75b7a9",
+  "additions": 13,
+  "deletions": 3,
+  "changed_files": [
+    "keras/src/utils/progbar.py",
+    "keras/src/utils/progbar_test.py"
+  ],
+  "test_files": [
+    "keras/src/utils/progbar_test.py"
+  ],
+  "source_files": [
+    "keras/src/utils/progbar.py"
+  ],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "applicable",
+      "count",
+      "current",
+      "eta_format",
+      "finalize",
+      "info",
+      "log10",
+      "math",
+      "message",
+      "named_parameters"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:01:35Z"
+}

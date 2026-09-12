@@ -1,0 +1,68 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index cd2a4ef08..2e83ab3f6 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -37,6 +37,8 @@ Unreleased
+ -   ``Environment.overlay(enable_async)`` is applied correctly. :pr:`2061`
+ -   The error message from ``FileSystemLoader`` includes the paths that were
+     searched. :issue:`1661`
++-   ``PackageLoader`` shows a clearer error message when the package does not
++    contain the templates directory. :issue:`1705`
+ 
+ 
+ Version 3.1.4
+diff --git a/src/jinja2/loaders.py b/src/jinja2/loaders.py
+index 35799584c..3913ee51e 100644
+--- a/src/jinja2/loaders.py
++++ b/src/jinja2/loaders.py
+@@ -327,7 +327,6 @@ def __init__(
+         assert loader is not None, "A loader was not found for the package."
+         self._loader = loader
+         self._archive = None
+-        template_root = None
+ 
+         if isinstance(loader, zipimport.zipimporter):
+             self._archive = loader.archive
+@@ -344,18 +343,23 @@ def __init__(
+             elif spec.origin is not None:
+                 roots.append(os.path.dirname(spec.origin))
+ 
++            if not roots:
++                raise ValueError(
++                    f"The {package_name!r} package was not installed in a"
++                    " way that PackageLoader understands."
++                )
++
+             for root in roots:
+                 root = os.path.join(root, package_path)
+ 
+                 if os.path.isdir(root):
+                     template_root = root
+                     break
+-
+-        if template_root is None:
+-            raise ValueError(
+-                f"The {package_name!r} package was not installed in a"
+-                " way that PackageLoader understands."
+-            )
++            else:
++                raise ValueError(
++                    f"PackageLoader could not find a {package_path!r} directory"
++                    f" in the {package_name!r} package."
++                )
+ 
+         self._template_root = template_root
+ 
+diff --git a/tests/test_loader.py b/tests/test_loader.py
+index 5a4e1a9da..377290b71 100644
+--- a/tests/test_loader.py
++++ b/tests/test_loader.py
+@@ -429,3 +429,8 @@ def exec_module(self, module):
+         assert "test.html" in package_loader.list_templates()
+     finally:
+         sys.meta_path[:] = before
++
++
++def test_package_loader_no_dir() -> None:
++    with pytest.raises(ValueError, match="could not find a 'templates' directory"):
++        PackageLoader("jinja2")

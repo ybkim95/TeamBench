@@ -1,0 +1,34 @@
+diff --git a/src/nat/cli/commands/workflow/workflow_commands.py b/src/nat/cli/commands/workflow/workflow_commands.py
+index ce28a6cabe..7abf3522ea 100644
+--- a/src/nat/cli/commands/workflow/workflow_commands.py
++++ b/src/nat/cli/commands/workflow/workflow_commands.py
+@@ -171,6 +171,9 @@ def create_command(workflow_name: str, install: bool, workflow_dir: str, descrip
+         workflow_dir (str): The directory to create the workflow package.
+         description (str): Description to pre-popluate the workflow docstring.
+     """
++    # Fail fast with Click's standard exit code (2) for bad params.
++    if not workflow_name or not workflow_name.strip():
++        raise click.BadParameter("Workflow name cannot be empty.")  # noqa: TRY003
+     try:
+         # Get the repository root
+         try:
+diff --git a/tests/nat/cli/commands/test_workflow_commands.py b/tests/nat/cli/commands/test_workflow_commands.py
+index 110fed7781..01dd1f9bcf 100644
+--- a/tests/nat/cli/commands/test_workflow_commands.py
++++ b/tests/nat/cli/commands/test_workflow_commands.py
+@@ -82,3 +82,15 @@ def test_nat_workflow_create(tmp_path):
+     for expected_symlink, target in expected_symlinks_and_targets:
+         assert expected_symlink.is_symlink()
+         assert expected_symlink.resolve() == target.resolve()
++
++
++def test_create_workflow_with_invalid_name(tmp_path):
++    """Ensure CLI fails with an invalid workflow name."""
++    result = subprocess.run(
++        ["nat", "workflow", "create", "--no-install", "--workflow-dir", str(tmp_path), " "],
++        capture_output=True,
++        text=True,
++        check=False  # Expect failure, so don't raise exception
++    )
++    assert result.returncode != 0
++    assert "Workflow name cannot be empty" in result.stderr

@@ -1,0 +1,13 @@
+task_id: GH905_scipy_18357
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "MAINT: clearer error in `LinearOperator * spmatrix`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scipy/scipy/pull/18357"
+source_issue: "https://github.com/scipy/scipy/issues/11564"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

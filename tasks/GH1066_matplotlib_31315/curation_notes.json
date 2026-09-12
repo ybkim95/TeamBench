@@ -1,0 +1,52 @@
+{
+  "repo": "matplotlib/matplotlib",
+  "pr_number": 31315,
+  "pr_url": "https://github.com/matplotlib/matplotlib/pull/31315",
+  "issue_number": 24050,
+  "base_sha": "40730d1d59aa9f0836d85f3c5884d4046762b16b",
+  "head_sha": "8aa5415a9f8ea50da91c06bede0e83930295930b",
+  "additions": 15,
+  "deletions": 1,
+  "changed_files": [
+    "lib/matplotlib/legend.py",
+    "lib/matplotlib/tests/test_legend.py"
+  ],
+  "test_files": [
+    "lib/matplotlib/tests/test_legend.py"
+  ],
+  "source_files": [
+    "lib/matplotlib/legend.py"
+  ],
+  "parameterization": {
+    "repo": "matplotlib/matplotlib",
+    "repo_short": "matplotlib",
+    "parameterized_identifiers": [
+      "assert_called_with",
+      "defined",
+      "figure",
+      "function",
+      "handle",
+      "handles",
+      "host",
+      "label",
+      "label_a",
+      "label_b"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:02:57Z"
+}

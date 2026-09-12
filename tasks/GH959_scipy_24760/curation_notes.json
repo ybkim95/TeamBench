@@ -1,0 +1,54 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24760,
+  "pr_url": "https://github.com/scipy/scipy/pull/24760",
+  "issue_number": null,
+  "base_sha": "3334233badcc26534e5d368c86f80ed602d139b9",
+  "head_sha": "fea049b0d928f3067a4d01adacf538e616c9365e",
+  "additions": 19,
+  "deletions": 3,
+  "changed_files": [
+    "scipy/integrate/_ivp/common.py",
+    "scipy/integrate/_ivp/tests/test_ivp.py"
+  ],
+  "test_files": [
+    "scipy/integrate/_ivp/tests/test_ivp.py"
+  ],
+  "source_files": [
+    "scipy/integrate/_ivp/common.py"
+  ],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "atol",
+      "complex",
+      "compute_error",
+      "csc_matrix",
+      "diff_too_small",
+      "dtype",
+      "emit",
+      "empty",
+      "enumerate",
+      "equal"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:54:28Z"
+}

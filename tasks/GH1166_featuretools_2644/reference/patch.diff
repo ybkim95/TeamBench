@@ -1,0 +1,41 @@
+diff --git a/featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_false.py b/featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_false.py
+--- a/featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_false.py
++++ b/featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_false.py
+@@ -51,7 +51,7 @@ def time_since_previous_false(datetime_col, bool_col):
+             df.loc[not_false_indices, "last_false_datetime"] = np.nan
+             df["last_false_datetime"] = df["last_false_datetime"].fillna(method="ffill")
+             total_seconds = (
+-                df["datetime"] - df["last_false_datetime"]
++                pd.to_datetime(df["datetime"]).subtract(df["last_false_datetime"])
+             ).dt.total_seconds()
+             return pd.Series(total_seconds)
+ 
+
+diff --git a/featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_true.py b/featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_true.py
+--- a/featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_true.py
++++ b/featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_true.py
+@@ -46,7 +46,7 @@ def time_since_previous_true(datetime_col, bool_col):
+             df.loc[~not_false_indices, "last_true_datetime"] = np.nan
+             df["last_true_datetime"] = df["last_true_datetime"].fillna(method="ffill")
+             total_seconds = (
+-                df["datetime"] - df["last_true_datetime"]
++                pd.to_datetime(df["datetime"]).subtract(df["last_true_datetime"])
+             ).dt.total_seconds()
+             return pd.Series(total_seconds)
+ 
+
+diff --git a/featuretools/primitives/standard/transform/datetime/date_to_holiday.py b/featuretools/primitives/standard/transform/datetime/date_to_holiday.py
+--- a/featuretools/primitives/standard/transform/datetime/date_to_holiday.py
++++ b/featuretools/primitives/standard/transform/datetime/date_to_holiday.py
+@@ -33,9 +33,9 @@ class DateToHoliday(TransformPrimitive):
+         >>> date_to_holiday_canada = DateToHoliday(country='Canada')
+         >>> dates = pd.Series([datetime(2016, 7, 1),
+         ...          datetime(2016, 11, 15),
+-        ...          datetime(2018, 9, 3)])
++        ...          datetime(2018, 12, 25)])
+         >>> date_to_holiday_canada(dates).tolist()
+-        ['Canada Day', nan, 'Labour Day']
++        ['Canada Day', nan, 'Christmas Day']
+     """
+ 
+     name = "date_to_holiday"

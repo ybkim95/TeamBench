@@ -1,0 +1,51 @@
+{
+  "repo": "boto/boto3",
+  "pr_number": 4685,
+  "pr_url": "https://github.com/boto/boto3/pull/4685",
+  "issue_number": null,
+  "base_sha": "641153f75e678b53927f8327ea83ee571904bfb2",
+  "head_sha": "5694846be90c168c426bc0e49444138b04535be8",
+  "additions": 4,
+  "deletions": 7,
+  "changed_files": [
+    "tests/__init__.py"
+  ],
+  "test_files": [
+    "tests/__init__.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "boto/boto3",
+    "repo_short": "boto3",
+    "parameterized_identifiers": [
+      "botocore",
+      "compat",
+      "create",
+      "either",
+      "express",
+      "given",
+      "governing",
+      "helps",
+      "implied",
+      "includes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:27:04Z"
+}

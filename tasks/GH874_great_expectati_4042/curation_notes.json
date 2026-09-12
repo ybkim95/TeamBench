@@ -1,0 +1,54 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 4042,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/4042",
+  "issue_number": 4022,
+  "base_sha": "fb99cfed10a5a07e1010f0e5b36f3e6eede12f5a",
+  "head_sha": "886af495a046a79c6fe58ee211f1652310df5767",
+  "additions": 56,
+  "deletions": 9,
+  "changed_files": [
+    "great_expectations/datasource/data_connector/configured_asset_s3_data_connector.py",
+    "great_expectations/datasource/data_connector/inferred_asset_s3_data_connector.py",
+    "tests/datasource/data_connector/test_configured_asset_s3_data_connector.py"
+  ],
+  "test_files": [
+    "tests/datasource/data_connector/test_configured_asset_s3_data_connector.py"
+  ],
+  "source_files": [
+    "great_expectations/datasource/data_connector/configured_asset_s3_data_connector.py",
+    "great_expectations/datasource/data_connector/inferred_asset_s3_data_connector.py"
+  ],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "additional",
+      "batch",
+      "batch_definition",
+      "batch_spec",
+      "behavior",
+      "boto3",
+      "bucket",
+      "build_batch_spec",
+      "calling",
+      "check_sameness"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:47Z"
+}

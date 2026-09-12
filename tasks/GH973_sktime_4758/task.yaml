@@ -1,0 +1,13 @@
+task_id: GH973_sktime_4758
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] allows probabilistic predictions in `DynamicFactor` in presence of exogenous variables"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/4758"
+source_issue: "https://github.com/sktime/sktime/issues/4744"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

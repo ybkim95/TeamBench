@@ -1,0 +1,56 @@
+{
+  "repo": "python-attrs/attrs",
+  "pr_number": 1529,
+  "pr_url": "https://github.com/python-attrs/attrs/pull/1529",
+  "issue_number": 1400,
+  "base_sha": "3a68d4913221abc6f8ad3be50937f7ae49300a98",
+  "head_sha": "b13a7056c5f407abbd9f3e572ee48ad65afce91c",
+  "additions": 37,
+  "deletions": 11,
+  "changed_files": [
+    "changelog.d/1529.change.md",
+    "docs/api.rst",
+    "src/attr/__init__.pyi",
+    "src/attr/_make.py",
+    "tests/test_make.py",
+    "tests/test_mypy.yml"
+  ],
+  "test_files": [
+    "tests/test_make.py"
+  ],
+  "source_files": [
+    "src/attr/_make.py"
+  ],
+  "parameterization": {
+    "repo": "python-attrs/attrs",
+    "repo_short": "attrs",
+    "parameterized_identifiers": [
+      "accessing",
+      "addition",
+      "alias",
+      "allows",
+      "also",
+      "attr",
+      "attributes",
+      "attrs",
+      "below",
+      "builtins"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:49:16Z"
+}

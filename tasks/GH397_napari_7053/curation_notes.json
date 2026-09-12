@@ -1,0 +1,60 @@
+{
+  "repo": "napari/napari",
+  "pr_number": 7053,
+  "pr_url": "https://github.com/napari/napari/pull/7053",
+  "issue_number": 5316,
+  "base_sha": "a4fa1fa00ecee4a492daf77d7f901a4e4acc2734",
+  "head_sha": "7f4cf06fbebe9e16a8d85458af1c67fb11c21877",
+  "additions": 145,
+  "deletions": 5,
+  "changed_files": [
+    "napari/settings/_migrations.py",
+    "napari/settings/_napari_settings.py",
+    "napari/settings/_shortcuts.py",
+    "napari/settings/_tests/test_migrations.py",
+    "napari/settings/_tests/test_settings.py",
+    "napari/utils/key_bindings.py"
+  ],
+  "test_files": [
+    "napari/settings/_tests/test_migrations.py",
+    "napari/settings/_tests/test_settings.py"
+  ],
+  "source_files": [
+    "napari/settings/_migrations.py",
+    "napari/settings/_napari_settings.py",
+    "napari/settings/_shortcuts.py",
+    "napari/utils/key_bindings.py"
+  ],
+  "parameterization": {
+    "repo": "napari/napari",
+    "repo_short": "napari",
+    "parameterized_identifiers": [
+      "action_str",
+      "alias",
+      "all_data",
+      "allow_reuse",
+      "annotations",
+      "appearance",
+      "append",
+      "application",
+      "bindings",
+      "both"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:15:10Z"
+}

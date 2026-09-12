@@ -1,0 +1,54 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 1227,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/1227",
+  "issue_number": null,
+  "base_sha": "2a2b2bba3fa2f4c8acfd460e4f3cd7f305ba9c33",
+  "head_sha": "96934cacca11e45ce768beb74d5e23b114959418",
+  "additions": 59,
+  "deletions": 5,
+  "changed_files": [
+    "mlflow/tracking/artifact_utils.py",
+    "tests/store/test_cli.py"
+  ],
+  "test_files": [
+    "tests/store/test_cli.py"
+  ],
+  "source_files": [
+    "mlflow/tracking/artifact_utils.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "actual_result",
+      "argument",
+      "artifact",
+      "artifact_path",
+      "artifact_repo",
+      "artifact_src_dir",
+      "artifact_uri",
+      "artifact_utils",
+      "basename",
+      "case"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:02:04Z"
+}

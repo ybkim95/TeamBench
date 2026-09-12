@@ -1,0 +1,54 @@
+{
+  "repo": "apache/airflow",
+  "pr_number": 64145,
+  "pr_url": "https://github.com/apache/airflow/pull/64145",
+  "issue_number": null,
+  "base_sha": "62cbf63c515950b6d72dac35476c48cf5dd7b970",
+  "head_sha": "52dacdd69516dfb86c7ecbb1f39393be158774dc",
+  "additions": 93,
+  "deletions": 8,
+  "changed_files": [
+    "airflow-core/src/airflow/utils/db_manager.py",
+    "airflow-core/tests/unit/utils/test_db_manager.py"
+  ],
+  "test_files": [
+    "airflow-core/tests/unit/utils/test_db_manager.py"
+  ],
+  "source_files": [
+    "airflow-core/src/airflow/utils/db_manager.py"
+  ],
+  "parameterization": {
+    "repo": "apache/airflow",
+    "repo_short": "airflow",
+    "parameterized_identifiers": [
+      "above",
+      "absent",
+      "airflow",
+      "already",
+      "api_fastapi",
+      "append",
+      "appended",
+      "auth",
+      "auth_manager",
+      "auth_manager_extra"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:00:34Z"
+}

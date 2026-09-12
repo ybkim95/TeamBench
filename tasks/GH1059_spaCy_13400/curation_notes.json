@@ -1,0 +1,55 @@
+{
+  "repo": "explosion/spaCy",
+  "pr_number": 13400,
+  "pr_url": "https://github.com/explosion/spaCy/pull/13400",
+  "issue_number": null,
+  "base_sha": "21aea59001f4cf100a0c7df0c36aeddd796cee1f",
+  "head_sha": "98747de62bf7352ab1da824214c9b8612bdecc6b",
+  "additions": 145,
+  "deletions": 27,
+  "changed_files": [
+    "spacy/pipeline/entity_linker.py",
+    "spacy/tests/pipeline/test_entity_linker.py",
+    "website/docs/api/entitylinker.mdx"
+  ],
+  "test_files": [
+    "spacy/tests/pipeline/test_entity_linker.py"
+  ],
+  "source_files": [
+    "spacy/pipeline/entity_linker.py"
+  ],
+  "parameterization": {
+    "repo": "explosion/spaCy",
+    "repo_short": "spaCy",
+    "parameterized_identifiers": [
+      "add_alias",
+      "add_entity",
+      "add_label",
+      "add_pipe",
+      "adding",
+      "additional",
+      "after",
+      "alias",
+      "aliases",
+      "alloc1f"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:02:23Z"
+}

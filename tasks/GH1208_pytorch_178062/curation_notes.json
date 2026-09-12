@@ -1,0 +1,51 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 178062,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/178062",
+  "issue_number": null,
+  "base_sha": "49361e3384639ceb9b8878e048ad6e25c89b6766",
+  "head_sha": "629183d0b68e432dc95dadf3818bb8fb40822aad",
+  "additions": 77,
+  "deletions": 98,
+  "changed_files": [
+    ".ci/pytorch/smoke_test/check_wheel_tags.py"
+  ],
+  "test_files": [
+    ".ci/pytorch/smoke_test/check_wheel_tags.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "aarch64",
+      "abi_tag",
+      "abiflags",
+      "append",
+      "break",
+      "capture_output",
+      "check",
+      "check_mac_wheel_minos",
+      "checking",
+      "compile"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:14:06Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH895_gpytorch_1919
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix bug with PeriodicKernel.diag()"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/cornellius-gp/gpytorch/pull/1919"
+source_issue: "https://github.com/cornellius-gp/gpytorch/issues/1915"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

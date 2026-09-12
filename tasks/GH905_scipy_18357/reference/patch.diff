@@ -1,0 +1,104 @@
+diff --git a/scipy/sparse/linalg/_interface.py b/scipy/sparse/linalg/_interface.py
+index 82633cd64aaa..a6db61433eb3 100644
+--- a/scipy/sparse/linalg/_interface.py
++++ b/scipy/sparse/linalg/_interface.py
+@@ -325,8 +325,8 @@ def matmat(self, X):
+         _matmat method to ensure that y has the correct type.
+ 
+         """
+-
+-        X = np.asanyarray(X)
++        if not (isspmatrix(X) or is_pydata_spmatrix(X)):
++            X = np.asanyarray(X)
+ 
+         if X.ndim != 2:
+             raise ValueError('expected 2-d ndarray or matrix, not %d-d'
+@@ -336,7 +336,15 @@ def matmat(self, X):
+             raise ValueError('dimension mismatch: %r, %r'
+                              % (self.shape, X.shape))
+ 
+-        Y = self._matmat(X)
++        try:
++            Y = self._matmat(X)
++        except Exception as e:
++            if isspmatrix(X) or is_pydata_spmatrix(X):
++                raise TypeError(
++                    "Unable to multiply a LinearOperator with a sparse matrix."
++                    " Wrap the matrix in aslinearoperator first."
++                ) from e
++            raise
+ 
+         if isinstance(Y, np.matrix):
+             Y = asmatrix(Y)
+@@ -365,8 +373,8 @@ def rmatmat(self, X):
+         This rmatmat wraps the user-specified rmatmat routine.
+ 
+         """
+-
+-        X = np.asanyarray(X)
++        if not (isspmatrix(X) or is_pydata_spmatrix(X)):
++            X = np.asanyarray(X)
+ 
+         if X.ndim != 2:
+             raise ValueError('expected 2-d ndarray or matrix, not %d-d'
+@@ -376,7 +384,16 @@ def rmatmat(self, X):
+             raise ValueError('dimension mismatch: %r, %r'
+                              % (self.shape, X.shape))
+ 
+-        Y = self._rmatmat(X)
++        try:
++            Y = self._rmatmat(X)
++        except Exception as e:
++            if isspmatrix(X) or is_pydata_spmatrix(X):
++                raise TypeError(
++                    "Unable to multiply a LinearOperator with a sparse matrix."
++                    " Wrap the matrix in aslinearoperator() first."
++                ) from e
++            raise
++
+         if isinstance(Y, np.matrix):
+             Y = asmatrix(Y)
+         return Y
+@@ -414,7 +431,9 @@ def dot(self, x):
+         elif np.isscalar(x):
+             return _ScaledLinearOperator(self, x)
+         else:
+-            x = np.asarray(x)
++            if not isspmatrix(x) and not is_pydata_spmatrix(x):
++                # Sparse matrices shouldn't be converted to numpy arrays.
++                x = np.asarray(x)
+ 
+             if x.ndim == 1 or x.ndim == 2 and x.shape[1] == 1:
+                 return self.matvec(x)
+@@ -465,7 +484,9 @@ def _rdot(self, x):
+         elif np.isscalar(x):
+             return _ScaledLinearOperator(self, x)
+         else:
+-            x = np.asarray(x)
++            if not isspmatrix(x) and not is_pydata_spmatrix(x):
++                # Sparse matrices shouldn't be converted to numpy arrays.
++                x = np.asarray(x)
+ 
+             # We use transpose instead of rmatvec/rmatmat to avoid
+             # unnecessary complex conjugation if possible.
+diff --git a/scipy/sparse/linalg/tests/test_interface.py b/scipy/sparse/linalg/tests/test_interface.py
+index abf2c96d76f2..156f991206cd 100644
+--- a/scipy/sparse/linalg/tests/test_interface.py
++++ b/scipy/sparse/linalg/tests/test_interface.py
+@@ -451,3 +451,16 @@ def test_transpose_noconjugate():
+ 
+     assert_equal(B.dot(v), Y.dot(v))
+     assert_equal(B.T.dot(v), Y.T.dot(v))
++
++def test_sparse_matmat_exception():
++    A = interface.LinearOperator((2, 2), matvec=lambda x: x)
++    B = sparse.identity(2)
++    msg = "Unable to multiply a LinearOperator with a sparse matrix."
++    with assert_raises(TypeError, match=msg):
++        A @ B
++    with assert_raises(TypeError, match=msg):
++        B @ A
++    with assert_raises(ValueError):
++        A @ np.identity(4)
++    with assert_raises(ValueError):
++        np.identity(4) @ A

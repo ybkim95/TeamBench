@@ -1,0 +1,52 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9398,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9398",
+  "issue_number": 9181,
+  "base_sha": "e6cb84a16f6f15a700e52dd09308faf30e01233b",
+  "head_sha": "297a2c43bd4e2050d7f33283af6e614975444e1e",
+  "additions": 85,
+  "deletions": 45,
+  "changed_files": [
+    "statsmodels/discrete/conditional_models.py",
+    "statsmodels/discrete/tests/test_conditional.py"
+  ],
+  "test_files": [
+    "statsmodels/discrete/tests/test_conditional.py"
+  ],
+  "source_files": [
+    "statsmodels/discrete/conditional_models.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "alpha",
+      "approx_fprime",
+      "arange",
+      "asarray",
+      "assert_allclose",
+      "atol",
+      "axis",
+      "coded",
+      "concatenate",
+      "conditional_models"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:29Z"
+}

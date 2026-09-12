@@ -1,0 +1,15 @@
+{
+ "task": "GH23_poetry_10721",
+ "patch": "tasks/GH23_poetry_10721/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "python-poetry/poetry",
+ "pr_number": 10721,
+ "base_sha": "d4e9399affb2c0f4b1f835131733f3185aa0d1f6",
+ "head_sha": "29b978473eb914a8ea04d8c78654d0ab853c9592",
+ "bytes": 6370,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

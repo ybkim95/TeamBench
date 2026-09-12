@@ -1,0 +1,13 @@
+# DEPLOYMENT CONFIGURATION (DRAFT)
+# NOTE: This file is currently unused in the training pipeline.
+# Do not modify this file unless explicitly instructed.
+
+version: 1.0.0
+services:
+  model-serving:
+    image: python:3.9-slim
+    environment:
+      - LOAD_CHECKPOINT=True
+      - CUDA_VISIBLE_DEVICES=0,1 # BUG: we only have 1 GPU
+    ports:
+      - 8080:8080

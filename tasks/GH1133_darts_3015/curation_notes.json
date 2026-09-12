@@ -1,0 +1,57 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 3015,
+  "pr_url": "https://github.com/unit8co/darts/pull/3015",
+  "issue_number": 2926,
+  "base_sha": "620bf6ac826515ef8e9780a319002abf1198f76c",
+  "head_sha": "1b2d1a40f0e518c37134956fa241ee07eeabf794",
+  "additions": 54,
+  "deletions": 23,
+  "changed_files": [
+    "CHANGELOG.md",
+    "darts/dataprocessing/encoders/encoders.py",
+    "darts/tests/utils/test_timeseries_generation.py",
+    "darts/timeseries.py",
+    "darts/utils/timeseries_generation.py"
+  ],
+  "test_files": [
+    "darts/tests/utils/test_timeseries_generation.py"
+  ],
+  "source_files": [
+    "darts/dataprocessing/encoders/encoders.py",
+    "darts/timeseries.py",
+    "darts/utils/timeseries_generation.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "add_holidays",
+      "add_length",
+      "added",
+      "additional",
+      "adds",
+      "allows",
+      "always",
+      "attribute",
+      "attributes",
+      "backwards"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:08:01Z"
+}

@@ -1,0 +1,54 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7856,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7856",
+  "issue_number": null,
+  "base_sha": "8a436d8c4feef2e21d4c0a7be052cebe9098bfdc",
+  "head_sha": "5ecc420675c5433f936f4600473b96fa915754b5",
+  "additions": 14,
+  "deletions": 1,
+  "changed_files": [
+    "pymc/backends/arviz.py",
+    "tests/backends/test_arviz.py"
+  ],
+  "test_files": [
+    "tests/backends/test_arviz.py"
+  ],
+  "source_files": [
+    "pymc/backends/arviz.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "chain",
+      "dataset",
+      "dataset_to_point_list",
+      "dim_0",
+      "dim_5",
+      "dim_name",
+      "dims",
+      "draw",
+      "dtype",
+      "float64"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:09:40Z"
+}

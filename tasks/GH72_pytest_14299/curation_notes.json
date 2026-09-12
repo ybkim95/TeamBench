@@ -1,0 +1,59 @@
+{
+  "repo": "pytest-dev/pytest",
+  "pr_number": 14299,
+  "pr_url": "https://github.com/pytest-dev/pytest/pull/14299",
+  "issue_number": 13893,
+  "base_sha": "6aafcdce9022149fcc977205676d1bc12ab43b9b",
+  "head_sha": "bb954ff5ad4b573a6fd0f29ca5e2c2c5db1344dd",
+  "additions": 27,
+  "deletions": 15,
+  "changed_files": [
+    "doc/en/conf.py",
+    "doc/en/reference/reference.rst",
+    "src/_pytest/warning_types.py",
+    "src/_pytest/warnings.py",
+    "src/pytest/__init__.py",
+    "testing/test_warnings.py"
+  ],
+  "test_files": [
+    "src/_pytest/warning_types.py",
+    "src/_pytest/warnings.py",
+    "src/pytest/__init__.py",
+    "testing/test_warnings.py"
+  ],
+  "source_files": [
+    "doc/en/conf.py"
+  ],
+  "parameterization": {
+    "repo": "pytest-dev/pytest",
+    "repo_short": "pytest",
+    "parameterized_identifiers": [
+      "always",
+      "application",
+      "apply_warning_filters",
+      "assignment",
+      "autoclass",
+      "autodoc",
+      "below",
+      "bound_method",
+      "category",
+      "causing"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:38:10Z"
+}

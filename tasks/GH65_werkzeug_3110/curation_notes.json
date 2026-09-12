@@ -1,0 +1,53 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3110,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3110",
+  "issue_number": 3108,
+  "base_sha": "0af402f2e92b11d36f60fa9c6c4d38128a8a9547",
+  "head_sha": "664deb6a58c8ff6041ce00344c0156b5d6e696d7",
+  "additions": 26,
+  "deletions": 8,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/werkzeug/wrappers/response.py",
+    "tests/test_wrappers.py"
+  ],
+  "test_files": [
+    "tests/test_wrappers.py"
+  ],
+  "source_files": [
+    "src/werkzeug/wrappers/response.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "accept_ranges",
+      "bytes",
+      "complete_length",
+      "content_length",
+      "content_range",
+      "content_range_header",
+      "could",
+      "create_environ",
+      "environ",
+      "equal"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:37:02Z"
+}

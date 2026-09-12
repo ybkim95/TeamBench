@@ -1,0 +1,100 @@
+diff --git a/python/ray/actor.py b/python/ray/actor.py
+index e9c571445b81..31fd080e348c 100644
+--- a/python/ray/actor.py
++++ b/python/ray/actor.py
+@@ -343,6 +343,10 @@ def __init__(
+         )
+ 
+ 
++class ActorClassInheritanceException(TypeError):
++    pass
++
++
+ class ActorClass:
+     """An actor class.
+ 
+@@ -360,11 +364,15 @@ def __init__(cls, name, bases, attr):
+         use the '_ray_from_modified_class' classmethod.
+ 
+         Raises:
+-            TypeError: Always.
++            ActorClassInheritanceException: When ActorClass is inherited.
++            AssertionError: If ActorClassInheritanceException is not raised i.e.,
++                            conditions for raising it are not met in any
++                            iteration of the loop.
++            TypeError: In all other cases.
+         """
+         for base in bases:
+             if isinstance(base, ActorClass):
+-                raise TypeError(
++                raise ActorClassInheritanceException(
+                     f"Attempted to define subclass '{name}' of actor "
+                     f"class '{base.__ray_metadata__.class_name}'. "
+                     "Inheriting from actor classes is "
+@@ -430,7 +438,20 @@ def _ray_from_modified_class(
+         # Make sure the actor class we are constructing inherits from the
+         # original class so it retains all class properties.
+         class DerivedActorClass(cls, modified_class):
+-            pass
++            def __init__(self, *args, **kwargs):
++                try:
++                    cls.__init__(self, *args, **kwargs)
++                except Exception as e:
++                    # Delegate call to modified_class.__init__ only
++                    # if the exception raised by cls.__init__ is
++                    # TypeError and not ActorClassInheritanceException(TypeError).
++                    # In all other cases proceed with raise e.
++                    if isinstance(e, TypeError) and not isinstance(
++                        e, ActorClassInheritanceException
++                    ):
++                        modified_class.__init__(self, *args, **kwargs)
++                    else:
++                        raise e
+ 
+         name = f"ActorClass({modified_class.__name__})"
+         DerivedActorClass.__module__ = modified_class.__module__
+diff --git a/python/ray/tests/test_actor.py b/python/ray/tests/test_actor.py
+index 7118491c1c17..e789c54ae1f0 100644
+--- a/python/ray/tests/test_actor.py
++++ b/python/ray/tests/test_actor.py
+@@ -4,6 +4,7 @@
+ import os
+ from ray import cloudpickle as pickle
+ from ray import ray_constants
++from ray.actor import ActorClassInheritanceException
+ 
+ try:
+     import pytest_timeout
+@@ -653,7 +654,8 @@ def __init__(self):
+ 
+     # Test that you can't inherit from an actor class.
+     with pytest.raises(
+-        TypeError, match="Inheriting from actor classes is not " "currently supported."
++        ActorClassInheritanceException,
++        match="Inheriting from actor classes is not " "currently supported.",
+     ):
+ 
+         class Derived(ActorBase):
+@@ -1119,5 +1121,22 @@ def method_one(self) -> None:
+     assert set(method_options) == {"options", "remote"}
+ 
+ 
++def test_actor_mro(ray_start_regular_shared):
++    @ray.remote
++    class Foo:
++        def __init__(self, x):
++            self.x = x
++
++        @classmethod
++        def factory_f(cls, x):
++            return cls(x)
++
++        def get_x(self):
++            return self.x
++
++    obj = Foo.factory_f(1)
++    assert obj.get_x() == 1
++
++
+ if __name__ == "__main__":
+     sys.exit(pytest.main(["-v", __file__]))

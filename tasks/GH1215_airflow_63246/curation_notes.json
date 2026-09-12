@@ -1,0 +1,54 @@
+{
+  "repo": "apache/airflow",
+  "pr_number": 63246,
+  "pr_url": "https://github.com/apache/airflow/pull/63246",
+  "issue_number": null,
+  "base_sha": "d45ea10189ba0d250d3fb69e07d881928566fcc4",
+  "head_sha": "9155d265e7c332faf4d59c648adf666676367f2e",
+  "additions": 24,
+  "deletions": 3,
+  "changed_files": [
+    "providers/alibaba/src/airflow/providers/alibaba/cloud/log/oss_task_handler.py",
+    "providers/alibaba/tests/unit/alibaba/cloud/log/test_oss_task_handler.py"
+  ],
+  "test_files": [
+    "providers/alibaba/tests/unit/alibaba/cloud/log/test_oss_task_handler.py"
+  ],
+  "source_files": [
+    "providers/alibaba/src/airflow/providers/alibaba/cloud/log/oss_task_handler.py"
+  ],
+  "parameterization": {
+    "repo": "apache/airflow",
+    "repo_short": "airflow",
+    "parameterized_identifiers": [
+      "absolute",
+      "additions",
+      "airflow",
+      "also",
+      "attempt",
+      "base_log_folder",
+      "close",
+      "content",
+      "dag_id",
+      "delete_local_copy"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:14:38Z"
+}

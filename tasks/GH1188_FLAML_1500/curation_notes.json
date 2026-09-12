@@ -1,0 +1,54 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1500,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1500",
+  "issue_number": null,
+  "base_sha": "c64eeb5e8df5ae666c53a33319d9436a003ef12b",
+  "head_sha": "be83638cfa078beb4a1a6ef77c0ffda575e85486",
+  "additions": 64,
+  "deletions": 1,
+  "changed_files": [
+    "flaml/automl/automl.py",
+    "test/automl/test_multiclass.py"
+  ],
+  "test_files": [
+    "test/automl/test_multiclass.py"
+  ],
+  "source_files": [
+    "flaml/automl/automl.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "allow",
+      "allow_auto",
+      "as_frame",
+      "auto",
+      "auto_augment",
+      "automl",
+      "automl_experiment",
+      "automl_settings",
+      "before",
+      "budget"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:33Z"
+}

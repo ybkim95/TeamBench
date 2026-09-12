@@ -1,0 +1,55 @@
+{
+  "repo": "pallets/jinja",
+  "pr_number": 1537,
+  "pr_url": "https://github.com/pallets/jinja/pull/1537",
+  "issue_number": null,
+  "base_sha": "a4e2532489f804996be36ae32c25a69298bd1106",
+  "head_sha": "bb0db82b91e2842e900fd731acb9de7fab1d72ce",
+  "additions": 15,
+  "deletions": 1,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/jinja2/nativetypes.py",
+    "tests/test_nativetypes.py"
+  ],
+  "test_files": [
+    "tests/test_nativetypes.py"
+  ],
+  "source_files": [
+    "src/jinja2/nativetypes.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/jinja",
+    "repo_short": "jinja",
+    "parameterized_identifiers": [
+      "backwards",
+      "chain",
+      "compatibility",
+      "environment",
+      "eval",
+      "from_string",
+      "given",
+      "head",
+      "internals",
+      "islice"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:26:15Z"
+}

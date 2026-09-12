@@ -1,0 +1,219 @@
+diff --git a/homeassistant/components/bsblan/__init__.py b/homeassistant/components/bsblan/__init__.py
+index 529eeb5aa6da3..0520cb8039eb1 100644
+--- a/homeassistant/components/bsblan/__init__.py
++++ b/homeassistant/components/bsblan/__init__.py
+@@ -32,7 +32,7 @@
+ from homeassistant.helpers.aiohttp_client import async_get_clientsession
+ from homeassistant.helpers.typing import ConfigType
+ 
+-from .const import CONF_PASSKEY, DOMAIN
++from .const import CONF_PASSKEY, DOMAIN, LOGGER
+ from .coordinator import BSBLanFastCoordinator, BSBLanSlowCoordinator
+ from .services import async_setup_services
+ 
+@@ -52,7 +52,7 @@ class BSBLanData:
+     client: BSBLAN
+     device: Device
+     info: Info
+-    static: StaticState
++    static: StaticState | None
+ 
+ 
+ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
+@@ -82,11 +82,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: BSBLanConfigEntry) -> bo
+         # the connection by fetching firmware version
+         await bsblan.initialize()
+ 
+-        # Fetch device metadata in parallel for faster startup
+-        device, info, static = await asyncio.gather(
++        # Fetch required device metadata in parallel for faster startup
++        device, info = await asyncio.gather(
+             bsblan.device(),
+             bsblan.info(),
+-            bsblan.static_values(),
+         )
+     except BSBLANConnectionError as err:
+         raise ConfigEntryNotReady(
+@@ -111,6 +110,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: BSBLanConfigEntry) -> bo
+             translation_key="setup_general_error",
+         ) from err
+ 
++    try:
++        static = await bsblan.static_values()
++    except (BSBLANError, TimeoutError) as err:
++        LOGGER.debug(
++            "Static values not available for %s: %s",
++            entry.data[CONF_HOST],
++            err,
++        )
++        static = None
++
+     # Create coordinators with the already-initialized client
+     fast_coordinator = BSBLanFastCoordinator(hass, entry, bsblan)
+     slow_coordinator = BSBLanSlowCoordinator(hass, entry, bsblan)
+diff --git a/homeassistant/components/bsblan/climate.py b/homeassistant/components/bsblan/climate.py
+index fc54f538873f3..8ae03e0a7a2ee 100644
+--- a/homeassistant/components/bsblan/climate.py
++++ b/homeassistant/components/bsblan/climate.py
+@@ -90,10 +90,11 @@ def __init__(
+         self._attr_unique_id = f"{format_mac(data.device.MAC)}-climate"
+ 
+         # Set temperature range if available, otherwise use Home Assistant defaults
+-        if data.static.min_temp is not None and data.static.min_temp.value is not None:
+-            self._attr_min_temp = data.static.min_temp.value
+-        if data.static.max_temp is not None and data.static.max_temp.value is not None:
+-            self._attr_max_temp = data.static.max_temp.value
++        if (static := data.static) is not None:
++            if (min_temp := static.min_temp) is not None and min_temp.value is not None:
++                self._attr_min_temp = min_temp.value
++            if (max_temp := static.max_temp) is not None and max_temp.value is not None:
++                self._attr_max_temp = max_temp.value
+         self._attr_temperature_unit = data.fast_coordinator.client.get_temperature_unit
+ 
+     @property
+diff --git a/homeassistant/components/bsblan/diagnostics.py b/homeassistant/components/bsblan/diagnostics.py
+index 31b0f730d05aa..55dedead85192 100644
+--- a/homeassistant/components/bsblan/diagnostics.py
++++ b/homeassistant/components/bsblan/diagnostics.py
+@@ -24,7 +24,7 @@ async def async_get_config_entry_diagnostics(
+             "sensor": data.fast_coordinator.data.sensor.model_dump(),
+             "dhw": data.fast_coordinator.data.dhw.model_dump(),
+         },
+-        "static": data.static.model_dump(),
++        "static": data.static.model_dump() if data.static is not None else None,
+     }
+ 
+     # Add DHW config and schedule from slow coordinator if available
+diff --git a/tests/components/bsblan/test_climate.py b/tests/components/bsblan/test_climate.py
+index 4dc7944576134..632b78ad237c3 100644
+--- a/tests/components/bsblan/test_climate.py
++++ b/tests/components/bsblan/test_climate.py
+@@ -45,6 +45,21 @@ async def test_celsius_fahrenheit(
+     await snapshot_platform(hass, entity_registry, snapshot, mock_config_entry.entry_id)
+ 
+ 
++async def test_climate_entity_loads_without_static_values(
++    hass: HomeAssistant,
++    mock_bsblan: AsyncMock,
++    mock_config_entry: MockConfigEntry,
++) -> None:
++    """Test the climate entity still loads when static values are unavailable."""
++    mock_bsblan.static_values.side_effect = BSBLANError("General error")
++
++    await setup_with_selected_platforms(hass, mock_config_entry, [Platform.CLIMATE])
++
++    state = hass.states.get(ENTITY_ID)
++    assert state is not None
++    assert state.attributes["current_temperature"] is not None
++
++
+ async def test_climate_entity_properties(
+     hass: HomeAssistant,
+     mock_bsblan: AsyncMock,
+diff --git a/tests/components/bsblan/test_diagnostics.py b/tests/components/bsblan/test_diagnostics.py
+index 05bcb1e7c03a6..7182cf3268594 100644
+--- a/tests/components/bsblan/test_diagnostics.py
++++ b/tests/components/bsblan/test_diagnostics.py
+@@ -2,6 +2,7 @@
+ 
+ from unittest.mock import AsyncMock
+ 
++from bsblan import BSBLANError
+ from syrupy.assertion import SnapshotAssertion
+ 
+ from homeassistant.core import HomeAssistant
+@@ -27,3 +28,26 @@ async def test_diagnostics(
+         hass, hass_client, mock_config_entry
+     )
+     assert diagnostics_data == snapshot
++
++
++async def test_diagnostics_without_static_values(
++    hass: HomeAssistant,
++    mock_bsblan: AsyncMock,
++    hass_client: ClientSessionGenerator,
++    mock_config_entry: MockConfigEntry,
++) -> None:
++    """Test diagnostics when static values are not available."""
++    mock_bsblan.static_values.side_effect = BSBLANError("General error")
++
++    mock_config_entry.add_to_hass(hass)
++    await hass.config_entries.async_setup(mock_config_entry.entry_id)
++    await hass.async_block_till_done()
++
++    diagnostics_data = await get_diagnostics_for_config_entry(
++        hass, hass_client, mock_config_entry
++    )
++
++    assert "info" in diagnostics_data
++    assert "device" in diagnostics_data
++    assert "fast_coordinator_data" in diagnostics_data
++    assert diagnostics_data["static"] is None
+diff --git a/tests/components/bsblan/test_init.py b/tests/components/bsblan/test_init.py
+index c2d44c0b0cda7..cced08a3daa94 100644
+--- a/tests/components/bsblan/test_init.py
++++ b/tests/components/bsblan/test_init.py
+@@ -78,30 +78,50 @@ async def test_config_entry_auth_failed_triggers_reauth(
+ 
+ 
+ @pytest.mark.parametrize(
+-    ("method", "exception", "expected_state"),
++    ("method", "exception", "expected_state", "assert_static_fallback"),
+     [
++        (
++            "initialize",
++            BSBLANError("General error"),
++            ConfigEntryState.SETUP_ERROR,
++            False,
++        ),
+         (
+             "device",
+             BSBLANConnectionError("Connection failed"),
+             ConfigEntryState.SETUP_RETRY,
++            False,
+         ),
+         (
+             "info",
+             BSBLANAuthError("Authentication failed"),
+             ConfigEntryState.SETUP_ERROR,
++            False,
++        ),
++        (
++            "static_values",
++            BSBLANError("General error"),
++            ConfigEntryState.LOADED,
++            True,
++        ),
++        (
++            "static_values",
++            TimeoutError("Connection timeout"),
++            ConfigEntryState.LOADED,
++            True,
+         ),
+-        ("static_values", BSBLANError("General error"), ConfigEntryState.SETUP_ERROR),
+     ],
+ )
+-async def test_config_entry_static_data_errors(
++async def test_config_entry_setup_errors(
+     hass: HomeAssistant,
+     mock_config_entry: MockConfigEntry,
+     mock_bsblan: MagicMock,
+     method: str,
+     exception: Exception,
+     expected_state: ConfigEntryState,
++    assert_static_fallback: bool,
+ ) -> None:
+-    """Test various errors during static data fetching trigger appropriate config entry states."""
++    """Test setup errors trigger appropriate config entry states."""
+     # Mock the specified method to raise the exception
+     getattr(mock_bsblan, method).side_effect = exception
+ 
+@@ -110,6 +130,8 @@ async def test_config_entry_static_data_errors(
+     await hass.async_block_till_done()
+ 
+     assert mock_config_entry.state is expected_state
++    if assert_static_fallback:
++        assert mock_config_entry.runtime_data.static is None
+ 
+ 
+ async def test_coordinator_dhw_config_update_error(

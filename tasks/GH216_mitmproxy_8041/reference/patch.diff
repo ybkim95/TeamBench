@@ -1,0 +1,66 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index a780d92e4c..6062f3b11a 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -11,6 +11,8 @@
+   ([#8016](https://github.com/mitmproxy/mitmproxy/pull/8016), @zdwg42)
+ - mitmweb: show intercept filter tag at the bottom for default options
+   ([#8026](https://github.com/mitmproxy/mitmproxy/pull/8026), @xBZZZZ)
++- Fix a bug where mitmweb would show a blank page on Windows.
++  ([#8041](https://github.com/mitmproxy/mitmproxy/pull/8041), @Copilot)
+ 
+ ## 24 November 2025: mitmproxy 12.2.1
+ 
+diff --git a/mitmproxy/tools/web/app.py b/mitmproxy/tools/web/app.py
+index 8ec6b714fa..c207701ed3 100644
+--- a/mitmproxy/tools/web/app.py
++++ b/mitmproxy/tools/web/app.py
+@@ -5,6 +5,7 @@
+ import hashlib
+ import json
+ import logging
++import mimetypes
+ import os.path
+ import re
+ import secrets
+@@ -48,6 +49,11 @@
+ from mitmproxy.utils.strutils import cut_after_n_lines
+ from mitmproxy.websocket import WebSocketMessage
+ 
++# Fix for Windows systems where .js files may have text/plain MIME type in registry.
++# Modern browsers with ES6 module scripts require proper JavaScript MIME types.
++# See: https://github.com/mitmproxy/mitmproxy/issues/7971
++mimetypes.add_type("text/javascript", ".js")
++
+ TRANSPARENT_PNG = (
+     b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08"
+     b"\x04\x00\x00\x00\xb5\x1c\x0c\x02\x00\x00\x00\x0bIDATx\xdac\xfc\xff\x07"
+diff --git a/test/mitmproxy/tools/web/test_app.py b/test/mitmproxy/tools/web/test_app.py
+index 53e3ff2a22..7922484ef2 100644
+--- a/test/mitmproxy/tools/web/test_app.py
++++ b/test/mitmproxy/tools/web/test_app.py
+@@ -111,6 +111,24 @@ def test_index(self):
+     def test_filter_help(self):
+         assert self.fetch("/filter-help").code == 200
+ 
++    def test_javascript_mime_type(self):
++        """Test that JavaScript files are served with the correct MIME type."""
++        # Verify that .js files are served with text/javascript MIME type
++        # This is critical for ES6 module scripts which enforce strict MIME type checking
++
++        # Find any .js file in the static directory
++        static_dir = Path(app.__file__).parent / "static"
++        js_files = list(static_dir.glob("*.js"))
++        assert js_files, "No .js files found in static directory"
++
++        # Get the filename of the first .js file
++        js_filename = js_files[0].name
++
++        # Fetch the JavaScript file and verify the Content-Type header
++        resp = self.fetch(f"/static/{js_filename}")
++        assert resp.code == 200
++        assert resp.headers.get("Content-Type") == "text/javascript"
++
+     def test_flows(self):
+         resp = self.fetch("/flows")
+         assert resp.code == 200

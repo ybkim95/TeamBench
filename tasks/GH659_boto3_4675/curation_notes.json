@@ -1,0 +1,68 @@
+{
+  "repo": "boto/boto3",
+  "pr_number": 4675,
+  "pr_url": "https://github.com/boto/boto3/pull/4675",
+  "issue_number": null,
+  "base_sha": "237c812853e987ac30bbeb5dd9bfc93aa97778b5",
+  "head_sha": "671f0ebcab5a94413d47e24a8c31b098e4cd1cf1",
+  "additions": 20,
+  "deletions": 26,
+  "changed_files": [
+    "boto3/docs/__init__.py",
+    "boto3/docs/service.py",
+    "boto3/dynamodb/conditions.py",
+    "boto3/resources/base.py",
+    "boto3/resources/factory.py",
+    "boto3/resources/model.py",
+    "boto3/resources/params.py",
+    "boto3/s3/transfer.py",
+    "boto3/session.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "boto3/docs/__init__.py",
+    "boto3/docs/service.py",
+    "boto3/dynamodb/conditions.py",
+    "boto3/resources/base.py",
+    "boto3/resources/factory.py",
+    "boto3/resources/model.py",
+    "boto3/resources/params.py",
+    "boto3/s3/transfer.py",
+    "boto3/session.py"
+  ],
+  "parameterization": {
+    "repo": "boto/boto3",
+    "repo_short": "boto3",
+    "parameterized_identifiers": [
+      "after",
+      "append",
+      "argument",
+      "arguments",
+      "base_classes",
+      "been",
+      "botocore_info",
+      "bucket",
+      "build_param_structure",
+      "category"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:31:53Z"
+}

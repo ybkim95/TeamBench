@@ -1,0 +1,13 @@
+task_id: GH1140_keras_21729
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix histogram op for symbolic inputs"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/keras-team/keras/pull/21729"
+source_issue: "https://github.com/keras-team/keras/issues/21708"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

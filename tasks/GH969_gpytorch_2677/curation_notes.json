@@ -1,0 +1,54 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 2677,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/2677",
+  "issue_number": null,
+  "base_sha": "d6f02cc4a64e14fe22f551fcae00eaf539031552",
+  "head_sha": "38f3d88ff804d0b0c592fad2c420d18993f2df58",
+  "additions": 39,
+  "deletions": 3,
+  "changed_files": [
+    "gpytorch/kernels/rq_kernel.py",
+    "test/kernels/test_rq_kernel.py"
+  ],
+  "test_files": [
+    "test/kernels/test_rq_kernel.py"
+  ],
+  "source_files": [
+    "gpytorch/kernels/rq_kernel.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "actual",
+      "actual_value",
+      "add_",
+      "added",
+      "alpha",
+      "alpha_constraint",
+      "batch",
+      "batch_shape",
+      "broadcasts",
+      "cases"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:55:25Z"
+}

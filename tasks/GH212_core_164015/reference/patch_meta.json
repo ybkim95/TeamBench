@@ -1,0 +1,15 @@
+{
+ "task": "GH212_core_164015",
+ "patch": "tasks/GH212_core_164015/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "home-assistant/core",
+ "pr_number": 164015,
+ "base_sha": "75ed7b2fa2c55dce08c6e6457643f80582e09bfe",
+ "head_sha": "401ecb46b958f72405a4701fd2540a38c1453ced",
+ "bytes": 1840,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

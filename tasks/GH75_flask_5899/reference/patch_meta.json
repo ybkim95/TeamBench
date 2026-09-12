@@ -1,0 +1,15 @@
+{
+ "task": "GH75_flask_5899",
+ "patch": "tasks/GH75_flask_5899/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "pallets/flask",
+ "pr_number": 5899,
+ "base_sha": "9b74a90dd3c47f792734823e8793ac36f38bc4dd",
+ "head_sha": "c77a5203438fe772d41f6a47303ad3f57a4efe6d",
+ "bytes": 2962,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

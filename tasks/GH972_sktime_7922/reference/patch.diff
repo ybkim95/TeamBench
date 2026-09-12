@@ -1,0 +1,13 @@
+diff --git a/sktime/tests/_config.py b/sktime/tests/_config.py
+index 72803c47dc4..1db91f5f2a4 100644
+--- a/sktime/tests/_config.py
++++ b/sktime/tests/_config.py
+@@ -245,6 +245,8 @@
+         "test_inheritance",
+         "test_create_test_instance",
+     ],
++    # see PR 7921
++    "RocketClassifier": ["test_classifier_on_basic_motions"],
+ }
+ 
+ # exclude tests but keyed by test name

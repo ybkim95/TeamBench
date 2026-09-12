@@ -1,0 +1,52 @@
+diff --git a/celery/worker/consumer/delayed_delivery.py b/celery/worker/consumer/delayed_delivery.py
+index 46996ca2caf..9909be3cf27 100644
+--- a/celery/worker/consumer/delayed_delivery.py
++++ b/celery/worker/consumer/delayed_delivery.py
+@@ -3,11 +3,13 @@
+ This module provides the DelayedDelivery bootstep which handles setup and configuration
+ of native delayed delivery functionality when using quorum queues.
+ """
++import sys
+ from typing import Iterator, List, Optional, Set, Union, ValuesView
+ 
+-# Backport of PEP 654 for Python versions < 3.11
+-# In Python 3.11+, exceptiongroup uses the built-in ExceptionGroup
+-from exceptiongroup import ExceptionGroup
++if sys.version_info < (3, 11):  # pragma: no cover
++    # Backport of PEP 654 for Python versions < 3.11
++    from exceptiongroup import ExceptionGroup
++
+ from kombu import Connection, Queue
+ from kombu.transport.native_delayed_delivery import (bind_queue_to_native_delayed_delivery_exchange,
+                                                      declare_native_delayed_delivery_exchanges_and_queues)
+diff --git a/requirements/default.txt b/requirements/default.txt
+index 25db1a331f0..eddb0ca7229 100644
+--- a/requirements/default.txt
++++ b/requirements/default.txt
+@@ -6,5 +6,5 @@ click-didyoumean>=0.3.0
+ click-repl>=0.2.0
+ click-plugins>=1.1.1
+ python-dateutil>=2.8.2
+-exceptiongroup>=1.3.0
++exceptiongroup>=1.3.0; python_version < '3.11'
+ tzlocal
+diff --git a/t/unit/worker/test_native_delayed_delivery.py b/t/unit/worker/test_native_delayed_delivery.py
+index c5f2adcfc11..83b7d2888b7 100644
+--- a/t/unit/worker/test_native_delayed_delivery.py
++++ b/t/unit/worker/test_native_delayed_delivery.py
+@@ -1,11 +1,14 @@
+ import itertools
++import sys
+ from logging import LogRecord
+ from typing import Iterator
+ from unittest.mock import MagicMock, Mock, patch
+ 
++if sys.version_info < (3, 11):  # pragma: no cover
++    from exceptiongroup import ExceptionGroup
++
+ import pytest
+ from amqp import NotFound
+-from exceptiongroup import ExceptionGroup
+ from kombu import Exchange, Queue
+ from kombu.utils.functional import retry_over_time
+ 

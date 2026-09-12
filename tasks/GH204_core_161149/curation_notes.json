@@ -1,0 +1,52 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 161149,
+  "pr_url": "https://github.com/home-assistant/core/pull/161149",
+  "issue_number": 156779,
+  "base_sha": "6a1581f2bf41d84e2a741c0ba3996b64df5d57bc",
+  "head_sha": "47977fbda19992631205f64e7412f31a29a70f7a",
+  "additions": 58,
+  "deletions": 0,
+  "changed_files": [
+    "homeassistant/components/reolink/__init__.py",
+    "tests/components/reolink/test_update.py"
+  ],
+  "test_files": [
+    "tests/components/reolink/test_update.py"
+  ],
+  "source_files": [
+    "homeassistant/components/reolink/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "async_block_till_done",
+      "async_refresh",
+      "async_setup",
+      "async_setup_entry",
+      "asyncio",
+      "available",
+      "been",
+      "cache",
+      "camera_sw_version",
+      "changed"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:37:57Z"
+}

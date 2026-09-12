@@ -1,0 +1,12 @@
+task_id: GH6_queryset_union
+domain: swe
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [github-issue, django, orm, queryset, union, sql]
+workspace_file_count: 3
+lines_changed_expected: 20
+parameterized: false
+source: "https://code.djangoproject.com/ticket/28293"

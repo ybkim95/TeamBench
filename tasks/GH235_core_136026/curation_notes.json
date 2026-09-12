@@ -1,0 +1,52 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 136026,
+  "pr_url": "https://github.com/home-assistant/core/pull/136026",
+  "issue_number": 135443,
+  "base_sha": "7a23348b1da8b7f4ba025a61f81e26d88f2c5749",
+  "head_sha": "efff73bed0a0d73d0d0c67fd22b0ab31247f1900",
+  "additions": 91,
+  "deletions": 11,
+  "changed_files": [
+    "homeassistant/components/mqtt/client.py",
+    "tests/components/mqtt/test_client.py"
+  ],
+  "test_files": [
+    "tests/components/mqtt/test_client.py"
+  ],
+  "source_files": [
+    "homeassistant/components/mqtt/client.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "about",
+      "accepted",
+      "always",
+      "applies",
+      "argument",
+      "async_client",
+      "async_connect",
+      "async_setup",
+      "asyncio",
+      "boolean"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:59Z"
+}

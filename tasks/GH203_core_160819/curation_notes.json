@@ -1,0 +1,52 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 160819,
+  "pr_url": "https://github.com/home-assistant/core/pull/160819",
+  "issue_number": 160814,
+  "base_sha": "010e1f2d0dfb56e2cd8da3c3f9bd5e0d770575ed",
+  "head_sha": "933eb4d8fbe8d0eed774b6191988d63a9f4c73ef",
+  "additions": 46,
+  "deletions": 6,
+  "changed_files": [
+    "homeassistant/components/cast/media_player.py",
+    "tests/components/cast/test_media_player.py"
+  ],
+  "test_files": [
+    "tests/components/cast/test_media_player.py"
+  ],
+  "source_files": [
+    "homeassistant/components/cast/media_player.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "account",
+      "active",
+      "app_id",
+      "apps",
+      "assert_not_called",
+      "async_block_till_done",
+      "cast",
+      "cast_status",
+      "cast_status_cb",
+      "chromecast"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:37:54Z"
+}

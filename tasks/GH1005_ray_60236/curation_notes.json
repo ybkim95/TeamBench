@@ -1,0 +1,52 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 60236,
+  "pr_url": "https://github.com/ray-project/ray/pull/60236",
+  "issue_number": 60215,
+  "base_sha": "87a674d466a793716a44fbc613ead9456c809056",
+  "head_sha": "733bbece622e03cab1d6515c18828de89d51b190",
+  "additions": 44,
+  "deletions": 1,
+  "changed_files": [
+    "python/ray/data/_internal/datasource/parquet_datasource.py",
+    "python/ray/data/tests/datasource/test_parquet.py"
+  ],
+  "test_files": [
+    "python/ray/data/tests/datasource/test_parquet.py"
+  ],
+  "source_files": [
+    "python/ray/data/_internal/datasource/parquet_datasource.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "active",
+      "added",
+      "automatically",
+      "column",
+      "columns",
+      "correct",
+      "data",
+      "data_col0",
+      "data_col1",
+      "data_path"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:58:20Z"
+}

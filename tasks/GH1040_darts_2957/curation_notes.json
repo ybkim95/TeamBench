@@ -1,0 +1,53 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 2957,
+  "pr_url": "https://github.com/unit8co/darts/pull/2957",
+  "issue_number": 2955,
+  "base_sha": "b1d45b54ee464b76cb0d7f149adbf08b219616ea",
+  "head_sha": "bfe65f49a3ba08e3a6e825fd3bf74524447d650c",
+  "additions": 31,
+  "deletions": 0,
+  "changed_files": [
+    "CHANGELOG.md",
+    "darts/explainability/tft_explainer.py",
+    "darts/tests/explainability/test_tft_explainer.py"
+  ],
+  "test_files": [
+    "darts/tests/explainability/test_tft_explainer.py"
+  ],
+  "source_files": [
+    "darts/explainability/tft_explainer.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "add_relative_idx",
+      "always",
+      "attempting",
+      "attention",
+      "back",
+      "backwards",
+      "batch",
+      "batch_size",
+      "break",
+      "cannot"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:01:01Z"
+}

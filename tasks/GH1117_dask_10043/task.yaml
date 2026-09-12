@@ -1,0 +1,13 @@
+task_id: GH1117_dask_10043
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Avoid using `dd.shuffle` in groupby-apply"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/dask/dask/pull/10043"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

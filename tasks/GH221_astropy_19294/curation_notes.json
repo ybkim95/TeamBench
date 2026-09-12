@@ -1,0 +1,56 @@
+{
+  "repo": "astropy/astropy",
+  "pr_number": 19294,
+  "pr_url": "https://github.com/astropy/astropy/pull/19294",
+  "issue_number": 19292,
+  "base_sha": "7dfb651629f61291b62b95bd034cdcf4b1ae3eb0",
+  "head_sha": "fd8b2aec5b448f008f5a73f3c622969c26e0394b",
+  "additions": 106,
+  "deletions": 35,
+  "changed_files": [
+    "astropy/utils/data.py",
+    "astropy/utils/tests/test_data.py",
+    "docs/changes/io.fits/19294.bugfix.rst",
+    "docs/io/fits/usage/cloud.rst",
+    "pyproject.toml",
+    "scripts/lowest-resolved-tree.txt"
+  ],
+  "test_files": [
+    "astropy/utils/tests/test_data.py"
+  ],
+  "source_files": [
+    "astropy/utils/data.py"
+  ],
+  "parameterization": {
+    "repo": "astropy/astropy",
+    "repo_short": "astropy",
+    "parameterized_identifiers": [
+      "accepts",
+      "access",
+      "ahead",
+      "aiobotocore",
+      "aiohttp",
+      "aioitertools",
+      "amount",
+      "anon",
+      "anonymous",
+      "append"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:00Z"
+}

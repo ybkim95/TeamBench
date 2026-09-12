@@ -1,0 +1,54 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1477,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1477",
+  "issue_number": null,
+  "base_sha": "46a406edd46e3dd15f7c5bc52e57b13bbfc442ca",
+  "head_sha": "1778b11768d901314f57ec4eec160b79b0e5e483",
+  "additions": 42,
+  "deletions": 2,
+  "changed_files": [
+    "flaml/tune/searcher/blendsearch.py",
+    "test/tune/test_searcher.py"
+  ],
+  "test_files": [
+    "test/tune/test_searcher.py"
+  ],
+  "source_files": [
+    "flaml/tune/searcher/blendsearch.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "about",
+      "add_evaluated_point",
+      "back",
+      "behavior",
+      "best",
+      "blendsearch",
+      "caplog",
+      "check_call",
+      "conditional",
+      "config"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:59Z"
+}

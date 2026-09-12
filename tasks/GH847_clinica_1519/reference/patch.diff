@@ -1,0 +1,110 @@
+diff --git a/clinica/converters/ukb_to_bids/_utils.py b/clinica/converters/ukb_to_bids/_utils.py
+index fae9ba61d..ac0358b23 100644
+--- a/clinica/converters/ukb_to_bids/_utils.py
++++ b/clinica/converters/ukb_to_bids/_utils.py
+@@ -334,7 +334,9 @@ def write_bids(
+         sessions_filepath = to / str(participant_id) / f"{participant_id}_sessions.tsv"
+         with fs.open(str(sessions_filepath), "w") as sessions_file:
+             write_to_tsv(sessions, sessions_file)
+-    scans = scans.set_index(["bids_full_path"], verify_integrity=True)
++
++    scans = scans.reset_index().set_index(["bids_full_path"], verify_integrity=True)
++
+     for bids_full_path, metadata in scans.iterrows():
+         if metadata["modality_num"] != "20217" and metadata["modality_num"] != "20225":
+             _copy_file_to_bids(
+@@ -349,7 +351,47 @@ def write_bids(
+             )
+             if metadata["modality_num"] == "20217":
+                 _import_event_tsv(bids_path=to)
+-    return
++
++        _write_row_in_scans_tsv_file(metadata, to)
++
++
++def _write_row_in_scans_tsv_file(row: pd.Series, to: Path):
++    """Write rows from a dataframe into a scans.tsv file.
++
++    Parameters
++    ----------
++    row : pd.Series
++        Row to write into the scans.tsv file.
++
++    to : Path
++        Path to the BIDS folder.
++    """
++    scans_filepath = (
++        to
++        / str(row.participant_id)
++        / str(row.sessions)
++        / f"{row.participant_id}_{row.sessions}_scans.tsv"
++    )
++    row_to_write = _serialize_row(
++        row.drop(["participant_id", "sessions"]),
++        write_column_names=not scans_filepath.exists(),
++    )
++    with open(scans_filepath, "a") as scans_file:
++        scans_file.write(f"{row_to_write}\n")
++
++
++def _serialize_row(row: pd.Series, write_column_names: bool) -> str:
++    row_dict = row.to_dict()
++    to_write = (
++        [row_dict.keys(), row_dict.values()]
++        if write_column_names
++        else [row_dict.values()]
++    )
++    return "\n".join([_serialize_list(list(_)) for _ in to_write])
++
++
++def _serialize_list(data: list, sep="\t") -> str:
++    return sep.join([str(value) for value in data])
+ 
+ 
+ def _copy_file_to_bids(zipfile: Path, filenames: List[Path], bids_path: Path) -> None:
+diff --git a/test/unittests/converters/test_ukb_to_bids_utils.py b/test/unittests/converters/test_ukb_to_bids_utils.py
+index 2f86e621f..959e8aa03 100644
+--- a/test/unittests/converters/test_ukb_to_bids_utils.py
++++ b/test/unittests/converters/test_ukb_to_bids_utils.py
+@@ -1,4 +1,5 @@
+ from cmath import nan
++from pathlib import Path
+ 
+ import pandas as pd
+ import pytest
+@@ -19,6 +20,35 @@ def test_read_imaging_data(tmp_path):
+         read_imaging_data(path_to_zip)
+ 
+ 
++def test_write_row_in_scans_tsv_file(tmp_path):
++    from clinica.converters.ukb_to_bids._utils import _write_row_in_scans_tsv_file
++
++    row = pd.Series(
++        {
++            "participant_id": "sub-0001",
++            "sessions": "ses-M000",
++            "filename": "sub-0001_ses-M000_T1w.nii.gz",
++            "modality": "T1w",
++        }
++    )
++
++    target_dir = tmp_path / "BIDS" / "sub-0001" / "ses-M000"
++    target_dir.mkdir(parents=True)
++
++    _write_row_in_scans_tsv_file(row, tmp_path / "BIDS")
++
++    scans_tsv = target_dir / "sub-0001_ses-M000_scans.tsv"
++    assert scans_tsv.exists()
++
++    content = scans_tsv.read_text().strip().splitlines()
++
++    columns_names = content[0].split("\t")
++    columns_items = content[1].split("\t")
++
++    assert columns_names == ["filename", "modality"]
++    assert columns_items == ["sub-0001_ses-M000_T1w.nii.gz", "T1w"]
++
++
+ @pytest.mark.parametrize(
+     "subject_id, source_session, age_2, age_3, expected",
+     [

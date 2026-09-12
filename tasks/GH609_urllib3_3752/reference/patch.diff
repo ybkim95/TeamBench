@@ -1,0 +1,69 @@
+diff --git a/changelog/3752.bugfix.rst b/changelog/3752.bugfix.rst
+new file mode 100644
+index 0000000000..5c46755f0e
+--- /dev/null
++++ b/changelog/3752.bugfix.rst
+@@ -0,0 +1 @@
++Fixed ``urllib3.connection.VerifiedHTTPSConnection`` on Emscripten.
+diff --git a/src/urllib3/contrib/emscripten/__init__.py b/src/urllib3/contrib/emscripten/__init__.py
+index 8a3c5bebdc..e5b62b25e9 100644
+--- a/src/urllib3/contrib/emscripten/__init__.py
++++ b/src/urllib3/contrib/emscripten/__init__.py
+@@ -14,3 +14,4 @@ def inject_into_urllib3() -> None:
+     HTTPSConnectionPool.ConnectionCls = EmscriptenHTTPSConnection
+     urllib3.connection.HTTPConnection = EmscriptenHTTPConnection  # type: ignore[misc,assignment]
+     urllib3.connection.HTTPSConnection = EmscriptenHTTPSConnection  # type: ignore[misc,assignment]
++    urllib3.connection.VerifiedHTTPSConnection = EmscriptenHTTPSConnection  # type: ignore[assignment]
+diff --git a/src/urllib3/contrib/emscripten/connection.py b/src/urllib3/contrib/emscripten/connection.py
+index a5a353f8e8..63f79dd3be 100644
+--- a/src/urllib3/contrib/emscripten/connection.py
++++ b/src/urllib3/contrib/emscripten/connection.py
+@@ -40,6 +40,7 @@ class EmscriptenHTTPConnection:
+     is_verified: bool = False
+     proxy_is_verified: bool | None = None
+ 
++    response_class: type[BaseHTTPResponse] = EmscriptenHttpResponseWrapper
+     _response: EmscriptenResponse | None
+ 
+     def __init__(
+diff --git a/test/contrib/emscripten/test_emscripten.py b/test/contrib/emscripten/test_emscripten.py
+index b4d8b213ce..5e5e7dd4b0 100644
+--- a/test/contrib/emscripten/test_emscripten.py
++++ b/test/contrib/emscripten/test_emscripten.py
+@@ -302,15 +302,20 @@ def test_timeout_in_worker_streaming(
+     run_from_server.run_webworker(worker_code)
+ 
+ 
++@pytest.mark.parametrize(
++    "connection_cls", ["HTTPSConnection", "VerifiedHTTPSConnection"]
++)
+ def test_index_https(
+-    selenium_coverage: typing.Any, testserver_http: PyodideServerInfo
++    selenium_coverage: typing.Any,
++    testserver_http: PyodideServerInfo,
++    connection_cls: str,
+ ) -> None:
+     @run_in_pyodide  # type: ignore[misc]
+-    def pyodide_test(selenium_coverage, host: str, port: int) -> None:  # type: ignore[no-untyped-def]
+-        from urllib3.connection import HTTPSConnection
++    def pyodide_test(selenium_coverage, host: str, port: int, connection_cls: str) -> None:  # type: ignore[no-untyped-def]
++        from urllib3 import connection
+         from urllib3.response import BaseHTTPResponse
+ 
+-        conn = HTTPSConnection(host, port)
++        conn = getattr(connection, connection_cls)(host, port)
+         conn.request("GET", f"https://{host}:{port}/")
+         response = conn.getresponse()
+         assert isinstance(response, BaseHTTPResponse)
+@@ -318,7 +323,10 @@ def pyodide_test(selenium_coverage, host: str, port: int) -> None:  # type: igno
+         assert data.decode("utf-8") == "Dummy server!"
+ 
+     pyodide_test(
+-        selenium_coverage, testserver_http.http_host, testserver_http.https_port
++        selenium_coverage,
++        testserver_http.http_host,
++        testserver_http.https_port,
++        connection_cls,
+     )
+ 
+ 

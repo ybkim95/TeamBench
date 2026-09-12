@@ -1,0 +1,54 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 21864,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/21864",
+  "issue_number": null,
+  "base_sha": "9f329862eaf00ae2a456c34ba026080ca169fd4e",
+  "head_sha": "761f31023be4f6d356f12660b2ca4529a9f56095",
+  "additions": 142,
+  "deletions": 3,
+  "changed_files": [
+    "mlflow/genai/discovery/utils.py",
+    "tests/genai/discovery/test_utils.py"
+  ],
+  "test_files": [
+    "tests/genai/discovery/test_utils.py"
+  ],
+  "source_files": [
+    "mlflow/genai/discovery/utils.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "adapters",
+      "api_base",
+      "api_key",
+      "assert_called_once",
+      "base",
+      "call_args",
+      "call_kwargs",
+      "chat",
+      "completion_tokens",
+      "config"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:03Z"
+}

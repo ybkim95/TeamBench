@@ -1,0 +1,61 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3092,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3092",
+  "issue_number": null,
+  "base_sha": "06f33b24182ad4e03ec35eb55b3daf358d12b11e",
+  "head_sha": "6e2dfd0f6c217fbcdb88ce384a2e3a03769f2bdc",
+  "additions": 83,
+  "deletions": 52,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/werkzeug/datastructures/file_storage.py",
+    "src/werkzeug/test.py",
+    "src/werkzeug/utils.py",
+    "tests/test_test.py",
+    "tests/test_utils.py"
+  ],
+  "test_files": [
+    "src/werkzeug/test.py",
+    "tests/test_test.py",
+    "tests/test_utils.py"
+  ],
+  "source_files": [
+    "src/werkzeug/datastructures/file_storage.py",
+    "src/werkzeug/utils.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "accessing",
+      "add_file",
+      "affects",
+      "also",
+      "always",
+      "answer",
+      "append",
+      "application",
+      "apply",
+      "because"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:10:21Z"
+}

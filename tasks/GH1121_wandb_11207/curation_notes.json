@@ -1,0 +1,59 @@
+{
+  "repo": "wandb/wandb",
+  "pr_number": 11207,
+  "pr_url": "https://github.com/wandb/wandb/pull/11207",
+  "issue_number": null,
+  "base_sha": "351fa541327977e7c688ca91463e06aaac75f11b",
+  "head_sha": "ca9f94cab3e30977786b784b25030258432ed49f",
+  "additions": 226,
+  "deletions": 33,
+  "changed_files": [
+    "CHANGELOG.unreleased.md",
+    "tests/fixtures/mock_wandb_log.py",
+    "tests/unit_tests/test_wandb_settings.py",
+    "wandb/_pydantic/__init__.py",
+    "wandb/sdk/wandb_settings.py"
+  ],
+  "test_files": [
+    "tests/fixtures/mock_wandb_log.py",
+    "tests/unit_tests/test_wandb_settings.py"
+  ],
+  "source_files": [
+    "wandb/_pydantic/__init__.py",
+    "wandb/sdk/wandb_settings.py"
+  ],
+  "parameterization": {
+    "repo": "wandb/wandb",
+    "repo_short": "wandb",
+    "parameterized_identifiers": [
+      "allowed",
+      "annotations",
+      "anonymous",
+      "append",
+      "apply",
+      "arbitrarily",
+      "arbitrary",
+      "assert_errored",
+      "assert_errored_re",
+      "assert_logged"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:07:06Z"
+}

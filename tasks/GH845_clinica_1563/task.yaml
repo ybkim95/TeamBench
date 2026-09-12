@@ -1,0 +1,13 @@
+task_id: GH845_clinica_1563
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[FIX] IXI-to-BIDS : Setting `participant_id` as the first column of `/participants.tsv`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/aramis-lab/clinica/pull/1563"
+source_issue: "https://github.com/aramis-lab/clinica/issues/1560"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

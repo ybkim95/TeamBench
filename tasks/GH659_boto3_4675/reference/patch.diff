@@ -1,0 +1,182 @@
+diff --git a/boto3/docs/__init__.py b/boto3/docs/__init__.py
+index d6ab12fab3..504d6c2b18 100644
+--- a/boto3/docs/__init__.py
++++ b/boto3/docs/__init__.py
+@@ -45,7 +45,7 @@ def generate_docs(root_dir, session):
+             service_name, session, services_doc_path
+         ).document_service()
+         service_doc_path = os.path.join(
+-            services_doc_path, service_name + '.rst'
++            services_doc_path, f"{service_name}.rst"
+         )
+         with open(service_doc_path, 'wb') as f:
+             f.write(docs)
+diff --git a/boto3/docs/service.py b/boto3/docs/service.py
+index 39ed89b871..af1a2f6ca9 100644
+--- a/boto3/docs/service.py
++++ b/boto3/docs/service.py
+@@ -190,7 +190,7 @@ def _document_resources(self, section):
+ 
+     def _get_example_file(self):
+         return os.path.realpath(
+-            os.path.join(self.EXAMPLE_PATH, self._service_name + '.rst')
++            os.path.join(self.EXAMPLE_PATH, f"{self._service_name}.rst")
+         )
+ 
+     def _document_examples(self, section):
+diff --git a/boto3/dynamodb/conditions.py b/boto3/dynamodb/conditions.py
+index 74b3e8e783..8307489025 100644
+--- a/boto3/dynamodb/conditions.py
++++ b/boto3/dynamodb/conditions.py
+@@ -311,10 +311,10 @@ def __init__(self):
+         self._value_placeholder = 'v'
+ 
+     def _get_name_placeholder(self):
+-        return '#' + self._name_placeholder + str(self._name_count)
++        return f"#{self._name_placeholder}{self._name_count}"
+ 
+     def _get_value_placeholder(self):
+-        return ':' + self._value_placeholder + str(self._value_count)
++        return f":{self._value_placeholder}{self._value_count}"
+ 
+     def reset(self):
+         """Resets the placeholder name and values"""
+@@ -451,7 +451,7 @@ def _build_value_placeholder(
+             # Assuming the values are grouped by parenthesis.
+             # IN is the currently the only one that uses this so it maybe
+             # needed to be changed in future.
+-            return '(' + ', '.join(placeholder_list) + ')'
++            return f"({', '.join(placeholder_list)})"
+         # Otherwise, treat the value as a single value that needs only
+         # one placeholder.
+         else:
+diff --git a/boto3/resources/base.py b/boto3/resources/base.py
+index 78fa9199fe..81ee220603 100644
+--- a/boto3/resources/base.py
++++ b/boto3/resources/base.py
+@@ -104,7 +104,7 @@ def __init__(self, *args, **kwargs):
+         # Allow setting identifiers as positional arguments in the order
+         # in which they were defined in the ResourceJSON.
+         for i, value in enumerate(args):
+-            setattr(self, '_' + self.meta.identifiers[i], value)
++            setattr(self, f"_{self.meta.identifiers[i]}", value)
+ 
+         # Allow setting identifiers via keyword arguments. Here we need
+         # extra logic to ignore other keyword arguments like ``client``.
+@@ -115,7 +115,7 @@ def __init__(self, *args, **kwargs):
+             if name not in self.meta.identifiers:
+                 raise ValueError(f'Unknown keyword argument: {name}')
+ 
+-            setattr(self, '_' + name, value)
++            setattr(self, f"_{name}", value)
+ 
+         # Validate that all identifiers have been set.
+         for identifier in self.meta.identifiers:
+@@ -123,15 +123,11 @@ def __init__(self, *args, **kwargs):
+                 raise ValueError(f'Required parameter {identifier} not set')
+ 
+     def __repr__(self):
+-        identifiers = []
+-        for identifier in self.meta.identifiers:
+-            identifiers.append(
+-                f'{identifier}={repr(getattr(self, identifier))}'
+-            )
+-        return "{}({})".format(
+-            self.__class__.__name__,
+-            ', '.join(identifiers),
+-        )
++        identifiers = [
++            f'{identifier}={repr(getattr(self, identifier))}'
++            for identifier in self.meta.identifiers
++        ]
++        return f"{self.__class__.__name__}({', '.join(identifiers)})"
+ 
+     def __eq__(self, other):
+         # Should be instances of the same resource class
+diff --git a/boto3/resources/factory.py b/boto3/resources/factory.py
+index 4cdd2f01dd..5dab336920 100644
+--- a/boto3/resources/factory.py
++++ b/boto3/resources/factory.py
+@@ -145,7 +145,7 @@ def load_from_definition(
+         cls_name = resource_name
+         if service_context.service_name == resource_name:
+             cls_name = 'ServiceResource'
+-        cls_name = service_context.service_name + '.' + cls_name
++        cls_name = f"{service_context.service_name}.{cls_name}"
+ 
+         base_classes = [ServiceResource]
+         if self._emitter is not None:
+@@ -325,7 +325,7 @@ def get_identifier(self):
+             # identifiers have a value ``None``. If any are ``None``,
+             # a more informative user error than a generic AttributeError
+             # is raised.
+-            return getattr(self, '_' + identifier.name, None)
++            return getattr(self, f"_{identifier.name}", None)
+ 
+         get_identifier.__name__ = str(identifier.name)
+         get_identifier.__doc__ = docstring.IdentifierDocstring(
+@@ -344,7 +344,7 @@ def _create_identifier_alias(
+         """
+ 
+         def get_identifier(self):
+-            return getattr(self, '_' + identifier.name, None)
++            return getattr(self, f"_{identifier.name}", None)
+ 
+         get_identifier.__name__ = str(identifier.member_name)
+         get_identifier.__doc__ = docstring.AttributeDocstring(
+diff --git a/boto3/resources/model.py b/boto3/resources/model.py
+index fbb053ff96..6b64996c73 100644
+--- a/boto3/resources/model.py
++++ b/boto3/resources/model.py
+@@ -367,8 +367,8 @@ def _load_name_with_category(self, names, name, category, snake_case=True):
+ 
+         if name in names:
+             logger.debug('Renaming %s %s %s', self.name, category, name)
+-            self._renamed[(category, name)] = name + '_' + category
+-            name += '_' + category
++            self._renamed[(category, name)] = f"{name}_{category}"
++            name += f"_{category}"
+ 
+             if name in names:
+                 # This isn't good, let's raise instead of trying to keep
+diff --git a/boto3/resources/params.py b/boto3/resources/params.py
+index 3c5c74b3c7..725256f763 100644
+--- a/boto3/resources/params.py
++++ b/boto3/resources/params.py
+@@ -132,7 +132,7 @@ def build_param_structure(params, target, value, index=None):
+                 else:
+                     # We have an explicit index
+                     index = int(result.group(1))
+-                    part = part[: -len(str(index) + '[]')]
++                    part = part[: -len(f"{index}[]")]
+             else:
+                 # Index will be set after we know the proper part
+                 # name and that it's a list instance.
+diff --git a/boto3/s3/transfer.py b/boto3/s3/transfer.py
+index 65f506f4dc..9880ec3fe7 100644
+--- a/boto3/s3/transfer.py
++++ b/boto3/s3/transfer.py
+@@ -456,9 +456,7 @@ def upload_file(
+         # client error.
+         except ClientError as e:
+             raise S3UploadFailedError(
+-                "Failed to upload {} to {}: {}".format(
+-                    filename, '/'.join([bucket, key]), e
+-                )
++                f"Failed to upload {filename} to {bucket}/{key}: {e}"
+             )
+ 
+     def download_file(
+diff --git a/boto3/session.py b/boto3/session.py
+index 88ef698953..a990f460ea 100644
+--- a/boto3/session.py
++++ b/boto3/session.py
+@@ -72,7 +72,7 @@ def __init__(
+         if self._session.user_agent_name == 'Botocore':
+             botocore_info = f'Botocore/{self._session.user_agent_version}'
+             if self._session.user_agent_extra:
+-                self._session.user_agent_extra += ' ' + botocore_info
++                self._session.user_agent_extra += f" {botocore_info}"
+             else:
+                 self._session.user_agent_extra = botocore_info
+             self._session.user_agent_name = 'Boto3'

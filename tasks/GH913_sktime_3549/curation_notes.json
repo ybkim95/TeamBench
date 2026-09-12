@@ -1,0 +1,52 @@
+{
+  "repo": "sktime/sktime",
+  "pr_number": 3549,
+  "pr_url": "https://github.com/sktime/sktime/pull/3549",
+  "issue_number": 3547,
+  "base_sha": "279103d719482213917bf177803aa90509bf2aca",
+  "head_sha": "4211853356e214769ebdc9a5918e3adb05f1810f",
+  "additions": 30,
+  "deletions": 4,
+  "changed_files": [
+    "sktime/forecasting/compose/_pipeline.py",
+    "sktime/forecasting/compose/tests/test_pipeline.py"
+  ],
+  "test_files": [
+    "sktime/forecasting/compose/tests/test_pipeline.py"
+  ],
+  "source_files": [
+    "sktime/forecasting/compose/_pipeline.py"
+  ],
+  "parameterization": {
+    "repo": "sktime/sktime",
+    "repo_short": "sktime",
+    "parameterized_identifiers": [
+      "actual",
+      "actual_alt",
+      "already",
+      "based",
+      "cant",
+      "capability",
+      "data",
+      "decimal",
+      "does",
+      "enforce_index_type"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:44Z"
+}

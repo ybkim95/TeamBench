@@ -1,0 +1,13 @@
+task_id: GH35_jinja_1665
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix bug involving calling set on a template parameter within all branches of an if block"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/jinja/pull/1665"
+source_issue: "https://github.com/pallets/jinja/issues/1253"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

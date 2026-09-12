@@ -1,0 +1,13 @@
+task_id: GH1036_FLAML_1405
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: Fixed bug where group folds and sample weights couldn't be used together"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/microsoft/FLAML/pull/1405"
+source_issue: "https://github.com/microsoft/FLAML/issues/1396"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

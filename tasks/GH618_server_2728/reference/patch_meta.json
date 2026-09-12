@@ -1,0 +1,15 @@
+{
+ "task": "GH618_server_2728",
+ "patch": "tasks/GH618_server_2728/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "music-assistant/server",
+ "pr_number": 2728,
+ "base_sha": "ca5ecc1f9d48c44889bc1469213b2e5ed0614afb",
+ "head_sha": "d22f390e4b86b32b8aeabc8fa1e174fdf1da9c83",
+ "bytes": 3528,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

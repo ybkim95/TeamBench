@@ -1,0 +1,55 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 1465,
+  "pr_url": "https://github.com/unit8co/darts/pull/1465",
+  "issue_number": 1461,
+  "base_sha": "ce45c15aa0febd7bc679eab3c991f2fdfaf106a2",
+  "head_sha": "d2f311da77d9e289805fd68259046b2b61c038a8",
+  "additions": 273,
+  "deletions": 168,
+  "changed_files": [
+    "darts/models/forecasting/forecasting_model.py",
+    "darts/tests/models/forecasting/test_backtesting.py",
+    "darts/tests/models/forecasting/test_ensemble_models.py",
+    "examples/00-quickstart.ipynb"
+  ],
+  "test_files": [
+    "darts/tests/models/forecasting/test_backtesting.py",
+    "darts/tests/models/forecasting/test_ensemble_models.py"
+  ],
+  "source_files": [
+    "darts/models/forecasting/forecasting_model.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "also",
+      "append",
+      "argument",
+      "avoid",
+      "backtest",
+      "batch_size",
+      "been",
+      "build",
+      "copy",
+      "counter"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:53:48Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH1165_featuretools_2694
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Restrict Dask and Fix Serialization Tests"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/alteryx/featuretools/pull/2694"
+source_issue: "https://github.com/alteryx/featuretools/issues/2693"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,52 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24749,
+  "pr_url": "https://github.com/scipy/scipy/pull/24749",
+  "issue_number": 22752,
+  "base_sha": "e55c1e508696ad66a826bc0aadbbbd8d41940c97",
+  "head_sha": "d7bd58d8b0bcc8aed792f15c6cdcd4168bab593f",
+  "additions": 23,
+  "deletions": 7,
+  "changed_files": [
+    "scipy/signal/_fir_filter_design.py",
+    "scipy/signal/tests/test_fir_filter_design.py"
+  ],
+  "test_files": [
+    "scipy/signal/tests/test_fir_filter_design.py"
+  ],
+  "source_files": [
+    "scipy/signal/_fir_filter_design.py"
+  ],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "array_namespace",
+      "asarray",
+      "assert_almost_equal",
+      "astype",
+      "atol",
+      "convolve2d",
+      "cupy",
+      "double",
+      "dtype",
+      "eq13"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:42Z"
+}

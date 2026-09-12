@@ -1,0 +1,52 @@
+{
+  "repo": "django/django",
+  "pr_number": 20911,
+  "pr_url": "https://github.com/django/django/pull/20911",
+  "issue_number": null,
+  "base_sha": "6b90f8a8d6994dc62cd91dde911fe56ec3389494",
+  "head_sha": "f7bb90392fa352b89d4b456eb61a06eb616cdc86",
+  "additions": 11,
+  "deletions": 5,
+  "changed_files": [
+    "django/db/backends/postgresql/psycopg_any.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "django/db/backends/postgresql/psycopg_any.py"
+  ],
+  "parameterization": {
+    "repo": "django/django",
+    "repo_short": "django",
+    "parameterized_identifiers": [
+      "adapt",
+      "adapters",
+      "case",
+      "chopped",
+      "connection",
+      "context",
+      "cursor",
+      "data",
+      "datetime",
+      "errors"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:09:30Z"
+}

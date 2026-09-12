@@ -1,0 +1,57 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 0b762b05d..8e87cb083 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -9,6 +9,7 @@ Unreleased
+     items, and returns empty for unclosed quoted values. :pr:`3128`
+ -   ``WWWAuthenticate.to_header`` does not produce a trailing space when there
+     are no parameters. :issue:`3127`
++-   ``Transfer-Encoding`` is parsed as a set. :pr:`3134`
+ 
+ 
+ Version 3.1.6
+diff --git a/src/werkzeug/sansio/utils.py b/src/werkzeug/sansio/utils.py
+index ff7ceda34..838ee20a6 100644
+--- a/src/werkzeug/sansio/utils.py
++++ b/src/werkzeug/sansio/utils.py
+@@ -5,6 +5,7 @@
+ 
+ from .._internal import _plain_int
+ from ..exceptions import SecurityError
++from ..http import parse_set_header
+ from ..urls import uri_to_iri
+ 
+ 
+@@ -158,7 +159,10 @@ def get_content_length(
+ 
+     .. versionadded:: 2.2
+     """
+-    if http_transfer_encoding == "chunked" or http_content_length is None:
++    if (
++        http_transfer_encoding is not None
++        and "chunked" in parse_set_header(http_transfer_encoding)
++    ) or http_content_length is None:
+         return None
+ 
+     try:
+diff --git a/src/werkzeug/serving.py b/src/werkzeug/serving.py
+index 8605cfd6d..37f3a2d8c 100644
+--- a/src/werkzeug/serving.py
++++ b/src/werkzeug/serving.py
+@@ -33,6 +33,7 @@
+ from ._internal import _log
+ from ._internal import _wsgi_encoding_dance
+ from .exceptions import InternalServerError
++from .http import parse_set_header
+ from .urls import uri_to_iri
+ 
+ try:
+@@ -220,7 +221,7 @@ def make_environ(self) -> WSGIEnvironment:
+                     value = f"{environ[key]},{value}"
+             environ[key] = value
+ 
+-        if environ.get("HTTP_TRANSFER_ENCODING", "").strip().lower() == "chunked":
++        if "chunked" in parse_set_header(environ.get("HTTP_TRANSFER_ENCODING")):
+             environ["wsgi.input_terminated"] = True
+             environ["wsgi.input"] = DechunkedInput(environ["wsgi.input"])
+ 

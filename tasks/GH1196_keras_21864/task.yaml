@@ -1,0 +1,13 @@
+task_id: GH1196_keras_21864
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix assigning a value to a variable within an autocast scope."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/keras-team/keras/pull/21864"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

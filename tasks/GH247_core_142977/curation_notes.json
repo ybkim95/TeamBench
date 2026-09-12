@@ -1,0 +1,52 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 142977,
+  "pr_url": "https://github.com/home-assistant/core/pull/142977",
+  "issue_number": 125438,
+  "base_sha": "e7994b3da118fa5ccf35cf2d30b0739abf178dda",
+  "head_sha": "a4e150af0ae477739e640ae98f511ae5ee061118",
+  "additions": 49,
+  "deletions": 1,
+  "changed_files": [
+    "homeassistant/helpers/script.py",
+    "tests/helpers/test_script.py"
+  ],
+  "test_files": [
+    "tests/helpers/test_script.py"
+  ],
+  "source_files": [
+    "homeassistant/helpers/script.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "all_scripts",
+      "assert_action_trace",
+      "async_block_till_done",
+      "async_capture_events",
+      "async_listen_once",
+      "async_run",
+      "attribute",
+      "caplog",
+      "change_listener",
+      "context"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:40:45Z"
+}

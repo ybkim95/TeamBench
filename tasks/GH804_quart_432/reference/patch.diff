@@ -1,0 +1,34 @@
+diff --git a/CHANGES.md b/CHANGES.md
+index 596b0837..0326cdeb 100644
+--- a/CHANGES.md
++++ b/CHANGES.md
+@@ -1,3 +1,11 @@
++## Version 0.20.1
++
++Unreleased
++
++- Flask backport: Fix signing key selection order when key rotation is enabled
++  via ``SECRET_KEY_FALLBACKS``.
++  <https://github.com/pallets/flask/security/advisories/GHSA-4grg-w6v8-c28g>
++
+ ## Version 0.20.0
+ 
+ Released 2024-12-23
+diff --git a/src/quart/sessions.py b/src/quart/sessions.py
+index 370e28f1..ead97bf6 100644
+--- a/src/quart/sessions.py
++++ b/src/quart/sessions.py
+@@ -149,11 +149,12 @@ def get_signing_serializer(self, app: Quart) -> URLSafeTimedSerializer | None:
+         if not app.secret_key:
+             return None
+ 
+-        keys: list[str | bytes] = [app.secret_key]
++        keys: list[str | bytes] = []
+ 
+         if fallbacks := app.config["SECRET_KEY_FALLBACKS"]:
+             keys.extend(fallbacks)
+ 
++        keys.append(app.secret_key)  # itsdangerous expects current key at top
+         options = {
+             "key_derivation": self.key_derivation,
+             "digest_method": self.digest_method,

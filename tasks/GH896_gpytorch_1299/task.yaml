@@ -1,0 +1,13 @@
+task_id: GH896_gpytorch_1299
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix bug in fixed-noise preconditioner"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/cornellius-gp/gpytorch/pull/1299"
+source_issue: "https://github.com/cornellius-gp/gpytorch/issues/1298"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,54 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24742,
+  "pr_url": "https://github.com/scipy/scipy/pull/24742",
+  "issue_number": null,
+  "base_sha": "8b894aaafac40a3f41817b92fcb24d9657cd5051",
+  "head_sha": "d25d50f499a9c7c48591429b8d04a92624fc04fd",
+  "additions": 31,
+  "deletions": 16,
+  "changed_files": [
+    "scipy/stats/_stats_py.py",
+    "scipy/stats/tests/test_stats.py"
+  ],
+  "test_files": [
+    "scipy/stats/tests/test_stats.py"
+  ],
+  "source_files": [
+    "scipy/stats/_stats_py.py"
+  ],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "alternative",
+      "arange",
+      "asarray",
+      "axis",
+      "because",
+      "been",
+      "case",
+      "causes",
+      "correct",
+      "degrees"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:01:48Z"
+}

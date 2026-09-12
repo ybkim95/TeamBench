@@ -1,0 +1,168 @@
+diff --git a/src/pymovements/events/events.py b/src/pymovements/events/events.py
+index 99474e23b..fd3c12959 100644
+--- a/src/pymovements/events/events.py
++++ b/src/pymovements/events/events.py
+@@ -180,7 +180,14 @@ def __init__(
+ 
+         # Ensure column order: trial columns, name, onset, offset.
+         if self.trial_columns is not None:
+-            self.frame = self.frame.select([*self.trial_columns, *self._minimal_schema.keys()])
++            # Keep any additional columns beyond trial and minimal schema columns
++            other_cols = [
++                col for col in self.frame.columns
++                if col not in self.trial_columns and col not in self._minimal_schema
++            ]
++            self.frame = self.frame.select(
++                [*self.trial_columns, *self._minimal_schema.keys(), *other_cols],
++            )
+ 
+         # Convert to int if possible.
+         all_decimals = self.frame.select(
+diff --git a/tests/unit/events/events_test.py b/tests/unit/events/events_test.py
+index bd816250b..f74fd49b7 100644
+--- a/tests/unit/events/events_test.py
++++ b/tests/unit/events/events_test.py
+@@ -280,6 +280,48 @@ def test_init_expected(args, kwargs, expected_df_data, expected_schema_after_ini
+             ),
+             id='data_one_event_trial_column_enforce_start',
+         ),
++        pytest.param(
++            [], {
++                'data': pl.from_dict({
++                    'trial_id': [1, 1, 2],
++                    'name': ['fixation', 'saccade', 'fixation'],
++                    'onset': [100, 200, 300],
++                    'offset': [150, 250, 350],
++                    'custom_property': [1.5, 2.5, 1.5],
++                }),
++                'trial_columns': 'trial_id',
++            },
++            pl.DataFrame({
++                'trial_id': [1, 1, 2],
++                'name': ['fixation', 'saccade', 'fixation'],
++                'onset': [100, 200, 300],
++                'offset': [150, 250, 350],
++                'custom_property': [1.5, 2.5, 1.5],
++                'duration': [50, 50, 50],
++            }),
++            id='data_with_trial_columns_preserves_custom_property',
++        ),
++        pytest.param(
++            [], {
++                'data': pl.from_dict({
++                    'name': ['fixation', 'saccade', 'fixation'],
++                    'onset': [100, 200, 300],
++                    'offset': [150, 250, 350],
++                    'trial_id': [1, 1, 2],
++                    'custom_property': [1.5, 2.5, 1.5],
++                }),
++                'trial_columns': 'trial_id',
++            },
++            pl.DataFrame({
++                'trial_id': [1, 1, 2],
++                'name': ['fixation', 'saccade', 'fixation'],
++                'onset': [100, 200, 300],
++                'offset': [150, 250, 350],
++                'custom_property': [1.5, 2.5, 1.5],
++                'duration': [50, 50, 50],
++            }),
++            id='data_with_trial_columns_enforce_start_and_preserve_custom',
++        ),
+     ],
+ )
+ def test_init_expected_df(args, kwargs, expected_df):
+@@ -498,8 +540,31 @@ def test_columns_same_as_frame():
+     assert events.columns == events.frame.columns
+ 
+ 
+-def test_clone():
+-    events = Events(name='saccade', onsets=[0], offsets=[123])
++@pytest.mark.parametrize(
++    'events',
++    [
++        pytest.param(
++            Events(name='saccade', onsets=[0], offsets=[123]),
++            id='simple_events_no_trials',
++        ),
++        pytest.param(
++            Events(
++                data=pl.from_dict(
++                    {
++                        'trial_id': [1],
++                        'name': ['saccade'],
++                        'onset': [0],
++                        'offset': [123],
++                        'custom_property': [42],
++                    },
++                ),
++                trial_columns='trial_id',
++            ),
++            id='events_with_trial_columns_and_custom_property',  # regression test for #1349
++        ),
++    ],
++)
++def test_clone(events):
+     events_copy = events.clone()
+ 
+     # We want to have separate dataframes but with the exact same data.
+diff --git a/tests/unit/gaze/gaze_test.py b/tests/unit/gaze/gaze_test.py
+index cc74d722f..555e99b37 100644
+--- a/tests/unit/gaze/gaze_test.py
++++ b/tests/unit/gaze/gaze_test.py
+@@ -381,18 +381,45 @@ def test_gaze_is_copy():
+     assert_frame_equal(gaze.samples, gaze_copy.samples)
+ 
+ 
+-def test_gaze_copy_events():
+-    gaze = Gaze(
+-        pl.DataFrame(schema={'x': pl.Float64, 'y': pl.Float64}),
+-        experiment=None,
+-        position_columns=['x', 'y'],
+-        events=Events(
+-            name='saccade',
+-            onsets=[0],
+-            offsets=[123],
++@pytest.mark.parametrize(
++    'gaze',
++    [
++        pytest.param(
++            Gaze(
++                pl.DataFrame(schema={'x': pl.Float64, 'y': pl.Float64}),
++                experiment=None,
++                position_columns=['x', 'y'],
++                events=Events(
++                    name='saccade',
++                    onsets=[0],
++                    offsets=[123],
++                ),
++            ),
++            id='simple_events_no_trials',
+         ),
+-    )
+-
++        pytest.param(
++            Gaze(
++                pl.DataFrame(schema={'x': pl.Float64, 'y': pl.Float64}),
++                experiment=None,
++                position_columns=['x', 'y'],
++                events=Events(
++                    data=pl.from_dict(
++                        {
++                            'trial_id': [1],
++                            'name': ['saccade'],
++                            'onset': [0],
++                            'offset': [123],
++                            'custom_property': [42],
++                        },
++                    ),
++                    trial_columns='trial_id',
++                ),
++            ),
++            id='events_with_trial_columns_and_custom_property',  # regression test for #1349
++        ),
++    ],
++)
++def test_gaze_copy_events(gaze):
+     gaze_copy = gaze.clone()
+ 
+     assert gaze_copy.events is not gaze.events

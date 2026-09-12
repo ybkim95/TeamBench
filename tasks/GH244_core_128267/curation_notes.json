@@ -1,0 +1,52 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 128267,
+  "pr_url": "https://github.com/home-assistant/core/pull/128267",
+  "issue_number": 128198,
+  "base_sha": "801c73ef943640e8fdcfaca442dfef0d64b6fb9a",
+  "head_sha": "a9e89ae46d376ee98622b92cec7add3743b25847",
+  "additions": 77,
+  "deletions": 9,
+  "changed_files": [
+    "homeassistant/components/utility_meter/select.py",
+    "tests/components/utility_meter/test_select.py"
+  ],
+  "test_files": [
+    "tests/components/utility_meter/test_select.py"
+  ],
+  "source_files": [
+    "homeassistant/components/utility_meter/select.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "add_to_hass",
+      "async_add_entities",
+      "async_block_till_done",
+      "async_setup",
+      "async_setup_component",
+      "async_setup_entry",
+      "async_setup_platform",
+      "attributes",
+      "bill",
+      "common"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:40:33Z"
+}

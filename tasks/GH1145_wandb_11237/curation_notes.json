@@ -1,0 +1,58 @@
+{
+  "repo": "wandb/wandb",
+  "pr_number": 11237,
+  "pr_url": "https://github.com/wandb/wandb/pull/11237",
+  "issue_number": null,
+  "base_sha": "6e6f17a3ca171b187a0d5d19d901dcc260baf26c",
+  "head_sha": "d78a42c20a4cfa6c0fd027d2990d8918153a59d7",
+  "additions": 14,
+  "deletions": 7,
+  "changed_files": [
+    "tests/system_tests/test_notebooks/test_notebooks.py",
+    "tests/unit_tests/test_library_public.py",
+    "wandb/__init__.py",
+    "wandb/jupyter.py"
+  ],
+  "test_files": [
+    "tests/system_tests/test_notebooks/test_notebooks.py",
+    "tests/unit_tests/test_library_public.py"
+  ],
+  "source_files": [
+    "wandb/__init__.py",
+    "wandb/jupyter.py"
+  ],
+  "parameterization": {
+    "repo": "wandb/wandb",
+    "repo_short": "wandb",
+    "parameterized_identifiers": [
+      "assert_called_with",
+      "auto",
+      "capsys",
+      "contexts",
+      "controller",
+      "debug",
+      "effort",
+      "exc_info",
+      "exception",
+      "found"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:09:10Z"
+}

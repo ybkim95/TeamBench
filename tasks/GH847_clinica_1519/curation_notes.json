@@ -1,0 +1,52 @@
+{
+  "repo": "aramis-lab/clinica",
+  "pr_number": 1519,
+  "pr_url": "https://github.com/aramis-lab/clinica/pull/1519",
+  "issue_number": 1508,
+  "base_sha": "9844626439f2f49b92b713ce82075c415dc6bb77",
+  "head_sha": "114dc1a4f9049ccdaa16687548881b9d0cae8f41",
+  "additions": 74,
+  "deletions": 2,
+  "changed_files": [
+    "clinica/converters/ukb_to_bids/_utils.py",
+    "test/unittests/converters/test_ukb_to_bids_utils.py"
+  ],
+  "test_files": [
+    "test/unittests/converters/test_ukb_to_bids_utils.py"
+  ],
+  "source_files": [
+    "clinica/converters/ukb_to_bids/_utils.py"
+  ],
+  "parameterization": {
+    "repo": "aramis-lab/clinica",
+    "repo_short": "clinica",
+    "parameterized_identifiers": [
+      "age_2",
+      "age_3",
+      "bids_full_path",
+      "bids_path",
+      "clinica",
+      "cmath",
+      "columns_items",
+      "columns_names",
+      "content",
+      "converters"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:42:40Z"
+}

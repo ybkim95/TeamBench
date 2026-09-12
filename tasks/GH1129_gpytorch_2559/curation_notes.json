@@ -1,0 +1,62 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 2559,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/2559",
+  "issue_number": null,
+  "base_sha": "917603cbec38ca2f81fa6385d38448609248af58",
+  "head_sha": "28df51852e7bb4af693c073b3ff2ba01022dc669",
+  "additions": 189,
+  "deletions": 5,
+  "changed_files": [
+    "gpytorch/models/exact_prediction_strategies.py",
+    "gpytorch/priors/prior.py",
+    "gpytorch/priors/torch_priors.py",
+    "gpytorch/priors/utils.py",
+    "test/priors/test_prior.py",
+    "test/priors/test_utils.py"
+  ],
+  "test_files": [
+    "test/priors/test_prior.py",
+    "test/priors/test_utils.py"
+  ],
+  "source_files": [
+    "gpytorch/models/exact_prediction_strategies.py",
+    "gpytorch/priors/prior.py",
+    "gpytorch/priors/torch_priors.py",
+    "gpytorch/priors/utils.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "attr",
+      "attr_clones",
+      "attribute",
+      "attributes",
+      "base",
+      "base_attr_name",
+      "base_dist",
+      "batch_shape",
+      "buffer",
+      "cannot"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:07:45Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH921_pytorch_lightni_21191
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix missing reset when pruning with lottery ticket hypothesis"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Lightning-AI/pytorch-lightning/pull/21191"
+source_issue: "https://github.com/Lightning-AI/pytorch-lightning/issues/13643"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

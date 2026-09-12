@@ -1,0 +1,58 @@
+{
+  "repo": "apache/airflow",
+  "pr_number": 63617,
+  "pr_url": "https://github.com/apache/airflow/pull/63617",
+  "issue_number": null,
+  "base_sha": "78f8c974a27e94056f7bbf4c06412c8390bbeea5",
+  "head_sha": "d8534a38dae14c36bfc8a1805de4b6e415958f7e",
+  "additions": 142,
+  "deletions": 21,
+  "changed_files": [
+    "airflow-core/src/airflow/dag_processing/manager.py",
+    "airflow-core/src/airflow/models/dag.py",
+    "airflow-core/tests/unit/dag_processing/test_manager.py",
+    "airflow-core/tests/unit/models/test_dag.py"
+  ],
+  "test_files": [
+    "airflow-core/tests/unit/dag_processing/test_manager.py",
+    "airflow-core/tests/unit/models/test_dag.py"
+  ],
+  "source_files": [
+    "airflow-core/src/airflow/dag_processing/manager.py",
+    "airflow-core/src/airflow/models/dag.py"
+  ],
+  "parameterization": {
+    "repo": "apache/airflow",
+    "repo_short": "airflow",
+    "parameterized_identifiers": [
+      "abs_path",
+      "abs_sub_path",
+      "absolute",
+      "absolute_path",
+      "accessing",
+      "active",
+      "active_files",
+      "actually",
+      "airflow",
+      "any_deactivated"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:52:41Z"
+}

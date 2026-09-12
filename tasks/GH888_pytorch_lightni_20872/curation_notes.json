@@ -1,0 +1,53 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 20872,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/20872",
+  "issue_number": 20852,
+  "base_sha": "577c04d0c45e2bffa7d88b97932fea99e9bd6a94",
+  "head_sha": "4e7aebdc6a2a9c757a6edb5ad9d09206eebe4d0e",
+  "additions": 82,
+  "deletions": 0,
+  "changed_files": [
+    "src/lightning/fabric/CHANGELOG.md",
+    "src/lightning/fabric/plugins/environments/xla.py",
+    "tests/tests_fabric/plugins/environments/test_xla.py"
+  ],
+  "test_files": [
+    "tests/tests_fabric/plugins/environments/test_xla.py"
+  ],
+  "source_files": [
+    "src/lightning/fabric/plugins/environments/xla.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "accelerator",
+      "accelerators",
+      "affect",
+      "affected",
+      "assert_called_once",
+      "based",
+      "bounds",
+      "cache_clear",
+      "cached",
+      "came"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:52Z"
+}

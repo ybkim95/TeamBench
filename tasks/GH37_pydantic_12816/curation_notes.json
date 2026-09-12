@@ -1,0 +1,52 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12816,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12816",
+  "issue_number": 12813,
+  "base_sha": "9bd9d488808d801b051757c7dbb9d024e228d8e7",
+  "head_sha": "0a56b6b1caa53872fed36cb43415c89287ec1358",
+  "additions": 12,
+  "deletions": 5,
+  "changed_files": [
+    "pydantic/main.py",
+    "tests/test_main.py"
+  ],
+  "test_files": [
+    "tests/test_main.py"
+  ],
+  "source_files": [
+    "pydantic/main.py"
+  ],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "attributes",
+      "context",
+      "copy",
+      "deep",
+      "doesn",
+      "exist",
+      "github",
+      "https",
+      "issues",
+      "match"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:35:32Z"
+}

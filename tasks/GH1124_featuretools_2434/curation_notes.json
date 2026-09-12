@@ -1,0 +1,61 @@
+{
+  "repo": "alteryx/featuretools",
+  "pr_number": 2434,
+  "pr_url": "https://github.com/alteryx/featuretools/pull/2434",
+  "issue_number": 2080,
+  "base_sha": "0f2dc0841c7f684c44209ab05d9b5a9b6ef49532",
+  "head_sha": "f89882ec08afbbad54a9423497476df22ef16dba",
+  "additions": 23,
+  "deletions": 151,
+  "changed_files": [
+    "docs/source/release_notes.rst",
+    "featuretools/primitives/standard/transform/binary/greater_than_equal_to_scalar.py",
+    "featuretools/primitives/standard/transform/binary/greater_than_scalar.py",
+    "featuretools/primitives/standard/transform/binary/less_than_equal_to_scalar.py",
+    "featuretools/primitives/standard/transform/binary/less_than_scalar.py",
+    "featuretools/tests/computational_backend/test_feature_set_calculator.py",
+    "featuretools/tests/primitive_tests/test_transform_features.py"
+  ],
+  "test_files": [
+    "featuretools/tests/computational_backend/test_feature_set_calculator.py",
+    "featuretools/tests/primitive_tests/test_transform_features.py"
+  ],
+  "source_files": [
+    "featuretools/primitives/standard/transform/binary/greater_than_equal_to_scalar.py",
+    "featuretools/primitives/standard/transform/binary/greater_than_scalar.py",
+    "featuretools/primitives/standard/transform/binary/less_than_equal_to_scalar.py",
+    "featuretools/primitives/standard/transform/binary/less_than_scalar.py"
+  ],
+  "parameterization": {
+    "repo": "alteryx/featuretools",
+    "repo_short": "featuretools",
+    "parameterized_identifiers": [
+      "astype",
+      "base",
+      "been",
+      "behavior",
+      "calculated",
+      "call",
+      "cannot",
+      "case",
+      "categories",
+      "column_schema"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:07:21Z"
+}

@@ -1,0 +1,72 @@
+{
+  "repo": "explosion/spaCy",
+  "pr_number": 13053,
+  "pr_url": "https://github.com/explosion/spaCy/pull/13053",
+  "issue_number": null,
+  "base_sha": "65e7bd54f5d612aa0aeb4f6a4dd9595d73c012b0",
+  "head_sha": "fbe4b7029f792309aef22139a66cfadae4723d86",
+  "additions": 24,
+  "deletions": 2,
+  "changed_files": [
+    "spacy/cli/__init__.py",
+    "spacy/cli/project/__init__.py",
+    "spacy/cli/project/assets.py",
+    "spacy/cli/project/clone.py",
+    "spacy/cli/project/document.py",
+    "spacy/cli/project/dvc.py",
+    "spacy/cli/project/pull.py",
+    "spacy/cli/project/push.py",
+    "spacy/cli/project/remote_storage.py",
+    "spacy/cli/project/run.py",
+    "spacy/tests/test_cli.py"
+  ],
+  "test_files": [
+    "spacy/tests/test_cli.py"
+  ],
+  "source_files": [
+    "spacy/cli/__init__.py",
+    "spacy/cli/project/__init__.py",
+    "spacy/cli/project/assets.py",
+    "spacy/cli/project/clone.py",
+    "spacy/cli/project/document.py",
+    "spacy/cli/project/dvc.py",
+    "spacy/cli/project/pull.py",
+    "spacy/cli/project/push.py",
+    "spacy/cli/project/remote_storage.py",
+    "spacy/cli/project/run.py"
+  ],
+  "parameterization": {
+    "repo": "explosion/spaCy",
+    "repo_short": "spaCy",
+    "parameterized_identifiers": [
+      "assets",
+      "attr",
+      "clone",
+      "command",
+      "data",
+      "defined",
+      "deprecated",
+      "document",
+      "hidden",
+      "ignore"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:03:43Z"
+}

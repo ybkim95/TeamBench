@@ -1,0 +1,559 @@
+diff --git a/docs/source/release_notes.rst b/docs/source/release_notes.rst
+index c2226637b0..f4b4a93396 100644
+--- a/docs/source/release_notes.rst
++++ b/docs/source/release_notes.rst
+@@ -9,6 +9,7 @@ Future Release
+         * Add ``OneDigitPostalCode`` and ``TwoDigitPostalCode`` primitives (:pr:`2365`)
+         * Add ``ExpandingCount``, ``ExpandingMin``, ``ExpandingMean``, ``ExpandingMax``, ``ExpandingSTD``, and ``ExpandingTrend`` primitives (:pr:`2343`)
+     * Fixes
++        * Fix DeepFeatureSynthesis to consider the ``base_of_exclude`` family of attributes when creating transform features(:pr:`2380`)
+     * Changes
+     * Documentation Changes
+     * Testing Changes
+diff --git a/featuretools/primitives/base/aggregation_primitive_base.py b/featuretools/primitives/base/aggregation_primitive_base.py
+index 19001fac5e..58aeb16a1c 100755
+--- a/featuretools/primitives/base/aggregation_primitive_base.py
++++ b/featuretools/primitives/base/aggregation_primitive_base.py
+@@ -2,12 +2,6 @@
+ 
+ 
+ class AggregationPrimitive(PrimitiveBase):
+-    stack_on = None  # whitelist of primitives that can be in input_types
+-    stack_on_exclude = None  # blacklist of primitives that can be in signature
+-    base_of = None  # whitelist of primitives this primitive can be input for
+-    base_of_exclude = None  # primitives this primitive can't be input for
+-    stack_on_self = True  # determines if primitive can be in input_types for self
+-
+     def generate_name(
+         self,
+         base_feature_names,
+diff --git a/featuretools/primitives/base/primitive_base.py b/featuretools/primitives/base/primitive_base.py
+index bc2b104f23..350aa3e01b 100644
+--- a/featuretools/primitives/base/primitive_base.py
++++ b/featuretools/primitives/base/primitive_base.py
+@@ -32,6 +32,12 @@ class PrimitiveBase(object):
+     base_of = None
+     # blacklist of primitives can have this primitive in input_types
+     base_of_exclude = None
++    # whitelist of primitives that can be in input_types
++    stack_on = None
++    # blacklist of primitives that can be in signature
++    stack_on_exclude = None
++    # determines if primitive can be in input_types for self
++    stack_on_self = True
+     # (bool) If True will only make one feature per unique set of base features
+     commutative = False
+     #: (list): Additional compatible libraries
+diff --git a/featuretools/synthesis/deep_feature_synthesis.py b/featuretools/synthesis/deep_feature_synthesis.py
+index 30c11dbb3f..c0353c1535 100644
+--- a/featuretools/synthesis/deep_feature_synthesis.py
++++ b/featuretools/synthesis/deep_feature_synthesis.py
+@@ -223,7 +223,6 @@ def __init__(
+                 for p in primitives.get_default_aggregation_primitives()
+                 if df_library in p.compatibility
+             ]
+-        self.agg_primitives = []
+         self.agg_primitives = sorted(
+             [
+                 check_primitive(
+@@ -702,10 +701,12 @@ def _build_transform_features(
+                 trans_prim,
+                 current_options,
+                 require_direct_input=require_direct_input,
+-                feature_filter=check_transform_stacking,
++                feature_filter=not_a_transform_input,
+             )
+ 
+             for matching_input in matching_inputs:
++                if not can_stack_primitive_on_inputs(trans_prim, matching_input):
++                    continue
+                 if not any(
+                     True for bf in matching_input if bf.number_output_features != 1
+                 ):
+@@ -727,7 +728,7 @@ def _build_transform_features(
+                 input_types,
+                 groupby_prim,
+                 current_options,
+-                feature_filter=check_transform_stacking,
++                feature_filter=not_a_transform_input,
+             )
+ 
+             # get columns to use as groupbys, use IDs as default unless other groupbys specified
+@@ -754,6 +755,8 @@ def _build_transform_features(
+             # groupby, and don't create features of inputs/groupbys which are
+             # all direct features with the same relationship path
+             for matching_input in matching_inputs:
++                if not can_stack_primitive_on_inputs(groupby_prim, matching_input):
++                    continue
+                 if not any(
+                     True for bf in matching_input if bf.number_output_features != 1
+                 ):
+@@ -849,7 +852,7 @@ def feature_filter(f):
+             wheres = list(self.where_clauses[child_dataframe.ww.name])
+ 
+             for matching_input in matching_inputs:
+-                if not check_stacking(agg_prim, matching_input):
++                if not can_stack_primitive_on_inputs(agg_prim, matching_input):
+                     continue
+                 new_f = AggregationFeature(
+                     matching_input,
+@@ -1071,22 +1074,31 @@ def _match_contains_numeric_foreign_key(match):
+     return any(True for f in match if is_valid_input(f.column_schema, match_schema))
+ 
+ 
+-def check_transform_stacking(feature):
+-    # Avoid transform stacking when building from direct features
+-    if isinstance(feature.primitive, TransformPrimitive):
+-        return False
+-    if isinstance(feature, DirectFeature) and isinstance(
+-        feature.base_features[0].primitive,
+-        TransformPrimitive,
+-    ):
+-        return False
+-    return True
++def not_a_transform_input(feature):
++    """
++    Verifies transform inputs are not transform features or direct features of transform features
++    Returns True if a transform primitive can stack on the feature, and False if it cannot.
++    """
++    primitive = _find_root_primitive(feature)
++    return not isinstance(primitive, TransformPrimitive)
++
+ 
++def _find_root_primitive(feature):
++    """
++    If a feature is a DirectFeature, finds the primitive of
++    the "original" base feature.
++    """
++    if isinstance(feature, DirectFeature):
++        return _find_root_primitive(feature.base_features[0])
++    return feature.primitive
+ 
+-def check_stacking(primitive, inputs):
+-    """checks if features in inputs can be used with supplied primitive
+-    using the stacking rules"""
+ 
++def can_stack_primitive_on_inputs(primitive, inputs):
++    """
++    Checks if features in inputs can be used with supplied primitive
++    using the stacking rules.
++    Returns True if stacking is possible, and False if not.
++    """
+     primitive_class = primitive.__class__
+     tup_primitive_stack_on = (
+         tuple(primitive.stack_on) if primitive.stack_on is not None else None
+@@ -1099,14 +1111,16 @@ def check_stacking(primitive, inputs):
+     primitive_stack_on_self: bool = primitive.stack_on_self
+ 
+     for feature in inputs:
+-        f_primitive = feature.primitive
++        # In the case that the feature is a DirectFeature, the feature's primitive will be a PrimitiveBase object.
++        # However, we want to check stacking rules with the primitive the DirectFeature is based on.
++        f_primitive = _find_root_primitive(feature)
++
+         if not primitive_stack_on_self and isinstance(f_primitive, primitive_class):
+             return False
+ 
+         if isinstance(f_primitive, tup_primitive_stack_on_exclude):
+             return False
+ 
+-        # R TODO: handle this
+         if feature.number_output_features > 1:
+             return False
+ 
+diff --git a/featuretools/synthesis/utils.py b/featuretools/synthesis/utils.py
+index 8401b93f9d..e88d8835da 100644
+--- a/featuretools/synthesis/utils.py
++++ b/featuretools/synthesis/utils.py
+@@ -59,4 +59,4 @@ def get_unused_primitives(specified, used):
+         else primitive.name
+         for primitive in specified
+     }
+-    return sorted(list(specified.difference(used)))
++    return sorted(specified.difference(used))
+diff --git a/featuretools/tests/conftest.py b/featuretools/tests/conftest.py
+index 2b822b048b..60c9530176 100644
+--- a/featuretools/tests/conftest.py
++++ b/featuretools/tests/conftest.py
+@@ -8,9 +8,11 @@
+ import pandas as pd
+ import pytest
+ from distributed import LocalCluster
++from woodwork.column_schema import ColumnSchema
+ from woodwork.logical_types import Boolean, Integer
+ 
+ from featuretools import EntitySet, demo
++from featuretools.primitives import AggregationPrimitive, TransformPrimitive
+ from featuretools.tests.testing_utils import make_ecommerce_entityset, to_pandas
+ from featuretools.utils.gen_utils import import_or_none
+ from featuretools.utils.spark_utils import pd_to_spark_clean
+@@ -834,3 +836,25 @@ def setup_test_profile(monkeypatch, tmp_path):
+     yield
+     os.remove(test_path)
+     os.remove(test_path_config)
++
++
++@pytest.fixture
++def test_aggregation_primitive():
++    class TestAgg(AggregationPrimitive):
++        name = "test"
++        input_types = [ColumnSchema(semantic_tags={"numeric"})]
++        return_type = ColumnSchema(semantic_tags={"numeric"})
++        stack_on = []
++
++    return TestAgg
++
++
++@pytest.fixture
++def test_transform_primitive():
++    class TestTransform(TransformPrimitive):
++        name = "test"
++        input_types = [ColumnSchema(semantic_tags={"numeric"})]
++        return_type = ColumnSchema(semantic_tags={"numeric"})
++        stack_on = []
++
++    return TestTransform
+diff --git a/featuretools/tests/primitive_tests/test_agg_feats.py b/featuretools/tests/primitive_tests/test_agg_feats.py
+index 19297a8a4c..2dca0eb74f 100644
+--- a/featuretools/tests/primitive_tests/test_agg_feats.py
++++ b/featuretools/tests/primitive_tests/test_agg_feats.py
+@@ -33,11 +33,7 @@
+     get_aggregation_primitives,
+ )
+ from featuretools.primitives.base import AggregationPrimitive
+-from featuretools.synthesis.deep_feature_synthesis import (
+-    DeepFeatureSynthesis,
+-    check_stacking,
+-    match,
+-)
++from featuretools.synthesis.deep_feature_synthesis import DeepFeatureSynthesis, match
+ from featuretools.tests.testing_utils import backward_path, feature_with_name, to_pandas
+ from featuretools.utils.gen_utils import Library
+ 
+@@ -48,20 +44,6 @@ def reset_dfs_cache():
+     feature_cache.clear_all()
+ 
+ 
+-@pytest.fixture
+-def test_primitive():
+-    class TestAgg(AggregationPrimitive):
+-        name = "test"
+-        input_types = [ColumnSchema(semantic_tags={"numeric"})]
+-        return_type = ColumnSchema(semantic_tags={"numeric"})
+-        stack_on = []
+-
+-        def get_function(self, agg_type="pandas"):
+-            return None
+-
+-    return TestAgg
+-
+-
+ def test_get_depth(es):
+     log_id_feat = IdentityFeature(es["log"].ww["id"])
+     customer_id_feat = IdentityFeature(es["customers"].ww["id"])
+@@ -199,84 +181,6 @@ def test_mean_nan(es):
+     assert include_nan_feat.get_name() == "MEAN(log.value, skipna=False)"
+ 
+ 
+-def test_base_of_and_stack_on_heuristic(es, test_primitive):
+-    child = Feature(
+-        es["sessions"].ww["id"],
+-        parent_dataframe_name="customers",
+-        primitive=Count,
+-    )
+-    test_primitive.stack_on = []
+-    child.primitive.base_of = []
+-    assert not check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = []
+-    child.primitive.base_of = None
+-    assert check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = []
+-    child.primitive.base_of = [test_primitive]
+-    assert check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = None
+-    child.primitive.base_of = []
+-    assert check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = None
+-    child.primitive.base_of = None
+-    assert check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = None
+-    child.primitive.base_of = [test_primitive]
+-    assert check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = [type(child.primitive)]
+-    child.primitive.base_of = []
+-    assert check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = [type(child.primitive)]
+-    child.primitive.base_of = None
+-    assert check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = [type(child.primitive)]
+-    child.primitive.base_of = [test_primitive]
+-    assert check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = None
+-    child.primitive.base_of = None
+-    child.primitive.base_of_exclude = [test_primitive]
+-    assert not check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on_exclude = [Count]
+-    assert not check_stacking(test_primitive(), [child])
+-
+-    child.primitive.number_output_features = 2
+-    test_primitive.stack_on_exclude = []
+-    test_primitive.stack_on = []
+-    child.primitive.base_of = []
+-    assert not check_stacking(test_primitive(), [child])
+-
+-
+-def test_stack_on_self(es, test_primitive):
+-    # test stacks on self
+-    child = Feature(
+-        es["log"].ww["value"],
+-        parent_dataframe_name="régions",
+-        primitive=test_primitive,
+-    )
+-    test_primitive.stack_on = []
+-    child.primitive.base_of = []
+-    test_primitive.stack_on_self = False
+-    child.primitive.stack_on_self = False
+-    assert not check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on_self = True
+-    assert check_stacking(test_primitive(), [child])
+-
+-    test_primitive.stack_on = None
+-    test_primitive.stack_on_self = False
+-    assert not check_stacking(test_primitive(), [child])
+-
+-
+ def test_init_and_name(es):
+     log = es["log"]
+ 
+diff --git a/featuretools/tests/primitive_tests/test_feature_base.py b/featuretools/tests/primitive_tests/test_feature_base.py
+index 5bfeb3090f..414b043526 100644
+--- a/featuretools/tests/primitive_tests/test_feature_base.py
++++ b/featuretools/tests/primitive_tests/test_feature_base.py
+@@ -19,6 +19,7 @@
+     Sum,
+     TransformPrimitive,
+ )
++from featuretools.synthesis.deep_feature_synthesis import can_stack_primitive_on_inputs
+ from featuretools.tests.testing_utils import check_rename
+ 
+ 
+@@ -538,3 +539,80 @@ def test_renaming_resets_feature_output_names_to_default(es):
+ 
+     feat = feat.rename("new_feature_name")
+     assert feat.get_feature_names() == ["new_feature_name[0]", "new_feature_name[1]"]
++
++
++def test_base_of_and_stack_on_heuristic(es, test_aggregation_primitive):
++    child = Feature(
++        es["sessions"].ww["id"],
++        parent_dataframe_name="customers",
++        primitive=Count,
++    )
++    test_aggregation_primitive.stack_on = []
++    child.primitive.base_of = []
++    assert not can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on = []
++    child.primitive.base_of = None
++    assert can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on = []
++    child.primitive.base_of = [test_aggregation_primitive]
++    assert can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on = None
++    child.primitive.base_of = []
++    assert can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on = None
++    child.primitive.base_of = None
++    assert can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on = None
++    child.primitive.base_of = [test_aggregation_primitive]
++    assert can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on = [type(child.primitive)]
++    child.primitive.base_of = []
++    assert can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on = [type(child.primitive)]
++    child.primitive.base_of = None
++    assert can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on = [type(child.primitive)]
++    child.primitive.base_of = [test_aggregation_primitive]
++    assert can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on = None
++    child.primitive.base_of = None
++    child.primitive.base_of_exclude = [test_aggregation_primitive]
++    assert not can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    test_aggregation_primitive.stack_on_exclude = [Count]
++    assert not can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++    child.primitive.number_output_features = 2
++    test_aggregation_primitive.stack_on_exclude = []
++    test_aggregation_primitive.stack_on = []
++    child.primitive.base_of = []
++    assert not can_stack_primitive_on_inputs(test_aggregation_primitive(), [child])
++
++
++def test_stack_on_self(es, test_transform_primitive):
++    # test stacks on self
++    child = Feature(
++        es["log"].ww["value"],
++        primitive=test_transform_primitive,
++    )
++    test_transform_primitive.stack_on = []
++    child.primitive.base_of = []
++    test_transform_primitive.stack_on_self = False
++    child.primitive.stack_on_self = False
++    assert not can_stack_primitive_on_inputs(test_transform_primitive(), [child])
++
++    test_transform_primitive.stack_on_self = True
++    assert can_stack_primitive_on_inputs(test_transform_primitive(), [child])
++
++    test_transform_primitive.stack_on = None
++    test_transform_primitive.stack_on_self = False
++    assert not can_stack_primitive_on_inputs(test_transform_primitive(), [child])
+diff --git a/featuretools/tests/synthesis/test_deep_feature_synthesis.py b/featuretools/tests/synthesis/test_deep_feature_synthesis.py
+index a1cec2d0f7..8b231c98fb 100644
+--- a/featuretools/tests/synthesis/test_deep_feature_synthesis.py
++++ b/featuretools/tests/synthesis/test_deep_feature_synthesis.py
+@@ -53,7 +53,11 @@
+     Year,
+ )
+ from featuretools.synthesis import DeepFeatureSynthesis
+-from featuretools.tests.testing_utils import feature_with_name, make_ecommerce_entityset
++from featuretools.tests.testing_utils import (
++    feature_with_name,
++    make_ecommerce_entityset,
++    number_of_features_with_name_like,
++)
+ from featuretools.utils.gen_utils import Library
+ 
+ 
+@@ -2023,3 +2027,54 @@ def test_make_groupby_features_with_depth_none(pd_es):
+     )
+     features = dfs_obj.build_features()
+     assert feature_with_name(features, "CUM_SUM(value) by session_id")
++
++
++def test_check_stacking_when_building_transform_features(pd_es):
++    class NewMean(Mean):
++        name = "NEW_MEAN"
++        base_of_exclude = [Absolute]
++
++    dfs_obj = DeepFeatureSynthesis(
++        target_dataframe_name="log",
++        entityset=pd_es,
++        agg_primitives=[NewMean, "mean"],
++        trans_primitives=["absolute"],
++        max_depth=-1,
++    )
++    features = dfs_obj.build_features()
++    assert number_of_features_with_name_like(features, "ABSOLUTE(MEAN") > 0
++    assert number_of_features_with_name_like(features, "ABSOLUTE(NEW_MEAN") == 0
++
++
++def test_check_stacking_when_building_groupby_features(pd_es):
++    class NewMean(Mean):
++        name = "NEW_MEAN"
++        base_of_exclude = [CumSum]
++
++    dfs_obj = DeepFeatureSynthesis(
++        target_dataframe_name="log",
++        entityset=pd_es,
++        agg_primitives=[NewMean, "mean"],
++        groupby_trans_primitives=["cum_sum"],
++        max_depth=5,
++    )
++    features = dfs_obj.build_features()
++    assert number_of_features_with_name_like(features, "CUM_SUM(MEAN") > 0
++    assert number_of_features_with_name_like(features, "CUM_SUM(NEW_MEAN") == 0
++
++
++def test_check_stacking_when_building_agg_features(pd_es):
++    class NewAbsolute(Absolute):
++        name = "NEW_ABSOLUTE"
++        base_of_exclude = [Mean]
++
++    dfs_obj = DeepFeatureSynthesis(
++        target_dataframe_name="log",
++        entityset=pd_es,
++        agg_primitives=["mean"],
++        trans_primitives=[NewAbsolute, "absolute"],
++        max_depth=5,
++    )
++    features = dfs_obj.build_features()
++    assert number_of_features_with_name_like(features, "MEAN(log.ABSOLUTE") > 0
++    assert number_of_features_with_name_like(features, "MEAN(log.NEW_ABSOLUTE") == 0
+diff --git a/featuretools/tests/testing_utils/__init__.py b/featuretools/tests/testing_utils/__init__.py
+index 1a7a70793f..d20b3220eb 100644
+--- a/featuretools/tests/testing_utils/__init__.py
++++ b/featuretools/tests/testing_utils/__init__.py
+@@ -1,15 +1,16 @@
+ # flake8: noqa
+-from featuretools.tests.testing_utils.mock_ds import make_ecommerce_entityset
++from featuretools.tests.testing_utils.cluster import (
++    MockClient,
++    mock_cluster,
++    get_mock_client_cluster,
++)
++from featuretools.tests.testing_utils.es_utils import get_df_tags, to_pandas
+ from featuretools.tests.testing_utils.features import (
+     feature_with_name,
++    number_of_features_with_name_like,
+     backward_path,
+     forward_path,
+     check_rename,
+     check_names,
+ )
+-from featuretools.tests.testing_utils.cluster import (
+-    MockClient,
+-    mock_cluster,
+-    get_mock_client_cluster,
+-)
+-from featuretools.tests.testing_utils.es_utils import get_df_tags, to_pandas
++from featuretools.tests.testing_utils.mock_ds import make_ecommerce_entityset
+diff --git a/featuretools/tests/testing_utils/features.py b/featuretools/tests/testing_utils/features.py
+index 599c1c905b..7e162b0530 100644
+--- a/featuretools/tests/testing_utils/features.py
++++ b/featuretools/tests/testing_utils/features.py
+@@ -1,3 +1,5 @@
++import re
++
+ from featuretools.entityset.relationship import RelationshipPath
+ 
+ 
+@@ -5,10 +7,16 @@ def feature_with_name(features, name):
+     for f in features:
+         if f.get_name() == name:
+             return True
+-
+     return False
+ 
+ 
++def number_of_features_with_name_like(features, pattern):
++    """Returns number of features with names that match the provided regex pattern"""
++    pattern = re.compile(re.escape(pattern))
++    names = [f.get_name() for f in features]
++    return len([name for name in names if pattern.search(name)])
++
++
+ def backward_path(es, dataframe_ids):
+     """
+     Create a backward RelationshipPath through the given dataframes. Assumes only

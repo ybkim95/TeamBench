@@ -1,0 +1,59 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 6942,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/6942",
+  "issue_number": null,
+  "base_sha": "f852a4f5925211d6bb9dac231b9185e3e6814b13",
+  "head_sha": "3139f05f6b28b6bad1adce95440af07a91128844",
+  "additions": 28,
+  "deletions": 4,
+  "changed_files": [
+    "CHANGELOG.md",
+    "pytorch_lightning/plugins/environments/cluster_environment.py",
+    "pytorch_lightning/plugins/environments/lightning_environment.py",
+    "pytorch_lightning/plugins/training_type/ddp.py",
+    "tests/plugins/environments/test_lightning_environment.py"
+  ],
+  "test_files": [
+    "tests/plugins/environments/test_lightning_environment.py"
+  ],
+  "source_files": [
+    "pytorch_lightning/plugins/environments/cluster_environment.py",
+    "pytorch_lightning/plugins/environments/lightning_environment.py",
+    "pytorch_lightning/plugins/training_type/ddp.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "abstractmethod",
+      "accelerator",
+      "add_argparse_args",
+      "after",
+      "barrier",
+      "based",
+      "better",
+      "calls",
+      "catch",
+      "check"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:59:49Z"
+}

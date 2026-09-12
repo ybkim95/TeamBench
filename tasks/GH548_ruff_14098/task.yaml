@@ -1,0 +1,13 @@
+task_id: GH548_ruff_14098
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[refurb] Parse more exotic decimal strings in `verbose-decimal-constructor (FURB157)`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/astral-sh/ruff/pull/14098"
+source_issue: "https://github.com/astral-sh/ruff/issues/13807"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,15 @@
+{
+ "task": "GH676_starlette_3142",
+ "patch": "tasks/GH676_starlette_3142/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "Kludex/starlette",
+ "pr_number": 3142,
+ "base_sha": "c011d1fcb27ab8b4759288479208315695ef3ca3",
+ "head_sha": "c2d5e3d9341017f0adb16856370198531ba81f53",
+ "bytes": 3498,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

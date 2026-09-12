@@ -1,0 +1,52 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7890,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7890",
+  "issue_number": 7889,
+  "base_sha": "85a234afb5fbe7256483d556ca9510e84d217aba",
+  "head_sha": "641810793794777dd86845308b3635e6927b0382",
+  "additions": 34,
+  "deletions": 7,
+  "changed_files": [
+    "pymc/sampling/forward.py",
+    "tests/sampling/test_forward.py"
+  ],
+  "test_files": [
+    "tests/sampling/test_forward.py"
+  ],
+  "source_files": [
+    "pymc/sampling/forward.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "a_ancestor1",
+      "a_ancestor2",
+      "add_groups",
+      "all_rvs",
+      "allow_rvs_in_graph",
+      "ancestors",
+      "append",
+      "array_equiv",
+      "atol",
+      "batch_shape"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:55:05Z"
+}

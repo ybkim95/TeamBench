@@ -1,0 +1,75 @@
+diff --git a/statsmodels/iolib/tests/test_summary2.py b/statsmodels/iolib/tests/test_summary2.py
+index 8ea7c38e202..3d2911a2788 100644
+--- a/statsmodels/iolib/tests/test_summary2.py
++++ b/statsmodels/iolib/tests/test_summary2.py
+@@ -1,4 +1,4 @@
+-from statsmodels.compat.pandas import PD_LT_3
++from statsmodels.compat.scipy import SP_LT_116
+ 
+ import warnings
+ 
+@@ -251,7 +251,7 @@ def test_ols_summary_rsquared_label():
+     y = [6, 4, 2, 7, 4, 9, 10, 2]
+     reg_with_constant = OLS(y, add_constant(x)).fit()
+     r2_str = "R-squared:"
+-    if PD_LT_3:
++    if SP_LT_116:
+         with pytest.warns(UserWarning):
+             assert r2_str in str(reg_with_constant.summary2())
+         with pytest.warns(UserWarning):
+@@ -262,7 +262,7 @@ def test_ols_summary_rsquared_label():
+ 
+     reg_without_constant = OLS(y, x, hasconst=False).fit()
+     r2_str = "R-squared (uncentered):"
+-    if PD_LT_3:
++    if SP_LT_116:
+         with pytest.warns(UserWarning):
+             assert r2_str in str(reg_without_constant.summary2())
+         with pytest.warns(UserWarning):
+diff --git a/statsmodels/regression/tests/test_regression.py b/statsmodels/regression/tests/test_regression.py
+index c22434547f3..cfb9d50f6cc 100644
+--- a/statsmodels/regression/tests/test_regression.py
++++ b/statsmodels/regression/tests/test_regression.py
+@@ -2,9 +2,9 @@
+ Test functions for models.regression
+ """
+ 
+-# TODO: Test for LM
+-from statsmodels.compat.pandas import PD_LT_3
+ from statsmodels.compat.python import lrange
++# TODO: Test for LM
++from statsmodels.compat.scipy import SP_LT_116
+ 
+ import warnings
+ 
+@@ -1093,7 +1093,7 @@ def test_summary_as_latex():
+     x["constant"] = 1
+     y = dta.endog
+     res = OLS(y, x).fit()
+-    if PD_LT_3:
++    if SP_LT_116:
+         with pytest.warns(UserWarning):
+             table = res.summary().as_latex()
+     else:
+diff --git a/statsmodels/regression/tests/test_theil.py b/statsmodels/regression/tests/test_theil.py
+index bb7313710dd..ddd4dfbbfb0 100644
+--- a/statsmodels/regression/tests/test_theil.py
++++ b/statsmodels/regression/tests/test_theil.py
+@@ -4,7 +4,7 @@
+ Author: Josef Perktold
+ """
+ 
+-from statsmodels.compat.pandas import PD_LT_3
++from statsmodels.compat.scipy import SP_LT_116
+ 
+ import os
+ 
+@@ -120,7 +120,7 @@ def test_no_penalization(self):
+ 
+     @pytest.mark.smoke
+     def test_summary(self):
+-        if PD_LT_3:
++        if SP_LT_116:
+             with pytest.warns(UserWarning):
+                 self.res1.summary()
+         else:

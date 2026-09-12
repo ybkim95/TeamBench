@@ -1,0 +1,52 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9581,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9581",
+  "issue_number": 9580,
+  "base_sha": "cee5801ce86bb69256ad26227f6234c1d749a2ca",
+  "head_sha": "4c33fd22c42091d06574b489653b89af29326b8c",
+  "additions": 15,
+  "deletions": 3,
+  "changed_files": [
+    "statsmodels/genmod/families/family.py",
+    "statsmodels/genmod/families/tests/test_family.py"
+  ],
+  "test_files": [
+    "statsmodels/genmod/families/tests/test_family.py"
+  ],
+  "source_files": [
+    "statsmodels/genmod/families/family.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "all_links",
+      "approximately",
+      "assert_allclose",
+      "assert_almost_equal",
+      "atol",
+      "back",
+      "converted",
+      "endog",
+      "extreme",
+      "families"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:54:32Z"
+}

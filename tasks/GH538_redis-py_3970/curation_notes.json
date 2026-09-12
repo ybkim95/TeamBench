@@ -1,0 +1,54 @@
+{
+  "repo": "redis/redis-py",
+  "pr_number": 3970,
+  "pr_url": "https://github.com/redis/redis-py/pull/3970",
+  "issue_number": null,
+  "base_sha": "0d57f5de2aba4060563cc53505eba5b5a4288b64",
+  "head_sha": "28e1c695e4ba4b960166f35a6a76210a5bb73c43",
+  "additions": 133,
+  "deletions": 8,
+  "changed_files": [
+    "redis/commands/core.py",
+    "tests/test_asyncio/test_commands.py"
+  ],
+  "test_files": [
+    "tests/test_asyncio/test_commands.py"
+  ],
+  "source_files": [
+    "redis/commands/core.py"
+  ],
+  "parameterization": {
+    "repo": "redis/redis-py",
+    "repo_short": "redis-py",
+    "parameterized_identifiers": [
+      "actual_response",
+      "adding",
+      "after",
+      "already",
+      "ascii_letters",
+      "assert_awaited_once",
+      "asyncio",
+      "awaits",
+      "call_args",
+      "called"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:24:39Z"
+}

@@ -1,0 +1,68 @@
+diff --git a/README.rst b/README.rst
+index 12aa200e64..14d5fa6907 100644
+--- a/README.rst
++++ b/README.rst
+@@ -17,6 +17,11 @@ Boto (pronounced boh-toh) was named after the fresh water dolphin native to the
+ Notices
+ -------
+ 
++On 2026-04-29, support for Python 3.9 will end for Boto3. This follows the
++Python Software Foundation `end of support <https://peps.python.org/pep-0596/#lifespan>`__
++for the runtime which occurred on 2025-10-31.
++For more information, see this `blog post <https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/>`__.
++
+ On 2025-04-22, support for Python 3.8 ended for Boto3. This follows the
+ Python Software Foundation `end of support <https://peps.python.org/pep-0569/#lifespan>`__
+ for the runtime which occurred on 2024-10-07.
+diff --git a/boto3/compat.py b/boto3/compat.py
+index 76e54445ff..e5f09911f1 100644
+--- a/boto3/compat.py
++++ b/boto3/compat.py
+@@ -60,8 +60,8 @@ def filter_python_deprecation_warnings():
+ 
+ def _warn_deprecated_python():
+     """Use this template for future deprecation campaigns as needed."""
+-    py_37_params = {
+-        'date': 'December 13, 2023',
++    py_39_params = {
++        'date': 'April 29, 2026',
+         'blog_link': (
+             'https://aws.amazon.com/blogs/developer/'
+             'python-support-policy-updates-for-aws-sdks-and-tools/'
+@@ -69,7 +69,7 @@ def _warn_deprecated_python():
+     }
+     deprecated_versions = {
+         # Example template for future deprecations
+-        (3, 7): py_37_params,
++        (3, 9): py_39_params,
+     }
+     py_version = sys.version_info[:2]
+ 
+@@ -78,7 +78,7 @@ def _warn_deprecated_python():
+         warning = (
+             "Boto3 will no longer support Python {}.{} "
+             "starting {}. To continue receiving service updates, "
+-            "bug fixes, and security updates please upgrade to Python 3.8 or "
++            "bug fixes, and security updates please upgrade to Python 3.10 or "
+             "later. More information can be found here: {}"
+         ).format(py_version[0], py_version[1], params['date'], params['blog_link'])
+         warnings.warn(warning, PythonDeprecationWarning)
+diff --git a/docs/source/guide/quickstart.rst b/docs/source/guide/quickstart.rst
+index 5574a8e945..639e263369 100644
+--- a/docs/source/guide/quickstart.rst
++++ b/docs/source/guide/quickstart.rst
+@@ -24,11 +24,9 @@ To use Boto3, you first need to install it and its dependencies.
+ Install or update Python
+ ~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+-Before installing Boto3, install Python 3.9 or later; support for Python 3.8 and
+-earlier is deprecated. After the deprecation date listed for each Python
+-version, new releases of Boto3 will not include support for that version of
+-Python. For details, including the deprecation schedule and how to update your
+-project to use Python 3.9, see :ref:`guide_migration_py3`.
++Before installing Boto3, ensure you're using Python 3.10 or later.
++For details on how to update your project from older versions of Python,
++see :ref:`guide_migration_py3`.
+ 
+ For information about how to get the latest version of Python, see the official `Python
+ documentation <https://www.python.org/downloads/>`_.

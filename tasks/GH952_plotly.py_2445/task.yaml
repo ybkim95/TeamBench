@@ -1,0 +1,13 @@
+task_id: GH952_plotly.py_2445
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix FigureWidget attribute error on wildcard import with ipywidgets not installed"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/plotly/plotly.py/pull/2445"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

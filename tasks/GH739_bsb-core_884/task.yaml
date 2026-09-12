@@ -1,0 +1,13 @@
+task_id: GH739_bsb-core_884
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: update morphology introduce_point function"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/dbbs-lab/bsb-core/pull/884"
+source_issue: "https://github.com/dbbs-lab/bsb-core/issues/883"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

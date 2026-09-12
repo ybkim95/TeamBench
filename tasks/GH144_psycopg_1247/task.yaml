@@ -1,0 +1,13 @@
+task_id: GH144_psycopg_1247
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: retain pgconn on OperationalError"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/psycopg/psycopg/pull/1247"
+source_issue: "https://github.com/psycopg/psycopg/issues/1246"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

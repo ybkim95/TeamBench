@@ -1,0 +1,13 @@
+task_id: GH869_pandas_64806
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: fix DatetimeIndex + DateOffset near DST transitions"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64806"
+source_issue: "https://github.com/pandas-dev/pandas/issues/28610"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

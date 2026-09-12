@@ -1,0 +1,90 @@
+diff --git a/changelog/3710.bugfix.rst b/changelog/3710.bugfix.rst
+new file mode 100644
+index 0000000000..3f3c7124e7
+--- /dev/null
++++ b/changelog/3710.bugfix.rst
+@@ -0,0 +1 @@
++Improved the performance of content decoding by optimizing ``BytesQueueBuffer`` class.
+diff --git a/src/urllib3/response.py b/src/urllib3/response.py
+index d427e7148d..3df98184de 100644
+--- a/src/urllib3/response.py
++++ b/src/urllib3/response.py
+@@ -231,7 +231,7 @@ class BytesQueueBuffer:
+     """
+ 
+     def __init__(self) -> None:
+-        self.buffer: typing.Deque[bytes] = collections.deque()
++        self.buffer: typing.Deque[bytes | memoryview[bytes]] = collections.deque()
+         self._size: int = 0
+ 
+     def __len__(self) -> int:
+@@ -256,6 +256,7 @@ def get(self, n: int) -> bytes:
+             chunk = self.buffer.popleft()
+             chunk_length = len(chunk)
+             if remaining < chunk_length:
++                chunk = memoryview(chunk)
+                 left_chunk, right_chunk = chunk[:remaining], chunk[remaining:]
+                 ret.write(left_chunk)
+                 self.buffer.appendleft(right_chunk)
+@@ -278,6 +279,8 @@ def get_all(self) -> bytes:
+             return b""
+         if len(buffer) == 1:
+             result = buffer.pop()
++            if isinstance(result, memoryview):
++                result = result.tobytes()
+         else:
+             ret = io.BytesIO()
+             ret.writelines(buffer.popleft() for _ in range(len(buffer)))
+diff --git a/test/test_response.py b/test/test_response.py
+index 8ca7bbd085..c97fdff0d1 100644
+--- a/test/test_response.py
++++ b/test/test_response.py
+@@ -108,7 +108,7 @@ def test_get_all_many(self) -> None:
+         "12.5 MB", current_thread_only=True
+     )  # assert that we're not doubling memory usagelimit_mem
+     def test_memory_usage(
+-        self, get_func: typing.Callable[[BytesQueueBuffer], str]
++        self, get_func: typing.Callable[[BytesQueueBuffer], bytes]
+     ) -> None:
+         # Allocate 10 1MiB chunks
+         buffer = BytesQueueBuffer()
+@@ -116,7 +116,9 @@ def test_memory_usage(
+             # This allocates 2MiB, putting the max at around 12MiB. Not sure why.
+             buffer.put(bytes(2**20))
+ 
+-        assert len(get_func(buffer)) == 10 * 2**20
++        result = get_func(buffer)
++        assert type(result) is bytes
++        assert len(result) == 10 * 2**20
+ 
+     @pytest.mark.limit_memory("10.01 MB", current_thread_only=True)
+     def test_get_all_memory_usage_single_chunk(self) -> None:
+@@ -125,6 +127,28 @@ def test_get_all_memory_usage_single_chunk(self) -> None:
+         buffer.put(chunk)
+         assert buffer.get_all() is chunk
+ 
++    @pytest.mark.parametrize(
++        "finish_with_get_all",
++        (True, False),
++        ids=("finish_with_get_all", "finish_with_get"),
++    )
++    @pytest.mark.limit_memory("11.01 MB", current_thread_only=True)
++    def test_memory_usage_splitting_chunk(self, finish_with_get_all: bool) -> None:
++        # Allocate a single 10MiB chunk, then read it in two parts.
++        # Verifies that splitting a chunk doesn't cause additional memory allocation.
++        buffer = BytesQueueBuffer()
++        chunk = bytes(10 * 2**20)  # 10 MiB
++        buffer.put(chunk)
++        for i in range(10):
++            if finish_with_get_all and i == 9:
++                result = buffer.get_all()
++            else:
++                result = buffer.get(2**20)
++            assert type(result) is bytes
++            assert len(result) == 2**20
++            del result
++        assert len(buffer) == 0
++
+ 
+ # A known random (i.e, not-too-compressible) payload generated with:
+ #    "".join(random.choice(string.printable) for i in range(512))

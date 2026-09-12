@@ -1,0 +1,54 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 129066,
+  "pr_url": "https://github.com/home-assistant/core/pull/129066",
+  "issue_number": 119738,
+  "base_sha": "c460e1bbbef67392a877007ef4d19570b883d435",
+  "head_sha": "c1474f69ca7b9c443a100323c3796868cfb38452",
+  "additions": 95,
+  "deletions": 17,
+  "changed_files": [
+    "homeassistant/components/statistics/config_flow.py",
+    "homeassistant/components/statistics/sensor.py",
+    "tests/components/statistics/test_sensor.py"
+  ],
+  "test_files": [
+    "tests/components/statistics/test_sensor.py"
+  ],
+  "source_files": [
+    "homeassistant/components/statistics/config_flow.py",
+    "homeassistant/components/statistics/sensor.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "able",
+      "accepting",
+      "added",
+      "adding",
+      "ages",
+      "annotations",
+      "approx",
+      "async_added_to_hass",
+      "async_at_start",
+      "async_block_till_done"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:38:12Z"
+}

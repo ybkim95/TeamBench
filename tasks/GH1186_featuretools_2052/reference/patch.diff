@@ -1,0 +1,44 @@
+diff --git a/.github/workflows/unit_tests_with_woodwork_main_branch.yml b/.github/workflows/unit_tests_with_woodwork_main_branch.yml
+index 49ef860da9..9af051fb3c 100644
+--- a/.github/workflows/unit_tests_with_woodwork_main_branch.yml
++++ b/.github/workflows/unit_tests_with_woodwork_main_branch.yml
+@@ -38,7 +38,7 @@ jobs:
+       - name: Install Woodwork & Featuretools - test requirements
+         run: |
+           python -m pip install -e unpacked_sdist/[test]
+-          python -m pip install -U git+https://github.com/alteryx/woodwork
++          python -m pip install --force-reinstall https://github.com/alteryx/woodwork/archive/main.zip
+       - if: ${{ !( matrix.libraries == 'spark' && matrix.python_version == '3.10') }}
+         name: Run unit tests without code coverage
+         run: |
+diff --git a/docs/source/release_notes.rst b/docs/source/release_notes.rst
+index 09b8a65757..4e07cfe69c 100644
+--- a/docs/source/release_notes.rst
++++ b/docs/source/release_notes.rst
+@@ -12,9 +12,10 @@ Future Release
+     * Documentation Changes
+         * Update slack invite link to new (:pr:`2044`)
+     * Testing Changes
++        * Skip test for ``normalize_dataframe`` due to different error coming from Woodwork in 0.16.3 (:pr:`2052`)
+ 
+     Thanks to the following people for contributing to this release:
+-    :user:`gsheni`
++    :user:`gsheni`, :user:`thehomebrewnerd`
+     
+ v1.9.0 Apr 27, 2022
+ ===================
+diff --git a/featuretools/tests/entityset_tests/test_es.py b/featuretools/tests/entityset_tests/test_es.py
+index 4245dceeb4..46fffdd375 100644
+--- a/featuretools/tests/entityset_tests/test_es.py
++++ b/featuretools/tests/entityset_tests/test_es.py
+@@ -1996,6 +1996,10 @@ def test_normalize_with_numeric_time_index(int_es):
+ 
+ 
+ def test_normalize_with_invalid_time_index(es):
++    if es.dataframe_type == Library.DASK.value:
++        pytest.skip(
++            "Woodwork raises different error with Dask. Remove this skip once WW is updated."
++        )
+     error_text = "Time index column must contain datetime or numeric values"
+     with pytest.raises(TypeError, match=error_text):
+         es.normalize_dataframe(

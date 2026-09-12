@@ -1,0 +1,213 @@
+diff --git a/homeassistant/components/husqvarna_automower/coordinator.py b/homeassistant/components/husqvarna_automower/coordinator.py
+index 458ff50dac9dd..c19f37a040d9c 100644
+--- a/homeassistant/components/husqvarna_automower/coordinator.py
++++ b/homeassistant/components/husqvarna_automower/coordinator.py
+@@ -8,6 +8,7 @@
+     ApiException,
+     AuthException,
+     HusqvarnaWSServerHandshakeError,
++    TimeoutException,
+ )
+ from aioautomower.model import MowerAttributes
+ from aioautomower.session import AutomowerSession
+@@ -22,6 +23,7 @@
+ _LOGGER = logging.getLogger(__name__)
+ MAX_WS_RECONNECT_TIME = 600
+ SCAN_INTERVAL = timedelta(minutes=8)
++DEFAULT_RECONNECT_TIME = 2  # Define a default reconnect time
+ 
+ 
+ class AutomowerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, MowerAttributes]]):
+@@ -40,8 +42,8 @@ def __init__(
+             update_interval=SCAN_INTERVAL,
+         )
+         self.api = api
+-
+         self.ws_connected: bool = False
++        self.reconnect_time = DEFAULT_RECONNECT_TIME
+ 
+     async def _async_update_data(self) -> dict[str, MowerAttributes]:
+         """Subscribe for websocket and poll data from the API."""
+@@ -66,24 +68,28 @@ async def client_listen(
+         hass: HomeAssistant,
+         entry: ConfigEntry,
+         automower_client: AutomowerSession,
+-        reconnect_time: int = 2,
+     ) -> None:
+         """Listen with the client."""
+         try:
+             await automower_client.auth.websocket_connect()
+-            reconnect_time = 2
++            # Reset reconnect time after successful connection
++            self.reconnect_time = DEFAULT_RECONNECT_TIME
+             await automower_client.start_listening()
+         except HusqvarnaWSServerHandshakeError as err:
+             _LOGGER.debug(
+-                "Failed to connect to websocket. Trying to reconnect: %s", err
++                "Failed to connect to websocket. Trying to reconnect: %s",
++                err,
++            )
++        except TimeoutException as err:
++            _LOGGER.debug(
++                "Failed to listen to websocket. Trying to reconnect: %s",
++                err,
+             )
+-
+         if not hass.is_stopping:
+-            await asyncio.sleep(reconnect_time)
+-            reconnect_time = min(reconnect_time * 2, MAX_WS_RECONNECT_TIME)
+-            await self.client_listen(
+-                hass=hass,
+-                entry=entry,
+-                automower_client=automower_client,
+-                reconnect_time=reconnect_time,
++            await asyncio.sleep(self.reconnect_time)
++            self.reconnect_time = min(self.reconnect_time * 2, MAX_WS_RECONNECT_TIME)
++            entry.async_create_background_task(
++                hass,
++                self.client_listen(hass, entry, automower_client),
++                "reconnect_task",
+             )
+diff --git a/tests/components/husqvarna_automower/conftest.py b/tests/components/husqvarna_automower/conftest.py
+index 2814e1558d137..0202cec05b971 100644
+--- a/tests/components/husqvarna_automower/conftest.py
++++ b/tests/components/husqvarna_automower/conftest.py
+@@ -1,5 +1,6 @@
+ """Test helpers for Husqvarna Automower."""
+ 
++import asyncio
+ from collections.abc import Generator
+ import time
+ from unittest.mock import AsyncMock, patch
+@@ -101,10 +102,17 @@ async def setup_credentials(hass: HomeAssistant) -> None:
+ def mock_automower_client(values) -> Generator[AsyncMock]:
+     """Mock a Husqvarna Automower client."""
+ 
++    async def listen() -> None:
++        """Mock listen."""
++        listen_block = asyncio.Event()
++        await listen_block.wait()
++        pytest.fail("Listen was not cancelled!")
++
+     mock = AsyncMock(spec=AutomowerSession)
+     mock.auth = AsyncMock(side_effect=ClientWebSocketResponse)
+     mock.commands = AsyncMock(spec_set=_MowerCommands)
+     mock.get_status.return_value = values
++    mock.start_listening = AsyncMock(side_effect=listen)
+ 
+     with patch(
+         "homeassistant.components.husqvarna_automower.AutomowerSession",
+diff --git a/tests/components/husqvarna_automower/test_init.py b/tests/components/husqvarna_automower/test_init.py
+index ca0c2a04af1a7..ae688571d2c64 100644
+--- a/tests/components/husqvarna_automower/test_init.py
++++ b/tests/components/husqvarna_automower/test_init.py
+@@ -1,14 +1,16 @@
+ """Tests for init module."""
+ 
+-from datetime import datetime, timedelta
++from asyncio import Event
++from datetime import datetime
+ import http
+ import time
+-from unittest.mock import AsyncMock
++from unittest.mock import AsyncMock, patch
+ 
+ from aioautomower.exceptions import (
+     ApiException,
+     AuthException,
+     HusqvarnaWSServerHandshakeError,
++    TimeoutException,
+ )
+ from aioautomower.model import MowerAttributes, WorkArea
+ from freezegun.api import FrozenDateTimeFactory
+@@ -127,28 +129,77 @@ async def test_update_failed(
+     assert entry.state is entry_state
+ 
+ 
++@patch(
++    "homeassistant.components.husqvarna_automower.coordinator.DEFAULT_RECONNECT_TIME", 0
++)
++@pytest.mark.parametrize(
++    ("method_path", "exception", "error_msg"),
++    [
++        (
++            ["auth", "websocket_connect"],
++            HusqvarnaWSServerHandshakeError,
++            "Failed to connect to websocket.",
++        ),
++        (
++            ["start_listening"],
++            TimeoutException,
++            "Failed to listen to websocket.",
++        ),
++    ],
++)
+ async def test_websocket_not_available(
+     hass: HomeAssistant,
+     mock_automower_client: AsyncMock,
+     mock_config_entry: MockConfigEntry,
+     caplog: pytest.LogCaptureFixture,
+     freezer: FrozenDateTimeFactory,
++    method_path: list[str],
++    exception: type[Exception],
++    error_msg: str,
+ ) -> None:
+-    """Test trying reload the websocket."""
+-    mock_automower_client.start_listening.side_effect = HusqvarnaWSServerHandshakeError(
+-        "Boom"
+-    )
++    """Test trying to reload the websocket."""
++    calls = []
++    mock_called = Event()
++    mock_stall = Event()
++
++    async def mock_function():
++        mock_called.set()
++        await mock_stall.wait()
++        # Raise the first time the method is awaited
++        if not calls:
++            calls.append(None)
++            raise exception("Boom")
++        if mock_side_effect:
++            await mock_side_effect()
++
++    # Find the method to mock
++    mock = mock_automower_client
++    for itm in method_path:
++        mock = getattr(mock, itm)
++    mock_side_effect = mock.side_effect
++    mock.side_effect = mock_function
++
++    # Setup integration and verify log error message
+     await setup_integration(hass, mock_config_entry)
+-    assert "Failed to connect to websocket. Trying to reconnect: Boom" in caplog.text
+-    assert mock_automower_client.auth.websocket_connect.call_count == 1
+-    assert mock_automower_client.start_listening.call_count == 1
+-    assert mock_config_entry.state is ConfigEntryState.LOADED
+-    freezer.tick(timedelta(seconds=2))
+-    async_fire_time_changed(hass)
++    await mock_called.wait()
++    mock_called.clear()
++    # Allow the exception to be raised
++    mock_stall.set()
++    assert mock.call_count == 1
+     await hass.async_block_till_done()
+-    assert mock_automower_client.auth.websocket_connect.call_count == 2
+-    assert mock_automower_client.start_listening.call_count == 2
+-    assert mock_config_entry.state is ConfigEntryState.LOADED
++    assert f"{error_msg} Trying to reconnect: Boom" in caplog.text
++
++    # Simulate a successful connection
++    caplog.clear()
++    await mock_called.wait()
++    mock_called.clear()
++    await hass.async_block_till_done()
++    assert mock.call_count == 2
++    assert "Trying to reconnect: Boom" not in caplog.text
++
++    # Simulate hass shutting down
++    await hass.async_stop()
++    assert mock.call_count == 2
+ 
+ 
+ async def test_device_info(

@@ -1,0 +1,56 @@
+{
+  "repo": "huggingface/evaluate",
+  "pr_number": 52,
+  "pr_url": "https://github.com/huggingface/evaluate/pull/52",
+  "issue_number": null,
+  "base_sha": "ac193378f04df62ee926aa6502b3db8f5c65e1ae",
+  "head_sha": "84bdaad63ae900bb982cd890701f4bb68b654074",
+  "additions": 8,
+  "deletions": 3,
+  "changed_files": [
+    "measurements/word_length/word_length.py",
+    "src/evaluate/utils/file_utils.py",
+    "tests/test_metric_common.py"
+  ],
+  "test_files": [
+    "tests/test_metric_common.py"
+  ],
+  "source_files": [
+    "measurements/word_length/word_length.py",
+    "src/evaluate/utils/file_utils.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/evaluate",
+    "repo_short": "evaluate",
+    "parameterized_identifiers": [
+      "average",
+      "average_word_length",
+      "citation",
+      "comparison",
+      "comparisons",
+      "compute",
+      "config",
+      "data",
+      "datasets",
+      "dl_manager"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:14:43Z"
+}

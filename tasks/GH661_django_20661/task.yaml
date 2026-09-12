@@ -1,0 +1,13 @@
+task_id: GH661_django_20661
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Refs #36883 -- Split monolithic aggregation/lookup/queries tests."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/django/django/pull/20661"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

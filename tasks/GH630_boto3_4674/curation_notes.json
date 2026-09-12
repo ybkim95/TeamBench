@@ -1,0 +1,56 @@
+{
+  "repo": "boto/boto3",
+  "pr_number": 4674,
+  "pr_url": "https://github.com/boto/boto3/pull/4674",
+  "issue_number": null,
+  "base_sha": "6701d41b71bb7de624ad73957c3102da243dc132",
+  "head_sha": "1213dbed508a331a0f4e6950b1a88c3146bc5236",
+  "additions": 22,
+  "deletions": 8,
+  "changed_files": [
+    ".pre-commit-config.yaml",
+    "boto3/resources/model.py",
+    "boto3/s3/transfer.py",
+    "pyproject.toml"
+  ],
+  "test_files": [],
+  "source_files": [
+    "boto3/resources/model.py",
+    "boto3/s3/transfer.py"
+  ],
+  "parameterization": {
+    "repo": "boto/boto3",
+    "repo_short": "boto3",
+    "parameterized_identifiers": [
+      "above",
+      "astral",
+      "available",
+      "category",
+      "check",
+      "client",
+      "codes",
+      "commit",
+      "complexity",
+      "config"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:30:01Z"
+}

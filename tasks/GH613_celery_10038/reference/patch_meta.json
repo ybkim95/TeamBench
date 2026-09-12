@@ -1,0 +1,15 @@
+{
+ "task": "GH613_celery_10038",
+ "patch": "tasks/GH613_celery_10038/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "celery/celery",
+ "pr_number": 10038,
+ "base_sha": "b0fdb91ccf992348448345163e53ea6d0686453e",
+ "head_sha": "49e23689f253ce99b0791b880452dd4e88daccb4",
+ "bytes": 8454,
+ "files_changed": 9,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

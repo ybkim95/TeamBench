@@ -1,0 +1,13 @@
+task_id: GH217_core_153674
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Portainer fix multiple environments & containers"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/153674"
+source_issue: "https://github.com/home-assistant/core/issues/153589"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

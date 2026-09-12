@@ -1,0 +1,57 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 153674,
+  "pr_url": "https://github.com/home-assistant/core/pull/153674",
+  "issue_number": 153589,
+  "base_sha": "13fde0d1353722bfd8a22b8a75eea513075c6279",
+  "head_sha": "bf6c9ed06b066ca159a5aa50979121f2166d92a0",
+  "additions": 128,
+  "deletions": 4,
+  "changed_files": [
+    "homeassistant/components/portainer/__init__.py",
+    "homeassistant/components/portainer/config_flow.py",
+    "homeassistant/components/portainer/entity.py",
+    "tests/components/portainer/snapshots/test_diagnostics.ambr",
+    "tests/components/portainer/test_init.py"
+  ],
+  "test_files": [
+    "tests/components/portainer/test_init.py"
+  ],
+  "source_files": [
+    "homeassistant/components/portainer/__init__.py",
+    "homeassistant/components/portainer/config_flow.py",
+    "homeassistant/components/portainer/entity.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "add_to_hass",
+      "again",
+      "aiohttp_client",
+      "also",
+      "annotations",
+      "async_block_till_done",
+      "async_get",
+      "async_get_or_create",
+      "async_migrate_entry",
+      "async_setup"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:38:46Z"
+}

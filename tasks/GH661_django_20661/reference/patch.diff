@@ -1,0 +1,294 @@
+diff --git a/tests/aggregation_regress/tests.py b/tests/aggregation_regress/tests.py
+index 1140022b4c3c..33763d589bdf 100644
+--- a/tests/aggregation_regress/tests.py
++++ b/tests/aggregation_regress/tests.py
+@@ -636,10 +636,11 @@ def test_field_error(self):
+                 Max("foo")
+             )
+ 
+-    def test_more(self):
++    def test_count_after_count_function(self):
+         # Old-style count aggregations can be mixed with new-style
+         self.assertEqual(Book.objects.annotate(num_authors=Count("authors")).count(), 6)
+ 
++    def test_aggregates_over_annotations(self):
+         # Non-ordinal, non-computed Aggregates over annotations correctly
+         # inherit the annotation's internal type if the annotation is ordinal
+         # or computed
+@@ -653,10 +654,12 @@ def test_more(self):
+         )
+         self.assertEqual(vals, {"avg_price__max": 75.0})
+ 
++    def test_aliases_quoted(self):
+         # Aliases are quoted to protected aliases that might be reserved names
+         vals = Book.objects.aggregate(number=Max("pages"), select=Max("pages"))
+         self.assertEqual(vals, {"number": 1132, "select": 1132})
+ 
++    def test_select_related(self):
+         # Regression for #10064: select_related() plays nice with aggregates
+         obj = (
+             Book.objects.select_related("publisher")
+@@ -680,6 +683,7 @@ def test_more(self):
+             },
+         )
+ 
++    def test_exclude_on_aggregate(self):
+         # Regression for #10010: exclude on an aggregate field is correctly
+         # negated
+         self.assertEqual(len(Book.objects.annotate(num_authors=Count("authors"))), 6)
+diff --git a/tests/lookup/tests.py b/tests/lookup/tests.py
+index 424fc642435b..b154541e788b 100644
+--- a/tests/lookup/tests.py
++++ b/tests/lookup/tests.py
+@@ -570,7 +570,7 @@ def test_in_bulk_values_list_flat_field_id(self):
+             },
+         )
+ 
+-    def test_values(self):
++    def test_values_filter_and_no_fields(self):
+         # values() returns a list of dictionaries instead of object instances,
+         # and you can specify which fields you want to retrieve.
+         self.assertSequenceEqual(
+@@ -592,6 +592,8 @@ def test_values(self):
+                 },
+             ],
+         )
++
++    def test_values_single_field(self):
+         self.assertSequenceEqual(
+             Article.objects.values("headline"),
+             [
+@@ -604,10 +606,14 @@ def test_values(self):
+                 {"headline": "Article 1"},
+             ],
+         )
++
++    def test_values_filter_and_single_field(self):
+         self.assertSequenceEqual(
+             Article.objects.filter(pub_date__exact=datetime(2005, 7, 27)).values("id"),
+             [{"id": self.a2.id}, {"id": self.a3.id}, {"id": self.a7.id}],
+         )
++
++    def test_values_two_fields(self):
+         self.assertSequenceEqual(
+             Article.objects.values("id", "headline"),
+             [
+@@ -620,6 +626,8 @@ def test_values(self):
+                 {"id": self.a1.id, "headline": "Article 1"},
+             ],
+         )
++
++    def test_values_iterator(self):
+         # You can use values() with iterator() for memory savings,
+         # because iterator() uses database-level iteration.
+         self.assertSequenceEqual(
+@@ -634,6 +642,8 @@ def test_values(self):
+                 {"headline": "Article 1", "id": self.a1.id},
+             ],
+         )
++
++    def test_values_extra(self):
+         # The values() method works with "extra" fields specified in
+         # extra(select).
+         self.assertSequenceEqual(
+@@ -675,6 +685,8 @@ def test_values(self):
+                 }
+             ],
+         )
++
++    def test_values_relations(self):
+         # You can specify fields from forward and reverse relations, just like
+         # filter().
+         self.assertSequenceEqual(
+@@ -757,6 +769,8 @@ def test_values(self):
+                 },
+             ],
+         )
++
++    def test_values_nonexistent_field(self):
+         # However, an exception FieldDoesNotExist will be thrown if you specify
+         # a nonexistent field name in values() (a field that is neither in the
+         # model nor in extra(select)).
+@@ -768,6 +782,8 @@ def test_values(self):
+             Article.objects.extra(select={"id_plus_one": "id + 1"}).values(
+                 "id", "id_plus_two"
+             )
++
++    def test_values_no_field_names(self):
+         # If you don't specify field names to values(), all are returned.
+         self.assertSequenceEqual(
+             Article.objects.filter(id=self.a5.id).values(),
+@@ -782,7 +798,7 @@ def test_values(self):
+             ],
+         )
+ 
+-    def test_values_list(self):
++    def test_values_list_filter_and_no_fields(self):
+         # values_list() is similar to values(), except that the results are
+         # returned as a list of tuples, rather than a list of dictionaries.
+         # Within each tuple, the order of the elements is the same as the order
+@@ -806,8 +822,9 @@ def test_values_list(self):
+                 ),
+             ],
+         )
+-        # RemovedInDjango70Warning: When the deprecation ends, remove this
+-        # assertion.
++
++    # RemovedInDjango70Warning: When the deprecation ends, remove this test.
++    def test_values_list_flat_no_fields(self):
+         with ignore_warnings(category=RemovedInDjango70Warning):
+             qs = Article.objects.values_list(flat=True)
+         self.assertSequenceEqual(
+@@ -822,6 +839,8 @@ def test_values_list(self):
+                 self.a1.id,
+             ],
+         )
++
++    def test_values_list_single_field(self):
+         self.assertSequenceEqual(
+             Article.objects.values_list("headline"),
+             [
+@@ -834,6 +853,8 @@ def test_values_list(self):
+                 ("Article 1",),
+             ],
+         )
++
++    def test_values_list_single_field_order_by(self):
+         self.assertSequenceEqual(
+             Article.objects.values_list("id").order_by("id"),
+             [
+@@ -846,6 +867,8 @@ def test_values_list(self):
+                 (self.a7.id,),
+             ],
+         )
++
++    def test_values_list_flat_order_by(self):
+         self.assertSequenceEqual(
+             Article.objects.values_list("id", flat=True).order_by("id"),
+             [
+@@ -858,6 +881,8 @@ def test_values_list(self):
+                 self.a7.id,
+             ],
+         )
++
++    def test_values_list_extra(self):
+         self.assertSequenceEqual(
+             Article.objects.extra(select={"id_plus_one": "id+1"})
+             .order_by("id")
+@@ -900,6 +925,8 @@ def test_values_list(self):
+                 (self.a7.id, self.a7.id + 1),
+             ],
+         )
++
++    def test_values_list_relations(self):
+         args = ("name", "article__headline", "article__tag__name")
+         self.assertSequenceEqual(
+             Author.objects.values_list(*args).order_by(*args),
+@@ -915,7 +942,10 @@ def test_values_list(self):
+                 (self.au2.name, self.a7.headline, self.t3.name),
+             ],
+         )
+-        with self.assertRaises(TypeError):
++
++    def test_values_list_flat_more_than_one_field(self):
++        msg = "'flat' is not valid when values_list is called with more than one field."
++        with self.assertRaisesMessage(TypeError, msg):
+             Article.objects.values_list("id", "headline", flat=True)
+ 
+     # RemovedInDjango70Warning: When the deprecation ends, replace with:
+diff --git a/tests/many_to_one/tests.py b/tests/many_to_one/tests.py
+index 193e6e7086b3..e161686906b7 100644
+--- a/tests/many_to_one/tests.py
++++ b/tests/many_to_one/tests.py
+@@ -278,33 +278,6 @@ def test_selects(self):
+             ),
+             [new_article1, self.a],
+         )
+-        # The underlying query only makes one join when a related table is
+-        # referenced twice.
+-        queryset = Article.objects.filter(
+-            reporter__first_name__exact="John", reporter__last_name__exact="Smith"
+-        )
+-        self.assertNumQueries(1, list, queryset)
+-        self.assertEqual(
+-            queryset.query.get_compiler(queryset.db).as_sql()[0].count("INNER JOIN"), 1
+-        )
+-
+-        # The automatically joined table has a predictable name.
+-        self.assertSequenceEqual(
+-            Article.objects.filter(reporter__first_name__exact="John").extra(
+-                where=["many_to_one_reporter.last_name='Smith'"]
+-            ),
+-            [new_article1, self.a],
+-        )
+-        # ... and should work fine with the string that comes out of
+-        # forms.Form.cleaned_data.
+-        self.assertQuerySetEqual(
+-            (
+-                Article.objects.filter(reporter__first_name__exact="John").extra(
+-                    where=["many_to_one_reporter.last_name='%s'" % "Smith"]
+-                )
+-            ),
+-            [new_article1, self.a],
+-        )
+         # Find all Articles for a Reporter.
+         # Use direct ID check, pk check, and object comparison
+         self.assertSequenceEqual(
+@@ -343,6 +316,45 @@ def test_selects(self):
+             [new_article1, self.a],
+         )
+ 
++    def test_joined_sql(self):
++        # The underlying query only makes one join when a related table is
++        # referenced twice.
++        queryset = Article.objects.filter(
++            reporter__first_name__exact="John", reporter__last_name__exact="Smith"
++        )
++        self.assertNumQueries(1, list, queryset)
++        self.assertEqual(
++            queryset.query.get_compiler(queryset.db).as_sql()[0].count("INNER JOIN"), 1
++        )
++
++    def test_joined_extra(self):
++        new_article1 = self.r.article_set.create(
++            headline="John's second story",
++            pub_date=datetime.date(2005, 7, 29),
++        )
++        self.r2.article_set.create(
++            headline="Paul's story",
++            pub_date=datetime.date(2006, 1, 17),
++        )
++        # The automatically joined table has a predictable name.
++        self.assertSequenceEqual(
++            Article.objects.filter(reporter__first_name__exact="John").extra(
++                where=["many_to_one_reporter.last_name='Smith'"]
++            ),
++            [new_article1, self.a],
++        )
++        # ... and should work fine with the string that comes out of
++        # forms.Form.cleaned_data.
++        self.assertQuerySetEqual(
++            (
++                Article.objects.filter(reporter__first_name__exact="John").extra(
++                    where=["many_to_one_reporter.last_name=%s"],
++                    params=["Smith"],
++                )
++            ),
++            [new_article1, self.a],
++        )
++
+     def test_reverse_selects(self):
+         a3 = Article.objects.create(
+             headline="Third article",
+diff --git a/tests/queries/tests.py b/tests/queries/tests.py
+index d58eccaa12e4..f2136df2433e 100644
+--- a/tests/queries/tests.py
++++ b/tests/queries/tests.py
+@@ -1860,6 +1860,7 @@ def test_ordering(self):
+             [self.rank1, self.rank2, self.rank3],
+         )
+ 
++    def test_ordering_with_extra(self):
+         # Ordering of extra() pieces is possible, too and you can mix extra
+         # fields and model fields in the ordering.
+         self.assertSequenceEqual(

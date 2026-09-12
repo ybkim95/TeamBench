@@ -1,0 +1,13 @@
+diff --git a/mlflow/assistant/providers/claude_code.py b/mlflow/assistant/providers/claude_code.py
+--- a/mlflow/assistant/providers/claude_code.py
++++ b/mlflow/assistant/providers/claude_code.py
+@@ -577,6 +577,9 @@ def _parse_message_to_event(self, data: dict[str, Any]) -> Event | None:
+                 except KeyError as e:
+                     return Event.from_error(f"Failed to parse stream_event message: {e}")
+ 
++            case "rate_limit_event":
++                return None
++
+             case _:
+                 return Event.from_error(f"Unknown message type: {message_type}")
+ 

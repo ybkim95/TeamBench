@@ -1,0 +1,60 @@
+{
+  "repo": "ITISFoundation/osparc-simcore",
+  "pr_number": 6935,
+  "pr_url": "https://github.com/ITISFoundation/osparc-simcore/pull/6935",
+  "issue_number": 26,
+  "base_sha": "e97f83b915d659c0ec0c5910b3fc915e85b51429",
+  "head_sha": "a71c718769218c29048eee7330c83e2d41963436",
+  "additions": 116,
+  "deletions": 28,
+  "changed_files": [
+    "services/storage/src/simcore_service_storage/db_file_meta_data.py",
+    "services/storage/src/simcore_service_storage/simcore_s3_dsm.py",
+    "services/storage/src/simcore_service_storage/simcore_s3_dsm_utils.py",
+    "services/storage/tests/unit/test_db_file_meta_data.py",
+    "services/storage/tests/unit/test_handlers_files.py",
+    "services/storage/tests/unit/test_simcore_s3_dsm_utils.py"
+  ],
+  "test_files": [
+    "services/storage/tests/unit/test_db_file_meta_data.py",
+    "services/storage/tests/unit/test_handlers_files.py",
+    "services/storage/tests/unit/test_simcore_s3_dsm_utils.py"
+  ],
+  "source_files": [
+    "services/storage/src/simcore_service_storage/db_file_meta_data.py",
+    "services/storage/src/simcore_service_storage/simcore_s3_dsm.py",
+    "services/storage/src/simcore_service_storage/simcore_s3_dsm_utils.py"
+  ],
+  "parameterization": {
+    "repo": "ITISFoundation/osparc-simcore",
+    "repo_short": "osparc-simcore",
+    "parameterized_identifiers": [
+      "a063",
+      "a224",
+      "access_right",
+      "acquire",
+      "amazing",
+      "api_schemas_storage",
+      "append",
+      "assert_status",
+      "b21a3b80",
+      "better"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:08:03Z"
+}

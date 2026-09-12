@@ -1,0 +1,51 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9541,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9541",
+  "issue_number": null,
+  "base_sha": "24b4938c0d1b4c2a2d9eff238cf85c0f8e5575a3",
+  "head_sha": "8a83bd66fd09640075f3004312cfe66f79f99f3c",
+  "additions": 10,
+  "deletions": 5,
+  "changed_files": [
+    "statsmodels/tsa/ardl/tests/test_ardl.py"
+  ],
+  "test_files": [
+    "statsmodels/tsa/ardl/tests/test_ardl.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "ardl_res",
+      "assert_allclose",
+      "causal",
+      "check_results",
+      "data",
+      "mark",
+      "n_params",
+      "parameterize",
+      "parametrize",
+      "params"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:08:50Z"
+}

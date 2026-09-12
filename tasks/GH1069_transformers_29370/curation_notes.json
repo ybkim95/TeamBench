@@ -1,0 +1,56 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 29370,
+  "pr_url": "https://github.com/huggingface/transformers/pull/29370",
+  "issue_number": null,
+  "base_sha": "0ad770c3733f9478a8d9d0bc18cc6143877b47a2",
+  "head_sha": "7573fa1794db005cef841907f7924034c2cd4063",
+  "additions": 12,
+  "deletions": 72,
+  "changed_files": [
+    "src/transformers/trainer.py",
+    "tests/trainer/test_trainer.py",
+    "tests/trainer/test_trainer_distributed.py"
+  ],
+  "test_files": [
+    "tests/trainer/test_trainer.py",
+    "tests/trainer/test_trainer_distributed.py"
+  ],
+  "source_files": [
+    "src/transformers/trainer.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "after",
+      "already",
+      "atomic",
+      "based",
+      "batch_size",
+      "best",
+      "cases",
+      "checkpoint",
+      "checkpoint_folder",
+      "checkpointing"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:03:12Z"
+}

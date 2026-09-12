@@ -1,7 +1,7 @@
 # GH121_quart_302: avoid ResourceWarning in `DataBody.__aiter__`  — Full Specification (Planner Only)
 
 ## Source
-- PR: https://github.com/pallets/quart/pull/302
+- PR: (withheld: the upstream fix is not part of the task)
 - Issue: https://github.com/pallets/quart/issues/301
 - Repo: https://github.com/pallets/quart
 
@@ -18,7 +18,7 @@ Environment:
 
 ## Issue Discussion (Root Cause Analysis)
 
-### Comment 1 (@pgjones):
+### Comment 1 ([user]):
 
 I'm also unsure how to test this, however I've an alternative fix,
 ```python
@@ -56,22 +56,15 @@ What do you think of this? I prefer it as it is more similar to the `IterableBod
 
 ## PR Review Comments
 
-**@davidism** on `src/quart/wrappers/response.py`:
+**[user]** on `src/quart/wrappers/response.py`:
 
 This type of optimization should no longer be needed in modern Python.
 
-**@graingert** on `src/quart/wrappers/response.py`:
+**[user]** on `src/quart/wrappers/response.py`:
 
 ```suggestion
         return self._data_body.data[self._data_body.begin : self._data_body.end]
 ```
-
-## Files Changed in Fix
-
-- `src/quart/wrappers/response.py` (modified, +15/-5)
-
-## `src/quart/wrappers/response.py`
-[Code changes omitted — Planner should analyze the issue and guide the Executor]
 
 ## Acceptance Criteria
 
@@ -81,6 +74,6 @@ This type of optimization should no longer be needed in modern Python.
 
 ## Important Notes
 
-- Only modify the source files listed above (not test files)
+- Only modify source files, not test files
 - The test files already encode the correct expected behaviour
 - Run `pytest -x -q` to verify your fix

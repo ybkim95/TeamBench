@@ -1,0 +1,51 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 8567,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/8567",
+  "issue_number": null,
+  "base_sha": "614939f945fc88dd97181f829ae4203662c524da",
+  "head_sha": "306521c6851ce043248397853026826ab14f6cf1",
+  "additions": 15,
+  "deletions": 1,
+  "changed_files": [
+    "tests/datasource/fluent/integration/test_sql_datasources.py"
+  ],
+  "test_files": [
+    "tests/datasource/fluent/integration/test_sql_datasources.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "add_snowflake",
+      "annotations",
+      "asset_name",
+      "connection_string",
+      "context",
+      "create",
+      "credentials",
+      "databricks",
+      "databricks_sql_ds",
+      "datasource"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:52:49Z"
+}

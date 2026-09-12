@@ -1,0 +1,15 @@
+{
+ "task": "GH451_TileOPs_296",
+ "patch": "tasks/GH451_TileOPs_296/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "tile-ai/TileOPs",
+ "pr_number": 296,
+ "base_sha": "ef8c3ab2022aaf7e53c413be78617ba2d91e005d",
+ "head_sha": "3f539eb69ffb20089c34fce77001733dc52ae653",
+ "bytes": 1809,
+ "files_changed": 1,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

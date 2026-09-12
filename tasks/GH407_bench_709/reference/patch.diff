@@ -1,0 +1,119 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index a4bf6437a..e497bb5fd 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -13,6 +13,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
+ 
+ - 👷 Enable testing on Python 3.14 ([#705]) ([**@denialhaag**])
+ 
++### Fixed
++
++- 🐛 Fix layout preservation and ensure native gate compliance for mirror circuit generation ([#709]) ([**@soroushfathi**], [**@burgholzer**])
++
+ ### Removed
+ 
+ - 🔥 Drop support for Python 3.9 ([#671]) ([**@denialhaag**])
+@@ -76,6 +80,7 @@ _📚 Refer to the [GitHub Release Notes] for previous changelogs._
+ 
+ <!-- PR links -->
+ 
++[#709]: https://github.com/munich-quantum-toolkit/bench/pull/709
+ [#705]: https://github.com/munich-quantum-toolkit/bench/pull/705
+ [#671]: https://github.com/munich-quantum-toolkit/bench/pull/671
+ [#666]: https://github.com/munich-quantum-toolkit/bench/pull/666
+@@ -116,6 +121,7 @@ _📚 Refer to the [GitHub Release Notes] for previous changelogs._
+ [**@fkiwit**]: https://github.com/fkiwit
+ [**@CreativeBinBag**]: https://github.com/CreativeBinBag
+ [**@denialhaag**]: https://github.com/denialhaag
++[**@soroushfathi**]: https://github.com/soroushfathi
+ 
+ <!-- General links -->
+ 
+diff --git a/src/mqt/bench/benchmark_generation.py b/src/mqt/bench/benchmark_generation.py
+index 70a9271a4..cb4ebcb80 100644
+--- a/src/mqt/bench/benchmark_generation.py
++++ b/src/mqt/bench/benchmark_generation.py
+@@ -75,20 +75,26 @@ def _get_circuit(
+     return qc
+ 
+ 
+-def _create_mirror_circuit(qc_original: QuantumCircuit, inplace: bool = False) -> QuantumCircuit:
++def _create_mirror_circuit(
++    qc_original: QuantumCircuit, *, inplace: bool = False, target: Target | None = None, optimization_level: int = 2
++) -> QuantumCircuit:
+     """Generates the mirror version (qc @ qc.inverse()) of a given quantum circuit.
+ 
+     For circuits with an initial layout (e.g., mapped circuits), this function ensures
+     that the final layout of the mirrored circuit matches the initial layout of the
+     original circuit. While Qiskit's `inverse()` and `compose()` methods correctly track
+     the permutation of qubits, this benchmark requires that the final qubit permutation
+-    is identical to the initial one, necessitating the explicit layout handling herein.
++    is identical to the initial one, requiring the explicit layout handling herein.
++    Also ensures that the mirrored circuit respects the native gate set of the target device
++    if a target is provided.
+ 
+     All qubits are measured at the end of the mirror circuit.
+ 
+     Args:
+         qc_original: The quantum circuit to mirror.
+         inplace: If True, modifies the circuit in place. Otherwise, returns a new circuit.
++        target: Target device for transpilation. If provided, ensures native gate set compliance.
++        optimization_level: Optimization level of the transpilation.
+ 
+     Returns:
+         The mirrored quantum circuit.
+@@ -107,6 +113,20 @@ def _create_mirror_circuit(qc_original: QuantumCircuit, inplace: bool = False) -
+     # Form the mirror circuit by composing the original circuit with its inverse.
+     target_qc.compose(qc_inv, inplace=True)
+ 
++    # Transpile to ensure the final circuit uses only native gates while preserving the initial layout.
++    if target is not None:
++        layout = target_qc.layout.initial_layout if target_qc.layout is not None else None
++        target_qc = transpile(
++            target_qc,
++            target=target,
++            optimization_level=optimization_level,
++            layout_method=None,
++            routing_method=None,
++            seed_transpiler=10,
++        )
++        if layout is not None:
++            target_qc.layout.initial_layout = layout
++
+     # Add final measurements to all active qubits
+     target_qc.barrier(active_qubits)
+     new_creg = ClassicalRegister(len(active_qubits), "meas")
+@@ -308,7 +328,7 @@ def get_benchmark_native_gates(
+ 
+     compiled_circuit = pm.run(circuit)
+     if generate_mirror_circuit:
+-        return _create_mirror_circuit(compiled_circuit, inplace=True)
++        return _create_mirror_circuit(compiled_circuit, inplace=True, target=target, optimization_level=opt_level)
+     return compiled_circuit
+ 
+ 
+@@ -374,7 +394,7 @@ def get_benchmark_mapped(
+         seed_transpiler=10,
+     )
+     if generate_mirror_circuit:
+-        return _create_mirror_circuit(mapped_circuit, inplace=True)
++        return _create_mirror_circuit(mapped_circuit, inplace=True, target=target, optimization_level=opt_level)
+     return mapped_circuit
+ 
+ 
+diff --git a/tests/test_bench.py b/tests/test_bench.py
+index d6a7651fe..edc62b725 100644
+--- a/tests/test_bench.py
++++ b/tests/test_bench.py
+@@ -937,6 +937,11 @@ def test_get_benchmark_mirror_option() -> None:
+ 
+         assert qc_mirror.num_qubits == qc_base.num_qubits
+ 
++        # Ensure the mirror circuit contains only native gates for the given target.
++        pm = PassManager(GatesInBasis(target=target_obj))
++        pm.run(qc_mirror)
++        assert pm.property_set["all_gates_in_basis"]
++
+         # at least each logical qubit should be measured
+         assert sum(inst.operation.name == "measure" for inst in qc_mirror.data) >= logical_circuit_size
+ 

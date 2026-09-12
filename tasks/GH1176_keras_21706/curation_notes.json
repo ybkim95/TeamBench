@@ -1,0 +1,56 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 21706,
+  "pr_url": "https://github.com/keras-team/keras/pull/21706",
+  "issue_number": null,
+  "base_sha": "a62a4a36d0ae7cc27c89472a4b78f9cab89907a0",
+  "head_sha": "3c41697f57193e0a2ee6747fbb58d11de5487672",
+  "additions": 186,
+  "deletions": 26,
+  "changed_files": [
+    "keras/src/optimizers/base_optimizer.py",
+    "keras/src/optimizers/loss_scale_optimizer.py",
+    "keras/src/optimizers/loss_scale_optimizer_test.py"
+  ],
+  "test_files": [
+    "keras/src/optimizers/loss_scale_optimizer_test.py"
+  ],
+  "source_files": [
+    "keras/src/optimizers/base_optimizer.py",
+    "keras/src/optimizers/loss_scale_optimizer.py"
+  ],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "acc_grads",
+      "allow",
+      "apply",
+      "arg_name",
+      "arg_value",
+      "arguments",
+      "array",
+      "assign",
+      "atol",
+      "backend"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:11:44Z"
+}

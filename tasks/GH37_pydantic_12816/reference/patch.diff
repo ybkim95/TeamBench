@@ -1,0 +1,46 @@
+diff --git a/pydantic/main.py b/pydantic/main.py
+index 26fc876a008..50150c3da3f 100644
+--- a/pydantic/main.py
++++ b/pydantic/main.py
+@@ -378,6 +378,7 @@ def model_construct(cls, _fields_set: set[str] | None = None, **values: Any) ->
+         _object_setattr(m, '__pydantic_fields_set__', _fields_set)
+         if not cls.__pydantic_root_model__:
+             _object_setattr(m, '__pydantic_extra__', _extra)
++            _object_setattr(m, '__pydantic_private__', None)
+ 
+         if cls.__pydantic_post_init__:
+             m.model_post_init(None)
+@@ -387,11 +388,6 @@ def model_construct(cls, _fields_set: set[str] | None = None, **values: Any) ->
+                     if k in m.__private_attributes__:
+                         m.__pydantic_private__[k] = v
+ 
+-        elif not cls.__pydantic_root_model__:
+-            # Note: if there are any private attributes, cls.__pydantic_post_init__ would exist
+-            # Since it doesn't, that means that `__pydantic_private__` should be set to None
+-            _object_setattr(m, '__pydantic_private__', None)
+-
+         return m
+ 
+     def model_copy(self, *, update: Mapping[str, Any] | None = None, deep: bool = False) -> Self:
+diff --git a/tests/test_main.py b/tests/test_main.py
+index 1e4dfa6bc84..90dd17f1a52 100644
+--- a/tests/test_main.py
++++ b/tests/test_main.py
+@@ -3673,6 +3673,17 @@ def model_post_init(self, context: Any, /) -> None:
+     assert id(m) != id(copy)
+ 
+ 
++def test_model_construct_with_model_post_init_has_pydantic_private() -> None:
++    """https://github.com/pydantic/pydantic/issues/12813"""
++
++    class Model(BaseModel):
++        def model_post_init(self, context: Any, /) -> None:
++            pass
++
++    m = Model.model_construct()
++    assert m.__pydantic_private__ is None
++
++
+ def test_subclassing_gen_schema_warns() -> None:
+     with pytest.warns(UserWarning, match='Subclassing `GenerateSchema` is not supported.'):
+ 

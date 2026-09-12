@@ -1,0 +1,54 @@
+{
+  "repo": "music-assistant/server",
+  "pr_number": 2728,
+  "pr_url": "https://github.com/music-assistant/server/pull/2728",
+  "issue_number": null,
+  "base_sha": "ca5ecc1f9d48c44889bc1469213b2e5ed0614afb",
+  "head_sha": "d22f390e4b86b32b8aeabc8fa1e174fdf1da9c83",
+  "additions": 56,
+  "deletions": 4,
+  "changed_files": [
+    "music_assistant/providers/jellyfin/parsers.py",
+    "tests/providers/jellyfin/test_parsers.py"
+  ],
+  "test_files": [
+    "tests/providers/jellyfin/test_parsers.py"
+  ],
+  "source_files": [
+    "music_assistant/providers/jellyfin/parsers.py"
+  ],
+  "parameterization": {
+    "repo": "music-assistant/server",
+    "repo_short": "server",
+    "parameterized_identifiers": [
+      "aiofiles",
+      "aiohttp",
+      "always",
+      "applied",
+      "applies",
+      "array",
+      "artists",
+      "assertion",
+      "attributes",
+      "audio_format"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:29:19Z"
+}

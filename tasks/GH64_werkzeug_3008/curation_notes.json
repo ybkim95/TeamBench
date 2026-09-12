@@ -1,0 +1,53 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3008,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3008",
+  "issue_number": 3007,
+  "base_sha": "2f86acb6de57c87f10ab69b5548e687ff6e71304",
+  "head_sha": "6335b7211dfd173f8ba208c9e6fa62c170ba23b9",
+  "additions": 35,
+  "deletions": 5,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/werkzeug/routing/map.py",
+    "tests/test_routing.py"
+  ],
+  "test_files": [
+    "tests/test_routing.py"
+  ],
+  "source_files": [
+    "src/werkzeug/routing/map.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "access",
+      "accessed",
+      "accessing",
+      "adapter",
+      "against",
+      "also",
+      "alternate",
+      "argument",
+      "asdfs",
+      "asdfsa"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:36:58Z"
+}

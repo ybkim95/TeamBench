@@ -1,0 +1,12 @@
+diff --git a/tests/unit_tests/test_wandb_run.py b/tests/unit_tests/test_wandb_run.py
+index 09fd272de9c..8bd4fb75800 100644
+--- a/tests/unit_tests/test_wandb_run.py
++++ b/tests/unit_tests/test_wandb_run.py
+@@ -321,6 +321,7 @@ def test_public_api_uses_api_key(mock_run, mocker):
+     mock_api_class.assert_called_once_with(
+         # overrides from mock_run
+         {
++            "base_url": "https://api.wandb.ai",
+             "run": None,
+             "entity": "",
+             "project": "",

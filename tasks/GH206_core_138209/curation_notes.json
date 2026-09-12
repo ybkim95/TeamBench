@@ -1,0 +1,53 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 138209,
+  "pr_url": "https://github.com/home-assistant/core/pull/138209",
+  "issue_number": 79667,
+  "base_sha": "aa2ab74ee98bb4c479f4d46c79d2d0312bdcda94",
+  "head_sha": "c70f1a7db92352f175e6089ffe543875fc6d516b",
+  "additions": 57,
+  "deletions": 5,
+  "changed_files": [
+    "homeassistant/components/generic_thermostat/climate.py",
+    "homeassistant/components/generic_thermostat/strings.json",
+    "tests/components/generic_thermostat/test_climate.py"
+  ],
+  "test_files": [
+    "tests/components/generic_thermostat/test_climate.py"
+  ],
+  "source_files": [
+    "homeassistant/components/generic_thermostat/climate.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "above",
+      "ac_mode",
+      "amount",
+      "async_block_till_done",
+      "async_set_temperature",
+      "async_setup_component",
+      "attributes",
+      "being",
+      "below",
+      "between"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:38:04Z"
+}

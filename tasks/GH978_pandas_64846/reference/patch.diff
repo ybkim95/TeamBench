@@ -1,0 +1,283 @@
+diff --git a/doc/source/whatsnew/v3.1.0.rst b/doc/source/whatsnew/v3.1.0.rst
+index 03285589d7a41..9248f36cae450 100644
+--- a/doc/source/whatsnew/v3.1.0.rst
++++ b/doc/source/whatsnew/v3.1.0.rst
+@@ -148,7 +148,6 @@ Performance improvements
+ 
+ Bug fixes
+ ~~~~~~~~~
+-- Bug in object-dtype hash table operations (``factorize``, ``unique``, ``duplicated``, ``isin``, ``value_counts``, ``groupby``, ``Index.get_loc``) not distinguishing between ``int`` and ``bool`` values, e.g. treating ``0`` and ``False`` as equal (:issue:`62888`)
+ - Fix bug in :func:`to_datetime` that could give an unnecessary ``RuntimeWarning`` when converting DataFrame containing missing values (:issue:`64141`)
+ 
+ Categorical
+diff --git a/pandas/_libs/include/pandas/vendored/klib/khash_python.h b/pandas/_libs/include/pandas/vendored/klib/khash_python.h
+index e921b93139991..1486fc59750d9 100644
+--- a/pandas/_libs/include/pandas/vendored/klib/khash_python.h
++++ b/pandas/_libs/include/pandas/vendored/klib/khash_python.h
+@@ -211,9 +211,6 @@ static inline int pyobject_cmp(PyObject *a, PyObject *b) {
+       return tupleobject_cmp((PyTupleObject *)a, (PyTupleObject *)b);
+     }
+     // frozenset isn't yet supported
+-  } else if (PyBool_Check(a) != PyBool_Check(b)) {
+-    // GH#62888: distinguish bool from int, e.g. 0 vs False, 1 vs True
+-    return 0;
+   }
+ 
+   int result = PyObject_RichCompareBool(a, b, Py_EQ);
+diff --git a/pandas/tests/groupby/test_groupby.py b/pandas/tests/groupby/test_groupby.py
+index e930fac1e69b9..c8c8dd9fe2dea 100644
+--- a/pandas/tests/groupby/test_groupby.py
++++ b/pandas/tests/groupby/test_groupby.py
+@@ -3030,20 +3030,3 @@ def test_groupby_function_tuple_1677():
+ 
+     result = monthly_group.mean()
+     assert isinstance(result.index[0], tuple)
+-
+-
+-def test_groupby_bool_int_distinguished():
+-    # GH#62888 - groupby on object dtype should distinguish bool from int
+-    df = DataFrame(
+-        {
+-            "key": np.array([0, False, 0, False, 1, True], dtype=object),
+-            "val": [1, 2, 3, 4, 5, 6],
+-        }
+-    )
+-    result = df.groupby("key")["val"].sum()
+-    expected = Series(
+-        [4, 6, 5, 6],
+-        index=Index([0, False, 1, True], dtype=object, name="key"),
+-        name="val",
+-    )
+-    tm.assert_series_equal(result, expected)
+diff --git a/pandas/tests/indexes/multi/test_indexing.py b/pandas/tests/indexes/multi/test_indexing.py
+index 6c00ddd402117..8ae2163351823 100644
+--- a/pandas/tests/indexes/multi/test_indexing.py
++++ b/pandas/tests/indexes/multi/test_indexing.py
+@@ -680,14 +680,20 @@ def test_get_loc_implicit_cast(self, level, dtypes):
+ 
+     @pytest.mark.parametrize("dtype", [bool, object])
+     def test_get_loc_cast_bool(self, dtype):
+-        # GH 19086, GH#62888: int keys should not match bool level values
++        # GH 19086 : int is casted to bool, but not vice-versa (for object dtype)
++        #  With bool dtype, we don't cast in either direction.
+         levels = [Index([False, True], dtype=dtype), np.arange(2, dtype="int64")]
+         idx = MultiIndex.from_product(levels)
+ 
+-        with pytest.raises(KeyError, match=r"^\(0, 1\)$"):
+-            idx.get_loc((0, 1))
+-        with pytest.raises(KeyError, match=r"^\(1, 0\)$"):
+-            idx.get_loc((1, 0))
++        if dtype is bool:
++            with pytest.raises(KeyError, match=r"^\(0, 1\)$"):
++                assert idx.get_loc((0, 1)) == 1
++            with pytest.raises(KeyError, match=r"^\(1, 0\)$"):
++                assert idx.get_loc((1, 0)) == 2
++        else:
++            # We use python object comparisons, which treat 0 == False and 1 == True
++            assert idx.get_loc((0, 1)) == 1
++            assert idx.get_loc((1, 0)) == 2
+ 
+         with pytest.raises(KeyError, match=r"^\(False, True\)$"):
+             idx.get_loc((False, True))
+diff --git a/pandas/tests/indexes/object/test_indexing.py b/pandas/tests/indexes/object/test_indexing.py
+index 11fce3cc64cff..2c5968314e5cf 100644
+--- a/pandas/tests/indexes/object/test_indexing.py
++++ b/pandas/tests/indexes/object/test_indexing.py
+@@ -72,31 +72,6 @@ def test_get_indexer_infer_string_missing_values(self):
+         tm.assert_numpy_array_equal(result, expected)
+ 
+ 
+-class TestGetIndexerBoolInt:
+-    def test_get_indexer_bool_int_distinguished(self):
+-        # GH#62888 - get_indexer should not match int 0 with bool False
+-        index = Index([0, 1, 2], dtype=object)
+-        target = Index([False, True], dtype=object)
+-        result = index.get_indexer(target)
+-        expected = np.array([-1, -1], dtype=np.intp)
+-        tm.assert_numpy_array_equal(result, expected)
+-
+-    def test_get_loc_bool_int_distinguished(self):
+-        # GH#62888
+-        index = Index([False, True, 2], dtype=object)
+-        assert index.get_loc(False) == 0
+-        assert index.get_loc(True) == 1
+-        with pytest.raises(KeyError, match="0"):
+-            index.get_loc(0)
+-        with pytest.raises(KeyError, match="1"):
+-            index.get_loc(1)
+-
+-    def test_is_unique_bool_int(self):
+-        # GH#62888 - Index with both int and bool should be unique
+-        index = Index([0, 1, False, True], dtype=object)
+-        assert index.is_unique
+-
+-
+ class TestGetIndexerNonUnique:
+     def test_get_indexer_non_unique_nas(self, nulls_fixture):
+         # even though this isn't non-unique, this should still work
+diff --git a/pandas/tests/series/methods/test_isin.py b/pandas/tests/series/methods/test_isin.py
+index 7dbda30c1e6ef..4f8484252ba8f 100644
+--- a/pandas/tests/series/methods/test_isin.py
++++ b/pandas/tests/series/methods/test_isin.py
+@@ -176,7 +176,7 @@ def test_isin_float_in_int_series(self, values):
+         expected = Series([True, False])
+         tm.assert_series_equal(result, expected)
+ 
+-    @pytest.mark.parametrize("dtype", ["Int64", "Float64"])
++    @pytest.mark.parametrize("dtype", ["boolean", "Int64", "Float64"])
+     @pytest.mark.parametrize(
+         "data,values,expected",
+         [
+@@ -197,27 +197,6 @@ def test_isin_masked_types(self, dtype, data, values, expected):
+ 
+         tm.assert_series_equal(result, expected)
+ 
+-    @pytest.mark.parametrize(
+-        "data,values,expected",
+-        [
+-            # GH#62888: bool values no longer match int values
+-            ([0, 1, 0], [1], [False, False, False]),
+-            ([0, 1, 0], [1, pd.NA], [False, False, False]),
+-            ([0, pd.NA, 0], [1, 0], [False, False, False]),
+-            ([0, 1, pd.NA], [1, pd.NA], [False, False, True]),
+-            ([0, 1, pd.NA], [1, np.nan], [False, False, False]),
+-            ([0, pd.NA, pd.NA], [np.nan, pd.NaT, None], [False, False, False]),
+-        ],
+-    )
+-    def test_isin_masked_boolean(self, data, values, expected):
+-        # GH#42405, GH#62888
+-        ser = Series(data, dtype="boolean")
+-
+-        result = ser.isin(values)
+-        expected = Series(expected, dtype="boolean")
+-
+-        tm.assert_series_equal(result, expected)
+-
+ 
+ def test_isin_large_series_mixed_dtypes_and_nan(monkeypatch):
+     # https://github.com/pandas-dev/pandas/issues/37094
+diff --git a/pandas/tests/test_algos.py b/pandas/tests/test_algos.py
+index 82bac45789294..25b34ef2667b1 100644
+--- a/pandas/tests/test_algos.py
++++ b/pandas/tests/test_algos.py
+@@ -548,42 +548,6 @@ def test_factorize_interval_non_nano(self, unit):
+         codes3, cats3 = idx3.factorize()
+         assert cats3.dtype == f"interval[datetime64[{unit}, US/Pacific], right]"
+ 
+-    def test_factorize_bool_int_distinguished(self):
+-        # GH#62888 - factorize on object dtype should distinguish bool from int
+-        ser = Series([0, 1, True, False], dtype=object)
+-        codes, uniques = ser.factorize()
+-
+-        expected_codes = np.array([0, 1, 2, 3], dtype=np.intp)
+-        expected_uniques = Index([0, 1, True, False], dtype=object)
+-        tm.assert_numpy_array_equal(codes, expected_codes)
+-        tm.assert_index_equal(uniques, expected_uniques, exact=True)
+-
+-        # Check that the actual types are preserved, not just values
+-        assert type(uniques[0]) is int
+-        assert type(uniques[1]) is int
+-        assert type(uniques[2]) is bool
+-        assert type(uniques[3]) is bool
+-
+-    def test_factorize_bool_int_distinguished_reverse(self):
+-        # GH#62888 - order should not matter
+-        ser = Series([True, False, 0, 1], dtype=object)
+-        codes, uniques = ser.factorize()
+-
+-        expected_codes = np.array([0, 1, 2, 3], dtype=np.intp)
+-        expected_uniques = Index([True, False, 0, 1], dtype=object)
+-        tm.assert_numpy_array_equal(codes, expected_codes)
+-        tm.assert_index_equal(uniques, expected_uniques, exact=True)
+-
+-    def test_factorize_bool_int_with_duplicates(self):
+-        # GH#62888
+-        ser = Series([0, True, 0, False, 1, True], dtype=object)
+-        codes, uniques = ser.factorize()
+-
+-        expected_codes = np.array([0, 1, 0, 2, 3, 1], dtype=np.intp)
+-        expected_uniques = Index([0, True, False, 1], dtype=object)
+-        tm.assert_numpy_array_equal(codes, expected_codes)
+-        tm.assert_index_equal(uniques, expected_uniques, exact=True)
+-
+ 
+ class TestUnique:
+     def test_ints(self):
+@@ -618,17 +582,6 @@ def test_index_returned(self, index):
+                 expected = expected.normalize()
+         tm.assert_index_equal(result, expected, exact=True)
+ 
+-    def test_unique_bool_int_distinguished(self):
+-        # GH#18111, GH#62888
+-        arr = np.array([0, False, 1, True], dtype=object)
+-        result = algos.unique(arr)
+-        expected = np.array([0, False, 1, True], dtype=object)
+-        tm.assert_numpy_array_equal(result, expected)
+-        assert type(result[0]) is int
+-        assert type(result[1]) is bool
+-        assert type(result[2]) is int
+-        assert type(result[3]) is bool
+-
+     def test_factorize_multiindex_empty(self):
+         # GH#57517
+         mi = MultiIndex.from_product(
+@@ -1254,22 +1207,6 @@ def test_isin_unsigned_dtype(self):
+         expected = Series(False)
+         tm.assert_series_equal(result, expected)
+ 
+-    def test_isin_bool_int_distinguished(self):
+-        # GH#62888
+-        ser = Series([0, 1, False, True], dtype=object)
+-
+-        result = algos.isin(ser, [0])
+-        expected = np.array([True, False, False, False])
+-        tm.assert_numpy_array_equal(result, expected)
+-
+-        result = algos.isin(ser, [False])
+-        expected = np.array([False, False, True, False])
+-        tm.assert_numpy_array_equal(result, expected)
+-
+-        result = algos.isin(ser, [0, False])
+-        expected = np.array([True, False, True, False])
+-        tm.assert_numpy_array_equal(result, expected)
+-
+ 
+ class TestValueCounts:
+     def test_value_counts(self):
+@@ -1509,17 +1446,6 @@ def test_value_counts_series(self):
+         )
+         tm.assert_series_equal(result, expected)
+ 
+-    def test_value_counts_bool_int_distinguished(self):
+-        # GH#62888
+-        ser = Series([0, False, 0, True, 1, False], dtype=object)
+-        result = ser.value_counts()
+-        expected = Series(
+-            [2, 2, 1, 1],
+-            index=Index([0, False, True, 1], dtype=object),
+-            name="count",
+-        )
+-        tm.assert_series_equal(result, expected)
+-
+     def test_value_counts_stability(self):
+         # GH 63155
+         arr = np.random.default_rng(2).integers(0, 32, 64)
+@@ -1535,18 +1461,6 @@ def test_value_counts_stability(self):
+ 
+ 
+ class TestDuplicated:
+-    def test_duplicated_bool_int_distinguished(self):
+-        # GH#62888
+-        keys = np.array([0, False, 1, True, 0, False], dtype=object)
+-
+-        result = algos.duplicated(keys)
+-        expected = np.array([False, False, False, False, True, True])
+-        tm.assert_numpy_array_equal(result, expected)
+-
+-        result = algos.duplicated(keys, keep="last")
+-        expected = np.array([True, True, False, False, False, False])
+-        tm.assert_numpy_array_equal(result, expected)
+-
+     def test_duplicated_with_nas(self):
+         keys = np.array([0, 1, np.nan, 0, 2, np.nan], dtype=object)
+ 

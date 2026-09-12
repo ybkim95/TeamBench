@@ -1,0 +1,13 @@
+task_id: GH42_pydantic_12879
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Allow dynamic models created with `create_model()` to be used as annotations in the Mypy plugin"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pydantic/pydantic/pull/12879"
+source_issue: "https://github.com/pydantic/pydantic/issues/12031"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

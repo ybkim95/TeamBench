@@ -1,0 +1,57 @@
+{
+  "repo": "urllib3/urllib3",
+  "pr_number": 3752,
+  "pr_url": "https://github.com/urllib3/urllib3/pull/3752",
+  "issue_number": null,
+  "base_sha": "8c480bf87bcefd321b3a1ae47f04e908b6b2ed7b",
+  "head_sha": "1f31fed238c3d9121e4363c9e4084cb60b164821",
+  "additions": 16,
+  "deletions": 5,
+  "changed_files": [
+    "changelog/3752.bugfix.rst",
+    "src/urllib3/contrib/emscripten/__init__.py",
+    "src/urllib3/contrib/emscripten/connection.py",
+    "test/contrib/emscripten/test_emscripten.py"
+  ],
+  "test_files": [
+    "test/contrib/emscripten/test_emscripten.py"
+  ],
+  "source_files": [
+    "src/urllib3/contrib/emscripten/__init__.py",
+    "src/urllib3/contrib/emscripten/connection.py"
+  ],
+  "parameterization": {
+    "repo": "urllib3/urllib3",
+    "repo_short": "urllib3",
+    "parameterized_identifiers": [
+      "assignment",
+      "conn",
+      "connection",
+      "connection_cls",
+      "data",
+      "decode",
+      "getresponse",
+      "host",
+      "http_host",
+      "https"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:28:46Z"
+}

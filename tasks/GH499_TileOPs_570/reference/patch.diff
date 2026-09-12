@@ -1,0 +1,169 @@
+diff --git a/.foundry/mold/op-readiness-checklist.md b/.foundry/mold/op-readiness-checklist.md
+index 291a39fb5..bfb8b574b 100644
+--- a/.foundry/mold/op-readiness-checklist.md
++++ b/.foundry/mold/op-readiness-checklist.md
+@@ -6,6 +6,7 @@
+ 
+ - [ ] [REQ] `Op.forward` validates input shape/numel before kernel launch
+ - [ ] [REQ] `Kernel.__init__` validates dtype against `SUPPORTED_DTYPES`, raises `ValueError` (template kernels inherit; independent kernels add explicitly)
++- [ ] [REQ] User-provided scalar params are validated at the Op/API boundary against the effective kernel dtype before codegen; do not rely on TIR/lowering failures or kernel-local hotfixes to reject invalid values
+ - [ ] [REQ] No hardcoded narrow-type constants (`T.cast(1.0, "float16")`) — use `x.dtype` or wide intermediate
+ - [ ] [REQ] fp16/bf16 math that can overflow (cubic, div, exp) promoted to fp32
+ - [ ] [REQ] Runtime validation uses `ValueError`/`TypeError`, never `assert`
+diff --git a/docs/DEVELOPMENT.md b/docs/DEVELOPMENT.md
+index 9538479cd..a5064b8d0 100644
+--- a/docs/DEVELOPMENT.md
++++ b/docs/DEVELOPMENT.md
+@@ -39,6 +39,7 @@ Developing a new operator involves a bottom-up approach, moving from Kernel impl
+   - **Docstrings**: Google Style (Args, Returns, Example).
+   - **Unit Test**: Compare output against a pure PyTorch reference implementation (required).
+   - **Dtype Contract**: Explicitly define supported input dtypes, output dtype, and rejected dtypes.
++  - **Parameter Contract**: Validate user-provided scalar parameters at the Op/API boundary against the effective kernel dtype. Invalid values must fail with a user-facing `ValueError` before any TIR/codegen step.
+   - **Benchmark**: Measure Latency, TFLOPS (required) and DRAM Bandwidth (required).
+ - **Standards**:
+   - Use `torch.testing.assert_close` for floating-point verification.
+@@ -48,6 +49,7 @@ Developing a new operator involves a bottom-up approach, moving from Kernel impl
+   - Tests must assert the output dtype when it differs from the input dtype.
+   - GPU-dependent unit tests must be run on a real machine with host-visible CUDA devices. Do not treat sandbox-only results as final correctness evidence.
+   - Benchmark results must be reproducible.
++  - Do not fix interface-contract bugs with kernel-local lowering workarounds. If a failure is caused by invalid user parameters, fix the validation boundary first and only touch kernels when the semantics are intentionally legal and documented.
+ - **Definition of Done**: The op is verified in unit tests, and benchmarks run correctly.
+ 
+ ### Step 3: Benchmark Results
+diff --git a/tests/test_elementwise_independent_fp8.py b/tests/test_elementwise_independent_fp8.py
+index 2c82a6d93..83026dabd 100644
+--- a/tests/test_elementwise_independent_fp8.py
++++ b/tests/test_elementwise_independent_fp8.py
+@@ -256,25 +256,38 @@ def test_elu_e5m2_output_dtype():
+ 
+ @pytest.mark.smoke
+ def test_masked_fill_e5m2_overflow_fill_value():
+-    """MaskedFill e5m2 with overflow fill_value preserves Inf via non-saturating cast."""
++    """MaskedFill rejects fill_value that exceeds effective kernel dtype range."""
+     from tileops.ops.elementwise import MaskedFillOp
+ 
+     n = 1024
+     dtype = torch.float8_e5m2
+-    fill_value = 1e5  # exceeds e5m2 max finite (57344.0), should produce Inf
+-    x_fp16 = torch.randn(n, dtype=torch.float16, device="cuda") * 0.5
+-    x = x_fp16.to(dtype)
+-    mask = torch.ones(n, device="cuda", dtype=torch.bool)  # fill everything
+-    op = MaskedFillOp(N_total=n, dtype=dtype, fill_value=fill_value)
+-    out = op(x, mask)
+-    assert out.dtype == dtype, f"Expected {dtype}, got {out.dtype}"
+-    # e5m2 supports Inf: fill_value > max_finite should produce Inf via
+-    # the Op-layer non-saturating PyTorch cast
+-    out_fp32 = out.to(torch.float32)
+-    ref = torch.tensor(fill_value, dtype=torch.float16).to(dtype).to(torch.float32)
+-    assert torch.all(out_fp32 == ref), (
+-        f"Expected all elements to be {ref.item()}, got {out_fp32.unique().tolist()}"
+-    )
++    fill_value = 1e5
++    with pytest.raises(ValueError, match="fill_value=.*not representable"):
++        MaskedFillOp(N_total=n, dtype=dtype, fill_value=fill_value)
++
++
++@pytest.mark.smoke
++def test_nan_to_num_e5m2_overflow_scalar_params_rejected():
++    """NanToNum rejects replacement values that exceed effective kernel dtype range."""
++    from tileops.ops.elementwise import NanToNumOp
++
++    n = 1024
++    dtype = torch.float8_e5m2
++    with pytest.raises(ValueError, match="posinf_val=.*not representable"):
++        NanToNumOp(N_total=n, dtype=dtype, nan_val=0.0, posinf_val=1e5, neginf_val=-1.0)
++    with pytest.raises(ValueError, match="neginf_val=.*not representable"):
++        NanToNumOp(N_total=n, dtype=dtype, nan_val=0.0, posinf_val=1.0, neginf_val=-1e5)
++
++
++@pytest.mark.smoke
++def test_leaky_relu_e5m2_overflow_negative_slope_rejected():
++    """LeakyReLU rejects negative_slope that exceeds effective kernel dtype range."""
++    from tileops.ops.elementwise import LeakyReluOp
++
++    n = 1024
++    dtype = torch.float8_e5m2
++    with pytest.raises(ValueError, match="negative_slope=.*not representable"):
++        LeakyReluOp(N_total=n, dtype=dtype, negative_slope=1e5)
+ 
+ 
+ # ---------------------------------------------------------------------------
+diff --git a/tileops/ops/elementwise.py b/tileops/ops/elementwise.py
+index 33c24d987..c259dbe5f 100644
+--- a/tileops/ops/elementwise.py
++++ b/tileops/ops/elementwise.py
+@@ -15,6 +15,7 @@
+ - coalesce_broadcast_dims: reduces N-dim broadcast to minimal effective dims
+ """
+ 
++import math
+ import weakref
+ from math import prod
+ from typing import Dict, List, Optional
+@@ -105,6 +106,40 @@
+ 
+ _OP_REGISTRY: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
+ 
++_FP8_NONSAT_OUTPUT_DTYPES = {
++    torch.float8_e5m2: torch.float16,
++}
++
++
++def _effective_scalar_kernel_dtype(dtype: torch.dtype) -> torch.dtype:
++    """Return the dtype used when scalar literals are materialized in kernels."""
++    return _FP8_NONSAT_OUTPUT_DTYPES.get(dtype, dtype)
++
++
++def _validate_scalar_param_repr(
++    param_name: str, value: float, dtype: torch.dtype, op_name: str,
++) -> None:
++    """Reject scalar params that cannot be represented in the kernel dtype."""
++    if not isinstance(value, (int, float)):
++        raise TypeError(f"{op_name} expected scalar {param_name} to be int/float, got {type(value)}")
++
++    kernel_dtype = _effective_scalar_kernel_dtype(dtype)
++    finfo = torch.finfo(kernel_dtype)
++    value_f64 = float(value)
++    if math.isnan(value_f64):
++        return
++    if math.isinf(value_f64):
++        raise ValueError(
++            f"{op_name} received {param_name}={value!r}, but {param_name} must be finite and "
++            f"representable in effective kernel dtype {kernel_dtype}"
++        )
++    if not (finfo.min <= value_f64 <= finfo.max):
++        raise ValueError(
++            f"{op_name} received {param_name}={value!r}, which is not representable in "
++            f"effective kernel dtype {kernel_dtype} (valid finite range: "
++            f"[{finfo.min}, {finfo.max}])"
++        )
++
+ 
+ def _register_unary_custom_op(op_cls, output_dtype_override=None):
+     """Register a unary elementwise op for torch.compile.
+@@ -1242,6 +1277,7 @@ class LeakyReluOp(Op):
+     _wrapped = None
+ 
+     def __init__(self, N_total: int, dtype: torch.dtype, negative_slope: float = 0.01):
++        _validate_scalar_param_repr("negative_slope", negative_slope, dtype, self._op_name)
+         self.N_total = N_total
+         self.dtype = dtype
+         self.negative_slope = negative_slope
+@@ -1545,6 +1581,7 @@ class MaskedFillOp(Op):
+     _wrapped = None
+ 
+     def __init__(self, N_total: int, dtype: torch.dtype, fill_value: float):
++        _validate_scalar_param_repr("fill_value", fill_value, dtype, self._op_name)
+         self.N_total = N_total
+         self.dtype = dtype
+         self.fill_value = fill_value
+@@ -1594,6 +1631,9 @@ class NanToNumOp(Op):
+ 
+     def __init__(self, N_total: int, dtype: torch.dtype,
+                  nan_val: float = 0.0, posinf_val: float = 1e4, neginf_val: float = -1e4):
++        _validate_scalar_param_repr("nan_val", nan_val, dtype, self._op_name)
++        _validate_scalar_param_repr("posinf_val", posinf_val, dtype, self._op_name)
++        _validate_scalar_param_repr("neginf_val", neginf_val, dtype, self._op_name)
+         self.N_total = N_total
+         self.dtype = dtype
+         self.nan_val = nan_val

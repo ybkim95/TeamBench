@@ -1,0 +1,52 @@
+{
+  "repo": "redis/redis-py",
+  "pr_number": 3972,
+  "pr_url": "https://github.com/redis/redis-py/pull/3972",
+  "issue_number": null,
+  "base_sha": "ded7f8d0202f8ddd162f9fcadf3b8af2877dfc9f",
+  "head_sha": "0329e8693718030bcd87ab12528cd110519d3a06",
+  "additions": 7,
+  "deletions": 8,
+  "changed_files": [
+    "redis/_parsers/resp3.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "redis/_parsers/resp3.py"
+  ],
+  "parameterization": {
+    "repo": "redis/redis-py",
+    "repo_short": "redis-py",
+    "parameterized_identifiers": [
+      "above",
+      "after",
+      "already",
+      "another",
+      "been",
+      "check",
+      "closed",
+      "connection",
+      "disable_decoding",
+      "during"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:21:12Z"
+}

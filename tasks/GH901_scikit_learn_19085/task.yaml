@@ -1,0 +1,13 @@
+task_id: GH901_scikit_learn_19085
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "FIX Fix recall in multilabel classification when true labels are all negative"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scikit-learn/scikit-learn/pull/19085"
+source_issue: "https://github.com/scikit-learn/scikit-learn/issues/8245"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

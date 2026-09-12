@@ -1,0 +1,53 @@
+{
+  "repo": "mitmproxy/mitmproxy",
+  "pr_number": 8055,
+  "pr_url": "https://github.com/mitmproxy/mitmproxy/pull/8055",
+  "issue_number": null,
+  "base_sha": "edc0e11b8fa5fb8f6a868733225d259f32405ff3",
+  "head_sha": "8f1b2e5fde6e3e032d5972939c312f1b8c341806",
+  "additions": 11,
+  "deletions": 4,
+  "changed_files": [
+    "CHANGELOG.md",
+    "mitmproxy/net/encoding.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "mitmproxy/net/encoding.py"
+  ],
+  "parameterization": {
+    "repo": "mitmproxy/mitmproxy",
+    "repo_short": "mitmproxy",
+    "parameterized_identifiers": [
+      "adding",
+      "addon",
+      "algorithms",
+      "always",
+      "assigning",
+      "blank",
+      "brotli",
+      "bytes",
+      "checksum",
+      "comments"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:07:53Z"
+}

@@ -1,0 +1,15 @@
+{
+ "task": "GH39_jinja_1762",
+ "patch": "tasks/GH39_jinja_1762/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "pallets/jinja",
+ "pr_number": 1762,
+ "base_sha": "7a41ddb915a540c7a35c6cf823a8b50a2553e46b",
+ "head_sha": "d05bd3858c3f4990e91201dae058147caf317462",
+ "bytes": 1729,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

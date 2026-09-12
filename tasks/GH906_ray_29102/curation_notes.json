@@ -1,0 +1,60 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 29102,
+  "pr_url": "https://github.com/ray-project/ray/pull/29102",
+  "issue_number": 1234,
+  "base_sha": "08d061a29718039166578f28a4412e08eb53e58e",
+  "head_sha": "7b0570fdcf0b86b061de48c82d1af8b6b6b346c2",
+  "additions": 271,
+  "deletions": 57,
+  "changed_files": [
+    "python/ray/tune/examples/pb2_example.py",
+    "python/ray/tune/examples/pbt_function.py",
+    "python/ray/tune/schedulers/pb2.py",
+    "python/ray/tune/schedulers/pbt.py",
+    "python/ray/tune/tests/test_trial_scheduler.py",
+    "python/ray/tune/tests/test_trial_scheduler_pbt.py"
+  ],
+  "test_files": [
+    "python/ray/tune/tests/test_trial_scheduler.py",
+    "python/ray/tune/tests/test_trial_scheduler_pbt.py"
+  ],
+  "source_files": [
+    "python/ray/tune/examples/pb2_example.py",
+    "python/ray/tune/examples/pbt_function.py",
+    "python/ray/tune/schedulers/pb2.py",
+    "python/ray/tune/schedulers/pbt.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "above",
+      "accuracy",
+      "after",
+      "algorithm",
+      "aligned",
+      "allow",
+      "applied",
+      "aren",
+      "argument",
+      "arrow"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:16Z"
+}

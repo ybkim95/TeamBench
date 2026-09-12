@@ -1,0 +1,13 @@
+task_id: GH1035_autogluon_5475
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[timeseries] fixes to Toto and add to smoke tests"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/autogluon/autogluon/pull/5475"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,74 @@
+diff --git a/narwhals/_pandas_like/series.py b/narwhals/_pandas_like/series.py
+index 303583a9d8..bd7990393e 100644
+--- a/narwhals/_pandas_like/series.py
++++ b/narwhals/_pandas_like/series.py
+@@ -19,6 +19,7 @@
+ from narwhals._pandas_like.utils import select_columns_by_name
+ from narwhals._pandas_like.utils import set_axis
+ from narwhals._pandas_like.utils import to_datetime
++from narwhals.dependencies import is_numpy_scalar
+ from narwhals.typing import CompliantSeries
+ from narwhals.utils import Implementation
+ from narwhals.utils import import_dtypes_module
+@@ -114,7 +115,7 @@ def __getitem__(self, idx: int) -> Any: ...
+     def __getitem__(self, idx: slice | Sequence[int]) -> Self: ...
+ 
+     def __getitem__(self, idx: int | slice | Sequence[int]) -> Any | Self:
+-        if isinstance(idx, int):
++        if isinstance(idx, int) or is_numpy_scalar(idx):
+             return self._native_series.iloc[idx]
+         return self._from_native_series(self._native_series.iloc[idx])
+ 
+diff --git a/narwhals/dependencies.py b/narwhals/dependencies.py
+index 61937f08dd..0c5d117200 100644
+--- a/narwhals/dependencies.py
++++ b/narwhals/dependencies.py
+@@ -223,6 +223,11 @@ def is_numpy_array(arr: Any) -> TypeGuard[np.ndarray]:
+     return (np := get_numpy()) is not None and isinstance(arr, np.ndarray)
+ 
+ 
++def is_numpy_scalar(scalar: Any) -> TypeGuard[np.generic]:
++    """Check whether `scalar` is a NumPy Scalar without importing NumPy."""
++    return (np := get_numpy()) is not None and np.isscalar(scalar)
++
++
+ def is_pandas_like_dataframe(df: Any) -> bool:
+     """Check whether `df` is a pandas-like DataFrame without doing any imports.
+ 
+diff --git a/narwhals/series.py b/narwhals/series.py
+index 2797ceafd7..2ef2efc79c 100644
+--- a/narwhals/series.py
++++ b/narwhals/series.py
+@@ -11,6 +11,7 @@
+ from typing import TypeVar
+ from typing import overload
+ 
++from narwhals.dependencies import is_numpy_scalar
+ from narwhals.dtypes import _validate_dtype
+ from narwhals.typing import IntoSeriesT
+ from narwhals.utils import _validate_rolling_arguments
+@@ -160,7 +161,9 @@ def __getitem__(self: Self, idx: int | slice | Sequence[int]) -> Any | Self:
+               ]
+             ]
+         """
+-        if isinstance(idx, int):
++        if isinstance(idx, int) or (
++            is_numpy_scalar(idx) and idx.dtype.kind in ("i", "u")
++        ):
+             return self._compliant_series[idx]
+         return self._from_compliant_series(self._compliant_series[idx])
+ 
+diff --git a/tests/series_only/slice_test.py b/tests/series_only/slice_test.py
+index 1eb5e0ba5d..c4f8dfbe28 100644
+--- a/tests/series_only/slice_test.py
++++ b/tests/series_only/slice_test.py
+@@ -39,3 +39,9 @@ def test_slice(constructor_eager: ConstructorEager) -> None:
+ def test_getitem_arrow_scalar() -> None:
+     result = nw.from_native(pa.chunked_array([[1]]), series_only=True)[0]
+     assert isinstance(result, int)
++
++
++def test_index(constructor_eager: ConstructorEager) -> None:
++    df = constructor_eager({"a": [0, 1, 2]})
++    snw = nw.from_native(df, eager_only=True)["a"]
++    assert snw[snw[0]] == 0

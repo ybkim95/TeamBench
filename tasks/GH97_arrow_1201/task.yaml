@@ -1,0 +1,13 @@
+task_id: GH97_arrow_1201
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Add FORMAT_RFC3339_STRICT."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/arrow-py/arrow/pull/1201"
+source_issue: "https://github.com/arrow-py/arrow/issues/1138"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

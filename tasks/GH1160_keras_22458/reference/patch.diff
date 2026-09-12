@@ -1,0 +1,21 @@
+diff --git a/keras/src/trainers/trainer_test.py b/keras/src/trainers/trainer_test.py
+index 1bed500221ba..08e7d66a2cb9 100644
+--- a/keras/src/trainers/trainer_test.py
++++ b/keras/src/trainers/trainer_test.py
+@@ -663,11 +663,11 @@ def test_fit_with_data_adapter(
+         self, dataset_type, dataset_kwargs={}, fit_kwargs={}
+     ):
+         jit_compile = True
+-        if (
+-            dataset_kwargs.get("use_multiprocessing", False)
+-            and backend.backend() == "jax"
+-        ):
+-            pytest.skip("Multiprocessing not supported with JAX backend")
++        if dataset_kwargs.get("use_multiprocessing", False):
++            if backend.backend() == "jax":
++                pytest.skip("Multiprocessing not supported with JAX backend")
++            elif testing.tensorflow_uses_gpu():
++                pytest.skip("Multiprocessing crashes on Tensorflow with GPU")
+         if dataset_type == "grain_datast" and backend.backend() == "torch":
+             # Grain datasets are not supported with torch + jit_compile.
+             jit_compile = False

@@ -1,0 +1,54 @@
+{
+  "repo": "autogluon/autogluon",
+  "pr_number": 4899,
+  "pr_url": "https://github.com/autogluon/autogluon/pull/4899",
+  "issue_number": null,
+  "base_sha": "09b4ae41ce7e6a15c1456a661f565e4d4b8f37c9",
+  "head_sha": "82059cf292098999fb2c618debf0263e111118d0",
+  "additions": 31,
+  "deletions": 16,
+  "changed_files": [
+    "timeseries/src/autogluon/timeseries/models/gluonts/torch/models.py",
+    "timeseries/tests/unittests/models/test_gluonts.py"
+  ],
+  "test_files": [
+    "timeseries/tests/unittests/models/test_gluonts.py"
+  ],
+  "source_files": [
+    "timeseries/src/autogluon/timeseries/models/gluonts/torch/models.py"
+  ],
+  "parameterization": {
+    "repo": "autogluon/autogluon",
+    "repo_short": "autogluon",
+    "parameterized_identifiers": [
+      "absolute",
+      "applied",
+      "attention",
+      "autogluon",
+      "avoid",
+      "batch",
+      "batch_normalization",
+      "bugs",
+      "cardinality",
+      "categorical"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:07:31Z"
+}

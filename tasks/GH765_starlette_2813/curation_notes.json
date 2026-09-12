@@ -1,0 +1,55 @@
+{
+  "repo": "Kludex/starlette",
+  "pr_number": 2813,
+  "pr_url": "https://github.com/Kludex/starlette/pull/2813",
+  "issue_number": null,
+  "base_sha": "e16bacbc4fd061b336b2ca0b9286c06249abbd2f",
+  "head_sha": "249381846f5b6be202e935ae717647082cb21490",
+  "additions": 25,
+  "deletions": 37,
+  "changed_files": [
+    "pyproject.toml",
+    "starlette/middleware/base.py",
+    "starlette/testclient.py"
+  ],
+  "test_files": [
+    "starlette/testclient.py"
+  ],
+  "source_files": [
+    "starlette/middleware/base.py"
+  ],
+  "parameterization": {
+    "repo": "Kludex/starlette",
+    "repo_short": "starlette",
+    "parameterized_identifiers": [
+      "anyio",
+      "app_exc",
+      "appeared",
+      "been",
+      "before",
+      "body",
+      "body_stream",
+      "break",
+      "bumped",
+      "bytes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:37:57Z"
+}

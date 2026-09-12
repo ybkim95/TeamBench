@@ -1,0 +1,13 @@
+task_id: GH906_ray_29102
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[PB2] Fix broken `PB2._get_new_config` method override"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/ray-project/ray/pull/29102"
+source_issue: "https://github.com/ray-project/ray/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

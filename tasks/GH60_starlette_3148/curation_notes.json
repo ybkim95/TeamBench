@@ -1,0 +1,53 @@
+{
+  "repo": "Kludex/starlette",
+  "pr_number": 3148,
+  "pr_url": "https://github.com/Kludex/starlette/pull/3148",
+  "issue_number": 3146,
+  "base_sha": "41dfca28131c28020ceb78f2b9eb036627a022cd",
+  "head_sha": "923d016d6b8566295d349f1575b6c49a4d3358da",
+  "additions": 31,
+  "deletions": 22,
+  "changed_files": [
+    "docs/templates.md",
+    "starlette/templating.py",
+    "tests/test_templates.py"
+  ],
+  "test_files": [
+    "tests/test_templates.py"
+  ],
+  "source_files": [
+    "starlette/templating.py"
+  ],
+  "parameterization": {
+    "repo": "Kludex/starlette",
+    "repo_short": "starlette",
+    "parameterized_identifiers": [
+      "abstract",
+      "accepts",
+      "against",
+      "alert",
+      "allow",
+      "argument",
+      "arguments",
+      "auto_reload",
+      "autoescape",
+      "available"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:36:46Z"
+}

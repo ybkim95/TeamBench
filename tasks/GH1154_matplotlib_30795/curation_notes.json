@@ -1,0 +1,53 @@
+{
+  "repo": "matplotlib/matplotlib",
+  "pr_number": 30795,
+  "pr_url": "https://github.com/matplotlib/matplotlib/pull/30795",
+  "issue_number": 26092,
+  "base_sha": "67ebfc9324d54b3ea27228a111187e8d4a546037",
+  "head_sha": "cf9037e41e0f0ebdc899f411c70ae96891ce9115",
+  "additions": 15,
+  "deletions": 9,
+  "changed_files": [
+    "doc/api/next_api_changes/behavior/28437-CH.rst",
+    "lib/matplotlib/image.py",
+    "lib/matplotlib/tests/test_image.py"
+  ],
+  "test_files": [
+    "lib/matplotlib/tests/test_image.py"
+  ],
+  "source_files": [
+    "lib/matplotlib/image.py"
+  ],
+  "parameterization": {
+    "repo": "matplotlib/matplotlib",
+    "repo_short": "matplotlib",
+    "parameterized_identifiers": [
+      "alpha",
+      "already",
+      "apply",
+      "array",
+      "array_alpha",
+      "axis",
+      "axs_ref",
+      "axs_tst",
+      "both",
+      "broadcast"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:09:52Z"
+}

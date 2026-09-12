@@ -1,0 +1,55 @@
+{
+  "repo": "pallets/flask",
+  "pr_number": 5898,
+  "pr_url": "https://github.com/pallets/flask/pull/5898",
+  "issue_number": 5895,
+  "base_sha": "eb58d862cc4a8f31a369b6e9ad1724e9e642f13f",
+  "head_sha": "eca5fd1dfdc614c2df876cc32018a7d71f84ea82",
+  "additions": 14,
+  "deletions": 3,
+  "changed_files": [
+    "CHANGES.rst",
+    "docs/api.rst",
+    "src/flask/helpers.py",
+    "src/flask/sansio/app.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "src/flask/helpers.py",
+    "src/flask/sansio/app.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/flask",
+    "repo_short": "flask",
+    "parameterized_identifiers": [
+      "above",
+      "active",
+      "also",
+      "always",
+      "available",
+      "behavior",
+      "called",
+      "calls",
+      "client",
+      "code"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T22:38:17Z"
+}

@@ -1,0 +1,15 @@
+{
+ "task": "GH156_pyyaml_305",
+ "patch": "tasks/GH156_pyyaml_305/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "yaml/pyyaml",
+ "pr_number": 305,
+ "base_sha": "a5394c04a2ef67ee218b49d7d8319f9ed8bcbbe5",
+ "head_sha": "9f6581baa307f11d7ffff14aea16ef86f6af5702",
+ "bytes": 3660,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

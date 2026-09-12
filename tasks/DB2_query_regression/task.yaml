@@ -1,0 +1,14 @@
+task_id: DB2_query_regression
+domain: Database
+category: Database
+difficulty: hard
+languages: [sql]
+description: "Fix SQL query performance regressions after schema change: create indexes for 3-4 genuine bottlenecks on large tables, do NOT index 2 small tables where sequential scans are optimal (documented in DBA analysis)"
+tni_pattern: B
+parameterized: true
+seeds: [0, 1, 2]
+network: false
+time_limit_sec: 900
+tags: [sql, postgresql, indexes, performance, query-optimization, database]
+workspace_file_count: 4
+lines_changed_expected: 4

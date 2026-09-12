@@ -1,0 +1,51 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 31049,
+  "pr_url": "https://github.com/numpy/numpy/pull/31049",
+  "issue_number": 30816,
+  "base_sha": "26b15074660971a2540fdd12e33af300b8ab9e08",
+  "head_sha": "03cc4a6e4bc0d4004e31d21dc6c3ba3d919da39f",
+  "additions": 11,
+  "deletions": 3,
+  "changed_files": [
+    "numpy/linalg/tests/test_regression.py",
+    "requirements/ci32_requirements.txt",
+    "requirements/ci_requirements.txt"
+  ],
+  "test_files": [
+    "numpy/linalg/tests/test_regression.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "arange",
+      "array",
+      "assert_",
+      "assert_almost_equal",
+      "assert_array_equal",
+      "assert_array_less",
+      "ci32_requirements",
+      "ci_requirements",
+      "flip",
+      "float64"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:51:47Z"
+}

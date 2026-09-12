@@ -2,11 +2,6 @@
 
         Fix the bug described by the Planner's guidance in the workspace.
 
-        ## Files That May Need Changes
-
-        - `great_expectations/data_context/data_context/cloud_data_context.py`
-- `great_expectations/data_context/store/checkpoint_store.py`
-
         ## Verification
 
         Run the test suite to confirm your fix:

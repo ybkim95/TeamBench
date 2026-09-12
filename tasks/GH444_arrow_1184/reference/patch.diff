@@ -1,0 +1,41 @@
+diff --git a/arrow/locales.py b/arrow/locales.py
+index cd00b035..d29d9f45 100644
+--- a/arrow/locales.py
++++ b/arrow/locales.py
+@@ -654,7 +654,7 @@ class FrenchCanadianLocale(FrenchBaseLocale, Locale):
+ class GreekLocale(Locale):
+     names = ["el", "el-gr"]
+ 
+-    past = "{0} πριν"
++    past = "πριν από {0}"
+     future = "σε {0}"
+     and_word = "και"
+ 
+@@ -697,7 +697,7 @@ class GreekLocale(Locale):
+         "Φεβ",
+         "Μαρ",
+         "Απρ",
+-        "Μαϊ",
++        "Μαΐ",
+         "Ιον",
+         "Ιολ",
+         "Αυγ",
+diff --git a/tests/test_locales.py b/tests/test_locales.py
+index cd14274e..3e0035b0 100644
+--- a/tests/test_locales.py
++++ b/tests/test_locales.py
+@@ -3178,3 +3178,14 @@ def test_plurals_mk(self):
+         assert self.locale._format_timeframe("months", 11) == "11 oy"
+         assert self.locale._format_timeframe("year", 1) == "bir yil"
+         assert self.locale._format_timeframe("years", 12) == "12 yil"
++
++
++@pytest.mark.usefixtures("lang_locale")
++class TestGreekLocale:
++    def test_format_relative_future(self):
++        result = self.locale._format_relative("μία ώρα", "ώρα", -1)
++
++        assert result == "πριν από μία ώρα"  # an hour ago
++
++    def test_month_abbreviation(self):
++        assert self.locale.month_abbreviations[5] == "Μαΐ"

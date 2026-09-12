@@ -1,0 +1,53 @@
+{
+  "repo": "alteryx/featuretools",
+  "pr_number": 2052,
+  "pr_url": "https://github.com/alteryx/featuretools/pull/2052",
+  "issue_number": null,
+  "base_sha": "6cd746905f55340b35540830360037fc37812523",
+  "head_sha": "746aa07c2c9b72a33c92c9edb67d395d7fc70dfb",
+  "additions": 7,
+  "deletions": 2,
+  "changed_files": [
+    ".github/workflows/unit_tests_with_woodwork_main_branch.yml",
+    "docs/source/release_notes.rst",
+    "featuretools/tests/entityset_tests/test_es.py"
+  ],
+  "test_files": [
+    "featuretools/tests/entityset_tests/test_es.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "alteryx/featuretools",
+    "repo_short": "featuretools",
+    "parameterized_identifiers": [
+      "alteryx",
+      "archive",
+      "code",
+      "column",
+      "coming",
+      "contain",
+      "contributing",
+      "coverage",
+      "dataframe_type",
+      "datetime"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:24Z"
+}

@@ -1,0 +1,53 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 21395,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/21395",
+  "issue_number": 21365,
+  "base_sha": "ad7a9582378bacdd8c451d9a555974561f5865bd",
+  "head_sha": "e1a5262e22e98c9f37f8f1059361caff4e027535",
+  "additions": 39,
+  "deletions": 2,
+  "changed_files": [
+    "src/lightning/pytorch/CHANGELOG.md",
+    "src/lightning/pytorch/profilers/profiler.py",
+    "tests/tests_pytorch/profilers/test_profiler.py"
+  ],
+  "test_files": [
+    "tests/tests_pytorch/profilers/test_profiler.py"
+  ],
+  "source_files": [
+    "src/lightning/pytorch/profilers/profiler.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "abstractmethod",
+      "across",
+      "action",
+      "action_name",
+      "actions",
+      "advanced_profiler",
+      "after",
+      "against",
+      "append",
+      "avoid"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:57:46Z"
+}

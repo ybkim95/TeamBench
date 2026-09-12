@@ -1,0 +1,13 @@
+task_id: GH874_great_expectati_4042
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUGFIX] Fix s3 path suffix bug on windows"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/great-expectations/great_expectations/pull/4042"
+source_issue: "https://github.com/great-expectations/great_expectations/issues/4022"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

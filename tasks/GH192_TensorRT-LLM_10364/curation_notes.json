@@ -1,0 +1,55 @@
+{
+  "repo": "NVIDIA/TensorRT-LLM",
+  "pr_number": 10364,
+  "pr_url": "https://github.com/NVIDIA/TensorRT-LLM/pull/10364",
+  "issue_number": 10362,
+  "base_sha": "45d7022cc33903509fd8045bbc577d77dd1d3e2f",
+  "head_sha": "83ffeee11ad53fb403d367767cbc904135380faf",
+  "additions": 20,
+  "deletions": 13,
+  "changed_files": [
+    "jenkins/L0_MergeRequest.groovy",
+    "tests/integration/defs/accuracy/test_llm_api_autodeploy.py",
+    "tests/integration/test_lists/test-db/l0_b200.yml",
+    "tests/integration/test_lists/test-db/l0_dgx_b200.yml",
+    "tests/integration/test_lists/test-db/l0_h100.yml",
+    "tests/unittest/_torch/auto_deploy/unit/multigpu/transformations/library/test_tp_sharding.py"
+  ],
+  "test_files": [
+    "tests/integration/defs/accuracy/test_llm_api_autodeploy.py",
+    "tests/unittest/_torch/auto_deploy/unit/multigpu/transformations/library/test_tp_sharding.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "NVIDIA/TensorRT-LLM",
+    "repo_short": "TensorRT-LLM",
+    "parameterized_identifiers": [
+      "a_log",
+      "accuracy",
+      "append",
+      "auto_deploy",
+      "autodeploy",
+      "backend",
+      "beam_width",
+      "benchmarks",
+      "cache",
+      "common"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:37:12Z"
+}

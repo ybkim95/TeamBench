@@ -1,7 +1,7 @@
 # GH128_mitmproxy_8046: Fix modify_body crash when replacement contains backslash sequences — Full Specification (Planner Only)
 
 ## Source
-- PR: https://github.com/mitmproxy/mitmproxy/pull/8046
+- PR: (withheld: the upstream fix is not part of the task)
 - Issue: https://github.com/mitmproxy/mitmproxy/issues/7579
 - Repo: https://github.com/mitmproxy/mitmproxy
 
@@ -65,18 +65,9 @@ Platform:  Linux-6.13.4-arch1-1-x86_64-with-glibc2.41
 
 ## Issue Discussion (Root Cause Analysis)
 
-### Comment 1 (@Penguin-Terminal):
+### Comment 1 ([user]):
 
 Unfortunately, the [mitmproxy pacman package](https://archlinux.org/packages/extra/any/mitmproxy/) is still on v11.1.0. I have not had the chance to test it on v11.1.3, however I didn't see any issues or pull requests related to this bug.
-
-## Files Changed in Fix
-
-- `CHANGELOG.md` (modified, +2/-0)
-- `mitmproxy/addons/modifybody.py` (modified, +5/-2)
-- `test/mitmproxy/addons/test_modifybody.py` (modified, +20/-0)
-
-## `mitmproxy/addons/modifybody.py`
-[Code changes omitted — Planner should analyze the issue and guide the Executor]
 
 ## Acceptance Criteria
 
@@ -86,6 +77,6 @@ Unfortunately, the [mitmproxy pacman package](https://archlinux.org/packages/ext
 
 ## Important Notes
 
-- Only modify the source files listed above (not test files)
+- Only modify source files, not test files
 - The test files already encode the correct expected behaviour
 - Run `pytest -x -q` to verify your fix

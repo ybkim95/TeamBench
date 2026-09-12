@@ -1,0 +1,13 @@
+task_id: GH43_celery_10155
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Improve on_after_finalize signal documentation"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/celery/celery/pull/10155"
+source_issue: "https://github.com/celery/celery/issues/7280"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

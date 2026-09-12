@@ -1,0 +1,62 @@
+{
+  "repo": "narwhals-dev/narwhals",
+  "pr_number": 2280,
+  "pr_url": "https://github.com/narwhals-dev/narwhals/pull/2280",
+  "issue_number": 2273,
+  "base_sha": "5c867632f7b8b1cd0ce29cb084ae5da500e7a604",
+  "head_sha": "e8f0e0369987569c18b5ffa1031fa24047447cb8",
+  "additions": 81,
+  "deletions": 35,
+  "changed_files": [
+    "narwhals/_arrow/series.py",
+    "narwhals/_arrow/utils.py",
+    "narwhals/_compliant/series.py",
+    "narwhals/_expression_parsing.py",
+    "narwhals/_pandas_like/series.py",
+    "narwhals/_pandas_like/utils.py",
+    "tests/expr_and_series/mode_test.py"
+  ],
+  "test_files": [
+    "tests/expr_and_series/mode_test.py"
+  ],
+  "source_files": [
+    "narwhals/_arrow/series.py",
+    "narwhals/_arrow/utils.py",
+    "narwhals/_compliant/series.py",
+    "narwhals/_expression_parsing.py",
+    "narwhals/_pandas_like/series.py",
+    "narwhals/_pandas_like/utils.py"
+  ],
+  "parameterization": {
+    "repo": "narwhals-dev/narwhals",
+    "repo_short": "narwhals",
+    "parameterized_identifiers": [
+      "actual_len",
+      "affect",
+      "alias",
+      "append",
+      "apply_n_ary_operation",
+      "applymarker",
+      "array",
+      "as_py",
+      "assert_equal_data",
+      "astype"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:23:32Z"
+}

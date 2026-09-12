@@ -1,0 +1,15 @@
+{
+ "task": "GH440_arrow_1228",
+ "patch": "tasks/GH440_arrow_1228/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "arrow-py/arrow",
+ "pr_number": 1228,
+ "base_sha": "c3bb589536b283e3e3886d1d6bc01a6374c8e656",
+ "head_sha": "adc0df10cc1a8dd334945bf829e879207c84b094",
+ "bytes": 3002,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

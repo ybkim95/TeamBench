@@ -1,0 +1,52 @@
+{
+  "repo": "ultralytics/ultralytics",
+  "pr_number": 24022,
+  "pr_url": "https://github.com/ultralytics/ultralytics/pull/24022",
+  "issue_number": null,
+  "base_sha": "f256d8db18b4b450665b549eff15f31e4549a078",
+  "head_sha": "f066f0ab729429d381cb03cf6719e6bda178334f",
+  "additions": 13,
+  "deletions": 17,
+  "changed_files": [
+    "docs/en/guides/coco-json-training.md",
+    "tests/test_python.py"
+  ],
+  "test_files": [
+    "tests/test_python.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "ultralytics/ultralytics",
+    "repo_short": "ultralytics",
+    "parameterized_identifiers": [
+      "additional",
+      "annotation",
+      "annotations",
+      "assets",
+      "batch",
+      "because",
+      "below",
+      "bicycle",
+      "categories",
+      "channels"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:07:10Z"
+}

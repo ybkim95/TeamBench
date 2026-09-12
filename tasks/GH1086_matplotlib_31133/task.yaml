@@ -1,0 +1,13 @@
+task_id: GH1086_matplotlib_31133
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: resolve FigureCanvasTkAgg clipping on Windows HiDPI"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/31133"
+source_issue: "https://github.com/matplotlib/matplotlib/issues/31126"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

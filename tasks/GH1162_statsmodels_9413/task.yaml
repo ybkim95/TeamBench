@@ -1,0 +1,13 @@
+task_id: GH1162_statsmodels_9413
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Ensure VAR can forecast with 0 lags"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/statsmodels/statsmodels/pull/9413"
+source_issue: "https://github.com/statsmodels/statsmodels/issues/9412"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

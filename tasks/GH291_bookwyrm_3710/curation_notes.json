@@ -1,0 +1,56 @@
+{
+  "repo": "bookwyrm-social/bookwyrm",
+  "pr_number": 3710,
+  "pr_url": "https://github.com/bookwyrm-social/bookwyrm/pull/3710",
+  "issue_number": 1234,
+  "base_sha": "ba46e53b750af6a5c276959cd0aad612fe615817",
+  "head_sha": "f136dea188b4060e02a96ec6782b959276fd833f",
+  "additions": 82,
+  "deletions": 14,
+  "changed_files": [
+    "bookwyrm/management/commands/fix_isbn10_entries.py",
+    "bookwyrm/migrations/0219_datamigration_fix_isbn10_20251017_1810.py",
+    "bookwyrm/models/book.py",
+    "bookwyrm/tests/models/test_book_model.py"
+  ],
+  "test_files": [
+    "bookwyrm/tests/models/test_book_model.py"
+  ],
+  "source_files": [
+    "bookwyrm/management/commands/fix_isbn10_entries.py",
+    "bookwyrm/migrations/0219_datamigration_fix_isbn10_20251017_1810.py",
+    "bookwyrm/models/book.py"
+  ],
+  "parameterization": {
+    "repo": "bookwyrm-social/bookwyrm",
+    "repo_short": "bookwyrm",
+    "parameterized_identifiers": [
+      "annotate",
+      "apps",
+      "argument",
+      "base",
+      "bookwyrm",
+      "broadcast",
+      "calculate",
+      "case",
+      "characters",
+      "checkdigit"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:08:11Z"
+}

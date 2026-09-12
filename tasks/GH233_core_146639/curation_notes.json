@@ -1,0 +1,53 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 146639,
+  "pr_url": "https://github.com/home-assistant/core/pull/146639",
+  "issue_number": 110098,
+  "base_sha": "a656b6e26afe434d01d76663665ad64fb34e6f1a",
+  "head_sha": "4690b6f4b968e4fc06a09792c517cf1ae4020c6a",
+  "additions": 18,
+  "deletions": 4,
+  "changed_files": [
+    "homeassistant/components/traccar_server/coordinator.py",
+    "homeassistant/components/traccar_server/helpers.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "homeassistant/components/traccar_server/coordinator.py",
+    "homeassistant/components/traccar_server/helpers.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "annotations",
+      "attr",
+      "attributes",
+      "commit",
+      "data",
+      "device",
+      "device_id",
+      "devices",
+      "geofence",
+      "geofences"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T23:39:52Z"
+}

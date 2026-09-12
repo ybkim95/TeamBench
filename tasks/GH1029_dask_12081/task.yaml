@@ -1,0 +1,13 @@
+task_id: GH1029_dask_12081
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix mixed HLG/Expr handling in ``_ExprSequence._simplify_down``"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/dask/dask/pull/12081"
+source_issue: "https://github.com/dask/dask/issues/9117"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

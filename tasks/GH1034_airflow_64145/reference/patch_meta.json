@@ -1,0 +1,15 @@
+{
+ "task": "GH1034_airflow_64145",
+ "patch": "tasks/GH1034_airflow_64145/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "apache/airflow",
+ "pr_number": 64145,
+ "base_sha": "62cbf63c515950b6d72dac35476c48cf5dd7b970",
+ "head_sha": "52dacdd69516dfb86c7ecbb1f39393be158774dc",
+ "bytes": 6929,
+ "files_changed": 2,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

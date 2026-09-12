@@ -1,0 +1,55 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3128,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3128",
+  "issue_number": null,
+  "base_sha": "b8045e82bbdab8c9c846b6c28ac710ba560c0539",
+  "head_sha": "f9207a77ad5df1990eb061ae8233d1eba07bcb73",
+  "additions": 62,
+  "deletions": 17,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/werkzeug/http.py",
+    "tests/test_http.py"
+  ],
+  "test_files": [
+    "tests/test_http.py"
+  ],
+  "source_files": [
+    "src/werkzeug/http.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "abnf",
+      "according",
+      "allow_token",
+      "append",
+      "backslash",
+      "blah",
+      "block",
+      "bytes",
+      "char",
+      "character"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:25:19Z"
+}

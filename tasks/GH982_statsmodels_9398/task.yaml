@@ -1,0 +1,13 @@
+task_id: GH982_statsmodels_9398
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Ensure hessian is skipped"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/statsmodels/statsmodels/pull/9398"
+source_issue: "https://github.com/statsmodels/statsmodels/issues/9181"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

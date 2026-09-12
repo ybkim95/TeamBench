@@ -1,0 +1,13 @@
+task_id: GH1022_keras_20768
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix(ops): Fix issue with map_coordinates for uint8 dtype"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/keras-team/keras/pull/20768"
+source_issue: "https://github.com/keras-team/keras/issues/20608"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

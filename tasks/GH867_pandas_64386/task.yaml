@@ -1,0 +1,13 @@
+task_id: GH867_pandas_64386
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: fix sort_index AssertionError with RangeIndex and level parameter"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64386"
+source_issue: "https://github.com/pandas-dev/pandas/issues/64383"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH884_sktime_9243
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] Fix WindowSummarizer bfill across multiindex groups"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/9243"
+source_issue: "https://github.com/sktime/sktime/issues/8456"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

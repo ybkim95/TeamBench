@@ -1,0 +1,52 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9468,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9468",
+  "issue_number": 9302,
+  "base_sha": "831e26ca5dfb087658500f08236a30b99b3f4501",
+  "head_sha": "169052d5dcd979dea3701f4cd03c319017d7b913",
+  "additions": 48,
+  "deletions": 2,
+  "changed_files": [
+    "statsmodels/tsa/vector_ar/svar_model.py",
+    "statsmodels/tsa/vector_ar/tests/test_svar.py"
+  ],
+  "test_files": [
+    "statsmodels/tsa/vector_ar/tests/test_svar.py"
+  ],
+  "source_files": [
+    "statsmodels/tsa/vector_ar/svar_model.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "approx_fprime",
+      "approx_hess",
+      "asarray",
+      "assert_allclose",
+      "astype",
+      "atol",
+      "been",
+      "bfgs",
+      "change",
+      "checked"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:25Z"
+}

@@ -1,0 +1,35 @@
+diff --git a/darts/models/forecasting/catboost_model.py b/darts/models/forecasting/catboost_model.py
+--- a/darts/models/forecasting/catboost_model.py
++++ b/darts/models/forecasting/catboost_model.py
+@@ -374,6 +374,7 @@ def _add_val_set_to_kwargs(
+                     data=val_set[0],
+                     label=val_set[1],
+                     weight=val_weights[i] if val_weights is not None else None,
++                    cat_features=self._categorical_indices,
+                 )
+             )
+         kwargs[val_set_name] = val_pools
+
+diff --git a/darts/models/forecasting/regression_model.py b/darts/models/forecasting/regression_model.py
+--- a/darts/models/forecasting/regression_model.py
++++ b/darts/models/forecasting/regression_model.py
+@@ -677,6 +677,8 @@ def _create_lagged_data(
+         ):
+             sample_weights = sample_weights.ravel()
+ 
++        features, labels = self._format_samples(features, labels)
++
+         return features, labels, sample_weights
+ 
+     def _format_samples(
+@@ -733,9 +735,7 @@ def _fit_model(
+                     "`sample_weight` was ignored since underlying regression model's "
+                     "`fit()` method does not support it."
+                 )
+-        training_samples, training_labels = self._format_samples(
+-            training_samples, training_labels
+-        )
++
+         self.model.fit(
+             training_samples, training_labels, **sample_weight_kwargs, **kwargs
+         )

@@ -1,0 +1,124 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 7bb268f30d..6128ab8a90 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -24,6 +24,8 @@
+   ([#7944](https://github.com/mitmproxy/mitmproxy/pull/7944), @lups2000)
+ - Allow hiding the Quick Help UI in the mitmproxy console with the 'H' key.
+   ([#8095](https://github.com/mitmproxy/mitmproxy/pull/8095), @seroperson)
++- Removed several dead functions using [Skylos](https://github.com/duriantaco/skylos).
++  ([#8136](https://github.com/mitmproxy/mitmproxy/pull/8136), @duriantaco)
+ 
+ ## 24 November 2025: mitmproxy 12.2.1
+ 
+diff --git a/mitmproxy/tools/console/common.py b/mitmproxy/tools/console/common.py
+index 773d24d9d1..e28100b268 100644
+--- a/mitmproxy/tools/console/common.py
++++ b/mitmproxy/tools/console/common.py
+@@ -310,20 +310,6 @@ def colorize_req(s: str):
+     return attr
+ 
+ 
+-def colorize_url(url):
+-    parts = url.split("/", 3)
+-    if len(parts) < 4 or len(parts[1]) > 0 or parts[0][-1:] != ":":
+-        return [("error", len(url))]  # bad URL
+-    return (
+-        [
+-            (SCHEME_STYLES.get(parts[0], "scheme_other"), len(parts[0]) - 1),
+-            ("url_punctuation", 3),  # ://
+-        ]
+-        + colorize_host(parts[2])
+-        + colorize_req("/" + parts[3])
+-    )
+-
+-
+ def format_http_content_type(content_type: str) -> tuple[str, str]:
+     content_type = content_type.split(";")[0]
+     if content_type.endswith("/javascript"):
+diff --git a/mitmproxy/tools/console/consoleaddons.py b/mitmproxy/tools/console/consoleaddons.py
+index f7868e2bb3..0dc3722c20 100644
+--- a/mitmproxy/tools/console/consoleaddons.py
++++ b/mitmproxy/tools/console/consoleaddons.py
+@@ -34,12 +34,6 @@
+     "solarized_light",
+     "solarized_dark",
+ ]
+-view_orders = [
+-    "time",
+-    "method",
+-    "url",
+-    "size",
+-]
+ console_layouts = [
+     "single",
+     "vertical",
+diff --git a/mitmproxy/tools/console/flowview.py b/mitmproxy/tools/console/flowview.py
+index fda5b5a506..e575fb5ddb 100644
+--- a/mitmproxy/tools/console/flowview.py
++++ b/mitmproxy/tools/console/flowview.py
+@@ -21,10 +21,6 @@
+ from mitmproxy.utils import strutils
+ 
+ 
+-class SearchError(Exception):
+-    pass
+-
+-
+ class FlowViewHeader(urwid.WidgetWrap):
+     def __init__(
+         self,
+diff --git a/mitmproxy/tools/console/options.py b/mitmproxy/tools/console/options.py
+index 1e52cca258..73973783e2 100644
+--- a/mitmproxy/tools/console/options.py
++++ b/mitmproxy/tools/console/options.py
+@@ -24,11 +24,6 @@ def can_edit_inplace(opt):
+         return True
+ 
+ 
+-def fcol(s, width, attr):
+-    s = str(s)
+-    return ("fixed", width, urwid.Text((attr, s)))
+-
+-
+ class OptionItem(urwid.WidgetWrap):
+     def __init__(self, walker, opt, focused, namewidth, editing):
+         self.walker, self.opt, self.focused = walker, opt, focused
+diff --git a/mitmproxy/utils/bits.py b/mitmproxy/utils/bits.py
+deleted file mode 100644
+index 4aa49036fd..0000000000
+--- a/mitmproxy/utils/bits.py
++++ /dev/null
+@@ -1,13 +0,0 @@
+-def setbit(byte, offset, value):
+-    """
+-    Set a bit in a byte to 1 if value is truthy, 0 if not.
+-    """
+-    if value:
+-        return byte | (1 << offset)
+-    else:
+-        return byte & ~(1 << offset)
+-
+-
+-def getbit(byte, offset):
+-    mask = 1 << offset
+-    return bool(byte & mask)
+diff --git a/pyproject.toml b/pyproject.toml
+index 1717b861df..d57a305ed8 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -226,7 +226,6 @@ exclude = [
+   "mitmproxy/tools/web/app.py",
+   "mitmproxy/tools/web/master.py",
+   "mitmproxy/tools/web/webaddons.py",
+-  "mitmproxy/utils/bits.py",
+   "mitmproxy/utils/pyinstaller/*",
+   "mitmproxy/utils/vt_codes.py",
+ ]
+diff --git a/test/mitmproxy/utils/test_bits.py b/test/mitmproxy/utils/test_bits.py
+deleted file mode 100644
+index 777ab4dd18..0000000000
+--- a/test/mitmproxy/utils/test_bits.py
++++ /dev/null
+@@ -1 +0,0 @@
+-# TODO: write tests

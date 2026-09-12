@@ -1,0 +1,53 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 21108,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/21108",
+  "issue_number": 20605,
+  "base_sha": "a08b64eddae00186e83fc64bbcc4048f8695887f",
+  "head_sha": "fa311b4c19243284eda39553d2772609e7daec98",
+  "additions": 32,
+  "deletions": 2,
+  "changed_files": [
+    "src/lightning/pytorch/CHANGELOG.md",
+    "src/lightning/pytorch/callbacks/progress/rich_progress.py",
+    "tests/tests_pytorch/callbacks/progress/test_rich_progress_bar.py"
+  ],
+  "test_files": [
+    "tests/tests_pytorch/callbacks/progress/test_rich_progress_bar.py"
+  ],
+  "source_files": [
+    "src/lightning/pytorch/callbacks/progress/rich_progress.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "advance",
+      "based",
+      "batch_size",
+      "callbacks",
+      "checking",
+      "column",
+      "crash",
+      "crashing",
+      "dataloader",
+      "default_root_dir"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:46:55Z"
+}

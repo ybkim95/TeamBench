@@ -1,0 +1,54 @@
+diff --git a/changelog.d/1513.change.md b/changelog.d/1513.change.md
+new file mode 100644
+index 000000000..8cbc63c77
+--- /dev/null
++++ b/changelog.d/1513.change.md
+@@ -0,0 +1 @@
++The `attrs.validators.disabled()` contextmanager can now be nested.
+diff --git a/src/attr/validators.py b/src/attr/validators.py
+index 837e003b6..0b1a29443 100644
+--- a/src/attr/validators.py
++++ b/src/attr/validators.py
+@@ -79,12 +79,14 @@ def disabled():
+         This context manager is not thread-safe!
+ 
+     .. versionadded:: 21.3.0
++    .. versionchanged:: 26.1.0 The contextmanager is nestable.
+     """
++    prev = get_run_validators()
+     set_run_validators(False)
+     try:
+         yield
+     finally:
+-        set_run_validators(True)
++        set_run_validators(prev)
+ 
+ 
+ @attrs(repr=False, slots=True, unsafe_hash=True)
+diff --git a/tests/test_validators.py b/tests/test_validators.py
+index 9fd3f2dcb..5ad2308eb 100644
+--- a/tests/test_validators.py
++++ b/tests/test_validators.py
+@@ -97,6 +97,22 @@ def test_disabled_ctx_with_errors(self):
+ 
+         assert _config._run_validators is True
+ 
++    def test_disabled_ctx_nested(self):
++        """
++        Nested contextmanagers restore correct state.
++        """
++        assert _config._run_validators is True
++
++        with validator_module.disabled():
++            assert _config._run_validators is False
++
++            with validator_module.disabled():
++                assert _config._run_validators is False
++
++            assert _config._run_validators is False
++
++        assert _config._run_validators is True
++
+ 
+ class TestInstanceOf:
+     """

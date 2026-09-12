@@ -1,0 +1,13 @@
+task_id: GH485_bootrun-backend_111
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[FIX] completion_rate 100% 초과 방지 및 진행률 계산 개선"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/I5-Team/bootrun-backend/pull/111"
+source_issue: "https://github.com/I5-Team/bootrun-backend/issues/105"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

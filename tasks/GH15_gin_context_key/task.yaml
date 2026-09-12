@@ -1,0 +1,8 @@
+task_id: GH15_gin_context_key
+category: Real-World GitHub
+difficulty: easy
+languages: [go]
+description: "Context.Value() string key violates context.Context contract and collides with OpenTelemetry"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]

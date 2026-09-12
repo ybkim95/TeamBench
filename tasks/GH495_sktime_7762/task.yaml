@@ -1,0 +1,13 @@
+task_id: GH495_sktime_7762
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] conversion `Series`-`pd.DataFrame` to `Series`-`pd.Series` now retains original column name as attr name in `pd.Series`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/7762"
+source_issue: "https://github.com/sktime/sktime/issues/7763"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

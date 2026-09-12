@@ -1,0 +1,13 @@
+task_id: GH976_scikit_learn_16849
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG Fix instability issue of ARDRegression (with speedup)"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scikit-learn/scikit-learn/pull/16849"
+source_issue: "https://github.com/scikit-learn/scikit-learn/issues/15186"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

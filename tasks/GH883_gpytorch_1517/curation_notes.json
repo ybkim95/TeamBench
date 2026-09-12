@@ -1,0 +1,52 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 1517,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/1517",
+  "issue_number": 1515,
+  "base_sha": "b3e67814474fbda7fca28f7d9b3108f73f5d4885",
+  "head_sha": "cd418ddbabbc936b22c83221d2d7bfb67deedf98",
+  "additions": 36,
+  "deletions": 49,
+  "changed_files": [
+    "gpytorch/models/exact_prediction_strategies.py",
+    "test/examples/test_sgpr_regression.py"
+  ],
+  "test_files": [
+    "test/examples/test_sgpr_regression.py"
+  ],
+  "source_files": [
+    "gpytorch/models/exact_prediction_strategies.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "add_diag",
+      "backward",
+      "base_kernel",
+      "base_test_case",
+      "chol_factor",
+      "cholesky",
+      "computed",
+      "covar_cache",
+      "covar_module",
+      "covar_x"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:32Z"
+}

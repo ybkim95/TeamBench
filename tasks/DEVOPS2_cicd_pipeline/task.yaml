@@ -1,0 +1,14 @@
+task_id: DEVOPS2_cicd_pipeline
+domain: Pipeline/Integration
+category: Pipeline/Integration
+difficulty: hard
+languages: [yaml, python]
+description: "Fix GitHub Actions CI/CD pipeline: EOL runner image, missing secret env var, wrong artifact path, always() deploy conditional, shallow clone breaking versioning. Two flaky-test patterns (continue-on-error, long timeout) must be preserved."
+tni_pattern: B
+parameterized: true
+seeds: [0, 1, 2]
+network: false
+time_limit_sec: 900
+tags: [github-actions, ci-cd, yaml, devops, pipeline, flaky-tests]
+workspace_file_count: 3
+lines_changed_expected: 10

@@ -1,0 +1,61 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 848,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/848",
+  "issue_number": 1234,
+  "base_sha": "f50415305fd444bb6611589a297e4912b32ff18c",
+  "head_sha": "585479baed0a9793be46b884673f5122a9b323c1",
+  "additions": 142,
+  "deletions": 100,
+  "changed_files": [
+    ".github/workflows/python-package.yml",
+    "flaml/automl/automl.py",
+    "flaml/tune/searcher/blendsearch.py",
+    "test/automl/__init__.py",
+    "test/automl/test_multiclass.py",
+    "test/automl/test_python_log.py",
+    "test/automl/test_training_log.py"
+  ],
+  "test_files": [
+    "test/automl/__init__.py",
+    "test/automl/test_multiclass.py",
+    "test/automl/test_python_log.py",
+    "test/automl/test_training_log.py"
+  ],
+  "source_files": [
+    "flaml/automl/automl.py",
+    "flaml/tune/searcher/blendsearch.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "accuracy",
+      "actions",
+      "add_learner",
+      "analysis",
+      "append",
+      "append_log",
+      "as_frame",
+      "automl",
+      "automl_experiment",
+      "automl_settings"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:10Z"
+}

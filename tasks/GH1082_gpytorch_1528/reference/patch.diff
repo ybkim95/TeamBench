@@ -1,0 +1,110 @@
+diff --git a/gpytorch/kernels/inducing_point_kernel.py b/gpytorch/kernels/inducing_point_kernel.py
+index 7cc7a37d4..9862e8987 100644
+--- a/gpytorch/kernels/inducing_point_kernel.py
++++ b/gpytorch/kernels/inducing_point_kernel.py
+@@ -28,6 +28,8 @@ def __init__(self, base_kernel, inducing_points, likelihood, active_dims=None):
+     def _clear_cache(self):
+         if hasattr(self, "_cached_kernel_mat"):
+             del self._cached_kernel_mat
++        if hasattr(self, "_cached_kernel_inv_root"):
++            del self._cached_kernel_inv_root
+ 
+     @property
+     def _inducing_mat(self):
+diff --git a/gpytorch/models/exact_prediction_strategies.py b/gpytorch/models/exact_prediction_strategies.py
+index 771932fd2..c62c0ea8a 100644
+--- a/gpytorch/models/exact_prediction_strategies.py
++++ b/gpytorch/models/exact_prediction_strategies.py
+@@ -607,7 +607,7 @@ class SGPRPredictionStrategy(DefaultPredictionStrategy):
+     @property
+     @cached(name="covar_cache")
+     def covar_cache(self):
+-        # Here, the covar_cache is going to be the inverse of K_{XX} + \sigma^2 I
++        # Here, the covar_cache is going to be K_{UU}^{-1/2} K_{UX}( K_{XX} + \sigma^2 I )^{-1} K_{XU} K_{UU}^{-1/2}
+         # This is easily computed using Woodbury
+         # K_{XX} + \sigma^2 I = R R^T + \sigma^2 I
+         #                     = \sigma^{-2} ( I - \sigma^{-2} R (I + \sigma^{-2} R^T R)^{-1} R^T  )
+@@ -627,7 +627,8 @@ def covar_cache(self):
+ 
+         inverse = AddedDiagLazyTensor(inv_diag, MatmulLazyTensor(-woodbury_term, woodbury_term.transpose(-1, -2)))
+         # \sigma^{-2} ( I - \sigma^{-2} R (I + \sigma^{-2} R^T R)^{-1} R^T  )
+-        return inverse
++
++        return root.transpose(-1, -2) @ (inverse @ root)
+ 
+     def get_fantasy_strategy(self, inputs, targets, full_inputs, full_targets, full_output, **kwargs):
+         raise NotImplementedError(
+@@ -635,9 +636,24 @@ def get_fantasy_strategy(self, inputs, targets, full_inputs, full_targets, full_
+         )
+ 
+     def exact_prediction(self, joint_mean, joint_covar):
++        from ..kernels.inducing_point_kernel import InducingPointKernel
++
+         # Find the components of the distribution that contain test data
+         test_mean = joint_mean[..., self.num_train :]
+-        test_test_covar = joint_covar[..., self.num_train :, self.num_train :].evaluate_kernel()
++
++        # If we're in lazy evaluation mode, let's use the base kernel of the SGPR output to compute the prior covar
++        test_test_covar = joint_covar[..., self.num_train :, self.num_train :]
++        if isinstance(test_test_covar, LazyEvaluatedKernelTensor) and isinstance(
++            test_test_covar.kernel, InducingPointKernel
++        ):
++            test_test_covar = LazyEvaluatedKernelTensor(
++                test_test_covar.x1,
++                test_test_covar.x2,
++                test_test_covar.kernel.base_kernel,
++                test_test_covar.last_dim_is_batch,
++                **test_test_covar.params,
++            )
++
+         test_train_covar = joint_covar[..., self.num_train :, : self.num_train].evaluate_kernel()
+ 
+         return (
+@@ -646,7 +662,17 @@ def exact_prediction(self, joint_mean, joint_covar):
+         )
+ 
+     def exact_predictive_covar(self, test_test_covar, test_train_covar):
+-        train_train_precision = self.covar_cache
+-        test_train_covar = test_train_covar.evaluate()  # Evaluation is more efficient than lazy evaluation
+-        res = test_test_covar - (test_train_covar @ (train_train_precision @ test_train_covar.transpose(-1, -2)))
++        covar_cache = self.covar_cache
++        # covar_cache = K_{UU}^{-1/2} K_{UX}( K_{XX} + \sigma^2 I )^{-1} K_{XU} K_{UU}^{-1/2}
++
++        # Decompose test_train_covar = l, r
++        if not isinstance(test_train_covar, MatmulLazyTensor):
++            # We should not hit this point of the code - this is to catch potential bugs in GPyTorch
++            raise ValueError(
++                f"Expected SGPR output to be a MatmulLazyTensor. Got {test_train_covar.__class__.__name__} instead. "
++                "This is likely a bug in GPyTorch."
++            )
++        L = test_train_covar.left_lazy_tensor.evaluate()
++
++        res = test_test_covar - (L @ (covar_cache @ L.transpose(-1, -2)))
+         return res
+diff --git a/test/examples/test_sgpr_regression.py b/test/examples/test_sgpr_regression.py
+index 2a78a9194..2fb450ed8 100644
+--- a/test/examples/test_sgpr_regression.py
++++ b/test/examples/test_sgpr_regression.py
+@@ -124,6 +124,22 @@ def test_sgpr_mean_abs_error_cuda(self):
+             gp_model = GPRegressionModel(train_x, train_y, likelihood).cuda()
+             mll = gpytorch.mlls.ExactMarginalLogLikelihood(likelihood, gp_model)
+ 
++            # Test the model before optimization
++            gp_model.eval()
++            likelihood.eval()
++            test_preds = likelihood(gp_model(test_x)).mean
++            mean_abs_error = torch.mean(torch.abs(test_y - test_preds))
++            self.assertLess(mean_abs_error.squeeze().item(), 0.02)
++
++            # Test variances before optimization
++            test_vars = likelihood(gp_model(test_x)).variance
++            self.assertAllClose(test_vars, likelihood(gp_model(test_x)).covariance_matrix.diagonal(dim1=-1, dim2=-2))
++            self.assertGreater(test_vars.min().item() + 0.05, likelihood.noise.item())
++            self.assertLess(
++                test_vars.max().item() - 0.05,
++                likelihood.noise.item() + gp_model.covar_module.base_kernel.outputscale.item()
++            )
++
+             # Optimize the model
+             gp_model.train()
+             likelihood.train()

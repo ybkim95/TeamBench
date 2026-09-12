@@ -1,0 +1,15 @@
+{
+ "task": "GH1059_spaCy_13400",
+ "patch": "tasks/GH1059_spaCy_13400/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "explosion/spaCy",
+ "pr_number": 13400,
+ "base_sha": "21aea59001f4cf100a0c7df0c36aeddd796cee1f",
+ "head_sha": "98747de62bf7352ab1da824214c9b8612bdecc6b",
+ "bytes": 13799,
+ "files_changed": 3,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

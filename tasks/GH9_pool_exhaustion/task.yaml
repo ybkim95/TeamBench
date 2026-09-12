@@ -1,0 +1,12 @@
+task_id: GH9_pool_exhaustion
+domain: swe
+network: false
+time_limit_sec: 900
+seeds: [0, 1, 2]
+difficulty: hard
+languages: [python]
+tags: [github-issue, sqlalchemy, connection-pool, resource-leak, exception-handling]
+workspace_file_count: 3
+lines_changed_expected: 12
+parameterized: false
+source: "https://github.com/sqlalchemy/sqlalchemy/issues/5765"

@@ -1,0 +1,57 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64755,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64755",
+  "issue_number": 60677,
+  "base_sha": "eb5671454ebb33edb799915d85a45c19244fc690",
+  "head_sha": "94a2524ea321988c23c099c2717877e8362f3c83",
+  "additions": 97,
+  "deletions": 1,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/core/arrays/timedeltas.py",
+    "pandas/core/tools/datetimes.py",
+    "pandas/tests/tools/test_to_datetime.py",
+    "pandas/tests/tools/test_to_timedelta.py"
+  ],
+  "test_files": [
+    "pandas/tests/tools/test_to_datetime.py",
+    "pandas/tests/tools/test_to_timedelta.py"
+  ],
+  "source_files": [
+    "pandas/core/arrays/timedeltas.py",
+    "pandas/core/tools/datetimes.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "any_numeric_ea_dtype",
+      "array",
+      "assert_index_equal",
+      "astype",
+      "avoid",
+      "backed",
+      "because",
+      "bounds",
+      "cannot",
+      "cast"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:34Z"
+}

@@ -1,0 +1,169 @@
+diff --git a/tests/test_arguments.py b/tests/test_arguments.py
+index dba8fd198d..2ecf518af5 100644
+--- a/tests/test_arguments.py
++++ b/tests/test_arguments.py
+@@ -399,6 +399,17 @@ def cmd(a, b, c):
+     ],
+ )
+ def test_good_defaults_for_nargs(runner, argument_params, args, expected):
++    """Comprehensive check of default-value processing for arguments with
++    ``nargs``.
++
++    .. hint::
++        An option-specific equivalent is available in
++        ``test_options.py::test_good_defaults_for_multiple``.
++
++        A smoke test covering a single basic case is in
++        ``test_defaults.py::test_nargs_plus_multiple``.
++    """
++
+     @click.command()
+     @click.argument("a", type=int, **argument_params)
+     def cmd(a):
+diff --git a/tests/test_basic.py b/tests/test_basic.py
+index 125fac3c44..3f7352879f 100644
+--- a/tests/test_basic.py
++++ b/tests/test_basic.py
+@@ -316,6 +316,12 @@ def test_flag_value_dual_options(runner, default, args, expected):
+ 
+     Covers the regression reported in
+     https://github.com/pallets/click/issues/3024#issuecomment-3146199461
++
++    .. hint::
++        Similar to ``test_options.py::test_default_dual_option_callback``.
++
++        ``test_defaults.py::test_shared_param_prefers_first_default``
++        is a smoke-test complement that exercises both default placements.
+     """
+ 
+     @click.command()
+diff --git a/tests/test_defaults.py b/tests/test_defaults.py
+index 31eee844b9..aded55e499 100644
+--- a/tests/test_defaults.py
++++ b/tests/test_defaults.py
+@@ -1,19 +1,48 @@
++import pytest
++
+ import click
+ 
+ 
+-def test_basic_defaults(runner):
++@pytest.mark.parametrize(
++    ("default", "type", "expected_output", "expected_type"),
++    [
++        (42, click.FLOAT, "42.0", float),
++        ("42", click.INT, "42", int),
++        (1.5, click.STRING, "1.5", str),
++        ("1.5", click.FLOAT, "1.5", float),
++        ("true", click.BOOL, "True", bool),
++        ("0", click.BOOL, "False", bool),
++    ],
++)
++def test_basic_defaults(runner, default, type, expected_output, expected_type):
++    """Smoke test: a single option's default is type-coerced.
++
++    This covers basic single-option default type coercion.
++    """
++
+     @click.command()
+-    @click.option("--foo", default=42, type=click.FLOAT)
++    @click.option("--foo", default=default, type=type)
+     def cli(foo):
+-        assert isinstance(foo, float)
++        assert isinstance(foo, expected_type)
+         click.echo(f"FOO:[{foo}]")
+ 
+     result = runner.invoke(cli, [])
+     assert not result.exception
+-    assert "FOO:[42.0]" in result.output
++    assert f"FOO:[{expected_output}]" in result.output
+ 
+ 
+ def test_multiple_defaults(runner):
++    """Smoke test: each element in a multiple-option default is type-coerced.
++
++    .. hint::
++        ``test_options.py::test_good_defaults_for_multiple``
++        covers the structural default processing (``list`` to
++        ``tuple``, various ``nargs``) exhaustively.
++
++        This test fills the gap of explicit
++        ``type=click.FLOAT`` coercion on the elements.
++    """
++
+     @click.command()
+     @click.option("--foo", default=[23, 42], type=click.FLOAT, multiple=True)
+     def cli(foo):
+@@ -27,6 +56,18 @@ def cli(foo):
+ 
+ 
+ def test_nargs_plus_multiple(runner):
++    """Smoke test: option with ``nargs=2`` + ``multiple=True`` and a
++    tuple-of-tuples default.
++
++    .. hint::
++        ``test_options.py::test_good_defaults_for_multiple``
++        expands this with many more edge cases with various
++        ``nargs``/``multiple``/``default`` combinations.
++
++        An argument-specific equivalent is in
++        ``test_arguments.py::test_good_defaults_for_nargs``.
++    """
++
+     @click.command()
+     @click.option(
+         "--arg", default=((1, 2), (3, 4)), nargs=2, multiple=True, type=click.INT
+@@ -87,7 +128,16 @@ def foo(name):
+ 
+ 
+ def test_shared_param_prefers_first_default(runner):
+-    """test that the first default is chosen when multiple flags share a param name"""
++    """The first ``default=True`` wins when multiple ``flag_value`` options share
++    a parameter name, regardless of which positional option carries it.
++
++    .. hint::
++        ``test_basic.py::test_flag_value_dual_options`` and
++        ``test_options.py::test_default_dual_option_callback`` are wider
++        parametrized sibling tests covering many more default-value types (``None``,
++        ``UNSET``, strings, numbers) but always place the default on the first
++        option. This test complements them by exercising both placements.
++    """
+ 
+     @click.command
+     @click.option("--red", "color", flag_value="red")
+diff --git a/tests/test_options.py b/tests/test_options.py
+index f198d10183..b162a96de4 100644
+--- a/tests/test_options.py
++++ b/tests/test_options.py
+@@ -223,6 +223,18 @@ def cli(message):
+     ],
+ )
+ def test_good_defaults_for_multiple(runner, multiple, nargs, default, expected):
++    """Comprehensive check of default-value processing for options with
++    ``multiple=True`` and/or ``nargs > 1``.
++
++    .. hint::
++        An argument-specific equivalent is in
++        ``test_arguments.py::test_good_defaults_for_nargs``.
++
++        Smoke tests are in ``test_defaults.py``:
++        ``test_multiple_defaults`` (explicit ``type=FLOAT``)
++        and ``test_nargs_plus_multiple`` (``nargs=2``).
++    """
++
+     @click.command()
+     @click.option("-a", multiple=multiple, nargs=nargs, default=default)
+     def cmd(a):
+@@ -1533,6 +1545,12 @@ def test_default_dual_option_callback(runner, default, args, expected):
+ 
+     Reproduction of the issue reported in
+     https://github.com/pallets/click/pull/3030#discussion_r2271571819
++
++    .. hint::
++        Similar to ``test_basic.py::test_flag_value_dual_options``.
++
++        ``test_defaults.py::test_shared_param_prefers_first_default``
++        is a smoke-test complement that exercises both default placements.
+     """
+ 
+     def _my_func(ctx, param, value):

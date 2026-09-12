@@ -1,0 +1,13 @@
+task_id: GH892_dask_9871
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix serialization bug in `BroadcastJoinLayer`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/dask/dask/pull/9871"
+source_issue: "https://github.com/dask/dask/issues/9870"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

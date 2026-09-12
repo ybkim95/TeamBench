@@ -1,0 +1,56 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 1528,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/1528",
+  "issue_number": null,
+  "base_sha": "cc717f9fbddb1d4a4e868f2411a66502ce1b1a32",
+  "head_sha": "e55d08983fd3f617db1bef2f3f884f6adb6371c6",
+  "additions": 50,
+  "deletions": 6,
+  "changed_files": [
+    "gpytorch/kernels/inducing_point_kernel.py",
+    "gpytorch/models/exact_prediction_strategies.py",
+    "test/examples/test_sgpr_regression.py"
+  ],
+  "test_files": [
+    "test/examples/test_sgpr_regression.py"
+  ],
+  "source_files": [
+    "gpytorch/kernels/inducing_point_kernel.py",
+    "gpytorch/models/exact_prediction_strategies.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "active_dims",
+      "base",
+      "base_kernel",
+      "before",
+      "bugs",
+      "cached",
+      "catch",
+      "code",
+      "components",
+      "compute"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:04:12Z"
+}

@@ -1,0 +1,457 @@
+diff --git a/docs/docs/genai/tracing/prod-tracing.mdx b/docs/docs/genai/tracing/prod-tracing.mdx
+index b4ad64de5d16f..50dd568d2f9fe 100644
+--- a/docs/docs/genai/tracing/prod-tracing.mdx
++++ b/docs/docs/genai/tracing/prod-tracing.mdx
+@@ -118,12 +118,13 @@ export MLFLOW_TRACE_SAMPLING_RATIO=0.1
+ 
+ For production applications, MLflow can log traces asynchronously to prevent blocking your application. For OSS MLflow and Databricks notebooks, async trace logging is **disabled by default** and must be explicitly enabled by setting `MLFLOW_ENABLE_ASYNC_TRACE_LOGGING=true`. In Databricks non-notebook workloads (for example, jobs or model serving), async logging is **enabled by default** unless you override it.
+ 
+-| Environment Variable                        | Description                                                                                                                                                                                                                                                   | Default Value                                                                    |
+-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+-| `MLFLOW_ENABLE_ASYNC_TRACE_LOGGING`         | Whether to log traces asynchronously. When set to `False`, traces will be logged in a blocking manner.                                                                                                                                                        | `False` (OSS + Databricks notebooks), `True` (Databricks non-notebook workloads) |
+-| `MLFLOW_ASYNC_TRACE_LOGGING_MAX_WORKERS`    | The maximum number of worker threads to use for async trace logging per process. Increasing this allows higher throughput of trace logging, but also increases CPU usage and memory consumption.                                                              | `10`                                                                             |
+-| `MLFLOW_ASYNC_TRACE_LOGGING_MAX_QUEUE_SIZE` | The maximum number of traces that can be queued before being logged to backend by the worker threads. When the queue is full, new traces will be discarded. Increasing this allows higher durability of trace logging, but also increases memory consumption. | `1000`                                                                           |
+-| `MLFLOW_ASYNC_TRACE_LOGGING_RETRY_TIMEOUT`  | The timeout in seconds for retrying failed trace logging. When a trace logging fails, it will be retried up to this timeout with backoff, after which it will be discarded.                                                                                   | `500`                                                                            |
++| Environment Variable                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Default Value                                                                    |
++| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
++| `MLFLOW_ENABLE_ASYNC_TRACE_LOGGING`         | Whether to log traces asynchronously. When set to `False`, traces will be logged in a blocking manner.                                                                                                                                                                                                                                                                                                                                                                         | `False` (OSS + Databricks notebooks), `True` (Databricks non-notebook workloads) |
++| `MLFLOW_ASYNC_TRACE_LOGGING_MAX_WORKERS`    | The maximum number of worker threads to use for async trace logging per process. Increasing this allows higher throughput of trace logging, but also increases CPU usage and memory consumption.                                                                                                                                                                                                                                                                               | `10`                                                                             |
++| `MLFLOW_ASYNC_TRACE_LOGGING_MAX_QUEUE_SIZE` | The maximum number of traces that can be queued before being logged to backend by the worker threads. When the queue is full, new traces will be discarded. Increasing this allows higher durability of trace logging, but also increases memory consumption.                                                                                                                                                                                                                  | `1000`                                                                           |
++| `MLFLOW_ASYNC_TRACE_LOGGING_RETRY_TIMEOUT`  | The timeout in seconds for retrying failed trace logging. When a trace logging fails, it will be retried up to this timeout with backoff, after which it will be discarded.                                                                                                                                                                                                                                                                                                    | `500`                                                                            |
++| `MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT`     | Whether to export spans incrementally as they complete via `log_spans`, in addition to exporting the full trace. Disabling this reduces per-span DB round-trips under high concurrency but does **not** prevent spans from being written to the database — all spans are still batch-written at trace completion. This removes real-time span visibility for in-progress traces only. Remote/distributed trace spans are still exported when the backend supports `log_spans`. | `True` (`False` when running `mlflow server`)                                    |
+ 
+ ### Sampling Traces
+ 
+diff --git a/mlflow/environment_variables.py b/mlflow/environment_variables.py
+index ec1e66bb21c73..e3cbdbee6089d 100644
+--- a/mlflow/environment_variables.py
++++ b/mlflow/environment_variables.py
+@@ -1130,6 +1130,21 @@ def get(self):
+ #: (default: ``None``)
+ MLFLOW_TRACING_SQL_WAREHOUSE_ID = _EnvironmentVariable("MLFLOW_TRACING_SQL_WAREHOUSE_ID", str, None)
+ 
++#: Specifies whether to export spans incrementally as they complete, in addition to
++#: exporting the full trace. When enabled, spans are written to the tracking store
++#: individually via ``log_spans`` as each span finishes. This provides real-time span
++#: visibility for long-running traces but adds extra DB round-trips that may increase
++#: latency under high concurrency. When disabled, spans are batch-written to the database
++#: at trace completion instead of individually during the request. This removes real-time
++#: visibility for in-progress traces but reduces DB contention. Remote/distributed trace
++#: spans (from ``traceparent`` headers) are still exported incrementally when the backend
++#: supports ``log_spans``, as they cannot be persisted through the full trace export path.
++#: The MLflow tracking server disables this by default to reduce DB contention.
++#: (default: ``True``)
++MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT = _BooleanEnvironmentVariable(
++    "MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT", True
++)
++
+ 
+ #: Specifies the location to send traces to. This can be either an MLflow experiment ID or a
+ #: Databricks Unity Catalog (UC) schema (format: `<catalog_name>.<schema_name>`).
+diff --git a/mlflow/server/__init__.py b/mlflow/server/__init__.py
+index 3690a12b1fde9..d041f2af1f1fd 100644
+--- a/mlflow/server/__init__.py
++++ b/mlflow/server/__init__.py
+@@ -20,6 +20,7 @@
+ from mlflow.environment_variables import (
+     _MLFLOW_INTERNAL_GATEWAY_AUTH_TOKEN,
+     _MLFLOW_SGI_NAME,
++    MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT,
+     MLFLOW_FLASK_SERVER_SECRET_KEY,
+     MLFLOW_SERVER_ENABLE_JOB_EXECUTION,
+ )
+@@ -382,6 +383,11 @@ def _run_server(
+     if secret_key := MLFLOW_FLASK_SERVER_SECRET_KEY.get():
+         env_map[MLFLOW_FLASK_SERVER_SECRET_KEY.name] = secret_key
+ 
++    # Disable incremental span export by default to reduce DB contention from
++    # concurrent gateway requests. Users can override by setting the env var explicitly.
++    if not MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT.is_set():
++        env_map[MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT.name] = "false"
++
+     # Determine which server we're using (only one should be true)
+     using_gunicorn = gunicorn_opts is not None
+     using_waitress = waitress_opts is not None
+diff --git a/mlflow/tracing/export/mlflow_v3.py b/mlflow/tracing/export/mlflow_v3.py
+index 627b9b139f6e1..c490c1d9fc3d4 100644
+--- a/mlflow/tracing/export/mlflow_v3.py
++++ b/mlflow/tracing/export/mlflow_v3.py
+@@ -9,7 +9,10 @@
+ from mlflow.entities.span import Span
+ from mlflow.entities.trace import Trace
+ from mlflow.entities.trace_info import TraceInfo
+-from mlflow.environment_variables import MLFLOW_ENABLE_ASYNC_TRACE_LOGGING
++from mlflow.environment_variables import (
++    MLFLOW_ENABLE_ASYNC_TRACE_LOGGING,
++    MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT,
++)
+ from mlflow.exceptions import RestException
+ from mlflow.tracing.client import TracingClient
+ from mlflow.tracing.constant import SpansLocation, TraceTagKey
+@@ -45,10 +48,14 @@ def __init__(self, tracking_uri: str | None = None) -> None:
+         # Display handler is no-op when running outside of notebooks.
+         self._display_handler = get_display_handler()
+ 
+-        # A flag to cache the failure of exporting spans so that the client will not try to export
+-        # spans again and trigger excessive server side errors. Default to True (optimistically
+-        # assume the store supports span-level logging).
+-        self._should_export_spans_incrementally = True
++        # Controls whether spans are exported incrementally via log_spans().
++        self._should_export_spans_incrementally = MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT.get()
++
++        # Tracks whether the store supports span-level logging. Set to False at runtime
++        # if log_spans() raises NotImplementedError or returns a 501. This is separate from
++        # _should_export_spans_incrementally so that disabling incremental export (e.g. for
++        # the gateway) doesn't prevent remote/distributed traces from being exported.
++        self._store_supports_log_spans = True
+ 
+     def export(self, spans: Sequence[ReadableSpan]) -> None:
+         """
+@@ -59,11 +66,29 @@ def export(self, spans: Sequence[ReadableSpan]) -> None:
+                 a span processor. All spans (root and non-root) are exported.
+         """
+ 
+-        if self._should_export_spans_incrementally:
++        if self._should_export_spans_incrementally and self._store_supports_log_spans:
+             self._export_spans_incrementally(spans)
++        elif self._store_supports_log_spans:
++            # Even when incremental export is disabled, remote/distributed trace spans
++            # must still be exported incrementally because they are non-root spans that
++            # _export_traces() skips. Without this, distributed mirror spans (e.g. from
++            # gateway traceparent headers) would be silently dropped.
++            # Skip this if the store doesn't support log_spans to avoid repeated failures.
++            if remote_spans := self._get_remote_trace_spans(spans):
++                self._export_spans_incrementally(remote_spans)
+ 
+         self._export_traces(spans)
+ 
++    def _get_remote_trace_spans(self, spans: Sequence[ReadableSpan]) -> list[ReadableSpan]:
++        manager = InMemoryTraceManager.get_instance()
++        remote_spans = []
++        for span in spans:
++            if mlflow_trace_id := manager.get_mlflow_trace_id_from_otel_id(span.context.trace_id):
++                with manager.get_trace(mlflow_trace_id) as trace:
++                    if trace and trace.is_remote_trace:
++                        remote_spans.append(span)
++        return remote_spans
++
+     def _export_spans_incrementally(self, spans: Sequence[ReadableSpan]) -> None:
+         """
+         Export spans incrementally as they complete.
+@@ -135,7 +160,7 @@ def _export_traces(self, spans: Sequence[ReadableSpan]) -> None:
+                 _logger.debug(f"Trace for root span {span} not found. Skipping full export.")
+                 continue
+ 
+-            if manager_trace.is_remote_trace and not self._should_export_spans_incrementally:
++            if manager_trace.is_remote_trace and not self._store_supports_log_spans:
+                 _logger.warning(
+                     f"Current MLflow server does not support ingesting the span {span.name} "
+                     "that is created in a remote process. Please upgrade the server version and "
+@@ -178,14 +203,14 @@ def _log_spans(self, experiment_id: str, spans: list[Span]) -> None:
+         except NotImplementedError:
+             # Silently skip if the store doesn't support log_spans. This is expected for stores that
+             # don't implement span-level logging, and we don't want to spam warnings for every span.
+-            self._should_export_spans_incrementally = False
++            self._store_supports_log_spans = False
+         except RestException as e:
+             # When the FileStore is behind the tracking server, it returns 501 exception.
+             # However, the OTLP endpoint returns general HTTP error, not MlflowException, which does
+             # not include error_code in the body and handled as a general server side error. Hence,
+             # we need to check the message to handle this case.
+             if "REST OTLP span logging is not supported" in e.message:
+-                self._should_export_spans_incrementally = False
++                self._store_supports_log_spans = False
+             else:
+                 _logger.debug(f"Failed to log span to MLflow backend: {e}")
+         except Exception as e:
+@@ -203,7 +228,28 @@ def _log_trace(self, trace: Trace, prompts: Sequence[PromptVersion]) -> None:
+             if trace:
+                 add_size_stats_to_trace_metadata(trace)
+                 returned_trace_info = self._client.start_trace(trace.info)
+-                if self._should_log_spans_to_artifacts(returned_trace_info):
++
++                # When incremental export is disabled, batch-write all spans
++                # to the DB at trace completion time to avoid per-span DB
++                # round-trips while still populating the spans table.
++                spans_written_to_db = False
++                if (
++                    not self._should_export_spans_incrementally
++                    and self._store_supports_log_spans
++                    and trace.data.spans
++                ):
++                    self._log_spans(trace.info.experiment_id, trace.data.spans)
++                    # Re-check after _log_spans() since it may discover the
++                    # store doesn't support span logging and set the flag False.
++                    spans_written_to_db = self._store_supports_log_spans
++
++                # Upload spans as artifacts if they weren't written to DB.
++                # We can't rely on _should_log_spans_to_artifacts() alone here
++                # because returned_trace_info from start_trace() won't have the
++                # SPANS_LOCATION tag yet when batch-writing (it's set by log_spans).
++                if not spans_written_to_db and self._should_log_spans_to_artifacts(
++                    returned_trace_info
++                ):
+                     self._client._upload_trace_data(returned_trace_info, trace.data)
+             else:
+                 _logger.warning("No trace or trace info provided, unable to export")
+diff --git a/tests/gateway/test_tracing_utils.py b/tests/gateway/test_tracing_utils.py
+index 3f5c9854e7246..a0456847aba2e 100644
+--- a/tests/gateway/test_tracing_utils.py
++++ b/tests/gateway/test_tracing_utils.py
+@@ -365,6 +365,54 @@ async def func_with_child_span(payload):
+ # ---------------------------------------------------------------------------
+ 
+ 
++@pytest.mark.asyncio
++async def test_maybe_traced_gateway_call_with_traceparent_incremental_export_disabled(
++    monkeypatch, gateway_experiment_id
++):
++    monkeypatch.setenv("MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT", "False")
++    mlflow.tracing.reset()
++
++    ep_config = GatewayEndpointConfig(
++        endpoint_id="test-endpoint-id",
++        endpoint_name="test-endpoint",
++        experiment_id=gateway_experiment_id,
++        models=[],
++    )
++
++    async def func_with_usage(payload):
++        with mlflow.start_span("provider/openai/gpt-4", span_type=SpanType.LLM) as child:
++            child.set_attributes({
++                SpanAttributeKey.CHAT_USAGE: {
++                    "input_tokens": 10,
++                    "output_tokens": 5,
++                    "total_tokens": 15,
++                },
++                SpanAttributeKey.MODEL: "gpt-4",
++                SpanAttributeKey.MODEL_PROVIDER: "openai",
++            })
++        return {"result": "ok"}
++
++    with mlflow.start_span("agent-root") as agent_span:
++        headers = get_tracing_context_headers_for_http_request()
++        agent_trace_id = agent_span.trace_id
++
++    traced = maybe_traced_gateway_call(func_with_usage, ep_config, request_headers=headers)
++    result = await traced({"input": "test"})
++
++    assert result == {"result": "ok"}
++
++    # Agent trace should contain the distributed mirror spans
++    mlflow.flush_trace_async_logging()
++    agent_trace = mlflow.get_trace(agent_trace_id)
++    assert agent_trace is not None
++
++    spans_by_name = {s.name: s for s in agent_trace.data.spans}
++    # These mirror spans are non-root and can only be exported via log_spans.
++    # They must still be exported even when incremental export is disabled.
++    assert f"gateway/{ep_config.endpoint_name}" in spans_by_name
++    assert "provider/openai/gpt-4" in spans_by_name
++
++
+ @pytest.mark.asyncio
+ async def test_maybe_traced_gateway_call_with_traceparent(gateway_experiment_id):
+     ep_config = GatewayEndpointConfig(
+diff --git a/tests/server/test_init.py b/tests/server/test_init.py
+index c13084364ca70..a5eb644177410 100644
+--- a/tests/server/test_init.py
++++ b/tests/server/test_init.py
+@@ -212,6 +212,7 @@ def test_run_server_win32(mock_exec_cmd, monkeypatch):
+ 
+ 
+ def test_run_server_with_uvicorn(mock_exec_cmd, monkeypatch):
++    monkeypatch.delenv("MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT", raising=False)
+     monkeypatch.setenv("MLFLOW_SERVER_ENABLE_JOB_EXECUTION", "false")
+     with mock.patch("sys.platform", return_value="linux"):
+         server._run_server(
+@@ -242,7 +243,10 @@ def test_run_server_with_uvicorn(mock_exec_cmd, monkeypatch):
+     ]
+     mock_exec_cmd.assert_called_once_with(
+         expected_command,
+-        extra_env={_MLFLOW_SGI_NAME.name: "uvicorn"},
++        extra_env={
++            "MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT": "false",
++            _MLFLOW_SGI_NAME.name: "uvicorn",
++        },
+         capture_output=False,
+         synchronous=False,
+     )
+diff --git a/tests/tracing/export/test_mlflow_v3_attachments.py b/tests/tracing/export/test_mlflow_v3_attachments.py
+index 8e08f9cdcea29..4076b242423cb 100644
+--- a/tests/tracing/export/test_mlflow_v3_attachments.py
++++ b/tests/tracing/export/test_mlflow_v3_attachments.py
+@@ -28,6 +28,8 @@ def _make_exporter(mock_client):
+     with patch.object(MlflowV3SpanExporter, "__init__", return_value=None):
+         exporter = MlflowV3SpanExporter()
+     exporter._client = mock_client
++    exporter._should_export_spans_incrementally = True
++    exporter._store_supports_log_spans = True
+     return exporter
+ 
+ 
+diff --git a/tests/tracing/export/test_mlflow_v3_exporter.py b/tests/tracing/export/test_mlflow_v3_exporter.py
+index 695de79d0e2a2..c5fe062cdf50e 100644
+--- a/tests/tracing/export/test_mlflow_v3_exporter.py
++++ b/tests/tracing/export/test_mlflow_v3_exporter.py
+@@ -504,3 +504,160 @@ def test_no_log_spans_to_artifacts_if_stored_in_tracking_store():
+         exporter.export([otel_span])
+         mock_upload_trace_data.assert_not_called()
+         mock_start_trace.assert_called_once()
++
++
++@pytest.mark.parametrize("incremental_export_enabled", [True, False])
++def test_should_export_spans_incrementally_flag(monkeypatch, incremental_export_enabled):
++    monkeypatch.setenv("MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT", str(incremental_export_enabled))
++
++    otel_span = create_mock_otel_span(
++        name="root",
++        trace_id=99999,
++        span_id=1,
++        parent_id=None,
++    )
++    trace_id = generate_trace_id_v3(otel_span)
++    span = LiveSpan(otel_span, trace_id)
++
++    trace_manager = InMemoryTraceManager.get_instance()
++    trace_info = create_test_trace_info(trace_id, _EXPERIMENT_ID)
++    trace_manager.register_trace(otel_span.context.trace_id, trace_info)
++    trace_manager.register_span(span)
++
++    with (
++        mock.patch(
++            "mlflow.tracing.client.TracingClient.start_trace",
++            return_value=trace_info,
++        ) as mock_start_trace,
++        mock.patch(
++            "mlflow.tracing.client.TracingClient._upload_trace_data", return_value=None
++        ) as mock_upload_trace_data,
++        mock.patch(
++            "mlflow.tracing.client.TracingClient.log_spans",
++        ) as mock_log_spans,
++    ):
++        exporter = MlflowV3SpanExporter()
++        exporter.export([otel_span])
++
++        mock_start_trace.assert_called_once()
++        # log_spans is called in both cases:
++        # - incremental ON: called during export() for each span as it completes
++        # - incremental OFF: called during _log_trace() as a batch write at trace completion
++        mock_log_spans.assert_called_once()
++
++        if incremental_export_enabled:
++            # Incremental path: start_trace mock doesn't set SPANS_LOCATION tag,
++            # so artifact upload proceeds as a fallback
++            mock_upload_trace_data.assert_called_once()
++        else:
++            # Batch path: spans batch-written to DB, artifact upload skipped
++            mock_upload_trace_data.assert_not_called()
++
++
++def test_remote_trace_exported_when_incremental_export_disabled(monkeypatch):
++    monkeypatch.setenv("MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT", "False")
++
++    otel_span = create_mock_otel_span(
++        name="root",
++        trace_id=88888,
++        span_id=1,
++        parent_id=None,
++    )
++    trace_id = generate_trace_id_v3(otel_span)
++    span = LiveSpan(otel_span, trace_id)
++
++    trace_manager = InMemoryTraceManager.get_instance()
++    trace_info = create_test_trace_info(trace_id, _EXPERIMENT_ID)
++    trace_manager.register_trace(otel_span.context.trace_id, trace_info, is_remote_trace=True)
++    trace_manager.register_span(span)
++
++    with (
++        mock.patch(
++            "mlflow.tracing.client.TracingClient.start_trace",
++            return_value=trace_info,
++        ) as mock_start_trace,
++        mock.patch("mlflow.tracing.client.TracingClient._upload_trace_data", return_value=None),
++        mock.patch("mlflow.tracing.client.TracingClient.log_spans") as mock_log_spans,
++    ):
++        exporter = MlflowV3SpanExporter()
++        exporter.export([otel_span])
++
++        # Remote trace should still be exported via start_trace
++        mock_start_trace.assert_called_once()
++        # log_spans is called twice:
++        # 1. In export() for remote trace spans (incremental path for remote traces)
++        # 2. In _log_trace() for the batch write at trace completion
++        assert mock_log_spans.call_count == 2
++
++
++def test_batch_write_spans_at_trace_completion(monkeypatch):
++    monkeypatch.setenv("MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT", "False")
++
++    # Create root and child OTel spans
++    root_otel = create_mock_otel_span(name="root", trace_id=77777, span_id=1, parent_id=None)
++    child_otel = create_mock_otel_span(name="child", trace_id=77777, span_id=2, parent_id=1)
++
++    trace_id = generate_trace_id_v3(root_otel)
++    root_span = LiveSpan(root_otel, trace_id)
++    child_span = LiveSpan(child_otel, trace_id)
++
++    trace_manager = InMemoryTraceManager.get_instance()
++    trace_info = create_test_trace_info(trace_id, _EXPERIMENT_ID)
++    trace_manager.register_trace(root_otel.context.trace_id, trace_info)
++    trace_manager.register_span(root_span)
++    trace_manager.register_span(child_span)
++
++    with (
++        mock.patch(
++            "mlflow.tracing.client.TracingClient.start_trace",
++            return_value=trace_info,
++        ) as mock_start_trace,
++        mock.patch(
++            "mlflow.tracing.client.TracingClient._upload_trace_data", return_value=None
++        ) as mock_upload_trace_data,
++        mock.patch("mlflow.tracing.client.TracingClient.log_spans") as mock_log_spans,
++    ):
++        exporter = MlflowV3SpanExporter()
++        # Export child first (non-root), then root to trigger _log_trace
++        exporter.export([child_otel, root_otel])
++
++        mock_start_trace.assert_called_once()
++        # Batch write should happen once in _log_trace with all spans
++        mock_log_spans.assert_called_once()
++        logged_spans = mock_log_spans.call_args.args[1]
++        assert len(logged_spans) == 2
++        # Artifact upload is skipped when spans are batch-written to DB
++        mock_upload_trace_data.assert_not_called()
++
++
++def test_batch_write_skipped_when_store_unsupported(monkeypatch):
++    monkeypatch.setenv("MLFLOW_ENABLE_INCREMENTAL_SPAN_EXPORT", "False")
++
++    otel_span = create_mock_otel_span(name="root", trace_id=66666, span_id=1, parent_id=None)
++    trace_id = generate_trace_id_v3(otel_span)
++    span = LiveSpan(otel_span, trace_id)
++
++    trace_manager = InMemoryTraceManager.get_instance()
++    trace_info = create_test_trace_info(trace_id, _EXPERIMENT_ID)
++    trace_manager.register_trace(otel_span.context.trace_id, trace_info)
++    trace_manager.register_span(span)
++
++    with (
++        mock.patch(
++            "mlflow.tracing.client.TracingClient.start_trace",
++            return_value=trace_info,
++        ) as mock_start_trace,
++        mock.patch(
++            "mlflow.tracing.client.TracingClient._upload_trace_data", return_value=None
++        ) as mock_upload_trace_data,
++        mock.patch("mlflow.tracing.client.TracingClient.log_spans") as mock_log_spans,
++    ):
++        exporter = MlflowV3SpanExporter()
++        exporter._store_supports_log_spans = False
++        exporter.export([otel_span])
++
++        mock_start_trace.assert_called_once()
++        # log_spans should NOT be called when store doesn't support it
++        mock_log_spans.assert_not_called()
++        # Artifact upload should still happen as fallback
++        mock_upload_trace_data.assert_called_once()

@@ -1,0 +1,13 @@
+task_id: GH969_gpytorch_2677
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix for #2674 - Corrected sizes for alpha in RQKernel when using Deep GPs"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/cornellius-gp/gpytorch/pull/2677"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

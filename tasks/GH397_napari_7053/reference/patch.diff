@@ -1,0 +1,243 @@
+diff --git a/napari/settings/_migrations.py b/napari/settings/_migrations.py
+index cb0f7e5b1a6..382c20b5d8f 100644
+--- a/napari/settings/_migrations.py
++++ b/napari/settings/_migrations.py
+@@ -1,11 +1,13 @@
+ from __future__ import annotations
+ 
++import sys
+ import warnings
+ from contextlib import contextmanager
+ from importlib.metadata import distributions
+ from typing import TYPE_CHECKING, Callable, NamedTuple
+ 
+ from napari.settings._fields import Version
++from napari.settings._shortcuts import ShortcutsSettings
+ 
+ if TYPE_CHECKING:
+     from napari.settings._napari_settings import NapariSettings
+@@ -115,3 +117,57 @@ def v040_050(model: NapariSettings):
+     current_settings = model.plugins.extension2reader
+     new_settings = _coerce_extensions_to_globs(current_settings)
+     model.plugins.extension2reader = new_settings
++
++
++def _swap_ctrl_cmd(keybinding):
++    """Swap the Control and Command/Super/Meta modifiers in a keybinding.
++
++    See `v050_060` for motivation.
++    """
++    from napari.utils.key_bindings import KeyBinding
++
++    kb = KeyBinding.from_str(
++        str(keybinding)
++        .replace('Ctrl', 'Temp')
++        .replace('Meta', 'Ctrl')
++        .replace('Temp', 'Meta')
++    )
++    return kb
++
++
++@migrator('0.5.0', '0.6.0')
++def v050_060(model: NapariSettings):
++    """Migrate from v0.5.0 to v0.6.0.
++
++    In #5103 we went from using our own keybinding model to using app-model's.
++    Several consequences of this are:
++    - Control is written out as Ctrl (and that is the only valid input)
++    - Option is written out as Alt (and that is the only valid input)
++    - Super/Command/Cmd are written out as Meta (both Meta and Cmd are valid
++      inputs)
++    - modifiers with keys are written as Mod+Key rather than Mod-Key. However,
++      both versions are valid inputs.
++    - macOS shortcuts using command keys are written out as Meta, where they
++      used to be written out as Control.
++
++    The alias problem is solved in `napari.utils.keybindings.coerce_keybinding`
++    by substituting all variants with the canonical versions in app-model.
++
++    The separator problem (-/+) can be ignored.
++
++    This migrator solves the final problem, by detecting whether the current
++    OS is macOS, and swapping Control and Meta in all key bindings if so.
++    """
++    if sys.platform == 'darwin':
++        current_keybinds = model.shortcuts.shortcuts
++        default_shortcuts = ShortcutsSettings().shortcuts
++        new_keybinds = {}
++        for action_str, keybind_list in current_keybinds.items():
++            new_keybind_list = []
++            for kb in keybind_list:
++                if kb not in default_shortcuts[action_str]:
++                    new_keybind_list.append(_swap_ctrl_cmd(kb))
++                else:
++                    new_keybind_list.append(kb)
++            new_keybinds[action_str] = new_keybind_list
++        model.shortcuts.shortcuts = new_keybinds
+diff --git a/napari/settings/_napari_settings.py b/napari/settings/_napari_settings.py
+index 8e76033bb48..63a0709f561 100644
+--- a/napari/settings/_napari_settings.py
++++ b/napari/settings/_napari_settings.py
+@@ -19,7 +19,7 @@
+ 
+ _CFG_PATH = os.getenv('NAPARI_CONFIG', _DEFAULT_CONFIG_PATH)
+ 
+-CURRENT_SCHEMA_VERSION = Version(0, 5, 0)
++CURRENT_SCHEMA_VERSION = Version(0, 6, 0)
+ 
+ 
+ class NapariSettings(EventedConfigFileSettings):
+diff --git a/napari/settings/_shortcuts.py b/napari/settings/_shortcuts.py
+index e1eb9887372..e65abcb6df0 100644
+--- a/napari/settings/_shortcuts.py
++++ b/napari/settings/_shortcuts.py
+@@ -1,3 +1,5 @@
++from __future__ import annotations
++
+ from napari._pydantic_compat import Field, validator
+ from napari.utils.events.evented_model import EventedModel
+ from napari.utils.key_bindings import KeyBinding, coerce_keybinding
+@@ -18,9 +20,9 @@ class NapariConfig:
+         # Napari specific configuration
+         preferences_exclude = ('schema_version',)
+ 
+-    @validator('shortcuts', allow_reuse=True)
++    @validator('shortcuts', allow_reuse=True, pre=True)
+     def shortcut_validate(
+-        cls, v: dict[str, list[KeyBinding]]
++        cls, v: dict[str, list[KeyBinding | str]]
+     ) -> dict[str, list[KeyBinding]]:
+         for name, value in default_shortcuts.items():
+             if name not in v:
+diff --git a/napari/settings/_tests/test_migrations.py b/napari/settings/_tests/test_migrations.py
+index 92a839ecebe..9cf7eb660d7 100644
+--- a/napari/settings/_tests/test_migrations.py
++++ b/napari/settings/_tests/test_migrations.py
+@@ -1,4 +1,5 @@
+ import os
++import sys
+ from importlib.metadata import PackageNotFoundError, distribution
+ from unittest.mock import patch
+ 
+@@ -113,3 +114,51 @@ def test_040_to_050_migration():
+     )
+     assert '.tif' not in settings.plugins.extension2reader
+     assert '*.tif' in settings.plugins.extension2reader
++
++
++@pytest.mark.skipif(sys.platform != 'darwin', reason='tests migration on macs')
++def test_050_to_060_migration_mac():
++    """Check that Ctrl and Meta are swapped on macOS when migrating."""
++    settings050 = NapariSettings(
++        schema_version='0.5.0',
++        shortcuts={
++            'shortcuts': {
++                'napari:focus_axes_up': ['Alt-Up'],
++                'napari:roll_axes': ['Control-E'],
++                'napari:transpose_axes': ['Control-Meta-T'],
++                'napari:paste_shape': ['V', 'Meta-T'],
++            }
++        },
++    )
++    settings060 = NapariSettings(
++        schema_version='0.6.0',
++        shortcuts={
++            'shortcuts': {
++                'napari:focus_axes_up': ['Alt-Up'],
++                'napari:roll_axes': ['Meta-E'],
++                'napari:transpose_axes': ['Ctrl-Meta-T'],
++                'napari:paste_shape': ['V', 'Ctrl-T'],
++            }
++        },
++    )
++    assert settings050 == settings060
++
++
++@pytest.mark.skipif(
++    sys.platform == 'darwin', reason='migration should not be no-op on macs'
++)
++def test_050_to_060_migration_linux_win():
++    """Check that shortcuts are unchanged on non-macOS when migrating."""
++    shortcuts_dict = {
++        'napari:focus_axes_up': ['Alt-Up'],
++        'napari:roll_axes': ['Control-E'],
++        'napari:transpose_axes': ['Control-Meta-T'],
++        'napari:paste_shape': ['V', 'Meta-T'],
++    }
++    settings050 = NapariSettings(
++        schema_version='0.5.0', shortcuts={'shortcuts': shortcuts_dict}
++    )
++    settings060 = NapariSettings(
++        schema_version='0.6.0', shortcuts={'shortcuts': shortcuts_dict}
++    )
++    assert settings050 == settings060
+diff --git a/napari/settings/_tests/test_settings.py b/napari/settings/_tests/test_settings.py
+index 3cab36595fe..9d65c16448c 100644
+--- a/napari/settings/_tests/test_settings.py
++++ b/napari/settings/_tests/test_settings.py
+@@ -83,7 +83,8 @@ def test_settings_load_invalid_key(tmp_path, monkeypatch):
+     # The invalid key will be removed
+ 
+     fake_path = tmp_path / 'fake_path.yml'
+-    data = """
++    data = f"""
++    schema_version: {CURRENT_SCHEMA_VERSION}
+     application:
+        non_existing_key: [1, 2]
+        first_time: false
+@@ -280,7 +281,7 @@ def test_settings_only_saves_non_default_values(monkeypatch, tmp_path):
+     monkeypatch.setattr(os, 'environ', {})
+ 
+     # manually get all default data and write to yaml file
+-    all_data = NapariSettings(None).yaml()
++    all_data = NapariSettings(schema_version=CURRENT_SCHEMA_VERSION).yaml()
+     fake_path = tmp_path / 'fake_path.yml'
+     assert 'appearance' in all_data
+     assert 'application' in all_data
+@@ -359,3 +360,32 @@ def test_full_serialize(test_settings: NapariSettings, tmp_path, ext):
+     Should work with both json and yaml.
+     """
+     test_settings.save(tmp_path / f't.{ext}', exclude_defaults=False)
++
++
++def test_shortcut_aliases():
++    """Check that Command, Option, Super, Cmd are all valid modifiers."""
++    settings_original = NapariSettings(
++        schema_version='0.6.0',
++        shortcuts={
++            'shortcuts': {
++                'napari:focus_axes_up': ['Option-Up'],
++                'napari:roll_axes': ['Super-E'],
++                'napari:transpose_axes': ['Control-Alt-T'],
++                'napari:paste_shape': ['V', 'Command-T'],
++                'napari:reset_view': ['Cmd-R'],
++            }
++        },
++    )
++    settings_canonical = NapariSettings(
++        schema_version='0.6.0',
++        shortcuts={
++            'shortcuts': {
++                'napari:focus_axes_up': ['Alt+Up'],
++                'napari:roll_axes': ['Meta+E'],
++                'napari:transpose_axes': ['Ctrl+Alt+T'],
++                'napari:paste_shape': ['V', 'Meta+T'],
++                'napari:reset_view': ['Meta+R'],
++            }
++        },
++    )
++    assert settings_original == settings_canonical
+diff --git a/napari/utils/key_bindings.py b/napari/utils/key_bindings.py
+index e3b39831362..9295aaeeb2b 100644
+--- a/napari/utils/key_bindings.py
++++ b/napari/utils/key_bindings.py
+@@ -60,6 +60,9 @@ def hello_world(viewer):
+ USER_KEYMAP: Mapping[str, Callable] = {}
+ 
+ KEY_SUBS = {
++    'Super': 'Meta',
++    'Command': 'Meta',
++    'Cmd': 'Meta',
+     'Control': 'Ctrl',
+     'Option': 'Alt',
+ }

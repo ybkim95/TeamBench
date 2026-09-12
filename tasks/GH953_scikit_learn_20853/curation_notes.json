@@ -1,0 +1,62 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 20853,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/20853",
+  "issue_number": null,
+  "base_sha": "a185f729f25652965fd9d810c4b293aa6b29667f",
+  "head_sha": "fd1c9d4beea8e36ba8300008babdd92ccd9a4fa6",
+  "additions": 158,
+  "deletions": 35,
+  "changed_files": [
+    "sklearn/ensemble/_forest.py",
+    "sklearn/linear_model/_ransac.py",
+    "sklearn/multiclass.py",
+    "sklearn/semi_supervised/_self_training.py",
+    "sklearn/tests/test_common.py",
+    "sklearn/tests/test_multiclass.py"
+  ],
+  "test_files": [
+    "sklearn/tests/test_common.py",
+    "sklearn/tests/test_multiclass.py"
+  ],
+  "source_files": [
+    "sklearn/ensemble/_forest.py",
+    "sklearn/linear_model/_ransac.py",
+    "sklearn/multiclass.py",
+    "sklearn/semi_supervised/_self_training.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "accept_sparse",
+      "allow",
+      "also",
+      "apply",
+      "assert_array_equal",
+      "attribute",
+      "attributes",
+      "balanced",
+      "base",
+      "base_estimator"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:54:01Z"
+}

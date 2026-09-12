@@ -1,0 +1,13 @@
+task_id: GH1146_evaluate_336
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix caching"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/huggingface/evaluate/pull/336"
+source_issue: "https://github.com/huggingface/evaluate/issues/294"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

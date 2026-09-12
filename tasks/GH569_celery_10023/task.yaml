@@ -1,0 +1,13 @@
+task_id: GH569_celery_10023
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "reliable prefork detection"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/celery/celery/pull/10023"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

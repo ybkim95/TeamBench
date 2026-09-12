@@ -1,0 +1,54 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12705,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12705",
+  "issue_number": 123,
+  "base_sha": "de141b5d883cc3f8eac3f61292593eb6b1f8c34e",
+  "head_sha": "0ff72f81f3dbfafcc6d4d35e2ea6e90f8322f02c",
+  "additions": 36,
+  "deletions": 6,
+  "changed_files": [
+    "pydantic/_internal/_generate_schema.py",
+    "pydantic/functional_validators.py",
+    "tests/test_types.py"
+  ],
+  "test_files": [
+    "tests/test_types.py"
+  ],
+  "source_files": [
+    "pydantic/_internal/_generate_schema.py",
+    "pydantic/functional_validators.py"
+  ],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "aliases",
+      "annotated_handlers",
+      "appropriate",
+      "argument",
+      "cleaning",
+      "config",
+      "core",
+      "core_schema",
+      "dataclass",
+      "does"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:35:58Z"
+}

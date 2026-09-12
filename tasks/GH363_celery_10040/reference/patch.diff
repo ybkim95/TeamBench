@@ -1,0 +1,149 @@
+diff --git a/celery/backends/redis.py b/celery/backends/redis.py
+index a21a5ebfe8b..e1463c52896 100644
+--- a/celery/backends/redis.py
++++ b/celery/backends/redis.py
+@@ -318,6 +318,9 @@ def __init__(self, host=None, port=None, db=None, password=None,
+ 
+         self.url = url
+ 
++        # Add driver identification for redis-py
++        self._add_driver_info()
++
+         self.connection_errors, self.channel_errors = (
+             get_redis_error_classes() if get_redis_error_classes
+             else ((), ()))
+@@ -398,6 +401,31 @@ def _params_from_url(self, url, defaults):
+         connparams.update(query)
+         return connparams
+ 
++    def _add_driver_info(self):
++        """Add driver identification to connection parameters.
++
++        Uses DriverInfo class if available, or falls back to
++        lib_name/lib_version for older versions.
++        """
++        from celery import __version__
++
++        # Try to use DriverInfo class
++        try:
++            from redis import DriverInfo
++            driver_info = DriverInfo().add_upstream_driver('celery', __version__)
++            self.connparams['driver_info'] = driver_info
++        except (ImportError, AttributeError):
++            # Fallback: use lib_name/lib_version
++            # Format: lib_name='redis-py(celery_v{version})'
++            self.connparams['lib_name'] = f'redis-py(celery_v{__version__})'
++            # lib_version should be the redis client version
++            try:
++                import redis
++                redis_version = redis.__version__
++            except (ImportError, AttributeError):
++                redis_version = 'unknown'
++            self.connparams['lib_version'] = redis_version
++
+     def exception_safe_to_retry(self, exc):
+         if isinstance(exc, self.connection_errors):
+             return True
+diff --git a/t/unit/backends/test_redis.py b/t/unit/backends/test_redis.py
+index c10495e2e45..e9539395811 100644
+--- a/t/unit/backends/test_redis.py
++++ b/t/unit/backends/test_redis.py
+@@ -917,6 +917,98 @@ def test_set_raises_error_on_large_value(self):
+         with pytest.raises(BackendStoreError):
+             self.b.set('key', 'x' * (self.b._MAX_STR_VALUE_SIZE + 1))
+ 
++    def test_driver_info_with_driverinfo_class(self):
++        """Test that DriverInfo is used when available."""
++        from celery import __version__
++
++        # Mock DriverInfo class and instance
++        mock_driver_info_instance = Mock()
++        mock_add_upstream_result = Mock()
++        mock_driver_info_instance.add_upstream_driver.return_value = mock_add_upstream_result
++
++        mock_driver_info_class = Mock(return_value=mock_driver_info_instance)
++
++        with patch('redis.DriverInfo', mock_driver_info_class, create=True):
++            x = self.Backend(app=self.app)
++
++            # Should have driver_info in connparams
++            assert 'driver_info' in x.connparams
++            assert x.connparams['driver_info'] == mock_add_upstream_result
++
++            # Verify DriverInfo() was called and add_upstream_driver was called
++            mock_driver_info_class.assert_called_once_with()
++            mock_driver_info_instance.add_upstream_driver.assert_called_once_with(
++                'celery',
++                __version__
++            )
++
++    def test_driver_info_fallback_to_lib_name(self):
++        """Test fallback to lib_name/lib_version when DriverInfo not available."""
++        from celery import __version__
++
++        # Ensure DriverInfo import fails
++        with patch('redis.DriverInfo', side_effect=ImportError, create=True):
++            # Mock redis.__version__ to test lib_version
++            with patch('redis.__version__', '5.0.8'):
++                x = self.Backend(app=self.app)
++
++                # Should have lib_name/lib_version in connparams
++                assert 'lib_name' in x.connparams
++                assert 'lib_version' in x.connparams
++                # lib_name should follow redis-py convention
++                assert x.connparams['lib_name'] == f'redis-py(celery_v{__version__})'
++                # lib_version should be redis-py version
++                assert x.connparams['lib_version'] == '5.0.8'
++                # Should NOT have driver_info
++                assert 'driver_info' not in x.connparams
++
++    def test_driver_info_fallback_with_attribute_error(self):
++        """Test fallback when DriverInfo raises AttributeError."""
++        from celery import __version__
++
++        # Ensure DriverInfo raises AttributeError
++        with patch('redis.DriverInfo', side_effect=AttributeError, create=True):
++            # Mock redis.__version__ to test lib_version
++            with patch('redis.__version__', '5.0.8'):
++                x = self.Backend(app=self.app)
++
++                # Should have lib_name/lib_version in connparams
++                assert 'lib_name' in x.connparams
++                assert 'lib_version' in x.connparams
++                assert x.connparams['lib_name'] == f'redis-py(celery_v{__version__})'
++                assert x.connparams['lib_version'] == '5.0.8'
++                # Should NOT have driver_info
++                assert 'driver_info' not in x.connparams
++
++    def test_driver_info_fallback_redis_version_unknown(self):
++        """Test fallback when redis.__version__ is not available."""
++        import redis
++
++        from celery import __version__
++
++        # Ensure DriverInfo import fails
++        with patch('redis.DriverInfo', side_effect=ImportError, create=True):
++            # Save original __version__ and delete it temporarily
++            original_version = getattr(redis, '__version__', None)
++            try:
++                if hasattr(redis, '__version__'):
++                    delattr(redis, '__version__')
++
++                x = self.Backend(app=self.app)
++
++                # Should have lib_name/lib_version in connparams
++                assert 'lib_name' in x.connparams
++                assert 'lib_version' in x.connparams
++                assert x.connparams['lib_name'] == f'redis-py(celery_v{__version__})'
++                # lib_version should be 'unknown' when redis.__version__ not available
++                assert x.connparams['lib_version'] == 'unknown'
++                # Should NOT have driver_info
++                assert 'driver_info' not in x.connparams
++            finally:
++                # Restore original __version__
++                if original_version is not None:
++                    redis.__version__ = original_version
++
+ 
+ class test_RedisBackend_chords_simple(basetest_RedisBackend):
+     @pytest.fixture(scope="class", autouse=True)

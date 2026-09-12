@@ -1,0 +1,13 @@
+task_id: GH950_sktime_2375
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] Fixing broken conversions from nested data frame"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/2375"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

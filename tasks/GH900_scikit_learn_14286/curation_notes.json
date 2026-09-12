@@ -1,0 +1,51 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 14286,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/14286",
+  "issue_number": 9674,
+  "base_sha": "746efb580a1012c580282498359d1bfed91186a2",
+  "head_sha": "923aeeef69856279403110096fc2cd0a9dfaac0a",
+  "additions": 183,
+  "deletions": 10,
+  "changed_files": [
+    "doc/whats_new/v0.22.rst",
+    "sklearn/svm/src/libsvm/svm.cpp",
+    "sklearn/svm/tests/test_svm.py"
+  ],
+  "test_files": [
+    "sklearn/svm/tests/test_svm.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "alexshacked",
+      "allowed",
+      "approx",
+      "assert_allclose",
+      "assert_array_equal",
+      "behavior",
+      "border",
+      "boundary",
+      "break",
+      "cases"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:45Z"
+}

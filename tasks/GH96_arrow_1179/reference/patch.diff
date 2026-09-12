@@ -1,0 +1,100 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 68e0d6c0..3e236917 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -41,6 +41,7 @@ dynamic = ["version"]
+ 
+ [project.optional-dependencies]
+ test = [
++    "backports.zoneinfo==0.2.1;python_version<'3.9'",
+     "dateparser==1.*",
+     "pre-commit",
+     "pytest",
+diff --git a/requirements/requirements-tests.txt b/requirements/requirements-tests.txt
+index 1f2a2ec4..94e5cc84 100644
+--- a/requirements/requirements-tests.txt
++++ b/requirements/requirements-tests.txt
+@@ -1,4 +1,5 @@
+ -r requirements.txt
++backports.zoneinfo==0.2.1;python_version<'3.9'
+ dateparser==1.*
+ pre-commit
+ pytest
+diff --git a/tests/test_arrow.py b/tests/test_arrow.py
+index daf6209f..5afe9baa 100644
+--- a/tests/test_arrow.py
++++ b/tests/test_arrow.py
+@@ -1,3 +1,8 @@
++try:
++    import zoneinfo
++except ImportError:
++    from backports import zoneinfo
++
+ import pickle
+ import sys
+ import time
+@@ -67,6 +72,16 @@ def test_init_pytz_timezone(self):
+         assert result._datetime == self.expected
+         assert_datetime_equality(result._datetime, self.expected, 1)
+ 
++    def test_init_zoneinfo_timezone(self):
++        result = arrow.Arrow(
++            2024, 7, 10, 18, 55, 45, 999999, tzinfo=zoneinfo.ZoneInfo("Europe/Paris")
++        )
++        self.expected = datetime(
++            2024, 7, 10, 18, 55, 45, 999999, tzinfo=zoneinfo.ZoneInfo("Europe/Paris")
++        )
++        assert result._datetime == self.expected
++        assert_datetime_equality(result._datetime, self.expected, 1)
++
+     def test_init_with_fold(self):
+         before = arrow.Arrow(2017, 10, 29, 2, 0, tzinfo="Europe/Stockholm")
+         after = arrow.Arrow(2017, 10, 29, 2, 0, tzinfo="Europe/Stockholm", fold=1)
+diff --git a/tests/test_formatter.py b/tests/test_formatter.py
+index 36e15d9f..b09b778f 100644
+--- a/tests/test_formatter.py
++++ b/tests/test_formatter.py
+@@ -1,7 +1,11 @@
++try:
++    import zoneinfo
++except ImportError:
++    from backports import zoneinfo
++
+ from datetime import datetime, timezone
+ 
+ import pytest
+-import pytz
+ from dateutil import tz as dateutil_tz
+ 
+ from arrow import (
+@@ -124,7 +128,7 @@ def test_timezone(self):
+     @pytest.mark.parametrize("full_tz_name", make_full_tz_list())
+     def test_timezone_formatter(self, full_tz_name):
+         # This test will fail if we use "now" as date as soon as we change from/to DST
+-        dt = datetime(1986, 2, 14, tzinfo=pytz.timezone("UTC")).replace(
++        dt = datetime(1986, 2, 14, tzinfo=zoneinfo.ZoneInfo("UTC")).replace(
+             tzinfo=dateutil_tz.gettz(full_tz_name)
+         )
+         abbreviation = dt.tzname()
+diff --git a/tests/utils.py b/tests/utils.py
+index 95b47c16..7a74b7e4 100644
+--- a/tests/utils.py
++++ b/tests/utils.py
+@@ -1,11 +1,14 @@
+-import pytz
++try:
++    import zoneinfo
++except ImportError:
++    from backports import zoneinfo
+ from dateutil.zoneinfo import get_zonefile_instance
+ 
+ 
+ def make_full_tz_list():
+     dateutil_zones = set(get_zonefile_instance().zones)
+-    pytz_zones = set(pytz.all_timezones)
+-    return dateutil_zones.union(pytz_zones)
++    zoneinfo_zones = set(zoneinfo.available_timezones())
++    return dateutil_zones.union(zoneinfo_zones)
+ 
+ 
+ def assert_datetime_equality(dt1, dt2, within=10):

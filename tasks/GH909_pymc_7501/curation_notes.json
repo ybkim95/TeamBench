@@ -1,0 +1,52 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7501,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7501",
+  "issue_number": 6508,
+  "base_sha": "97df9c3d3b14e951d423fe5dd8bd974a066799e9",
+  "head_sha": "41568044e6e67cccbad056be63f0fd5db8a564da",
+  "additions": 38,
+  "deletions": 7,
+  "changed_files": [
+    "pymc/printing.py",
+    "tests/test_printing.py"
+  ],
+  "test_files": [
+    "tests/test_printing.py"
+  ],
+  "source_files": [
+    "pymc/printing.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "alpha",
+      "alpha_a",
+      "array",
+      "begin",
+      "beta",
+      "censored",
+      "censored_normal",
+      "compile",
+      "constant",
+      "cycle"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:29Z"
+}

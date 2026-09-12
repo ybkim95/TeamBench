@@ -1,0 +1,13 @@
+task_id: GH922_pandas_64882
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Backport PR #64386 on branch 3.0.x (BUG: fix sort_index AssertionError with RangeIndex and level parameter)"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64882"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

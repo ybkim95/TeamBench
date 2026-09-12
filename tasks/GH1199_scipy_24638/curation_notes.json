@@ -1,0 +1,55 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24638,
+  "pr_url": "https://github.com/scipy/scipy/pull/24638",
+  "issue_number": null,
+  "base_sha": "5681b7afda5d77e43ae8c2b99fb65584e2e982bb",
+  "head_sha": "298a560d7a8d428ffbde2ed1ccac729a7e6add18",
+  "additions": 17,
+  "deletions": 16,
+  "changed_files": [
+    "pixi.lock",
+    "scipy/conftest.py",
+    "scipy/signal/tests/test_signaltools.py",
+    "subprojects/array_api_compat/array_api_compat"
+  ],
+  "test_files": [
+    "scipy/conftest.py",
+    "scipy/signal/tests/test_signaltools.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "about",
+      "api_version",
+      "arm64",
+      "array",
+      "array_api_strict",
+      "arrow",
+      "asttokens",
+      "asv_runner",
+      "attrs",
+      "based"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:23Z"
+}

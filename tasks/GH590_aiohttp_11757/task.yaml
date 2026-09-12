@@ -1,0 +1,13 @@
+task_id: GH590_aiohttp_11757
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[pre-commit.ci] pre-commit autoupdate"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/aio-libs/aiohttp/pull/11757"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH499_TileOPs_570
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[Fix][Elementwise] Handle MaskedFill overflow fill_value for fp16 output dtype"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/tile-ai/TileOPs/pull/570"
+source_issue: "https://github.com/tile-ai/TileOPs/issues/569"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

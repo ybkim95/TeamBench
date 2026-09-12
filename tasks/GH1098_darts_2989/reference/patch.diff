@@ -1,0 +1,156 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 8b706b8871..d86176497e 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -13,6 +13,7 @@ but cannot always guarantee backwards compatibility. Changes that may **break co
+ 
+ **Fixed**
+ 
++- Fixed bug in `StaticCovariatesTransformer` where one-hot encoded column names were incorrectly assigned when the order of columns specified in `cols_cat` differed from the actual data column order. This caused silent data corruption where column names combined wrong feature names with wrong category values (e.g., `City_US` instead of `Country_US`). [#2989](https://github.com/unit8co/darts/pull/2989) by [Dustin Brunner](https://github.com/brunnedu).
+ - Fixed a bug in `TorchTrainingDataset` where `max_samples_per_ts` was not acting as an upper bound on the number of samples per time series. Now `max_samples_per_ts` correctly acts as an upper bound, capping the dataset size at the actual number of samples that can be extracted from the longest series. [#2987](https://github.com/unit8co/darts/pull/2987) by [Dustin Brunner](https://github.com/brunnedu).
+ - Updated s(m)ape to not raise a ValueError when actuals and predictions are zero for the same timestep. [#2984](https://github.com/unit8co/darts/pull/2984) by [eschibli](https://github.com/eschibli).
+ 
+diff --git a/darts/dataprocessing/transformers/static_covariates_transformer.py b/darts/dataprocessing/transformers/static_covariates_transformer.py
+index 6be6c5d556..6ee15c9d33 100644
+--- a/darts/dataprocessing/transformers/static_covariates_transformer.py
++++ b/darts/dataprocessing/transformers/static_covariates_transformer.py
+@@ -175,11 +175,13 @@ def ts_fit(
+         # Collate static covariates of all `series`:
+         stat_covs = pd.concat([s.static_covariates for s in series], axis=0)
+ 
+-        cols_num, cols_cat = StaticCovariatesTransformer._infer_static_cov_dtypes(
+-            stat_covs, cols_num, cols_cat
+-        )
+-
+-        mask_num, mask_cat = StaticCovariatesTransformer._create_component_masks(
++        # Extract column names and masks in data order
++        (
++            cols_num,
++            cols_cat,
++            mask_num,
++            mask_cat,
++        ) = StaticCovariatesTransformer._process_static_cov_columns(
+             stat_covs, cols_num, cols_cat
+         )
+ 
+@@ -227,45 +229,40 @@ def ts_fit(
+         }
+ 
+     @staticmethod
+-    def _infer_static_cov_dtypes(
++    def _process_static_cov_columns(
+         stat_covs: pd.DataFrame,
+         cols_num: Optional[Sequence[str]],
+         cols_cat: Optional[Sequence[str]],
+-    ):
++    ) -> tuple[list[str], list[str], np.ndarray, np.ndarray]:
+         """
+-        Returns a list of names of numerical static covariates and a list
+-        of names of categorical/ordinal static covariates.
++        Extracts numerical and categorical static covariate (component / columns) names and their component masks
++        in order of the input data.
++
++        Returns
++        -------
++        tuple
++            A tuple containing:
++            - cols_num: list of numerical column names in data order
++            - cols_cat: list of categorical column names in data order
++            - mask_num: boolean array indicating numerical columns
++            - mask_cat: boolean array indicating categorical columns
+         """
+         if cols_num is None:
+             mask_num = stat_covs.columns.isin(
+                 stat_covs.select_dtypes(include=np.number).columns
+             )
+-            cols_num = stat_covs.columns[mask_num]
++        else:
++            mask_num = stat_covs.columns.isin(cols_num)
++        cols_num = stat_covs.columns[mask_num].tolist()
++
+         if cols_cat is None:
+             mask_cat = stat_covs.columns.isin(
+                 stat_covs.select_dtypes(exclude=np.number).columns
+             )
+-            cols_cat = stat_covs.columns[mask_cat]
+-        return cols_num, cols_cat
+-
+-    @staticmethod
+-    def _create_component_masks(
+-        untransformed_stat_covs: pd.DataFrame,
+-        cols_num: Sequence[str],
+-        cols_cat: Sequence[str],
+-    ):
+-        """
+-        Returns a boolean array indicating which components of the UNTRANSFORMED
+-        `stat_covs` are numerical and a boolean array indicating which components
+-        of the UNTRANSFORMED `stat_covs` are categorical.
+-
+-        It's important to recognize that these masks only apply to the UNTRANSFORMED
+-        static covariates since some transformations can generate multiple new components
+-        from a single component (e.g. one-hot encoding).
+-        """
+-        mask_num = untransformed_stat_covs.columns.isin(cols_num)
+-        mask_cat = untransformed_stat_covs.columns.isin(cols_cat)
+-        return mask_num, mask_cat
++        else:
++            mask_cat = stat_covs.columns.isin(cols_cat)
++        cols_cat = stat_covs.columns[mask_cat].tolist()
++        return cols_num, cols_cat, mask_num, mask_cat
+ 
+     @staticmethod
+     def _create_category_mappings(
+diff --git a/darts/tests/dataprocessing/transformers/test_static_covariates_transformer.py b/darts/tests/dataprocessing/transformers/test_static_covariates_transformer.py
+index cb9032277d..3d0e42c6d0 100644
+--- a/darts/tests/dataprocessing/transformers/test_static_covariates_transformer.py
++++ b/darts/tests/dataprocessing/transformers/test_static_covariates_transformer.py
+@@ -211,6 +211,49 @@ def test_zero_cardinality_multi_series(self):
+         pd.testing.assert_frame_equal(ts1_inv.static_covariates, ts1.static_covariates)
+         pd.testing.assert_frame_equal(ts2_inv.static_covariates, ts2.static_covariates)
+ 
++    def test_cols_cat_order_different_from_data(self):
++        series = [
++            self.series.with_static_covariates(
++                pd.DataFrame({"Country": ["US"], "City": ["New York"]})
++            ),
++            self.series.with_static_covariates(
++                pd.DataFrame({"Country": ["China"], "City": ["Beijing"]})
++            ),
++        ]
++
++        transformer = StaticCovariatesTransformer(
++            transformer_cat=OneHotEncoder(sparse_output=False),
++            cols_cat=["City", "Country"],
++        )
++
++        transformed = transformer.fit_transform(series)
++
++        expected_columns = [
++            "Country_China",
++            "Country_US",
++            "City_Beijing",
++            "City_New York",
++        ]
++        assert transformed[0].static_covariates.columns.tolist() == expected_columns
++        assert transformed[1].static_covariates.columns.tolist() == expected_columns
++
++        # Series 0: Country="US", City="New York"
++        # Expected: [Country_China=0.0, Country_US=1.0, City_Beijing=0.0, City_New York=1.0]
++        first_static_covs = transformed[0].static_covariates
++        assert first_static_covs.iloc[0].tolist() == [0.0, 1.0, 0.0, 1.0]
++
++        # Series 1: Country="China", City="Beijing"
++        # Expected: [Country_China=1.0, Country_US=0.0, City_Beijing=1.0, City_New York=0.0]
++        second_static_covs = transformed[1].static_covariates
++        assert second_static_covs.iloc[0].tolist() == [1.0, 0.0, 1.0, 0.0]
++
++        recovered = transformer.inverse_transform(transformed)
++        for i in range(2):
++            pd.testing.assert_frame_equal(
++                recovered[i].static_covariates,
++                series[i].static_covariates,
++            )
++
+     def helper_test_scaling(self, series, scaler, test_values):
+         series_copy = series.copy()
+         series_tr = scaler.fit_transform(series)

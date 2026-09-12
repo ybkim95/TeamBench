@@ -1,0 +1,108 @@
+diff --git a/homeassistant/components/tuya/light.py b/homeassistant/components/tuya/light.py
+index 9848351047cc2..673e9b1ffb300 100644
+--- a/homeassistant/components/tuya/light.py
++++ b/homeassistant/components/tuya/light.py
+@@ -663,8 +663,11 @@ def turn_on(self, **kwargs: Any) -> None:
+                 },
+             ]
+ 
+-        elif ATTR_BRIGHTNESS in kwargs and self._brightness:
+-            brightness = kwargs[ATTR_BRIGHTNESS]
++        elif self._brightness and (ATTR_BRIGHTNESS in kwargs or ATTR_WHITE in kwargs):
++            if ATTR_BRIGHTNESS in kwargs:
++                brightness = kwargs[ATTR_BRIGHTNESS]
++            else:
++                brightness = kwargs[ATTR_WHITE]
+ 
+             # If there is a min/max value, the brightness is actually limited.
+             # Meaning it is actually not on a 0-255 scale.
+diff --git a/tests/components/tuya/test_light.py b/tests/components/tuya/test_light.py
+index 008d918cee138..6c36f9ef838c4 100644
+--- a/tests/components/tuya/test_light.py
++++ b/tests/components/tuya/test_light.py
+@@ -2,6 +2,7 @@
+ 
+ from __future__ import annotations
+ 
++from typing import Any
+ from unittest.mock import patch
+ 
+ import pytest
+@@ -42,11 +43,58 @@ async def test_platform_setup_and_discovery(
+     "mock_device_code",
+     ["dj_mki13ie507rlry4r"],
+ )
++@pytest.mark.parametrize(
++    ("turn_on_input", "expected_commands"),
++    [
++        (
++            {
++                "white": True,
++            },
++            [
++                {"code": "switch_led", "value": True},
++                {"code": "work_mode", "value": "white"},
++                {"code": "bright_value_v2", "value": 546},
++            ],
++        ),
++        (
++            {
++                "brightness": 150,
++            },
++            [
++                {"code": "switch_led", "value": True},
++                {"code": "bright_value_v2", "value": 592},
++            ],
++        ),
++        (
++            {
++                "white": True,
++                "brightness": 150,
++            },
++            [
++                {"code": "switch_led", "value": True},
++                {"code": "work_mode", "value": "white"},
++                {"code": "bright_value_v2", "value": 592},
++            ],
++        ),
++        (
++            {
++                "white": 150,
++            },
++            [
++                {"code": "switch_led", "value": True},
++                {"code": "work_mode", "value": "white"},
++                {"code": "bright_value_v2", "value": 592},
++            ],
++        ),
++    ],
++)
+ async def test_turn_on_white(
+     hass: HomeAssistant,
+     mock_manager: ManagerCompat,
+     mock_config_entry: MockConfigEntry,
+     mock_device: CustomerDevice,
++    turn_on_input: dict[str, Any],
++    expected_commands: list[dict[str, Any]],
+ ) -> None:
+     """Test turn_on service."""
+     entity_id = "light.garage_light"
+@@ -59,16 +107,13 @@ async def test_turn_on_white(
+         SERVICE_TURN_ON,
+         {
+             "entity_id": entity_id,
+-            "white": 150,
++            **turn_on_input,
+         },
+     )
+     await hass.async_block_till_done()
+     mock_manager.send_commands.assert_called_once_with(
+         mock_device.id,
+-        [
+-            {"code": "switch_led", "value": True},
+-            {"code": "work_mode", "value": "white"},
+-        ],
++        expected_commands,
+     )
+ 
+ 

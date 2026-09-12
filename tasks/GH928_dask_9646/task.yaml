@@ -1,0 +1,13 @@
+task_id: GH928_dask_9646
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix groupby-aggregation when grouping on an index by name"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/dask/dask/pull/9646"
+source_issue: "https://github.com/dask/dask/issues/9643"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

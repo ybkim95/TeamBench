@@ -1,0 +1,8 @@
+task_id: PERF1_optimize_constrained
+category: Performance
+difficulty: expert
+languages: [python]
+description: "Optimize slow data processing module: fix real bottlenecks but preserve intentional slow patterns (rate limits, stable sort)"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]

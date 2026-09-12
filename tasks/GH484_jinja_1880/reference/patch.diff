@@ -1,0 +1,105 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 2e83ab3f6..3955a32ba 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -39,6 +39,7 @@ Unreleased
+     searched. :issue:`1661`
+ -   ``PackageLoader`` shows a clearer error message when the package does not
+     contain the templates directory. :issue:`1705`
++-   Improve annotations for methods returning copies. :pr:`1880`
+ 
+ 
+ Version 3.1.4
+diff --git a/src/jinja2/compiler.py b/src/jinja2/compiler.py
+index 23295ec1f..ca079070a 100644
+--- a/src/jinja2/compiler.py
++++ b/src/jinja2/compiler.py
+@@ -216,7 +216,7 @@ def __init__(
+         # or compile time.
+         self.soft_frame = False
+ 
+-    def copy(self) -> "Frame":
++    def copy(self) -> "te.Self":
+         """Create a copy of the current one."""
+         rv = object.__new__(self.__class__)
+         rv.__dict__.update(self.__dict__)
+@@ -229,7 +229,7 @@ def inner(self, isolated: bool = False) -> "Frame":
+             return Frame(self.eval_ctx, level=self.symbols.level + 1)
+         return Frame(self.eval_ctx, self)
+ 
+-    def soft(self) -> "Frame":
++    def soft(self) -> "te.Self":
+         """Return a soft frame.  A soft frame may not be modified as
+         standalone thing as it shares the resources with the frame it
+         was created of, but it's not a rootlevel frame any longer.
+diff --git a/src/jinja2/environment.py b/src/jinja2/environment.py
+index 821971779..0fc6e5be8 100644
+--- a/src/jinja2/environment.py
++++ b/src/jinja2/environment.py
+@@ -123,7 +123,7 @@ def load_extensions(
+     return result
+ 
+ 
+-def _environment_config_check(environment: "Environment") -> "Environment":
++def _environment_config_check(environment: _env_bound) -> _env_bound:
+     """Perform a sanity check on the environment."""
+     assert issubclass(
+         environment.undefined, Undefined
+@@ -407,7 +407,7 @@ def overlay(
+         auto_reload: bool = missing,
+         bytecode_cache: t.Optional["BytecodeCache"] = missing,
+         enable_async: bool = missing,
+-    ) -> "Environment":
++    ) -> "te.Self":
+         """Create a new overlay environment that shares all the data with the
+         current environment except for cache and the overridden attributes.
+         Extensions cannot be removed for an overlayed environment.  An overlayed
+diff --git a/src/jinja2/ext.py b/src/jinja2/ext.py
+index 8d0810cd4..c7af8d45f 100644
+--- a/src/jinja2/ext.py
++++ b/src/jinja2/ext.py
+@@ -89,7 +89,7 @@ def __init_subclass__(cls) -> None:
+     def __init__(self, environment: Environment) -> None:
+         self.environment = environment
+ 
+-    def bind(self, environment: Environment) -> "Extension":
++    def bind(self, environment: Environment) -> "te.Self":
+         """Create a copy of this extension bound to another environment."""
+         rv = object.__new__(self.__class__)
+         rv.__dict__.update(self.__dict__)
+diff --git a/src/jinja2/idtracking.py b/src/jinja2/idtracking.py
+index d6cb635b2..cb4bccb0e 100644
+--- a/src/jinja2/idtracking.py
++++ b/src/jinja2/idtracking.py
+@@ -3,6 +3,9 @@
+ from . import nodes
+ from .visitor import NodeVisitor
+ 
++if t.TYPE_CHECKING:
++    import typing_extensions as te
++
+ VAR_LOAD_PARAMETER = "param"
+ VAR_LOAD_RESOLVE = "resolve"
+ VAR_LOAD_ALIAS = "alias"
+@@ -83,7 +86,7 @@ def ref(self, name: str) -> str:
+             )
+         return rv
+ 
+-    def copy(self) -> "Symbols":
++    def copy(self) -> "te.Self":
+         rv = object.__new__(self.__class__)
+         rv.__dict__.update(self.__dict__)
+         rv.refs = self.refs.copy()
+diff --git a/src/jinja2/utils.py b/src/jinja2/utils.py
+index 7b52fc03e..d7149bc31 100644
+--- a/src/jinja2/utils.py
++++ b/src/jinja2/utils.py
+@@ -462,7 +462,7 @@ def __setstate__(self, d: t.Mapping[str, t.Any]) -> None:
+     def __getnewargs__(self) -> t.Tuple[t.Any, ...]:
+         return (self.capacity,)
+ 
+-    def copy(self) -> "LRUCache":
++    def copy(self) -> "te.Self":
+         """Return a shallow copy of the instance."""
+         rv = self.__class__(self.capacity)
+         rv._mapping.update(self._mapping)

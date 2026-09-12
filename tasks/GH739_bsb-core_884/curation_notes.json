@@ -1,0 +1,52 @@
+{
+  "repo": "dbbs-lab/bsb-core",
+  "pr_number": 884,
+  "pr_url": "https://github.com/dbbs-lab/bsb-core/pull/884",
+  "issue_number": 883,
+  "base_sha": "88a59966e12c13a0ef192e87c64bbe0f4f589e7e",
+  "head_sha": "9f15f9526a87ef1d88e41d5c6adf045927077e3f",
+  "additions": 85,
+  "deletions": 13,
+  "changed_files": [
+    "bsb/morphologies/__init__.py",
+    "tests/test_morphologies.py"
+  ],
+  "test_files": [
+    "tests/test_morphologies.py"
+  ],
+  "source_files": [
+    "bsb/morphologies/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "dbbs-lab/bsb-core",
+    "repo_short": "bsb-core",
+    "parameterized_identifiers": [
+      "arange",
+      "arc_val",
+      "array",
+      "assign",
+      "before",
+      "bounds",
+      "branch",
+      "concatenate",
+      "coordinates",
+      "copied"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:36:29Z"
+}

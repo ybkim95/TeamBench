@@ -1,0 +1,13 @@
+task_id: GH230_core_163096
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "dwd_weather_warnings: Filter expired warnings"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/163096"
+source_issue: "https://github.com/home-assistant/core/issues/150737"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

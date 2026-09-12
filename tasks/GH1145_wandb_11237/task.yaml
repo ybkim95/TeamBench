@@ -1,0 +1,13 @@
+task_id: GH1145_wandb_11237
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: ignore ipython magic registration errors"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/wandb/wandb/pull/11237"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

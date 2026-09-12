@@ -1,0 +1,215 @@
+diff --git a/homeassistant/components/portainer/__init__.py b/homeassistant/components/portainer/__init__.py
+index 1c21e518ff4df..a63fae46d4a0b 100644
+--- a/homeassistant/components/portainer/__init__.py
++++ b/homeassistant/components/portainer/__init__.py
+@@ -2,6 +2,8 @@
+ 
+ from __future__ import annotations
+ 
++import logging
++
+ from pyportainer import Portainer
+ 
+ from homeassistant.config_entries import ConfigEntry
+@@ -16,6 +18,8 @@
+ from homeassistant.core import HomeAssistant
+ from homeassistant.helpers.aiohttp_client import async_create_clientsession
+ import homeassistant.helpers.config_validation as cv
++import homeassistant.helpers.device_registry as dr
++import homeassistant.helpers.entity_registry as er
+ from homeassistant.helpers.typing import ConfigType
+ 
+ from .const import DOMAIN
+@@ -33,6 +37,8 @@
+ 
+ type PortainerConfigEntry = ConfigEntry[PortainerCoordinator]
+ 
++_LOGGER = logging.getLogger(__name__)
++
+ 
+ async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry) -> bool:
+     """Set up Portainer from a config entry."""
+@@ -79,4 +85,55 @@ async def async_migrate_entry(hass: HomeAssistant, entry: PortainerConfigEntry)
+         data[CONF_VERIFY_SSL] = True
+         hass.config_entries.async_update_entry(entry=entry, data=data, version=3)
+ 
++    if entry.version < 4:
++        device_registry = dr.async_get(hass)
++        entity_registry = er.async_get(hass)
++        devices = dr.async_entries_for_config_entry(device_registry, entry.entry_id)
++        for device in devices:
++            # This means it's an endpoint. This can be skipped, we're only interested in the containers
++            if device.via_device_id is None:
++                continue
++
++            parent_devices = device_registry.async_get(device.via_device_id)
++            assert parent_devices
++            for parent_device in parent_devices.identifiers:
++                if parent_device[0] == DOMAIN:
++                    parent_device_identifiers = parent_device
++                    break
++
++            _LOGGER.debug("Parent device identifiers: %s", parent_device_identifiers)
++            endpoint_id = parent_device_identifiers[1].split("_")[-1]
++            _LOGGER.debug("Endpoint ID: %s", endpoint_id)
++            current_identifier = next(iter(device.identifiers))
++            _LOGGER.debug("Current identifier: %s", current_identifier)
++            container = current_identifier[1].split("_", 1)[1]
++            _LOGGER.debug("Container name: %s", container)
++            new_identifier = f"{entry.entry_id}_{endpoint_id}_{container}"
++            _LOGGER.debug("New identifier: %s", new_identifier)
++
++            new_identifiers = set(device.identifiers)
++            new_identifiers.add((DOMAIN, new_identifier))
++
++            device_registry.async_update_device(
++                device.id,
++                new_identifiers=new_identifiers,
++            )
++
++            # Now also update the underlying entities with the new unique_attr_id
++            entities_device = er.async_entries_for_device(
++                entity_registry,
++                device.id,
++            )
++            for entity in entities_device:
++                _LOGGER.debug("Handling entity: %s", entity)
++                # This time we also also have a rest tail (for instance _firefly_iii_db)
++                _, _, rest_tail = entity.unique_id.split("_", 2)
++                new_unique_id = f"{new_identifier}_{rest_tail}"
++                _LOGGER.debug("New unique ID: %s", new_unique_id)
++                entity_registry.async_update_entity(
++                    entity_id=entity.entity_id, new_unique_id=new_unique_id
++                )
++
++        hass.config_entries.async_update_entry(entry=entry, version=4)
++
+     return True
+diff --git a/homeassistant/components/portainer/config_flow.py b/homeassistant/components/portainer/config_flow.py
+index c204e3100f70d..9e8b3f14032cd 100644
+--- a/homeassistant/components/portainer/config_flow.py
++++ b/homeassistant/components/portainer/config_flow.py
+@@ -55,7 +55,7 @@ async def _validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None:
+ class PortainerConfigFlow(ConfigFlow, domain=DOMAIN):
+     """Handle a config flow for Portainer."""
+ 
+-    VERSION = 2
++    VERSION = 4
+ 
+     async def async_step_user(
+         self, user_input: dict[str, Any] | None = None
+diff --git a/homeassistant/components/portainer/entity.py b/homeassistant/components/portainer/entity.py
+index 4d3231748dd91..139f74bf48cf8 100644
+--- a/homeassistant/components/portainer/entity.py
++++ b/homeassistant/components/portainer/entity.py
+@@ -75,7 +75,10 @@ def __init__(
+ 
+         self._attr_device_info = DeviceInfo(
+             identifiers={
+-                (DOMAIN, f"{self.coordinator.config_entry.entry_id}_{self.device_name}")
++                (
++                    DOMAIN,
++                    f"{self.coordinator.config_entry.entry_id}_{self.endpoint_id}_{self.device_name}",
++                )
+             },
+             manufacturer=DEFAULT_NAME,
+             configuration_url=URL(
+diff --git a/tests/components/portainer/snapshots/test_diagnostics.ambr b/tests/components/portainer/snapshots/test_diagnostics.ambr
+index 2972796bde37a..c895b7f7bd560 100644
+--- a/tests/components/portainer/snapshots/test_diagnostics.ambr
++++ b/tests/components/portainer/snapshots/test_diagnostics.ambr
+@@ -22,7 +22,7 @@
+       ]),
+       'title': 'Portainer test',
+       'unique_id': 'test_api_token',
+-      'version': 2,
++      'version': 4,
+     }),
+     'coordinator': dict({
+       'endpoints': list([
+diff --git a/tests/components/portainer/test_init.py b/tests/components/portainer/test_init.py
+index 4e661e225055b..8da6e3ab3dc29 100644
+--- a/tests/components/portainer/test_init.py
++++ b/tests/components/portainer/test_init.py
+@@ -19,6 +19,7 @@
+     CONF_VERIFY_SSL,
+ )
+ from homeassistant.core import HomeAssistant
++from homeassistant.helpers import device_registry as dr, entity_registry as er
+ 
+ from . import setup_integration
+ 
+@@ -63,9 +64,72 @@ async def test_migrations(hass: HomeAssistant) -> None:
+     await hass.config_entries.async_setup(entry.entry_id)
+     await hass.async_block_till_done()
+ 
+-    assert entry.version == 3
+     assert CONF_HOST not in entry.data
+     assert CONF_API_KEY not in entry.data
+     assert entry.data[CONF_URL] == "http://test_host"
+     assert entry.data[CONF_API_TOKEN] == "test_key"
+     assert entry.data[CONF_VERIFY_SSL] is True
++
++    # Confirm we went through all current migrations
++    assert entry.version == 4
++
++
++async def test_migration_v3_to_v4(
++    hass: HomeAssistant,
++    device_registry: dr.DeviceRegistry,
++    entity_registry: er.EntityRegistry,
++) -> None:
++    """Test migration from v3 config entry."""
++    entry = MockConfigEntry(
++        domain=DOMAIN,
++        data={
++            CONF_HOST: "http://test_host",
++            CONF_API_KEY: "test_key",
++        },
++        unique_id="1",
++        version=3,
++    )
++    entry.add_to_hass(hass)
++    assert entry.version == 3
++
++    endpoint_device = device_registry.async_get_or_create(
++        config_entry_id=entry.entry_id,
++        identifiers={(DOMAIN, f"{entry.entry_id}_endpoint_1")},
++        name="Test Endpoint",
++    )
++
++    original_container_identifier = f"{entry.entry_id}_adguard"
++    container_device = device_registry.async_get_or_create(
++        config_entry_id=entry.entry_id,
++        identifiers={(DOMAIN, original_container_identifier)},
++        via_device=(DOMAIN, f"{entry.entry_id}_endpoint_1"),
++        name="Test Container",
++    )
++
++    container_entity = entity_registry.async_get_or_create(
++        domain="switch",
++        platform=DOMAIN,
++        unique_id=f"{entry.entry_id}_adguard_container",
++        config_entry=entry,
++        device_id=container_device.id,
++        original_name="Test Container Switch",
++    )
++
++    assert container_device.via_device_id == endpoint_device.id
++    assert container_device.identifiers == {(DOMAIN, original_container_identifier)}
++    assert container_entity.unique_id == f"{entry.entry_id}_adguard_container"
++
++    await hass.config_entries.async_setup(entry.entry_id)
++    await hass.async_block_till_done()
++
++    assert entry.version == 4
++
++    # Fetch again, to assert the new identifiers
++    container_after = device_registry.async_get(container_device.id)
++    entity_after = entity_registry.async_get(container_entity.entity_id)
++
++    assert container_after.identifiers == {
++        (DOMAIN, original_container_identifier),
++        (DOMAIN, f"{entry.entry_id}_1_adguard"),
++    }
++    assert entity_after.unique_id == f"{entry.entry_id}_1_adguard_container"

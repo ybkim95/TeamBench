@@ -1,0 +1,56 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 21810,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/21810",
+  "issue_number": null,
+  "base_sha": "f7fce418641b79b8ca247ff9332b2e1a8c5eb2a9",
+  "head_sha": "c8938f48c99e3ae98ca010417ab01ee12413ca8e",
+  "additions": 47,
+  "deletions": 6,
+  "changed_files": [
+    "mlflow/llama_index/tracer.py",
+    "tests/llama_index/test_llama_index_autolog.py",
+    "tests/llama_index/test_llama_index_tracer.py"
+  ],
+  "test_files": [
+    "tests/llama_index/test_llama_index_autolog.py",
+    "tests/llama_index/test_llama_index_tracer.py"
+  ],
+  "source_files": [
+    "mlflow/llama_index/tracer.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "additional",
+      "allow",
+      "apple",
+      "arguments",
+      "attributes",
+      "banana",
+      "bound_args",
+      "changes",
+      "clean",
+      "combine_results"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:07Z"
+}

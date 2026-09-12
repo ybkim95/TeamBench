@@ -1,0 +1,15 @@
+{
+ "task": "GH540_redis-py_3968",
+ "patch": "tasks/GH540_redis-py_3968/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "redis/redis-py",
+ "pr_number": 3968,
+ "base_sha": "d784922f8fa300ce18a1bd10574bce97d14130ad",
+ "head_sha": "8ccf0c32d633c29f75d41c18866fbf9a1add626f",
+ "bytes": 5206,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

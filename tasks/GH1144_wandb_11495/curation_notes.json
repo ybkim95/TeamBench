@@ -1,0 +1,64 @@
+{
+  "repo": "wandb/wandb",
+  "pr_number": 11495,
+  "pr_url": "https://github.com/wandb/wandb/pull/11495",
+  "issue_number": null,
+  "base_sha": "18598f8f2aedde5eac5da61480073382f4a9db09",
+  "head_sha": "7fa7f72cacdfbeb54248769b952ca1291323da5e",
+  "additions": 158,
+  "deletions": 172,
+  "changed_files": [
+    "noxfile.py",
+    "pyproject.toml",
+    "requirements/requirements_dev.3.13.darwin.txt",
+    "requirements/requirements_dev.3.13.linux.txt",
+    "requirements/requirements_dev.3.13.windows.txt",
+    "requirements/requirements_dev.3.9.darwin.txt",
+    "requirements/requirements_dev.3.9.linux.txt",
+    "requirements/requirements_dev.3.9.windows.txt",
+    "requirements/requirements_dev.txt",
+    "tests/system_tests/test_core/test_data_types_full.py",
+    "wandb/sdk/data_types/bokeh.py"
+  ],
+  "test_files": [
+    "tests/system_tests/test_core/test_data_types_full.py"
+  ],
+  "source_files": [
+    "noxfile.py",
+    "wandb/sdk/data_types/bokeh.py"
+  ],
+  "parameterization": {
+    "repo": "wandb/wandb",
+    "repo_short": "wandb",
+    "parameterized_identifiers": [
+      "accept",
+      "add_root",
+      "aiplatform",
+      "alembic",
+      "already",
+      "argon2",
+      "ariadne",
+      "arm64",
+      "artifact",
+      "asyncio"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:09:05Z"
+}

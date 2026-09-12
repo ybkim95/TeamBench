@@ -1,0 +1,56 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 45118,
+  "pr_url": "https://github.com/ray-project/ray/pull/45118",
+  "issue_number": null,
+  "base_sha": "9a3b22b566119b6c2a1ce479c843e6a4414fd9e5",
+  "head_sha": "2af398815a17ab6bdcaa1ac653239c62d7e9f93a",
+  "additions": 20,
+  "deletions": 8,
+  "changed_files": [
+    "python/ray/serve/_private/autoscaling_state.py",
+    "python/ray/serve/_private/deployment_state.py",
+    "python/ray/serve/tests/test_controller_recovery.py"
+  ],
+  "test_files": [
+    "python/ray/serve/tests/test_controller_recovery.py"
+  ],
+  "source_files": [
+    "python/ray/serve/_private/autoscaling_state.py",
+    "python/ray/serve/_private/deployment_state.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "able",
+      "actor",
+      "autoscaling",
+      "autoscaling_config",
+      "call",
+      "config",
+      "constructor",
+      "controller",
+      "deploy",
+      "deployment"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:54:36Z"
+}

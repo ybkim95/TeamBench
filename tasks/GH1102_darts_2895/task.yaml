@@ -1,0 +1,13 @@
+task_id: GH1102_darts_2895
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: properly save naive model"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/unit8co/darts/pull/2895"
+source_issue: "https://github.com/unit8co/darts/issues/2839"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

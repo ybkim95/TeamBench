@@ -1,0 +1,62 @@
+{
+  "repo": "autogluon/autogluon",
+  "pr_number": 3288,
+  "pr_url": "https://github.com/autogluon/autogluon/pull/3288",
+  "issue_number": null,
+  "base_sha": "8d3c622c92bd36b8d8a70c1d66cdda52395957ce",
+  "head_sha": "bcd61c2b219dbc86092776d49bd871c256255393",
+  "additions": 108,
+  "deletions": 5,
+  "changed_files": [
+    "common/src/autogluon/common/utils/path_converter.py",
+    "core/src/autogluon/core/models/abstract/abstract_model.py",
+    "core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py",
+    "core/src/autogluon/core/trainer/abstract_trainer.py",
+    "tabular/tests/conftest.py",
+    "tabular/tests/unittests/models/test_dummy.py"
+  ],
+  "test_files": [
+    "tabular/tests/conftest.py",
+    "tabular/tests/unittests/models/test_dummy.py"
+  ],
+  "source_files": [
+    "common/src/autogluon/common/utils/path_converter.py",
+    "core/src/autogluon/core/models/abstract/abstract_model.py",
+    "core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py",
+    "core/src/autogluon/core/trainer/abstract_trainer.py"
+  ],
+  "parameterization": {
+    "repo": "autogluon/autogluon",
+    "repo_short": "autogluon",
+    "parameterized_identifiers": [
+      "absolute",
+      "adult",
+      "after",
+      "ames",
+      "aren",
+      "autogluon",
+      "base_model_names",
+      "base_model_paths_dict",
+      "base_model_types_dict",
+      "base_models_dict"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:53:21Z"
+}

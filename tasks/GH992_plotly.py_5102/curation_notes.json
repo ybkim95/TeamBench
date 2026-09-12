@@ -1,0 +1,55 @@
+{
+  "repo": "plotly/plotly.py",
+  "pr_number": 5102,
+  "pr_url": "https://github.com/plotly/plotly.py/pull/5102",
+  "issue_number": null,
+  "base_sha": "53c47708621c4f1ff72dea68495d534684354e86",
+  "head_sha": "1bd4257c967fee1b2e704db10adcad3bd64fd38b",
+  "additions": 31,
+  "deletions": 0,
+  "changed_files": [
+    "CHANGELOG.md",
+    "plotly/basewidget.py",
+    "tests/test_core/test_figure_widget_backend/test_validate_initialization.py"
+  ],
+  "test_files": [
+    "tests/test_core/test_figure_widget_backend/test_validate_initialization.py"
+  ],
+  "source_files": [
+    "plotly/basewidget.py"
+  ],
+  "parameterization": {
+    "repo": "plotly/plotly.py",
+    "repo_short": "plotly.py",
+    "parameterized_identifiers": [
+      "adheres",
+      "changes",
+      "data",
+      "deepcopy",
+      "display",
+      "documented",
+      "file",
+      "github",
+      "graph_objs",
+      "http"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:57:19Z"
+}

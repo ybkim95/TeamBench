@@ -1,0 +1,153 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 9e041e6c54..d7d7796676 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -64,7 +64,6 @@ Homepage = "https://github.com/scikit-hep/pyhf"
+ "Source Code" = "https://github.com/scikit-hep/pyhf"
+ 
+ [project.optional-dependencies]
+-shellcomplete = ["click_completion"]
+ jax = [
+     "jax>=0.4.1",  # c.f. PR #2079
+     "jaxlib>=0.4.1",  # c.f. PR #2079
+@@ -76,7 +75,7 @@ contrib = [
+     "requests>=2.22.0",
+ ]
+ backends = ["pyhf[jax,minuit]"]
+-all = ["pyhf[backends,xmlio,contrib,shellcomplete]"]
++all = ["pyhf[backends,xmlio,contrib]"]
+ 
+ # Developer extras
+ [dependency-groups]
+diff --git a/src/pyhf/cli/complete.py b/src/pyhf/cli/complete.py
+index c39e6e9784..7864d473c8 100644
+--- a/src/pyhf/cli/complete.py
++++ b/src/pyhf/cli/complete.py
+@@ -1,30 +1,50 @@
+-'''Shell completions for pyhf.'''
++"""Shell completions for pyhf."""
+ 
+ import click
+ 
+-try:
+-    import click_completion
+ 
+-    click_completion.init()
++@click.command(name="completions")
++@click.argument(
++    "shell",
++    required=False,
++    type=click.Choice(["bash", "zsh", "fish"], case_sensitive=False),
++)
++def cli(shell):
++    """
++    Generate shell completion code for various shells.
+ 
+-    @click.command(help='Generate shell completion code.', name='completions')
+-    @click.argument(
+-        'shell',
+-        required=False,
+-        type=click_completion.DocumentedChoice(click_completion.core.shells),
+-    )
+-    def cli(shell):
+-        '''Generate shell completion code for various shells.'''
+-        click.echo(click_completion.core.get_code(shell, prog_name='pyhf'))
++    The necessary commands to enable completions for pyhf for the specified
++    shell will be printed to stdout.
++    """
++    if shell is None:
++        click.echo(cli.get_help(click.Context(cli)))
++        return
+ 
+-except ImportError:
++    click.echo(f"To enable {shell} completion for pyhf run in your {shell} shell:\n")
+ 
+-    @click.command(help='Generate shell completion code.', name='completions')
+-    @click.argument('shell', default=None)
+-    def cli(shell):
+-        """Placeholder for shell completion code generatioon function if necessary dependency is missing."""
+-        click.secho(
+-            "This requires the click_completion module.\n"
+-            "You can install it with the shellcomplete extra:\n"
+-            "python -m pip install 'pyhf[shellcomplete]'"
++    instructions = {
++        "bash": (
++            "mkdir -p ~/.completions\n"
++            "_PYHF_COMPLETE=bash_source pyhf > ~/.completions/pyhf-complete.sh\n"
++            'echo -e "\\n. ~/.completions/pyhf-complete.sh" >> ~/.bashrc\n'
++        ),
++        "zsh": (
++            "mkdir -p ~/.completions\n"
++            "_PYHF_COMPLETE=zsh_source pyhf > ~/.completions/pyhf-complete.zsh\n"
++            'echo -e "\\n. ~/.completions/pyhf-complete.zsh" >> ~/.zshrc\n'
++        ),
++        "fish": (
++            "_PYHF_COMPLETE=fish_source pyhf >> ~/.config/fish/completions/pyhf.fish\n"
++        ),
++    }
++    click.echo(
++        click.style(
++            instructions[shell],
++            bold=True,
+         )
++    )
++    click.echo(
++        "and then source your shell configuration or restart your shell."
++        + "\nPressing tab twice (<TAB><TAB>) will show all available subcommands."
++        + "\nOptions are only listed if at least a dash has been entered (-<TAB><TAB>)."
++    )
+diff --git a/tests/test_cli.py b/tests/test_cli.py
+index 8b2bda812c..f9c2ad2756 100644
+--- a/tests/test_cli.py
++++ b/tests/test_cli.py
+@@ -1,21 +1,40 @@
+ from click.testing import CliRunner
+-import sys
+-import importlib
+ 
+ 
+-def test_shllcomplete_cli(isolate_modules):
++def test_shell_completion_cli_bash():
+     from pyhf.cli.complete import cli
+ 
+     runner = CliRunner()
+-    result = runner.invoke(cli, ['bash'])
+-    assert 'complete -F _pyhf_completion -o default pyhf' in result.output
++    result = runner.invoke(cli, ["bash"])
++    assert result.exit_code == 0
++    assert "_PYHF_COMPLETE=bash_source" in result.output
++    assert ".bashrc" in result.output
+ 
+ 
+-def test_shllcomplete_cli_missing_extra(isolate_modules):
+-    sys.modules['click_completion'] = None
+-    importlib.reload(sys.modules['pyhf.cli.complete'])
++def test_shell_completion_cli_zsh():
+     from pyhf.cli.complete import cli
+ 
+     runner = CliRunner()
+-    result = runner.invoke(cli, ['bash'])
+-    assert 'You can install it with the shellcomplete extra' in result.output
++    result = runner.invoke(cli, ["zsh"])
++    assert result.exit_code == 0
++    assert "_PYHF_COMPLETE=zsh_source" in result.output
++    assert ".zshrc" in result.output
++
++
++def test_shell_completion_cli_fish():
++    from pyhf.cli.complete import cli
++
++    runner = CliRunner()
++    result = runner.invoke(cli, ["fish"])
++    assert result.exit_code == 0
++    assert "_PYHF_COMPLETE=fish_source" in result.output
++    assert "fish/completions" in result.output
++
++
++def test_shell_completion_cli_no_shell():
++    from pyhf.cli.complete import cli
++
++    runner = CliRunner()
++    result = runner.invoke(cli)
++    assert result.exit_code == 0
++    assert "Generate shell completion code" in result.output

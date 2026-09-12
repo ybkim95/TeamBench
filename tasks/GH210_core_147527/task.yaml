@@ -1,0 +1,13 @@
+task_id: GH210_core_147527
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Recalculate derivative unit correctly when source or options change"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/147527"
+source_issue: "https://github.com/home-assistant/core/issues/136419"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

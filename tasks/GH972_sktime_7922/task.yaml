@@ -1,0 +1,13 @@
+task_id: GH972_sktime_7922
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] skip `RocketClassifier` expected output test until resolved"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/7922"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

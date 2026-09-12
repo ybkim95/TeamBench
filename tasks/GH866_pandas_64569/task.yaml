@@ -1,0 +1,13 @@
+task_id: GH866_pandas_64569
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Fix HDFStore.put with StringDtype columns and compression (#64180)"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64569"
+source_issue: "https://github.com/pandas-dev/pandas/issues/64180"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

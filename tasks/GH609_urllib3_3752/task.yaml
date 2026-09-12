@@ -1,0 +1,13 @@
+task_id: GH609_urllib3_3752
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Patch VerifiedHTTPSConnection for emscripten"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/urllib3/urllib3/pull/3752"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

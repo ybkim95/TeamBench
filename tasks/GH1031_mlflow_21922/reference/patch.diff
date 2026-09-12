@@ -1,0 +1,544 @@
+diff --git a/mlflow/gateway/providers/anthropic.py b/mlflow/gateway/providers/anthropic.py
+index 1301f0ee6e673..55aed7680149a 100644
+--- a/mlflow/gateway/providers/anthropic.py
++++ b/mlflow/gateway/providers/anthropic.py
+@@ -23,6 +23,47 @@
+ _logger = logging.getLogger(__name__)
+ 
+ 
++class _UnsupportedSchemaError(Exception):
++    """Schema contains constructs that Anthropic structured outputs cannot represent."""
++
++
++def _enforce_strict_schema(schema: dict[str, Any]) -> None:
++    """Recursively set ``additionalProperties: false`` on object types that have ``properties``.
++
++    Anthropic's structured outputs require every object node to explicitly set
++    ``additionalProperties: false``. Pydantic-generated schemas often violate
++    this — for example, ``dict[str, str]`` produces:
++
++        // Rejected by Anthropic (400)
++        {"type": "object", "additionalProperties": {"type": "string"}}
++
++    This function rewrites it to:
++
++        // Accepted by Anthropic
++        {"type": "object", "additionalProperties": false}
++
++    Objects without ``properties`` (i.e. free-form dicts like ``dict[str, str]``)
++    are left unchanged so the model can still populate them with arbitrary keys.
++    """
++    if not isinstance(schema, dict):
++        return
++    if schema.get("type") == "object":
++        if "properties" not in schema:
++            raise _UnsupportedSchemaError(
++                "Object type without 'properties' (free-form dict) cannot be represented "
++                "with Anthropic structured outputs, which require additionalProperties: false."
++            )
++        schema["additionalProperties"] = False
++    for value in schema.values():
++        match value:
++            case dict():
++                _enforce_strict_schema(value)
++            case list():
++                for item in value:
++                    if isinstance(item, dict):
++                        _enforce_strict_schema(item)
++
++
+ class AnthropicAdapter(ProviderAdapter):
+     @classmethod
+     def chat_to_model(cls, payload, config):
+@@ -141,12 +182,24 @@ def chat_to_model(cls, payload, config):
+         if response_format := payload.pop("response_format", None):
+             if response_format.get("type") == "json_schema" and "json_schema" in response_format:
+                 json_schema = response_format["json_schema"]
+-                payload["output_config"] = {
+-                    "format": {
+-                        "type": "json_schema",
+-                        "schema": json_schema.get("schema", {}),
++                schema = json_schema.get("schema", {})
++                try:
++                    _enforce_strict_schema(schema)
++                except _UnsupportedSchemaError:
++                    # Schema contains free-form dicts (objects without properties)
++                    # which Anthropic cannot represent. Skip structured output and
++                    # let the model respond in plain text.
++                    _logger.debug(
++                        "Schema contains constructs unsupported by Anthropic structured "
++                        "outputs (e.g. free-form dict). Falling back to plain text."
++                    )
++                else:
++                    payload["output_config"] = {
++                        "format": {
++                            "type": "json_schema",
++                            "schema": schema,
++                        }
+                     }
+-                }
+ 
+         return payload
+ 
+diff --git a/mlflow/metrics/genai/model_utils.py b/mlflow/metrics/genai/model_utils.py
+index b4d0765a26431..10a7dbff68046 100644
+--- a/mlflow/metrics/genai/model_utils.py
++++ b/mlflow/metrics/genai/model_utils.py
+@@ -127,6 +127,44 @@ def _is_supported_llm_provider(schema: str) -> bool:
+     return schema in provider_registry.keys()
+ 
+ 
++_MODELS_WITHOUT_OUTPUT_CONFIG: set[tuple[str, str]] = set()
++
++
++def _is_unsupported_output_format_error(exc: MlflowException) -> bool:
++    """Check if the error indicates the model doesn't support structured output.
++
++    Older Anthropic models (e.g. claude-sonnet-4-20250514) don't support ``output_config``
++    and return a 400 with::
++
++        {
++            "type": "error",
++            "error": {
++                "type": "invalid_request_error",
++                "message": "'claude-sonnet-4-20250514' does not support output format.",
++            },
++        }
++
++    Newer models (e.g. claude-sonnet-4-5-20250929) support it.
++    """
++    match exc.__cause__:
++        case requests.exceptions.HTTPError(
++            response=requests.Response(status_code=400) as response,
++        ):
++            try:
++                body = response.json()
++            except Exception:
++                return False
++            match body:
++                case {
++                    "error": {
++                        "type": "invalid_request_error",
++                        "message": str(msg),
++                    }
++                }:
++                    return "does not support output format" in msg.lower()
++    return False
++
++
+ def _call_llm_provider_api(
+     provider_name: str,
+     model: str,
+@@ -208,11 +246,28 @@ def _call_llm_provider_api(
+             )
+         response = provider._request(chat_payload)
+     else:
+-        response = _send_request(
+-            endpoint=proxy_url or provider.get_endpoint_url("llm/v1/chat"),
+-            headers=provider.headers | extra_headers,
+-            payload=chat_payload,
+-        )
++        if (provider_name, model) in _MODELS_WITHOUT_OUTPUT_CONFIG:
++            chat_payload.pop("output_config", None)
++            chat_payload.pop("response_format", None)
++
++        try:
++            response = _send_request(
++                endpoint=proxy_url or provider.get_endpoint_url("llm/v1/chat"),
++                headers=provider.headers | extra_headers,
++                payload=chat_payload,
++            )
++        except MlflowException as e:
++            if provider_name != "anthropic" or not _is_unsupported_output_format_error(e):
++                raise
++            # Model doesn't support structured output; remember and retry.
++            _MODELS_WITHOUT_OUTPUT_CONFIG.add((provider_name, model))
++            chat_payload.pop("output_config", None)
++            chat_payload.pop("response_format", None)
++            response = _send_request(
++                endpoint=proxy_url or provider.get_endpoint_url("llm/v1/chat"),
++                headers=provider.headers | extra_headers,
++                payload=chat_payload,
++            )
+     chat_response = provider.adapter_class.model_to_chat(response, provider.config)
+     if len(chat_response.choices) == 0:
+         raise MlflowException(
+@@ -327,9 +382,11 @@ def _send_request(
+         )
+         response.raise_for_status()
+     except requests.exceptions.HTTPError as e:
++        body = getattr(e.response, "text", "")
+         raise MlflowException(
+-            f"Failed to call LLM endpoint at {endpoint}.\n- Error: {e}\n- Input payload: {payload}."
+-        )
++            f"Failed to call LLM endpoint at {endpoint}.\n- Error: {e}\n"
++            f"- Response body: {body}\n- Input payload: {payload}."
++        ) from e
+ 
+     return response.json()
+ 
+diff --git a/tests/gateway/providers/test_anthropic.py b/tests/gateway/providers/test_anthropic.py
+index 7c8bb8b46c9d3..7edd093972c08 100644
+--- a/tests/gateway/providers/test_anthropic.py
++++ b/tests/gateway/providers/test_anthropic.py
+@@ -12,7 +12,12 @@
+     MLFLOW_GATEWAY_ROUTE_TIMEOUT_SECONDS,
+ )
+ from mlflow.gateway.exceptions import AIGatewayException
+-from mlflow.gateway.providers.anthropic import AnthropicAdapter, AnthropicProvider
++from mlflow.gateway.providers.anthropic import (
++    AnthropicAdapter,
++    AnthropicProvider,
++    _enforce_strict_schema,
++    _UnsupportedSchemaError,
++)
+ from mlflow.gateway.providers.base import PassthroughAction
+ from mlflow.gateway.schemas import chat, completions, embeddings
+ 
+@@ -1065,6 +1070,141 @@ def mock_client_session(headers=None):
+         assert "anthropic-beta" not in captured_session_headers
+ 
+ 
++@pytest.mark.asyncio
++async def test_chat_with_structured_output_sanitizes_schema():
++    config = {
++        "name": "chat",
++        "endpoint_type": "llm/v1/chat",
++        "model": {
++            "provider": "anthropic",
++            "name": "claude-sonnet-4-5",
++            "config": {
++                "anthropic_api_key": "key",
++            },
++        },
++    }
++
++    # Schema with dict-like additionalProperties (as Pydantic generates for dict[str, str])
++    json_schema = {
++        "name": "result",
++        "schema": {
++            "type": "object",
++            "properties": {
++                "metadata": {
++                    "type": "object",
++                    "additionalProperties": {"type": "string"},
++                }
++            },
++            "required": ["metadata"],
++            "additionalProperties": {"type": "string"},
++        },
++    }
++
++    resp = {
++        "id": "msg_test",
++        "type": "message",
++        "role": "assistant",
++        "content": [{"type": "text", "text": '{"metadata": {}}'}],
++        "model": "claude-sonnet-4-5",
++        "stop_reason": "end_turn",
++        "usage": {"input_tokens": 10, "output_tokens": 5},
++    }
++
++    mock_session_client = mock_http_client(MockAsyncResponse(resp))
++
++    with mock.patch("aiohttp.ClientSession", return_value=mock_session_client):
++        provider = AnthropicProvider(EndpointConfig(**config))
++        payload = {
++            "messages": [{"role": "user", "content": "Extract metadata"}],
++            "response_format": {"type": "json_schema", "json_schema": json_schema},
++        }
++        await provider.chat(chat.RequestPayload(**payload))
++
++        # Schema contains a free-form dict (metadata without properties),
++        # so output_config should NOT be set (falls back to plain text)
++        call_kwargs = mock_session_client.post.call_args[1]
++        assert "output_config" not in call_kwargs["json"]
++
++
++def test_enforce_strict_schema_sets_additional_properties_false():
++    schema = {
++        "type": "object",
++        "properties": {
++            "name": {"type": "string"},
++            "nested": {
++                "type": "object",
++                "properties": {"key": {"type": "string"}},
++            },
++        },
++    }
++    _enforce_strict_schema(schema)
++    assert schema["additionalProperties"] is False
++    assert schema["properties"]["nested"]["additionalProperties"] is False
++
++
++def test_enforce_strict_schema_raises_on_free_form_dict():
++    # Object with properties containing a free-form dict (no properties defined)
++    schema = {
++        "type": "object",
++        "properties": {
++            "tags": {
++                "type": "object",
++                "additionalProperties": {"type": "integer"},
++            }
++        },
++    }
++    with pytest.raises(_UnsupportedSchemaError, match="free-form dict"):
++        _enforce_strict_schema(schema)
++
++
++def test_enforce_strict_schema_raises_on_top_level_free_form_dict():
++    schema = {
++        "type": "object",
++        "additionalProperties": {"type": "string"},
++    }
++    with pytest.raises(_UnsupportedSchemaError, match="free-form dict"):
++        _enforce_strict_schema(schema)
++
++
++def test_enforce_strict_schema_handles_arrays_with_object_items():
++    schema = {
++        "type": "object",
++        "properties": {
++            "items": {
++                "type": "array",
++                "items": {
++                    "type": "object",
++                    "properties": {"id": {"type": "integer"}},
++                },
++            }
++        },
++    }
++    _enforce_strict_schema(schema)
++    assert schema["additionalProperties"] is False
++    assert schema["properties"]["items"]["items"]["additionalProperties"] is False
++
++
++def test_enforce_strict_schema_handles_anyof():
++    schema = {
++        "type": "object",
++        "properties": {
++            "value": {
++                "anyOf": [
++                    {"type": "string"},
++                    {
++                        "type": "object",
++                        "properties": {"x": {"type": "number"}},
++                    },
++                ]
++            }
++        },
++    }
++    _enforce_strict_schema(schema)
++    assert schema["additionalProperties"] is False
++    # The object inside anyOf should also get sanitized
++    assert schema["properties"]["value"]["anyOf"][1]["additionalProperties"] is False
++
++
+ def test_anthropic_extract_passthrough_token_usage():
+     provider = AnthropicProvider(EndpointConfig(**chat_config()))
+     result = {
+diff --git a/tests/metrics/genai/test_model_utils.py b/tests/metrics/genai/test_model_utils.py
+index 053c4fdbbc98b..addbcf2ed839e 100644
+--- a/tests/metrics/genai/test_model_utils.py
++++ b/tests/metrics/genai/test_model_utils.py
+@@ -1,14 +1,19 @@
++import copy
+ import json
+ import sys
+ from unittest import mock
+ 
+ import pytest
++import requests
+ 
+ from mlflow.deployments.server.config import Endpoint
+ from mlflow.exceptions import MlflowException
+ from mlflow.gateway.config import EndpointModelInfo
++from mlflow.metrics.genai import model_utils
+ from mlflow.metrics.genai.model_utils import (
++    _MODELS_WITHOUT_OUTPUT_CONFIG,
+     _parse_model_uri,
++    _send_request,
+     call_deployments_api,
+     get_endpoint_type,
+     score_model_on_payload,
+@@ -545,3 +550,180 @@ def test_call_deployments_api_no_endpoint_type(set_deployment_envs):
+ def test_call_deployments_api_str_input_requires_endpoint_type(set_deployment_envs):
+     with pytest.raises(MlflowException, match="If string input is provided,"):
+         call_deployments_api("my-endpoint", "my prompt", endpoint_type=None)
++
++
++def test_send_request_includes_response_body_in_error():
++    resp = requests.Response()
++    resp.status_code = 400
++    resp._content = b'{"error": "bad request details"}'
++
++    with mock.patch("requests.post", return_value=resp):
++        with pytest.raises(MlflowException, match="bad request details") as exc_info:
++            _send_request("http://example.com", {}, {})
++
++        # Verify exception chaining preserves the original HTTPError
++        assert isinstance(exc_info.value.__cause__, requests.exceptions.HTTPError)
++
++
++def test_score_model_retries_without_output_config_on_unsupported(monkeypatch):
++    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
++
++    anthropic_resp = {
++        "content": [{"text": "result text", "type": "text"}],
++        "id": "msg_test",
++        "model": "claude-sonnet-4-20250514",
++        "role": "assistant",
++        "stop_reason": "end_turn",
++        "stop_sequence": None,
++        "type": "message",
++        "usage": {"input_tokens": 10, "output_tokens": 5},
++    }
++
++    # First call raises 400 with "does not support output format", second call succeeds
++    error_body = {
++        "type": "error",
++        "error": {
++            "type": "invalid_request_error",
++            "message": "claude-sonnet-4-20250514 does not support output format",
++        },
++    }
++    mock_400_response = requests.Response()
++    mock_400_response.status_code = 400
++    mock_400_response._content = json.dumps(error_body).encode()
++
++    mock_ok_response = mock.MagicMock()
++    mock_ok_response.status_code = 200
++    mock_ok_response.raise_for_status.return_value = None
++    mock_ok_response.json.return_value = anthropic_resp
++
++    # Capture payloads before they are mutated in-place by the retry logic
++    captured_payloads = []
++    original_send = None
++
++    def capture_send(endpoint, headers, payload):
++        captured_payloads.append(copy.deepcopy(payload))
++        return original_send(endpoint=endpoint, headers=headers, payload=payload)
++
++    original_send = model_utils._send_request
++
++    with (
++        mock.patch("requests.post", side_effect=[mock_400_response, mock_ok_response]),
++        mock.patch("mlflow.metrics.genai.model_utils._send_request", side_effect=capture_send),
++    ):
++        response = score_model_on_payload(
++            model_uri="anthropic:/claude-sonnet-4-20250514",
++            payload="test prompt",
++            eval_parameters={
++                "max_tokens": 100,
++                "response_format": {
++                    "type": "json_schema",
++                    "json_schema": {
++                        "name": "result",
++                        "schema": {"type": "object", "properties": {"x": {"type": "string"}}},
++                    },
++                },
++            },
++        )
++
++    assert response == "result text"
++    # Verify two calls were made: first with output_config, second without
++    assert len(captured_payloads) == 2
++    assert "output_config" in captured_payloads[0]
++    assert "output_config" not in captured_payloads[1]
++    assert "response_format" not in captured_payloads[1]
++
++
++def test_score_model_caches_unsupported_output_config(monkeypatch):
++    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
++
++    model_name = "claude-sonnet-4-20250514-cache-test"
++    _MODELS_WITHOUT_OUTPUT_CONFIG.discard(("anthropic", model_name))
++
++    anthropic_resp = {
++        "content": [{"text": "result", "type": "text"}],
++        "id": "msg_test",
++        "model": model_name,
++        "role": "assistant",
++        "stop_reason": "end_turn",
++        "stop_sequence": None,
++        "type": "message",
++        "usage": {"input_tokens": 10, "output_tokens": 5},
++    }
++
++    error_body = {
++        "type": "error",
++        "error": {
++            "type": "invalid_request_error",
++            "message": f"{model_name} does not support output format",
++        },
++    }
++    mock_400_response = requests.Response()
++    mock_400_response.status_code = 400
++    mock_400_response._content = json.dumps(error_body).encode()
++
++    mock_ok_response = mock.MagicMock()
++    mock_ok_response.status_code = 200
++    mock_ok_response.raise_for_status.return_value = None
++    mock_ok_response.json.return_value = anthropic_resp
++
++    eval_params = {
++        "max_tokens": 100,
++        "response_format": {
++            "type": "json_schema",
++            "json_schema": {
++                "name": "result",
++                "schema": {"type": "object", "properties": {"x": {"type": "string"}}},
++            },
++        },
++    }
++
++    # First call: triggers retry (2 requests.post calls)
++    with mock.patch("requests.post", side_effect=[mock_400_response, mock_ok_response]) as m:
++        score_model_on_payload(
++            model_uri=f"anthropic:/{model_name}",
++            payload="test prompt",
++            eval_parameters=eval_params,
++        )
++        assert m.call_count == 2
++
++    assert ("anthropic", model_name) in _MODELS_WITHOUT_OUTPUT_CONFIG
++
++    # Second call: skips output_config upfront (only 1 requests.post call)
++    with mock.patch("requests.post", return_value=mock_ok_response) as m:
++        score_model_on_payload(
++            model_uri=f"anthropic:/{model_name}",
++            payload="test prompt",
++            eval_parameters=eval_params,
++        )
++        assert m.call_count == 1
++
++    _MODELS_WITHOUT_OUTPUT_CONFIG.discard(("anthropic", model_name))
++
++
++def test_score_model_does_not_retry_on_other_400_errors(monkeypatch):
++    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
++
++    error_body = {
++        "type": "error",
++        "error": {"type": "authentication_error", "message": "invalid api key"},
++    }
++    mock_400_response = requests.Response()
++    mock_400_response.status_code = 400
++    mock_400_response._content = json.dumps(error_body).encode()
++
++    with mock.patch("requests.post", return_value=mock_400_response):
++        with pytest.raises(MlflowException, match="invalid api key"):
++            score_model_on_payload(
++                model_uri="anthropic:/claude-sonnet-4-20250514",
++                payload="test prompt",
++                eval_parameters={
++                    "max_tokens": 100,
++                    "response_format": {
++                        "type": "json_schema",
++                        "json_schema": {
++                            "name": "result",
++                            "schema": {"type": "object", "properties": {"x": {"type": "string"}}},
++                        },
++                    },
++                },
++            )

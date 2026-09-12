@@ -1,0 +1,54 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 21797,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/21797",
+  "issue_number": null,
+  "base_sha": "ba33531032055f9d957cef23944948b026d0aa05",
+  "head_sha": "be74cef7679d34df2d3cfd9150d14241539fa15e",
+  "additions": 35,
+  "deletions": 1,
+  "changed_files": [
+    "mlflow/server/jobs/utils.py",
+    "tests/server/jobs/test_jobs.py"
+  ],
+  "test_files": [
+    "tests/server/jobs/test_jobs.py"
+  ],
+  "source_files": [
+    "mlflow/server/jobs/utils.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "assert_called_once",
+      "basic_job_fun",
+      "call_args",
+      "create_job",
+      "db_uri",
+      "enabled",
+      "exclusive",
+      "expected_workspace",
+      "flag",
+      "fn_fullname"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:11Z"
+}

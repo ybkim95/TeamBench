@@ -1,0 +1,51 @@
+{
+  "repo": "arrow-py/arrow",
+  "pr_number": 1242,
+  "pr_url": "https://github.com/arrow-py/arrow/pull/1242",
+  "issue_number": 1240,
+  "base_sha": "67ca577fb248ce9d803a9a85584b90a77ca989f0",
+  "head_sha": "626cded86a6564c2bab97a2f7f25fcf71542d0be",
+  "additions": 11,
+  "deletions": 9,
+  "changed_files": [
+    "arrow/arrow.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "arrow/arrow.py"
+  ],
+  "parameterization": {
+    "repo": "arrow-py/arrow",
+    "repo_short": "arrow",
+    "parameterized_identifiers": [
+      "already",
+      "another",
+      "calendar",
+      "calendar_diff",
+      "calendar_months",
+      "count",
+      "days",
+      "delta_second",
+      "describe",
+      "diff"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T22:45:37Z"
+}

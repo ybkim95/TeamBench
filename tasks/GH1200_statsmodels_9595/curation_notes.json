@@ -1,0 +1,55 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9595,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9595",
+  "issue_number": null,
+  "base_sha": "f26186a18456cd832b337290b49b1be61ac12e68",
+  "head_sha": "0b10ef3d712369bffec0056b1bd24fc70183f5f3",
+  "additions": 8,
+  "deletions": 8,
+  "changed_files": [
+    "statsmodels/iolib/tests/test_summary2.py",
+    "statsmodels/regression/tests/test_regression.py",
+    "statsmodels/regression/tests/test_theil.py"
+  ],
+  "test_files": [
+    "statsmodels/iolib/tests/test_summary2.py",
+    "statsmodels/regression/tests/test_regression.py",
+    "statsmodels/regression/tests/test_theil.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "add_constant",
+      "as_latex",
+      "compat",
+      "constant",
+      "endog",
+      "functions",
+      "hasconst",
+      "lrange",
+      "mark",
+      "models"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:28Z"
+}

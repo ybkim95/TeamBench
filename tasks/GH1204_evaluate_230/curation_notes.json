@@ -1,0 +1,54 @@
+{
+  "repo": "huggingface/evaluate",
+  "pr_number": 230,
+  "pr_url": "https://github.com/huggingface/evaluate/pull/230",
+  "issue_number": null,
+  "base_sha": "fdb6dbf9f3e9ecbdad1a776ad698f7a35ceeb6ff",
+  "head_sha": "0af58cdede199337eab54048dd565d854ab6f105",
+  "additions": 11,
+  "deletions": 1,
+  "changed_files": [
+    "src/evaluate/module.py",
+    "tests/test_metric.py"
+  ],
+  "test_files": [
+    "tests/test_metric.py"
+  ],
+  "source_files": [
+    "src/evaluate/module.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/evaluate",
+    "repo_short": "evaluate",
+    "parameterized_identifiers": [
+      "compute",
+      "continue",
+      "encode_example",
+      "enumerate",
+      "error_msg",
+      "example",
+      "expected_results",
+      "feature",
+      "feature_strings",
+      "features"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:50Z"
+}

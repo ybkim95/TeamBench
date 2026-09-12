@@ -1,0 +1,13 @@
+task_id: GH1044_plotly.py_5193
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix issue breaking `fig.write_image()`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/plotly/plotly.py/pull/5193"
+source_issue: "https://github.com/plotly/plotly.py/issues/5187"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

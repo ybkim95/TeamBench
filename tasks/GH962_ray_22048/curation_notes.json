@@ -1,0 +1,52 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 22048,
+  "pr_url": "https://github.com/ray-project/ray/pull/22048",
+  "issue_number": 1234,
+  "base_sha": "3d449d4f71a8d6e081af38c0cdb721909c2f532f",
+  "head_sha": "c9619e8cb5d93e60278558733e53a40ca9f394ae",
+  "additions": 23,
+  "deletions": 1,
+  "changed_files": [
+    "python/ray/tests/test_multiprocessing.py",
+    "python/ray/util/multiprocessing/pool.py"
+  ],
+  "test_files": [
+    "python/ray/tests/test_multiprocessing.py"
+  ],
+  "source_files": [
+    "python/ray/util/multiprocessing/pool.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "address_info",
+      "after",
+      "auto",
+      "code",
+      "collections",
+      "defaultdict",
+      "fixture",
+      "getpid",
+      "init",
+      "join"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:54:41Z"
+}

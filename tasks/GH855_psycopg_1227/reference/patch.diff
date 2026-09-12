@@ -1,0 +1,124 @@
+diff --git a/docs/news.rst b/docs/news.rst
+index d0aeff505..c8d569831 100644
+--- a/docs/news.rst
++++ b/docs/news.rst
+@@ -7,6 +7,15 @@
+ ``psycopg`` release notes
+ =========================
+ 
++Future releases
++---------------
++
++Psycopg 3.3.1 (unreleased)
++^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++Fix iteration on server-side cursors (:ticket:`#1226`).
++
++
+ Current release
+ ---------------
+ 
+diff --git a/psycopg/psycopg/_server_cursor.py b/psycopg/psycopg/_server_cursor.py
+index 6eefb8510..413961e66 100644
+--- a/psycopg/psycopg/_server_cursor.py
++++ b/psycopg/psycopg/_server_cursor.py
+@@ -140,7 +140,7 @@ def __next__(self) -> Row:
+         ):
+             with self._conn.lock:
+                 self._iter_rows = self._conn.wait(self._fetch_gen(self.itersize))
+-                self._page_pos += 0
++                self._page_pos = 0
+ 
+         if self._page_pos >= len(self._iter_rows):
+             raise StopIteration("no more records to return")
+diff --git a/psycopg/psycopg/_server_cursor_async.py b/psycopg/psycopg/_server_cursor_async.py
+index a37084b32..0150e7818 100644
+--- a/psycopg/psycopg/_server_cursor_async.py
++++ b/psycopg/psycopg/_server_cursor_async.py
+@@ -138,7 +138,7 @@ async def __anext__(self) -> Row:
+         ):
+             async with self._conn.lock:
+                 self._iter_rows = await self._conn.wait(self._fetch_gen(self.itersize))
+-                self._page_pos += 0
++                self._page_pos = 0
+ 
+         if self._page_pos >= len(self._iter_rows):
+             raise StopAsyncIteration("no more records to return")
+diff --git a/psycopg/pyproject.toml b/psycopg/pyproject.toml
+index 34d436f9b..eb904f561 100644
+--- a/psycopg/pyproject.toml
++++ b/psycopg/pyproject.toml
+@@ -7,7 +7,7 @@ name = "psycopg"
+ description = "PostgreSQL database adapter for Python"
+ 
+ # STOP AND READ! if you change:
+-version = "3.3.0"
++version = "3.3.1.dev1"
+ # also change:
+ # - `docs/news.rst` to declare this as the current version or an unreleased one;
+ # - `psycopg_c/pyproject.toml` to the same version;
+@@ -60,10 +60,10 @@ content-type = "text/x-rst"
+ 
+ [project.optional-dependencies]
+ c = [
+-    "psycopg-c == 3.3.0; implementation_name != \"pypy\"",
++    "psycopg-c == 3.3.1.dev1; implementation_name != \"pypy\"",
+ ]
+ binary = [
+-    "psycopg-binary == 3.3.0; implementation_name != \"pypy\"",
++    "psycopg-binary == 3.3.1.dev1; implementation_name != \"pypy\"",
+ ]
+ pool = [
+     "psycopg-pool",
+diff --git a/psycopg_c/pyproject.toml b/psycopg_c/pyproject.toml
+index 0e2614537..864c24b8b 100644
+--- a/psycopg_c/pyproject.toml
++++ b/psycopg_c/pyproject.toml
+@@ -24,7 +24,7 @@ cython-requires = ["Cython >= 3.1.1"]
+ [project]
+ name = "psycopg-c"
+ description = "PostgreSQL database adapter for Python -- C optimisation distribution"
+-version = "3.3.0"
++version = "3.3.1.dev1"
+ license = "LGPL-3.0-only"
+ license-files = ["LICENSE.txt"]
+ classifiers = [
+diff --git a/psycopg_pool/pyproject.toml b/psycopg_pool/pyproject.toml
+index fd88510a1..8196228cc 100644
+--- a/psycopg_pool/pyproject.toml
++++ b/psycopg_pool/pyproject.toml
+@@ -7,7 +7,7 @@ name = "psycopg-pool"
+ description = "Connection Pool for Psycopg"
+ 
+ # STOP AND READ! if you change:
+-version = "3.3.0"
++version = "3.3.1.dev1"
+ # also change:
+ # - `docs/news_pool.rst` to declare this version current or unreleased
+ 
+diff --git a/tests/test_cursor_server.py b/tests/test_cursor_server.py
+index cd680b29a..9986a53ab 100644
+--- a/tests/test_cursor_server.py
++++ b/tests/test_cursor_server.py
+@@ -446,7 +446,7 @@ def test_itersize(conn, commands):
+         cur.execute(ph(cur, "select generate_series(1, %s) as bar"), (3,))
+         commands.popall()  # flush begin and other noise
+ 
+-        list(cur)
++        assert list(cur) == [(1,), (2,), (3,)]
+         cmds = commands.popall()
+         assert len(cmds) == 2
+         for cmd in cmds:
+diff --git a/tests/test_cursor_server_async.py b/tests/test_cursor_server_async.py
+index 5a56b2c13..025b0b777 100644
+--- a/tests/test_cursor_server_async.py
++++ b/tests/test_cursor_server_async.py
+@@ -452,7 +452,7 @@ async def test_itersize(aconn, acommands):
+         await cur.execute(ph(cur, "select generate_series(1, %s) as bar"), (3,))
+         acommands.popall()  # flush begin and other noise
+ 
+-        await alist(cur)
++        assert await alist(cur) == [(1,), (2,), (3,)]
+         cmds = acommands.popall()
+         assert len(cmds) == 2
+         for cmd in cmds:

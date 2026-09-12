@@ -1,0 +1,15 @@
+{
+ "task": "GH736_AQUA_2170",
+ "patch": "tasks/GH736_AQUA_2170/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "DestinE-Climate-DT/AQUA",
+ "pr_number": 2170,
+ "base_sha": "549d9569633ff34139ae359c7a9292e08b76efe4",
+ "head_sha": "9964f4842f4b907a52e8585cb4e87b7bccb9ab33",
+ "bytes": 3510,
+ "files_changed": 4,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

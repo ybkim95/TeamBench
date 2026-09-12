@@ -1,0 +1,24 @@
+diff --git a/wandb/sdk/lib/runid.py b/wandb/sdk/lib/runid.py
+--- a/wandb/sdk/lib/runid.py
++++ b/wandb/sdk/lib/runid.py
+@@ -1,5 +1,6 @@
+ """runid util."""
+ 
++import os
+ import random
+ import secrets
+ from string import ascii_lowercase, digits
+@@ -11,6 +12,13 @@
+ _random = random.Random()
+ 
+ 
++# Reset the random number generator on forking a new process to avoid multiple processes using the same seed.
++# The `random` module basically does this internally for python's global random state.
++# This is only necessary on platforms that support the `fork` multiprocessing start method (e.g. POSIX).
++if hasattr(os, "fork"):
++    os.register_at_fork(after_in_child=_random.seed)
++
++
+ def generate_id(length: int = 8) -> str:
+     """Generate a random base-36 string of `length` digits."""
+     # There are ~2.8T base-36 8-digit strings. If we generate 210k ids,

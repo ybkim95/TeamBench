@@ -1,0 +1,27 @@
+diff --git a/scipy/spatial/transform/_rotation_cy.pyx b/scipy/spatial/transform/_rotation_cy.pyx
+index ce2f17ab92c9..3922415c0e4e 100644
+--- a/scipy/spatial/transform/_rotation_cy.pyx
++++ b/scipy/spatial/transform/_rotation_cy.pyx
+@@ -580,7 +580,7 @@ def from_rotvec(rotvec, bint degrees=False):
+     # If a single vector is given, convert it to a 2D 1 x 3 matrix but
+     # set self._single to True so that we can return appropriate objects
+     # in the `as_...` methods
+-    cdef double[:, :] crotvec
++    cdef const double[:, :] crotvec
+     if rotvec.shape == (3,):
+         crotvec = rotvec[None, :]
+         is_single = True
+diff --git a/scipy/spatial/transform/tests/test_rotation.py b/scipy/spatial/transform/tests/test_rotation.py
+index f667d3f5563c..abea8215973c 100644
+--- a/scipy/spatial/transform/tests/test_rotation.py
++++ b/scipy/spatial/transform/tests/test_rotation.py
+@@ -3196,3 +3196,9 @@ def test_gh_24751():
+     points.flags.writeable = False
+     rot = Rotation.from_euler("z", 0.0)
+     rot.apply(points)
++
++
++def test_rotvec_non_writeable():
++    rotvec = np.array([0, 0, 1]) * np.pi / 2
++    rotvec.flags.writeable = False
++    Rotation.from_rotvec(rotvec)

@@ -1,0 +1,52 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3091,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3091",
+  "issue_number": 3090,
+  "base_sha": "c3e4a23fe5c38a5aa48b03ef4a256ed9e439ccb6",
+  "head_sha": "8596db3a96541843e9127ba645125f71bdd735d7",
+  "additions": 13,
+  "deletions": 10,
+  "changed_files": [
+    "src/werkzeug/_reloader.py",
+    "tests/test_serving.py"
+  ],
+  "test_files": [
+    "tests/test_serving.py"
+  ],
+  "source_files": [
+    "src/werkzeug/_reloader.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "assert_called_once",
+      "assert_not_called",
+      "attr",
+      "changes",
+      "defined",
+      "dispatch",
+      "event",
+      "event_handler",
+      "event_type",
+      "events"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:36:19Z"
+}

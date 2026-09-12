@@ -1,0 +1,53 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 158012,
+  "pr_url": "https://github.com/home-assistant/core/pull/158012",
+  "issue_number": 134095,
+  "base_sha": "9169b68254ae97cab41fe7b69ce9d1ca13f18e53",
+  "head_sha": "5ce60d4aee5428bf2a91355b270af16783ce0b71",
+  "additions": 46,
+  "deletions": 2,
+  "changed_files": [
+    "homeassistant/components/ring/camera.py",
+    "homeassistant/components/ring/strings.json",
+    "tests/components/ring/test_camera.py"
+  ],
+  "test_files": [
+    "tests/components/ring/test_camera.py"
+  ],
+  "source_files": [
+    "homeassistant/components/ring/camera.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "api_timeout",
+      "assert_not_called",
+      "async_block_till_done",
+      "async_camera_image",
+      "async_get_image",
+      "async_recording_url",
+      "async_update",
+      "attributes",
+      "bytes",
+      "call"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:41:07Z"
+}

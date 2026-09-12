@@ -1,0 +1,13 @@
+task_id: GH64_werkzeug_3008
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "validate `request.trusted_hosts` in `Map.bind_to_environ`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/werkzeug/pull/3008"
+source_issue: "https://github.com/pallets/werkzeug/issues/3007"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,55 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 28095,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/28095",
+  "issue_number": null,
+  "base_sha": "91d273ae892851ec3bdc4a21cffe163fbaed40f0",
+  "head_sha": "1e712fc21328d5edb4e81fcd608a1ade79772731",
+  "additions": 42,
+  "deletions": 7,
+  "changed_files": [
+    "doc/whats_new/v1.4.rst",
+    "sklearn/ensemble/_gb.py",
+    "sklearn/ensemble/tests/test_gradient_boosting.py"
+  ],
+  "test_files": [
+    "sklearn/ensemble/tests/test_gradient_boosting.py"
+  ],
+  "source_files": [
+    "sklearn/ensemble/_gb.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "already",
+      "assert_allclose",
+      "based",
+      "become",
+      "binary",
+      "catch_warnings",
+      "classification",
+      "classifiers",
+      "create",
+      "datasets"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:59:05Z"
+}

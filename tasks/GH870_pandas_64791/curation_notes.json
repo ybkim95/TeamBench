@@ -1,0 +1,55 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64791,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64791",
+  "issue_number": 43929,
+  "base_sha": "3689c7298fec5ce9f77a33bbecbd9fb466a46ba9",
+  "head_sha": "89d6781cc75dc8a04ac726fcd7cd9904d1cc2876",
+  "additions": 19,
+  "deletions": 3,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/core/nanops.py",
+    "pandas/tests/frame/test_reductions.py",
+    "pandas/tests/test_nanops.py"
+  ],
+  "test_files": [
+    "pandas/tests/frame/test_reductions.py",
+    "pandas/tests/test_nanops.py"
+  ],
+  "source_files": [
+    "pandas/core/nanops.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "any_real_numpy_dtype",
+      "appearance",
+      "array",
+      "assert_series_equal",
+      "astype",
+      "avoid",
+      "axis",
+      "based",
+      "boolean",
+      "clip"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:29Z"
+}

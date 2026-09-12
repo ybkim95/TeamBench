@@ -1,0 +1,52 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 11665,
+  "pr_url": "https://github.com/dask/dask/pull/11665",
+  "issue_number": 11652,
+  "base_sha": "1e6ed84dc1380efa94872f8e5807a62c766fe263",
+  "head_sha": "f09cc81019ef16bbb060f1b1be4d6ad53404fc69",
+  "additions": 56,
+  "deletions": 3,
+  "changed_files": [
+    "dask/dataframe/io/parquet/arrow.py",
+    "dask/dataframe/io/tests/test_parquet.py"
+  ],
+  "test_files": [
+    "dask/dataframe/io/tests/test_parquet.py"
+  ],
+  "source_files": [
+    "dask/dataframe/io/parquet/arrow.py"
+  ],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "account",
+      "accumulate",
+      "annotations",
+      "array",
+      "assert_eq",
+      "check_index",
+      "col_name",
+      "col_names",
+      "column",
+      "column_name"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:58:15Z"
+}

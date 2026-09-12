@@ -1,0 +1,51 @@
+{
+  "repo": "python-attrs/attrs",
+  "pr_number": 1530,
+  "pr_url": "https://github.com/python-attrs/attrs/pull/1530",
+  "issue_number": null,
+  "base_sha": "48b8611c27779811d161200e17de8da24aae7feb",
+  "head_sha": "5cd0fac89fd4d8a45d3328124f0a581252eae688",
+  "additions": 8,
+  "deletions": 4,
+  "changed_files": [
+    "tests/test_validators.py"
+  ],
+  "test_files": [
+    "tests/test_validators.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "python-attrs/attrs",
+    "repo_short": "attrs",
+    "parameterized_identifiers": [
+      "errmsg",
+      "fullmatch",
+      "func",
+      "mark",
+      "match",
+      "matches_re",
+      "must",
+      "parametrize",
+      "prefixmatch",
+      "pytest"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:07:44Z"
+}

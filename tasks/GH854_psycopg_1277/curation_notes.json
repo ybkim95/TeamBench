@@ -1,0 +1,55 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1277,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1277",
+  "issue_number": 1275,
+  "base_sha": "717e984b3fd894f2fbbfd8ab029dbe11166e22c5",
+  "head_sha": "18eea742652ac9fb0365af836125d2e882450444",
+  "additions": 85,
+  "deletions": 8,
+  "changed_files": [
+    "docs/news_pool.rst",
+    "psycopg_pool/psycopg_pool/pool.py",
+    "psycopg_pool/psycopg_pool/pool_async.py",
+    "tests/pool/test_pool_async.py"
+  ],
+  "test_files": [
+    "tests/pool/test_pool_async.py"
+  ],
+  "source_files": [
+    "psycopg_pool/psycopg_pool/pool.py",
+    "psycopg_pool/psycopg_pool/pool_async.py"
+  ],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "assigned",
+      "asyncio",
+      "backend",
+      "backend_pid",
+      "cancel",
+      "cancelled",
+      "caplog",
+      "catching",
+      "client",
+      "condition"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:43:08Z"
+}

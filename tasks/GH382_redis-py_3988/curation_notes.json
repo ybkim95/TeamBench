@@ -1,0 +1,62 @@
+{
+  "repo": "redis/redis-py",
+  "pr_number": 3988,
+  "pr_url": "https://github.com/redis/redis-py/pull/3988",
+  "issue_number": null,
+  "base_sha": "11043df86ed5f892cde1f34f08f3450f13bb6339",
+  "head_sha": "a642347126bfa11ed445f6e99d9eadce92292410",
+  "additions": 125,
+  "deletions": 16,
+  "changed_files": [
+    "redis/client.py",
+    "redis/cluster.py",
+    "redis/connection.py",
+    "redis/maint_notifications.py",
+    "tests/test_scenario/conftest.py",
+    "tests/test_scenario/test_maint_notifications.py"
+  ],
+  "test_files": [
+    "tests/test_scenario/conftest.py",
+    "tests/test_scenario/test_maint_notifications.py"
+  ],
+  "source_files": [
+    "redis/client.py",
+    "redis/cluster.py",
+    "redis/connection.py",
+    "redis/maint_notifications.py"
+  ],
+  "parameterization": {
+    "repo": "redis/redis-py",
+    "repo_short": "redis-py",
+    "parameterized_identifiers": [
+      "about",
+      "abstractmethod",
+      "actual_retry_attempts",
+      "affected",
+      "after",
+      "auth_ssl_client_certs",
+      "back",
+      "bdb_config",
+      "bdb_name",
+      "bytes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:14:06Z"
+}

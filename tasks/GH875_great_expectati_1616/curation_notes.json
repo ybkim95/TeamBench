@@ -1,0 +1,55 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 1616,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/1616",
+  "issue_number": 123,
+  "base_sha": "5db0eeff9fdc3626346bafe13c5bf14b27eba99e",
+  "head_sha": "ad677a612169c49b95f519b8a70964f68bf3ebed",
+  "additions": 13,
+  "deletions": 11,
+  "changed_files": [
+    "docs/reference/changelog.rst",
+    "great_expectations/profile/basic_suite_builder_profiler.py",
+    "tests/profile/fixtures/expected_evrs_BasicSuiteBuilderProfiler_on_titanic_demo_mode.json",
+    "tests/profile/fixtures/expected_evrs_SuiteBuilderProfiler_on_titanic_with_configurations.json",
+    "tests/profile/test_basic_suite_builder_profiler.py"
+  ],
+  "test_files": [
+    "tests/profile/test_basic_suite_builder_profiler.py"
+  ],
+  "source_files": [
+    "great_expectations/profile/basic_suite_builder_profiler.py"
+  ],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "add_datasource",
+      "argument",
+      "backend",
+      "calling",
+      "column",
+      "confidence",
+      "connect",
+      "data_context",
+      "dataset",
+      "datasource"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:53Z"
+}

@@ -1,0 +1,61 @@
+{
+  "repo": "pallets/jinja",
+  "pr_number": 1880,
+  "pr_url": "https://github.com/pallets/jinja/pull/1880",
+  "issue_number": null,
+  "base_sha": "53c75915c929eeb8582e70fdee9fc262f5c4ae58",
+  "head_sha": "ded9915fc5db23d1a45ad3b210def7b4a96dc287",
+  "additions": 11,
+  "deletions": 7,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/jinja2/compiler.py",
+    "src/jinja2/environment.py",
+    "src/jinja2/ext.py",
+    "src/jinja2/idtracking.py",
+    "src/jinja2/utils.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "src/jinja2/compiler.py",
+    "src/jinja2/environment.py",
+    "src/jinja2/ext.py",
+    "src/jinja2/idtracking.py",
+    "src/jinja2/utils.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/jinja",
+    "repo_short": "jinja",
+    "parameterized_identifiers": [
+      "alias",
+      "annotations",
+      "another",
+      "attributes",
+      "auto_reload",
+      "bind",
+      "bound",
+      "bytecode_cache",
+      "cache",
+      "cannot"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:21:32Z"
+}

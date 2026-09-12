@@ -1,0 +1,13 @@
+task_id: GH74_flask_5898
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "redirect defaults to 303"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/flask/pull/5898"
+source_issue: "https://github.com/pallets/flask/issues/5895"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

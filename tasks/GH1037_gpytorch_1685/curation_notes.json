@@ -1,0 +1,52 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 1685,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/1685",
+  "issue_number": 1672,
+  "base_sha": "3b4c74d76fd91f49687e3ef186f8d1742c0c9341",
+  "head_sha": "a0c6517608126bef2ce8b1952f78cdef18719b07",
+  "additions": 19,
+  "deletions": 2,
+  "changed_files": [
+    "gpytorch/kernels/kernel.py",
+    "test/kernels/test_additive_and_product_kernels.py"
+  ],
+  "test_files": [
+    "test/kernels/test_additive_and_product_kernels.py"
+  ],
+  "source_files": [
+    "gpytorch/kernels/kernel.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "actual",
+      "batch_shape",
+      "covar_dist",
+      "div_",
+      "dtype",
+      "eval",
+      "evaluate",
+      "float",
+      "initialize",
+      "items"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:00:48Z"
+}

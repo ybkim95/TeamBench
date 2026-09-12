@@ -1,0 +1,13 @@
+task_id: GH1025_numpy_30818
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Add test to reproduce problem described in #30816"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/numpy/numpy/pull/30818"
+source_issue: "https://github.com/numpy/numpy/issues/30816"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH212_core_164015
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Pass encoding to AtomicWriter in write_utf8_file_atomic"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/164015"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

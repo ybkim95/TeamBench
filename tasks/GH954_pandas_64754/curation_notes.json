@@ -1,0 +1,57 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64754,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64754",
+  "issue_number": 48974,
+  "base_sha": "eb5671454ebb33edb799915d85a45c19244fc690",
+  "head_sha": "032a4273a1001ce08f9c9437ba2fe92a469ded77",
+  "additions": 46,
+  "deletions": 2,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/_libs/tslibs/conversion.pyx",
+    "pandas/_libs/tslibs/period.pyx",
+    "pandas/_libs/tslibs/timedeltas.pyx",
+    "pandas/tests/scalar/period/test_period.py",
+    "pandas/tests/scalar/timestamp/test_constructors.py",
+    "pandas/tests/tools/test_to_timedelta.py"
+  ],
+  "test_files": [
+    "pandas/tests/scalar/period/test_period.py",
+    "pandas/tests/scalar/timestamp/test_constructors.py",
+    "pandas/tests/tools/test_to_timedelta.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "any_numeric_ea_dtype",
+      "array",
+      "array_to_timedelta64",
+      "assert_index_equal",
+      "assert_series_equal",
+      "bounds",
+      "break",
+      "cdef",
+      "construction",
+      "constructor"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:54:07Z"
+}

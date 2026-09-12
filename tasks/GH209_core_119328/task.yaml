@@ -1,0 +1,13 @@
+task_id: GH209_core_119328
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Remove obsolete device links in Utility Meter helper"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/119328"
+source_issue: "https://github.com/home-assistant/core/issues/111380"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

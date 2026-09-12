@@ -1,0 +1,54 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 10885,
+  "pr_url": "https://github.com/dask/dask/pull/10885",
+  "issue_number": null,
+  "base_sha": "c472a8a649b038f1f53b9d01dc07051a9a3a026b",
+  "head_sha": "7d7b6962756bc0f9fdc0e65a65e4cc72e9fe2d8c",
+  "additions": 26,
+  "deletions": 15,
+  "changed_files": [
+    "dask/array/routines.py",
+    "dask/array/tests/test_routines.py"
+  ],
+  "test_files": [
+    "dask/array/tests/test_routines.py"
+  ],
+  "source_files": [
+    "dask/array/routines.py"
+  ],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "actual",
+      "argwhere",
+      "assert_eq",
+      "astype",
+      "behavior",
+      "below",
+      "block",
+      "cases",
+      "changes",
+      "check_dtype"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:04:58Z"
+}

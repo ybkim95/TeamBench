@@ -1,0 +1,13 @@
+task_id: GH1020_transformers_20318
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix flakey no_trainer test with seed"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/huggingface/transformers/pull/20318"
+source_issue: "https://github.com/huggingface/transformers/issues/19733"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

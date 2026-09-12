@@ -1,0 +1,53 @@
+{
+  "repo": "celery/celery",
+  "pr_number": 10178,
+  "pr_url": "https://github.com/celery/celery/pull/10178",
+  "issue_number": 10177,
+  "base_sha": "df57d9ab919945fee49403c640f5a8c0a7c69cb3",
+  "head_sha": "30efd26e1f36207300db3e04e98e869ba2466eb0",
+  "additions": 18,
+  "deletions": 0,
+  "changed_files": [
+    "t/unit/worker/test_bootsteps.py",
+    "t/unit/worker/test_consumer.py",
+    "t/unit/worker/test_worker.py"
+  ],
+  "test_files": [
+    "t/unit/worker/test_bootsteps.py",
+    "t/unit/worker/test_consumer.py",
+    "t/unit/worker/test_worker.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "celery/celery",
+    "repo_short": "celery",
+    "parameterized_identifiers": [
+      "amqp",
+      "bootsteps",
+      "buffer",
+      "channel_errors",
+      "connection",
+      "connection_errors",
+      "consumer",
+      "controller",
+      "default_channel",
+      "drain_events"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:33:35Z"
+}

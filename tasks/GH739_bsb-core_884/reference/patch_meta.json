@@ -1,0 +1,15 @@
+{
+ "task": "GH739_bsb-core_884",
+ "patch": "tasks/GH739_bsb-core_884/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "dbbs-lab/bsb-core",
+ "pr_number": 884,
+ "base_sha": "88a59966e12c13a0ef192e87c64bbe0f4f589e7e",
+ "head_sha": "9f15f9526a87ef1d88e41d5c6adf045927077e3f",
+ "bytes": 5452,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

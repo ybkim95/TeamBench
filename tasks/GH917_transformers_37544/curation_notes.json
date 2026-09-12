@@ -1,0 +1,52 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 37544,
+  "pr_url": "https://github.com/huggingface/transformers/pull/37544",
+  "issue_number": 37541,
+  "base_sha": "057ae00504ce6daad1a29baa0451b21c1c1b94b3",
+  "head_sha": "a596a3ed3a4ab74436c9bd1d38b1d59ef4b9afed",
+  "additions": 20,
+  "deletions": 1,
+  "changed_files": [
+    "src/transformers/image_transforms.py",
+    "tests/test_image_transforms.py"
+  ],
+  "test_files": [
+    "tests/test_image_transforms.py"
+  ],
+  "source_files": [
+    "src/transformers/image_transforms.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "additional",
+      "allclose",
+      "array",
+      "batch",
+      "batched",
+      "channels_last",
+      "constant",
+      "converted",
+      "dimension",
+      "expected_image"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:51:10Z"
+}

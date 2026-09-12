@@ -1,0 +1,13 @@
+task_id: GH1150_FLAML_1494
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix nested dictionary merge in SearchThread losing sampled hyperparameters"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/microsoft/FLAML/pull/1494"
+source_issue: "https://github.com/microsoft/FLAML/issues/1246"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

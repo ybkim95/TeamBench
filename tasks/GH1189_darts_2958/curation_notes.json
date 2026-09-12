@@ -1,0 +1,55 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 2958,
+  "pr_url": "https://github.com/unit8co/darts/pull/2958",
+  "issue_number": null,
+  "base_sha": "61831a2a6d45c1de566d231c46cb1c93ae0d9c69",
+  "head_sha": "15aec70a575e5f869ddc5a0c76968acb0ea93853",
+  "additions": 35,
+  "deletions": 40,
+  "changed_files": [
+    "CHANGELOG.md",
+    "darts/models/forecasting/pl_forecasting_module.py",
+    "darts/tests/models/forecasting/test_torch_forecasting_model.py"
+  ],
+  "test_files": [
+    "darts/tests/models/forecasting/test_torch_forecasting_model.py"
+  ],
+  "source_files": [
+    "darts/models/forecasting/pl_forecasting_module.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "accepts",
+      "also",
+      "always",
+      "attempting",
+      "available",
+      "backwards",
+      "batch",
+      "break",
+      "cannot",
+      "collection"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:38Z"
+}

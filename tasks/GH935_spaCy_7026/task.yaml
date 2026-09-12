@@ -1,0 +1,13 @@
+task_id: GH935_spaCy_7026
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix issue #7019: Handle None scores in evaluate printer"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/explosion/spaCy/pull/7026"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

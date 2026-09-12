@@ -1,0 +1,58 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 28511,
+  "pr_url": "https://github.com/ray-project/ray/pull/28511",
+  "issue_number": 1234,
+  "base_sha": "fd89891396061fca0cce0ed9cc7b95a9a622019a",
+  "head_sha": "d1e23cb9726451810e64608825b16a9cf1b5abd7",
+  "additions": 159,
+  "deletions": 29,
+  "changed_files": [
+    "python/ray/tune/execution/ray_trial_executor.py",
+    "python/ray/tune/execution/trial_runner.py",
+    "python/ray/tune/schedulers/pbt.py",
+    "python/ray/tune/tests/test_trial_scheduler.py",
+    "python/ray/tune/tests/test_trial_scheduler_pbt.py"
+  ],
+  "test_files": [
+    "python/ray/tune/tests/test_trial_scheduler.py",
+    "python/ray/tune/tests/test_trial_scheduler_pbt.py"
+  ],
+  "source_files": [
+    "python/ray/tune/execution/ray_trial_executor.py",
+    "python/ray/tune/execution/trial_runner.py",
+    "python/ray/tune/schedulers/pbt.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "above",
+      "action",
+      "after",
+      "algorithm",
+      "all_results",
+      "all_train_times",
+      "allow",
+      "always",
+      "another",
+      "based"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:02:14Z"
+}

@@ -1,0 +1,63 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 150355,
+  "pr_url": "https://github.com/home-assistant/core/pull/150355",
+  "issue_number": 134539,
+  "base_sha": "0dc2a5a02c5a56d2378c76528f89680bd0832be2",
+  "head_sha": "0dad5832085a5acfe9403cfd7a7aa2e566ffbcf6",
+  "additions": 27,
+  "deletions": 42,
+  "changed_files": [
+    "homeassistant/components/deconz/entity.py",
+    "homeassistant/components/deconz/hub/hub.py",
+    "homeassistant/components/deconz/light.py",
+    "homeassistant/components/deconz/services.py",
+    "tests/components/deconz/snapshots/test_hub.ambr",
+    "tests/components/deconz/test_deconz_event.py",
+    "tests/components/deconz/test_services.py",
+    "tests/components/unifi/test_services.py"
+  ],
+  "test_files": [
+    "tests/components/deconz/test_deconz_event.py",
+    "tests/components/deconz/test_services.py",
+    "tests/components/unifi/test_services.py"
+  ],
+  "source_files": [
+    "homeassistant/components/deconz/entity.py",
+    "homeassistant/components/deconz/hub/hub.py",
+    "homeassistant/components/deconz/light.py",
+    "homeassistant/components/deconz/services.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "additional",
+      "alarm",
+      "also",
+      "async_all",
+      "async_capture_events",
+      "async_dispatcher_send",
+      "async_get",
+      "async_get_device",
+      "async_get_or_create",
+      "available"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:19Z"
+}

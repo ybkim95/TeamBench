@@ -1,0 +1,13 @@
+task_id: GH381_celery_10013
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix Redis Sentinel ACL authentication support"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/celery/celery/pull/10013"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

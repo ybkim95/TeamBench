@@ -1,0 +1,13 @@
+task_id: GH860_pytorch_lightni_21396
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix `StochasticWeightAveraging`  with infinite epochs"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Lightning-AI/pytorch-lightning/pull/21396"
+source_issue: "https://github.com/Lightning-AI/pytorch-lightning/issues/21347"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

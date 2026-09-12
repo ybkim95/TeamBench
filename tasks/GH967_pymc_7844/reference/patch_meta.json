@@ -1,0 +1,15 @@
+{
+ "task": "GH967_pymc_7844",
+ "patch": "tasks/GH967_pymc_7844/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "pymc-devs/pymc",
+ "pr_number": 7844,
+ "base_sha": "794b5b865db0cab084bfb75ae627dfd540238253",
+ "head_sha": "e9dcc271ac64af8fdde2081010131f571889adaa",
+ "bytes": 11515,
+ "files_changed": 5,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

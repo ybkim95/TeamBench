@@ -1,0 +1,131 @@
+diff --git a/doc/en/conf.py b/doc/en/conf.py
+index 8b259b03bf5..eb95727d159 100644
+--- a/doc/en/conf.py
++++ b/doc/en/conf.py
+@@ -306,4 +306,24 @@ def setup(app: sphinx.application.Sphinx) -> None:
+ 
+     # legacypath.py monkey-patches pytest.Testdir in. Import the file so
+     # that autodoc can discover references to it.
++    # Workaround for Sphinx bug with Python 3.14:
++    # inspect.getsource() returns '\n' instead of raising OSError for classes
++    # whose __module__ doesn't match the file they're defined in, causing
++    # get_type_comment() to crash with IndexError on empty ast.parse result.
++    # See: https://github.com/sphinx-doc/sphinx/issues/14345
++    import sys
++
+     import _pytest.legacypath  # noqa: F401
++
++    if sys.version_info >= (3, 14):
++        from sphinx.ext.autodoc._dynamic import _type_comments
++
++        _orig_get_type_comment = _type_comments.get_type_comment
++
++        def _get_type_comment_safe(obj: object, bound_method: bool = False) -> object:
++            try:
++                return _orig_get_type_comment(obj, bound_method)
++            except IndexError:
++                return None
++
++        _type_comments.get_type_comment = _get_type_comment_safe  # type: ignore[assignment]
+diff --git a/doc/en/reference/reference.rst b/doc/en/reference/reference.rst
+index 644a687af53..4e5c7cfd644 100644
+--- a/doc/en/reference/reference.rst
++++ b/doc/en/reference/reference.rst
+@@ -1291,7 +1291,7 @@ Custom warnings generated in some situations such as improper usage or deprecate
+ .. autoclass:: pytest.PytestReturnNotNoneWarning
+   :show-inheritance:
+ 
+-.. autoclass:: pytest.PytestRemovedIn9Warning
++.. autoclass:: pytest.PytestRemovedIn10Warning
+   :show-inheritance:
+ 
+ .. autoclass:: pytest.PytestUnknownMarkWarning
+diff --git a/src/_pytest/warning_types.py b/src/_pytest/warning_types.py
+index 93071b4a1b2..8fd62ff84b0 100644
+--- a/src/_pytest/warning_types.py
++++ b/src/_pytest/warning_types.py
+@@ -50,12 +50,6 @@ class PytestDeprecationWarning(PytestWarning, DeprecationWarning):
+     __module__ = "pytest"
+ 
+ 
+-class PytestRemovedIn9Warning(PytestDeprecationWarning):
+-    """Warning class for features that will be removed in pytest 9."""
+-
+-    __module__ = "pytest"
+-
+-
+ class PytestRemovedIn10Warning(PytestDeprecationWarning):
+     """Warning class for features that will be removed in pytest 10."""
+ 
+diff --git a/src/_pytest/warnings.py b/src/_pytest/warnings.py
+index 1dbf0025a31..d599d6c27e6 100644
+--- a/src/_pytest/warnings.py
++++ b/src/_pytest/warnings.py
+@@ -41,7 +41,8 @@ def catch_warnings_for_item(
+             warnings.filterwarnings("always", category=DeprecationWarning)
+             warnings.filterwarnings("always", category=PendingDeprecationWarning)
+ 
+-        warnings.filterwarnings("error", category=pytest.PytestRemovedIn9Warning)
++        # To be enabled in pytest 10.0.0.
++        # warnings.filterwarnings("error", category=pytest.PytestRemovedIn10Warning)
+ 
+         apply_warning_filters(config_filters, cmdline_filters)
+ 
+diff --git a/src/pytest/__init__.py b/src/pytest/__init__.py
+index 3e6281ac388..d53edb93728 100644
+--- a/src/pytest/__init__.py
++++ b/src/pytest/__init__.py
+@@ -83,7 +83,6 @@
+ from _pytest.warning_types import PytestDeprecationWarning
+ from _pytest.warning_types import PytestExperimentalApiWarning
+ from _pytest.warning_types import PytestFDWarning
+-from _pytest.warning_types import PytestRemovedIn9Warning
+ from _pytest.warning_types import PytestRemovedIn10Warning
+ from _pytest.warning_types import PytestReturnNotNoneWarning
+ from _pytest.warning_types import PytestUnhandledThreadExceptionWarning
+@@ -135,7 +134,6 @@
+     "PytestExperimentalApiWarning",
+     "PytestFDWarning",
+     "PytestPluginManager",
+-    "PytestRemovedIn9Warning",
+     "PytestRemovedIn10Warning",
+     "PytestReturnNotNoneWarning",
+     "PytestUnhandledThreadExceptionWarning",
+diff --git a/testing/test_warnings.py b/testing/test_warnings.py
+index e3221da7569..2625f0959e6 100644
+--- a/testing/test_warnings.py
++++ b/testing/test_warnings.py
+@@ -562,8 +562,7 @@ def test_invalid_regex_in_filterwarning(self, pytester: Pytester) -> None:
+         )
+ 
+ 
+-# In 9.1, uncomment below and change RemovedIn9 -> RemovedIn10.
+-# @pytest.mark.skip("not relevant until pytest 10.0")
++@pytest.mark.skip("not relevant until pytest 10.0")
+ @pytest.mark.parametrize("change_default", [None, "ini", "cmdline"])
+ def test_removed_in_x_warning_as_error(pytester: Pytester, change_default) -> None:
+     """This ensures that PytestRemovedInXWarnings raised by pytest are turned into errors.
+@@ -575,7 +574,7 @@ def test_removed_in_x_warning_as_error(pytester: Pytester, change_default) -> No
+         """
+         import warnings, pytest
+         def test():
+-            warnings.warn(pytest.PytestRemovedIn9Warning("some warning"))
++            warnings.warn(pytest.PytestRemovedIn10Warning("some warning"))
+     """
+     )
+     if change_default == "ini":
+@@ -583,12 +582,12 @@ def test():
+             """
+             [pytest]
+             filterwarnings =
+-                ignore::pytest.PytestRemovedIn9Warning
++                ignore::pytest.PytestRemovedIn10Warning
+         """
+         )
+ 
+     args = (
+-        ("-Wignore::pytest.PytestRemovedIn9Warning",)
++        ("-Wignore::pytest.PytestRemovedIn10Warning",)
+         if change_default == "cmdline"
+         else ()
+     )

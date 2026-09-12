@@ -1,0 +1,52 @@
+{
+  "repo": "sktime/sktime",
+  "pr_number": 8372,
+  "pr_url": "https://github.com/sktime/sktime/pull/8372",
+  "issue_number": 8371,
+  "base_sha": "150f84839fd9efb0eb7cf7720acc001f484ff756",
+  "head_sha": "755dcaa21c7839c937f2da285885ecdafeba41a7",
+  "additions": 39,
+  "deletions": 1,
+  "changed_files": [
+    "sktime/performance_metrics/forecasting/probabilistic/_classes.py",
+    "sktime/performance_metrics/forecasting/probabilistic/tests/test_probabilistic_metrics.py"
+  ],
+  "test_files": [
+    "sktime/performance_metrics/forecasting/probabilistic/tests/test_probabilistic_metrics.py"
+  ],
+  "source_files": [
+    "sktime/performance_metrics/forecasting/probabilistic/_classes.py"
+  ],
+  "parameterization": {
+    "repo": "sktime/sktime",
+    "repo_short": "sktime",
+    "parameterized_identifiers": [
+      "astype",
+      "boundaries",
+      "boundary",
+      "changed",
+      "columns",
+      "correctly",
+      "counted",
+      "coverage",
+      "covered",
+      "ensures"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:31Z"
+}

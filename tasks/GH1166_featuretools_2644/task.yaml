@@ -1,0 +1,13 @@
+task_id: GH1166_featuretools_2644
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix for latest deps for woodwork 0.28.0"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/alteryx/featuretools/pull/2644"
+source_issue: "https://github.com/alteryx/featuretools/issues/2650"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

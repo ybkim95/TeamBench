@@ -1,0 +1,53 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 21244,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/21244",
+  "issue_number": 20245,
+  "base_sha": "fa4003b4879442d1d399d334fc72575369146947",
+  "head_sha": "d1f69dcd3ef35cc8e0f366bbced8ff5878a5dcac",
+  "additions": 70,
+  "deletions": 3,
+  "changed_files": [
+    "src/lightning/pytorch/CHANGELOG.md",
+    "src/lightning/pytorch/callbacks/model_checkpoint.py",
+    "tests/tests_pytorch/checkpointing/test_model_checkpoint.py"
+  ],
+  "test_files": [
+    "tests/tests_pytorch/checkpointing/test_model_checkpoint.py"
+  ],
+  "source_files": [
+    "src/lightning/pytorch/callbacks/model_checkpoint.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "actually",
+      "always",
+      "another",
+      "append",
+      "avg_loss",
+      "based",
+      "batch",
+      "batch_idx",
+      "being",
+      "best"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:51:19Z"
+}

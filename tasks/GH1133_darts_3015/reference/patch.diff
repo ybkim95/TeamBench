@@ -1,0 +1,281 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 52cb673082..cd61801784 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -13,6 +13,8 @@ but cannot always guarantee backwards compatibility. Changes that may **break co
+ 
+ **Fixed**
+ 
++- Updated the restrictive type hint for the timezone parameter `tz` to `Any`. This allows the use of more timezone definitions supported by Pandas [tz_convert](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html). [#3015](https://github.com/unit8co/darts/pull/3015) by [Moritz Waldleben](https://github.com/mwaldleben).
++
+ **Dependencies**
+ 
+ ### For developers of the library:
+diff --git a/darts/dataprocessing/encoders/encoders.py b/darts/dataprocessing/encoders/encoders.py
+index 83d19f7c4c..ed8b9f95e9 100644
+--- a/darts/dataprocessing/encoders/encoders.py
++++ b/darts/dataprocessing/encoders/encoders.py
+@@ -158,7 +158,7 @@
+ 
+ import copy
+ from collections.abc import Sequence
+-from typing import Callable, Optional, Union
++from typing import Any, Callable, Optional, Union
+ 
+ import numpy as np
+ import pandas as pd
+@@ -182,6 +182,7 @@
+ from darts.utils.utils import generate_index
+ 
+ SupportedTimeSeries = Union[TimeSeries, Sequence[TimeSeries]]
++
+ logger = get_logger(__name__)
+ 
+ ENCODER_KEYS = ["cyclic", "datetime_attribute", "position", "custom"]
+@@ -203,7 +204,7 @@ def __init__(
+         self,
+         index_generator: CovariatesIndexGenerator,
+         attribute: str,
+-        tz: Optional[str] = None,
++        tz: Any = None,
+     ):
+         """
+         Cyclic index encoding for `TimeSeries` that have a time index of type `pd.DatetimeIndex`.
+@@ -221,7 +222,9 @@ def __init__(
+             For more information, check out :meth:`datetime_attribute_timeseries()
+             <darts.utils.timeseries_generation.datetime_attribute_timeseries>`
+         tz
+-            Optionally, a time zone to convert the time index to before computing the attributes.
++            Optionally, a time zone to convert the time index before computing attributes.
++            Supports any type handled by pandas
++            `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+         """
+         super().__init__(index_generator)
+         self.attribute = attribute
+@@ -271,7 +274,7 @@ def __init__(
+         input_chunk_length: Optional[int] = None,
+         output_chunk_length: Optional[int] = None,
+         lags_covariates: Optional[list[int]] = None,
+-        tz: Optional[str] = None,
++        tz: Any = None,
+     ):
+         """
+         Parameters
+@@ -298,7 +301,9 @@ def __init__(
+             Only required for :class:`SKLearnModel`.
+             Corresponds to the lag values from parameter `lags_past_covariates` of :class:`SKLearnModel`.
+         tz
+-            Optionally, a time zone to convert the time index to before computing the attributes.
++            Optionally, a time zone to convert the time index before computing attributes.
++            Supports any type handled by pandas
++            `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+         """
+         super().__init__(
+             index_generator=PastCovariatesIndexGenerator(
+@@ -320,7 +325,7 @@ def __init__(
+         input_chunk_length: Optional[int] = None,
+         output_chunk_length: Optional[int] = None,
+         lags_covariates: Optional[list[int]] = None,
+-        tz: Optional[str] = None,
++        tz: Any = None,
+     ):
+         """
+         Parameters
+@@ -347,7 +352,9 @@ def __init__(
+             Only required for :class:`SKLearnModel`.
+             Corresponds to the lag values from parameter `lags_future_covariates` from :class:`SKLearnModel`.
+         tz
+-            Optionally, a time zone to convert the time index to before computing the attributes.
++            Optionally, a time zone to convert the time index before computing attributes.
++            Supports any type handled by pandas
++            `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+         """
+         super().__init__(
+             index_generator=FutureCovariatesIndexGenerator(
+@@ -369,7 +376,7 @@ def __init__(
+         self,
+         index_generator: CovariatesIndexGenerator,
+         attribute: str,
+-        tz: Optional[str] = None,
++        tz: Any = None,
+     ):
+         """
+         Parameters
+@@ -385,7 +392,9 @@ def __init__(
+             For more information, check out :meth:`datetime_attribute_timeseries()
+             <darts.utils.timeseries_generation.datetime_attribute_timeseries>`
+         tz
+-            Optionally, a time zone to convert the time index to before computing the attributes.
++            Optionally, a time zone to convert the time index before computing attributes.
++            Supports any type handled by pandas
++            `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+         """
+         super().__init__(index_generator)
+         self.attribute = attribute
+@@ -431,7 +440,7 @@ def __init__(
+         input_chunk_length: Optional[int] = None,
+         output_chunk_length: Optional[int] = None,
+         lags_covariates: Optional[list[int]] = None,
+-        tz: Optional[str] = None,
++        tz: Any = None,
+     ):
+         """
+         Parameters
+@@ -458,7 +467,9 @@ def __init__(
+             Only required for :class:`SKLearnModel`.
+             Corresponds to the lag values from parameter `lags_past_covariates` of :class:`SKLearnModel`.
+         tz
+-            Optionally, a time zone to convert the time index to before computing the attributes.
++            Optionally, a time zone to convert the time index before computing attributes.
++            Supports any type handled by pandas
++            `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+         """
+         super().__init__(
+             index_generator=PastCovariatesIndexGenerator(
+@@ -480,7 +491,7 @@ def __init__(
+         input_chunk_length: Optional[int] = None,
+         output_chunk_length: Optional[int] = None,
+         lags_covariates: Optional[list[int]] = None,
+-        tz: Optional[str] = None,
++        tz: Any = None,
+     ):
+         """
+         Parameters
+@@ -507,7 +518,9 @@ def __init__(
+             Only required for :class:`SKLearnModel`.
+             Corresponds to the lag values from parameter `lags_future_covariates` from :class:`SKLearnModel`.
+         tz
+-            Optionally, a time zone to convert the time index to before computing the attributes.
++            Optionally, a time zone to convert the time index before computing attributes.
++            Supports any type handled by pandas
++            `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+         """
+         super().__init__(
+             index_generator=FutureCovariatesIndexGenerator(
+diff --git a/darts/tests/utils/test_timeseries_generation.py b/darts/tests/utils/test_timeseries_generation.py
+index da27092f01..53297a02fa 100644
+--- a/darts/tests/utils/test_timeseries_generation.py
++++ b/darts/tests/utils/test_timeseries_generation.py
+@@ -1,5 +1,7 @@
+ import itertools
++from datetime import timezone
+ from typing import Union
++from zoneinfo import ZoneInfo
+ 
+ import numpy as np
+ import pandas as pd
+@@ -394,10 +396,16 @@ def test_datetime_attribute_timeseries(self):
+             vals_exp=vals,
+         )
+ 
+-        # tz=CET is +1 hour to UTC
++        # tz=timezone.utc is the same as tz=None
++        self.helper_routine(idx, "hour", vals_exp=vals, tz=timezone.utc)
++
++        # tz="CET" is +1 hour to UTC
+         vals = vals[1:] + [0]
+         self.helper_routine(idx, "hour", vals_exp=vals, tz="CET")
+ 
++        # tz=ZoneInfo("CET") is the same as tz="CET"
++        self.helper_routine(idx, "hour", vals_exp=vals, tz=ZoneInfo("CET"))
++
+         # day, 0-indexed
+         vals = [0] * 24 + [1] * 24
+         self.helper_routine(idx, "day", vals_exp=vals)
+diff --git a/darts/timeseries.py b/darts/timeseries.py
+index b6bff13b30..79a1d63370 100644
+--- a/darts/timeseries.py
++++ b/darts/timeseries.py
+@@ -3573,7 +3573,7 @@ def add_datetime_attribute(
+         attribute,
+         one_hot: bool = False,
+         cyclic: bool = False,
+-        tz: Optional[str] = None,
++        tz: Any = None,
+     ) -> Self:
+         """Return a new series with one (or more) additional component(s) that contain an attribute of the series' time
+         index.
+@@ -3600,7 +3600,9 @@ def add_datetime_attribute(
+             Alternative to one_hot encoding, enable only one of the two.
+             (adds 2 columns, corresponding to sin and cos transformation).
+         tz
+-            Optionally, a time zone to convert the time index to before computing the attributes.
++            Optionally, a time zone to convert the time index before computing attributes.
++            Supports any type handled by pandas
++            `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+ 
+         Returns
+         -------
+@@ -3625,7 +3627,7 @@ def add_holidays(
+         country_code: str,
+         prov: str = None,
+         state: str = None,
+-        tz: Optional[str] = None,
++        tz: Any = None,
+     ) -> Self:
+         """Return a new series with an added holiday component.
+ 
+@@ -3644,7 +3646,9 @@ def add_holidays(
+         state
+             The state
+         tz
+-            Optionally, a time zone to convert the time index to before computing the attributes.
++            Optionally, a time zone to convert the time index before computing attributes.
++            Supports any type handled by pandas
++            `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+ 
+         Returns
+         -------
+diff --git a/darts/utils/timeseries_generation.py b/darts/utils/timeseries_generation.py
+index e1206f826c..5fb0899635 100644
+--- a/darts/utils/timeseries_generation.py
++++ b/darts/utils/timeseries_generation.py
+@@ -483,7 +483,7 @@ def holidays_timeseries(
+     until: Optional[Union[int, str, pd.Timestamp]] = None,
+     add_length: int = 0,
+     dtype: np.dtype = np.float64,
+-    tz: Optional[str] = None,
++    tz: Any = None,
+ ) -> TimeSeries:
+     """
+     Creates a binary univariate TimeSeries with index `time_index` that equals 1 at every index that lies within
+@@ -512,7 +512,9 @@ def holidays_timeseries(
+     dtype
+         The desired NumPy dtype (np.float32 or np.float64) for the resulting series.
+     tz
+-        Optionally, a time zone to convert the time index to before generating the holidays.
++        Optionally, a time zone to convert the time index before computing attributes.
++        Supports any type handled by pandas
++        `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+ 
+     Returns
+     -------
+@@ -549,7 +551,7 @@ def datetime_attribute_timeseries(
+     add_length: int = 0,
+     dtype=np.float64,
+     with_columns: Optional[Union[list[str], str]] = None,
+-    tz: Optional[str] = None,
++    tz: Any = None,
+ ) -> TimeSeries:
+     """
+     Returns a new TimeSeries with index `time_index` and one or more dimensions containing
+@@ -590,7 +592,9 @@ def datetime_attribute_timeseries(
+         - If `one_hot` is ``True``, must be a list of strings of the same length as the generated one hot encoded
+           features.
+     tz
+-        Optionally, a time zone to convert the time index to before computing the attributes.
++        Optionally, a time zone to convert the time index before computing attributes.
++        Supports any type handled by pandas
++        `tz_convert <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DatetimeIndex.tz_convert.html>`__.
+ 
+     Returns
+     -------
+@@ -900,7 +904,7 @@ def _generate_new_dates(
+ 
+ def _process_time_index(
+     time_index: Union[TimeSeries, pd.DatetimeIndex],
+-    tz: Optional[str] = None,
++    tz: Any = None,
+     until: Optional[Union[int, str, pd.Timestamp]] = None,
+     add_length: int = 0,
+ ) -> tuple[pd.DatetimeIndex, pd.DatetimeIndex]:

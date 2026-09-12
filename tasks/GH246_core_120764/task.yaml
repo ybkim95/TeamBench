@@ -1,0 +1,13 @@
+task_id: GH246_core_120764
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Yamaha device setup enhancement with unique id based on serial"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/120764"
+source_issue: "https://github.com/home-assistant/core/issues/111108"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

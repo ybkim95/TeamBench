@@ -1,0 +1,13 @@
+task_id: GH962_ray_22048
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "PoolActor now uses num_cpus=0 to avoid any deadlock"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/ray-project/ray/pull/22048"
+source_issue: "https://github.com/ray-project/ray/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

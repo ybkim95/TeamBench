@@ -53,7 +53,14 @@ check "python3 -c \"import sys; sys.path.insert(0, '.'); from task_queue import 
 check "! grep -Eq '\b(eval|exec)\s*\(' task_queue.py" "eval_exec_found"
 
 # 12. Attestation
-check "test -f '$SUBMISSION/attestation.json'" "attestation_missing"
+# ── Attestation recorded as METADATA, never scored ───────────────────────
+# de-scored-by: scripts/repair_graders.py (R3 attestation-is-protocol)
+# attestation.json is a PROTOCOL property of the run (already enforced as a
+# hard gate in harness/grade_task.py), not a property of the submitted
+# artifact. Scoring it let an agent buy partial credit by writing one JSON
+# file, which is the confound behind the withdrawn "removing the Verifier
+# improves partial score" result. Recorded here, excluded from partial_score.
+echo "metadata: attestation_present=$([ -f "${SUBMISSION:-}/attestation.json" ] && echo yes || echo no)"
 
 PARTIAL=$(python3 -c "print(round($PASSED/max(1,$CHECKS), 2))")
 if [ "$PASSED" -eq "$CHECKS" ]; then SUCCESS=1; PASS=true; else SUCCESS=0; PASS=false; fi

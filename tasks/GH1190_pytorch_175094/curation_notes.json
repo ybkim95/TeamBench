@@ -1,0 +1,51 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 175094,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/175094",
+  "issue_number": null,
+  "base_sha": "af5c4ec030daf123c0260a0223388420e1479fa6",
+  "head_sha": "709d1c507eca413a98eadd5d480b81181638c988",
+  "additions": 1,
+  "deletions": 7,
+  "changed_files": [
+    "test/distributed/tensor/test_tensor_ops.py"
+  ],
+  "test_files": [
+    "test/distributed/tensor/test_tensor_ops.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "build_device_mesh",
+      "common_distributed",
+      "common_dtensor",
+      "common_utils",
+      "debug",
+      "distributed",
+      "mesh",
+      "meshes",
+      "run_tests",
+      "skip_if_lt_x_gpu"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:41Z"
+}

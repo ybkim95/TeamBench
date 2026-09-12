@@ -1,0 +1,136 @@
+diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+index b5a67394b80..cf1200682da 100644
+--- a/.pre-commit-config.yaml
++++ b/.pre-commit-config.yaml
+@@ -101,7 +101,7 @@ repos:
+   - id: detect-private-key
+     exclude: ^examples/
+ - repo: https://github.com/asottile/pyupgrade
+-  rev: 'v3.15.2'
++  rev: 'v3.21.2'
+   hooks:
+   - id: pyupgrade
+     args: ['--py37-plus']
+diff --git a/CHANGES/12249.bugfix.rst b/CHANGES/12249.bugfix.rst
+new file mode 100644
+index 00000000000..42d90314110
+--- /dev/null
++++ b/CHANGES/12249.bugfix.rst
+@@ -0,0 +1,3 @@
++Aligned the pure-Python HTTP request parser with the C parser by splitting
++comma-separated and repeated ``Connection`` header values for keep-alive,
++close, and upgrade handling -- by :user:`rodrigobnogueira`.
+diff --git a/aiohttp/http_parser.py b/aiohttp/http_parser.py
+index ec7db0868e1..4889404bebc 100644
+--- a/aiohttp/http_parser.py
++++ b/aiohttp/http_parser.py
+@@ -549,16 +549,24 @@ def parse_headers(
+         if bad_hdr is not None:
+             raise BadHttpMessage(f"Duplicate '{bad_hdr}' header found.")
+ 
+-        # keep-alive
+-        conn = headers.get(hdrs.CONNECTION)
+-        if conn:
+-            v = conn.lower()
+-            if v == "close":
++        # keep-alive and protocol switching
++        # RFC 9110 section 7.6.1 defines Connection as a comma-separated list.
++        conn_values = headers.getall(hdrs.CONNECTION, ())
++        if conn_values:
++            conn_tokens = {
++                token.lower()
++                for conn_value in conn_values
++                for token in (part.strip(" \t") for part in conn_value.split(","))
++                if token and token.isascii()
++            }
++
++            if "close" in conn_tokens:
+                 close_conn = True
+-            elif v == "keep-alive":
++            elif "keep-alive" in conn_tokens:
+                 close_conn = False
++
+             # https://www.rfc-editor.org/rfc/rfc9110.html#name-101-switching-protocols
+-            elif v == "upgrade" and headers.get(hdrs.UPGRADE):
++            if "upgrade" in conn_tokens and headers.get(hdrs.UPGRADE):
+                 upgrade = True
+ 
+         # encoding
+diff --git a/tests/test_http_parser.py b/tests/test_http_parser.py
+index 2bdcdb3b97a..f3ab7e26d66 100644
+--- a/tests/test_http_parser.py
++++ b/tests/test_http_parser.py
+@@ -497,6 +497,24 @@ def test_conn_keep_alive_1_1(parser) -> None:
+     assert not msg.should_close
+ 
+ 
++def test_conn_close_comma_list(parser) -> None:
++    text = b"GET /test HTTP/1.1\r\nconnection: close, keep-alive\r\n\r\n"
++    messages, upgrade, tail = parser.feed_data(text)
++    msg = messages[0][0]
++    assert msg.should_close
++
++
++def test_conn_close_multiple_headers(parser) -> None:
++    text = (
++        b"GET /test HTTP/1.1\r\n"
++        b"connection: keep-alive\r\n"
++        b"connection: close\r\n\r\n"
++    )
++    messages, upgrade, tail = parser.feed_data(text)
++    msg = messages[0][0]
++    assert msg.should_close
++
++
+ def test_conn_other_1_0(parser) -> None:
+     text = b"GET /test HTTP/1.0\r\nconnection: test\r\n\r\n"
+     messages, upgrade, tail = parser.feed_data(text)
+@@ -586,6 +604,33 @@ def test_conn_upgrade(parser: Any) -> None:
+     assert upgrade
+ 
+ 
++def test_conn_upgrade_comma_list(parser) -> None:
++    text = (
++        b"GET /test HTTP/1.1\r\n"
++        b"connection: keep-alive, upgrade\r\n"
++        b"upgrade: websocket\r\n\r\n"
++    )
++    messages, upgrade, tail = parser.feed_data(text)
++    msg = messages[0][0]
++    assert not msg.should_close
++    assert msg.upgrade
++    assert upgrade
++
++
++def test_conn_upgrade_multiple_headers(parser) -> None:
++    text = (
++        b"GET /test HTTP/1.1\r\n"
++        b"connection: keep-alive\r\n"
++        b"connection: upgrade\r\n"
++        b"upgrade: websocket\r\n\r\n"
++    )
++    messages, upgrade, tail = parser.feed_data(text)
++    msg = messages[0][0]
++    assert not msg.should_close
++    assert msg.upgrade
++    assert upgrade
++
++
+ def test_bad_upgrade(parser) -> None:
+     """Test not upgraded if missing Upgrade header."""
+     text = b"GET /test HTTP/1.1\r\nconnection: upgrade\r\n\r\n"
+@@ -956,6 +1001,14 @@ def test_http_request_message_after_close(parser: HttpRequestParser) -> None:
+         parser.feed_data(text)
+ 
+ 
++def test_http_request_message_after_close_comma_list(parser: HttpRequestParser) -> None:
++    text = b"GET / HTTP/1.1\r\nConnection: close, keep-alive\r\n\r\nInvalid\r\n\r\n"
++    with pytest.raises(
++        http_exceptions.BadHttpMessage, match="Data after `Connection: close`"
++    ):
++        parser.feed_data(text)
++
++
+ def test_http_request_upgrade(parser: HttpRequestParser) -> None:
+     text = (
+         b"GET /test HTTP/1.1\r\n"

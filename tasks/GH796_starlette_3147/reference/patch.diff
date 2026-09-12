@@ -1,0 +1,46 @@
+diff --git a/starlette/responses.py b/starlette/responses.py
+index 431c88e8f..03d82ac57 100644
+--- a/starlette/responses.py
++++ b/starlette/responses.py
+@@ -6,7 +6,6 @@
+ import os
+ import stat
+ import sys
+-import warnings
+ from collections.abc import AsyncIterable, Awaitable, Callable, Iterable, Mapping, Sequence
+ from datetime import datetime
+ from email.utils import format_datetime, formatdate
+@@ -302,17 +301,11 @@ def __init__(
+         background: BackgroundTask | None = None,
+         filename: str | None = None,
+         stat_result: os.stat_result | None = None,
+-        method: str | None = None,
+         content_disposition_type: str = "attachment",
+     ) -> None:
+         self.path = path
+         self.status_code = status_code
+         self.filename = filename
+-        if method is not None:
+-            warnings.warn(
+-                "The 'method' parameter is not used, and it will be removed.",
+-                DeprecationWarning,
+-            )
+         if media_type is None:
+             media_type = guess_type(filename or path)[0] or "text/plain"
+         self.media_type = media_type
+diff --git a/tests/test_responses.py b/tests/test_responses.py
+index 77f8de8ae..621669459 100644
+--- a/tests/test_responses.py
++++ b/tests/test_responses.py
+@@ -335,11 +335,6 @@ def test_file_response_with_inline_disposition(tmp_path: Path, test_client_facto
+     assert response.headers["content-disposition"] == expected_disposition
+ 
+ 
+-def test_file_response_with_method_warns(tmp_path: Path) -> None:
+-    with pytest.warns(DeprecationWarning):
+-        FileResponse(path=tmp_path, filename="example.png", method="GET")
+-
+-
+ def test_file_response_with_range_header(tmp_path: Path, test_client_factory: TestClientFactory) -> None:
+     content = b"file content"
+     filename = "hello.txt"

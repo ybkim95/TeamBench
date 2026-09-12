@@ -1,0 +1,76 @@
+diff --git a/src/werkzeug/_reloader.py b/src/werkzeug/_reloader.py
+index 5eb64bc7d..dcc1697cc 100644
+--- a/src/werkzeug/_reloader.py
++++ b/src/werkzeug/_reloader.py
+@@ -317,7 +317,7 @@ def __init__(self, *args: t.Any, **kwargs: t.Any) -> None:
+         from watchdog.events import EVENT_TYPE_DELETED
+         from watchdog.events import EVENT_TYPE_MODIFIED
+         from watchdog.events import EVENT_TYPE_MOVED
+-        from watchdog.events import FileModifiedEvent
++        from watchdog.events import FileSystemEvent
+         from watchdog.events import PatternMatchingEventHandler
+         from watchdog.observers import Observer
+ 
+@@ -325,7 +325,7 @@ def __init__(self, *args: t.Any, **kwargs: t.Any) -> None:
+         trigger_reload = self.trigger_reload
+ 
+         class EventHandler(PatternMatchingEventHandler):
+-            def on_any_event(self, event: FileModifiedEvent) -> None:  # type: ignore[override]
++            def dispatch(self, event: FileSystemEvent) -> None:
+                 if event.event_type not in {
+                     EVENT_TYPE_CLOSED,
+                     EVENT_TYPE_CREATED,
+@@ -336,6 +336,9 @@ def on_any_event(self, event: FileModifiedEvent) -> None:  # type: ignore[overri
+                     # skip events that don't involve changes to the file
+                     return
+ 
++                super().dispatch(event)
++
++            def on_any_event(self, event: FileSystemEvent) -> None:
+                 trigger_reload(event.src_path)
+ 
+         reloader_name = Observer.__name__.lower()  # type: ignore[attr-defined]
+diff --git a/tests/test_serving.py b/tests/test_serving.py
+index 2e10ed0ed..5a3b35dc7 100644
+--- a/tests/test_serving.py
++++ b/tests/test_serving.py
+@@ -149,15 +149,15 @@ def test_watchdog_reloader_ignores_opened(mock_trigger_reload: Mock) -> None:
+     from watchdog.events import FileModifiedEvent
+ 
+     reloader = WatchdogReloaderLoop()
+-    modified_event = FileModifiedEvent("")
++    modified_event = FileModifiedEvent("fake.py")
+     modified_event.event_type = EVENT_TYPE_MODIFIED
+-    reloader.event_handler.on_any_event(modified_event)
++    reloader.event_handler.dispatch(modified_event)
+     mock_trigger_reload.assert_called_once()
+ 
+     mock_trigger_reload.reset_mock()
+-    opened_event = FileModifiedEvent("")
++    opened_event = FileModifiedEvent("fake.py")
+     opened_event.event_type = EVENT_TYPE_OPENED
+-    reloader.event_handler.on_any_event(opened_event)
++    reloader.event_handler.dispatch(opened_event)
+     mock_trigger_reload.assert_not_called()
+ 
+ 
+@@ -172,15 +172,15 @@ def test_watchdog_reloader_ignores_closed_no_write(mock_trigger_reload: Mock) ->
+     from watchdog.events import FileModifiedEvent
+ 
+     reloader = WatchdogReloaderLoop()
+-    modified_event = FileModifiedEvent("")
++    modified_event = FileModifiedEvent("fake.py")
+     modified_event.event_type = EVENT_TYPE_MODIFIED
+-    reloader.event_handler.on_any_event(modified_event)
++    reloader.event_handler.dispatch(modified_event)
+     mock_trigger_reload.assert_called_once()
+ 
+     mock_trigger_reload.reset_mock()
+-    opened_event = FileModifiedEvent("")
++    opened_event = FileModifiedEvent("fake.py")
+     opened_event.event_type = EVENT_TYPE_CLOSED_NO_WRITE
+-    reloader.event_handler.on_any_event(opened_event)
++    reloader.event_handler.dispatch(opened_event)
+     mock_trigger_reload.assert_not_called()
+ 
+ 

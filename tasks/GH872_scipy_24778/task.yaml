@@ -1,0 +1,13 @@
+task_id: GH872_scipy_24778
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: spatial.transform.Rotation.approx_equal: fix bool return type"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scipy/scipy/pull/24778"
+source_issue: "https://github.com/scipy/scipy/issues/24769"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

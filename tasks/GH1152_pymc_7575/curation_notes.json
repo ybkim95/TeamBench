@@ -1,0 +1,54 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7575,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7575",
+  "issue_number": null,
+  "base_sha": "e75cd73bfd0ff188b0f1c4ef89adb82edadb16f0",
+  "head_sha": "2fd48460a2ae5a66022b152ff4478195ce75e89f",
+  "additions": 26,
+  "deletions": 3,
+  "changed_files": [
+    "pymc/logprob/scan.py",
+    "tests/logprob/test_scan.py"
+  ],
+  "test_files": [
+    "tests/logprob/test_scan.py"
+  ],
+  "source_files": [
+    "pymc/logprob/scan.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "after",
+      "also",
+      "assert_allclose",
+      "before",
+      "clone",
+      "clone_fgraph",
+      "copy",
+      "creating",
+      "dprint",
+      "eps_t"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:09:44Z"
+}

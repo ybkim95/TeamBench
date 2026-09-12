@@ -1,0 +1,13 @@
+task_id: GH54_pydantic_12817
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Track extra fields set after init in `model_fields_set`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pydantic/pydantic/pull/12817"
+source_issue: "https://github.com/pydantic/pydantic/issues/11134"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,14 @@
+task_id: DB1_migration_conflict
+domain: Data Engineering
+category: Data Engineering
+difficulty: hard
+languages: [sql, python]
+description: "Resolve 3-4 conflicting SQL migrations from two feature branches: sequence number collisions, column rename conflicts breaking FK references, and index name collisions. Migration policy specifies branch priority and merge order."
+tni_pattern: B
+parameterized: true
+seeds: [0, 1, 2]
+network: false
+time_limit_sec: 900
+tags: [sql, sqlite, migrations, database, schema, conflicts, foreign-keys]
+workspace_file_count: 9
+lines_changed_expected: 5

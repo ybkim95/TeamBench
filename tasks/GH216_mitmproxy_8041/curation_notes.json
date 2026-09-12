@@ -1,0 +1,55 @@
+{
+  "repo": "mitmproxy/mitmproxy",
+  "pr_number": 8041,
+  "pr_url": "https://github.com/mitmproxy/mitmproxy/pull/8041",
+  "issue_number": null,
+  "base_sha": "e6aa924bb411a9687b91920b8d094af37bc02b90",
+  "head_sha": "c84fa14f0682cfeb46cdb57f7a09fe4402a6a4c9",
+  "additions": 26,
+  "deletions": 0,
+  "changed_files": [
+    "CHANGELOG.md",
+    "mitmproxy/tools/web/app.py",
+    "test/mitmproxy/tools/web/test_app.py"
+  ],
+  "test_files": [
+    "test/mitmproxy/tools/web/test_app.py"
+  ],
+  "source_files": [
+    "mitmproxy/tools/web/app.py"
+  ],
+  "parameterization": {
+    "repo": "mitmproxy/mitmproxy",
+    "repo_short": "mitmproxy",
+    "parameterized_identifiers": [
+      "add_type",
+      "blank",
+      "bottom",
+      "browsers",
+      "checking",
+      "code",
+      "correct",
+      "critical",
+      "cut_after_n_lines",
+      "default"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-23T23:38:40Z"
+}

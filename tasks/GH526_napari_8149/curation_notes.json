@@ -1,0 +1,56 @@
+{
+  "repo": "napari/napari",
+  "pr_number": 8149,
+  "pr_url": "https://github.com/napari/napari/pull/8149",
+  "issue_number": 8148,
+  "base_sha": "0848c20ba910cdfd0b7114865f31d3b02d9add60",
+  "head_sha": "cfa465b85392de678c23df1841be15258ee155f0",
+  "additions": 38,
+  "deletions": 6,
+  "changed_files": [
+    "src/napari/layers/image/_tests/test_image.py",
+    "src/napari/layers/image/image.py",
+    "src/napari/layers/utils/_tests/test_layer_utils.py",
+    "src/napari/layers/utils/layer_utils.py"
+  ],
+  "test_files": [
+    "src/napari/layers/image/_tests/test_image.py",
+    "src/napari/layers/utils/_tests/test_layer_utils.py"
+  ],
+  "source_files": [
+    "src/napari/layers/image/image.py",
+    "src/napari/layers/utils/layer_utils.py"
+  ],
+  "parameterization": {
+    "repo": "napari/napari",
+    "repo_short": "napari",
+    "parameterized_identifiers": [
+      "alpha",
+      "arange",
+      "array",
+      "assert_array_equal",
+      "astype",
+      "axis",
+      "calc_data_range",
+      "calculate",
+      "calculation",
+      "cast"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:24:02Z"
+}

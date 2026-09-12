@@ -1,0 +1,52 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 176783,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/176783",
+  "issue_number": 175856,
+  "base_sha": "f99ab991dcd3719ee25dd3377a53ea12e518308e",
+  "head_sha": "2eae35cd40b0ef028dc80168168f7b72b12058dd",
+  "additions": 48,
+  "deletions": 0,
+  "changed_files": [
+    "test/inductor/test_utils.py",
+    "torch/utils/_sympy/functions.py"
+  ],
+  "test_files": [
+    "test/inductor/test_utils.py"
+  ],
+  "source_files": [
+    "torch/utils/_sympy/functions.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "against",
+      "atomics",
+      "attribute",
+      "comparing",
+      "compound",
+      "default",
+      "expr",
+      "expressions",
+      "float",
+      "ignore"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:08:28Z"
+}

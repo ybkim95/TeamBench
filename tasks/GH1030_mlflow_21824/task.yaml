@@ -1,0 +1,13 @@
+task_id: GH1030_mlflow_21824
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix tar path traversal vulnerability in `extract_archive_to_dir`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/mlflow/mlflow/pull/21824"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

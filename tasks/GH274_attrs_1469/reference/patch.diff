@@ -1,0 +1,72 @@
+diff --git a/changelog.d/1469.change.md b/changelog.d/1469.change.md
+new file mode 100644
+index 000000000..1903d3da2
+--- /dev/null
++++ b/changelog.d/1469.change.md
+@@ -0,0 +1 @@
++The performance of `attrs.astuple()` has been improved by 49–270%.
+diff --git a/src/attr/_funcs.py b/src/attr/_funcs.py
+index c6f0a4cee..1adb50021 100644
+--- a/src/attr/_funcs.py
++++ b/src/attr/_funcs.py
+@@ -278,8 +278,11 @@ def astuple(
+         v = getattr(inst, a.name)
+         if filter is not None and not filter(a, v):
+             continue
++        value_type = type(v)
+         if recurse is True:
+-            if has(v.__class__):
++            if value_type in _ATOMIC_TYPES:
++                rv.append(v)
++            elif has(value_type):
+                 rv.append(
+                     astuple(
+                         v,
+@@ -289,7 +292,7 @@ def astuple(
+                         retain_collection_types=retain,
+                     )
+                 )
+-            elif isinstance(v, (tuple, list, set, frozenset)):
++            elif issubclass(value_type, (tuple, list, set, frozenset)):
+                 cf = v.__class__ if retain is True else list
+                 items = [
+                     (
+@@ -313,8 +316,8 @@ def astuple(
+                     # Workaround for TypeError: cf.__new__() missing 1 required
+                     # positional argument (which appears, for a namedturle)
+                     rv.append(cf(*items))
+-            elif isinstance(v, dict):
+-                df = v.__class__ if retain is True else dict
++            elif issubclass(value_type, dict):
++                df = value_type if retain is True else dict
+                 rv.append(
+                     df(
+                         (
+diff --git a/tests/test_funcs.py b/tests/test_funcs.py
+index 4c9460eaf..b254e9898 100644
+--- a/tests/test_funcs.py
++++ b/tests/test_funcs.py
+@@ -499,6 +499,23 @@ class A:
+         with pytest.raises(TypeError, match=re.escape(message)):
+             attr.astuple(instance, retain_collection_types=True)
+ 
++    def test_non_atomic_types(self, C):
++        """
++        Non-atomic types that don't have special treatment for are serialized
++        and the types are retained.
++        """
++
++        class Int(int):
++            pass
++
++        c = C(Int(10), [Int(1), 2])
++        expected = (Int(10), [Int(1), 2])
++
++        result = astuple(c)
++        assert expected == result
++        assert type(result[0]) is Int
++        assert type(result[1][0]) is Int
++
+ 
+ class TestHas:
+     """

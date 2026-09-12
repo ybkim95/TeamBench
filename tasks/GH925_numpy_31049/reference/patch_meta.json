@@ -1,0 +1,15 @@
+{
+ "task": "GH925_numpy_31049",
+ "patch": "tasks/GH925_numpy_31049/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "numpy/numpy",
+ "pr_number": 31049,
+ "base_sha": "26b15074660971a2540fdd12e33af300b8ab9e08",
+ "head_sha": "03cc4a6e4bc0d4004e31d21dc6c3ba3d919da39f",
+ "bytes": 1641,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

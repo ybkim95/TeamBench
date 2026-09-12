@@ -1,0 +1,53 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3115,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3115",
+  "issue_number": null,
+  "base_sha": "9e824df53862f105771c57b3d28b643951905381",
+  "head_sha": "de397c80af4e52d243949c1afc529f21bf1bfc96",
+  "additions": 8,
+  "deletions": 4,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/werkzeug/datastructures/csp.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "src/werkzeug/datastructures/csp.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "always",
+      "been",
+      "behavior",
+      "client",
+      "code",
+      "corresponding",
+      "csp_property",
+      "current",
+      "default",
+      "deprecated"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:36:56Z"
+}

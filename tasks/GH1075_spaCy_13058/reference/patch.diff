@@ -1,0 +1,104 @@
+diff --git a/spacy/tests/doc/test_span.py b/spacy/tests/doc/test_span.py
+index 04dde2bfa2a..98a74bc2145 100644
+--- a/spacy/tests/doc/test_span.py
++++ b/spacy/tests/doc/test_span.py
+@@ -731,3 +731,12 @@ def test_for_no_ent_sents():
+     sents = list(doc.ents[0].sents)
+     assert len(sents) == 1
+     assert str(sents[0]) == str(doc.ents[0].sent) == "ENTITY"
++
++
++def test_span_api_richcmp_other(en_tokenizer):
++    doc1 = en_tokenizer("a b")
++    doc2 = en_tokenizer("b c")
++    assert not doc1[1:2] == doc1[1]
++    assert not doc1[1:2] == doc2[0]
++    assert not doc1[1:2] == doc2[0:1]
++    assert not doc1[0:1] == doc2
+diff --git a/spacy/tests/doc/test_token_api.py b/spacy/tests/doc/test_token_api.py
+index 782dfd774ad..c10221e65f7 100644
+--- a/spacy/tests/doc/test_token_api.py
++++ b/spacy/tests/doc/test_token_api.py
+@@ -294,3 +294,12 @@ def test_missing_head_dep(en_vocab):
+     assert aligned_heads[0] == ref_heads[0]
+     assert aligned_deps[5] == ref_deps[5]
+     assert aligned_heads[5] == ref_heads[5]
++
++
++def test_token_api_richcmp_other(en_tokenizer):
++    doc1 = en_tokenizer("a b")
++    doc2 = en_tokenizer("b c")
++    assert not doc1[1] == doc1[0:1]
++    assert not doc1[1] == doc2[1:2]
++    assert not doc1[1] == doc2[0]
++    assert not doc1[0] == doc2
+diff --git a/spacy/tokens/span.pyx b/spacy/tokens/span.pyx
+index af3ba8db5ef..e179bbce7eb 100644
+--- a/spacy/tokens/span.pyx
++++ b/spacy/tokens/span.pyx
+@@ -127,14 +127,17 @@ cdef class Span:
+         self._vector = vector
+         self._vector_norm = vector_norm
+ 
+-    def __richcmp__(self, Span other, int op):
++    def __richcmp__(self, object other, int op):
+         if other is None:
+             if op == 0 or op == 1 or op == 2:
+                 return False
+             else:
+                 return True
++        if not isinstance(other, Span):
++            return False
++        cdef Span other_span = other
+         self_tuple = (self.c.start_char, self.c.end_char, self.c.label, self.c.kb_id, self.id, self.doc)
+-        other_tuple = (other.c.start_char, other.c.end_char, other.c.label, other.c.kb_id, other.id, other.doc)
++        other_tuple = (other_span.c.start_char, other_span.c.end_char, other_span.c.label, other_span.c.kb_id, other_span.id, other_span.doc)
+         # <
+         if op == 0:
+             return self_tuple < other_tuple
+diff --git a/spacy/tokens/token.pyi b/spacy/tokens/token.pyi
+index e7863fd1617..435ace52707 100644
+--- a/spacy/tokens/token.pyi
++++ b/spacy/tokens/token.pyi
+@@ -53,7 +53,12 @@ class Token:
+     def __bytes__(self) -> bytes: ...
+     def __str__(self) -> str: ...
+     def __repr__(self) -> str: ...
+-    def __richcmp__(self, other: Token, op: int) -> bool: ...
++    def __lt__(self, other: Any) -> bool: ...
++    def __le__(self, other: Any) -> bool: ...
++    def __eq__(self, other: Any) -> bool: ...
++    def __ne__(self, other: Any) -> bool: ...
++    def __gt__(self, other: Any) -> bool: ...
++    def __ge__(self, other: Any) -> bool: ...
+     @property
+     def _(self) -> Underscore: ...
+     def nbor(self, i: int = ...) -> Token: ...
+diff --git a/spacy/tokens/token.pyx b/spacy/tokens/token.pyx
+index 9fd4118d67b..2ed736b7035 100644
+--- a/spacy/tokens/token.pyx
++++ b/spacy/tokens/token.pyx
+@@ -139,17 +139,20 @@ cdef class Token:
+     def __repr__(self):
+         return self.__str__()
+ 
+-    def __richcmp__(self, Token other, int op):
++    def __richcmp__(self, object other, int op):
+         # http://cython.readthedocs.io/en/latest/src/userguide/special_methods.html
+         if other is None:
+             if op in (0, 1, 2):
+                 return False
+             else:
+                 return True
++        if not isinstance(other, Token):
++            return False
++        cdef Token other_token = other
+         cdef Doc my_doc = self.doc
+-        cdef Doc other_doc = other.doc
++        cdef Doc other_doc = other_token.doc
+         my = self.idx
+-        their = other.idx
++        their = other_token.idx
+         if op == 0:
+             return my < their
+         elif op == 2:

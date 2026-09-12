@@ -1,0 +1,13 @@
+task_id: GH333_pyhf_2652
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "build: Require NumPy v1.22.0 or later"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scikit-hep/pyhf/pull/2652"
+source_issue: "https://github.com/scikit-hep/pyhf/issues/1772"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

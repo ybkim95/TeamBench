@@ -1,0 +1,51 @@
+{
+  "repo": "sktime/sktime",
+  "pr_number": 7872,
+  "pr_url": "https://github.com/sktime/sktime/pull/7872",
+  "issue_number": 7822,
+  "base_sha": "b33cbef0b48ffefe0b2d9712eec297d5a23f1780",
+  "head_sha": "b32299cbdd81c8fc5d9dd9f277a2276cb3c6c71b",
+  "additions": 8,
+  "deletions": 15,
+  "changed_files": [
+    "sktime/forecasting/mapa.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "sktime/forecasting/mapa.py"
+  ],
+  "parameterization": {
+    "repo": "sktime/sktime",
+    "repo_short": "sktime",
+    "parameterized_identifiers": [
+      "aggregation",
+      "aggregation_levels",
+      "append",
+      "appropriate",
+      "authors",
+      "axis",
+      "base",
+      "base_forecaster",
+      "clone",
+      "columns"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:28:49Z"
+}

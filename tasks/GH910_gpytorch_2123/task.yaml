@@ -1,0 +1,13 @@
+task_id: GH910_gpytorch_2123
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix bug with Multitask DeepGP predictive variances."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/cornellius-gp/gpytorch/pull/2123"
+source_issue: "https://github.com/cornellius-gp/gpytorch/issues/2702"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

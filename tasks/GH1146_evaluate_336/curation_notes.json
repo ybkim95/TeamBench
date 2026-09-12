@@ -1,0 +1,52 @@
+{
+  "repo": "huggingface/evaluate",
+  "pr_number": 336,
+  "pr_url": "https://github.com/huggingface/evaluate/pull/336",
+  "issue_number": 294,
+  "base_sha": "9f0f888eb455bc0952f467b1cab47716e3f04e83",
+  "head_sha": "e8b3fbc0158cbdae432012ef653523a3f0e5463d",
+  "additions": 59,
+  "deletions": 12,
+  "changed_files": [
+    "src/evaluate/loading.py",
+    "tests/test_load.py"
+  ],
+  "test_files": [
+    "tests/test_load.py"
+  ],
+  "source_files": [
+    "src/evaluate/loading.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/evaluate",
+    "repo_short": "evaluate",
+    "parameterized_identifiers": [
+      "accuracy",
+      "already",
+      "attempts",
+      "basename",
+      "before",
+      "cache",
+      "cached",
+      "canonical",
+      "check",
+      "combined_path"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:09:14Z"
+}

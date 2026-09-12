@@ -1,0 +1,54 @@
+{
+  "repo": "pytest-dev/pytest",
+  "pr_number": 14222,
+  "pr_url": "https://github.com/pytest-dev/pytest/pull/14222",
+  "issue_number": null,
+  "base_sha": "12558b562bef4bc454e9bfd3a4440cd892fe52a7",
+  "head_sha": "1613a12c2948ec22e4703387e97ff4acf172e66c",
+  "additions": 12,
+  "deletions": 2,
+  "changed_files": [
+    "changelog/13192.bugfix.rst",
+    "src/_pytest/raises.py",
+    "testing/python/raises.py"
+  ],
+  "test_files": [
+    "src/_pytest/raises.py",
+    "testing/python/raises.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pytest-dev/pytest",
+    "repo_short": "pytest",
+    "parameterized_identifiers": [
+      "asdf",
+      "being",
+      "character",
+      "classes",
+      "compile",
+      "conceptually",
+      "differ",
+      "doesn",
+      "enumerate",
+      "escaped"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:22:49Z"
+}

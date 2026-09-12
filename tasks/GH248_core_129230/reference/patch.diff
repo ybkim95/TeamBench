@@ -1,0 +1,128 @@
+diff --git a/homeassistant/components/roomba/config_flow.py b/homeassistant/components/roomba/config_flow.py
+index d690bcce97818..d0c29faca69d3 100644
+--- a/homeassistant/components/roomba/config_flow.py
++++ b/homeassistant/components/roomba/config_flow.py
+@@ -57,7 +57,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
+             address=data[CONF_HOST],
+             blid=data[CONF_BLID],
+             password=data[CONF_PASSWORD],
+-            continuous=False,
++            continuous=True,
+             delay=data[CONF_DELAY],
+         )
+     )
+diff --git a/homeassistant/components/roomba/const.py b/homeassistant/components/roomba/const.py
+index 331c09006825f..7f1e3b8e1eed6 100644
+--- a/homeassistant/components/roomba/const.py
++++ b/homeassistant/components/roomba/const.py
+@@ -9,5 +9,5 @@
+ CONF_BLID = "blid"
+ DEFAULT_CERT = "/etc/ssl/certs/ca-certificates.crt"
+ DEFAULT_CONTINUOUS = True
+-DEFAULT_DELAY = 1
++DEFAULT_DELAY = 30
+ ROOMBA_SESSION = "roomba_session"
+diff --git a/tests/components/roomba/test_config_flow.py b/tests/components/roomba/test_config_flow.py
+index 8139e42d43d4f..dedccc1424958 100644
+--- a/tests/components/roomba/test_config_flow.py
++++ b/tests/components/roomba/test_config_flow.py
+@@ -8,7 +8,12 @@
+ 
+ from homeassistant.components import dhcp, zeroconf
+ from homeassistant.components.roomba import config_flow
+-from homeassistant.components.roomba.const import CONF_BLID, CONF_CONTINUOUS, DOMAIN
++from homeassistant.components.roomba.const import (
++    CONF_BLID,
++    CONF_CONTINUOUS,
++    DEFAULT_DELAY,
++    DOMAIN,
++)
+ from homeassistant.config_entries import (
+     SOURCE_DHCP,
+     SOURCE_IGNORE,
+@@ -206,7 +211,7 @@ async def test_form_user_discovery_and_password_fetch(hass: HomeAssistant) -> No
+     assert result3["data"] == {
+         CONF_BLID: "BLID",
+         CONF_CONTINUOUS: True,
+-        CONF_DELAY: 1,
++        CONF_DELAY: DEFAULT_DELAY,
+         CONF_HOST: MOCK_IP,
+         CONF_PASSWORD: "password",
+     }
+@@ -331,7 +336,7 @@ async def test_form_user_discovery_manual_and_auto_password_fetch(
+     assert result4["data"] == {
+         CONF_BLID: "BLID",
+         CONF_CONTINUOUS: True,
+-        CONF_DELAY: 1,
++        CONF_DELAY: DEFAULT_DELAY,
+         CONF_HOST: MOCK_IP,
+         CONF_PASSWORD: "password",
+     }
+@@ -468,7 +473,7 @@ async def test_form_user_discovery_no_devices_found_and_auto_password_fetch(
+     assert result3["data"] == {
+         CONF_BLID: "BLID",
+         CONF_CONTINUOUS: True,
+-        CONF_DELAY: 1,
++        CONF_DELAY: DEFAULT_DELAY,
+         CONF_HOST: MOCK_IP,
+         CONF_PASSWORD: "password",
+     }
+@@ -541,7 +546,7 @@ async def test_form_user_discovery_no_devices_found_and_password_fetch_fails(
+     assert result4["data"] == {
+         CONF_BLID: "BLID",
+         CONF_CONTINUOUS: True,
+-        CONF_DELAY: 1,
++        CONF_DELAY: DEFAULT_DELAY,
+         CONF_HOST: MOCK_IP,
+         CONF_PASSWORD: "password",
+     }
+@@ -677,7 +682,7 @@ async def test_form_user_discovery_and_password_fetch_gets_connection_refused(
+     assert result4["data"] == {
+         CONF_BLID: "BLID",
+         CONF_CONTINUOUS: True,
+-        CONF_DELAY: 1,
++        CONF_DELAY: DEFAULT_DELAY,
+         CONF_HOST: MOCK_IP,
+         CONF_PASSWORD: "password",
+     }
+@@ -738,7 +743,7 @@ async def test_dhcp_discovery_and_roomba_discovery_finds(
+     assert result2["data"] == {
+         CONF_BLID: "BLID",
+         CONF_CONTINUOUS: True,
+-        CONF_DELAY: 1,
++        CONF_DELAY: DEFAULT_DELAY,
+         CONF_HOST: MOCK_IP,
+         CONF_PASSWORD: "password",
+     }
+@@ -816,7 +821,7 @@ async def test_dhcp_discovery_falls_back_to_manual(
+     assert result4["data"] == {
+         CONF_BLID: "BLID",
+         CONF_CONTINUOUS: True,
+-        CONF_DELAY: 1,
++        CONF_DELAY: DEFAULT_DELAY,
+         CONF_HOST: MOCK_IP,
+         CONF_PASSWORD: "password",
+     }
+@@ -886,7 +891,7 @@ async def test_dhcp_discovery_no_devices_falls_back_to_manual(
+     assert result3["data"] == {
+         CONF_BLID: "BLID",
+         CONF_CONTINUOUS: True,
+-        CONF_DELAY: 1,
++        CONF_DELAY: DEFAULT_DELAY,
+         CONF_HOST: MOCK_IP,
+         CONF_PASSWORD: "password",
+     }
+@@ -1119,10 +1124,10 @@ async def test_options_flow(
+ 
+     result = await hass.config_entries.options.async_configure(
+         result["flow_id"],
+-        user_input={CONF_CONTINUOUS: True, CONF_DELAY: 1},
++        user_input={CONF_CONTINUOUS: True, CONF_DELAY: DEFAULT_DELAY},
+     )
+     await hass.async_block_till_done()
+ 
+     assert result["type"] is FlowResultType.CREATE_ENTRY
+-    assert result["data"] == {CONF_CONTINUOUS: True, CONF_DELAY: 1}
+-    assert config_entry.options == {CONF_CONTINUOUS: True, CONF_DELAY: 1}
++    assert result["data"] == {CONF_CONTINUOUS: True, CONF_DELAY: DEFAULT_DELAY}
++    assert config_entry.options == {CONF_CONTINUOUS: True, CONF_DELAY: DEFAULT_DELAY}

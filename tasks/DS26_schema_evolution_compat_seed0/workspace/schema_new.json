@@ -1,0 +1,33 @@
+{
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "int64"
+    },
+    {
+      "name": "timestamp_ms",
+      "type": "int32"
+    },
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "action",
+      "type": "string"
+    },
+    {
+      "name": "value",
+      "type": "float64"
+    },
+    {
+      "name": "session_id",
+      "type": "string",
+      "nullable": true
+    }
+  ],
+  "aliases": {
+    "timestamp_ms": "ts",
+    "user_id": "user"
+  }
+}

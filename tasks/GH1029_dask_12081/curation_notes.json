@@ -1,0 +1,52 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 12081,
+  "pr_url": "https://github.com/dask/dask/pull/12081",
+  "issue_number": 9117,
+  "base_sha": "417374de9c0471151e759b691fb13043ab92f03a",
+  "head_sha": "52491bd9d51e832a64e3bedbd227053773cc26f2",
+  "additions": 31,
+  "deletions": 17,
+  "changed_files": [
+    "dask/_expr.py",
+    "dask/tests/test_base.py"
+  ],
+  "test_files": [
+    "dask/tests/test_base.py"
+  ],
+  "source_files": [
+    "dask/_expr.py"
+  ],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "append",
+      "assert_eq",
+      "backed",
+      "collections",
+      "columns",
+      "compute",
+      "data",
+      "delayed",
+      "dependencies",
+      "df_out"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:00:12Z"
+}

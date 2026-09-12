@@ -1,0 +1,58 @@
+{
+  "repo": "pallets/quart",
+  "pr_number": 436,
+  "pr_url": "https://github.com/pallets/quart/pull/436",
+  "issue_number": null,
+  "base_sha": "4071c224bae84896af4fd45570f285b2e5b61118",
+  "head_sha": "ec4e9fcac508623f358a8aa3b9b7e766b5dea3da",
+  "additions": 75,
+  "deletions": 5,
+  "changed_files": [
+    "artwork/logo.png",
+    "docs/_static/logo_short.png",
+    "docs/_static/quart-horizontal-dark.svg",
+    "docs/_static/quart-horizontal.svg",
+    "docs/_static/quart-icon.svg",
+    "docs/conf.py",
+    "docs/index.rst"
+  ],
+  "test_files": [],
+  "source_files": [
+    "docs/conf.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/quart",
+    "repo_short": "quart",
+    "parameterized_identifiers": [
+      "align",
+      "bacfe5",
+      "center",
+      "clip",
+      "code",
+      "color",
+      "dark",
+      "defs",
+      "documentation",
+      "encoding"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:40:33Z"
+}

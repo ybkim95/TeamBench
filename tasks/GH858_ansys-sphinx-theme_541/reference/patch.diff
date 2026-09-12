@@ -1,0 +1,291 @@
+diff --git a/doc/changelog.d/541.documentation.md b/doc/changelog.d/541.documentation.md
+new file mode 100644
+index 000000000..95fbb5f62
+--- /dev/null
++++ b/doc/changelog.d/541.documentation.md
+@@ -0,0 +1 @@
++fix: add more components to the search indexing
+\ No newline at end of file
+diff --git a/doc/source/conf.py b/doc/source/conf.py
+index 0fcbe6d9c..1e3f8c135 100644
+--- a/doc/source/conf.py
++++ b/doc/source/conf.py
+@@ -11,6 +11,9 @@
+ from sphinx.builders.latex import LaTeXBuilder
+ 
+ from ansys_sphinx_theme import (
++    ALL_NODES,
++    PARAGRAPHS,
++    TITLES,
+     __version__,
+     ansys_favicon,
+     ansys_logo_white,
+@@ -65,6 +68,11 @@
+     },
+ }
+ 
++index_patterns = {
++    "examples/api/": ALL_NODES,
++    "examples/sphinx_examples/": TITLES + PARAGRAPHS,
++}
++
+ 
+ # Sphinx extensions
+ extensions = [
+diff --git a/doc/source/user-guide/options.rst b/doc/source/user-guide/options.rst
+index 2fe8e6467..4b430b4f9 100644
+--- a/doc/source/user-guide/options.rst
++++ b/doc/source/user-guide/options.rst
+@@ -124,6 +124,23 @@ the ``delay`` key in the ``static_search`` dictionary with a value specifying
+ the amount of milliseconds to wait before executing the search. A value of
+ ``0`` disables the debounce function.
+ 
++To customise the indexing of your documentation, you can use the ``index_patterns`` dictionary in the ``conf.py`` file.
++This dictionary contains the paths to the directories you want to index and the type of nodes to index.
++The type of nodes can be ``ALL_NODES``, ``TITLES`` or ``PARAGRAPHS``.
++The default value is ``TITLES + PARAGRAPHS``.
++
++Here is an example of how to add the ``index_patterns`` dictionary to the `conf.py`` file:
++
++.. code-block:: python
++
++    index_patterns = {
++        "api/": ALL_NODES,
++        "examples/": TITLES + PARAGRAPHS,
++    }
++
++The above example indexes all nodes in the ``api/`` directory and only titles and paragraphs in the ``examples/`` directory.
++
++
+ .. note::
+ 
+     All other options are available in the `Fuse.js documentation <https://fusejs.io/api/options.html>`_.
+diff --git a/src/ansys_sphinx_theme/__init__.py b/src/ansys_sphinx_theme/__init__.py
+index e1fc4288a..f6640713d 100644
+--- a/src/ansys_sphinx_theme/__init__.py
++++ b/src/ansys_sphinx_theme/__init__.py
+@@ -28,13 +28,19 @@
+ import subprocess
+ from typing import Any, Dict
+ 
+-from docutils.nodes import document
++from docutils import nodes
+ from sphinx import addnodes
+ from sphinx.application import Sphinx
+ 
+ from ansys_sphinx_theme.extension.linkcode import DOMAIN_KEYS, sphinx_linkcode_resolve
+-from ansys_sphinx_theme.latex import generate_404  # noqa: F401
+-from ansys_sphinx_theme.search import create_search_index, update_search_config
++from ansys_sphinx_theme.latex import generate_404
++from ansys_sphinx_theme.search import (
++    ALL_NODES,
++    PARAGRAPHS,
++    TITLES,
++    create_search_index,
++    update_search_config,
++)
+ 
+ try:
+     import importlib.metadata as importlib_metadata
+@@ -170,7 +176,7 @@ def setup_default_html_theme_options(app):
+ 
+ 
+ def fix_edit_html_page_context(
+-    app: Sphinx, pagename: str, templatename: str, context: dict, doctree: document
++    app: Sphinx, pagename: str, templatename: str, context: dict, doctree: nodes.document
+ ) -> None:
+     """Add a function that Jinja can access for returning an "edit this page" link .
+ 
+@@ -271,7 +277,7 @@ def fix_edit_link_page(link: str) -> str:
+ 
+ 
+ def update_footer_theme(
+-    app: Sphinx, pagename: str, templatename: str, context: Dict[str, Any], doctree: document
++    app: Sphinx, pagename: str, templatename: str, context: Dict[str, Any], doctree: nodes.document
+ ) -> None:
+     """Update the version number of the Ansys Sphinx theme in the footer.
+ 
+@@ -401,7 +407,7 @@ def convert_pdf_to_png(pdf_path: pathlib.Path, output_dir: pathlib.Path, output_
+ 
+ 
+ def add_cheat_sheet(
+-    app: Sphinx, pagename: str, templatename: str, context: Dict[str, Any], doctree: document
++    app: Sphinx, pagename: str, templatename: str, context: Dict[str, Any], doctree: nodes.document
+ ) -> None:
+     """Add a cheat sheet to the left navigation sidebar.
+ 
+@@ -578,3 +584,6 @@ def setup(app: Sphinx) -> Dict:
+         "parallel_read_safe": True,
+         "parallel_write_safe": True,
+     }
++
++
++__all__ = ["__version__", "generate_404", "get_version_match", "TITLEs", "PARAGRAPHS", "ALL_NODES"]
+diff --git a/src/ansys_sphinx_theme/search/__init__.py b/src/ansys_sphinx_theme/search/__init__.py
+index 4dd1dce1a..4359f4751 100644
+--- a/src/ansys_sphinx_theme/search/__init__.py
++++ b/src/ansys_sphinx_theme/search/__init__.py
+@@ -23,7 +23,13 @@
+ 
+ from sphinx.application import Sphinx
+ 
+-from ansys_sphinx_theme.search.fuse_search import create_search_index
++from ansys_sphinx_theme.search.fuse_search import (
++    ALL_NODES,
++    LITERAL,
++    PARAGRAPHS,
++    TITLES,
++    create_search_index,
++)
+ 
+ 
+ def update_search_config(app: Sphinx) -> None:
+@@ -38,7 +44,15 @@ def update_search_config(app: Sphinx) -> None:
+     theme_static_options["keys"] = ["title", "text"]
+     theme_static_options["threshold"] = theme_static_options.get("threshold", 0.2)
+     theme_static_options["limit"] = theme_static_options.get("limit", 10)
++    app.add_config_value("index_patterns", {}, "html")
+     app.config.html_theme_options["static_search"] = theme_static_options
+ 
+ 
+-__all__ = ["create_search_index", "update_search_config"]
++__all__ = [
++    "create_search_index",
++    "update_search_config",
++    "LITERAL",
++    "PARAGRAPHS",
++    "TITLES",
++    "ALL_NODES",
++]
+diff --git a/src/ansys_sphinx_theme/search/fuse_search.py b/src/ansys_sphinx_theme/search/fuse_search.py
+index 4e6539ac5..74c40f663 100644
+--- a/src/ansys_sphinx_theme/search/fuse_search.py
++++ b/src/ansys_sphinx_theme/search/fuse_search.py
+@@ -27,12 +27,19 @@
+ import re
+ 
+ from docutils import nodes
++from docutils.nodes import Element
++
++PARAGRAPHS = [nodes.paragraph]
++TITLES = [nodes.title]
++LITERAL = [nodes.literal]
++ALL_NODES = [nodes.Text]
++DEFAULT_PATTERN = PARAGRAPHS + TITLES + LITERAL
+ 
+ 
+ class SearchIndex:
+     """Generate a search index for a Sphinx document."""
+ 
+-    def __init__(self, doc_name, app):
++    def __init__(self, doc_name, app, pattern=None):
+         """
+         Initialize the search index object.
+ 
+@@ -46,19 +53,31 @@ def __init__(self, doc_name, app):
+         self.doc_name = doc_name
+         self.doc_path = f"{self.doc_name}.html"
+         self.env = app.env
++        self.theme_options = app.config.html_theme_options.get("static_search", {})
+         self.doc_title = self.env.titles[self.doc_name].astext()
+         self.doc_tree = self.env.get_doctree(self.doc_name)
+         self.sections = []
++        self.pattern = pattern
+ 
+     def build_sections(self):
+-        """Build sections from the document tree."""
++        """Build sections from the document tree, handling subsections and descriptions."""
+         for node in self.doc_tree.traverse(nodes.section):
++            subsections = list(node.traverse(nodes.section))
++
++            if len(subsections) > 1:
++                # get only the first section
++                main_section = subsections[0]
++                # remove subsections from the main section
++                for subsection in main_section.traverse(nodes.section):
++                    subsection.parent.remove(subsection)
++                node = main_section
++
+             section_title = node[0].astext()
++
+             section_text = "\n".join(
+-                n.astext()
+-                for node_type in [nodes.paragraph, nodes.literal_block]
+-                for n in node.traverse(node_type)
++                n.astext() for node_type in self.pattern for n in node.traverse(node_type)
+             )
++
+             section_anchor_id = _title_to_anchor(section_title)
+             self.sections.append(
+                 {
+@@ -68,6 +87,31 @@ def build_sections(self):
+                 }
+             )
+ 
++            self._process_desc_element(node, section_title)
++
++    def _process_desc_element(self, node, title):
++        """Process `desc` element within a section."""
++        for element in node.traverse(Element):
++            if element.tagname != "desc":
++                continue
++
++            # id is the id tag of the desc element
++            section_anchor_id = element.attributes["ids"]
++            if element.children:
++                for element_child in element.children:
++                    if element_child.tagname != "desc_signature":
++                        continue
++                    section_anchor_id = element_child.attributes["ids"][0]
++            section_text = element.astext()
++            section_title = _desc_anchor_to_title(title, section_anchor_id)
++            self.sections.append(
++                {
++                    "title": section_title,
++                    "text": section_text,
++                    "anchor_id": section_anchor_id,
++                }
++            )
++
+     def generate_breadcrumbs(self, section_title: str) -> str:
+         """
+         Generate title breadcrumbs from the document structure.
+@@ -122,11 +166,28 @@ def indices(self):
+             }
+ 
+ 
++def _desc_anchor_to_title(title, anchor):
++    """Convert a desc anchor to a title."""
++    anchor_title = anchor.split(".")[-1]
++    return f"{title} > {anchor_title}"
++
++
+ def _title_to_anchor(title: str) -> str:
+     """Convert a title to a URL-friendly anchor identifier."""
+     return re.sub(r"[^\w\s-]", "", title.lower().strip().replace(" ", "-"))
+ 
+ 
++def get_pattern_for_each_page(app, doc_name):
++    """Get the pattern for each page in the search index."""
++    patterns = app.env.config.index_patterns or {}
++
++    for filename, pattern in patterns.items():
++        if doc_name.startswith(filename):
++            return pattern
++
++    return DEFAULT_PATTERN
++
++
+ def create_search_index(app, exception):
+     """
+     Generate search index at the end of the Sphinx build process.
+@@ -144,7 +205,8 @@ def create_search_index(app, exception):
+     search_index_list = []
+ 
+     for document in app.env.found_docs:
+-        search_index = SearchIndex(document, app)
++        pattern = get_pattern_for_each_page(app, document)
++        search_index = SearchIndex(document, app, pattern)
+         search_index.build_sections()
+         search_index_list.extend(search_index.indices)
+ 

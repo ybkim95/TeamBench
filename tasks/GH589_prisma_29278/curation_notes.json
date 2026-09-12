@@ -1,0 +1,56 @@
+{
+  "repo": "prisma/prisma",
+  "pr_number": 29278,
+  "pr_url": "https://github.com/prisma/prisma/pull/29278",
+  "issue_number": null,
+  "base_sha": "455853d0ddae89da28ff9f9fa65c5ed0a803c908",
+  "head_sha": "d43242392fda54a402749941f0fbea7472263aa3",
+  "additions": 14,
+  "deletions": 33,
+  "changed_files": [
+    "packages/get-platform/jest.config.js",
+    "packages/get-platform/package.json",
+    "packages/get-platform/src/__tests__/getPlatform.test.ts",
+    "packages/get-platform/src/__tests__/getSSLVersion.test.ts",
+    "packages/get-platform/src/__tests__/parseDistro.test.ts",
+    "packages/get-platform/src/__tests__/parseOpenSSLVersion.test.ts",
+    "pnpm-lock.yaml"
+  ],
+  "test_files": [],
+  "source_files": [],
+  "parameterization": {
+    "repo": "prisma/prisma",
+    "repo_short": "prisma",
+    "parameterized_identifiers": [
+      "arch",
+      "assemble",
+      "benchmark",
+      "boolean",
+      "bugs",
+      "build",
+      "codspeed",
+      "condition",
+      "const",
+      "core"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:27:31Z"
+}

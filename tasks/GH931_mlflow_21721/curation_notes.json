@@ -1,0 +1,65 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 21721,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/21721",
+  "issue_number": null,
+  "base_sha": "3b63c19b756a050a88b5b60fc2927bfd736fb89d",
+  "head_sha": "3284c512f1d0eb4be43c2797f8d8edf363e89f0c",
+  "additions": 296,
+  "deletions": 17,
+  "changed_files": [
+    "docs/docs/genai/tracing/prod-tracing.mdx",
+    "mlflow/environment_variables.py",
+    "mlflow/server/__init__.py",
+    "mlflow/tracing/export/mlflow_v3.py",
+    "tests/gateway/test_tracing_utils.py",
+    "tests/server/test_init.py",
+    "tests/tracing/export/test_mlflow_v3_attachments.py",
+    "tests/tracing/export/test_mlflow_v3_exporter.py"
+  ],
+  "test_files": [
+    "tests/gateway/test_tracing_utils.py",
+    "tests/server/test_init.py",
+    "tests/tracing/export/test_mlflow_v3_attachments.py",
+    "tests/tracing/export/test_mlflow_v3_exporter.py"
+  ],
+  "source_files": [
+    "mlflow/environment_variables.py",
+    "mlflow/server/__init__.py",
+    "mlflow/tracing/export/mlflow_v3.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "addition",
+      "adds",
+      "after",
+      "again",
+      "agent",
+      "agent_span",
+      "agent_trace",
+      "agent_trace_id",
+      "allows",
+      "alone"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:52:15Z"
+}

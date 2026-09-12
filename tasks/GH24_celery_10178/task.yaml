@@ -1,0 +1,13 @@
+task_id: GH24_celery_10178
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix mock connection interfaces to prevent `TypeError` during exception handling"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/celery/celery/pull/10178"
+source_issue: "https://github.com/celery/celery/issues/10177"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

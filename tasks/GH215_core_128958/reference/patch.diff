@@ -1,0 +1,129 @@
+diff --git a/homeassistant/components/nfandroidtv/__init__.py b/homeassistant/components/nfandroidtv/__init__.py
+index 50674a7ed4635..bdda0d30356b0 100644
+--- a/homeassistant/components/nfandroidtv/__init__.py
++++ b/homeassistant/components/nfandroidtv/__init__.py
+@@ -1,11 +1,8 @@
+ """The NFAndroidTV integration."""
+ 
+-from notifications_android_tv.notifications import ConnectError, Notifications
+-
+ from homeassistant.config_entries import ConfigEntry
+ from homeassistant.const import CONF_HOST, Platform
+ from homeassistant.core import HomeAssistant
+-from homeassistant.exceptions import ConfigEntryNotReady
+ from homeassistant.helpers import config_validation as cv, discovery
+ from homeassistant.helpers.typing import ConfigType
+ 
+@@ -25,14 +22,8 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
+ 
+ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+     """Set up NFAndroidTV from a config entry."""
+-    try:
+-        await hass.async_add_executor_job(Notifications, entry.data[CONF_HOST])
+-    except ConnectError as ex:
+-        raise ConfigEntryNotReady(
+-            f"Failed to connect to host: {entry.data[CONF_HOST]}"
+-        ) from ex
+-
+     hass.data.setdefault(DOMAIN, {})
++    hass.data[DOMAIN][entry.entry_id] = entry.data[CONF_HOST]
+ 
+     hass.async_create_task(
+         discovery.async_load_platform(
+diff --git a/homeassistant/components/nfandroidtv/notify.py b/homeassistant/components/nfandroidtv/notify.py
+index f6d9bcde4325e..c1c19a600b98d 100644
+--- a/homeassistant/components/nfandroidtv/notify.py
++++ b/homeassistant/components/nfandroidtv/notify.py
+@@ -6,7 +6,7 @@
+ import logging
+ from typing import Any
+ 
+-from notifications_android_tv import Notifications
++from notifications_android_tv.notifications import ConnectError, Notifications
+ import requests
+ from requests.auth import HTTPBasicAuth, HTTPDigestAuth
+ import voluptuous as vol
+@@ -19,7 +19,7 @@
+ )
+ from homeassistant.const import CONF_HOST
+ from homeassistant.core import HomeAssistant
+-from homeassistant.exceptions import ServiceValidationError
++from homeassistant.exceptions import HomeAssistantError, ServiceValidationError
+ from homeassistant.helpers import config_validation as cv
+ from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
+ 
+@@ -59,9 +59,9 @@ async def async_get_service(
+     """Get the NFAndroidTV notification service."""
+     if discovery_info is None:
+         return None
+-    notify = await hass.async_add_executor_job(Notifications, discovery_info[CONF_HOST])
++
+     return NFAndroidTVNotificationService(
+-        notify,
++        discovery_info[CONF_HOST],
+         hass.config.is_allowed_path,
+     )
+ 
+@@ -71,15 +71,24 @@ class NFAndroidTVNotificationService(BaseNotificationService):
+ 
+     def __init__(
+         self,
+-        notify: Notifications,
++        host: str,
+         is_allowed_path: Any,
+     ) -> None:
+         """Initialize the service."""
+-        self.notify = notify
++        self.host = host
+         self.is_allowed_path = is_allowed_path
++        self.notify: Notifications | None = None
+ 
+     def send_message(self, message: str, **kwargs: Any) -> None:
+-        """Send a message to a Android TV device."""
++        """Send a message to an Android TV device."""
++        if self.notify is None:
++            try:
++                self.notify = Notifications(self.host)
++            except ConnectError as err:
++                raise HomeAssistantError(
++                    f"Failed to connect to host: {self.host}"
++                ) from err
++
+         data: dict | None = kwargs.get(ATTR_DATA)
+         title = kwargs.get(ATTR_TITLE, ATTR_TITLE_DEFAULT)
+         duration = None
+@@ -178,18 +187,22 @@ def send_message(self, message: str, **kwargs: Any) -> None:
+                         translation_key="invalid_notification_icon",
+                         translation_placeholders={"type": type(icondata).__name__},
+                     )
+-        self.notify.send(
+-            message,
+-            title=title,
+-            duration=duration,
+-            fontsize=fontsize,
+-            position=position,
+-            bkgcolor=bkgcolor,
+-            transparency=transparency,
+-            interrupt=interrupt,
+-            icon=icon,
+-            image_file=image_file,
+-        )
++
++        try:
++            self.notify.send(
++                message,
++                title=title,
++                duration=duration,
++                fontsize=fontsize,
++                position=position,
++                bkgcolor=bkgcolor,
++                transparency=transparency,
++                interrupt=interrupt,
++                icon=icon,
++                image_file=image_file,
++            )
++        except ConnectError as err:
++            raise HomeAssistantError(f"Failed to connect to host: {self.host}") from err
+ 
+     def load_file(
+         self,

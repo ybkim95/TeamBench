@@ -1,0 +1,15 @@
+{
+ "task": "GH98_urllib3_3769",
+ "patch": "tasks/GH98_urllib3_3769/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "urllib3/urllib3",
+ "pr_number": 3769,
+ "base_sha": "10ae8a9c1a88e4c1581d291395b2902e9c9fab36",
+ "head_sha": "f1f17b48b725bbb4875f3e256aca6838daecf620",
+ "bytes": 3146,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

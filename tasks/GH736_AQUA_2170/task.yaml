@@ -1,0 +1,13 @@
+task_id: GH736_AQUA_2170
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Show a logging error instead a raise for empty data reader retrival"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/DestinE-Climate-DT/AQUA/pull/2170"
+source_issue: "https://github.com/DestinE-Climate-DT/AQUA/issues/2168"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

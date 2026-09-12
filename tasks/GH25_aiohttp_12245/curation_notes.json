@@ -1,0 +1,57 @@
+{
+  "repo": "aio-libs/aiohttp",
+  "pr_number": 12245,
+  "pr_url": "https://github.com/aio-libs/aiohttp/pull/12245",
+  "issue_number": 12195,
+  "base_sha": "52426413e67ab03df04c7796ce6bb186a2510ddc",
+  "head_sha": "28ea16f146de90c13be2d03b4f9b0a1e87d5aa71",
+  "additions": 87,
+  "deletions": 30,
+  "changed_files": [
+    "CHANGES/12195.bugfix.rst",
+    "aiohttp/client.py",
+    "docs/client_quickstart.rst",
+    "docs/spelling_wordlist.txt",
+    "tests/test_client_functional.py",
+    "tests/test_client_ws_functional.py"
+  ],
+  "test_files": [
+    "tests/test_client_functional.py",
+    "tests/test_client_ws_functional.py"
+  ],
+  "source_files": [
+    "aiohttp/client.py"
+  ],
+  "parameterization": {
+    "repo": "aio-libs/aiohttp",
+    "repo_short": "aiohttp",
+    "parameterized_identifiers": [
+      "across",
+      "add_put",
+      "after",
+      "aiofiles",
+      "aiohttp",
+      "aiohttp_client",
+      "allow_redirects",
+      "already",
+      "always",
+      "append"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:33:39Z"
+}

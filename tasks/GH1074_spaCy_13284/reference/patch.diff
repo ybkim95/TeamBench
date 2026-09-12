@@ -1,0 +1,18 @@
+diff --git a/spacy/tests/serialize/test_serialize_extension_attrs.py b/spacy/tests/serialize/test_serialize_extension_attrs.py
+index f3b6cb000f7..2fb56c848d4 100644
+--- a/spacy/tests/serialize/test_serialize_extension_attrs.py
++++ b/spacy/tests/serialize/test_serialize_extension_attrs.py
+@@ -15,7 +15,12 @@ def doc_w_attrs(en_tokenizer):
+     Token.set_extension("_test_token", default="t0")
+     doc[1]._._test_token = "t1"
+ 
+-    return doc
++    yield doc
++
++    Doc.remove_extension("_test_attr")
++    Doc.remove_extension("_test_prop")
++    Doc.remove_extension("_test_method")
++    Token.remove_extension("_test_token")
+ 
+ 
+ def test_serialize_ext_attrs_from_bytes(doc_w_attrs):

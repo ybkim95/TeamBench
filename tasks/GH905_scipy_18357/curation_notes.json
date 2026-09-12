@@ -1,0 +1,52 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 18357,
+  "pr_url": "https://github.com/scipy/scipy/pull/18357",
+  "issue_number": 11564,
+  "base_sha": "5db471907f7d2e838c5c073c45928885e127ecec",
+  "head_sha": "81c9a7d3837ecd0619f10fd0c7de11643f99d2c0",
+  "additions": 42,
+  "deletions": 8,
+  "changed_files": [
+    "scipy/sparse/linalg/_interface.py",
+    "scipy/sparse/linalg/tests/test_interface.py"
+  ],
+  "test_files": [
+    "scipy/sparse/linalg/tests/test_interface.py"
+  ],
+  "source_files": [
+    "scipy/sparse/linalg/_interface.py"
+  ],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "arrays",
+      "asanyarray",
+      "asarray",
+      "aslinearoperator",
+      "asmatrix",
+      "assert_equal",
+      "assert_raises",
+      "avoid",
+      "complex",
+      "conjugation"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:09Z"
+}

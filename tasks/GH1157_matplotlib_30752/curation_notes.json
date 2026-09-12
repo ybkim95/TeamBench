@@ -1,0 +1,54 @@
+{
+  "repo": "matplotlib/matplotlib",
+  "pr_number": 30752,
+  "pr_url": "https://github.com/matplotlib/matplotlib/pull/30752",
+  "issue_number": null,
+  "base_sha": "a00d606d592bcf8d335f4f3ac2768882d3a49e7b",
+  "head_sha": "94bcd9b3dd8c0f461861d03e7387072902a85e07",
+  "additions": 96,
+  "deletions": 2,
+  "changed_files": [
+    "lib/matplotlib/axes/_axes.py",
+    "lib/matplotlib/tests/test_axes.py"
+  ],
+  "test_files": [
+    "lib/matplotlib/tests/test_axes.py"
+  ],
+  "source_files": [
+    "lib/matplotlib/axes/_axes.py"
+  ],
+  "parameterization": {
+    "repo": "matplotlib/matplotlib",
+    "repo_short": "matplotlib",
+    "parameterized_identifiers": [
+      "axes",
+      "better",
+      "both",
+      "cases",
+      "check_in_list",
+      "coords",
+      "data",
+      "datashape_message",
+      "date",
+      "datetime"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:10:03Z"
+}

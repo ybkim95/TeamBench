@@ -1,0 +1,15 @@
+{
+ "task": "GH699_quart_369",
+ "patch": "tasks/GH699_quart_369/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "pallets/quart",
+ "pr_number": 369,
+ "base_sha": "ef23e8b063ee0b1ae95ba5828570552685ad89bb",
+ "head_sha": "5f9d977cfbcaf2844efb5309b0c80a4289af1958",
+ "bytes": 1521,
+ "files_changed": 1,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

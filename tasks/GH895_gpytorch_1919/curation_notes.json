@@ -1,0 +1,52 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 1919,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/1919",
+  "issue_number": 1915,
+  "base_sha": "8c00eb7f6f4a6e4c6d2b2ae867a43ff872c65b26",
+  "head_sha": "f48ae56ef890219066c00ad2bfb97425e5ba78e8",
+  "additions": 65,
+  "deletions": 41,
+  "changed_files": [
+    "gpytorch/kernels/periodic_kernel.py",
+    "test/kernels/test_periodic_kernel.py"
+  ],
+  "test_files": [
+    "test/kernels/test_periodic_kernel.py"
+  ],
+  "source_files": [
+    "gpytorch/kernels/periodic_kernel.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "active_dims",
+      "albeit",
+      "apply",
+      "ard_num_dims",
+      "argument",
+      "arguments",
+      "attr",
+      "automatically",
+      "backwards",
+      "base_kernel_test_case"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:23Z"
+}

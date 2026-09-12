@@ -1,0 +1,54 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9739,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9739",
+  "issue_number": null,
+  "base_sha": "7f0fb23c8bddf260e0862212496e1725f5658ae9",
+  "head_sha": "05b17c433b396d45a9dcef67d6ccd6cbec04624a",
+  "additions": 15,
+  "deletions": 2,
+  "changed_files": [
+    "statsmodels/formula/_manager.py",
+    "statsmodels/formula/tests/test_formula.py"
+  ],
+  "test_files": [
+    "statsmodels/formula/tests/test_formula.py"
+  ],
+  "source_files": [
+    "statsmodels/formula/_manager.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "assert_equal",
+      "check_index_type",
+      "columns",
+      "data",
+      "design_info",
+      "dmatrices",
+      "dmatrix",
+      "engine",
+      "eval_env",
+      "fittedvalues"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:06:36Z"
+}

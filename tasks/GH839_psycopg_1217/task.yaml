@@ -1,0 +1,13 @@
+task_id: GH839_psycopg_1217
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Check build version too to determine PQconnectionUsedGSSAPI availability"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/psycopg/psycopg/pull/1217"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

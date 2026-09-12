@@ -1,0 +1,162 @@
+diff --git a/homeassistant/components/ccm15/climate.py b/homeassistant/components/ccm15/climate.py
+index df321395b9e44..f4a68acc322aa 100644
+--- a/homeassistant/components/ccm15/climate.py
++++ b/homeassistant/components/ccm15/climate.py
+@@ -3,9 +3,10 @@
+ import logging
+ from typing import Any
+ 
+-from ccm15 import CCM15DeviceState
++from ccm15 import CCM15DeviceState, CCM15SlaveDevice
+ 
+ from homeassistant.components.climate import (
++    ATTR_HVAC_MODE,
+     FAN_AUTO,
+     FAN_HIGH,
+     FAN_LOW,
+@@ -88,7 +89,7 @@ def __init__(
+         )
+ 
+     @property
+-    def data(self) -> CCM15DeviceState | None:
++    def data(self) -> CCM15SlaveDevice | None:
+         """Return device data."""
+         return self.coordinator.get_ac_data(self._ac_index)
+ 
+@@ -144,15 +145,17 @@ def extra_state_attributes(self) -> dict[str, Any]:
+     async def async_set_temperature(self, **kwargs: Any) -> None:
+         """Set the target temperature."""
+         if (temperature := kwargs.get(ATTR_TEMPERATURE)) is not None:
+-            await self.coordinator.async_set_temperature(self._ac_index, temperature)
++            await self.coordinator.async_set_temperature(
++                self._ac_index, self.data, temperature, kwargs.get(ATTR_HVAC_MODE)
++            )
+ 
+     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None:
+         """Set the hvac mode."""
+-        await self.coordinator.async_set_hvac_mode(self._ac_index, hvac_mode)
++        await self.coordinator.async_set_hvac_mode(self._ac_index, self.data, hvac_mode)
+ 
+     async def async_set_fan_mode(self, fan_mode: str) -> None:
+         """Set the fan mode."""
+-        await self.coordinator.async_set_fan_mode(self._ac_index, fan_mode)
++        await self.coordinator.async_set_fan_mode(self._ac_index, self.data, fan_mode)
+ 
+     async def async_turn_off(self) -> None:
+         """Turn off."""
+diff --git a/homeassistant/components/ccm15/coordinator.py b/homeassistant/components/ccm15/coordinator.py
+index 03a59aa3f246c..ad3bbc41a06cb 100644
+--- a/homeassistant/components/ccm15/coordinator.py
++++ b/homeassistant/components/ccm15/coordinator.py
+@@ -55,9 +55,9 @@ async def _fetch_data(self) -> CCM15DeviceState:
+         """Get the current status of all AC devices."""
+         return await self._ccm15.get_status_async()
+ 
+-    async def async_set_state(self, ac_index: int, state: str, value: int) -> None:
++    async def async_set_state(self, ac_index: int, data) -> None:
+         """Set new target states."""
+-        if await self._ccm15.async_set_state(ac_index, state, value):
++        if await self._ccm15.async_set_state(ac_index, data):
+             await self.async_request_refresh()
+ 
+     def get_ac_data(self, ac_index: int) -> CCM15SlaveDevice | None:
+@@ -67,17 +67,32 @@ def get_ac_data(self, ac_index: int) -> CCM15SlaveDevice | None:
+             return None
+         return self.data.devices[ac_index]
+ 
+-    async def async_set_hvac_mode(self, ac_index, hvac_mode: HVACMode) -> None:
+-        """Set the hvac mode."""
++    async def async_set_hvac_mode(
++        self, ac_index: int, data: CCM15SlaveDevice, hvac_mode: HVACMode
++    ) -> None:
++        """Set the HVAC mode."""
+         _LOGGER.debug("Set Hvac[%s]='%s'", ac_index, str(hvac_mode))
+-        await self.async_set_state(ac_index, "mode", CONST_STATE_CMD_MAP[hvac_mode])
++        data.ac_mode = CONST_STATE_CMD_MAP[hvac_mode]
++        await self.async_set_state(ac_index, data)
+ 
+-    async def async_set_fan_mode(self, ac_index, fan_mode: str) -> None:
++    async def async_set_fan_mode(
++        self, ac_index: int, data: CCM15SlaveDevice, fan_mode: str
++    ) -> None:
+         """Set the fan mode."""
+         _LOGGER.debug("Set Fan[%s]='%s'", ac_index, fan_mode)
+-        await self.async_set_state(ac_index, "fan", CONST_FAN_CMD_MAP[fan_mode])
+-
+-    async def async_set_temperature(self, ac_index, temp) -> None:
++        data.fan_mode = CONST_FAN_CMD_MAP[fan_mode]
++        await self.async_set_state(ac_index, data)
++
++    async def async_set_temperature(
++        self,
++        ac_index: int,
++        data: CCM15SlaveDevice,
++        temp: int,
++        hvac_mode: HVACMode | None,
++    ) -> None:
+         """Set the target temperature mode."""
+         _LOGGER.debug("Set Temp[%s]='%s'", ac_index, temp)
+-        await self.async_set_state(ac_index, "temp", temp)
++        data.temperature_setpoint = temp
++        if hvac_mode is not None:
++            data.ac_mode = CONST_STATE_CMD_MAP[hvac_mode]
++        await self.async_set_state(ac_index, data)
+diff --git a/homeassistant/components/ccm15/manifest.json b/homeassistant/components/ccm15/manifest.json
+index 2d985d6148aaa..23cd554796345 100644
+--- a/homeassistant/components/ccm15/manifest.json
++++ b/homeassistant/components/ccm15/manifest.json
+@@ -5,5 +5,5 @@
+   "config_flow": true,
+   "documentation": "https://www.home-assistant.io/integrations/ccm15",
+   "iot_class": "local_polling",
+-  "requirements": ["py-ccm15==0.0.9"]
++  "requirements": ["py_ccm15==0.1.2"]
+ }
+diff --git a/requirements_all.txt b/requirements_all.txt
+index 8d732aac02947..4d702582df753 100644
+--- a/requirements_all.txt
++++ b/requirements_all.txt
+@@ -1748,9 +1748,6 @@ py-aosmith==1.0.12
+ # homeassistant.components.canary
+ py-canary==0.5.4
+ 
+-# homeassistant.components.ccm15
+-py-ccm15==0.0.9
+-
+ # homeassistant.components.cpuspeed
+ py-cpuinfo==9.0.0
+ 
+@@ -1823,6 +1820,9 @@ pyW215==0.8.0
+ # homeassistant.components.w800rf32
+ pyW800rf32==0.4
+ 
++# homeassistant.components.ccm15
++py_ccm15==0.1.2
++
+ # homeassistant.components.ads
+ pyads==3.4.0
+ 
+diff --git a/requirements_test_all.txt b/requirements_test_all.txt
+index bc00dc8fba41a..37a929bb8a06a 100644
+--- a/requirements_test_all.txt
++++ b/requirements_test_all.txt
+@@ -1474,9 +1474,6 @@ py-aosmith==1.0.12
+ # homeassistant.components.canary
+ py-canary==0.5.4
+ 
+-# homeassistant.components.ccm15
+-py-ccm15==0.0.9
+-
+ # homeassistant.components.cpuspeed
+ py-cpuinfo==9.0.0
+ 
+@@ -1531,6 +1528,9 @@ pyTibber==0.31.6
+ # homeassistant.components.dlink
+ pyW215==0.8.0
+ 
++# homeassistant.components.ccm15
++py_ccm15==0.1.2
++
+ # homeassistant.components.hisense_aehw4a1
+ pyaehw4a1==0.3.9
+ 

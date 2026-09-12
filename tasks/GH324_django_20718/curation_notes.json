@@ -1,0 +1,56 @@
+{
+  "repo": "django/django",
+  "pr_number": 20718,
+  "pr_url": "https://github.com/django/django/pull/20718",
+  "issue_number": null,
+  "base_sha": "ba4751e0ca558dd8f0d9e6153bec4280289ca2f4",
+  "head_sha": "43d4371bee497b59147a77f30e31177cdf5ddb13",
+  "additions": 34,
+  "deletions": 1,
+  "changed_files": [
+    "django/contrib/admin/utils.py",
+    "tests/admin_changelist/models.py",
+    "tests/admin_changelist/tests.py"
+  ],
+  "test_files": [
+    "tests/admin_changelist/models.py",
+    "tests/admin_changelist/tests.py"
+  ],
+  "source_files": [
+    "django/contrib/admin/utils.py"
+  ],
+  "parameterization": {
+    "repo": "django/django",
+    "repo_short": "django",
+    "parameterized_identifiers": [
+      "admin",
+      "attr",
+      "blank",
+      "boolean",
+      "callable",
+      "changelist_view",
+      "child_active",
+      "child_inactive",
+      "create",
+      "custom_site"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:10:31Z"
+}

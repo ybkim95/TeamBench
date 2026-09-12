@@ -1,0 +1,13 @@
+task_id: GH881_pymc_7858
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix bug with pickling PointFunc"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pymc-devs/pymc/pull/7858"
+source_issue: "https://github.com/pymc-devs/pymc/issues/7857"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

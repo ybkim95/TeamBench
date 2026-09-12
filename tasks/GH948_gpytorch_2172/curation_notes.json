@@ -1,0 +1,52 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 2172,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/2172",
+  "issue_number": 2072,
+  "base_sha": "533086729b9be2260bd8003ad90665164e350f37",
+  "head_sha": "1e0ecc7ef72edeaba8aa6d11e8702f5116f26bc2",
+  "additions": 31,
+  "deletions": 5,
+  "changed_files": [
+    "gpytorch/distributions/multitask_multivariate_normal.py",
+    "test/distributions/test_multitask_multivariate_normal.py"
+  ],
+  "test_files": [
+    "test/distributions/test_multitask_multivariate_normal.py"
+  ],
+  "source_files": [
+    "gpytorch/distributions/multitask_multivariate_normal.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "add_jitter",
+      "arange",
+      "base_samples",
+      "base_test_case",
+      "batch",
+      "batched",
+      "clamp_min",
+      "contiguous",
+      "covar",
+      "covariance"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:53:29Z"
+}

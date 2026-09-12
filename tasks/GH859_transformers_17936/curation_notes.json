@@ -1,0 +1,72 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 17936,
+  "pr_url": "https://github.com/huggingface/transformers/pull/17936",
+  "issue_number": 17752,
+  "base_sha": "47b9165109dc19ef285179ced9ef856053ebcbc9",
+  "head_sha": "bef98ff19c969c6bbd39ead9305b82ae8356ed6c",
+  "additions": 24,
+  "deletions": 19,
+  "changed_files": [
+    "examples/pytorch/question-answering/trainer_qa.py",
+    "examples/pytorch/question-answering/trainer_seq2seq_qa.py",
+    "examples/research_projects/quantization-qdqbert/trainer_quant_qa.py",
+    "src/transformers/benchmark/benchmark_args.py",
+    "src/transformers/testing_utils.py",
+    "src/transformers/trainer.py",
+    "src/transformers/trainer_pt_utils.py",
+    "src/transformers/trainer_utils.py",
+    "src/transformers/training_args.py",
+    "src/transformers/utils/import_utils.py",
+    "tests/pipelines/test_pipelines_image_segmentation.py",
+    "tests/pipelines/test_pipelines_object_detection.py"
+  ],
+  "test_files": [
+    "src/transformers/testing_utils.py",
+    "tests/pipelines/test_pipelines_image_segmentation.py",
+    "tests/pipelines/test_pipelines_object_detection.py"
+  ],
+  "source_files": [
+    "examples/pytorch/question-answering/trainer_qa.py",
+    "examples/pytorch/question-answering/trainer_seq2seq_qa.py",
+    "examples/research_projects/quantization-qdqbert/trainer_quant_qa.py",
+    "src/transformers/benchmark/benchmark_args.py",
+    "src/transformers/trainer.py",
+    "src/transformers/trainer_pt_utils.py",
+    "src/transformers/trainer_utils.py",
+    "src/transformers/training_args.py",
+    "src/transformers/utils/import_utils.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "add_handler",
+      "based",
+      "check",
+      "check_device",
+      "core",
+      "current",
+      "datasets",
+      "debug",
+      "detr",
+      "dist"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:46:31Z"
+}

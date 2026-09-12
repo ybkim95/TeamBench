@@ -1,0 +1,47 @@
+diff --git a/spacy/cli/__init__.py b/spacy/cli/__init__.py
+--- a/spacy/cli/__init__.py
++++ b/spacy/cli/__init__.py
+@@ -22,8 +22,17 @@
+ from .package import package  # noqa: F401
+ from .pretrain import pretrain  # noqa: F401
+ from .profile import profile  # noqa: F401
+-from .train import train_cli  # noqa: F401
+-from .validate import validate  # noqa: F401
++from .project.assets import project_assets  # type: ignore[attr-defined]  # noqa: F401
++from .project.clone import project_clone  # type: ignore[attr-defined]  # noqa: F401
++from .project.document import (  # type: ignore[attr-defined]  # noqa: F401
++    project_document,
++)
++from .project.dvc import project_update_dvc  # type: ignore[attr-defined]  # noqa: F401
++from .project.pull import project_pull  # type: ignore[attr-defined]  # noqa: F401
++from .project.push import project_push  # type: ignore[attr-defined]  # noqa: F401
++from .project.run import project_run  # type: ignore[attr-defined]  # noqa: F401
++from .train import train_cli  # type: ignore[attr-defined]  # noqa: F401
++from .validate import validate  # type: ignore[attr-defined]  # noqa: F401
+ 
+ 
+ @app.command("link", no_args_is_help=True, deprecated=True, hidden=True)
+
+diff --git a/spacy/cli/project/assets.py b/spacy/cli/project/assets.py
+--- a/spacy/cli/project/assets.py
++++ b/spacy/cli/project/assets.py
+@@ -0,0 +1 @@
++from weasel.cli.assets import *
+
+diff --git a/spacy/cli/project/clone.py b/spacy/cli/project/clone.py
+--- a/spacy/cli/project/clone.py
++++ b/spacy/cli/project/clone.py
+@@ -0,0 +1 @@
++from weasel.cli.clone import *
+
+diff --git a/spacy/cli/project/document.py b/spacy/cli/project/document.py
+--- a/spacy/cli/project/document.py
++++ b/spacy/cli/project/document.py
+@@ -0,0 +1 @@
++from weasel.cli.document import *
+
+diff --git a/spacy/cli/project/dvc.py b/spacy/cli/project/dvc.py
+--- a/spacy/cli/project/dvc.py
++++ b/spacy/cli/project/dvc.py
+@@ -0,0 +1 @@
++from weasel.cli.dvc import *

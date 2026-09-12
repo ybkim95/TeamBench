@@ -1,0 +1,325 @@
+diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+index 9c75b92c745..6acd60a083f 100644
+--- a/.pre-commit-config.yaml
++++ b/.pre-commit-config.yaml
+@@ -60,11 +60,11 @@ repos:
+       - flake8-no-implicit-concat==0.3.4
+       - flake8-requirements==1.7.8
+ - repo: https://github.com/PyCQA/isort
+-  rev: '7.0.0'
++  rev: '8.0.1'
+   hooks:
+   - id: isort
+ - repo: https://github.com/psf/black-pre-commit-mirror
+-  rev: '25.9.0'
++  rev: '26.3.1'
+   hooks:
+     - id: black
+       language_version: python3 # Should be a command that runs python
+@@ -99,7 +99,7 @@ repos:
+   - id: detect-private-key
+     exclude: ^examples/
+ - repo: https://github.com/asottile/pyupgrade
+-  rev: 'v3.21.0'
++  rev: 'v3.21.2'
+   hooks:
+   - id: pyupgrade
+     args: ['--py37-plus']
+@@ -121,7 +121,7 @@ repos:
+     exclude: >-
+       ^CHANGES\.rst$
+ - repo: https://github.com/codespell-project/codespell
+-  rev: v2.4.1
++  rev: v2.4.2
+   hooks:
+   - id: codespell
+     additional_dependencies:
+diff --git a/examples/background_tasks.py b/examples/background_tasks.py
+index 3d5c43e48de..26ac2af83cc 100755
+--- a/examples/background_tasks.py
++++ b/examples/background_tasks.py
+@@ -1,5 +1,6 @@
+ #!/usr/bin/env python3
+ """Example of aiohttp.web.Application.on_startup signal handler"""
++
+ import asyncio
+ from collections.abc import AsyncIterator
+ from contextlib import asynccontextmanager, suppress
+diff --git a/examples/web_srv.py b/examples/web_srv.py
+index 37b44aad146..e72112fac20 100755
+--- a/examples/web_srv.py
++++ b/examples/web_srv.py
+@@ -7,12 +7,10 @@
+ 
+ 
+ async def intro(request: web.Request) -> web.StreamResponse:
+-    txt = textwrap.dedent(
+-        """\
++    txt = textwrap.dedent("""\
+         Type {url}/hello/John  {url}/simple or {url}/change_body
+         in browser url bar
+-    """
+-    ).format(url="127.0.0.1:8080")
++    """).format(url="127.0.0.1:8080")
+     binary = txt.encode("utf8")
+     resp = web.StreamResponse()
+     resp.content_length = len(binary)
+diff --git a/examples/web_srv_route_deco.py b/examples/web_srv_route_deco.py
+index 78d25441d3f..46240d1e198 100644
+--- a/examples/web_srv_route_deco.py
++++ b/examples/web_srv_route_deco.py
+@@ -10,12 +10,10 @@
+ 
+ @routes.get("/")
+ async def intro(request: web.Request) -> web.StreamResponse:
+-    txt = textwrap.dedent(
+-        """\
++    txt = textwrap.dedent("""\
+         Type {url}/hello/John  {url}/simple or {url}/change_body
+         in browser url bar
+-    """
+-    ).format(url="127.0.0.1:8080")
++    """).format(url="127.0.0.1:8080")
+     binary = txt.encode("utf8")
+     resp = web.StreamResponse()
+     resp.content_length = len(binary)
+diff --git a/examples/web_srv_route_table.py b/examples/web_srv_route_table.py
+index 7f3b19e0025..80b18749b0f 100644
+--- a/examples/web_srv_route_table.py
++++ b/examples/web_srv_route_table.py
+@@ -7,12 +7,10 @@
+ 
+ 
+ async def intro(request: web.Request) -> web.StreamResponse:
+-    txt = textwrap.dedent(
+-        """\
++    txt = textwrap.dedent("""\
+         Type {url}/hello/John  {url}/simple or {url}/change_body
+         in browser url bar
+-    """
+-    ).format(url="127.0.0.1:8080")
++    """).format(url="127.0.0.1:8080")
+     binary = txt.encode("utf8")
+     resp = web.StreamResponse()
+     resp.content_length = len(binary)
+diff --git a/tests/test_http_parser.py b/tests/test_http_parser.py
+index f5d14cf96bd..81659019e43 100644
+--- a/tests/test_http_parser.py
++++ b/tests/test_http_parser.py
+@@ -165,12 +165,10 @@ def test_invalid_character(
+         max_field_size=8190,
+     )
+     text = b"POST / HTTP/1.1\r\nHost: localhost:8080\r\nSet-Cookie: abc\x01def\r\n\r\n"
+-    error_detail = re.escape(
+-        r""":
++    error_detail = re.escape(r""":
+ 
+     b'Set-Cookie: abc\x01def'
+-                     ^"""
+-    )
++                     ^""")
+     with pytest.raises(http_exceptions.BadHttpMessage, match=error_detail):
+         parser.feed_data(text)
+ 
+@@ -189,12 +187,10 @@ def test_invalid_linebreak(
+         max_field_size=8190,
+     )
+     text = b"GET /world HTTP/1.1\r\nHost: 127.0.0.1\n\r\n"
+-    error_detail = re.escape(
+-        r""":
++    error_detail = re.escape(r""":
+ 
+     b'Host: 127.0.0.1\n'
+-                     ^"""
+-    )
++                     ^""")
+     with pytest.raises(http_exceptions.BadHttpMessage, match=error_detail):
+         parser.feed_data(text)
+ 
+diff --git a/tests/test_imports.py b/tests/test_imports.py
+index 0779e7fc779..b41e6fd8d36 100644
+--- a/tests/test_imports.py
++++ b/tests/test_imports.py
+@@ -8,22 +8,18 @@
+ 
+ def test___all__(pytester: pytest.Pytester) -> None:
+     """See https://github.com/aio-libs/aiohttp/issues/6197"""
+-    pytester.makepyfile(
+-        test_a="""
++    pytester.makepyfile(test_a="""
+             from aiohttp import *
+             assert 'GunicornWebWorker' in globals()
+-        """
+-    )
++        """)
+     result = pytester.runpytest("-vv")
+     result.assert_outcomes(passed=0, errors=0)
+ 
+ 
+ def test_web___all__(pytester: pytest.Pytester) -> None:
+-    pytester.makepyfile(
+-        test_b="""
++    pytester.makepyfile(test_b="""
+             from aiohttp.web import *
+-        """
+-    )
++        """)
+     result = pytester.runpytest("-vv")
+     result.assert_outcomes(passed=0, errors=0)
+ 
+diff --git a/tests/test_pytest_plugin.py b/tests/test_pytest_plugin.py
+index 348348f673a..76b35881dec 100644
+--- a/tests/test_pytest_plugin.py
++++ b/tests/test_pytest_plugin.py
+@@ -17,8 +17,7 @@
+ 
+ 
+ def test_aiohttp_plugin(testdir: pytest.Testdir) -> None:
+-    testdir.makepyfile(
+-        """\
++    testdir.makepyfile("""\
+ import pytest
+ from unittest import mock
+ 
+@@ -117,16 +116,14 @@ async def test_custom_port_test_server(aiohttp_server, aiohttp_unused_port):
+     port = aiohttp_unused_port()
+     server = await aiohttp_server(app, port=port)
+     assert server.port == port
+-"""
+-    )
++""")
+     testdir.makeconftest(CONFTEST)
+     result = testdir.runpytest("-p", "no:sugar", "--aiohttp-loop=pyloop")
+     result.assert_outcomes(passed=8)
+ 
+ 
+ def test_warning_checks(testdir: pytest.Testdir) -> None:
+-    testdir.makepyfile(
+-        """\
++    testdir.makepyfile("""\
+ 
+ async def foobar():
+     return 123
+@@ -137,8 +134,7 @@ async def test_good() -> None:
+ 
+ async def test_bad() -> None:
+     foobar()
+-"""
+-    )
++""")
+     testdir.makeconftest(CONFTEST)
+     result = testdir.runpytest(
+         "-p", "no:sugar", "-s", "-W", "default", "--aiohttp-loop=pyloop"
+@@ -155,8 +151,7 @@ async def test_bad() -> None:
+ def test_aiohttp_plugin_async_fixture(
+     testdir: pytest.Testdir, capsys: pytest.CaptureFixture[str]
+ ) -> None:
+-    testdir.makepyfile(
+-        """\
++    testdir.makepyfile("""\
+ import pytest
+ 
+ from aiohttp import web
+@@ -205,8 +200,7 @@ def test_foo_without_loop(foo) -> None:
+ 
+ def test_bar(loop, bar) -> None:
+     assert bar is test_bar
+-"""
+-    )
++""")
+     testdir.makeconftest(CONFTEST)
+     result = testdir.runpytest("-p", "no:sugar", "--aiohttp-loop=pyloop")
+     result.assert_outcomes(passed=3, errors=1)
+@@ -217,8 +211,7 @@ def test_bar(loop, bar) -> None:
+ 
+ 
+ def test_aiohttp_plugin_async_gen_fixture(testdir: pytest.Testdir) -> None:
+-    testdir.makepyfile(
+-        """\
++    testdir.makepyfile("""\
+ import pytest
+ from unittest import mock
+ 
+@@ -251,8 +244,7 @@ async def test_hello(cli) -> None:
+ 
+ def test_finalized() -> None:
+     assert canary.called is True
+-"""
+-    )
++""")
+     testdir.makeconftest(CONFTEST)
+     result = testdir.runpytest("-p", "no:sugar", "--aiohttp-loop=pyloop")
+     result.assert_outcomes(passed=2)
+@@ -268,8 +260,7 @@ def test_warnings_propagated(recwarn: pytest.WarningsRecorder) -> None:
+ 
+ 
+ def test_aiohttp_client_cls_fixture_custom_client_used(testdir: pytest.Testdir) -> None:
+-    testdir.makepyfile(
+-        """
++    testdir.makepyfile("""
+ import pytest
+ from aiohttp.web import Application
+ from aiohttp.test_utils import TestClient
+@@ -288,26 +279,21 @@ async def test_hello(aiohttp_client) -> None:
+     client = await aiohttp_client(Application())
+     assert isinstance(client, CustomClient)
+ 
+-"""
+-    )
++""")
+     testdir.makeconftest(CONFTEST)
+     result = testdir.runpytest()
+     result.assert_outcomes(passed=1)
+ 
+ 
+ def test_aiohttp_client_cls_fixture_factory(testdir: pytest.Testdir) -> None:
+-    testdir.makeconftest(
+-        CONFTEST
+-        + """
++    testdir.makeconftest(CONFTEST + """
+ 
+ def pytest_configure(config):
+     config.addinivalue_line("markers", "rest: RESTful API tests")
+     config.addinivalue_line("markers", "graphql: GraphQL API tests")
+ 
+-"""
+-    )
+-    testdir.makepyfile(
+-        """
++""")
++    testdir.makepyfile("""
+ import pytest
+ from aiohttp.web import Application
+ from aiohttp.test_utils import TestClient
+@@ -341,7 +327,6 @@ async def test_graphql(aiohttp_client) -> None:
+     client = await aiohttp_client(Application())
+     assert isinstance(client, GraphQLClient)
+ 
+-"""
+-    )
++""")
+     result = testdir.runpytest()
+     result.assert_outcomes(passed=2)
+diff --git a/tests/test_test_utils.py b/tests/test_test_utils.py
+index dba8198300a..e1577a1ab1c 100644
+--- a/tests/test_test_utils.py
++++ b/tests/test_test_utils.py
+@@ -302,16 +302,14 @@ async def test_server_make_url_yarl_compatibility(
+ def test_testcase_no_app(
+     testdir: pytest.Testdir, loop: asyncio.AbstractEventLoop
+ ) -> None:
+-    testdir.makepyfile(
+-        """
++    testdir.makepyfile("""
+         from aiohttp.test_utils import AioHTTPTestCase
+ 
+ 
+         class InvalidTestCase(AioHTTPTestCase):
+             def test_noop(self) -> None:
+                 pass
+-        """
+-    )
++        """)
+     result = testdir.runpytest()
+     result.stdout.fnmatch_lines(["*TypeError*"])
+ 

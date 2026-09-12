@@ -1,0 +1,53 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 21336,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/21336",
+  "issue_number": 1234,
+  "base_sha": "f3f04ed603e406c42de006d4b218553ce64d6683",
+  "head_sha": "a0c6b087ffd9faab62c6bece2b59a743f5cb1910",
+  "additions": 29,
+  "deletions": 0,
+  "changed_files": [
+    "doc/whats_new/v1.0.rst",
+    "sklearn/svm/_base.py",
+    "sklearn/svm/tests/test_svm.py"
+  ],
+  "test_files": [
+    "sklearn/svm/tests/test_svm.py"
+  ],
+  "source_files": [
+    "sklearn/svm/_base.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "also",
+      "altered",
+      "assert_allclose",
+      "check",
+      "consistent",
+      "data",
+      "detail",
+      "error",
+      "https",
+      "inconsistency"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:54Z"
+}

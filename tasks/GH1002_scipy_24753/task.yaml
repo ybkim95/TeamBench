@@ -1,0 +1,13 @@
+task_id: GH1002_scipy_24753
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Rotation.apply read-only memoryview support"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scipy/scipy/pull/24753"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

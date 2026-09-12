@@ -1,0 +1,67 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 2887,
+  "pr_url": "https://github.com/unit8co/darts/pull/2887",
+  "issue_number": 2879,
+  "base_sha": "549d9db084dd48c75d10efa59460d8adad61f8ca",
+  "head_sha": "5ca99321e712bd0515008cac04c2299e8885d788",
+  "additions": 69,
+  "deletions": 67,
+  "changed_files": [
+    "CHANGELOG.md",
+    "darts/tests/models/forecasting/test_ensemble_models.py",
+    "darts/tests/models/forecasting/test_probabilistic_models.py",
+    "darts/tests/models/forecasting/test_regression_ensemble_model.py",
+    "darts/tests/models/forecasting/test_sf_models.py",
+    "darts/tests/models/forecasting/test_sklearn_models.py",
+    "darts/tests/utils/historical_forecasts/test_historical_forecasts.py",
+    "darts/tests/utils/test_utils.py",
+    "darts/timeseries.py",
+    "darts/utils/likelihood_models/base.py"
+  ],
+  "test_files": [
+    "darts/tests/models/forecasting/test_ensemble_models.py",
+    "darts/tests/models/forecasting/test_probabilistic_models.py",
+    "darts/tests/models/forecasting/test_regression_ensemble_model.py",
+    "darts/tests/models/forecasting/test_sf_models.py",
+    "darts/tests/models/forecasting/test_sklearn_models.py",
+    "darts/tests/utils/historical_forecasts/test_historical_forecasts.py",
+    "darts/tests/utils/test_utils.py"
+  ],
+  "source_files": [
+    "darts/timeseries.py",
+    "darts/utils/likelihood_models/base.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "a_q0",
+      "abstract",
+      "accept",
+      "adapted",
+      "add_encoders",
+      "add_regressor_configs",
+      "add_seasonalities",
+      "add_seasonality",
+      "added",
+      "affects"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:08:10Z"
+}

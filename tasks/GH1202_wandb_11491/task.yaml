@@ -1,0 +1,13 @@
+task_id: GH1202_wandb_11491
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix(artifacts): reseed random state for client IDs on fork"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/wandb/wandb/pull/11491"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

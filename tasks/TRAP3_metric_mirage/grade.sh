@@ -40,7 +40,8 @@ check() {
 cd "${WORKSPACE}"
 
 # ── Install dependencies ──────────────────────────────────────────────────────
-pip install pytest --quiet 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require pytest || true
 
 # ── C1: Measurement fix — warm-up must NOT count as cache hits ────────────────
 # Instantiate CacheMetrics, simulate warm-up calls, verify they are excluded
@@ -255,3 +256,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

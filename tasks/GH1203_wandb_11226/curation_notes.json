@@ -1,0 +1,71 @@
+{
+  "repo": "wandb/wandb",
+  "pr_number": 11226,
+  "pr_url": "https://github.com/wandb/wandb/pull/11226",
+  "issue_number": null,
+  "base_sha": "0e398a22b5bf7da778277d0cb92e0f9a00a69ee5",
+  "head_sha": "c76e058e64ea7dd609230eafad9eb2fa50611a9e",
+  "additions": 173,
+  "deletions": 14,
+  "changed_files": [
+    "CHANGELOG.unreleased.md",
+    "tests/system_tests/test_sweep/test_sweep_scheduler.py",
+    "tests/system_tests/test_sweep/test_wandb_agent.py",
+    "tests/system_tests/test_sweep/test_wandb_agent_full.py",
+    "tests/unit_tests/test_internal_api.py",
+    "wandb/agents/pyagent.py",
+    "wandb/cli/cli.py",
+    "wandb/sdk/internal/internal_api.py",
+    "wandb/sdk/launch/sweeps/__init__.py",
+    "wandb/sdk/launch/sweeps/scheduler_sweep.py",
+    "wandb/wandb_agent.py"
+  ],
+  "test_files": [
+    "tests/system_tests/test_sweep/test_sweep_scheduler.py",
+    "tests/system_tests/test_sweep/test_wandb_agent.py",
+    "tests/system_tests/test_sweep/test_wandb_agent_full.py",
+    "tests/unit_tests/test_internal_api.py"
+  ],
+  "source_files": [
+    "wandb/agents/pyagent.py",
+    "wandb/cli/cli.py",
+    "wandb/sdk/internal/internal_api.py",
+    "wandb/sdk/launch/sweeps/__init__.py",
+    "wandb/sdk/launch/sweeps/scheduler_sweep.py",
+    "wandb/wandb_agent.py"
+  ],
+  "parameterization": {
+    "repo": "wandb/wandb",
+    "repo_short": "wandb",
+    "parameterized_identifiers": [
+      "agent",
+      "agent_api",
+      "agent_heartbeat",
+      "agent_id",
+      "agents",
+      "apis",
+      "because",
+      "been",
+      "break",
+      "captured_stderr"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:45Z"
+}

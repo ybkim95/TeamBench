@@ -1,0 +1,13 @@
+task_id: GH1207_darts_2907
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix unit tests for non-torch flavors"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/unit8co/darts/pull/2907"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

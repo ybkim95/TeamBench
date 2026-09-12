@@ -252,11 +252,14 @@ print(f'PYTEST_{passed}_PASSED')
 \"" "pytest_fewer_than_5_passed"
 
 # ── Attestation check ─────────────────────────────────────────────────────────
-check "python3 -c \"
-import json, sys
-att = json.load(open(sys.argv[1]))
-assert att.get('verdict') == 'pass'
-\" '$SUBMISSION/attestation.json'" "bad_attestation"
+# ── Attestation recorded as METADATA, never scored ───────────────────────
+# de-scored-by: scripts/repair_graders.py (R3 attestation-is-protocol)
+# attestation.json is a PROTOCOL property of the run (already enforced as a
+# hard gate in harness/grade_task.py), not a property of the submitted
+# artifact. Scoring it let an agent buy partial credit by writing one JSON
+# file, which is the confound behind the withdrawn "removing the Verifier
+# improves partial score" result. Recorded here, excluded from partial_score.
+echo "metadata: attestation_present=$([ -f "${SUBMISSION:-}/attestation.json" ] && echo yes || echo no)"
 
 # ── Write score.json ──────────────────────────────────────────────────────────
 PARTIAL=$(python3 -c "print(round($PASSED/max(1,$CHECKS), 2))")

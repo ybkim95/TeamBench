@@ -1,0 +1,13 @@
+task_id: GH1081_FLAML_1406
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix test hang issue"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/microsoft/FLAML/pull/1406"
+source_issue: "https://github.com/microsoft/FLAML/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

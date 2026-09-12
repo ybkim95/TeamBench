@@ -1,0 +1,15 @@
+{
+ "task": "GH64_werkzeug_3008",
+ "patch": "tasks/GH64_werkzeug_3008/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "pallets/werkzeug",
+ "pr_number": 3008,
+ "base_sha": "2f86acb6de57c87f10ab69b5548e687ff6e71304",
+ "head_sha": "6335b7211dfd173f8ba208c9e6fa62c170ba23b9",
+ "bytes": 4388,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

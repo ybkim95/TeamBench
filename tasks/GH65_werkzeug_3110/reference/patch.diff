@@ -1,0 +1,91 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 206780a29..c0ae20ef5 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -45,6 +45,8 @@ Version 3.2.0
+     an equal rule. :issue:`3037`
+ -   Add ``Request.sec_fetch_site``, ``sec_fetch_mode``, ``sec_fetch_user``, and
+     ``sec_fetch_dest`` header properties. :pr:`3082`
++-   ``Response.make_conditional`` sets the ``Accept-Ranges`` header even if it
++    is not a satisfiable range request. :issue:`3108`
+ 
+ 
+ Version 3.1.5
+diff --git a/src/werkzeug/wrappers/response.py b/src/werkzeug/wrappers/response.py
+index e05fa8a12..470729231 100644
+--- a/src/werkzeug/wrappers/response.py
++++ b/src/werkzeug/wrappers/response.py
+@@ -667,22 +667,26 @@ def _process_range_request(
+         :raises: :class:`~werkzeug.exceptions.RequestedRangeNotSatisfiable`
+                  if `Range` header could not be parsed or satisfied.
+ 
++        .. versionchanged:: 3.2
++            Adds the ``Accept-Ranges`` header if ``accept_ranges`` is passed,
++            even if this is not a satisfiable range request.
++
+         .. versionchanged:: 2.0
+             Returns ``False`` if the length is 0.
+         """
+         from ..exceptions import RequestedRangeNotSatisfiable
+ 
+-        if (
+-            not accept_ranges
+-            or complete_length is None
+-            or complete_length == 0
+-            or not self._is_range_request_processable(environ)
+-        ):
++        if not accept_ranges:
+             return False
+ 
+         if accept_ranges is True:
+             accept_ranges = "bytes"
+ 
++        self.accept_ranges = accept_ranges
++
++        if not (complete_length and self._is_range_request_processable(environ)):
++            return False
++
+         parsed_range = parse_range_header(environ.get("HTTP_RANGE"))
+ 
+         if parsed_range is None:
+@@ -695,8 +699,7 @@ def _process_range_request(
+             raise RequestedRangeNotSatisfiable(complete_length)
+ 
+         content_length = range_tuple[1] - range_tuple[0]
+-        self.headers["Content-Length"] = str(content_length)
+-        self.headers["Accept-Ranges"] = accept_ranges
++        self.content_length = content_length
+         self.content_range = content_range_header
+         self.status_code = 206
+         self._wrap_range_response(range_tuple[0], content_length)
+@@ -743,6 +746,10 @@ def make_conditional(
+         :raises: :class:`~werkzeug.exceptions.RequestedRangeNotSatisfiable`
+                  if `Range` header could not be parsed or satisfied.
+ 
++        .. versionchangedd: 3.2
++            Adds the ``Accept-Ranges`` header if ``accept_ranges`` is passed,
++            even if this is not a satisfiable range request.
++
+         .. versionchanged:: 2.0
+             Range processing is skipped if length is 0 instead of
+             raising a 416 Range Not Satisfiable error.
+diff --git a/tests/test_wrappers.py b/tests/test_wrappers.py
+index dd9c454f1..9b1ce2e95 100644
+--- a/tests/test_wrappers.py
++++ b/tests/test_wrappers.py
+@@ -595,6 +595,15 @@ def test_etag_response_412():
+     assert response.content_length == 999
+ 
+ 
++def test_advertise_accept_ranges() -> None:
++    env = create_environ()
++    response = wrappers.Response()
++    response.make_conditional(env, accept_ranges=True)
++    assert response.status_code == 200
++    assert response.headers["Accept-Ranges"] == "bytes"
++    assert "Content-Range" not in response.headers
++
++
+ def test_range_request_basic():
+     env = create_environ()
+     response = wrappers.Response("Hello World")

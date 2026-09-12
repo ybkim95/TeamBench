@@ -1,0 +1,15 @@
+{
+ "task": "GH863_pytorch_lightni_21147",
+ "patch": "tasks/GH863_pytorch_lightni_21147/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "Lightning-AI/pytorch-lightning",
+ "pr_number": 21147,
+ "base_sha": "da7f2f9a9ff116b2316d4475a58d310834b376c6",
+ "head_sha": "3e3e1579417b9af83264cf8249629b22f0855db9",
+ "bytes": 5612,
+ "files_changed": 3,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

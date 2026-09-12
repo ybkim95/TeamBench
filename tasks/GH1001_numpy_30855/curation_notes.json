@@ -1,0 +1,54 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 30855,
+  "pr_url": "https://github.com/numpy/numpy/pull/30855",
+  "issue_number": null,
+  "base_sha": "10e9faf1afbecca9316ce752c8a1dc8807137edb",
+  "head_sha": "2c30d4cbcd8b8f4ff0f1377271cc2b12989dbc61",
+  "additions": 8,
+  "deletions": 1,
+  "changed_files": [
+    "numpy/ma/core.py",
+    "numpy/ma/tests/test_core.py"
+  ],
+  "test_files": [
+    "numpy/ma/tests/test_core.py"
+  ],
+  "source_files": [
+    "numpy/ma/core.py"
+  ],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "array",
+      "assert_equal",
+      "bytes",
+      "control",
+      "creating",
+      "dtype",
+      "flatten_sequence",
+      "float",
+      "iter",
+      "iterable"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:58:02Z"
+}

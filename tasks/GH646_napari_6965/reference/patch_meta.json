@@ -1,0 +1,15 @@
+{
+ "task": "GH646_napari_6965",
+ "patch": "tasks/GH646_napari_6965/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "napari/napari",
+ "pr_number": 6965,
+ "base_sha": "f0c02a844cdd0eebceb64b696bb4ab73c2aed08f",
+ "head_sha": "5bfe1fc43cc7f182be487ee7e4093ab920452174",
+ "bytes": 9360,
+ "files_changed": 7,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

@@ -1,0 +1,13 @@
+task_id: GH993_plotly.py_4914
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: px.timeline was raising when x_start and/or x_end were already datetime for Polars / PyArrow"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/plotly/plotly.py/pull/4914"
+source_issue: "https://github.com/plotly/plotly.py/issues/4913"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

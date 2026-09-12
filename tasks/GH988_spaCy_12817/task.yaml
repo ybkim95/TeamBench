@@ -1,0 +1,13 @@
+task_id: GH988_spaCy_12817
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "🐛 Escape annotated HTML tags in span renderer"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/explosion/spaCy/pull/12817"
+source_issue: "https://github.com/explosion/spaCy/issues/12816"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH1185_airflow_62174
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Order of task arguments in task definition causing error when parsing DAG"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/apache/airflow/pull/62174"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

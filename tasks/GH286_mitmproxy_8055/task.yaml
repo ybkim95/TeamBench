@@ -1,0 +1,13 @@
+task_id: GH286_mitmproxy_8055
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Use fastest compression settings for content-encoding"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/mitmproxy/mitmproxy/pull/8055"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

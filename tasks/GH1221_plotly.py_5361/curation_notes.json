@@ -1,0 +1,53 @@
+{
+  "repo": "plotly/plotly.py",
+  "pr_number": 5361,
+  "pr_url": "https://github.com/plotly/plotly.py/pull/5361",
+  "issue_number": null,
+  "base_sha": "b258862b0f41ac12e087a65b4370c1675b956dc6",
+  "head_sha": "832b46c77da10c203348a953f04e4c047ec083ef",
+  "additions": 3,
+  "deletions": 3,
+  "changed_files": [
+    "plotly/matplotlylib/mplexporter/tests/test_utils.py",
+    "plotly/matplotlylib/tests/test_renderer.py"
+  ],
+  "test_files": [
+    "plotly/matplotlylib/mplexporter/tests/test_utils.py",
+    "plotly/matplotlylib/tests/test_renderer.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "plotly/plotly.py",
+    "repo_short": "plotly.py",
+    "parameterized_identifiers": [
+      "assert_allclose",
+      "assert_equal",
+      "legend",
+      "matplotlib",
+      "native",
+      "numpy",
+      "plotly",
+      "present",
+      "pyplot",
+      "test_path_data"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:15:13Z"
+}

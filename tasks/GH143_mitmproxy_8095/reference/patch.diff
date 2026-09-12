@@ -1,0 +1,222 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index b867defe4b..7bb268f30d 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -22,6 +22,8 @@
+   ([#8046](https://github.com/mitmproxy/mitmproxy/pull/8046), @HueCodes)
+ - Added support for adding and editing comments on individual flows in the mitmproxy console.
+   ([#7944](https://github.com/mitmproxy/mitmproxy/pull/7944), @lups2000)
++- Allow hiding the Quick Help UI in the mitmproxy console with the 'H' key.
++  ([#8095](https://github.com/mitmproxy/mitmproxy/pull/8095), @seroperson)
+ 
+ ## 24 November 2025: mitmproxy 12.2.1
+ 
+diff --git a/mitmproxy/tools/console/consoleaddons.py b/mitmproxy/tools/console/consoleaddons.py
+index 9ed5f74464..f7868e2bb3 100644
+--- a/mitmproxy/tools/console/consoleaddons.py
++++ b/mitmproxy/tools/console/consoleaddons.py
+@@ -117,6 +117,12 @@ def load(self, loader):
+             False,
+             "Strip trailing newlines from edited request/response bodies.",
+         )
++        loader.add_option(
++            "console_quickhelp_visible",
++            bool,
++            True,
++            "Show the quick help bar at the bottom of the console.",
++        )
+ 
+     @command.command("console.layout.options")
+     def layout_options(self) -> Sequence[str]:
+diff --git a/mitmproxy/tools/console/defaultkeys.py b/mitmproxy/tools/console/defaultkeys.py
+index a31a6bc660..0ff9d0a291 100644
+--- a/mitmproxy/tools/console/defaultkeys.py
++++ b/mitmproxy/tools/console/defaultkeys.py
+@@ -18,6 +18,12 @@ def map(km: Keymap) -> None:
+     km.add("Q", "console.exit", ["global"], "Exit immediately")
+     km.add("q", "console.view.pop", ["commonkey", "global"], "Exit the current view")
+     km.add("esc", "console.view.pop", ["commonkey", "global"], "Exit the current view")
++    km.add(
++        "H",
++        "set console_quickhelp_visible toggle",
++        ["global"],
++        "Toggle quick help bar visibility",
++    )
+     km.add("-", "console.layout.cycle", ["global"], "Cycle to next layout")
+     km.add("ctrl right", "console.panes.next", ["global"], "Focus next layout pane")
+     km.add("ctrl left", "console.panes.prev", ["global"], "Focus previous layout pane")
+diff --git a/mitmproxy/tools/console/statusbar.py b/mitmproxy/tools/console/statusbar.py
+index 705427647b..113f0b5d0c 100644
+--- a/mitmproxy/tools/console/statusbar.py
++++ b/mitmproxy/tools/console/statusbar.py
+@@ -64,20 +64,32 @@ def __init__(self, master: mitmproxy.tools.console.master.ConsoleMaster) -> None
+         signals.window_refresh.connect(self.sig_update)
+         master.view.focus.sig_change.connect(self.sig_update)
+         master.view.sig_view_update.connect(self.sig_update)
++        master.options.subscribe(self.sig_options_update, ["console_quickhelp_visible"])
+ 
+         self.prompting: Callable[[str], None] | None = None
+ 
+         self.onekey: set[str] | None = None
+ 
++    def ensure_bottom_bar_is_visible(self) -> None:
++        pile: urwid.Pile = self._w  # type: ignore[has-type]
++        current_widgets = [w for w, _ in pile.contents]
++        if current_widgets != [self.top, self.bottom]:
++            self._w = urwid.Pile([self.top, self.bottom])
++
+     def sig_update(self, flow=None) -> None:
+         if not self.prompting and flow is None or flow == self.master.view.focus.flow:
+             self.show_quickhelp()
+ 
++    def sig_options_update(self, options, updated) -> None:
++        self.show_quickhelp()
++
+     def sig_message(
+         self, message: tuple[str, str] | str, expire: int | None = 1
+     ) -> None:
+         if self.prompting:
+             return
++        # Ensure widgets are visible for messages
++        self.ensure_bottom_bar_is_visible()
+         cols, _ = self.master.ui.get_cols_rows()
+         w = urwid.Text(shorten_message(message, cols))
+         self.top._w = w
+@@ -93,12 +105,14 @@ def cb():
+     def sig_prompt(
+         self, prompt: str, text: str | None, callback: Callable[[str], None]
+     ) -> None:
++        self.ensure_bottom_bar_is_visible()
+         signals.focus.send(section="footer")
+         self.top._w = urwid.Edit(f"{prompt.strip()}: ", text or "")
+         self.bottom._w = urwid.Text("")
+         self.prompting = callback
+ 
+     def sig_prompt_command(self, partial: str = "", cursor: int | None = None) -> None:
++        self.ensure_bottom_bar_is_visible()
+         signals.focus.send(section="footer")
+         self.top._w = commander.CommandEdit(
+             self.master,
+@@ -122,6 +136,7 @@ def sig_prompt_onekey(
+         Keys are a set of (word, key) tuples. The appropriate key in the
+         word is highlighted.
+         """
++        self.ensure_bottom_bar_is_visible()
+         signals.focus.send(section="footer")
+         parts = [prompt, " ("]
+         mkup = []
+@@ -158,6 +173,10 @@ def keypress(self, size, k):
+                     return k
+ 
+     def show_quickhelp(self) -> None:
++        if not self.master.options.console_quickhelp_visible:
++            self._w = urwid.Pile([])
++            return
++        self.ensure_bottom_bar_is_visible()
+         if w := self.master.window:
+             s = w.focus_stack()
+             focused_widget = type(s.top_widget())
+diff --git a/test/mitmproxy/tools/console/test_statusbar.py b/test/mitmproxy/tools/console/test_statusbar.py
+index bcf5f3d606..00ce3c23f6 100644
+--- a/test/mitmproxy/tools/console/test_statusbar.py
++++ b/test/mitmproxy/tools/console/test_statusbar.py
+@@ -1,4 +1,5 @@
+ import pytest
++import urwid
+ 
+ from mitmproxy.tools.console import statusbar
+ 
+@@ -61,3 +62,93 @@ def test_shorten_message(message, ready_message):
+ def test_shorten_message_narrow():
+     shorten_msg = statusbar.shorten_message("error", max_width=4)
+     assert shorten_msg == [("", "\u2026"), ("warn", "(more in eventlog)")]
++
++
++async def test_console_quickhelp_option(console, monkeypatch):
++    """Test that console_quickhelp option controls the display of quick help bar."""
++    monkeypatch.setattr(statusbar.StatusBar, "refresh", lambda x: None)
++
++    # quickhelp enabled (default)
++    console.options.console_quickhelp_visible = True
++    bar = statusbar.StatusBar(console)
++    assert isinstance(bar.ab._w, urwid.Pile)
++    assert len(bar.ab._w.contents) == 2
++    assert isinstance(bar.ab.top._w, urwid.Columns)
++    assert isinstance(bar.ab.bottom._w, urwid.Columns)
++
++    # quickhelp disabled
++    console.options.console_quickhelp_visible = False
++    bar2 = statusbar.StatusBar(console)
++    assert isinstance(bar2.ab._w, urwid.Pile)
++    assert len(bar2.ab._w.contents) == 0
++
++
++async def test_console_quickhelp_toggle(console, monkeypatch):
++    """Test that toggling console_quickhelp option updates the display."""
++    monkeypatch.setattr(statusbar.StatusBar, "refresh", lambda x: None)
++
++    bar = statusbar.StatusBar(console)
++
++    # quickhelp enabled (default)
++    assert console.options.console_quickhelp_visible is True
++    bar.ab.show_quickhelp()
++    assert isinstance(bar.ab._w, urwid.Pile)
++    assert len(bar.ab._w.contents) == 2
++    assert isinstance(bar.ab.top._w, urwid.Columns)
++    assert isinstance(bar.ab.bottom._w, urwid.Columns)
++
++    # quickhelp disabled
++    console.options.console_quickhelp_visible = False
++    bar.ab.show_quickhelp()
++    assert isinstance(bar.ab._w, urwid.Pile)
++    assert len(bar.ab._w.contents) == 0
++
++    # quickhelp toggling
++    console.options.console_quickhelp_visible = True
++    bar.ab.show_quickhelp()
++    assert isinstance(bar.ab._w, urwid.Pile)
++    assert len(bar.ab._w.contents) == 2
++    assert isinstance(bar.ab.top._w, urwid.Columns)
++    assert isinstance(bar.ab.bottom._w, urwid.Columns)
++
++
++async def test_console_quickhelp_hotkey(console):
++    """Test that the 'H' hotkey toggles the console_quickhelp option."""
++    assert console.options.console_quickhelp_visible is True
++
++    console.type("H")
++    assert console.options.console_quickhelp_visible is False
++
++    console.type("H")
++    assert console.options.console_quickhelp_visible is True
++
++
++async def test_console_quickhelp_prompts_visible_when_disabled(console, monkeypatch):
++    """Test that prompts and messages are visible even when quickhelp is disabled."""
++    monkeypatch.setattr(statusbar.StatusBar, "refresh", lambda x: None)
++
++    # Disable quickhelp
++    console.options.console_quickhelp_visible = False
++    bar = statusbar.StatusBar(console)
++
++    # Initially, Pile should be empty (quickhelp disabled)
++    assert isinstance(bar.ab._w, urwid.Pile)
++    assert len(bar.ab._w.contents) == 0
++
++    # Show a message - Pile should now contain widgets
++    bar.ab.sig_message("Test message", expire=None)
++    assert len(bar.ab._w.contents) == 2
++    assert isinstance(bar.ab.top._w, urwid.Text)
++
++    # After showing quickhelp again (when message expires), should hide if disabled
++    bar.ab.show_quickhelp()
++    assert len(bar.ab._w.contents) == 0
++
++    # Show a prompt - Pile should contain widgets
++    bar.ab.sig_prompt("Test prompt", None, lambda x: None)
++    assert len(bar.ab._w.contents) == 2
++    assert isinstance(bar.ab.top._w, urwid.Edit)
++
++    # Dismiss prompt
++    bar.ab.prompt_done()
++    assert len(bar.ab._w.contents) == 0

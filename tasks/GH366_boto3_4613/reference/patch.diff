@@ -1,0 +1,49 @@
+diff --git a/boto3/s3/inject.py b/boto3/s3/inject.py
+index a30e3ad54e..74ef267a09 100644
+--- a/boto3/s3/inject.py
++++ b/boto3/s3/inject.py
+@@ -440,8 +440,8 @@ def copy(
+ 
+     :type ExtraArgs: dict
+     :param ExtraArgs: Extra arguments that may be passed to the
+-        client operation. For allowed download arguments see
+-        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
++        client operation. For allowed copy arguments see
++        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_COPY_ARGS`.
+ 
+     :type Callback: function
+     :param Callback: A method which takes a number of bytes transferred to
+@@ -519,8 +519,8 @@ def bucket_copy(
+ 
+     :type ExtraArgs: dict
+     :param ExtraArgs: Extra arguments that may be passed to the
+-        client operation. For allowed download arguments see
+-        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
++        client operation. For allowed copy arguments see
++        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_COPY_ARGS`.
+ 
+     :type Callback: function
+     :param Callback: A method which takes a number of bytes transferred to
+@@ -582,8 +582,8 @@ def object_copy(
+ 
+     :type ExtraArgs: dict
+     :param ExtraArgs: Extra arguments that may be passed to the
+-        client operation. For allowed download arguments see
+-        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
++        client operation. For allowed copy arguments see
++        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_COPY_ARGS`.
+ 
+     :type Callback: function
+     :param Callback: A method which takes a number of bytes transferred to
+diff --git a/boto3/s3/transfer.py b/boto3/s3/transfer.py
+index 73a3388b46..6032b624a5 100644
+--- a/boto3/s3/transfer.py
++++ b/boto3/s3/transfer.py
+@@ -326,6 +326,7 @@ def __setattr__(self, name, value):
+ class S3Transfer:
+     ALLOWED_DOWNLOAD_ARGS = TransferManager.ALLOWED_DOWNLOAD_ARGS
+     ALLOWED_UPLOAD_ARGS = TransferManager.ALLOWED_UPLOAD_ARGS
++    ALLOWED_COPY_ARGS = TransferManager.ALLOWED_COPY_ARGS
+ 
+     def __init__(self, client=None, config=None, osutil=None, manager=None):
+         if not client and not manager:

@@ -1,0 +1,298 @@
+diff --git a/services/storage/src/simcore_service_storage/db_file_meta_data.py b/services/storage/src/simcore_service_storage/db_file_meta_data.py
+index b742449ee008..593a48f72b21 100644
+--- a/services/storage/src/simcore_service_storage/db_file_meta_data.py
++++ b/services/storage/src/simcore_service_storage/db_file_meta_data.py
+@@ -72,7 +72,7 @@ def _list_filter_with_partial_file_id_stmt(
+     file_id_prefix: str | None,
+     partial_file_id: str | None,
+     sha256_checksum: SHA256Str | None,
+-    only_files: bool,
++    is_directory: bool | None,
+     limit: int | None = None,
+     offset: int | None = None,
+ ):
+@@ -98,8 +98,8 @@ def _list_filter_with_partial_file_id_stmt(
+         conditions.append(file_meta_data.c.file_id.startswith(file_id_prefix))
+     if partial_file_id:
+         conditions.append(file_meta_data.c.file_id.ilike(f"%{partial_file_id}%"))
+-    if only_files:
+-        conditions.append(file_meta_data.c.is_directory.is_(False))
++    if is_directory is not None:
++        conditions.append(file_meta_data.c.is_directory.is_(is_directory))
+     if sha256_checksum:
+         conditions.append(file_meta_data.c.sha256_checksum == sha256_checksum)
+ 
+@@ -119,7 +119,7 @@ async def list_filter_with_partial_file_id(
+     file_id_prefix: str | None,
+     partial_file_id: str | None,
+     sha256_checksum: SHA256Str | None,
+-    only_files: bool,
++    is_directory: bool | None,
+     limit: int | None = None,
+     offset: int | None = None,
+ ) -> list[FileMetaDataAtDB]:
+@@ -129,7 +129,7 @@ async def list_filter_with_partial_file_id(
+         file_id_prefix=file_id_prefix,
+         partial_file_id=partial_file_id,
+         sha256_checksum=sha256_checksum,
+-        only_files=only_files,
++        is_directory=is_directory,
+         limit=limit,
+         offset=offset,
+     )
+diff --git a/services/storage/src/simcore_service_storage/simcore_s3_dsm.py b/services/storage/src/simcore_service_storage/simcore_s3_dsm.py
+index b6e7e57f1ccc..d41630b52300 100644
+--- a/services/storage/src/simcore_service_storage/simcore_s3_dsm.py
++++ b/services/storage/src/simcore_service_storage/simcore_s3_dsm.py
+@@ -21,6 +21,7 @@
+     UploadedBytesTransferredCallback,
+ )
+ from models_library.api_schemas_storage import (
++    UNDEFINED_SIZE,
+     UNDEFINED_SIZE_TYPE,
+     LinkType,
+     S3BucketName,
+@@ -79,7 +80,11 @@
+ from .s3 import get_s3_client
+ from .s3_utils import S3TransferDataCB, update_task_progress
+ from .settings import Settings
+-from .simcore_s3_dsm_utils import expand_directory, get_directory_file_id
++from .simcore_s3_dsm_utils import (
++    compute_file_id_prefix,
++    expand_directory,
++    get_directory_file_id,
++)
+ from .utils import (
+     convert_db_to_model,
+     download_to_file_or_raise,
+@@ -180,8 +185,8 @@ async def list_files(  # noqa C901
+                     user_id=uid, project_ids=accessible_projects_ids
+                 ),
+                 file_id_prefix=None,
++                is_directory=None,
+                 partial_file_id=uuid_filter,
+-                only_files=False,
+                 sha256_checksum=None,
+             )
+ 
+@@ -523,22 +528,32 @@ async def delete_file(
+                 if not can.delete:
+                     raise FileAccessRightError(access_right="delete", file_id=file_id)
+ 
+-        with suppress(FileMetaDataNotFoundError):
+-            # NOTE: deleting might be slow, so better ensure we release the connection
+-            async with self.engine.acquire() as conn:
+-                file: FileMetaDataAtDB = await db_file_meta_data.get(
+-                    conn, TypeAdapter(SimcoreS3FileID).validate_python(file_id)
+-                )
++        try:
+             await get_s3_client(self.app).delete_objects_recursively(
+-                bucket=file.bucket_name,
+-                prefix=(
+-                    ensure_ends_with(file.file_id, "/")
+-                    if file.is_directory
+-                    else file.file_id
+-                ),
++                bucket=self.simcore_bucket_name,
++                prefix=file_id,
+             )
+-            async with self.engine.acquire() as conn:
+-                await db_file_meta_data.delete(conn, [file.file_id])
++        except S3KeyNotFoundError:
++            _logger.warning("File %s not found in S3", file_id)
++            # we still need to clean up the database entry (it exists)
++            # and to invalidate the size of the parent directory
++
++        async with self.engine.acquire() as conn:
++            await db_file_meta_data.delete(conn, [file_id])
++
++            if parent_dir_fmds := await db_file_meta_data.list_filter_with_partial_file_id(
++                conn,
++                user_or_project_filter=UserOrProjectFilter(
++                    user_id=user_id, project_ids=[]
++                ),
++                file_id_prefix=compute_file_id_prefix(file_id, 2),
++                partial_file_id=None,
++                is_directory=True,
++                sha256_checksum=None,
++            ):
++                parent_dir_fmd = max(parent_dir_fmds, key=lambda fmd: len(fmd.file_id))
++                parent_dir_fmd.file_size = UNDEFINED_SIZE
++                await db_file_meta_data.upsert(conn, parent_dir_fmd)
+ 
+     async def delete_project_simcore_s3(
+         self, user_id: UserID, project_id: ProjectID, node_id: NodeID | None = None
+@@ -738,7 +753,7 @@ async def search_owned_files(
+                 ),
+                 file_id_prefix=file_id_prefix,
+                 partial_file_id=None,
+-                only_files=True,
++                is_directory=False,
+                 sha256_checksum=sha256_checksum,
+                 limit=limit,
+                 offset=offset,
+diff --git a/services/storage/src/simcore_service_storage/simcore_s3_dsm_utils.py b/services/storage/src/simcore_service_storage/simcore_s3_dsm_utils.py
+index e4a58549e31b..eb5f2f1240ca 100644
+--- a/services/storage/src/simcore_service_storage/simcore_s3_dsm_utils.py
++++ b/services/storage/src/simcore_service_storage/simcore_s3_dsm_utils.py
+@@ -119,3 +119,8 @@ async def _get_fmd(
+     directory_file_id_fmd = await _get_fmd(conn, directory_file_id)
+ 
+     return directory_file_id if directory_file_id_fmd else None
++
++
++def compute_file_id_prefix(file_id: str, levels: int):
++    components = file_id.strip("/").split("/")
++    return "/".join(components[:levels])
+diff --git a/services/storage/tests/unit/test_db_file_meta_data.py b/services/storage/tests/unit/test_db_file_meta_data.py
+index da94c6a5eeb7..c362fabe82fa 100644
+--- a/services/storage/tests/unit/test_db_file_meta_data.py
++++ b/services/storage/tests/unit/test_db_file_meta_data.py
+@@ -31,7 +31,7 @@ def _check(func_smt, **kwargs):
+         file_id_prefix=None,
+         partial_file_id=None,
+         sha256_checksum=None,
+-        only_files=True,
++        is_directory=False,
+     )
+     # WHERE file_meta_data.is_directory IS false ORDER BY file_meta_data.created_at ASC
+ 
+@@ -41,7 +41,7 @@ def _check(func_smt, **kwargs):
+         file_id_prefix=None,
+         partial_file_id=None,
+         sha256_checksum=None,
+-        only_files=True,
++        is_directory=False,
+     )
+     # WHERE file_meta_data.user_id = '42' AND file_meta_data.is_directory IS false ORDER BY file_meta_data.created_at ASC
+ 
+@@ -53,7 +53,7 @@ def _check(func_smt, **kwargs):
+         file_id_prefix=None,
+         partial_file_id=None,
+         sha256_checksum=None,
+-        only_files=True,
++        is_directory=False,
+     )
+     # WHERE (file_meta_data.user_id = '42' OR file_meta_data.project_id IN ('18d5'..., )) AND file_meta_data.is_directory IS false ORDER BY file_meta_data.created_at ASC
+ 
+@@ -65,7 +65,7 @@ def _check(func_smt, **kwargs):
+         file_id_prefix=None,
+         partial_file_id=None,
+         sha256_checksum=None,
+-        only_files=True,
++        is_directory=False,
+         limit=10,
+         offset=1,
+     )
+@@ -76,9 +76,9 @@ def _check(func_smt, **kwargs):
+         _list_filter_with_partial_file_id_stmt,
+         user_or_project_filter=UserOrProjectFilter(user_id=42, project_ids=[]),
+         file_id_prefix=None,
++        is_directory=None,
+         partial_file_id="{project_id}/",
+         sha256_checksum=None,
+-        only_files=False,
+     )
+ 
+     # As used in SimcoreS3DataManager.search_owned_files
+@@ -88,7 +88,7 @@ def _check(func_smt, **kwargs):
+         file_id_prefix="api/",
+         partial_file_id=None,
+         sha256_checksum=faker.sha256(),
+-        only_files=True,
++        is_directory=False,
+         limit=10,
+         offset=0,
+     )
+diff --git a/services/storage/tests/unit/test_handlers_files.py b/services/storage/tests/unit/test_handlers_files.py
+index f9fc415d86a4..40d4b72f15ed 100644
+--- a/services/storage/tests/unit/test_handlers_files.py
++++ b/services/storage/tests/unit/test_handlers_files.py
+@@ -1345,6 +1345,7 @@ async def test_upload_file_is_directory_and_remove_content(
+     client: TestClient,
+     location_id: LocationID,
+     user_id: UserID,
++    faker: Faker,
+ ):
+     FILE_SIZE_IN_DIR = TypeAdapter(ByteSize).validate_python("1Mib")
+     DIR_NAME = "some-dir"
+@@ -1386,6 +1387,52 @@ async def test_upload_file_is_directory_and_remove_content(
+     )
+     assert len(list_of_files) == SUBDIR_COUNT * FILE_COUNT
+ 
++    # DELETE NOT EXISTING
++
++    assert client.app
++
++    delete_url = (
++        client.app.router["delete_file"]
++        .url_for(
++            location_id=f"{location_id}",
++            file_id=urllib.parse.quote(
++                "/".join(list_of_files[0].file_id.split("/")[:2]) + "/does_not_exist",
++                safe="",
++            ),
++        )
++        .with_query(user_id=user_id)
++    )
++    response = await client.delete(f"{delete_url}")
++    _, error = await assert_status(response, status.HTTP_204_NO_CONTENT)
++    assert error is None
++
++    list_of_files: list[FileMetaDataGet] = await _list_files_legacy(
++        client, user_id, location_id, directory_file_upload
++    )
++
++    assert len(list_of_files) == SUBDIR_COUNT * FILE_COUNT
++
++    # DELETE ONE FILE FROM THE DIRECTORY
++
++    assert client.app
++    delete_url = (
++        client.app.router["delete_file"]
++        .url_for(
++            location_id=f"{location_id}",
++            file_id=urllib.parse.quote(list_of_files[0].file_id, safe=""),
++        )
++        .with_query(user_id=user_id)
++    )
++    response = await client.delete(f"{delete_url}")
++    _, error = await assert_status(response, status.HTTP_204_NO_CONTENT)
++    assert error is None
++
++    list_of_files: list[FileMetaDataGet] = await _list_files_legacy(
++        client, user_id, location_id, directory_file_upload
++    )
++
++    assert len(list_of_files) == SUBDIR_COUNT * FILE_COUNT - 1
++
+     # DIRECTORY REMOVAL
+ 
+     await delete_directory(directory_file_upload=directory_file_upload)
+diff --git a/services/storage/tests/unit/test_simcore_s3_dsm_utils.py b/services/storage/tests/unit/test_simcore_s3_dsm_utils.py
+new file mode 100644
+index 000000000000..01869537c085
+--- /dev/null
++++ b/services/storage/tests/unit/test_simcore_s3_dsm_utils.py
+@@ -0,0 +1,21 @@
++import pytest
++from simcore_service_storage.simcore_s3_dsm_utils import compute_file_id_prefix
++
++
++@pytest.mark.parametrize(
++    "file_id, levels, expected",
++    [
++        (
++            "b21a3b80-d578-4b33-a224-e24ee2e4966a/42b9cc07-60f5-4d29-a063-176d1467901c/my/amazing/sub/folder/with/a/file.bin",
++            3,
++            "b21a3b80-d578-4b33-a224-e24ee2e4966a/42b9cc07-60f5-4d29-a063-176d1467901c/my",
++        ),
++        (
++            "api/42b9cc07-60f5-4d29-a063-176d1467901c/my/amazing/sub/folder/with/a/file.bin",
++            3,
++            "api/42b9cc07-60f5-4d29-a063-176d1467901c/my",
++        ),
++    ],
++)
++def test_compute_file_id_prefix(file_id, levels, expected):
++    assert compute_file_id_prefix(file_id, levels) == expected

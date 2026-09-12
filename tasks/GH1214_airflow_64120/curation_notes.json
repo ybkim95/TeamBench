@@ -1,0 +1,54 @@
+{
+  "repo": "apache/airflow",
+  "pr_number": 64120,
+  "pr_url": "https://github.com/apache/airflow/pull/64120",
+  "issue_number": null,
+  "base_sha": "5d9819fea584df846a8f89d57d1b7137cd3b5ae4",
+  "head_sha": "2e967ee04e8534b19a2e942bddf11b56fbd1b53c",
+  "additions": 10,
+  "deletions": 1,
+  "changed_files": [
+    "task-sdk/src/airflow/sdk/definitions/connection.py",
+    "task-sdk/tests/task_sdk/definitions/test_connection.py"
+  ],
+  "test_files": [
+    "task-sdk/tests/task_sdk/definitions/test_connection.py"
+  ],
+  "source_files": [
+    "task-sdk/src/airflow/sdk/definitions/connection.py"
+  ],
+  "parameterization": {
+    "repo": "apache/airflow",
+    "repo_short": "airflow",
+    "parameterized_identifiers": [
+      "as_json",
+      "asdict",
+      "attr",
+      "attribute",
+      "attrs",
+      "charset",
+      "conn",
+      "conn_id",
+      "connection",
+      "defined"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:14:34Z"
+}

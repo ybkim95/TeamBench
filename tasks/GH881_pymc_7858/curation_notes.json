@@ -1,0 +1,52 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7858,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7858",
+  "issue_number": 7857,
+  "base_sha": "f34eb2605afac335b75561a8c1e56642ef440958",
+  "head_sha": "55db526134e56680366c39e066f353421cefd950",
+  "additions": 30,
+  "deletions": 5,
+  "changed_files": [
+    "pymc/pytensorf.py",
+    "tests/test_pytensorf.py"
+  ],
+  "test_files": [
+    "tests/test_pytensorf.py"
+  ],
+  "source_files": [
+    "pymc/pytensorf.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "access",
+      "arises",
+      "assert_allclose",
+      "attributes",
+      "because",
+      "capsys",
+      "captured",
+      "checks",
+      "cloudpickle",
+      "compile"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:22Z"
+}

@@ -1,0 +1,58 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1150,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1150",
+  "issue_number": null,
+  "base_sha": "53cbbd1ba2d7d885dfbf6825911f6cb937b77707",
+  "head_sha": "4c46e27f0c11ebdf1456b156f747494797061ad0",
+  "additions": 84,
+  "deletions": 54,
+  "changed_files": [
+    "psycopg/psycopg/_copy_base.py",
+    "psycopg_c/psycopg_c/_psycopg.pyi",
+    "psycopg_c/psycopg_c/_psycopg/copy.pyx",
+    "tests/test_copy.py",
+    "tests/test_copy_async.py"
+  ],
+  "test_files": [
+    "tests/test_copy.py",
+    "tests/test_copy_async.py"
+  ],
+  "source_files": [
+    "psycopg/psycopg/_copy_base.py"
+  ],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "aconn",
+      "adapted",
+      "avoid",
+      "before",
+      "berowlen",
+      "binary",
+      "buffer",
+      "bytearray",
+      "bytes",
+      "cdef"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:34:36Z"
+}

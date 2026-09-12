@@ -1,0 +1,54 @@
+{
+  "repo": "apache/airflow",
+  "pr_number": 63475,
+  "pr_url": "https://github.com/apache/airflow/pull/63475",
+  "issue_number": 55866,
+  "base_sha": "5a7d957fbb7d072e1dbc1eafd137eee29db11576",
+  "head_sha": "385b6af2007ea86c55833bf480eab6229550ce2b",
+  "additions": 58,
+  "deletions": 8,
+  "changed_files": [
+    "providers/standard/src/airflow/providers/standard/example_dags/example_hitl_operator.py",
+    "providers/standard/src/airflow/providers/standard/operators/hitl.py",
+    "providers/standard/tests/unit/standard/operators/test_hitl.py"
+  ],
+  "test_files": [
+    "providers/standard/tests/unit/standard/operators/test_hitl.py"
+  ],
+  "source_files": [
+    "providers/standard/src/airflow/providers/standard/example_dags/example_hitl_operator.py",
+    "providers/standard/src/airflow/providers/standard/operators/hitl.py"
+  ],
+  "parameterization": {
+    "repo": "apache/airflow",
+    "repo_short": "airflow",
+    "parameterized_identifiers": [
+      "added",
+      "adds",
+      "after",
+      "airflow",
+      "annotations",
+      "applied",
+      "approval",
+      "approve",
+      "assigned_users",
+      "backward"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:05:11Z"
+}

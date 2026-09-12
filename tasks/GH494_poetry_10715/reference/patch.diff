@@ -1,0 +1,172 @@
+diff --git a/src/poetry/console/commands/self/self_command.py b/src/poetry/console/commands/self/self_command.py
+index 04f45902ec7..4317f09f6c9 100644
+--- a/src/poetry/console/commands/self/self_command.py
++++ b/src/poetry/console/commands/self/self_command.py
+@@ -14,6 +14,7 @@
+ from poetry.console.commands.installer_command import InstallerCommand
+ from poetry.factory import Factory
+ from poetry.pyproject.toml import PyProjectTOML
++from poetry.utils.constants import POETRY_SYSTEM_PROJECT_NAME
+ from poetry.utils.env import EnvManager
+ from poetry.utils.env import SystemEnv
+ from poetry.utils.helpers import directory
+@@ -80,7 +81,7 @@ def generate_system_pyproject(self) -> None:
+                     "dict[str, Any]", content["dependency-groups"]
+                 )
+ 
+-        package = ProjectPackage(name="poetry-instance", version=__version__)
++        package = ProjectPackage(name=POETRY_SYSTEM_PROJECT_NAME, version=__version__)
+         package.add_dependency(Dependency(name="poetry", constraint=f"{__version__}"))
+ 
+         package.python_versions = ".".join(str(v) for v in self.env.version_info[:3])
+diff --git a/src/poetry/console/commands/show.py b/src/poetry/console/commands/show.py
+index 779f423bf49..e3fdcedd67d 100644
+--- a/src/poetry/console/commands/show.py
++++ b/src/poetry/console/commands/show.py
+@@ -13,6 +13,7 @@
+ 
+ from poetry.console.commands.env_command import EnvCommand
+ from poetry.console.commands.group_command import GroupCommand
++from poetry.utils.constants import POETRY_SYSTEM_PROJECT_NAME
+ 
+ 
+ if TYPE_CHECKING:
+@@ -147,8 +148,8 @@ def handle(self) -> int:
+ 
+         if not self.poetry.locker.is_locked():
+             self.line_error(
+-                "<error>Error: poetry.lock not found. Run `poetry lock` to create"
+-                " it.</error>"
++                f"<error>Error: poetry.lock not found. Run `{self._lock_create_command()}`"
++                " to create it.</error>"
+             )
+             return 1
+ 
+@@ -165,6 +166,12 @@ def handle(self) -> int:
+ 
+         return self._display_packages_information(locked_repo, root)
+ 
++    def _lock_create_command(self) -> str:
++        if self.poetry.package.name == POETRY_SYSTEM_PROJECT_NAME:
++            return "poetry self lock"
++
++        return "poetry lock"
++
+     def _display_single_package_information(
+         self, package: str, locked_repository: Repository
+     ) -> int:
+diff --git a/src/poetry/installation/installer.py b/src/poetry/installation/installer.py
+index 38492df7312..fef55f55479 100644
+--- a/src/poetry/installation/installer.py
++++ b/src/poetry/installation/installer.py
+@@ -12,6 +12,7 @@
+ from poetry.repositories import RepositoryPool
+ from poetry.repositories.installed_repository import InstalledRepository
+ from poetry.repositories.lockfile_repository import LockfileRepository
++from poetry.utils.constants import POETRY_SYSTEM_PROJECT_NAME
+ 
+ 
+ if TYPE_CHECKING:
+@@ -266,7 +267,7 @@ def _do_install(self) -> int:
+             if not self._locker.is_fresh():
+                 raise ValueError(
+                     "pyproject.toml changed significantly since poetry.lock was last"
+-                    " generated. Run `poetry lock` to fix the lock file."
++                    f" generated. Run `{self._lock_fix_command()}` to fix the lock file."
+                 )
+             if not (reresolve or self._locker.is_locked_groups_and_markers()):
+                 if self._io.is_verbose():
+@@ -380,6 +381,14 @@ def _do_install(self) -> int:
+ 
+         return status
+ 
++    def _lock_fix_command(self) -> str:
++        # `poetry self` commands operate on Poetry's own system project. When the lock
++        # file is outdated, users should run `poetry self lock` rather than `poetry lock`.
++        if self._package.name == POETRY_SYSTEM_PROJECT_NAME:
++            return "poetry self lock"
++
++        return "poetry lock"
++
+     def _write_lock_file(
+         self,
+         packages: dict[Package, TransitivePackageInfo],
+diff --git a/src/poetry/utils/constants.py b/src/poetry/utils/constants.py
+index e8fe2918e50..f9e5d8248ce 100644
+--- a/src/poetry/utils/constants.py
++++ b/src/poetry/utils/constants.py
+@@ -3,6 +3,9 @@
+ import os
+ 
+ 
++# Name of Poetry's own system project used by `poetry self` commands.
++POETRY_SYSTEM_PROJECT_NAME = "poetry-instance"
++
+ # Timeout for HTTP requests using the requests library.
+ REQUESTS_TIMEOUT = int(os.getenv("POETRY_REQUESTS_TIMEOUT", 15))
+ 
+diff --git a/tests/console/commands/self/test_show.py b/tests/console/commands/self/test_show.py
+index d1b553a2af0..b0baecad652 100644
+--- a/tests/console/commands/self/test_show.py
++++ b/tests/console/commands/self/test_show.py
+@@ -70,3 +70,28 @@ def test_show_format(tester: CommandTester, options: str) -> None:
+     )
+     assert tester.execute(options) == 0
+     assert tester.io.fetch_output().strip() == expected
++
++
++def test_self_show_errors_without_lock_file(tester: CommandTester) -> None:
++    system_pyproject_file = SelfCommand.get_default_system_pyproject_file()
++    system_pyproject_file.write_text(
++        tomlkit.dumps(
++            {
++                "tool": {
++                    "poetry": {
++                        "name": "poetry-instance",
++                        "version": __version__,
++                        "dependencies": {"python": "^3.9", "poetry": __version__},
++                    }
++                }
++            }
++        ),
++        encoding="utf-8",
++    )
++    system_pyproject_file.parent.joinpath("poetry.lock").unlink(missing_ok=True)
++
++    assert tester.execute() == 1
++    assert (
++        tester.io.fetch_error()
++        == "Error: poetry.lock not found. Run `poetry self lock` to create it.\n"
++    )
+diff --git a/tests/installation/test_installer.py b/tests/installation/test_installer.py
+index c03a3cd0e50..d10700ec86c 100644
+--- a/tests/installation/test_installer.py
++++ b/tests/installation/test_installer.py
+@@ -29,6 +29,7 @@
+ from poetry.repositories import RepositoryPool
+ from poetry.repositories.installed_repository import InstalledRepository
+ from poetry.toml.file import TOMLFile
++from poetry.utils.constants import POETRY_SYSTEM_PROJECT_NAME
+ from poetry.utils.env import MockEnv
+ from poetry.utils.env import NullEnv
+ from tests.helpers import MOCK_DEFAULT_GIT_REVISION
+@@ -228,6 +229,19 @@ def test_not_fresh_lock(installer: Installer, locker: Locker) -> None:
+         installer.run()
+ 
+ 
++def test_not_fresh_lock_self_project(installer: Installer, locker: Locker) -> None:
++    installer.set_package(ProjectPackage(POETRY_SYSTEM_PROJECT_NAME, "1.0"))
++    locker.locked().fresh(False)
++    with pytest.raises(
++        ValueError,
++        match=re.escape(
++            "pyproject.toml changed significantly since poetry.lock was last generated. "
++            "Run `poetry self lock` to fix the lock file."
++        ),
++    ):
++        installer.run()
++
++
+ def test_run_with_dependencies(
+     installer: Installer, locker: Locker, repo: Repository, package: ProjectPackage
+ ) -> None:

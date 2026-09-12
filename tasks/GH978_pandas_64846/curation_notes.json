@@ -1,0 +1,59 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64846,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64846",
+  "issue_number": 64749,
+  "base_sha": "40c3159661e416fa7c514b97bd94d4f0a373a2ff",
+  "head_sha": "52a4a0369c5cab2dca684c800a9445a569528733",
+  "additions": 12,
+  "deletions": 159,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/_libs/include/pandas/vendored/klib/khash_python.h",
+    "pandas/tests/groupby/test_groupby.py",
+    "pandas/tests/indexes/multi/test_indexing.py",
+    "pandas/tests/indexes/object/test_indexing.py",
+    "pandas/tests/series/methods/test_isin.py",
+    "pandas/tests/test_algos.py"
+  ],
+  "test_files": [
+    "pandas/tests/groupby/test_groupby.py",
+    "pandas/tests/indexes/multi/test_indexing.py",
+    "pandas/tests/indexes/object/test_indexing.py",
+    "pandas/tests/series/methods/test_isin.py",
+    "pandas/tests/test_algos.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "actual",
+      "algos",
+      "arange",
+      "array",
+      "assert_index_equal",
+      "assert_series_equal",
+      "between",
+      "boolean",
+      "both",
+      "cast"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:06Z"
+}

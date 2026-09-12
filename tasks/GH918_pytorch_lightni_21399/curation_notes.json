@@ -1,0 +1,53 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 21399,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/21399",
+  "issue_number": 20412,
+  "base_sha": "79ffe5025e0ceababbe874d6269e2006145226c1",
+  "head_sha": "d451ecaddad0da085ccb4232f3bdcc6f9c62f0e8",
+  "additions": 36,
+  "deletions": 2,
+  "changed_files": [
+    "src/lightning/fabric/utilities/seed.py",
+    "src/lightning/pytorch/CHANGELOG.md",
+    "tests/tests_fabric/utilities/test_seed.py"
+  ],
+  "test_files": [
+    "tests/tests_fabric/utilities/test_seed.py"
+  ],
+  "source_files": [
+    "src/lightning/fabric/utilities/seed.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "algorithm",
+      "append",
+      "base",
+      "base_seed",
+      "base_seeds",
+      "based",
+      "bits",
+      "combined_seed",
+      "congruential",
+      "constant"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:51:15Z"
+}

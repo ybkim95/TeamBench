@@ -1,0 +1,56 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 10043,
+  "pr_url": "https://github.com/dask/dask/pull/10043",
+  "issue_number": null,
+  "base_sha": "79960cf744f4c7ab048924bab404df06e4e5e4a9",
+  "head_sha": "338b216c2416951f252b91baf524bd5282ddfa20",
+  "additions": 40,
+  "deletions": 5,
+  "changed_files": [
+    "dask/dataframe/groupby.py",
+    "dask/dataframe/shuffle.py",
+    "dask/dataframe/tests/test_groupby.py"
+  ],
+  "test_files": [
+    "dask/dataframe/tests/test_groupby.py"
+  ],
+  "source_files": [
+    "dask/dataframe/groupby.py",
+    "dask/dataframe/shuffle.py"
+  ],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "apply",
+      "assert_eq",
+      "assign",
+      "backend",
+      "backends",
+      "behave",
+      "between",
+      "column",
+      "columns",
+      "concat"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:06:50Z"
+}

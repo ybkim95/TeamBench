@@ -1,0 +1,55 @@
+{
+  "repo": "I5-Team/bootrun-backend",
+  "pr_number": 111,
+  "pr_url": "https://github.com/I5-Team/bootrun-backend/pull/111",
+  "issue_number": 105,
+  "base_sha": "07d439b92d557d0249e49b6cec1c08935afad3db",
+  "head_sha": "821ccc47bb51dd9731db854df2e86f7a4438278c",
+  "additions": 77,
+  "deletions": 10,
+  "changed_files": [
+    "alembic/versions/a3a28d52a24f_add_unique_watched_seconds_to_progress.py",
+    "app/models/progress.py",
+    "app/services/enrollment_service.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "alembic/versions/a3a28d52a24f_add_unique_watched_seconds_to_progress.py",
+    "app/models/progress.py",
+    "app/services/enrollment_service.py"
+  ],
+  "parameterization": {
+    "repo": "I5-Team/bootrun-backend",
+    "repo_short": "bootrun-backend",
+    "parameterized_identifiers": [
+      "a3a28d52a24f",
+      "add_column",
+      "alembic",
+      "append",
+      "branch_labels",
+      "chapter",
+      "chapter_completed",
+      "chapter_duration",
+      "chapter_id",
+      "chapter_watched"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:21:35Z"
+}

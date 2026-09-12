@@ -1,0 +1,51 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 8559,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/8559",
+  "issue_number": null,
+  "base_sha": "7264e776a3c6c34be3b308c39149d3d458ec449f",
+  "head_sha": "08a97a37f03c49e57581b2ad287e9dd58cae3617",
+  "additions": 27,
+  "deletions": 10,
+  "changed_files": [
+    "tests/datasource/fluent/integration/test_sql_datasources.py"
+  ],
+  "test_files": [
+    "tests/datasource/fluent/integration/test_sql_datasources.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "add_expectation_suite",
+      "add_table_asset",
+      "annotations",
+      "asset",
+      "asset_name",
+      "caplog",
+      "capture_engine_logs",
+      "commit",
+      "conn",
+      "context"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:52:52Z"
+}

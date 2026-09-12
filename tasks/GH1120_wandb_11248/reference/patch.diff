@@ -1,0 +1,285 @@
+diff --git a/tests/unit_tests/test_public_api/test_public_api.py b/tests/unit_tests/test_public_api/test_public_api.py
+index 09833d05055..bc9d03e83d2 100644
+--- a/tests/unit_tests/test_public_api/test_public_api.py
++++ b/tests/unit_tests/test_public_api/test_public_api.py
+@@ -45,72 +45,126 @@ def test_base_url_sanitization():
+ 
+ @pytest.mark.parametrize(
+     "path",
+-    [
+-        "user/proj/run",  # simple
++    (
++        "user/proj/runs/run",  # URL style
++        "user/proj/run",  # regular path
+         "/user/proj/run",  # leading slash
+         "user/proj:run",  # docker
+-        "user/proj/runs/run",  # path_url
+-    ],
++    ),
+ )
+ @pytest.mark.usefixtures("patch_apikey", "skip_verify_login")
+-def test_parse_path(path):
++def test_parse_path(path: str):
+     user, project, run = Api()._parse_path(path)
+     assert user == "user"
+     assert project == "proj"
+     assert run == "run"
+ 
+ 
+-@pytest.mark.usefixtures("patch_apikey", "skip_verify_login")
+-def test_parse_project_path():
+-    entity, project = Api()._parse_project_path("user/proj")
+-    assert entity == "user"
+-    assert project == "proj"
++@pytest.mark.parametrize(
++    "path",
++    (
++        "",
++        "    ",
++        ":",
++        "/",
++        "//",
++        "/ /",
++        "/ / /",
++        "entity/project:",
++    ),
++)
++@pytest.mark.usefixtures("skip_verify_login")
++def test_parse_path_invalid(path: str):
++    api = Api(
++        api_key="fake" * 10,
++        overrides={
++            "entity": "test-default-entity",
++            "project": "test-default-project",
++        },
++    )
+ 
++    with pytest.raises(ValueError):
++        api._parse_path(path)
+ 
+-@pytest.mark.usefixtures("patch_apikey", "skip_verify_login")
+-def test_parse_project_path_proj():
+-    with mock.patch.dict("os.environ", {"WANDB_ENTITY": "mock_entity"}):
+-        entity, project = Api()._parse_project_path("proj")
+-        assert entity == "mock_entity"
+-        assert project == "proj"
+ 
++@pytest.mark.parametrize(
++    "path",
++    (
++        "project/run",
++        "project:run",
++    ),
++)
++@pytest.mark.usefixtures("skip_verify_login")
++def test_parse_path_default_entity(path: str):
++    api = Api(
++        api_key="fake" * 10,
++        overrides={"entity": "test-default-entity"},
++    )
+ 
+-@pytest.mark.usefixtures("patch_apikey", "skip_verify_login")
+-def test_parse_path_docker_proj():
+-    with mock.patch.dict("os.environ", {"WANDB_ENTITY": "mock_entity"}):
+-        user, project, run = Api()._parse_path("proj:run")
+-        assert user == "mock_entity"
+-        assert project == "proj"
+-        assert run == "run"
++    user, project, run = api._parse_path(path)
+ 
++    assert user == "test-default-entity"
++    assert project == "project"
++    assert run == "run"
+ 
+-@pytest.mark.usefixtures("patch_apikey", "skip_verify_login")
+-def test_parse_path_user_proj():
+-    with mock.patch.dict("os.environ", {"WANDB_ENTITY": "mock_entity"}):
+-        user, project, run = Api()._parse_path("proj/run")
+-        assert user == "mock_entity"
+-        assert project == "proj"
+-        assert run == "run"
++
++@pytest.mark.parametrize(
++    "path",
++    (
++        "project/run",
++        "project:run",
++        "run",
++    ),
++)
++@pytest.mark.usefixtures("skip_verify_login")
++def test_parse_path_no_entity(path: str):
++    api = Api(api_key="fake" * 10)
++
++    with pytest.raises(ValueError, match="missing entity"):
++        api._parse_path(path)
++
++
++@pytest.mark.usefixtures("skip_verify_login")
++def test_parse_path_default_project():
++    api = Api(
++        api_key="fake" * 10,
++        overrides={
++            "entity": "test-default-entity",
++            "project": "test-default-project",
++        },
++    )
++
++    user, project, run = api._parse_path("run")
++
++    assert user == "test-default-entity"
++    assert project == "test-default-project"
++    assert run == "run"
++
++
++@pytest.mark.usefixtures("skip_verify_login")
++def test_parse_path_no_project():
++    api = Api(
++        api_key="fake" * 10,
++        overrides={"entity": "test-default-entity"},
++    )
++
++    with pytest.raises(ValueError, match="missing project"):
++        api._parse_path("run")
+ 
+ 
+ @pytest.mark.usefixtures("patch_apikey", "skip_verify_login")
+-def test_parse_path_proj():
+-    with mock.patch.dict("os.environ", {"WANDB_ENTITY": "mock_entity"}):
+-        user, project, run = Api()._parse_path("proj")
+-        assert user == "mock_entity"
+-        assert project == "proj"
+-        assert run == "proj"
++def test_parse_project_path():
++    entity, project = Api()._parse_project_path("user/proj")
++    assert entity == "user"
++    assert project == "proj"
+ 
+ 
+ @pytest.mark.usefixtures("patch_apikey", "skip_verify_login")
+-def test_parse_path_id():
+-    with mock.patch.dict(
+-        "os.environ", {"WANDB_ENTITY": "mock_entity", "WANDB_PROJECT": "proj"}
+-    ):
+-        user, project, run = Api()._parse_path("run")
+-        assert user == "mock_entity"
++def test_parse_project_path_proj():
++    with mock.patch.dict("os.environ", {"WANDB_ENTITY": "mock_entity"}):
++        entity, project = Api()._parse_project_path("proj")
++        assert entity == "mock_entity"
+         assert project == "proj"
+-        assert run == "run"
+ 
+ 
+ @pytest.mark.usefixtures("patch_apikey", "skip_verify_login")
+diff --git a/wandb/apis/public/api.py b/wandb/apis/public/api.py
+index a3964e1dc33..b503794ef7b 100644
+--- a/wandb/apis/public/api.py
++++ b/wandb/apis/public/api.py
+@@ -806,38 +806,80 @@ def _parse_project_path(self, path):
+             return entity, path
+         return parts
+ 
+-    def _parse_path(self, path):
++    def _parse_path(self, path: str) -> tuple[str, str, str]:
+         """Parse url, filepath, or docker paths.
+ 
+         Allows paths in the following formats:
+-        - url: entity/project/runs/id
+-        - path: entity/project/id
+-        - docker: entity/project:id
++        - entity/project/runs/id (URL)
++        - entity/project/id
++        - entity/project:id (Docker style)
++        - project/id
++        - project:id
++        - id (cannot contain colons)
+ 
+-        Entity is optional and will fall back to the current logged-in user.
++        The path may also start with /runs/ or /sweeps/.
++
++        Returns:
++            A tuple with the extracted (entity, project, id).
++
++        Raises:
++            ValueError: If the path is in an invalid format or is missing
++                an entity that is not otherwise provided.
+         """
+-        project = self.settings["project"] or "uncategorized"
+-        entity = self.settings["entity"] or self.default_entity
+-        parts = (
+-            path.replace("/runs/", "/").replace("/sweeps/", "/").strip("/ ").split("/")
+-        )
+-        if ":" in parts[-1]:
+-            id = parts[-1].split(":")[-1]
+-            parts[-1] = parts[-1].split(":")[0]
+-        elif parts[-1]:
+-            id = parts[-1]
+-        if len(parts) == 1 and project != "uncategorized":
+-            pass
+-        elif len(parts) > 1:
+-            project = parts[1]
+-            if entity and id == project:
+-                project = parts[0]
+-            else:
+-                entity = parts[0]
+-            if len(parts) == 3:
++        # NOTE: This may result in a GQL call. Ideally we'd only access
++        # `self.default_entity` lazily, but changing this requires care as it
++        # changes when `self._default_entity` is cached and could impact other
++        # code.
++        entity: str | None = self.settings["entity"] or self.default_entity
++        project: str | None = self.settings["project"]
++        id: str | None = None
++
++        input_path = path
++        path = path.replace("/runs/", "/")
++        path = path.replace("/sweeps/", "/")
++        path = path.strip("/ ")  # slashes and spaces
++
++        parts = path.split("/")
++
++        # "entity/project/runs/id"
++        if len(parts) == 4 and parts[2] == "runs":
++            entity, project, id = parts[0], parts[1], parts[3]
++
++        # "entity/project/id"
++        elif len(parts) == 3:
++            entity, project, id = parts[0], parts[1], parts[2]
++
++        elif len(parts) == 2:
++            # "entity/project:id"
++            if ":" in parts[1]:
+                 entity = parts[0]
+-        else:
+-            project = parts[0]
++                project, id = parts[1].split(":", maxsplit=1)
++
++            # "project/id"
++            else:
++                project, id = parts[0], parts[1]
++
++        elif len(parts) == 1 and parts[0]:  # Don't match the empty string.
++            # "project:id"
++            if ":" in parts[0]:
++                project, id = parts[0].split(":", maxsplit=1)
++
++            # "id"
++            else:
++                id = parts[0]
++
++        # Ignore whitespace.
++        entity = entity and entity.strip()
++        project = project and project.strip()
++        id = id and id.strip()
++
++        if not entity:
++            raise ValueError(f"Invalid path: {input_path!r} (missing entity)")
++        if not project:
++            raise ValueError(f"Invalid path: {input_path!r} (missing project)")
++        if not id:
++            raise ValueError(f"Invalid path: {input_path!r}")
++
+         return entity, project, id
+ 
+     @overload

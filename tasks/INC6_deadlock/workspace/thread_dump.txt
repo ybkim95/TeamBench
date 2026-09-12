@@ -1,0 +1,38 @@
+Thread Dump — e-commerce order processing
+Timestamp: 2024-08-22T22:29:40Z
+PID: 33465
+
+============================================================
+THREAD: worker-697 (inventory_service)
+STATE: BLOCKED (waiting to acquire lock)
+  - Holding:   lock_payment
+  - Waiting for: lock_inventory
+  Stack:
+    inventory_service.process_request (line ~42)
+    threading.Lock.acquire (blocking)
+
+THREAD: worker-323 (payment_service)
+STATE: BLOCKED (waiting to acquire lock)
+  - Holding:   lock_inventory
+  - Waiting for: lock_payment
+  Stack:
+    payment_service.process_request (line ~42)
+    threading.Lock.acquire (blocking)
+
+THREAD: poller-616 [HIGH-CPU POLLER (not deadlocked)]
+STATE: RUNNABLE (100% CPU or tight-loop)
+  - Holding:   <none>
+  - Waiting for: <nothing>
+  Stack:
+    inventory_service._poll_queue / _background_hash_worker / _retry_with_backoff (red herring)
+    [This thread is CPU-bound or sleeping; it holds NO locks and is NOT deadlocked]
+
+============================================================
+DEADLOCK DETECTED:
+  worker-697 (inventory_service) holds lock_payment, waits for lock_inventory
+  worker-323 (payment_service) holds lock_inventory, waits for lock_payment
+  => Circular wait. Neither thread can proceed.
+
+NOTE: The poller-616 thread (high CPU) is a RED HERRING.
+      It does not participate in the deadlock and should NOT be modified.
+============================================================

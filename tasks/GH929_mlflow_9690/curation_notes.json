@@ -1,0 +1,54 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 9690,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/9690",
+  "issue_number": null,
+  "base_sha": "b39dc2a4706f96666fa31e895e46af20f9bc1450",
+  "head_sha": "aeda0902a07441880cbc01ffe32cfa9c8a2a8433",
+  "additions": 7,
+  "deletions": 7,
+  "changed_files": [
+    "mlflow/langchain/__init__.py",
+    "tests/langchain/test_langchain_model_export.py"
+  ],
+  "test_files": [
+    "tests/langchain/test_langchain_model_export.py"
+  ],
+  "source_files": [
+    "mlflow/langchain/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "chains",
+      "class_to_loader_arg",
+      "cloudpickle",
+      "completely",
+      "database",
+      "db_file_path",
+      "entry",
+      "experimental",
+      "fails",
+      "find_spec"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:52:03Z"
+}

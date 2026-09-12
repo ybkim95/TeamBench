@@ -1,0 +1,62 @@
+{
+  "repo": "python-poetry/poetry",
+  "pr_number": 10715,
+  "pr_url": "https://github.com/python-poetry/poetry/pull/10715",
+  "issue_number": null,
+  "base_sha": "9eac0a9e741b4d7d404d96555e6563aedeba8112",
+  "head_sha": "3aba07bb137c5cd661b9217921142c4ad27cadef",
+  "additions": 63,
+  "deletions": 4,
+  "changed_files": [
+    "src/poetry/console/commands/self/self_command.py",
+    "src/poetry/console/commands/show.py",
+    "src/poetry/installation/installer.py",
+    "src/poetry/utils/constants.py",
+    "tests/console/commands/self/test_show.py",
+    "tests/installation/test_installer.py"
+  ],
+  "test_files": [
+    "tests/console/commands/self/test_show.py",
+    "tests/installation/test_installer.py"
+  ],
+  "source_files": [
+    "src/poetry/console/commands/self/self_command.py",
+    "src/poetry/console/commands/show.py",
+    "src/poetry/installation/installer.py",
+    "src/poetry/utils/constants.py"
+  ],
+  "parameterization": {
+    "repo": "python-poetry/poetry",
+    "repo_short": "poetry",
+    "parameterized_identifiers": [
+      "add_dependency",
+      "changed",
+      "commands",
+      "console",
+      "constants",
+      "constraint",
+      "content",
+      "create",
+      "dependencies",
+      "dependency"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:22:05Z"
+}

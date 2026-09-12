@@ -1,0 +1,53 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 28426,
+  "pr_url": "https://github.com/numpy/numpy/pull/28426",
+  "issue_number": 28400,
+  "base_sha": "9a2b8b401cec1a5604fbf302d866cc6b268d16c4",
+  "head_sha": "ddd44e9ac3f39f2be0939fbb586f496ef8beeb16",
+  "additions": 26,
+  "deletions": 18,
+  "changed_files": [
+    "doc/release/upcoming_changes/28426.change.rst",
+    "numpy/lib/_histograms_impl.py",
+    "numpy/lib/tests/test_histograms.py"
+  ],
+  "test_files": [
+    "numpy/lib/tests/test_histograms.py"
+  ],
+  "source_files": [
+    "numpy/lib/_histograms_impl.py"
+  ],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "algorithm",
+      "array",
+      "array_like",
+      "assert_array_equal",
+      "assert_equal",
+      "auto",
+      "automatic",
+      "avoid",
+      "based",
+      "been"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:54:16Z"
+}

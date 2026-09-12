@@ -1,0 +1,60 @@
+diff --git a/homeassistant/components/freebox/config_flow.py b/homeassistant/components/freebox/config_flow.py
+index 62a1cd14b3df4..7ca26f7f34ee9 100644
+--- a/homeassistant/components/freebox/config_flow.py
++++ b/homeassistant/components/freebox/config_flow.py
+@@ -103,6 +103,8 @@ async def async_step_zeroconf(
+     ) -> ConfigFlowResult:
+         """Initialize flow from zeroconf."""
+         zeroconf_properties = discovery_info.properties
+-        host = zeroconf_properties["api_domain"]
+-        port = zeroconf_properties["https_port"]
++        host = zeroconf_properties.get("api_domain")
++        if not host:
++            return self.async_abort(reason="missing_api_domain")
++        port = zeroconf_properties.get("https_port") or discovery_info.port
+         return await self.async_step_user({CONF_HOST: host, CONF_PORT: port})
+diff --git a/homeassistant/components/freebox/strings.json b/homeassistant/components/freebox/strings.json
+index a1383045e0942..12ca866278ade 100644
+--- a/homeassistant/components/freebox/strings.json
++++ b/homeassistant/components/freebox/strings.json
+@@ -1,7 +1,8 @@
+ {
+   "config": {
+     "abort": {
+-      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
++      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]",
++      "missing_api_domain": "The discovered Freebox service did not provide the required API domain. Try again later or configure the Freebox manually."
+     },
+     "error": {
+       "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+diff --git a/tests/components/freebox/test_config_flow.py b/tests/components/freebox/test_config_flow.py
+index 50dd2f8c14eee..31a5b063e00b3 100644
+--- a/tests/components/freebox/test_config_flow.py
++++ b/tests/components/freebox/test_config_flow.py
+@@ -165,3 +165,26 @@ async def test_on_link_failed(hass: HomeAssistant) -> None:
+         result = await hass.config_entries.flow.async_configure(result["flow_id"], {})
+         assert result["type"] is FlowResultType.FORM
+         assert result["errors"] == {"base": "unknown"}
++
++
++async def test_zeroconf_missing_api_domain(
++    hass: HomeAssistant,
++) -> None:
++    """Test zeroconf flow aborts if api_domain is missing from properties."""
++
++    result = await hass.config_entries.flow.async_init(
++        DOMAIN,
++        context={"source": SOURCE_ZEROCONF},
++        data=ZeroconfServiceInfo(
++            ip_address=ip_address("192.168.1.254"),
++            ip_addresses=[ip_address("192.168.1.254")],
++            port=80,
++            hostname="Freebox-Server.local.",
++            type="_fbx-api._tcp.local.",
++            name="Freebox Server._fbx-api._tcp.local.",
++            properties={"api_version": "8.0"},  # api_domain intentionally omitted
++        ),
++    )
++
++    assert result["type"] is FlowResultType.ABORT
++    assert result["reason"] == "missing_api_domain"

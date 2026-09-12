@@ -1,0 +1,13 @@
+task_id: GH1204_evaluate_230
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix enforce string"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/huggingface/evaluate/pull/230"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

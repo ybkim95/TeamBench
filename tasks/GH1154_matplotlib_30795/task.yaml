@@ -1,0 +1,13 @@
+task_id: GH1154_matplotlib_30795
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix array alpha to multiply (not replace) existing RGBA alpha"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/30795"
+source_issue: "https://github.com/matplotlib/matplotlib/issues/26092"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,52 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24761,
+  "pr_url": "https://github.com/scipy/scipy/pull/24761",
+  "issue_number": null,
+  "base_sha": "6cc4f355c68bc016f5757881a509ea3dad37644a",
+  "head_sha": "6c2b234495e9696447e20d604af5c65d51042cbf",
+  "additions": 7,
+  "deletions": 1,
+  "changed_files": [
+    "scipy/spatial/transform/_rotation_cy.pyx",
+    "scipy/spatial/transform/tests/test_rotation.py"
+  ],
+  "test_files": [
+    "scipy/spatial/transform/tests/test_rotation.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "apply",
+      "appropriate",
+      "array",
+      "bint",
+      "cdef",
+      "const",
+      "convert",
+      "crotvec",
+      "degrees",
+      "double"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:00:01Z"
+}

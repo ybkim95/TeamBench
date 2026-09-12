@@ -1,0 +1,13 @@
+task_id: GH919_pytorch_lightni_21244
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix `last.ckpt` only being saved when another checkpoint has been created"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Lightning-AI/pytorch-lightning/pull/21244"
+source_issue: "https://github.com/Lightning-AI/pytorch-lightning/issues/20245"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

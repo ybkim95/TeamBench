@@ -1,0 +1,244 @@
+diff --git a/narwhals/_arrow/group_by.py b/narwhals/_arrow/group_by.py
+index aefade0dc2..25ec346dd2 100644
+--- a/narwhals/_arrow/group_by.py
++++ b/narwhals/_arrow/group_by.py
+@@ -5,11 +5,11 @@
+ from typing import TYPE_CHECKING
+ from typing import Any
+ from typing import Iterator
+-from typing import cast
+ 
+ import pyarrow as pa
+ import pyarrow.compute as pc
+ 
++from narwhals._arrow.utils import cast_to_comparable_string_types
+ from narwhals._arrow.utils import extract_py_scalar
+ from narwhals._expression_parsing import evaluate_output_names_and_aliases
+ from narwhals._expression_parsing import is_elementary_expression
+@@ -146,15 +146,17 @@ def __iter__(self: Self) -> Iterator[tuple[Any, ArrowDataFrame]]:
+ 
+         table = self._df._native_frame
+         # NOTE: stubs fail in multiple places for `ChunkedArray`
+-        it = cast(
+-            "Iterator[pa.StringArray]",
+-            (table[key].cast(pa.string()) for key in self._keys),
++        it, separator_scalar = cast_to_comparable_string_types(
++            *(table[key] for key in self._keys), separator=""
+         )
+         # NOTE: stubs indicate `separator` must also be a `ChunkedArray`
+         # Reality: `str` is fine
+         concat_str: Incomplete = pc.binary_join_element_wise
+         key_values = concat_str(
+-            *it, "", null_handling="replace", null_replacement=null_token
++            *it,
++            separator_scalar,
++            null_handling="replace",
++            null_replacement=null_token,
+         )
+         table = table.add_column(i=0, field_=col_token, column=key_values)
+         for v in pc.unique(key_values):
+diff --git a/narwhals/_arrow/namespace.py b/narwhals/_arrow/namespace.py
+index 22e2e56184..7097c37767 100644
+--- a/narwhals/_arrow/namespace.py
++++ b/narwhals/_arrow/namespace.py
+@@ -19,6 +19,7 @@
+ from narwhals._arrow.selectors import ArrowSelectorNamespace
+ from narwhals._arrow.series import ArrowSeries
+ from narwhals._arrow.utils import align_series_full_broadcast
++from narwhals._arrow.utils import cast_to_comparable_string_types
+ from narwhals._arrow.utils import diagonal_concat
+ from narwhals._arrow.utils import extract_dataframe_comparand
+ from narwhals._arrow.utils import horizontal_concat
+@@ -288,27 +289,27 @@ def concat_str(
+         separator: str,
+         ignore_nulls: bool,
+     ) -> ArrowExpr:
+-        dtypes = import_dtypes_module(self._version)
+-
+         def func(df: ArrowDataFrame) -> list[ArrowSeries]:
+             compliant_series_list = align_series_full_broadcast(
+-                *(chain.from_iterable(expr.cast(dtypes.String())(df) for expr in exprs))
++                *(chain.from_iterable(expr(df) for expr in exprs))
+             )
++            name = compliant_series_list[0].name
+             null_handling: Literal["skip", "emit_null"] = (
+                 "skip" if ignore_nulls else "emit_null"
+             )
+-            it = (s._native_series for s in compliant_series_list)
++            it, separator_scalar = cast_to_comparable_string_types(
++                *(s.native for s in compliant_series_list), separator=separator
++            )
+             # NOTE: stubs indicate `separator` must also be a `ChunkedArray`
+             # Reality: `str` is fine
+             concat_str: Incomplete = pc.binary_join_element_wise
+-            return [
+-                ArrowSeries(
+-                    native_series=concat_str(*it, separator, null_handling=null_handling),
+-                    name=compliant_series_list[0].name,
+-                    backend_version=self._backend_version,
+-                    version=self._version,
+-                )
+-            ]
++            compliant = self._series(
++                concat_str(*it, separator_scalar, null_handling=null_handling),
++                name=name,
++                backend_version=self._backend_version,
++                version=self._version,
++            )
++            return [compliant]
+ 
+         return self._expr._from_callable(
+             func=func,
+diff --git a/narwhals/_arrow/utils.py b/narwhals/_arrow/utils.py
+index a1fd03f495..2d4f85441a 100644
+--- a/narwhals/_arrow/utils.py
++++ b/narwhals/_arrow/utils.py
+@@ -5,6 +5,7 @@
+ from typing import TYPE_CHECKING
+ from typing import Any
+ from typing import Iterable
++from typing import Iterator
+ from typing import Sequence
+ from typing import cast
+ from typing import overload
+@@ -543,6 +544,19 @@ def pad_series(
+     return series._from_native_series(concat), offset_left + offset_right
+ 
+ 
++def cast_to_comparable_string_types(
++    *chunked_arrays: ArrowChunkedArray,
++    separator: str,
++) -> tuple[Iterator[ArrowChunkedArray], pa.Scalar[Any]]:
++    # Ensure `chunked_arrays` are either all `string` or all `large_string`.
++    dtype = (
++        pa.string()  # (PyArrow default)
++        if not any(pa.types.is_large_string(ca.type) for ca in chunked_arrays)
++        else pa.large_string()
++    )
++    return (ca.cast(dtype) for ca in chunked_arrays), lit(separator, dtype)
++
++
+ class ArrowSeriesNamespace(_SeriesNamespace["ArrowSeries", "ArrowChunkedArray"]):
+     def __init__(self: Self, series: ArrowSeries, /) -> None:
+         self._compliant_series = series
+diff --git a/narwhals/functions.py b/narwhals/functions.py
+index db29692b98..f2512dfee7 100644
+--- a/narwhals/functions.py
++++ b/narwhals/functions.py
+@@ -309,7 +309,8 @@ def from_dict(
+ 
+     Arguments:
+         data: Dictionary to create DataFrame from.
+-        schema: The DataFrame schema as Schema or dict of {name: type}.
++        schema: The DataFrame schema as Schema or dict of {name: type}. If not
++            specified, the schema will be inferred by the native library.
+         backend: specifies which eager backend instantiate to. Only
+             necessary if inputs are not Narwhals Series.
+ 
+@@ -1593,7 +1594,7 @@ def lit(value: Any, dtype: DType | type[DType] | None = None) -> Expr:
+     Arguments:
+         value: The value to use as literal.
+         dtype: The data type of the literal value. If not provided, the data type will
+-            be inferred.
++            be inferred by the native library.
+ 
+     Returns:
+         A new expression.
+diff --git a/narwhals/stable/v1/__init__.py b/narwhals/stable/v1/__init__.py
+index da25bf6085..e8e1af32d8 100644
+--- a/narwhals/stable/v1/__init__.py
++++ b/narwhals/stable/v1/__init__.py
+@@ -1869,7 +1869,7 @@ def lit(value: Any, dtype: DType | type[DType] | None = None) -> Expr:
+     Arguments:
+         value: The value to use as literal.
+         dtype: The data type of the literal value. If not provided, the data type will
+-            be inferred.
++            be inferred by the native library.
+ 
+     Returns:
+         A new expression.
+@@ -2228,7 +2228,8 @@ def from_dict(
+ 
+     Arguments:
+         data: Dictionary to create DataFrame from.
+-        schema: The DataFrame schema as Schema or dict of {name: type}.
++        schema: The DataFrame schema as Schema or dict of {name: type}. If not
++            specified, the schema will be inferred by the native library.
+         backend: specifies which eager backend instantiate to. Only
+             necessary if inputs are not Narwhals Series.
+ 
+diff --git a/tests/expr_and_series/concat_str_test.py b/tests/expr_and_series/concat_str_test.py
+index 6b6e8907e2..ebcfb92e79 100644
+--- a/tests/expr_and_series/concat_str_test.py
++++ b/tests/expr_and_series/concat_str_test.py
+@@ -1,5 +1,8 @@
+ from __future__ import annotations
+ 
++from typing import Callable
++
++import pyarrow as pa
+ import pytest
+ 
+ import narwhals.stable.v1 as nw
+@@ -71,3 +74,37 @@ def test_concat_str_with_lit(constructor: Constructor) -> None:
+     result = df.with_columns(b=nw.concat_str("a", nw.lit("ab")))
+     expected = {"a": ["cat", "dog", "pig"], "b": ["catab", "dogab", "pigab"]}
+     assert_equal_data(result, expected)
++
++
++@pytest.mark.parametrize(
++    ("input_schema", "input_values", "expected_function"),
++    [
++        (
++            [("store", pa.large_string()), ("item", pa.large_string())],
++            ["a", "b"],
++            pa.types.is_large_string,
++        ),
++        (
++            [("store", pa.large_string()), ("item", pa.int32())],
++            [0, 1],
++            pa.types.is_large_string,
++        ),
++        ([("store", pa.string()), ("item", pa.int32())], [0, 1], pa.types.is_string),
++        ([("store", pa.string()), ("item", pa.string())], ["a", "b"], pa.types.is_string),
++    ],
++)
++def test_pyarrow_string_type(
++    input_schema: list[tuple[str, pa.DataType]],
++    input_values: list[object],
++    expected_function: Callable[[pa.DataType], bool],
++) -> None:
++    df = pa.table(
++        {"store": ["foo", "bar"], "item": input_values}, schema=pa.schema(input_schema)
++    )
++    result = (
++        nw.from_native(df)
++        .with_columns(store_item=nw.concat_str("store", "item", separator="-"))
++        .to_native()
++        .schema
++    )
++    assert expected_function(result.field("store_item").type)
+diff --git a/tests/expr_and_series/lit_test.py b/tests/expr_and_series/lit_test.py
+index 53fddcd87e..cd09b390a9 100644
+--- a/tests/expr_and_series/lit_test.py
++++ b/tests/expr_and_series/lit_test.py
+@@ -5,6 +5,7 @@
+ from typing import Any
+ 
+ import numpy as np
++import pyarrow as pa
+ import pytest
+ 
+ import narwhals.stable.v1 as nw
+@@ -129,3 +130,11 @@ def test_date_lit(constructor: Constructor, request: pytest.FixtureRequest) -> N
+         assert result == {"a": nw.Int64, "literal": nw.Datetime}
+     else:
+         assert result == {"a": nw.Int64, "literal": nw.Date}
++
++
++def test_pyarrow_lit_string() -> None:
++    df = nw.from_native(pa.table({"a": [1, 2, 3]}))
++    result = df.select(nw.lit("foo")).to_native().schema.field("literal")
++    assert pa.types.is_string(result.type)
++    result = df.select(nw.lit("foo", dtype=nw.String)).to_native().schema.field("literal")
++    assert pa.types.is_string(result.type)

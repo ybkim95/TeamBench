@@ -1,0 +1,54 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9487,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9487",
+  "issue_number": 9175,
+  "base_sha": "8600926f2f22e58779a667d82047a90318b20431",
+  "head_sha": "0012a9d9fd4c3106149bad6f03e17a07fb0fff04",
+  "additions": 218,
+  "deletions": 33,
+  "changed_files": [
+    "statsmodels/sandbox/stats/multicomp.py",
+    "statsmodels/stats/multicomp.py",
+    "statsmodels/stats/tests/test_pairwise.py"
+  ],
+  "test_files": [
+    "statsmodels/stats/tests/test_pairwise.py"
+  ],
+  "source_files": [
+    "statsmodels/sandbox/stats/multicomp.py",
+    "statsmodels/stats/multicomp.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "about",
+      "access",
+      "across",
+      "actual",
+      "added",
+      "addition",
+      "allpairtest",
+      "alpha",
+      "also",
+      "alternative"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:06Z"
+}

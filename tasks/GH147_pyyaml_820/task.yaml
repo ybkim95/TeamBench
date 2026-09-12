@@ -1,0 +1,13 @@
+task_id: GH147_pyyaml_820
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix `setup.py test`, issue deprecation warning update supported Python metadata"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/yaml/pyyaml/pull/820"
+source_issue: "https://github.com/yaml/pyyaml/issues/810"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

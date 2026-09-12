@@ -1,0 +1,13 @@
+task_id: GH887_plotly.py_5040
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix TypeError: When using orjson and serializing pandas.NA"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/plotly/plotly.py/pull/5040"
+source_issue: "https://github.com/plotly/plotly.py/issues/5039"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,60 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1177,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1177",
+  "issue_number": null,
+  "base_sha": "fdc18acf393f5e18c59ad47f47d56c148488910d",
+  "head_sha": "96bf39556a8c3bf77aef0be47bb49171de647785",
+  "additions": 106,
+  "deletions": 4,
+  "changed_files": [
+    "docs/api/cursors.rst",
+    "docs/news.rst",
+    "psycopg/psycopg/cursor.py",
+    "psycopg/psycopg/cursor_async.py",
+    "tests/test_cursor_common.py",
+    "tests/test_cursor_common_async.py"
+  ],
+  "test_files": [
+    "tests/test_cursor_common.py",
+    "tests/test_cursor_common_async.py"
+  ],
+  "source_files": [
+    "psycopg/psycopg/cursor.py",
+    "psycopg/psycopg/cursor_async.py"
+  ],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "aconn",
+      "across",
+      "adapt",
+      "adaptation",
+      "after",
+      "arguments",
+      "attribute",
+      "automethod",
+      "available",
+      "back"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:42:29Z"
+}

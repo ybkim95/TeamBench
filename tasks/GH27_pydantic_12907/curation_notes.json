@@ -1,0 +1,62 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12907,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12907",
+  "issue_number": 12300,
+  "base_sha": "4b92ae335692f16189dcaa38fb748ce54150838f",
+  "head_sha": "5943840c629f8f208c8137ec26af08a715e48d6e",
+  "additions": 58,
+  "deletions": 1,
+  "changed_files": [
+    "docs/api/standard_library_types.md",
+    "docs/errors/validation_errors.md",
+    "pydantic-core/python/pydantic_core/core_schema.py",
+    "pydantic-core/src/errors/types.rs",
+    "pydantic-core/src/validators/string.rs",
+    "pydantic-core/tests/test_errors.py",
+    "pydantic/_internal/_known_annotated_metadata.py",
+    "pydantic/types.py",
+    "tests/test_types.py"
+  ],
+  "test_files": [
+    "pydantic-core/tests/test_errors.py",
+    "tests/test_types.py"
+  ],
+  "source_files": [
+    "pydantic-core/python/pydantic_core/core_schema.py",
+    "pydantic/_internal/_known_annotated_metadata.py",
+    "pydantic/types.py"
+  ],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "against",
+      "allow",
+      "also",
+      "annotated",
+      "annotated_types",
+      "annotation",
+      "apply_known_metadata",
+      "ascii_only",
+      "chain_schema_steps",
+      "character"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:33:49Z"
+}

@@ -196,20 +196,14 @@ print('UNIQUE_INDEX_OK')
 fi
 
 # ── Check 10 (attestation): Verifier produced attestation ─────────────────
-check "python3 -c \"
-import json, sys
-att_path = '$SUBMISSION/attestation.json'
-try:
-    att = json.load(open(att_path))
-except FileNotFoundError:
-    # Also accept attestation inside workspace
-    att = json.load(open('migration_result.json'))
-assert att.get('verdict') == 'pass', f'Attestation verdict={att.get(\"verdict\")!r}'
-\" 2>/dev/null || python3 -c \"
-import json
-att = json.load(open('migration_result.json'))
-assert att.get('verdict') == 'pass'
-\"" "bad_attestation"
+# ── Attestation recorded as METADATA, never scored ───────────────────────
+# de-scored-by: scripts/repair_graders.py (R3 attestation-is-protocol)
+# attestation.json is a PROTOCOL property of the run (already enforced as a
+# hard gate in harness/grade_task.py), not a property of the submitted
+# artifact. Scoring it let an agent buy partial credit by writing one JSON
+# file, which is the confound behind the withdrawn "removing the Verifier
+# improves partial score" result. Recorded here, excluded from partial_score.
+echo "metadata: attestation_present=$([ -f "${SUBMISSION:-}/attestation.json" ] && echo yes || echo no)"
 
 # ── Score ──────────────────────────────────────────────────────────────────
 PARTIAL=$(python3 -c "print(round($PASSED/max(1,$CHECKS), 2))")

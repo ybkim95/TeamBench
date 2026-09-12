@@ -1,0 +1,15 @@
+{
+ "task": "GH485_bootrun-backend_111",
+ "patch": "tasks/GH485_bootrun-backend_111/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "I5-Team/bootrun-backend",
+ "pr_number": 111,
+ "base_sha": "07d439b92d557d0249e49b6cec1c08935afad3db",
+ "head_sha": "821ccc47bb51dd9731db854df2e86f7a4438278c",
+ "bytes": 7968,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

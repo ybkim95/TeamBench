@@ -1,0 +1,13 @@
+task_id: GH1096_autogluon_5131
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[timeseries] Avoid masking the 'scaler' param with the default 'target_scaler' value"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/autogluon/autogluon/pull/5131"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

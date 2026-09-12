@@ -1,0 +1,66 @@
+{
+  "repo": "autogluon/autogluon",
+  "pr_number": 2865,
+  "pr_url": "https://github.com/autogluon/autogluon/pull/2865",
+  "issue_number": null,
+  "base_sha": "331908824b863771b0df607d32ea1d7f68eb63d3",
+  "head_sha": "1408fa01d19170247f39b348832ad264de68917d",
+  "additions": 118,
+  "deletions": 6,
+  "changed_files": [
+    "common/src/autogluon/common/utils/path_converter.py",
+    "common/tests/unittests/test_path_converter.py",
+    "core/src/autogluon/core/hpo/executors.py",
+    "core/src/autogluon/core/models/abstract/abstract_model.py",
+    "core/src/autogluon/core/models/ensemble/bagged_ensemble_model.py",
+    "core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py",
+    "core/src/autogluon/core/trainer/abstract_trainer.py",
+    "tabular/src/autogluon/tabular/models/fastainn/tabular_nn_fastai.py"
+  ],
+  "test_files": [
+    "common/tests/unittests/test_path_converter.py"
+  ],
+  "source_files": [
+    "common/src/autogluon/common/utils/path_converter.py",
+    "core/src/autogluon/core/hpo/executors.py",
+    "core/src/autogluon/core/models/abstract/abstract_model.py",
+    "core/src/autogluon/core/models/ensemble/bagged_ensemble_model.py",
+    "core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py",
+    "core/src/autogluon/core/trainer/abstract_trainer.py",
+    "tabular/src/autogluon/tabular/models/fastainn/tabular_nn_fastai.py"
+  ],
+  "parameterization": {
+    "repo": "autogluon/autogluon",
+    "repo_short": "autogluon",
+    "parameterized_identifiers": [
+      "above",
+      "abs_path",
+      "abs_path_root_orig",
+      "absolute",
+      "abspath",
+      "abstract",
+      "abstract_model",
+      "adapter_type",
+      "allow",
+      "already"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:54:52Z"
+}

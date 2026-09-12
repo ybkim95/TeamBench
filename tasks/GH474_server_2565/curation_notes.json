@@ -1,0 +1,56 @@
+{
+  "repo": "music-assistant/server",
+  "pr_number": 2565,
+  "pr_url": "https://github.com/music-assistant/server/pull/2565",
+  "issue_number": null,
+  "base_sha": "470d1040e7dd3088e8104e64646ccfa04d8b205b",
+  "head_sha": "236ce27d09103b471937ebcc9afd64eaedb5d3d8",
+  "additions": 62,
+  "deletions": 18,
+  "changed_files": [
+    "music_assistant/providers/squeezelite/multi_client_stream.py",
+    "music_assistant/providers/squeezelite/player.py",
+    "music_assistant/providers/squeezelite/provider.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "music_assistant/providers/squeezelite/multi_client_stream.py",
+    "music_assistant/providers/squeezelite/player.py",
+    "music_assistant/providers/squeezelite/provider.py"
+  ],
+  "parameterization": {
+    "repo": "music-assistant/server",
+    "repo_short": "server",
+    "parameterized_identifiers": [
+      "across",
+      "active",
+      "after",
+      "aioslimproto",
+      "already",
+      "always",
+      "announcement",
+      "append",
+      "asyncio",
+      "audio"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:20:57Z"
+}

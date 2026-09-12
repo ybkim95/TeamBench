@@ -1,0 +1,13 @@
+task_id: GH902_scikit_learn_21336
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "FIX Prevents segfault in SVC when internals are altered"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scikit-learn/scikit-learn/pull/21336"
+source_issue: "https://github.com/scikit-learn/scikit-learn/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

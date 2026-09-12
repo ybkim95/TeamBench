@@ -1,0 +1,66 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9728,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9728",
+  "issue_number": 9705,
+  "base_sha": "b622bb7df4de1100289148394f4488f85e251c7a",
+  "head_sha": "ae4a3558b8fa01ccb1f3e7958469debb66b4a0ce",
+  "additions": 121,
+  "deletions": 65,
+  "changed_files": [
+    "docs/source/conf.py",
+    "examples/notebooks/ordinal_regression.ipynb",
+    "examples/python/ordinal_regression.py",
+    "statsmodels/compat/matplotlib.py",
+    "statsmodels/graphics/gofplots.py",
+    "statsmodels/graphics/tests/test_tsaplots.py",
+    "statsmodels/graphics/tsaplots.py",
+    "statsmodels/nonparametric/_smoothers_lowess.pyx",
+    "statsmodels/nonparametric/smoothers_lowess.py",
+    "statsmodels/nonparametric/smoothers_lowess_old.py"
+  ],
+  "test_files": [
+    "statsmodels/graphics/tests/test_tsaplots.py"
+  ],
+  "source_files": [
+    "docs/source/conf.py",
+    "examples/python/ordinal_regression.py",
+    "statsmodels/compat/matplotlib.py",
+    "statsmodels/graphics/gofplots.py",
+    "statsmodels/graphics/tsaplots.py",
+    "statsmodels/nonparametric/smoothers_lowess.py",
+    "statsmodels/nonparametric/smoothers_lowess_old.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "acf_x",
+      "adjusted",
+      "against",
+      "alpha",
+      "append",
+      "apply",
+      "arange",
+      "argmax",
+      "argmin",
+      "argument"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:10:22Z"
+}

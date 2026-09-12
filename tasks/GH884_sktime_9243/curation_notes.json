@@ -1,0 +1,52 @@
+{
+  "repo": "sktime/sktime",
+  "pr_number": 9243,
+  "pr_url": "https://github.com/sktime/sktime/pull/9243",
+  "issue_number": 8456,
+  "base_sha": "21b7b0274e7b63f83b657100f6668040d7076a24",
+  "head_sha": "af6b7b9036d152fedb18d55bcaad65441bbae054",
+  "additions": 36,
+  "deletions": 2,
+  "changed_files": [
+    "sktime/transformations/series/summarize.py",
+    "sktime/transformations/series/tests/test_window_summarizer.py"
+  ],
+  "test_files": [
+    "sktime/transformations/series/tests/test_window_summarizer.py"
+  ],
+  "source_files": [
+    "sktime/transformations/series/summarize.py"
+  ],
+  "parameterization": {
+    "repo": "sktime/sktime",
+    "repo_short": "sktime",
+    "parameterized_identifiers": [
+      "across",
+      "backfill",
+      "bfill",
+      "callable",
+      "columns",
+      "depth",
+      "description",
+      "does",
+      "duplicate",
+      "explanation"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:35Z"
+}

@@ -1,0 +1,54 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 22478,
+  "pr_url": "https://github.com/keras-team/keras/pull/22478",
+  "issue_number": null,
+  "base_sha": "d69e886b5f4295f3084eb78a69c2f8f7ae91978d",
+  "head_sha": "f925563b2463a1b54d56d7524501b8e8aae36dae",
+  "additions": 72,
+  "deletions": 0,
+  "changed_files": [
+    "keras/src/ops/image.py",
+    "keras/src/ops/image_test.py"
+  ],
+  "test_files": [
+    "keras/src/ops/image_test.py"
+  ],
+  "source_files": [
+    "keras/src/ops/image.py"
+  ],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "astype",
+      "channels",
+      "channels_axis",
+      "channels_first",
+      "channels_last",
+      "compute_output_spec",
+      "data_format",
+      "dtype",
+      "expected",
+      "float"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:11:35Z"
+}

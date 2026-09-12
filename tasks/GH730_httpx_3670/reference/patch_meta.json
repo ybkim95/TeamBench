@@ -1,0 +1,15 @@
+{
+ "task": "GH730_httpx_3670",
+ "patch": "tasks/GH730_httpx_3670/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "encode/httpx",
+ "pr_number": 3670,
+ "base_sha": "f9d5e1204978c0c66666fa169edada1bf719f8ba",
+ "head_sha": "6ee7a36f3462107f618712c6ba198662b3b2c168",
+ "bytes": 8682,
+ "files_changed": 5,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

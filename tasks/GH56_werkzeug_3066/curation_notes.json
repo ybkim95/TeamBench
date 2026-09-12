@@ -1,0 +1,55 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3066,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3066",
+  "issue_number": 3065,
+  "base_sha": "5dceab4c2a39c0a84320ac01a79c005456a0d601",
+  "head_sha": "77bde3337286c405280bef1870442be7f235393c",
+  "additions": 46,
+  "deletions": 1,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/werkzeug/sansio/multipart.py",
+    "tests/sansio/test_multipart.py",
+    "tests/test_formparser.py"
+  ],
+  "test_files": [
+    "tests/sansio/test_multipart.py",
+    "tests/test_formparser.py"
+  ],
+  "source_files": [
+    "src/werkzeug/sansio/multipart.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "across",
+      "after",
+      "allow",
+      "also",
+      "append",
+      "attempts",
+      "available",
+      "boundary",
+      "bytes",
+      "caller"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:36:34Z"
+}

@@ -1,0 +1,50 @@
+diff --git a/tests/__init__.py b/tests/__init__.py
+index 36a30f6ac7..2bdd7dbc1d 100644
+--- a/tests/__init__.py
++++ b/tests/__init__.py
+@@ -52,6 +52,10 @@ def tearDown(self):
+ 
+ 
+ def requires_crt(reason=None):
++    if callable(reason):
++        raise TypeError(
++            "Use @requires_crt() with parentheses, not bare @requires_crt"
++        )
+     if reason is None:
+         reason = "Test requires awscrt to be installed"
+ 
+diff --git a/tests/unit/test_crt.py b/tests/unit/test_crt.py
+index b0d60c7952..b5745fca60 100644
+--- a/tests/unit/test_crt.py
++++ b/tests/unit/test_crt.py
+@@ -231,3 +231,30 @@ def test_config_without_crt_support_emits_warning(
+                 for r in caplog.records
+             ]
+         )
++
++
++class TestRequiresCrt:
++    def test_bare_requires_crt_fails_immediately(self):
++        with pytest.raises(TypeError):
++
++            @requires_crt
++            def my_test():
++                pass
++
++    def test_requires_crt_skips_when_no_crt(self):
++        with mock.patch('tests.HAS_CRT', False):
++
++            @requires_crt()
++            def my_test():
++                assert False
++
++            assert getattr(my_test, '__unittest_skip__', False) is True
++
++    def test_requires_crt_runs_when_crt_available(self):
++        with mock.patch('tests.HAS_CRT', True):
++
++            @requires_crt()
++            def my_test():
++                pass
++
++            assert getattr(my_test, '__unittest_skip__', False) is False

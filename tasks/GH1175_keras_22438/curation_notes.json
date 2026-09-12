@@ -1,0 +1,54 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 22438,
+  "pr_url": "https://github.com/keras-team/keras/pull/22438",
+  "issue_number": null,
+  "base_sha": "dc3bdb140db317677faf2c96e3a5915582fff69d",
+  "head_sha": "2975b28a50a8018afa82148a577e8ba44c2ca404",
+  "additions": 15,
+  "deletions": 10,
+  "changed_files": [
+    "keras/src/regularizers/regularizers.py",
+    "keras/src/regularizers/regularizers_test.py"
+  ],
+  "test_files": [
+    "keras/src/regularizers/regularizers_test.py"
+  ],
+  "source_files": [
+    "keras/src/regularizers/regularizers.py"
+  ],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "absolute",
+      "cast",
+      "config",
+      "config_from_config",
+      "context",
+      "convert_to_tensor",
+      "dtype",
+      "float",
+      "from_config",
+      "get_config"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:11:39Z"
+}

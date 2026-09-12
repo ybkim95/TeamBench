@@ -1,0 +1,168 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 61b8c8ae7..4f142a6f8 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -5,6 +5,9 @@ Version 3.1.7
+ 
+ Unreleased
+ 
++-   ``parse_list_header`` preserves partially quoted items, discards empty
++    items, and returns empty for unclosed quoted values. :pr:`3128`
++
+ 
+ Version 3.1.6
+ -------------
+diff --git a/src/werkzeug/http.py b/src/werkzeug/http.py
+index aee4f59a8..fc22faa60 100644
+--- a/src/werkzeug/http.py
++++ b/src/werkzeug/http.py
+@@ -15,7 +15,6 @@
+ from time import struct_time
+ from urllib.parse import quote
+ from urllib.parse import unquote
+-from urllib.request import parse_http_list as _parse_list_header
+ 
+ from ._internal import _dt_as_utc
+ from ._internal import _plain_int
+@@ -172,20 +171,24 @@ def quote_header_value(value: t.Any, allow_token: bool = True) -> str:
+     return f'"{value_str}"'
+ 
+ 
++_unslash_re = re.compile(r"\\(.)", re.A)
++
++
+ def unquote_header_value(value: str) -> str:
+-    """Remove double quotes and decode slash-escaped ``"`` and ``\\`` characters in a
+-    header value.
++    """Remove double quotes and backslash escapes from a header value.
+ 
+     This is the reverse of :func:`quote_header_value`.
+ 
+     :param value: The header value to unquote.
+ 
++    .. versionchanged:: 3.2
++        Removes escape preceding any character.
++
+     .. versionchanged:: 3.0
+         The ``is_filename`` parameter is removed.
+     """
+     if len(value) >= 2 and value[0] == value[-1] == '"':
+-        value = value[1:-1]
+-        return value.replace("\\\\", "\\").replace('\\"', '"')
++        return _unslash_re.sub(r"\g<1>", value[1:-1])
+ 
+     return value
+ 
+@@ -301,8 +304,8 @@ def parse_list_header(value: str) -> list[str]:
+     """Parse a header value that consists of a list of comma separated items according
+     to `RFC 9110 <https://httpwg.org/specs/rfc9110.html#abnf.extension>`__.
+ 
+-    This extends :func:`urllib.request.parse_http_list` to remove surrounding quotes
+-    from values.
++    Surrounding quotes are removed from items, but internal quotes are left for
++    future parsing. Empty values are discarded.
+ 
+     .. code-block:: python
+ 
+@@ -312,16 +315,50 @@ def parse_list_header(value: str) -> list[str]:
+     This is the reverse of :func:`dump_header`.
+ 
+     :param value: The header value to parse.
++
++    .. versionchanged:: 3.2
++        Quotes and escapes are kept if only part of an item is quoted. Empty
++        values are omitted. An empty list is returned if the value contains an
++        unclosed quoted string.
+     """
+-    result = []
++    items = []
++    item = ""
++    escape = False
++    quote = False
++
++    for char in value:
++        if escape:
++            escape = False
++            item += char
++            continue
+ 
+-    for item in _parse_list_header(value):
+-        if len(item) >= 2 and item[0] == item[-1] == '"':
+-            item = item[1:-1]
++        if quote:
++            if char == "\\":
++                escape = True
++            elif char == '"':
++                quote = False
+ 
+-        result.append(item)
++            item += char
++            continue
+ 
+-    return result
++        if char == ",":
++            items.append(item)
++            item = ""
++            continue
++
++        if char == '"':
++            quote = True
++
++        item += char
++
++    if quote:
++        # invalid, unclosed quoted string
++        return []
++
++    items.append(item)
++    return [
++        unquote_header_value(item) for item in (item.strip() for item in items) if item
++    ]
+ 
+ 
+ def parse_dict_header(value: str) -> dict[str, str | None]:
+@@ -343,6 +380,10 @@ def parse_dict_header(value: str) -> dict[str, str | None]:
+ 
+     :param value: The header value to parse.
+ 
++    .. versionchanged:: 3.2
++        An empty dict is returned if the value contains an unclosed quoted
++        string.
++
+     .. versionchanged:: 3.0
+         Passing bytes is not supported.
+ 
+@@ -390,10 +431,7 @@ def parse_dict_header(value: str) -> dict[str, str | None]:
+                 # invalid bytes are replaced during unquoting
+                 value = unquote(value, encoding=encoding)
+ 
+-        if len(value) >= 2 and value[0] == value[-1] == '"':
+-            value = value[1:-1]
+-
+-        result[key] = value
++        result[key] = unquote_header_value(value)
+ 
+     return result
+ 
+diff --git a/tests/test_http.py b/tests/test_http.py
+index 726b40bca..b27a030e4 100644
+--- a/tests/test_http.py
++++ b/tests/test_http.py
+@@ -102,6 +102,9 @@ def test_set_header(self):
+             ("a b, c", ["a b", "c"]),
+             ('a b, "c, d"', ["a b", "c, d"]),
+             ('"a\\"b", c', ['a"b', "c"]),
++            ('a"b,c", "d e"', ['a"b,c"', "d e"]),
++            ("a, ,,b,", ["a", "b"]),
++            ('a, "b, c", "d, e', []),
+         ],
+     )
+     def test_list_header(self, value, expect):
+@@ -113,6 +116,7 @@ def test_list_header(self, value, expect):
+             ('foo="bar baz", blah=42', {"foo": "bar baz", "blah": "42"}),
+             ("foo, bar=", {"foo": None, "bar": ""}),
+             ("=foo, =", {}),
++            ('a=1, b="2, 3", c="4, d=5', {}),
+         ],
+     )
+     def test_dict_header(self, value, expect):

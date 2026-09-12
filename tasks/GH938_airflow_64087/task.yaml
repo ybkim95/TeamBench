@@ -1,0 +1,13 @@
+task_id: GH938_airflow_64087
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix DagRun._emit_dagrun_span crash on None/empty context_carrier"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/apache/airflow/pull/64087"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

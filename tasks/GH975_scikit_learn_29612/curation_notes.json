@@ -1,0 +1,53 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 29612,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/29612",
+  "issue_number": 26802,
+  "base_sha": "9a6b7d6c9e430afb0a29fbaa3dcbe22788f764a5",
+  "head_sha": "e7eee2ef62e124428cabc6ff2650ea96448761e4",
+  "additions": 16,
+  "deletions": 3,
+  "changed_files": [
+    "doc/whats_new/v1.6.rst",
+    "sklearn/decomposition/_fastica.py",
+    "sklearn/decomposition/tests/test_fastica.py"
+  ],
+  "test_files": [
+    "sklearn/decomposition/tests/test_fastica.py"
+  ],
+  "source_files": [
+    "sklearn/decomposition/_fastica.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "after",
+      "agnosticity",
+      "argsort",
+      "assert_allclose",
+      "automatic",
+      "axis",
+      "case",
+      "category",
+      "center_and_norm",
+      "converge"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:55:48Z"
+}

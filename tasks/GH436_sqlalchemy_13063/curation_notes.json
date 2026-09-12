@@ -1,0 +1,52 @@
+{
+  "repo": "sqlalchemy/sqlalchemy",
+  "pr_number": 13063,
+  "pr_url": "https://github.com/sqlalchemy/sqlalchemy/pull/13063",
+  "issue_number": null,
+  "base_sha": "d18c4cf4991758bf31de1e26956ff69898a0bcdb",
+  "head_sha": "fe350d0f367c43c96c91d6503992b036a6e47b39",
+  "additions": 9,
+  "deletions": 7,
+  "changed_files": [
+    "lib/sqlalchemy/dialects/postgresql/base.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "lib/sqlalchemy/dialects/postgresql/base.py"
+  ],
+  "parameterization": {
+    "repo": "sqlalchemy/sqlalchemy",
+    "repo_short": "sqlalchemy",
+    "parameterized_identifiers": [
+      "added",
+      "allow",
+      "asyncpg",
+      "batched",
+      "bulk",
+      "complement",
+      "connection_record",
+      "covering",
+      "dbapi_connection",
+      "execution"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:18:38Z"
+}

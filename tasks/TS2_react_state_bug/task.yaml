@@ -1,0 +1,14 @@
+task_id: TS2_react_state_bug
+domain: Software Engineering
+category: Software Engineering
+difficulty: medium
+languages: [typescript]
+description: "Fix React component state bugs: stale closures in counter increment, missing useEffect deps, missing subscription cleanup, and direct state mutation. Two intentional patterns (empty dep array, flash animation toggle) must be preserved."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+network: false
+time_limit_sec: 900
+tags: [react, typescript, hooks, useEffect, stale-closure, state-management]
+workspace_file_count: 6
+lines_changed_expected: 8

@@ -1,0 +1,31 @@
+diff --git a/keras/src/ops/image.py b/keras/src/ops/image.py
+--- a/keras/src/ops/image.py
++++ b/keras/src/ops/image.py
+@@ -98,6 +98,13 @@ def compute_output_spec(self, images):
+                 "Invalid images dtype: expected float dtype. "
+                 f"Received: images.dtype={dtype}"
+             )
++        channels_axis = -1 if self.data_format == "channels_last" else -3
++        channels = images_shape[channels_axis]
++        if channels is not None and channels != 3:
++            raise ValueError(
++                "Input images must have 3 channels, but received images with "
++                f"{channels} channels."
++            )
+         return KerasTensor(shape=images_shape, dtype=images.dtype)
+ 
+ 
+@@ -170,6 +177,13 @@ def compute_output_spec(self, images):
+                 "Invalid images dtype: expected float dtype. "
+                 f"Received: images.dtype={dtype}"
+             )
++        channels_axis = -1 if self.data_format == "channels_last" else -3
++        channels = images_shape[channels_axis]
++        if channels is not None and channels != 3:
++            raise ValueError(
++                "Input images must have 3 channels, but received images with "
++                f"{channels} channels."
++            )
+         return KerasTensor(shape=images_shape, dtype=images.dtype)
+ 
+ 

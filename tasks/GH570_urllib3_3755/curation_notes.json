@@ -1,0 +1,56 @@
+{
+  "repo": "urllib3/urllib3",
+  "pr_number": 3755,
+  "pr_url": "https://github.com/urllib3/urllib3/pull/3755",
+  "issue_number": null,
+  "base_sha": "41f249abe1ef3e20768588969c4035aba060a359",
+  "head_sha": "d0143a6a88c50b5a2335c486805ade762550dd49",
+  "additions": 87,
+  "deletions": 61,
+  "changed_files": [
+    "osv-scanner.toml",
+    "src/urllib3/http2/connection.py",
+    "test/test_http2_connection.py",
+    "uv.lock"
+  ],
+  "test_files": [
+    "test/test_http2_connection.py"
+  ],
+  "source_files": [
+    "src/urllib3/http2/connection.py"
+  ],
+  "parameterization": {
+    "repo": "urllib3/urllib3",
+    "repo_short": "urllib3",
+    "parameterized_identifiers": [
+      "affect",
+      "alabaster",
+      "assign",
+      "body",
+      "click",
+      "close_connection",
+      "config",
+      "configuration",
+      "conn",
+      "connection"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:26:27Z"
+}

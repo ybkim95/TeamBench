@@ -1,0 +1,52 @@
+{
+  "repo": "napari/napari",
+  "pr_number": 8098,
+  "pr_url": "https://github.com/napari/napari/pull/8098",
+  "issue_number": 7962,
+  "base_sha": "da7cceda847a1ee036da62939afc5ddc1f2b9dc9",
+  "head_sha": "9592252d83b45150c04e8f27b0e1eacf1202a360",
+  "additions": 34,
+  "deletions": 2,
+  "changed_files": [
+    "src/napari/layers/_layer_actions.py",
+    "src/napari/layers/_tests/test_layer_actions.py"
+  ],
+  "test_files": [
+    "src/napari/layers/_tests/test_layer_actions.py"
+  ],
+  "source_files": [
+    "src/napari/layers/_layer_actions.py"
+  ],
+  "parameterization": {
+    "repo": "napari/napari",
+    "repo_short": "napari",
+    "parameterized_identifiers": [
+      "added",
+      "append",
+      "array",
+      "array_equal",
+      "astype",
+      "based",
+      "check",
+      "copied",
+      "currently",
+      "data"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:18:31Z"
+}

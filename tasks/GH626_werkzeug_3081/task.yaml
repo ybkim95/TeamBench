@@ -1,0 +1,13 @@
+task_id: GH626_werkzeug_3081
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Correct parsing up to a potential partial boundary"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/werkzeug/pull/3081"
+source_issue: "https://github.com/pallets/werkzeug/issues/3065"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

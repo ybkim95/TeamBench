@@ -1,0 +1,54 @@
+{
+  "repo": "autogluon/autogluon",
+  "pr_number": 4272,
+  "pr_url": "https://github.com/autogluon/autogluon/pull/4272",
+  "issue_number": 4270,
+  "base_sha": "1fcc7053a8c09b4b4bddccd16502d0fc4c3effac",
+  "head_sha": "ce95f7d7a38f40f2fdc6c9adf668722b0f2b7626",
+  "additions": 27,
+  "deletions": 8,
+  "changed_files": [
+    "tabular/src/autogluon/tabular/models/lgb/lgb_model.py",
+    "tabular/tests/conftest.py",
+    "tabular/tests/unittests/models/test_lightgbm.py"
+  ],
+  "test_files": [
+    "tabular/tests/conftest.py",
+    "tabular/tests/unittests/models/test_lightgbm.py"
+  ],
+  "source_files": [
+    "tabular/src/autogluon/tabular/models/lgb/lgb_model.py"
+  ],
+  "parameterization": {
+    "repo": "autogluon/autogluon",
+    "repo_short": "autogluon",
+    "parameterized_identifiers": [
+      "adult",
+      "ames",
+      "columns",
+      "convert",
+      "current_iteration",
+      "dataset_name",
+      "drop",
+      "extra_metrics",
+      "feature_generator",
+      "fit_args"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:21Z"
+}

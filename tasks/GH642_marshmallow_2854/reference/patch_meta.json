@@ -1,0 +1,15 @@
+{
+ "task": "GH642_marshmallow_2854",
+ "patch": "tasks/GH642_marshmallow_2854/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "marshmallow-code/marshmallow",
+ "pr_number": 2854,
+ "base_sha": "c860f56d7b7232037c1e1636e499b0d15cb671cc",
+ "head_sha": "eff41d6ab95895451cc3245da9da9d389a12a0b4",
+ "bytes": 5774,
+ "files_changed": 4,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

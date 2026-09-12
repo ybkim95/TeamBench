@@ -1,0 +1,13 @@
+task_id: GH1064_pymc_7607
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Bump numpy version due to use of `Generator.spawn` only available in `>=1.25`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pymc-devs/pymc/pull/7607"
+source_issue: "https://github.com/pymc-devs/pymc/issues/7605"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,11 @@
+diff --git a/scipy/optimize/_trustregion_exact.py b/scipy/optimize/_trustregion_exact.py
+--- a/scipy/optimize/_trustregion_exact.py
++++ b/scipy/optimize/_trustregion_exact.py
+@@ -386,6 +386,7 @@ def solve(self, tr_radius):
+                         # Update damping factor
+                         lambda_current = lambda_new
+                         already_factorized = True
++                        U = c
+                     else:  # Unsuccessful factorization
+                         # Update uncertainty bounds
+                         lambda_lb = max(lambda_lb, lambda_new)

@@ -1,0 +1,52 @@
+{
+  "repo": "plotly/plotly.py",
+  "pr_number": 5193,
+  "pr_url": "https://github.com/plotly/plotly.py/pull/5193",
+  "issue_number": 5187,
+  "base_sha": "1b7efe20a77d4863199063ec96aad03c62e8cc29",
+  "head_sha": "6c257931c8a88a534a75a68b0ad571115244fb28",
+  "additions": 46,
+  "deletions": 3,
+  "changed_files": [
+    "plotly/basedatatypes.py",
+    "tests/test_optional/test_kaleido/test_kaleido.py"
+  ],
+  "test_files": [
+    "tests/test_optional/test_kaleido/test_kaleido.py"
+  ],
+  "source_files": [
+    "plotly/basedatatypes.py"
+  ],
+  "parameterization": {
+    "repo": "plotly/plotly.py",
+    "repo_short": "plotly.py",
+    "parameterized_identifiers": [
+      "argument",
+      "assert_called_once",
+      "base64",
+      "calc_fig_sync",
+      "call_args",
+      "called",
+      "calls",
+      "contextlib",
+      "correct",
+      "data"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:01:18Z"
+}

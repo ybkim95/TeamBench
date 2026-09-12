@@ -1,0 +1,33 @@
+{
+  "fields": [
+    {
+      "name": "txn_id",
+      "type": "int64"
+    },
+    {
+      "name": "amount_cents",
+      "type": "float64"
+    },
+    {
+      "name": "currency_code",
+      "type": "string"
+    },
+    {
+      "name": "src_acct",
+      "type": "string"
+    },
+    {
+      "name": "dst_acct",
+      "type": "string"
+    },
+    {
+      "name": "fee_cents",
+      "type": "float64",
+      "nullable": true
+    }
+  ],
+  "aliases": {
+    "amount_cents": "amt",
+    "currency_code": "ccy"
+  }
+}

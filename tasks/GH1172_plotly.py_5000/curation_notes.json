@@ -1,0 +1,52 @@
+{
+  "repo": "plotly/plotly.py",
+  "pr_number": 5000,
+  "pr_url": "https://github.com/plotly/plotly.py/pull/5000",
+  "issue_number": 4999,
+  "base_sha": "5e079e1119ee933645ec846689a4bc9d0cb41157",
+  "head_sha": "9043fff3a286e36d8599029b94335fa830821801",
+  "additions": 38,
+  "deletions": 3,
+  "changed_files": [
+    "packages/python/plotly/plotly/express/_core.py",
+    "packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py"
+  ],
+  "test_files": [
+    "packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py"
+  ],
+  "source_files": [
+    "packages/python/plotly/plotly/express/_core.py"
+  ],
+  "parameterization": {
+    "repo": "plotly/plotly.py",
+    "repo_short": "plotly.py",
+    "parameterized_identifiers": [
+      "according",
+      "alias",
+      "arange",
+      "array",
+      "category_orders",
+      "column",
+      "columns",
+      "constructor",
+      "count",
+      "custom_order"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:11:27Z"
+}

@@ -1,0 +1,51 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1520,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1520",
+  "issue_number": null,
+  "base_sha": "e27e4ad96846df2576c85392e748fe087d0e4b32",
+  "head_sha": "2bf0b1ec864fed111c7d88370d1e47758ba8df8f",
+  "additions": 2,
+  "deletions": 2,
+  "changed_files": [
+    "test/automl/test_regression.py"
+  ],
+  "test_files": [
+    "test/automl/test_regression.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "automl",
+      "best",
+      "best_iteration",
+      "case",
+      "config",
+      "config_history",
+      "density",
+      "early",
+      "estimator",
+      "get_params"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:11:16Z"
+}

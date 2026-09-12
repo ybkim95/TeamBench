@@ -1,0 +1,52 @@
+{
+  "repo": "matplotlib/matplotlib",
+  "pr_number": 31091,
+  "pr_url": "https://github.com/matplotlib/matplotlib/pull/31091",
+  "issue_number": 31086,
+  "base_sha": "2b8103b1e4f393002b33a7802558031e7b88d2b2",
+  "head_sha": "f6cdf998e6f435e105a6e65025b18acd41bc2a17",
+  "additions": 21,
+  "deletions": 2,
+  "changed_files": [
+    "lib/matplotlib/tests/test_ticker.py",
+    "lib/matplotlib/ticker.py"
+  ],
+  "test_files": [
+    "lib/matplotlib/tests/test_ticker.py"
+  ],
+  "source_files": [
+    "lib/matplotlib/ticker.py"
+  ],
+  "parameterization": {
+    "repo": "matplotlib/matplotlib",
+    "repo_short": "matplotlib",
+    "parameterized_identifiers": [
+      "arange",
+      "assert_array_equal",
+      "base",
+      "case",
+      "cause",
+      "closed",
+      "could",
+      "dmax",
+      "dmin",
+      "does"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:01:10Z"
+}

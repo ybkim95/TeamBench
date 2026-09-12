@@ -1,0 +1,13 @@
+task_id: GH699_quart_369
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix a deprecation warning in Python 3.14"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/quart/pull/369"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

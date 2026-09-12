@@ -1,0 +1,13 @@
+task_id: GH1167_featuretools_2459
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix bug with `NumWords`; add test suite"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/alteryx/featuretools/pull/2459"
+source_issue: "https://github.com/alteryx/featuretools/issues/2457"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH17_aiohttp_10151
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix infinite callback loop when time is not moving forward"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/aio-libs/aiohttp/pull/10151"
+source_issue: "https://github.com/aio-libs/aiohttp/issues/123"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

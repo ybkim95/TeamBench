@@ -1,0 +1,56 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 160825,
+  "pr_url": "https://github.com/home-assistant/core/pull/160825",
+  "issue_number": 160818,
+  "base_sha": "20102cd83f4287ec3588ff9f72243d1501dd6ef2",
+  "head_sha": "ee5935cf71cc60ae8532c4daba11eca5aa3221f6",
+  "additions": 96,
+  "deletions": 17,
+  "changed_files": [
+    "homeassistant/components/coolmaster/climate.py",
+    "tests/components/coolmaster/conftest.py",
+    "tests/components/coolmaster/test_climate.py",
+    "tests/components/coolmaster/test_init.py"
+  ],
+  "test_files": [
+    "tests/components/coolmaster/conftest.py",
+    "tests/components/coolmaster/test_climate.py",
+    "tests/components/coolmaster/test_init.py"
+  ],
+  "source_files": [
+    "homeassistant/components/coolmaster/climate.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "able",
+      "async_get",
+      "async_get_device",
+      "async_get_or_create",
+      "async_setup_component",
+      "attributes",
+      "being",
+      "binary_sensor",
+      "button",
+      "case"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:38:50Z"
+}

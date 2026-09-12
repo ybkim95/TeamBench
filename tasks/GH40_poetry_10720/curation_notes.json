@@ -1,0 +1,53 @@
+{
+  "repo": "python-poetry/poetry",
+  "pr_number": 10720,
+  "pr_url": "https://github.com/python-poetry/poetry/pull/10720",
+  "issue_number": 10702,
+  "base_sha": "295a7a02522d183e6d46fecd2bef27a2df7bc60c",
+  "head_sha": "42d9cabbe1110846dc14eae37b5f60aacb248db9",
+  "additions": 69,
+  "deletions": 5,
+  "changed_files": [
+    "src/poetry/packages/locker.py",
+    "tests/installation/fixtures/with-conflicting-dependency-extras-transitive.test",
+    "tests/packages/test_locker.py"
+  ],
+  "test_files": [
+    "tests/packages/test_locker.py"
+  ],
+  "source_files": [
+    "src/poetry/packages/locker.py"
+  ],
+  "parameterization": {
+    "repo": "python-poetry/poetry",
+    "repo_short": "poetry",
+    "parameterized_identifiers": [
+      "add_dependency",
+      "added",
+      "again",
+      "conflicting",
+      "constraints",
+      "content",
+      "content2",
+      "create_dependency",
+      "dependencies",
+      "dependency"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:35:43Z"
+}

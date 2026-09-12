@@ -1,0 +1,13 @@
+task_id: GH889_pandas_64788
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: fix date_range inclusive filtering with periods"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64788"
+source_issue: "https://github.com/pandas-dev/pandas/issues/46331"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

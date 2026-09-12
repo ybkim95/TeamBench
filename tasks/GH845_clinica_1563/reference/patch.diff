@@ -1,0 +1,53 @@
+diff --git a/clinica/converters/ixi_to_bids/_utils.py b/clinica/converters/ixi_to_bids/_utils.py
+index 11b091e19..c9531a9d7 100644
+--- a/clinica/converters/ixi_to_bids/_utils.py
++++ b/clinica/converters/ixi_to_bids/_utils.py
+@@ -388,10 +388,12 @@ def write_participants(
+     participants : List of converted subjects study source ids.
+     """
+     clinical_data.set_index("source_id", inplace=True, drop=False)
+-    clinical_data = clinical_data.assign(
+-        participant_id=clinical_data.source_id.apply(
++    clinical_data.insert(
++        0,
++        "participant_id",
++        clinical_data.source_id.apply(
+             lambda x: bids_id_factory(StudyName.IXI).from_original_study_id(x)
+-        )
++        ),
+     )
+     for participant in participants:
+         if participant not in clinical_data.index:
+diff --git a/test/unittests/converters/test_ixi_to_bids_utils.py b/test/unittests/converters/test_ixi_to_bids_utils.py
+index 8b868d305..621819ce3 100644
+--- a/test/unittests/converters/test_ixi_to_bids_utils.py
++++ b/test/unittests/converters/test_ixi_to_bids_utils.py
+@@ -627,8 +627,8 @@ def test_write_scans_not_empty(tmp_path):
+ def formatted_clinical_data_builder() -> pd.DataFrame:
+     return pd.DataFrame(
+         {
+-            "source_id": ["IXI001"],
+             "participant_id": ["sub-IXI001"],
++            "source_id": ["IXI001"],
+             "session_id": ["ses-M000"],
+             "acq_time": ["2024-08-23"],
+             "sex": ["female"],
+@@ -664,10 +664,14 @@ def test_write_sessions(tmp_path):
+ def test_write_participants(tmp_path):
+     from clinica.converters.ixi_to_bids._utils import write_participants
+ 
+-    clinical = formatted_clinical_data_builder()
+-    expected = clinical.copy()
+-    write_participants(tmp_path, clinical, ["IXI001", "IXI002"])
+-    expected.drop(["acq_time", "session_id"], axis=1, inplace=True)
++    write_participants(
++        tmp_path,
++        formatted_clinical_data_builder().drop("participant_id", axis=1),
++        ["IXI001", "IXI002"],
++    )
++    expected = formatted_clinical_data_builder().drop(
++        ["acq_time", "session_id"], axis=1
++    )
+     expected = pd.concat(
+         [expected, pd.DataFrame({col: ["n/a"] for col in expected.columns})]
+     ).reset_index(drop=True)

@@ -1,0 +1,13 @@
+task_id: GH1105_matplotlib_31203
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix Axes.hist crash for numpy timedelta64 inputs"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/31203"
+source_issue: "https://github.com/matplotlib/matplotlib/issues/31182"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

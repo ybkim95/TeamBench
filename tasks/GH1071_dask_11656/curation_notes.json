@@ -1,0 +1,60 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 11656,
+  "pr_url": "https://github.com/dask/dask/pull/11656",
+  "issue_number": null,
+  "base_sha": "ecb0cdd9a3046b148d28e2ad3fa27187e3743e89",
+  "head_sha": "20ab96657b9cb3c12cc32df930fd0ac3f2964aba",
+  "additions": 20,
+  "deletions": 9,
+  "changed_files": [
+    "dask/dataframe/dask_expr/_collection.py",
+    "dask/dataframe/dask_expr/_indexing.py",
+    "dask/dataframe/dask_expr/io/tests/test_io.py",
+    "dask/dataframe/dask_expr/tests/test_groupby.py",
+    "dask/dataframe/tests/test_groupby.py"
+  ],
+  "test_files": [
+    "dask/dataframe/dask_expr/io/tests/test_io.py",
+    "dask/dataframe/dask_expr/tests/test_groupby.py",
+    "dask/dataframe/tests/test_groupby.py"
+  ],
+  "source_files": [
+    "dask/dataframe/dask_expr/_collection.py",
+    "dask/dataframe/dask_expr/_indexing.py"
+  ],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "arr_np",
+      "assert_eq",
+      "chunks",
+      "cindexer",
+      "columns",
+      "copy",
+      "dask",
+      "dask_expr",
+      "data",
+      "dataframe"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:03:22Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH27_pydantic_12907
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Add `ascii_only` option to `StringConstraints`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pydantic/pydantic/pull/12907"
+source_issue: "https://github.com/pydantic/pydantic/issues/12300"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

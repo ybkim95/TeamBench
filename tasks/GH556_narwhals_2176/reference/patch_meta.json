@@ -1,0 +1,15 @@
+{
+ "task": "GH556_narwhals_2176",
+ "patch": "tasks/GH556_narwhals_2176/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "narwhals-dev/narwhals",
+ "pr_number": 2176,
+ "base_sha": "bc93ca0e92430d0f3c05292e2e7a0c52fa935734",
+ "head_sha": "4f7db8cc7937a23e5fbcd776f9446b18d8540079",
+ "bytes": 9857,
+ "files_changed": 7,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

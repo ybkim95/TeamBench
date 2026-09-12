@@ -1,0 +1,52 @@
+{
+  "repo": "rainlanguage/rain.orderbook",
+  "pr_number": 1936,
+  "pr_url": "https://github.com/rainlanguage/rain.orderbook/pull/1936",
+  "issue_number": 1935,
+  "base_sha": "3dcf18969297234df12da389d104a68f5cd750db",
+  "head_sha": "1acc995ff1a15ddc3299eb89f918e4ed698fbc9e",
+  "additions": 28,
+  "deletions": 7,
+  "changed_files": [
+    "crates/js_api/src/gui/state_management.rs",
+    "crates/settings/src/yaml/dotrain.rs",
+    "packages/ui-components/src/lib/__mocks__/stores.ts",
+    "packages/ui-components/vite.config.ts"
+  ],
+  "test_files": [],
+  "source_files": [],
+  "parameterization": {
+    "repo": "rainlanguage/rain.orderbook",
+    "repo_short": "rain.orderbook",
+    "parameterized_identifiers": [
+      "actual",
+      "add_select_tokens",
+      "and_then",
+      "clone",
+      "cloned",
+      "collect",
+      "const",
+      "context",
+      "core",
+      "default"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:12:42Z"
+}

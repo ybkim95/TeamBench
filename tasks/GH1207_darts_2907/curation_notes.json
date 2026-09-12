@@ -1,0 +1,53 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 2907,
+  "pr_url": "https://github.com/unit8co/darts/pull/2907",
+  "issue_number": null,
+  "base_sha": "fd507223ef600ef3f2f77d9a6c18a17fef2b1a10",
+  "head_sha": "1d7caa71988950c69de4c01bbabc1374cfed89fb",
+  "additions": 19,
+  "deletions": 4,
+  "changed_files": [
+    "darts/tests/models/forecasting/test_regression_ensemble_model.py",
+    "darts/tests/utils/historical_forecasts/test_historical_forecasts.py"
+  ],
+  "test_files": [
+    "darts/tests/models/forecasting/test_regression_ensemble_model.py",
+    "darts/tests/utils/historical_forecasts/test_historical_forecasts.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "caplog",
+      "config",
+      "covariates",
+      "expected_min_length",
+      "global",
+      "lags",
+      "local",
+      "model",
+      "multi",
+      "multi_series"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:14:03Z"
+}

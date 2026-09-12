@@ -1,0 +1,58 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 7881,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/7881",
+  "issue_number": null,
+  "base_sha": "811746b3db3d3256a229fa5726220f541b0c1675",
+  "head_sha": "418ee5fcf32e98e400798d37bd0a6d49eb6ee2d4",
+  "additions": 140,
+  "deletions": 22,
+  "changed_files": [
+    "great_expectations/data_context/data_context/cloud_data_context.py",
+    "great_expectations/data_context/store/gx_cloud_store_backend.py",
+    "tests/data_context/cloud_data_context/test_expectation_suite_crud.py",
+    "tests/data_context/store/test_gx_cloud_store_backend.py"
+  ],
+  "test_files": [
+    "tests/data_context/cloud_data_context/test_expectation_suite_crud.py",
+    "tests/data_context/store/test_gx_cloud_store_backend.py"
+  ],
+  "source_files": [
+    "great_expectations/data_context/data_context/cloud_data_context.py",
+    "great_expectations/data_context/store/gx_cloud_store_backend.py"
+  ],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "assert_called_with",
+      "attributes",
+      "autospec",
+      "base_url",
+      "bcd1",
+      "bd20fead",
+      "call_args",
+      "cast",
+      "checkpoint",
+      "checkpoint_name"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:53:05Z"
+}

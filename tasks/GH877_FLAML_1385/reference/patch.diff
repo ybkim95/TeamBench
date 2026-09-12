@@ -1,0 +1,58 @@
+diff --git a/flaml/automl/automl.py b/flaml/automl/automl.py
+--- a/flaml/automl/automl.py
++++ b/flaml/automl/automl.py
+@@ -203,7 +203,7 @@ def custom_metric(
+                 * Valid str options depend on different tasks.
+                 For classification tasks, valid choices are
+                     ["auto", 'stratified', 'uniform', 'time', 'group']. "auto" -> stratified.
+-                For regression tasks, valid choices are ["auto", 'uniform', 'time'].
++                For regression tasks, valid choices are ["auto", 'uniform', 'time', 'group'].
+                     "auto" -> uniform.
+                 For time series forecast tasks, must be "auto" or 'time'.
+                 For ranking task, must be "auto" or 'group'.
+@@ -739,7 +739,7 @@ def retrain_from_log(
+                 * Valid str options depend on different tasks.
+                 For classification tasks, valid choices are
+                     ["auto", 'stratified', 'uniform', 'time', 'group']. "auto" -> stratified.
+-                For regression tasks, valid choices are ["auto", 'uniform', 'time'].
++                For regression tasks, valid choices are ["auto", 'uniform', 'time', 'group'].
+                     "auto" -> uniform.
+                 For time series forecast tasks, must be "auto" or 'time'.
+                 For ranking task, must be "auto" or 'group'.
+@@ -1358,7 +1358,7 @@ def custom_metric(
+                 * Valid str options depend on different tasks.
+                 For classification tasks, valid choices are
+                     ["auto", 'stratified', 'uniform', 'time', 'group']. "auto" -> stratified.
+-                For regression tasks, valid choices are ["auto", 'uniform', 'time'].
++                For regression tasks, valid choices are ["auto", 'uniform', 'time', 'group'].
+                     "auto" -> uniform.
+                 For time series forecast tasks, must be "auto" or 'time'.
+                 For ranking task, must be "auto" or 'group'.
+
+diff --git a/flaml/automl/task/generic_task.py b/flaml/automl/task/generic_task.py
+--- a/flaml/automl/task/generic_task.py
++++ b/flaml/automl/task/generic_task.py
+@@ -442,8 +442,8 @@ def prepare_data(
+                 X_train_all, y_train_all = shuffle(X_train_all, y_train_all, random_state=RANDOM_SEED)
+             if data_is_df:
+                 X_train_all.reset_index(drop=True, inplace=True)
+-            if isinstance(y_train_all, pd.Series):
+-                y_train_all.reset_index(drop=True, inplace=True)
++        if isinstance(y_train_all, pd.Series):
++            y_train_all.reset_index(drop=True, inplace=True)
+ 
+         X_train, y_train = X_train_all, y_train_all
+         state.groups_all = state.groups
+
+diff --git a/flaml/automl/task/task.py b/flaml/automl/task/task.py
+--- a/flaml/automl/task/task.py
++++ b/flaml/automl/task/task.py
+@@ -192,7 +192,7 @@ def prepare_data(
+                 * Valid str options depend on different tasks.
+                 For classification tasks, valid choices are
+                     ["auto", 'stratified', 'uniform', 'time', 'group']. "auto" -> stratified.
+-                For regression tasks, valid choices are ["auto", 'uniform', 'time'].
++                For regression tasks, valid choices are ["auto", 'uniform', 'time', 'group'].
+                     "auto" -> uniform.
+                 For time series forecast tasks, must be "auto" or 'time'.
+                 For ranking task, must be "auto" or 'group'.

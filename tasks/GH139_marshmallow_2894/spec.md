@@ -1,7 +1,7 @@
 # GH139_marshmallow_2894: Fix Constant field rejecting None values during load — Full Specification (Planner Only)
 
 ## Source
-- PR: https://github.com/marshmallow-code/marshmallow/pull/2894
+- PR: (withheld: the upstream fix is not part of the task)
 - Issue: https://github.com/marshmallow-code/marshmallow/issues/2868
 - Repo: https://github.com/marshmallow-code/marshmallow
 
@@ -39,19 +39,9 @@ marshmallow.exceptions.ValidationError: {'sentinel': ['Field may not be null.']}
 
 ## Issue Discussion (Root Cause Analysis)
 
-### Comment 1 (@sloria):
+### Comment 1 ([user]):
 
 Thanks for reporting! I agree the current behavior is unexpected. PRs welcome!
-
-## Files Changed in Fix
-
-- `AUTHORS.rst` (modified, +1/-0)
-- `CHANGELOG.rst` (modified, +8/-0)
-- `src/marshmallow/fields.py` (modified, +2/-2)
-- `tests/test_deserialization.py` (modified, +9/-0)
-
-## `src/marshmallow/fields.py`
-[Code changes omitted — Planner should analyze the issue and guide the Executor]
 
 ## Acceptance Criteria
 
@@ -61,6 +51,6 @@ Thanks for reporting! I agree the current behavior is unexpected. PRs welcome!
 
 ## Important Notes
 
-- Only modify the source files listed above (not test files)
+- Only modify source files, not test files
 - The test files already encode the correct expected behaviour
 - Run `pytest -x -q` to verify your fix

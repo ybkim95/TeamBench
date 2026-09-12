@@ -1,0 +1,235 @@
+diff --git a/.github/workflows/test.yml b/.github/workflows/test.yml
+index 2e39633a0c58a..e852e0f25d3b0 100644
+--- a/.github/workflows/test.yml
++++ b/.github/workflows/test.yml
+@@ -102,6 +102,9 @@ jobs:
+             uv.lock
+       - name: Install Dependencies
+         run: uv sync --no-dev --group tests --extra all
++      - name: Ensure that we have the lowest supported Pydantic version
++        if: matrix.uv-resolution == 'lowest-direct'
++        run: uv pip install "pydantic==2.9.0"
+       - name: Install Starlette from source
+         if: matrix.starlette-src == 'starlette-git'
+         run: uv pip install "git+https://github.com/Kludex/starlette@main"
+diff --git a/pyproject.toml b/pyproject.toml
+index 73d3929292b6f..612d8a0d8abd1 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -43,7 +43,7 @@ classifiers = [
+ ]
+ dependencies = [
+     "starlette>=0.46.0",
+-    "pydantic>=2.7.0",
++    "pydantic>=2.9.0",
+     "typing-extensions>=4.8.0",
+     "typing-inspection>=0.4.2",
+     "annotated-doc>=0.0.2",
+@@ -156,7 +156,7 @@ docs-tests = [
+ ]
+ github-actions = [
+     "httpx >=0.27.0,<1.0.0",
+-    "pydantic >=2.5.3,<3.0.0",
++    "pydantic >=2.9.0,<3.0.0",
+     "pydantic-settings >=2.1.0,<3.0.0",
+     "pygithub >=2.3.0,<3.0.0",
+     "pyyaml >=5.3.1,<7.0.0",
+diff --git a/tests/test_schema_compat_pydantic_v2.py b/tests/test_schema_compat_pydantic_v2.py
+index 737687f2560d8..7612c6ab5ba12 100644
+--- a/tests/test_schema_compat_pydantic_v2.py
++++ b/tests/test_schema_compat_pydantic_v2.py
+@@ -1,4 +1,5 @@
+ import pytest
++from dirty_equals import IsOneOf
+ from fastapi import FastAPI
+ from fastapi.testclient import TestClient
+ from inline_snapshot import snapshot
+@@ -63,28 +64,58 @@ def test_openapi_schema(client: TestClient):
+                 }
+             },
+             "components": {
+-                "schemas": {
+-                    "PlatformRole": {
+-                        "type": "string",
+-                        "enum": ["admin", "user"],
+-                        "title": "PlatformRole",
++                "schemas": IsOneOf(
++                    # Pydantic >= 2.11: no top-level OtherRole
++                    {
++                        "PlatformRole": {
++                            "type": "string",
++                            "enum": ["admin", "user"],
++                            "title": "PlatformRole",
++                        },
++                        "User": {
++                            "properties": {
++                                "username": {"type": "string", "title": "Username"},
++                                "role": {
++                                    "anyOf": [
++                                        {"$ref": "#/components/schemas/PlatformRole"},
++                                        {"enum": [], "title": "OtherRole"},
++                                    ],
++                                    "title": "Role",
++                                },
++                            },
++                            "type": "object",
++                            "required": ["username", "role"],
++                            "title": "User",
++                        },
+                     },
+-                    "User": {
+-                        "properties": {
+-                            "username": {"type": "string", "title": "Username"},
+-                            "role": {
+-                                "anyOf": [
+-                                    {"$ref": "#/components/schemas/PlatformRole"},
+-                                    {"enum": [], "title": "OtherRole"},
+-                                ],
+-                                "title": "Role",
++                    # Pydantic < 2.11: adds a top-level OtherRole schema
++                    {
++                        "OtherRole": {
++                            "enum": [],
++                            "title": "OtherRole",
++                        },
++                        "PlatformRole": {
++                            "type": "string",
++                            "enum": ["admin", "user"],
++                            "title": "PlatformRole",
++                        },
++                        "User": {
++                            "properties": {
++                                "username": {"type": "string", "title": "Username"},
++                                "role": {
++                                    "anyOf": [
++                                        {"$ref": "#/components/schemas/PlatformRole"},
++                                        {"enum": [], "title": "OtherRole"},
++                                    ],
++                                    "title": "Role",
++                                },
+                             },
++                            "type": "object",
++                            "required": ["username", "role"],
++                            "title": "User",
+                         },
+-                        "type": "object",
+-                        "required": ["username", "role"],
+-                        "title": "User",
+                     },
+-                }
++                )
+             },
+         }
+     )
+diff --git a/tests/test_union_body_discriminator.py b/tests/test_union_body_discriminator.py
+index 1b682c7751f94..53350abc0641a 100644
+--- a/tests/test_union_body_discriminator.py
++++ b/tests/test_union_body_discriminator.py
+@@ -1,5 +1,6 @@
+ from typing import Annotated, Any, Literal
+ 
++from dirty_equals import IsOneOf
+ from fastapi import FastAPI
+ from fastapi.testclient import TestClient
+ from inline_snapshot import snapshot
+@@ -88,11 +89,19 @@ def save_union_body_discriminator(
+                                 "description": "Successful Response",
+                                 "content": {
+                                     "application/json": {
+-                                        "schema": {
+-                                            "type": "object",
+-                                            "additionalProperties": True,
+-                                            "title": "Response Save Union Body Discriminator Items  Post",
+-                                        }
++                                        "schema": IsOneOf(
++                                            # Pydantic < 2.11: no additionalProperties
++                                            {
++                                                "type": "object",
++                                                "title": "Response Save Union Body Discriminator Items  Post",
++                                            },
++                                            # Pydantic >= 2.11: has additionalProperties
++                                            {
++                                                "type": "object",
++                                                "additionalProperties": True,
++                                                "title": "Response Save Union Body Discriminator Items  Post",
++                                            },
++                                        )
+                                     }
+                                 },
+                             },
+@@ -114,11 +123,21 @@ def save_union_body_discriminator(
+                 "schemas": {
+                     "FirstItem": {
+                         "properties": {
+-                            "value": {
+-                                "type": "string",
+-                                "const": "first",
+-                                "title": "Value",
+-                            },
++                            "value": IsOneOf(
++                                # Pydantic >= 2.10: const only
++                                {
++                                    "type": "string",
++                                    "const": "first",
++                                    "title": "Value",
++                                },
++                                # Pydantic 2.9: const + enum
++                                {
++                                    "type": "string",
++                                    "const": "first",
++                                    "enum": ["first"],
++                                    "title": "Value",
++                                },
++                            ),
+                             "price": {"type": "integer", "title": "Price"},
+                         },
+                         "type": "object",
+@@ -140,11 +159,21 @@ def save_union_body_discriminator(
+                     },
+                     "OtherItem": {
+                         "properties": {
+-                            "value": {
+-                                "type": "string",
+-                                "const": "other",
+-                                "title": "Value",
+-                            },
++                            "value": IsOneOf(
++                                # Pydantic >= 2.10.0: const only
++                                {
++                                    "type": "string",
++                                    "const": "other",
++                                    "title": "Value",
++                                },
++                                # Pydantic 2.9.x: const + enum
++                                {
++                                    "type": "string",
++                                    "const": "other",
++                                    "enum": ["other"],
++                                    "title": "Value",
++                                },
++                            ),
+                             "price": {"type": "number", "title": "Price"},
+                         },
+                         "type": "object",
+diff --git a/uv.lock b/uv.lock
+index 096b0a361c057..90e9b4e4629cc 100644
+--- a/uv.lock
++++ b/uv.lock
+@@ -1252,7 +1252,7 @@ requires-dist = [
+     { name = "jinja2", marker = "extra == 'all'", specifier = ">=3.1.5" },
+     { name = "jinja2", marker = "extra == 'standard'", specifier = ">=3.1.5" },
+     { name = "jinja2", marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=3.1.5" },
+-    { name = "pydantic", specifier = ">=2.7.0" },
++    { name = "pydantic", specifier = ">=2.9.0" },
+     { name = "pydantic-extra-types", marker = "extra == 'all'", specifier = ">=2.0.0" },
+     { name = "pydantic-extra-types", marker = "extra == 'standard'", specifier = ">=2.0.0" },
+     { name = "pydantic-extra-types", marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=2.0.0" },
+@@ -1350,7 +1350,7 @@ docs-tests = [
+ ]
+ github-actions = [
+     { name = "httpx", specifier = ">=0.27.0,<1.0.0" },
+-    { name = "pydantic", specifier = ">=2.5.3,<3.0.0" },
++    { name = "pydantic", specifier = ">=2.9.0,<3.0.0" },
+     { name = "pydantic-settings", specifier = ">=2.1.0,<3.0.0" },
+     { name = "pygithub", specifier = ">=2.3.0,<3.0.0" },
+     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },

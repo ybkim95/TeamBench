@@ -1,0 +1,56 @@
+{
+  "repo": "pymovements/pymovements",
+  "pr_number": 1106,
+  "pr_url": "https://github.com/pymovements/pymovements/pull/1106",
+  "issue_number": 1086,
+  "base_sha": "f32eaa09e889a450aa9123bbf8ad5e324ca87753",
+  "head_sha": "58b0724e703465e6e6ab9c2a3bc35458f11ce178",
+  "additions": 33,
+  "deletions": 10,
+  "changed_files": [
+    "src/pymovements/gaze/_utils/parsing.py",
+    "src/pymovements/gaze/io.py",
+    "tests/unit/gaze/_utils/_parsing_test.py",
+    "tests/unit/gaze/io/asc_test.py"
+  ],
+  "test_files": [
+    "tests/unit/gaze/_utils/_parsing_test.py",
+    "tests/unit/gaze/io/asc_test.py"
+  ],
+  "source_files": [
+    "src/pymovements/gaze/_utils/parsing.py",
+    "src/pymovements/gaze/io.py"
+  ],
+  "parameterization": {
+    "repo": "pymovements/pymovements",
+    "repo_short": "pymovements",
+    "parameterized_identifiers": [
+      "after",
+      "always",
+      "annotations",
+      "append",
+      "assuming",
+      "been",
+      "bottom",
+      "calendar",
+      "calibrations",
+      "ceil"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:11:28Z"
+}

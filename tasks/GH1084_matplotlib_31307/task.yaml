@@ -1,0 +1,13 @@
+task_id: GH1084_matplotlib_31307
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "FIX: avoid applying dashed patterns to zero-width lines and patches"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/31307"
+source_issue: "https://github.com/matplotlib/matplotlib/issues/31302"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

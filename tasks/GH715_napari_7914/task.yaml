@@ -1,0 +1,13 @@
+task_id: GH715_napari_7914
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Prevent Shapes corruption when drawing tiny polygons with lasso"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/napari/napari/pull/7914"
+source_issue: "https://github.com/napari/napari/issues/7903"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,225 @@
+diff --git a/homeassistant/components/tractive/__init__.py b/homeassistant/components/tractive/__init__.py
+index f00e0fec41249..d60c4b657cbeb 100644
+--- a/homeassistant/components/tractive/__init__.py
++++ b/homeassistant/components/tractive/__init__.py
+@@ -39,6 +39,7 @@
+     SERVER_UNAVAILABLE,
+     SWITCH_KEY_MAP,
+     TRACKER_HARDWARE_STATUS_UPDATED,
++    TRACKER_HEALTH_OVERVIEW_UPDATED,
+     TRACKER_POSITION_UPDATED,
+     TRACKER_SWITCH_STATUS_UPDATED,
+     TRACKER_WELLNESS_STATUS_UPDATED,
+@@ -64,6 +65,7 @@ class Trackables:
+     tracker_details: dict
+     hw_info: dict
+     pos_report: dict
++    health_overview: dict
+ 
+ 
+ @dataclass(slots=True)
+@@ -114,6 +116,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: TractiveConfigEntry) ->
+ 
+     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+ 
++    # Send initial health overview data to sensors after platforms are set up
++    for item in filtered_trackables:
++        if item.health_overview:
++            tractive.send_health_overview_update(item.health_overview)
++
+     async def cancel_listen_task(_: Event) -> None:
+         await tractive.unsubscribe()
+ 
+@@ -144,9 +151,13 @@ async def _generate_trackables(
+         return None
+ 
+     tracker = client.tracker(trackable["device_id"])
++    trackable_pet = client.trackable_object(trackable["_id"])
+ 
+-    tracker_details, hw_info, pos_report = await asyncio.gather(
+-        tracker.details(), tracker.hw_info(), tracker.pos_report()
++    tracker_details, hw_info, pos_report, health_overview = await asyncio.gather(
++        tracker.details(),
++        tracker.hw_info(),
++        tracker.pos_report(),
++        trackable_pet.health_overview(),
+     )
+ 
+     if not tracker_details.get("_id"):
+@@ -154,7 +165,9 @@ async def _generate_trackables(
+             f"Tractive API returns incomplete data for tracker {trackable['device_id']}",
+         )
+ 
+-    return Trackables(tracker, trackable, tracker_details, hw_info, pos_report)
++    return Trackables(
++        tracker, trackable, tracker_details, hw_info, pos_report, health_overview
++    )
+ 
+ 
+ async def async_unload_entry(hass: HomeAssistant, entry: TractiveConfigEntry) -> bool:
+@@ -226,6 +239,9 @@ async def _listen(self) -> None:
+                     if server_was_unavailable:
+                         _LOGGER.debug("Tractive is back online")
+                         server_was_unavailable = False
++                    if event["message"] == "health_overview":
++                        self.send_health_overview_update(event)
++                        continue
+                     if event["message"] == "wellness_overview":
+                         self._send_wellness_update(event)
+                         continue
+@@ -316,6 +332,27 @@ def _send_wellness_update(self, event: dict[str, Any]) -> None:
+             TRACKER_WELLNESS_STATUS_UPDATED, event["pet_id"], payload
+         )
+ 
++    def send_health_overview_update(self, event: dict[str, Any]) -> None:
++        """Handle health_overview events from Tractive API."""
++        # The health_overview response can be at root level or wrapped in 'content'
++        # Handle both structures for compatibility
++        data = event.get("content", event)
++
++        activity = data.get("activity", {})
++        sleep = data.get("sleep", {})
++
++        payload = {
++            ATTR_DAILY_GOAL: activity.get("minutesGoal"),
++            ATTR_MINUTES_ACTIVE: activity.get("minutesActive"),
++            ATTR_MINUTES_DAY_SLEEP: sleep.get("minutesDaySleep"),
++            ATTR_MINUTES_NIGHT_SLEEP: sleep.get("minutesNightSleep"),
++            # Calm minutes can be used as rest indicator
++            ATTR_MINUTES_REST: sleep.get("minutesCalm"),
++        }
++        self._dispatch_tracker_event(
++            TRACKER_HEALTH_OVERVIEW_UPDATED, data["petId"], payload
++        )
++
+     def _send_position_update(self, event: dict[str, Any]) -> None:
+         payload = {
+             "latitude": event["position"]["latlong"][0],
+diff --git a/homeassistant/components/tractive/const.py b/homeassistant/components/tractive/const.py
+index 9b9250157725e..45c357c5446e0 100644
+--- a/homeassistant/components/tractive/const.py
++++ b/homeassistant/components/tractive/const.py
+@@ -28,6 +28,7 @@
+ TRACKER_POSITION_UPDATED = f"{DOMAIN}_tracker_position_updated"
+ TRACKER_SWITCH_STATUS_UPDATED = f"{DOMAIN}_tracker_switch_updated"
+ TRACKER_WELLNESS_STATUS_UPDATED = f"{DOMAIN}_tracker_wellness_updated"
++TRACKER_HEALTH_OVERVIEW_UPDATED = f"{DOMAIN}_tracker_health_overview_updated"
+ 
+ SERVER_UNAVAILABLE = f"{DOMAIN}_server_unavailable"
+ 
+diff --git a/homeassistant/components/tractive/sensor.py b/homeassistant/components/tractive/sensor.py
+index 18d7e4c23abbb..8e79d4d48dadc 100644
+--- a/homeassistant/components/tractive/sensor.py
++++ b/homeassistant/components/tractive/sensor.py
+@@ -35,6 +35,7 @@
+     ATTR_SLEEP_LABEL,
+     ATTR_TRACKER_STATE,
+     TRACKER_HARDWARE_STATUS_UPDATED,
++    TRACKER_HEALTH_OVERVIEW_UPDATED,
+     TRACKER_WELLNESS_STATUS_UPDATED,
+ )
+ from .entity import TractiveEntity
+@@ -115,14 +116,14 @@ def handle_status_update(self, event: dict[str, Any]) -> None:
+         key=ATTR_MINUTES_ACTIVE,
+         translation_key="activity_time",
+         native_unit_of_measurement=UnitOfTime.MINUTES,
+-        signal_prefix=TRACKER_WELLNESS_STATUS_UPDATED,
++        signal_prefix=TRACKER_HEALTH_OVERVIEW_UPDATED,
+         state_class=SensorStateClass.TOTAL,
+     ),
+     TractiveSensorEntityDescription(
+         key=ATTR_MINUTES_REST,
+         translation_key="rest_time",
+         native_unit_of_measurement=UnitOfTime.MINUTES,
+-        signal_prefix=TRACKER_WELLNESS_STATUS_UPDATED,
++        signal_prefix=TRACKER_HEALTH_OVERVIEW_UPDATED,
+         state_class=SensorStateClass.TOTAL,
+     ),
+     TractiveSensorEntityDescription(
+@@ -136,20 +137,20 @@ def handle_status_update(self, event: dict[str, Any]) -> None:
+         key=ATTR_DAILY_GOAL,
+         translation_key="daily_goal",
+         native_unit_of_measurement=UnitOfTime.MINUTES,
+-        signal_prefix=TRACKER_WELLNESS_STATUS_UPDATED,
++        signal_prefix=TRACKER_HEALTH_OVERVIEW_UPDATED,
+     ),
+     TractiveSensorEntityDescription(
+         key=ATTR_MINUTES_DAY_SLEEP,
+         translation_key="minutes_day_sleep",
+         native_unit_of_measurement=UnitOfTime.MINUTES,
+-        signal_prefix=TRACKER_WELLNESS_STATUS_UPDATED,
++        signal_prefix=TRACKER_HEALTH_OVERVIEW_UPDATED,
+         state_class=SensorStateClass.TOTAL,
+     ),
+     TractiveSensorEntityDescription(
+         key=ATTR_MINUTES_NIGHT_SLEEP,
+         translation_key="minutes_night_sleep",
+         native_unit_of_measurement=UnitOfTime.MINUTES,
+-        signal_prefix=TRACKER_WELLNESS_STATUS_UPDATED,
++        signal_prefix=TRACKER_HEALTH_OVERVIEW_UPDATED,
+         state_class=SensorStateClass.TOTAL,
+     ),
+     TractiveSensorEntityDescription(
+diff --git a/tests/components/tractive/conftest.py b/tests/components/tractive/conftest.py
+index f32aaa8434982..8354c14fb6f25 100644
+--- a/tests/components/tractive/conftest.py
++++ b/tests/components/tractive/conftest.py
+@@ -52,6 +52,22 @@ def send_wellness_event(
+             }
+         entry.runtime_data.client._send_wellness_update(event)
+ 
++    def send_health_overview_event(
++        entry: MockConfigEntry, event: dict[str, Any] | None = None
++    ):
++        """Send health overview event."""
++        if event is None:
++            event = {
++                "petId": "pet_id_123",
++                "sleep": {
++                    "minutesDaySleep": 100,
++                    "minutesNightSleep": 300,
++                    "minutesCalm": 122,
++                },
++                "activity": {"minutesGoal": 200, "minutesActive": 150},
++            }
++        entry.runtime_data.client.send_health_overview_update(event)
++
+     def send_position_event(
+         entry: MockConfigEntry, event: dict[str, Any] | None = None
+     ):
+@@ -112,8 +128,24 @@ def send_server_unavailable_event(hass: HomeAssistant) -> None:
+             set_led_active=AsyncMock(return_value={"pending": True}),
+         )
+ 
++        client.trackable_object.return_value = Mock(
++            spec=TrackableObject,
++            health_overview=AsyncMock(
++                return_value={
++                    "petId": "pet_id_123",
++                    "sleep": {
++                        "minutesDaySleep": 100,
++                        "minutesNightSleep": 300,
++                        "minutesCalm": 122,
++                    },
++                    "activity": {"minutesGoal": 200, "minutesActive": 150},
++                }
++            ),
++        )
++
+         client.send_hardware_event = send_hardware_event
+         client.send_wellness_event = send_wellness_event
++        client.send_health_overview_event = send_health_overview_event
+         client.send_position_event = send_position_event
+         client.send_switch_event = send_switch_event
+         client.send_server_unavailable_event = send_server_unavailable_event
+diff --git a/tests/components/tractive/test_sensor.py b/tests/components/tractive/test_sensor.py
+index 30463cd0bd9f7..53bd5558505a8 100644
+--- a/tests/components/tractive/test_sensor.py
++++ b/tests/components/tractive/test_sensor.py
+@@ -26,5 +26,6 @@ async def test_sensor(
+ 
+         mock_tractive_client.send_hardware_event(mock_config_entry)
+         mock_tractive_client.send_wellness_event(mock_config_entry)
++        mock_tractive_client.send_health_overview_event(mock_config_entry)
+         await hass.async_block_till_done()
+     await snapshot_platform(hass, entity_registry, snapshot, mock_config_entry.entry_id)

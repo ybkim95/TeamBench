@@ -1,0 +1,13 @@
+task_id: GH1088_keras_20782
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix(metrics): Fix BinaryAccuracy metric to handle boolean inputs"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/keras-team/keras/pull/20782"
+source_issue: "https://github.com/keras-team/keras/issues/20178"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

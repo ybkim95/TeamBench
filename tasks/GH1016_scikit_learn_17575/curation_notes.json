@@ -1,0 +1,55 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 17575,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/17575",
+  "issue_number": null,
+  "base_sha": "0d37bd9a00f934b27e0ec28784d076a284c1240b",
+  "head_sha": "fd70673a82dd2d76eb1f080ab5e9045bfa550e93",
+  "additions": 96,
+  "deletions": 0,
+  "changed_files": [
+    "doc/whats_new/upcoming_changes/sklearn.tree/17575.fix.rst",
+    "sklearn/tree/_export.py",
+    "sklearn/tree/tests/test_export.py"
+  ],
+  "test_files": [
+    "sklearn/tree/tests/test_export.py"
+  ],
+  "source_files": [
+    "sklearn/tree/_export.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "argmax",
+      "characters",
+      "class_name",
+      "class_names",
+      "contents1",
+      "contents2",
+      "criteria",
+      "criterion",
+      "decision",
+      "default"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:59:09Z"
+}

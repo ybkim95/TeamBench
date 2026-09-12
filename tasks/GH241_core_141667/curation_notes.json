@@ -1,0 +1,60 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 141667,
+  "pr_url": "https://github.com/home-assistant/core/pull/141667",
+  "issue_number": 106777,
+  "base_sha": "7a9836064d6615d8542c7bb8882bf591445e984b",
+  "head_sha": "a6ba17b5cda1ff98e89b3da296dc5d38880d205e",
+  "additions": 81,
+  "deletions": 5,
+  "changed_files": [
+    "homeassistant/components/renault/const.py",
+    "homeassistant/components/renault/coordinator.py",
+    "homeassistant/components/renault/entity.py",
+    "homeassistant/components/renault/renault_hub.py",
+    "homeassistant/components/renault/renault_vehicle.py",
+    "tests/components/renault/test_sensor.py"
+  ],
+  "test_files": [
+    "tests/components/renault/test_sensor.py"
+  ],
+  "source_files": [
+    "homeassistant/components/renault/const.py",
+    "homeassistant/components/renault/coordinator.py",
+    "homeassistant/components/renault/entity.py",
+    "homeassistant/components/renault/renault_hub.py",
+    "homeassistant/components/renault/renault_vehicle.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "access",
+      "access_denied",
+      "adjust",
+      "assertion",
+      "assumed_state",
+      "async_block_till_done",
+      "async_initialise",
+      "attempt_login",
+      "attribute",
+      "attributes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:40:22Z"
+}

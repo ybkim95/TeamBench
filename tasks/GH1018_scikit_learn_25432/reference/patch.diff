@@ -1,0 +1,67 @@
+diff --git a/doc/whats_new/v1.3.rst b/doc/whats_new/v1.3.rst
+index 514a012e0ffaf..68bcd7c56e03e 100644
+--- a/doc/whats_new/v1.3.rst
++++ b/doc/whats_new/v1.3.rst
+@@ -143,6 +143,12 @@ Changelog
+ - |Enhancement| Added the parameter `fill_value` to :class:`impute.IterativeImputer`.
+   :pr:`25232` by :user:`Thijs van Weezel <ValueInvestorThijs>`.
+ 
++:mod:`sklearn.metrics`
++......................
++
++- |Fix| :func:`metric.manhattan_distances` now supports readonly sparse datasets.
++  :pr:`25432` by :user:`Julien Jerphanion <jjerphan>`.
++
+ :mod:`sklearn.naive_bayes`
+ ..........................
+ 
+diff --git a/sklearn/metrics/_pairwise_fast.pyx b/sklearn/metrics/_pairwise_fast.pyx
+index b9006773c015d..f7ddd68c46c1e 100644
+--- a/sklearn/metrics/_pairwise_fast.pyx
++++ b/sklearn/metrics/_pairwise_fast.pyx
+@@ -35,9 +35,15 @@ def _chi2_kernel_fast(floating[:, :] X,
+                 result[i, j] = -res
+ 
+ 
+-def _sparse_manhattan(floating[::1] X_data, int[:] X_indices, int[:] X_indptr,
+-                      floating[::1] Y_data, int[:] Y_indices, int[:] Y_indptr,
+-                      double[:, ::1] D):
++def _sparse_manhattan(
++    const floating[::1] X_data,
++    const int[:] X_indices,
++    const int[:] X_indptr,
++    const floating[::1] Y_data,
++    const int[:] Y_indices,
++    const int[:] Y_indptr,
++    double[:, ::1] D,
++):
+     """Pairwise L1 distances for CSR matrices.
+ 
+     Usage:
+diff --git a/sklearn/metrics/tests/test_pairwise.py b/sklearn/metrics/tests/test_pairwise.py
+index c1ee728f6e71e..b1cc27dce9b55 100644
+--- a/sklearn/metrics/tests/test_pairwise.py
++++ b/sklearn/metrics/tests/test_pairwise.py
+@@ -16,6 +16,7 @@
+     from scipy.spatial.distance import minkowski as wminkowski
+ 
+ from sklearn.utils.fixes import sp_version, parse_version
++from sklearn.utils.parallel import delayed, Parallel
+ 
+ import pytest
+ 
+@@ -1541,3 +1542,14 @@ def test_numeric_pairwise_distances_datatypes(metric, global_dtype, y_is_x):
+     dist = pairwise_distances(X, Y, metric=metric, **params)
+ 
+     assert_allclose(dist, expected_dist)
++
++
++def test_sparse_manhattan_readonly_dataset():
++    # Non-regression test for: https://github.com/scikit-learn/scikit-learn/issues/7981
++    matrices1 = [csr_matrix(np.ones((5, 5)))]
++    matrices2 = [csr_matrix(np.ones((5, 5)))]
++    # Joblib memory maps datasets which makes them read-only.
++    # The following call was reporting as failing in #7981, but this must pass.
++    Parallel(n_jobs=2, max_nbytes=0)(
++        delayed(manhattan_distances)(m1, m2) for m1, m2 in zip(matrices1, matrices2)
++    )

@@ -1,0 +1,67 @@
+{
+  "repo": "aio-libs/aiohttp",
+  "pr_number": 11757,
+  "pr_url": "https://github.com/aio-libs/aiohttp/pull/11757",
+  "issue_number": null,
+  "base_sha": "66c72051d6179b4789f2588e5ac9a9154b41e2c8",
+  "head_sha": "9e3d18ddca9eb354fb1704c4a807178559dfe718",
+  "additions": 35,
+  "deletions": 65,
+  "changed_files": [
+    ".pre-commit-config.yaml",
+    "examples/background_tasks.py",
+    "examples/web_srv.py",
+    "examples/web_srv_route_deco.py",
+    "examples/web_srv_route_table.py",
+    "tests/test_http_parser.py",
+    "tests/test_imports.py",
+    "tests/test_pytest_plugin.py",
+    "tests/test_test_utils.py"
+  ],
+  "test_files": [
+    "tests/test_http_parser.py",
+    "tests/test_imports.py",
+    "tests/test_pytest_plugin.py",
+    "tests/test_test_utils.py"
+  ],
+  "source_files": [
+    "examples/background_tasks.py",
+    "examples/web_srv.py",
+    "examples/web_srv_route_deco.py",
+    "examples/web_srv_route_table.py"
+  ],
+  "parameterization": {
+    "repo": "aio-libs/aiohttp",
+    "repo_short": "aiohttp",
+    "parameterized_identifiers": [
+      "addinivalue_line",
+      "aiohttp",
+      "aiohttp_client",
+      "aiohttp_server",
+      "aiohttp_unused_port",
+      "asottile",
+      "assert_outcomes",
+      "asynccontextmanager",
+      "asyncio",
+      "binary"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:27:38Z"
+}

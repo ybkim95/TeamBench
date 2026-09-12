@@ -1,0 +1,98 @@
+diff --git a/doc/source/whatsnew/v3.1.0.rst b/doc/source/whatsnew/v3.1.0.rst
+index 8a7f3033b39c3..68652e187e1f5 100644
+--- a/doc/source/whatsnew/v3.1.0.rst
++++ b/doc/source/whatsnew/v3.1.0.rst
+@@ -202,6 +202,7 @@ Indexing
+ - Bugs in setitem-with-expansion when adding new rows failing to keep the original dtype in some cases (:issue:`32346`, :issue:`15231`, :issue:`47503`, :issue:`6485`, :issue:`25383`, :issue:`52235`, :issue:`17026`, :issue:`56010`)
+ - Bug in :meth:`DataFrame.where` and :meth:`DataFrame.mask` raising ``TypeError`` when ``cond`` is a :class:`Series` and ``axis=1`` (:issue:`58190`)
+ - Bug in :meth:`Index.get_level_values` mishandling boolean, NA-like (``np.nan``, ``pd.NA``, ``pd.NaT``) and integer index names (:issue:`62169`)
++- Bug in :meth:`Index.get_loc` raising ``KeyError`` when looking up a tuple in an object-dtype :class:`Index` with duplicates (:issue:`37800`)
+ - Bug in :meth:`Index.insert` silently casting booleans to numeric when used with nullable numeric dtypes like ``Float64`` or ``Int64`` (:issue:`61709`)
+ - Bug in :meth:`MultiIndex.loc` returning incorrect results when indexing with :class:`numpy.datetime64` on a level containing :class:`datetime.date` objects (:issue:`55969`)
+ 
+diff --git a/pandas/_libs/index.pyx b/pandas/_libs/index.pyx
+index d8ebc3812e649..10649fb39932a 100644
+--- a/pandas/_libs/index.pyx
++++ b/pandas/_libs/index.pyx
+@@ -572,6 +572,23 @@ cdef Py_ssize_t _bin_search(ndarray values, object val) except -1:
+         return mid + 1
+ 
+ 
++cdef Py_ssize_t _bin_search_right(ndarray values, object val) except -1:
++    # GH#37800 Equivalent to bisect.bisect_right, companion to _bin_search.
++    # ndarray.searchsorted is not safe to use with array of tuples.
++
++    cdef:
++        Py_ssize_t mid, lo = 0, hi = len(values)
++
++    while lo < hi:
++        mid = (lo + hi) // 2
++        if val < PySequence_GetItem(values, mid):
++            hi = mid
++        else:
++            lo = mid + 1
++
++    return lo
++
++
+ cdef class ObjectEngine(IndexEngine):
+     """
+     Index Engine for use with object-dtype Index, namely the base class Index.
+@@ -588,6 +605,29 @@ cdef class ObjectEngine(IndexEngine):
+             raise KeyError(val) from err
+         return loc
+ 
++    cdef _get_loc_duplicates(self, object val):
++        # GH#37800 override to use _bin_search/_bin_search_right instead of
++        #  ndarray.searchsorted, which treats tuples as sequences of keys.
++        cdef:
++            Py_ssize_t diff, left, right
++
++        if self.is_monotonic_increasing:
++            try:
++                left = _bin_search(self.values, val)
++                right = _bin_search_right(self.values, val)
++            except TypeError:
++                raise KeyError(val)
++
++            diff = right - left
++            if diff == 0:
++                raise KeyError(val)
++            elif diff == 1:
++                return left
++            else:
++                return slice(left, right)
++
++        return self._maybe_get_bool_indexer(val)
++
+ 
+ cdef class StringEngine(IndexEngine):
+ 
+diff --git a/pandas/tests/indexes/base_class/test_indexing.py b/pandas/tests/indexes/base_class/test_indexing.py
+index ca03f32c3c462..58d87cd3a856e 100644
+--- a/pandas/tests/indexes/base_class/test_indexing.py
++++ b/pandas/tests/indexes/base_class/test_indexing.py
+@@ -79,6 +79,23 @@ def test_get_loc_tuple_monotonic_above_size_cutoff(self, monkeypatch):
+             res = oidx.get_loc(tup)
+         assert res == loc
+ 
++    def test_get_loc_tuple_monotonic_with_duplicates(self):
++        # GH#37800 _get_loc_duplicates should not use ndarray.searchsorted
++        # with tuple keys, as searchsorted interprets tuples as array-like
++        values = np.empty(3, dtype=object)
++        values[0] = (1, 1)
++        values[1] = (1, 1)
++        values[2] = (2, 2)
++        idx = Index(values)
++        result = idx.get_loc((1, 1))
++        assert result == slice(0, 2)
++
++        result = idx.get_loc((2, 2))
++        assert result == 2
++
++        with pytest.raises(KeyError, match=r"\(3, 3\)"):
++            idx.get_loc((3, 3))
++
+     def test_get_loc_nan_object_dtype_nonmonotonic_nonunique(self):
+         # case that goes through _maybe_get_bool_indexer
+         idx = Index(["foo", np.nan, None, "foo", 1.0, None], dtype=object)

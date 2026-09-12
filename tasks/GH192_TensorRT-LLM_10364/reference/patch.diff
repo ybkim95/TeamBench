@@ -1,0 +1,146 @@
+diff --git a/jenkins/L0_MergeRequest.groovy b/jenkins/L0_MergeRequest.groovy
+index aa586bc10a79..3ae6bc670822 100644
+--- a/jenkins/L0_MergeRequest.groovy
++++ b/jenkins/L0_MergeRequest.groovy
+@@ -719,6 +719,7 @@ def getMultiGpuFileChanged(pipeline, testFilter, globalVars)
+         "tensorrt_llm/_torch/pyexecutor/_util.py",
+         "tensorrt_llm/_torch/pyexecutor/model_engine.py",
+         "tensorrt_llm/_torch/pyexecutor/py_executor.py",
++        "tensorrt_llm/_torch/auto_deploy/transform/library/sharding.py",
+         "tensorrt_llm/evaluate/json_mode_eval.py",
+         "tensorrt_llm/evaluate/mmlu.py",
+         "tensorrt_llm/executor/",
+@@ -740,6 +741,7 @@ def getMultiGpuFileChanged(pipeline, testFilter, globalVars)
+         "tests/integration/defs/accuracy/test_disaggregated_serving.py",
+         "tests/unittest/_torch/ray_orchestrator/multi_gpu/",
+         "tests/integration/defs/examples/test_ray.py",
++        "tests/integration/defs/accuracy/test_llm_api_autodeploy.py",
+         "tests/unittest/llmapi/test_async_llm.py",
+         "docker/common/install_ucx.sh",
+         "docker/common/install_nixl.sh",
+diff --git a/tests/integration/defs/accuracy/test_llm_api_autodeploy.py b/tests/integration/defs/accuracy/test_llm_api_autodeploy.py
+index 7b293abf4c6a..371b080e730e 100644
+--- a/tests/integration/defs/accuracy/test_llm_api_autodeploy.py
++++ b/tests/integration/defs/accuracy/test_llm_api_autodeploy.py
+@@ -145,7 +145,7 @@ class TestNemotronMOE(LlmapiAccuracyTestHarness):
+     MODEL_PATH_FP8 = f"{llm_models_root()}/Nemotron-Nano-3-30B-A3.5B-FP8-KVFP8-dev"
+     MODEL_PATH_NVFP4 = f"{llm_models_root()}/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4"
+ 
+-    def get_default_kwargs(self):
++    def get_default_kwargs(self, world_size=1):
+         return {
+             "skip_tokenizer_init": False,
+             "trust_remote_code": True,
+@@ -171,7 +171,8 @@ def get_default_kwargs(self):
+                 },
+                 "multi_stream_moe": {
+                     "stage": "compile",
+-                    "enabled": True,
++                    # multi-stream MOE currently does not work for world_size > 1
++                    "enabled": world_size == 1,
+                 },
+                 # NOTE: some accuracy benchmarks may require fp32 precision for mamba cache
+                 # "insert_cached_ssm_attention": {
+@@ -191,13 +192,15 @@ def get_default_sampling_params(self):
+                               use_beam_search=beam_width > 1)
+ 
+     @pytest.mark.skip_less_device_memory(32000)
+-    def test_bf16(self):
+-        kwargs = self.get_default_kwargs()
++    @pytest.mark.parametrize("world_size", [1, 4])
++    def test_bf16(self, world_size):
++        kwargs = self.get_default_kwargs(world_size=world_size)
+         # TODO: multi-stream MOE seems to increase the memory usage
+         kwargs["max_batch_size"] = 32
+         kwargs["free_mem_ratio"] = 0.4
+         with AutoDeployLLM(model=self.MODEL_PATH_BF16,
+                            tokenizer=self.MODEL_PATH_BF16,
++                           world_size=world_size,
+                            **kwargs) as llm:
+             sampling_params = self.get_default_sampling_params()
+             task = MMLU(self.MODEL_NAME)
+@@ -206,11 +209,12 @@ def test_bf16(self):
+             task.evaluate(llm)
+ 
+     @pytest.mark.skip_less_device_memory(32000)
+-    def test_fp8(self):
+-        kwargs = self.get_default_kwargs()
+-        kwargs["max_batch_size"] = 64
++    @pytest.mark.parametrize("world_size", [1, 4])
++    def test_fp8(self, world_size):
++        kwargs = self.get_default_kwargs(world_size=world_size)
+         with AutoDeployLLM(model=self.MODEL_PATH_FP8,
+                            tokenizer=self.MODEL_PATH_FP8,
++                           world_size=world_size,
+                            **kwargs) as llm:
+             # Manually set quant_config for FP8 model to get the accuracy threshold
+             llm.args.quant_config.quant_algo = QuantAlgo.FP8
+diff --git a/tests/integration/test_lists/test-db/l0_b200.yml b/tests/integration/test_lists/test-db/l0_b200.yml
+index b0f6d9c3565a..d1f81ad30dc9 100644
+--- a/tests/integration/test_lists/test-db/l0_b200.yml
++++ b/tests/integration/test_lists/test-db/l0_b200.yml
+@@ -173,5 +173,5 @@ l0_b200:
+       backend: autodeploy
+   tests:
+   - accuracy/test_llm_api_autodeploy.py::TestLlama3_1_8B::test_auto_dtype[False-1]
+-  - accuracy/test_llm_api_autodeploy.py::TestNemotronMOE::test_fp8
++  - accuracy/test_llm_api_autodeploy.py::TestNemotronMOE::test_fp8[1]
+   - unittest/_torch/auto_deploy/unit/singlegpu
+diff --git a/tests/integration/test_lists/test-db/l0_dgx_b200.yml b/tests/integration/test_lists/test-db/l0_dgx_b200.yml
+index 4f7a1200cd96..4fb2c17f7309 100644
+--- a/tests/integration/test_lists/test-db/l0_dgx_b200.yml
++++ b/tests/integration/test_lists/test-db/l0_dgx_b200.yml
+@@ -215,6 +215,7 @@ l0_dgx_b200:
+   tests:
+   - unittest/_torch/auto_deploy/unit/multigpu
+   - accuracy/test_llm_api_autodeploy.py::TestLlama3_1_8B::test_auto_dtype[False-4]
++  - accuracy/test_llm_api_autodeploy.py::TestNemotronMOE::test_fp8[4]
+   - accuracy/test_llm_api_autodeploy.py::TestNemotronSuperV3::test_bf16
+   - accuracy/test_llm_api_autodeploy.py::TestNemotronSuperV3::test_fp8[4]
+   - accuracy/test_llm_api_autodeploy.py::TestNemotronSuperV3::test_fp8[8]
+diff --git a/tests/integration/test_lists/test-db/l0_h100.yml b/tests/integration/test_lists/test-db/l0_h100.yml
+index 605943fefe7b..bb498ddeeb1f 100644
+--- a/tests/integration/test_lists/test-db/l0_h100.yml
++++ b/tests/integration/test_lists/test-db/l0_h100.yml
+@@ -436,8 +436,8 @@ l0_h100:
+   - accuracy/test_llm_api_autodeploy.py::TestLlama3_1_8B::test_auto_dtype[True-1]
+   - accuracy/test_llm_api_autodeploy.py::TestNemotronH::test_auto_dtype[False]
+   - accuracy/test_llm_api_autodeploy.py::TestNemotronH::test_auto_dtype[True]
+-  - accuracy/test_llm_api_autodeploy.py::TestNemotronMOE::test_fp8
+-  - accuracy/test_llm_api_autodeploy.py::TestNemotronMOE::test_bf16
++  - accuracy/test_llm_api_autodeploy.py::TestNemotronMOE::test_fp8[1]
++  - accuracy/test_llm_api_autodeploy.py::TestNemotronMOE::test_bf16[1]
+   - examples/test_ad_speculative_decoding.py::test_autodeploy_spec_dec_output[draft_target]
+   - examples/test_ad_speculative_decoding.py::test_autodeploy_spec_dec_output[eagle3]
+   - examples/test_ad_speculative_decoding.py::test_autodeploy_eagle3_acceptance_rate
+diff --git a/tests/unittest/_torch/auto_deploy/unit/multigpu/transformations/library/test_tp_sharding.py b/tests/unittest/_torch/auto_deploy/unit/multigpu/transformations/library/test_tp_sharding.py
+index 170d9e9b5ca5..b66a6a54eb4c 100644
+--- a/tests/unittest/_torch/auto_deploy/unit/multigpu/transformations/library/test_tp_sharding.py
++++ b/tests/unittest/_torch/auto_deploy/unit/multigpu/transformations/library/test_tp_sharding.py
+@@ -548,7 +548,7 @@ def _run_pattern_detection_job(
+                             fused_weight_dims=fused_weight_dims,
+                         )
+                     )
+-                if is_op(node, torch.ops.auto_deploy.torch_causal_conv1d):
++                elif is_op(node, torch.ops.auto_deploy.torch_causal_conv1d):
+                     expected_transformations.append(
+                         WeightShardingInfo(
+                             target_node=node.name,
+@@ -560,7 +560,7 @@ def _run_pattern_detection_job(
+                             fused_weight_dims=(num_features, 16 * num_heads, 16 * num_heads),
+                         )
+                     )
+-                if is_op(node, torch.ops.auto_deploy.torch_ssm):
++                elif is_op(node, torch.ops.auto_deploy.torch_ssm):
+                     expected_transformations.append(
+                         WeightShardingInfo(
+                             target_node=node.name,
+@@ -572,7 +572,7 @@ def _run_pattern_detection_job(
+                             fused_weight_dims=None,
+                         )
+                     )
+-                if len(node.args) > 1 and (
++                elif len(node.args) > 1 and (
+                     "norm_weight" in node.args[0].name or "a_log" in node.args[0].name
+                 ):
+                     expected_transformations.append(

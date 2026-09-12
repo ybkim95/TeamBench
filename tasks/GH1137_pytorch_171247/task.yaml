@@ -1,0 +1,13 @@
+task_id: GH1137_pytorch_171247
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[xpu][fix][inductor] fallback bfloat16 atomics to eager"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pytorch/pytorch/pull/171247"
+source_issue: "https://github.com/pytorch/pytorch/issues/170756"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,53 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 2895,
+  "pr_url": "https://github.com/unit8co/darts/pull/2895",
+  "issue_number": 2839,
+  "base_sha": "8821f5109a59605f25a0a259c3f36ac31d094ac8",
+  "head_sha": "f02164ccf89cc1d53cadfe95eea354f2ed4bebba",
+  "additions": 24,
+  "deletions": 5,
+  "changed_files": [
+    "CHANGELOG.md",
+    "darts/models/forecasting/torch_forecasting_model.py",
+    "darts/tests/models/forecasting/test_global_forecasting_models.py"
+  ],
+  "test_files": [
+    "darts/tests/models/forecasting/test_global_forecasting_models.py"
+  ],
+  "source_files": [
+    "darts/models/forecasting/torch_forecasting_model.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "accelerator",
+      "after",
+      "always",
+      "backwards",
+      "break",
+      "cannot",
+      "check",
+      "ckpt_path",
+      "clean",
+      "compatibility"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:05:42Z"
+}

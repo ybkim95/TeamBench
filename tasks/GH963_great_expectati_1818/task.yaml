@@ -1,0 +1,13 @@
+task_id: GH963_great_expectati_1818
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUGFIX] SuiteEditNotebookRenderer no longer break GCS and S3 data paths"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/great-expectations/great_expectations/pull/1818"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

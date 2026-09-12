@@ -1,0 +1,61 @@
+{
+  "repo": "wandb/wandb",
+  "pr_number": 11242,
+  "pr_url": "https://github.com/wandb/wandb/pull/11242",
+  "issue_number": null,
+  "base_sha": "d97f1b427260e666ef8d1de62d3f92583e952f92",
+  "head_sha": "532ec6b1b0b53184e657c9314b2443b3ef78e8d8",
+  "additions": 337,
+  "deletions": 116,
+  "changed_files": [
+    "CHANGELOG.unreleased.md",
+    "tests/system_tests/test_artifacts/test_wandb_artifacts_full.py",
+    "tests/unit_tests/test_artifacts/test_wandb_artifacts.py",
+    "wandb/sdk/artifacts/storage_policies/_factories.py",
+    "wandb/sdk/artifacts/storage_policies/_multipart.py",
+    "wandb/sdk/artifacts/storage_policies/wandb_storage_policy.py"
+  ],
+  "test_files": [
+    "tests/system_tests/test_artifacts/test_wandb_artifacts_full.py",
+    "tests/unit_tests/test_artifacts/test_wandb_artifacts.py"
+  ],
+  "source_files": [
+    "wandb/sdk/artifacts/storage_policies/_factories.py",
+    "wandb/sdk/artifacts/storage_policies/_multipart.py",
+    "wandb/sdk/artifacts/storage_policies/wandb_storage_policy.py"
+  ],
+  "parameterization": {
+    "repo": "wandb/wandb",
+    "repo_short": "wandb",
+    "parameterized_identifiers": [
+      "activate",
+      "actual",
+      "adapter",
+      "adapters",
+      "add_callback",
+      "add_file",
+      "add_passthru",
+      "all_s3_requests",
+      "allocating",
+      "also"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:14:17Z"
+}

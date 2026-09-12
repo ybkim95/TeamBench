@@ -1,0 +1,52 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 46321,
+  "pr_url": "https://github.com/ray-project/ray/pull/46321",
+  "issue_number": 45826,
+  "base_sha": "320560606dcd73797f4e87b37c944a2f7e1f7872",
+  "head_sha": "8169d7b92a1ed632c965df92d7286befff9c42cf",
+  "additions": 10,
+  "deletions": 15,
+  "changed_files": [
+    "rllib/algorithms/tests/test_callbacks_on_env_runner.py",
+    "rllib/env/single_agent_env_runner.py"
+  ],
+  "test_files": [
+    "rllib/algorithms/tests/test_callbacks_on_env_runner.py"
+  ],
+  "source_files": [
+    "rllib/env/single_agent_env_runner.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "algo",
+      "algorithm",
+      "always",
+      "call",
+      "callback",
+      "callback_obj",
+      "complete",
+      "config",
+      "coordination",
+      "counts"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:02:08Z"
+}

@@ -1,0 +1,15 @@
+{
+ "task": "GH1146_evaluate_336",
+ "patch": "tasks/GH1146_evaluate_336/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "huggingface/evaluate",
+ "pr_number": 336,
+ "base_sha": "9f0f888eb455bc0952f467b1cab47716e3f04e83",
+ "head_sha": "e8b3fbc0158cbdae432012ef653523a3f0e5463d",
+ "bytes": 5498,
+ "files_changed": 2,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

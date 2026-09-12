@@ -1,0 +1,52 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9524,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9524",
+  "issue_number": 9523,
+  "base_sha": "3082d8469cdd39e28cacf20681692620d7e670af",
+  "head_sha": "45fd1be271222722a8a3dcc208017503878c13c9",
+  "additions": 14,
+  "deletions": 2,
+  "changed_files": [
+    "statsmodels/sandbox/stats/runs.py",
+    "statsmodels/sandbox/stats/tests/test_runs.py"
+  ],
+  "test_files": [
+    "statsmodels/sandbox/stats/tests/test_runs.py"
+  ],
+  "source_files": [
+    "statsmodels/sandbox/stats/runs.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "assert_almost_equal",
+      "based",
+      "correction",
+      "cutoff",
+      "detected",
+      "distribition",
+      "distribution",
+      "does",
+      "expected",
+      "integer"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:01:52Z"
+}

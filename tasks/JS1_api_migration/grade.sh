@@ -77,7 +77,8 @@ console.log('RES_JSON_OK');
 check "
   # Install deps if node_modules absent
   if [ ! -d node_modules ]; then
-    npm install --prefer-offline --silent 2>/dev/null || npm install --silent 2>/dev/null
+    # was: npm install (grade-time network fetch), removed scripts/make_graders_hermetic.py
+    :
   fi
   # Start server, wait up to 6 s for it to bind
   node server.js &
@@ -101,17 +102,21 @@ check "
 # ── 6. All 5 tests pass ───────────────────────────────────────────────────────
 check "
   if [ ! -d node_modules ]; then
-    npm install --prefer-offline --silent 2>/dev/null || npm install --silent 2>/dev/null
+    # was: npm install (grade-time network fetch), removed scripts/make_graders_hermetic.py
+    :
   fi
   node test/api.test.js
 " "tests_failed"
 
 # ── 7. attestation.json verdict=pass ─────────────────────────────────────────
-check "node -e \"
-const att = JSON.parse(require('fs').readFileSync('$SUBMISSION/attestation.json', 'utf8'));
-if (att.verdict !== 'pass') throw new Error('verdict is ' + att.verdict);
-console.log('ATTESTATION_OK');
-\"" "bad_attestation"
+# ── Attestation recorded as METADATA, never scored ───────────────────────
+# de-scored-by: scripts/repair_graders.py (R3 attestation-is-protocol)
+# attestation.json is a PROTOCOL property of the run (already enforced as a
+# hard gate in harness/grade_task.py), not a property of the submitted
+# artifact. Scoring it let an agent buy partial credit by writing one JSON
+# file, which is the confound behind the withdrawn "removing the Verifier
+# improves partial score" result. Recorded here, excluded from partial_score.
+echo "metadata: attestation_present=$([ -f "${SUBMISSION:-}/attestation.json" ] && echo yes || echo no)"
 
 # ── Score ─────────────────────────────────────────────────────────────────────
 PARTIAL=$(node -e "console.log(Math.round($PASSED / Math.max(1, $CHECKS) * 100) / 100)")
@@ -130,3 +135,5 @@ cat > "$REPORTS/score.json" <<JSON
   "failure_modes": $FM
 }
 JSON
+
+# hermetic-by: scripts/make_graders_hermetic.py

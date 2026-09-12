@@ -1,0 +1,13 @@
+task_id: GH774_orcabus_350
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Use hyphens over underscores when generating icav2 paths"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/umccr/orcabus/pull/350"
+source_issue: "https://github.com/umccr/orcabus/issues/349"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

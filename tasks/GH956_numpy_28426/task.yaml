@@ -1,0 +1,13 @@
+task_id: GH956_numpy_28426
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Limit the maximal number of bins for automatic histogram binning"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/numpy/numpy/pull/28426"
+source_issue: "https://github.com/numpy/numpy/issues/28400"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

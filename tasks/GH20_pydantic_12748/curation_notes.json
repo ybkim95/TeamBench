@@ -1,0 +1,58 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12748,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12748",
+  "issue_number": 12690,
+  "base_sha": "61a06734ed07f00c018acf41809913e0857c728a",
+  "head_sha": "05678454c8bd078eabdfe1bc326ddfb2113d5cab",
+  "additions": 81,
+  "deletions": 14,
+  "changed_files": [
+    "docs/concepts/fields.md",
+    "pydantic-core/python/pydantic_core/core_schema.py",
+    "pydantic-core/src/serializers/computed_fields.rs",
+    "pydantic/_internal/_generate_schema.py",
+    "pydantic/fields.py",
+    "tests/test_computed_fields.py"
+  ],
+  "test_files": [
+    "tests/test_computed_fields.py"
+  ],
+  "source_files": [
+    "pydantic-core/python/pydantic_core/core_schema.py",
+    "pydantic/_internal/_generate_schema.py",
+    "pydantic/fields.py"
+  ],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "about",
+      "abstractmethod",
+      "account",
+      "added",
+      "additional",
+      "affects",
+      "alias",
+      "alias_priority",
+      "also",
+      "annotated_type"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:33:19Z"
+}

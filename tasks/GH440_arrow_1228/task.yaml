@@ -1,0 +1,13 @@
+task_id: GH440_arrow_1228
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Bump version to 1.4.0 and add changelog."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/arrow-py/arrow/pull/1228"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

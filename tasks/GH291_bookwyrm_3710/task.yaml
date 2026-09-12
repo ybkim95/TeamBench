@@ -1,0 +1,13 @@
+task_id: GH291_bookwyrm_3710
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "book: fix validation for 979 prefixed isbn-13 and isbn_13_to_10 function"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/bookwyrm-social/bookwyrm/pull/3710"
+source_issue: "https://github.com/bookwyrm-social/bookwyrm/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

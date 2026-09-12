@@ -1,0 +1,55 @@
+diff --git a/pydantic/_internal/_generate_schema.py b/pydantic/_internal/_generate_schema.py
+index e6cea2eb76b..3c47de5a2bb 100644
+--- a/pydantic/_internal/_generate_schema.py
++++ b/pydantic/_internal/_generate_schema.py
+@@ -1539,9 +1539,11 @@ def _namedtuple_schema(self, namedtuple_cls: Any, origin: Any) -> core_schema.Co
+                 annotations = _typing_extra.get_cls_type_hints(namedtuple_cls, ns_resolver=self._ns_resolver)
+             except NameError as e:
+                 raise PydanticUndefinedAnnotation.from_name_error(e) from e
+-            if not annotations:
+-                # annotations is empty, happens if namedtuple_cls defined via collections.namedtuple(...)
+-                annotations: dict[str, Any] = dict.fromkeys(namedtuple_cls._fields, Any)
++
++            # Filter annotations to only include fields that are actually in the NamedTuple
++            # (as subclassing an existing NamedTuple is not supported yet - see https://github.com/python/typing/issues/427)
++            # and use `Any` if no annotation exist (i.e. when using `collections.namedtuple()`).
++            annotations = {field_name: annotations.get(field_name, Any) for field_name in namedtuple_cls._fields}
+ 
+             if typevars_map:
+                 annotations = {
+diff --git a/tests/test_types_namedtuple.py b/tests/test_types_namedtuple.py
+index ab9be1bf607..82ed20e6015 100644
+--- a/tests/test_types_namedtuple.py
++++ b/tests/test_types_namedtuple.py
+@@ -265,3 +265,31 @@ class Model(BaseModel):
+             'input': {'not a str or int'},
+         },
+     ]
++
++
++def test_namedtuple_inheritance_with_annotations():
++    """https://github.com/pydantic/pydantic/issues/7987."""
++
++    class Foo(NamedTuple):
++        test: str
++        test2: str
++
++    class Bar(Foo):
++        test3: str
++
++    ta = TypeAdapter(Bar)
++
++    # test3 should not be part of the schema
++    assert ta.validate_python({'test': 'a', 'test2': 'b'}) == Bar(test='a', test2='b')
++
++    with pytest.raises(ValidationError) as exc_info:
++        ta.validate_python({'test': 'a', 'test2': 'b', 'test3': 'c'})
++
++    assert exc_info.value.errors(include_url=False) == [
++        {
++            'type': 'unexpected_keyword_argument',
++            'loc': ('test3',),
++            'msg': 'Unexpected keyword argument',
++            'input': 'c',
++        }
++    ]

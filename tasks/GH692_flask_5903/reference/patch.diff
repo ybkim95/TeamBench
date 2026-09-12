@@ -1,0 +1,32 @@
+diff --git a/docs/tutorial/factory.rst b/docs/tutorial/factory.rst
+index 39febd135f..381477f975 100644
+--- a/docs/tutorial/factory.rst
++++ b/docs/tutorial/factory.rst
+@@ -56,10 +56,7 @@ directory should be treated as a package.
+             app.config.from_mapping(test_config)
+ 
+         # ensure the instance folder exists
+-        try:
+-            os.makedirs(app.instance_path)
+-        except OSError:
+-            pass
++        os.makedirs(app.instance_path, exist_ok=True)
+ 
+         # a simple page that says hello
+         @app.route('/hello')
+diff --git a/examples/tutorial/flaskr/__init__.py b/examples/tutorial/flaskr/__init__.py
+index e35934d676..ab96e719ee 100644
+--- a/examples/tutorial/flaskr/__init__.py
++++ b/examples/tutorial/flaskr/__init__.py
+@@ -21,10 +21,7 @@ def create_app(test_config=None):
+         app.config.update(test_config)
+ 
+     # ensure the instance folder exists
+-    try:
+-        os.makedirs(app.instance_path)
+-    except OSError:
+-        pass
++    os.makedirs(app.instance_path, exist_ok=True)
+ 
+     @app.route("/hello")
+     def hello():

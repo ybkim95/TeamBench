@@ -1,0 +1,60 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 34889,
+  "pr_url": "https://github.com/huggingface/transformers/pull/34889",
+  "issue_number": null,
+  "base_sha": "2910015d6deffb4e3a016a0a316a4fa7cbb4ac1e",
+  "head_sha": "0191f491e2d8cb532476fac9827fa28570f9f131",
+  "additions": 64,
+  "deletions": 12,
+  "changed_files": [
+    "src/transformers/models/nemotron/modeling_nemotron.py",
+    "tests/models/mimi/test_modeling_mimi.py",
+    "tests/models/musicgen/test_modeling_musicgen.py",
+    "tests/models/musicgen_melody/test_modeling_musicgen_melody.py",
+    "tests/test_modeling_common.py"
+  ],
+  "test_files": [
+    "tests/models/mimi/test_modeling_mimi.py",
+    "tests/models/musicgen/test_modeling_musicgen.py",
+    "tests/models/musicgen_melody/test_modeling_musicgen_melody.py",
+    "tests/test_modeling_common.py"
+  ],
+  "source_files": [
+    "src/transformers/models/nemotron/modeling_nemotron.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "agnostic",
+      "aten",
+      "atol",
+      "atols",
+      "attention",
+      "autocast",
+      "backend",
+      "backends",
+      "bias",
+      "copy"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:55:59Z"
+}

@@ -1,0 +1,140 @@
+diff --git a/celery/fixups/django.py b/celery/fixups/django.py
+index 6b733e6d591..65cb8eac1f2 100644
+--- a/celery/fixups/django.py
++++ b/celery/fixups/django.py
+@@ -12,6 +12,7 @@
+ 
+ from celery import _state, signals
+ from celery.exceptions import FixupWarning, ImproperlyConfigured
++from celery.worker import WorkController
+ 
+ if TYPE_CHECKING:
+     from types import ModuleType
+@@ -102,6 +103,16 @@ def on_import_modules(self, **kwargs: Any) -> None:
+         self.worker_fixup.validate_models()
+ 
+     def on_worker_init(self, **kwargs: Any) -> None:
++        worker: Optional["WorkController"] = kwargs.get("sender")
++        if worker:
++            self.worker_fixup.worker = worker
++        else:
++            warnings.warn(
++                "DjangoFixup.on_worker_init called without a sender (worker instance). "
++                "This may indicate a misconfiguration or an internal error.",
++                FixupWarning,
++                stacklevel=2,
++            )
+         self.worker_fixup.install()
+ 
+     def now(self, utc: bool = False) -> datetime:
+@@ -119,8 +130,9 @@ def _now(self) -> datetime:
+ class DjangoWorkerFixup:
+     _db_recycles = 0
+ 
+-    def __init__(self, app: "Celery") -> None:
++    def __init__(self, app: "Celery", worker: Optional["WorkController"] = None) -> None:
+         self.app = app
++        self.worker = worker or WorkController(app)
+         self.db_reuse_max = self.app.conf.get('CELERY_DB_REUSE_MAX', None)
+         self._db = cast("DjangoDBModule", import_module('django.db'))
+         self._cache = import_module('django.core.cache')
+@@ -205,7 +217,7 @@ def _close_database(self) -> None:
+             # Support Django < 4.1
+             connections = self._db.connections.all()
+ 
+-        is_prefork = self.app.conf.get('worker_pool', 'prefork') == "prefork"
++        is_prefork = "prefork" in self.worker.pool_cls.__module__
+ 
+         for conn in connections:
+             try:
+diff --git a/t/unit/fixups/test_django.py b/t/unit/fixups/test_django.py
+index f14348426a8..ade1330d534 100644
+--- a/t/unit/fixups/test_django.py
++++ b/t/unit/fixups/test_django.py
+@@ -3,6 +3,7 @@
+ 
+ import pytest
+ 
++from celery.concurrency.thread import TaskPool as ThreadTaskPool
+ from celery.fixups.django import DjangoFixup, DjangoWorkerFixup, FixupWarning, _maybe_close_fd, fixup
+ from t.unit import conftest
+ 
+@@ -11,11 +12,11 @@ class FixupCase:
+     Fixup = None
+ 
+     @contextmanager
+-    def fixup_context(self, app):
++    def fixup_context(self, app, **kwargs):
+         with patch('celery.fixups.django.DjangoWorkerFixup.validate_models'):
+             with patch('celery.fixups.django.symbol_by_name') as symbyname:
+                 with patch('celery.fixups.django.import_module') as impmod:
+-                    f = self.Fixup(app)
++                    f = self.Fixup(app, **kwargs)
+                     yield f, impmod, symbyname
+ 
+ 
+@@ -150,11 +151,20 @@ def test_now(self):
+     def test_on_worker_init(self):
+         with self.fixup_context(self.app) as (f, _, _):
+             with patch('celery.fixups.django.DjangoWorkerFixup') as DWF:
+-                f.on_worker_init()
++                mock_worker = Mock(name="worker")
++                f.on_worker_init(sender=mock_worker)
++                assert DWF.return_value.worker == mock_worker
++
+                 DWF.assert_called_with(f.app)
+                 DWF.return_value.install.assert_called_with()
+                 assert f._worker_fixup is DWF.return_value
+ 
++    def test_on_worker_init_warns_without_sender(self):
++        with self.fixup_context(self.app) as (f, _, _):
++            with patch("celery.fixups.django.DjangoWorkerFixup"):
++                with pytest.warns(FixupWarning, match="called without a sender"):
++                    f.on_worker_init(sender=None)
++
+ 
+ class InterfaceError(Exception):
+     pass
+@@ -168,9 +178,11 @@ def test_init(self):
+             assert f
+ 
+     def test_install(self):
++        worker = Mock()
++        worker.pool_cls = Mock(__module__='celery.concurrency.prefork')
+         self.app.conf = {'CELERY_DB_REUSE_MAX': None}
+         self.app.loader = Mock()
+-        with self.fixup_context(self.app) as (f, _, _):
++        with self.fixup_context(self.app, worker=worker) as (f, _, _):
+             with patch('celery.fixups.django.signals') as sigs:
+                 f.install()
+                 sigs.beat_embedded_init.connect.assert_called_with(
+@@ -336,6 +348,29 @@ class DJSettings:
+             conn.close.assert_called_once_with()
+             conn.close_pool.assert_not_called()
+ 
++    def test_close_database_conn_pool_thread_pool(self):
++        class DJSettings:
++            DATABASES = {}
++
++        with self.fixup_context(self.app) as (f, _, _):
++            conn = Mock()
++            conn.alias = "default"
++            conn.close_pool = Mock()
++            f._db.connections.all = Mock(return_value=[conn])
++            f._settings = DJSettings
++
++            f._settings.DATABASES["default"] = {"OPTIONS": {"pool": True}}
++            f.close_database()
++            conn.close.assert_called_once_with()
++            conn.close_pool.assert_called_once_with()
++
++            conn.reset_mock()
++            f.worker.pool_cls = ThreadTaskPool
++            assert "prefork" not in ThreadTaskPool.__module__
++            f.close_database()
++            conn.close.assert_called_once_with()
++            conn.close_pool.assert_not_called()
++
+     def test_close_cache_raises_error(self):
+         with self.fixup_context(self.app) as (f, _, _):
+             f._cache.close_caches.side_effect = AttributeError

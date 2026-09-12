@@ -1,0 +1,54 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 120764,
+  "pr_url": "https://github.com/home-assistant/core/pull/120764",
+  "issue_number": 111108,
+  "base_sha": "c81b9d624bd0f7099cef4cf6af24ccc72a7d93a9",
+  "head_sha": "38dc8f65b79fec8a63db229b3325c9010a87259c",
+  "additions": 86,
+  "deletions": 53,
+  "changed_files": [
+    "homeassistant/components/yamaha/const.py",
+    "homeassistant/components/yamaha/media_player.py",
+    "tests/components/yamaha/test_media_player.py"
+  ],
+  "test_files": [
+    "tests/components/yamaha/test_media_player.py"
+  ],
+  "source_files": [
+    "homeassistant/components/yamaha/const.py",
+    "homeassistant/components/yamaha/media_player.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "append",
+      "async_add_entities",
+      "async_setup_platform",
+      "avoid",
+      "breaking",
+      "build_source_list",
+      "button",
+      "change",
+      "changed",
+      "check"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:40:42Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH235_core_136026
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Set  clean_start=True on connect to MQTT broker"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/136026"
+source_issue: "https://github.com/home-assistant/core/issues/135443"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

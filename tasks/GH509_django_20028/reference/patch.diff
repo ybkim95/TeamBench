@@ -1,0 +1,150 @@
+diff --git a/django/contrib/humanize/templatetags/humanize.py b/django/contrib/humanize/templatetags/humanize.py
+index 26a9dd3a3f68..79d2e1566721 100644
+--- a/django/contrib/humanize/templatetags/humanize.py
++++ b/django/contrib/humanize/templatetags/humanize.py
+@@ -32,7 +32,10 @@ def ordinal(value):
+         return value
+     if value < 0:
+         return str(value)
+-    if value % 100 in (11, 12, 13):
++    if value == 1:
++        # Translators: Ordinal format when value is 1 (1st).
++        value = pgettext("ordinal is 1", "{}st").format(value)
++    elif value % 100 in (11, 12, 13):
+         # Translators: Ordinal format for 11 (11th), 12 (12th), and 13 (13th).
+         value = pgettext("ordinal 11, 12, 13", "{}th").format(value)
+     else:
+diff --git a/tests/humanize_tests/locale/fr/LC_MESSAGES/django.mo b/tests/humanize_tests/locale/fr/LC_MESSAGES/django.mo
+new file mode 100644
+index 000000000000..0cdef6c211ce
+Binary files /dev/null and b/tests/humanize_tests/locale/fr/LC_MESSAGES/django.mo differ
+diff --git a/tests/humanize_tests/locale/fr/LC_MESSAGES/django.po b/tests/humanize_tests/locale/fr/LC_MESSAGES/django.po
+new file mode 100644
+index 000000000000..011b35cb0df4
+--- /dev/null
++++ b/tests/humanize_tests/locale/fr/LC_MESSAGES/django.po
+@@ -0,0 +1,74 @@
++# Test-only French translations for humanize ordinal filter.
++msgid ""
++msgstr ""
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++"Language: fr\n"
++"Plural-Forms: nplurals=2; plural=(n > 1);\n"
++
++msgid "Humanize"
++msgstr "Humanisation"
++
++#. Translators: Ordinal format when value is 1 (1st).
++#: contrib/humanize/templatetags/humanize.py:37
++#, fuzzy
++#| msgctxt "ordinal 1"
++#| msgid "{}st"
++msgctxt "ordinal is 1"
++msgid "{}st"
++msgstr "{}<sup>er</sup>"
++
++#. Translators: Ordinal format for 11 (11th), 12 (12th), and 13 (13th).
++msgctxt "ordinal 11, 12, 13"
++msgid "{}th"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 0, e.g. 80th.
++msgctxt "ordinal 0"
++msgid "{}th"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 1, e.g. 81st, except 11.
++msgctxt "ordinal 1"
++msgid "{}st"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 2, e.g. 82nd, except 12.
++msgctxt "ordinal 2"
++msgid "{}nd"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 3, e.g. 83rd, except 13.
++msgctxt "ordinal 3"
++msgid "{}rd"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 4, e.g. 84th.
++msgctxt "ordinal 4"
++msgid "{}th"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 5, e.g. 85th.
++msgctxt "ordinal 5"
++msgid "{}th"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 6, e.g. 86th.
++msgctxt "ordinal 6"
++msgid "{}th"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 7, e.g. 87th.
++msgctxt "ordinal 7"
++msgid "{}th"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 8, e.g. 88th.
++msgctxt "ordinal 8"
++msgid "{}th"
++msgstr "{}<sup>e</sup>"
++
++#. Translators: Ordinal format when value ends with 9, e.g. 89th.
++msgctxt "ordinal 9"
++msgid "{}th"
++msgstr "{}<sup>e</sup>"
+diff --git a/tests/humanize_tests/tests.py b/tests/humanize_tests/tests.py
+index 7c2863d3c478..91e9127a65bf 100644
+--- a/tests/humanize_tests/tests.py
++++ b/tests/humanize_tests/tests.py
+@@ -1,4 +1,5 @@
+ import datetime
++import os
+ from decimal import Decimal
+ 
+ from django.contrib.humanize.templatetags import humanize
+@@ -9,10 +10,10 @@
+ from django.utils.timezone import get_fixed_timezone
+ from django.utils.translation import gettext as _
+ 
++here = os.path.dirname(os.path.abspath(__file__))
+ # Mock out datetime in some tests so they don't fail occasionally when they
+ # run too slow. Use a fixed datetime for datetime.now(). DST change in
+ # America/Chicago (the default time zone) happened on March 11th in 2012.
+-
+ now = datetime.datetime(2012, 3, 9, 22, 30)
+ 
+ 
+@@ -83,6 +84,7 @@ def test_ordinal(self):
+         with translation.override("en"):
+             self.humanize_tester(test_list, result_list, "ordinal")
+ 
++    @override_settings(LOCALE_PATHS=[os.path.join(here, "locale")])
+     def test_i18n_html_ordinal(self):
+         """Allow html in output on i18n strings"""
+         test_list = (
+@@ -93,6 +95,8 @@ def test_i18n_html_ordinal(self):
+             "11",
+             "12",
+             "13",
++            "21",
++            "31",
+             "101",
+             "102",
+             "103",
+@@ -108,7 +112,9 @@ def test_i18n_html_ordinal(self):
+             "11<sup>e</sup>",
+             "12<sup>e</sup>",
+             "13<sup>e</sup>",
+-            "101<sup>er</sup>",
++            "21<sup>e</sup>",
++            "31<sup>e</sup>",
++            "101<sup>e</sup>",
+             "102<sup>e</sup>",
+             "103<sup>e</sup>",
+             "111<sup>e</sup>",

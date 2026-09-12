@@ -1,0 +1,60 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1227,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1227",
+  "issue_number": 1226,
+  "base_sha": "380ccceb57ef44452a4c3e851e5e6dee09eb9eaf",
+  "head_sha": "b9b82e86e3ce1972581a495ccbe28d5dbb15c449",
+  "additions": 18,
+  "deletions": 9,
+  "changed_files": [
+    "docs/news.rst",
+    "psycopg/psycopg/_server_cursor.py",
+    "psycopg/psycopg/_server_cursor_async.py",
+    "psycopg/pyproject.toml",
+    "psycopg_c/pyproject.toml",
+    "psycopg_pool/pyproject.toml",
+    "tests/test_cursor_server.py",
+    "tests/test_cursor_server_async.py"
+  ],
+  "test_files": [
+    "tests/test_cursor_server.py",
+    "tests/test_cursor_server_async.py"
+  ],
+  "source_files": [
+    "psycopg/psycopg/_server_cursor.py",
+    "psycopg/psycopg/_server_cursor_async.py"
+  ],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "acommands",
+      "aconn",
+      "adapter",
+      "alist",
+      "also",
+      "begin",
+      "binary",
+      "change",
+      "classifiers",
+      "cmds"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:43:14Z"
+}

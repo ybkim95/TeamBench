@@ -1,0 +1,75 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index efd076e927..686ff02f80 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -16,6 +16,11 @@ Unreleased
+     deprecation period. :issue:`5815`
+ -   ``template_filter``, ``template_test``, and ``template_global`` decorators
+     can be used without parentheses. :issue:`5729`
++-   ``redirect`` returns a ``303`` status code by default instead of ``302``.
++    This tells the client to always switch to ``GET``, rather than only
++    switching ``POST`` to ``GET``. This preserves the current behavior of
++    ``GET`` and ``POST`` redirects, and is also correct for frontend libraries
++    such as HTMX. :issue:`5895`
+ 
+ 
+ Version 3.1.2
+diff --git a/docs/api.rst b/docs/api.rst
+index d3c517f1b4..52b253767e 100644
+--- a/docs/api.rst
++++ b/docs/api.rst
+@@ -596,7 +596,7 @@ This specifies that ``/users/`` will be the URL for page one and
+ ``/users/page/N`` will be the URL for page ``N``.
+ 
+ If a URL contains a default value, it will be redirected to its simpler
+-form with a 301 redirect. In the above example, ``/users/page/1`` will
++form with a 308 redirect. In the above example, ``/users/page/1`` will
+ be redirected to ``/users/``. If your route handles ``GET`` and ``POST``
+ requests, make sure the default route only handles ``GET``, as redirects
+ can't preserve form data. ::
+diff --git a/src/flask/helpers.py b/src/flask/helpers.py
+index 31167c2b8e..3b65664afe 100644
+--- a/src/flask/helpers.py
++++ b/src/flask/helpers.py
+@@ -239,7 +239,7 @@ def url_for(
+ 
+ 
+ def redirect(
+-    location: str, code: int = 302, Response: type[BaseResponse] | None = None
++    location: str, code: int = 303, Response: type[BaseResponse] | None = None
+ ) -> BaseResponse:
+     """Create a redirect response object.
+ 
+@@ -252,6 +252,9 @@ def redirect(
+     :param Response: The response class to use. Not used when
+         ``current_app`` is active, which uses ``app.response_class``.
+ 
++    .. versionchanged:: 3.2
++        ``code`` defaults to ``303`` instead of ``302``.
++
+     .. versionadded:: 2.2
+         Calls ``current_app.redirect`` if available instead of always
+         using Werkzeug's default ``redirect``.
+diff --git a/src/flask/sansio/app.py b/src/flask/sansio/app.py
+index 43d2052921..82349dae0b 100644
+--- a/src/flask/sansio/app.py
++++ b/src/flask/sansio/app.py
+@@ -932,7 +932,7 @@ def should_ignore_error(self, error: BaseException | None) -> bool:
+         """
+         return False
+ 
+-    def redirect(self, location: str, code: int = 302) -> BaseResponse:
++    def redirect(self, location: str, code: int = 303) -> BaseResponse:
+         """Create a redirect response object.
+ 
+         This is called by :func:`flask.redirect`, and can be called
+@@ -941,6 +941,9 @@ def redirect(self, location: str, code: int = 302) -> BaseResponse:
+         :param location: The URL to redirect to.
+         :param code: The status code for the redirect.
+ 
++        .. versionchanged:: 3.2
++            ``code`` defaults to ``303`` instead of ``302``.
++
+         .. versionadded:: 2.2
+             Moved from ``flask.redirect``, which calls this method.
+         """

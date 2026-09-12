@@ -1,0 +1,13 @@
+task_id: GH1016_scikit_learn_17575
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "FIX escape double quotes when exporting tree with Graphviz"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scikit-learn/scikit-learn/pull/17575"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

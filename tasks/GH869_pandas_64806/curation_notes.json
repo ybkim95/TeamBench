@@ -1,0 +1,54 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64806,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64806",
+  "issue_number": 28610,
+  "base_sha": "389051d090579550f1a1259855f486d7f7e2159e",
+  "head_sha": "eb88cd388014e9a74dc885d99cd2694206662913",
+  "additions": 56,
+  "deletions": 6,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/_libs/tslibs/offsets.pyi",
+    "pandas/core/arrays/datetimes.py",
+    "pandas/tests/arithmetic/test_datetime64.py"
+  ],
+  "test_files": [
+    "pandas/tests/arithmetic/test_datetime64.py"
+  ],
+  "source_files": [
+    "pandas/core/arrays/datetimes.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "abbrev_to_npy_unit",
+      "adding",
+      "addition",
+      "ambiguous",
+      "as_unit",
+      "assert_index_equal",
+      "avoid",
+      "aware",
+      "components",
+      "correctly"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:23Z"
+}

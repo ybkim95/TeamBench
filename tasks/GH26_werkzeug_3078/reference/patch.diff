@@ -1,0 +1,57 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 32b375caa..385d97e23 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -5,6 +5,9 @@ Version 3.1.5
+ 
+ Unreleased
+ 
++-   Fix ``AttributeError`` when initializing ``DebuggedApplication`` with
++    ``pin_security=False``. :issue:`3075`
++
+ 
+ Version 3.1.4
+ -------------
+diff --git a/src/werkzeug/debug/__init__.py b/src/werkzeug/debug/__init__.py
+index afc6dbbce..17cd4b25a 100644
+--- a/src/werkzeug/debug/__init__.py
++++ b/src/werkzeug/debug/__init__.py
+@@ -263,7 +263,7 @@ class DebuggedApplication:
+         Added the ``werkzeug.debug.preserve_context`` environ key.
+     """
+ 
+-    _pin: str
++    _pin: str | None
+     _pin_cookie: str
+ 
+     def __init__(
+@@ -320,7 +320,8 @@ def pin(self) -> str | None:
+     @pin.setter
+     def pin(self, value: str | None) -> None:
+         if value is None:
+-            del self._pin
++            # Set _pin to None explicitly to prevent regeneration by the getter
++            self._pin = None
+         else:
+             self._pin = value
+ 
+diff --git a/tests/test_debug.py b/tests/test_debug.py
+index 29a055a70..c5b2e152b 100644
+--- a/tests/test_debug.py
++++ b/tests/test_debug.py
+@@ -309,3 +309,15 @@ def test_missing_source_lines(mock_getlines: mock.Mock) -> None:
+     html = tb.render_traceback_html()
+     assert "test_debug.py" in html
+     assert "truncated" not in html
++
++
++def test_debugged_application_pin_security_false():
++    """Test that DebuggedApplication can be initialized with pin_security=False."""
++
++    @Request.application
++    def app(request):
++        return "OK"
++
++    # This should not raise AttributeError
++    debugged = DebuggedApplication(app, evalex=True, pin_security=False)
++    assert debugged.pin is None

@@ -1,0 +1,13 @@
+task_id: GH948_gpytorch_2172
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "MMVN.to_data_independent_dist returns correct variance for non-interleaved MMVN distributions."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/cornellius-gp/gpytorch/pull/2172"
+source_issue: "https://github.com/cornellius-gp/gpytorch/issues/2072"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

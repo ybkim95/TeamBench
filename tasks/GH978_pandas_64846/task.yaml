@@ -1,0 +1,13 @@
+task_id: GH978_pandas_64846
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Revert 'BUG: distinguish bool from int in object-dtype hash table'"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64846"
+source_issue: "https://github.com/pandas-dev/pandas/issues/64749"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

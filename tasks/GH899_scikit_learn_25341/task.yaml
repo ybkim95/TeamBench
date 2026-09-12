@@ -1,0 +1,13 @@
+task_id: GH899_scikit_learn_25341
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "FIX Support read-only sparse datasets for `Tree`-based estimators"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scikit-learn/scikit-learn/pull/25341"
+source_issue: "https://github.com/scikit-learn/scikit-learn/issues/25333"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

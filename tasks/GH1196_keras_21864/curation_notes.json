@@ -1,0 +1,54 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 21864,
+  "pr_url": "https://github.com/keras-team/keras/pull/21864",
+  "issue_number": null,
+  "base_sha": "e048ae41c2a3ea1fcc1a85f35d7e1d32275cf04c",
+  "head_sha": "ca425be67b66acd4f56cd11ad633d9d21092f492",
+  "additions": 31,
+  "deletions": 3,
+  "changed_files": [
+    "keras/src/backend/common/variables.py",
+    "keras/src/backend/common/variables_test.py"
+  ],
+  "test_files": [
+    "keras/src/backend/common/variables_test.py"
+  ],
+  "source_files": [
+    "keras/src/backend/common/variables.py"
+  ],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "affected",
+      "argument",
+      "assign",
+      "assigning",
+      "autocast",
+      "autocasting",
+      "backend",
+      "dtype",
+      "float",
+      "float16"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:09Z"
+}

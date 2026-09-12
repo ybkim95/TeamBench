@@ -1,0 +1,241 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index f63b059e2..c88b161ca 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -43,6 +43,8 @@ Unreleased
+     are closed to prevent a ``ResourceWarning``. :pr:`3101`
+ -   ``SpooledTemporaryFile`` is always used for multipart file parsing.
+     :pr:`3101`
++-   Raise a ``DuplicateRuleError`` when attempting to add a rule to a map with
++    an equal rule. :issue:`3037`
+ 
+ 
+ Version 3.1.5
+diff --git a/docs/routing.rst b/docs/routing.rst
+index d295b3a0c..5df9e9741 100644
+--- a/docs/routing.rst
++++ b/docs/routing.rst
+@@ -74,6 +74,9 @@ format ``<converter(arguments):name>``. ``converter`` and ``arguments``
+ ``default`` converter is used (``string`` by default). The available
+ converters are discussed below.
+ 
++Rule path parts are separated by ``/`` and matched individually, unless a
++converter opts in to matching ``/`` as well.
++
+ Rules that end with a slash are "branches", others are "leaves". If
+ ``strict_slashes`` is enabled (the default), visiting a branch URL
+ without a trailing slash will redirect to the URL with a slash appended.
+@@ -86,6 +89,18 @@ merged. If you want to disable ``merge_slashes`` for a :class:`Rule` or
+ :class:`Map`, you'll also need to configure your web server
+ appropriately.
+ 
++Besides the path, matching can also use the subdomain of a known base domain if
++``subdomain_matching`` is enabled (the default), or the full host (if
++``host_matching`` is enabled). The subdomain or host parts can also contain
++variables. Unlike the path, where multiple parts are separated by ``/``, the
++domain is always matched as a single part.
++
++If a duplicate rule is added to a map, a :exc:`.DuplicateRuleError` will be
++raised. Rules are compared based on their path, subdomain or host, and websocket
++mode. Variable parts are not equal if they use different converters, although
++this heuristic may not be perfect depending on what the different converters can
++actually match.
++
+ 
+ Rule Priority
+ =============
+@@ -148,10 +163,17 @@ Maps, Rules and Adapters
+ .. autoclass:: Rule
+    :members: empty
+ 
++.. currentmodule:: werkzeug.routing.exceptions
++
++.. autoclass:: DuplicateRuleError
++    :members:
++
+ 
+ Rule Factories
+ ==============
+ 
++.. currentmodule:: werkzeug.routing
++
+ .. autoclass:: RuleFactory
+    :members: get_rules
+ 
+diff --git a/src/werkzeug/routing/exceptions.py b/src/werkzeug/routing/exceptions.py
+index eeabd4ed1..2967a521c 100644
+--- a/src/werkzeug/routing/exceptions.py
++++ b/src/werkzeug/routing/exceptions.py
+@@ -17,6 +17,29 @@
+     from .rules import Rule
+ 
+ 
++class DuplicateRuleError(Exception):
++    """Raised if a :class:`.Rule` is added to a :class:`.Map` that is equal to
++    an existing rule in the map.
++
++    :param existing: The existing rule that was duplicated.
++    :param duplicate: The new rule that duplicates the existing rule.
++
++    .. versionadded:: 3.2
++    """
++
++    def __init__(self, existing: Rule, duplicate: Rule) -> None:
++        super().__init__()
++
++        self.existing = existing
++        """The existing rule that was duplicated."""
++
++        self.duplicate = duplicate
++        """The new rule that duplicates the existing rule."""
++
++    def __str__(self) -> str:
++        return str(self.existing)
++
++
+ class RoutingException(Exception):
+     """Special exceptions that require the application to redirect, notifying
+     about missing urls, etc.
+diff --git a/src/werkzeug/routing/matcher.py b/src/werkzeug/routing/matcher.py
+index 9174061bb..ee7651db0 100644
+--- a/src/werkzeug/routing/matcher.py
++++ b/src/werkzeug/routing/matcher.py
+@@ -6,6 +6,7 @@
+ from dataclasses import field
+ 
+ from .converters import ValidationError
++from .exceptions import DuplicateRuleError
+ from .exceptions import NoMatch
+ from .exceptions import RequestAliasRedirect
+ from .exceptions import RequestPath
+@@ -50,6 +51,11 @@ def add(self, rule: Rule) -> None:
+                     new_state = State()
+                     state.dynamic.append((part, new_state))
+                     state = new_state
++
++        for existing in state.rules:
++            if rule == existing:
++                raise DuplicateRuleError(existing, rule)
++
+         state.rules.append(rule)
+ 
+     def update(self) -> None:
+diff --git a/src/werkzeug/routing/rules.py b/src/werkzeug/routing/rules.py
+index 7f5c566bb..18cfba1b1 100644
+--- a/src/werkzeug/routing/rules.py
++++ b/src/werkzeug/routing/rules.py
+@@ -907,12 +907,25 @@ def build_compare_key(self) -> tuple[int, int, int]:
+         return (1 if self.alias else 0, -len(self.arguments), -len(self.defaults or ()))
+ 
+     def __eq__(self, other: object) -> bool:
+-        return isinstance(other, type(self)) and self._trace == other._trace
++        if not isinstance(other, type(self)):
++            return NotImplemented
++
++        return self._parts == other._parts and self.websocket == other.websocket
+ 
+     __hash__ = None  # type: ignore
+ 
+     def __str__(self) -> str:
+-        return self.rule
++        out = self.rule
++
++        if self.map.subdomain_matching and self.subdomain:
++            out = f"{self.subdomain} {out}"
++        elif self.map.host_matching and self.host:
++            out = f"{self.host} {out}"
++
++        if self.websocket:
++            out = f"websocket {out}"
++
++        return f"{out} → {self.endpoint}"
+ 
+     def __repr__(self) -> str:
+         if self.map is None:
+diff --git a/tests/test_routing.py b/tests/test_routing.py
+index e7c266658..4f31037cb 100644
+--- a/tests/test_routing.py
++++ b/tests/test_routing.py
+@@ -13,6 +13,7 @@
+ from werkzeug.exceptions import MethodNotAllowed
+ from werkzeug.exceptions import NotFound
+ from werkzeug.exceptions import SecurityError
++from werkzeug.routing.exceptions import DuplicateRuleError
+ from werkzeug.test import create_environ
+ from werkzeug.wrappers import Request
+ from werkzeug.wrappers import Response
+@@ -251,6 +252,74 @@ def test_strict_slashes_leaves_dont_consume():
+     assert adapter.match("/path5/", method="GET") == ("leaf", {})
+ 
+ 
++def test_no_duplicates() -> None:
++    """A rule's subdomain part and websocket mode are considered for equality."""
++    r.Map(
++        [
++            r.Rule("/", endpoint="index"),
++            r.Rule("/", endpoint="websocket", websocket=True),
++            r.Rule("/", endpoint="sub", subdomain="a"),
++        ]
++    )
++
++
++def test_no_duplicates_host() -> None:
++    """If host_matching is enabled, a rule's host is considered for equality."""
++    r.Map(
++        [
++            r.Rule("/", endpoint="index", host="a"),
++            r.Rule("/", endpoint="host", host="b"),
++        ],
++        host_matching=True,
++    )
++
++
++def test_duplicate_domain_disabled() -> None:
++    """If domain matching is disabled, a rule's subdomain is not considered for
++    equality.
++    """
++    with pytest.raises(DuplicateRuleError):
++        r.Map(
++            [
++                r.Rule("/", endpoint="index"),
++                r.Rule("/", endpoint="sub", subdomain="a"),
++            ],
++            subdomain_matching=False,
++        )
++
++
++def test_duplicate_rule() -> None:
++    """Equal static parts are duplicates."""
++    with pytest.raises(DuplicateRuleError):
++        r.Map(
++            [
++                r.Rule("/", endpoint="a"),
++                r.Rule("/", endpoint="b"),
++            ]
++        )
++
++
++def test_duplicate_converter() -> None:
++    """Equal converter parts are duplicates."""
++    with pytest.raises(DuplicateRuleError):
++        r.Map(
++            [
++                r.Rule("/page/<a>", endpoint="a"),
++                r.Rule("/page/<b>", endpoint="b"),
++            ]
++        )
++
++
++def test_no_duplicate_different_converters() -> None:
++    """Converters of different types are not duplicates."""
++    r.Map(
++        [
++            r.Rule("/<a>", endpoint="a"),
++            r.Rule("/<int:b>", endpoint="b"),
++        ]
++    )
++
++
+ def test_environ_defaults():
+     environ = create_environ("/foo")
+     assert environ["PATH_INFO"] == "/foo"

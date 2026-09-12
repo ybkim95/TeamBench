@@ -1,0 +1,13 @@
+task_id: GH801_aiohttp_11861
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix(connector): propagate proxy headers on connection reuse (#11777)"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/aio-libs/aiohttp/pull/11861"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

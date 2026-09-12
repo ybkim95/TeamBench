@@ -1,0 +1,13 @@
+task_id: GH227_core_162439
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix(snapcast): do not crash when stream is not found"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/162439"
+source_issue: "https://github.com/home-assistant/core/issues/157636"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH1066_matplotlib_31315
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] Warn when legend() receives mismatched handles and labels in 2-argument positional form"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/31315"
+source_issue: "https://github.com/matplotlib/matplotlib/issues/24050"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

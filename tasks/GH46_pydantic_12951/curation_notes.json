@@ -1,0 +1,52 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12951,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12951",
+  "issue_number": 7987,
+  "base_sha": "d4d370897ca71c344cdbd7b2f5a6e687a6518b92",
+  "head_sha": "2186d75067de13564a02696732a1353281a07d2b",
+  "additions": 33,
+  "deletions": 3,
+  "changed_files": [
+    "pydantic/_internal/_generate_schema.py",
+    "tests/test_types_namedtuple.py"
+  ],
+  "test_files": [
+    "tests/test_types_namedtuple.py"
+  ],
+  "source_files": [
+    "pydantic/_internal/_generate_schema.py"
+  ],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "actually",
+      "annotation",
+      "annotations",
+      "argument",
+      "collections",
+      "core_schema",
+      "defined",
+      "empty",
+      "errors",
+      "exc_info"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:36:03Z"
+}

@@ -1,0 +1,64 @@
+diff --git a/examples/pytorch/question-answering/trainer_qa.py b/examples/pytorch/question-answering/trainer_qa.py
+--- a/examples/pytorch/question-answering/trainer_qa.py
++++ b/examples/pytorch/question-answering/trainer_qa.py
+@@ -20,7 +20,7 @@
+ from transformers.trainer_utils import PredictionOutput
+ 
+ 
+-if is_torch_tpu_available():
++if is_torch_tpu_available(check_device=False):
+     import torch_xla.core.xla_model as xm
+     import torch_xla.debug.metrics as met
+ 
+
+diff --git a/examples/pytorch/question-answering/trainer_seq2seq_qa.py b/examples/pytorch/question-answering/trainer_seq2seq_qa.py
+--- a/examples/pytorch/question-answering/trainer_seq2seq_qa.py
++++ b/examples/pytorch/question-answering/trainer_seq2seq_qa.py
+@@ -23,7 +23,7 @@
+ from transformers.trainer_utils import PredictionOutput
+ 
+ 
+-if is_torch_tpu_available():
++if is_torch_tpu_available(check_device=False):
+     import torch_xla.core.xla_model as xm
+     import torch_xla.debug.metrics as met
+ 
+
+diff --git a/examples/research_projects/quantization-qdqbert/trainer_quant_qa.py b/examples/research_projects/quantization-qdqbert/trainer_quant_qa.py
+--- a/examples/research_projects/quantization-qdqbert/trainer_quant_qa.py
++++ b/examples/research_projects/quantization-qdqbert/trainer_quant_qa.py
+@@ -30,7 +30,7 @@
+ 
+ logger = logging.getLogger(__name__)
+ 
+-if is_torch_tpu_available():
++if is_torch_tpu_available(check_device=False):
+     import torch_xla.core.xla_model as xm
+     import torch_xla.debug.metrics as met
+ 
+
+diff --git a/src/transformers/benchmark/benchmark_args.py b/src/transformers/benchmark/benchmark_args.py
+--- a/src/transformers/benchmark/benchmark_args.py
++++ b/src/transformers/benchmark/benchmark_args.py
+@@ -24,7 +24,7 @@
+ if is_torch_available():
+     import torch
+ 
+-if is_torch_tpu_available():
++if is_torch_tpu_available(check_device=False):
+     import torch_xla.core.xla_model as xm
+ 
+ 
+
+diff --git a/src/transformers/trainer.py b/src/transformers/trainer.py
+--- a/src/transformers/trainer.py
++++ b/src/transformers/trainer.py
+@@ -171,7 +171,7 @@
+ if is_datasets_available():
+     import datasets
+ 
+-if is_torch_tpu_available():
++if is_torch_tpu_available(check_device=False):
+     import torch_xla.core.xla_model as xm
+     import torch_xla.debug.metrics as met
+     import torch_xla.distributed.parallel_loader as pl

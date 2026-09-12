@@ -27,7 +27,8 @@ check() {
 cd "${WORKSPACE}"
 
 # ── C1: npm install succeeds ──────────────────────────────────────────────────
-npm install --prefer-offline 2>&1 >/dev/null && npm_ok="pass" || npm_ok="fail"
+# was: npm install (grade-time network fetch), removed scripts/make_graders_hermetic.py
+:
 check "C1" "npm install succeeds" "$npm_ok"
 
 # ── C2: tsc --noEmit exits 0 (no TypeScript errors) ──────────────────────────
@@ -135,3 +136,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

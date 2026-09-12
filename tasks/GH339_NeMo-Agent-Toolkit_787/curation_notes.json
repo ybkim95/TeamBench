@@ -1,0 +1,52 @@
+{
+  "repo": "NVIDIA/NeMo-Agent-Toolkit",
+  "pr_number": 787,
+  "pr_url": "https://github.com/NVIDIA/NeMo-Agent-Toolkit/pull/787",
+  "issue_number": 765,
+  "base_sha": "50b49dd4df5e08809b14f8c4a9f9957da13adbc9",
+  "head_sha": "c5d1223eb67a24509d399cb934a43cd7485735c9",
+  "additions": 15,
+  "deletions": 0,
+  "changed_files": [
+    "src/nat/cli/commands/workflow/workflow_commands.py",
+    "tests/nat/cli/commands/test_workflow_commands.py"
+  ],
+  "test_files": [
+    "tests/nat/cli/commands/test_workflow_commands.py"
+  ],
+  "source_files": [
+    "src/nat/cli/commands/workflow/workflow_commands.py"
+  ],
+  "parameterization": {
+    "repo": "NVIDIA/NeMo-Agent-Toolkit",
+    "repo_short": "NeMo-Agent-Toolkit",
+    "parameterized_identifiers": [
+      "cannot",
+      "capture_output",
+      "check",
+      "click",
+      "code",
+      "create",
+      "create_command",
+      "descrip",
+      "description",
+      "directory"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:11:23Z"
+}

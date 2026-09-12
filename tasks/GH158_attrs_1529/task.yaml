@@ -1,0 +1,13 @@
+task_id: GH158_attrs_1529
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Add instance support to attrs.fields()"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/python-attrs/attrs/pull/1529"
+source_issue: "https://github.com/python-attrs/attrs/issues/1400"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

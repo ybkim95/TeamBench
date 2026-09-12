@@ -1,0 +1,243 @@
+diff --git a/psycopg/psycopg/_copy_base.py b/psycopg/psycopg/_copy_base.py
+index 05180950e..bedc98a8b 100644
+--- a/psycopg/psycopg/_copy_base.py
++++ b/psycopg/psycopg/_copy_base.py
+@@ -321,16 +321,11 @@ def _ensure_bytes(self, data: Buffer | str) -> Buffer:
+             return data
+ 
+ 
+-def _format_row_text(
+-    row: Sequence[Any], tx: Transformer, out: bytearray | None = None
+-) -> bytearray:
++def _format_row_text(row: Sequence[Any], tx: Transformer, out: bytearray) -> None:
+     """Convert a row of objects to the data to send for copy."""
+-    if out is None:
+-        out = bytearray()
+-
+     if not row:
+         out += b"\n"
+-        return out
++        return
+ 
+     adapted = tx.dump_sequence(row, [PY_TEXT] * len(row))
+     for b in adapted:
+@@ -338,18 +333,12 @@ def _format_row_text(
+         out += b"\t"
+ 
+     out[-1:] = b"\n"
+-    return out
+ 
+ 
+-def _format_row_binary(
+-    row: Sequence[Any], tx: Transformer, out: bytearray | None = None
+-) -> bytearray:
++def _format_row_binary(row: Sequence[Any], tx: Transformer, out: bytearray) -> None:
+     """Convert a row of objects to the data to send for binary copy."""
+-    if out is None:
+-        out = bytearray()
+-
+-    out += _pack_int2(len(row))
+     adapted = tx.dump_sequence(row, [PY_BINARY] * len(row))
++    out += _pack_int2(len(row))
+     for b in adapted:
+         if b is not None:
+             out += _pack_int4(len(b))
+@@ -357,8 +346,6 @@ def _format_row_binary(
+         else:
+             out += _binary_null
+ 
+-    return out
+-
+ 
+ def _parse_row_text(data: Buffer, tx: Transformer) -> tuple[Any, ...]:
+     if not isinstance(data, bytes):
+diff --git a/psycopg_c/psycopg_c/_psycopg.pyi b/psycopg_c/psycopg_c/_psycopg.pyi
+index c17823467..4fbd390e0 100644
+--- a/psycopg_c/psycopg_c/_psycopg.pyi
++++ b/psycopg_c/psycopg_c/_psycopg.pyi
+@@ -68,11 +68,11 @@ def wait_c(
+ 
+ # Copy support
+ def format_row_text(
+-    row: Sequence[Any], tx: abc.Transformer, out: bytearray | None = None
+-) -> bytearray: ...
++    row: Sequence[Any], tx: abc.Transformer, out: bytearray
++) -> None: ...
+ def format_row_binary(
+-    row: Sequence[Any], tx: abc.Transformer, out: bytearray | None = None
+-) -> bytearray: ...
++    row: Sequence[Any], tx: abc.Transformer, out: bytearray
++) -> None: ...
+ def parse_row_text(data: abc.Buffer, tx: abc.Transformer) -> tuple[Any, ...]: ...
+ def parse_row_binary(data: abc.Buffer, tx: abc.Transformer) -> tuple[Any, ...]: ...
+ 
+diff --git a/psycopg_c/psycopg_c/_psycopg/copy.pyx b/psycopg_c/psycopg_c/_psycopg/copy.pyx
+index d28e2e8a4..b9b2119cd 100644
+--- a/psycopg_c/psycopg_c/_psycopg/copy.pyx
++++ b/psycopg_c/psycopg_c/_psycopg/copy.pyx
+@@ -21,9 +21,7 @@ from psycopg import errors as e
+ cdef int32_t _binary_null = -1
+ 
+ 
+-def format_row_binary(
+-    row: Sequence[Any], tx: Transformer, out: bytearray = None
+-) -> bytearray:
++cdef object _format_row_binary(object row, Transformer tx, bytearray out):
+     """Convert a row of adapted data to the data to send for binary copy"""
+     cdef Py_ssize_t rowlen
+     if type(row) is list:
+@@ -34,12 +32,8 @@ def format_row_binary(
+         rowlen = len(row)
+     cdef uint16_t berowlen = endian.htobe16(<int16_t>rowlen)
+ 
+-    cdef Py_ssize_t pos  # offset in 'out' where to write
+-    if out is None:
+-        out = PyByteArray_FromStringAndSize("", 0)
+-        pos = 0
+-    else:
+-        pos = PyByteArray_GET_SIZE(out)
++    # offset in 'out' where to write
++    cdef Py_ssize_t pos = PyByteArray_GET_SIZE(out)
+ 
+     cdef char *target = CDumper.ensure_size(out, pos, sizeof(berowlen))
+ 
+@@ -99,7 +93,18 @@ def format_row_binary(
+ 
+     # Resize to the final size
+     PyByteArray_Resize(out, pos)
+-    return out
++
++
++def format_row_binary(row: Sequence[Any], tx: Transformer, out: bytearray) -> None:
++    cdef Py_ssize_t size = PyByteArray_GET_SIZE(out)
++
++    try:
++        _format_row_binary(row, tx, out)
++    except Exception as e:
++        # Restore the input bytearray to the size it was before entering here
++        # to avoid potentially passing junk to copy.
++        PyByteArray_Resize(out, size)
++        raise e
+ 
+ 
+ cdef int _append_binary_none(bytearray out, Py_ssize_t *pos) except -1:
+@@ -110,28 +115,9 @@ cdef int _append_binary_none(bytearray out, Py_ssize_t *pos) except -1:
+     return 0
+ 
+ 
+-def format_row_text(
+-    row: Sequence[Any], tx: Transformer, out: bytearray = None
+-) -> bytearray:
+-    cdef Py_ssize_t pos  # offset in 'out' where to write
+-    if out is None:
+-        out = PyByteArray_FromStringAndSize("", 0)
+-        pos = 0
+-    else:
+-        pos = PyByteArray_GET_SIZE(out)
+-
+-    cdef Py_ssize_t rowlen
+-    if type(row) is list:
+-        rowlen = PyList_GET_SIZE(row)
+-    elif type(row) is tuple:
+-        rowlen = PyTuple_GET_SIZE(row)
+-    else:
+-        rowlen = len(row)
+-
+-    if rowlen == 0:
+-        PyByteArray_Resize(out, pos + 1)
+-        out[pos] = b"\n"
+-        return out
++cdef object _format_row_text(object row, Py_ssize_t rowlen, Transformer tx, bytearray out):
++    # offset in 'out' where to write
++    cdef Py_ssize_t pos = PyByteArray_GET_SIZE(out)
+ 
+     cdef Py_ssize_t size, tmpsize
+     cdef char *buf
+@@ -216,7 +202,32 @@ def format_row_text(
+     # Resize to the final size, add the newline
+     PyByteArray_Resize(out, pos + 1)
+     out[pos] = b"\n"
+-    return out
++
++
++def format_row_text(row: Sequence[Any], tx: Transformer, out: bytearray) -> None:
++    cdef Py_ssize_t size = PyByteArray_GET_SIZE(out)
++
++    # exit early, if the row is empty
++    cdef Py_ssize_t rowlen
++    if type(row) is list:
++        rowlen = PyList_GET_SIZE(row)
++    elif type(row) is tuple:
++        rowlen = PyTuple_GET_SIZE(row)
++    else:
++        rowlen = len(row)
++
++    if rowlen == 0:
++        PyByteArray_Resize(out, size + 1)
++        out[size] = b"\n"
++        return
++
++    try:
++        _format_row_text(row, rowlen, tx, out)
++    except Exception as e:
++        # Restore the input bytearray to the size it was before entering here
++        # to avoid potentially passing junk to copy.
++        PyByteArray_Resize(out, size)
++        raise e
+ 
+ 
+ cdef int _append_text_none(bytearray out, Py_ssize_t *pos, int with_tab) except -1:
+diff --git a/tests/test_copy.py b/tests/test_copy.py
+index a0cad5aae..e78636819 100644
+--- a/tests/test_copy.py
++++ b/tests/test_copy.py
+@@ -686,6 +686,21 @@ def test_binary_partial_row(conn):
+             copy.write_row([16, [[None], None]])
+ 
+ 
++@pytest.mark.parametrize("format", pq.Format)
++def test_clean_buffer_on_error(conn, format):
++    cur = conn.cursor()
++    ensure_table(cur, "id serial primary key, num int4, obj jsonb")
++    with cur.copy(f"copy copy_in (num, obj) from stdin (format {format.name})") as copy:
++        copy.set_types(["int4", "jsonb"])
++        copy.write_row([15, {}])
++        with pytest.raises(TypeError):
++            copy.write_row([16, 1j])
++        copy.write_row([17, []])
++
++    cur.execute("select num, obj from copy_in order by id")
++    assert cur.fetchall() == [(15, {}), (17, [])]
++
++
+ @pytest.mark.parametrize(
+     "format, buffer",
+     [(pq.Format.TEXT, "sample_text"), (pq.Format.BINARY, "sample_binary")],
+diff --git a/tests/test_copy_async.py b/tests/test_copy_async.py
+index 70d30dbda..1c9998b31 100644
+--- a/tests/test_copy_async.py
++++ b/tests/test_copy_async.py
+@@ -702,6 +702,23 @@ async def test_binary_partial_row(aconn):
+             await copy.write_row([16, [[None], None]])
+ 
+ 
++@pytest.mark.parametrize("format", pq.Format)
++async def test_clean_buffer_on_error(aconn, format):
++    cur = aconn.cursor()
++    await ensure_table_async(cur, "id serial primary key, num int4, obj jsonb")
++    async with cur.copy(
++        f"copy copy_in (num, obj) from stdin (format {format.name})"
++    ) as copy:
++        copy.set_types(["int4", "jsonb"])
++        await copy.write_row([15, {}])
++        with pytest.raises(TypeError):
++            await copy.write_row([16, 1j])
++        await copy.write_row([17, []])
++
++    await cur.execute("select num, obj from copy_in order by id")
++    assert (await cur.fetchall()) == [(15, {}), (17, [])]
++
++
+ @pytest.mark.parametrize(
+     "format, buffer",
+     [(pq.Format.TEXT, "sample_text"), (pq.Format.BINARY, "sample_binary")],

@@ -1,0 +1,55 @@
+{
+  "repo": "pallets/jinja",
+  "pr_number": 2098,
+  "pr_url": "https://github.com/pallets/jinja/pull/2098",
+  "issue_number": null,
+  "base_sha": "dfe82ade3dc7d112d7d166ca0d7ae7f794fe19e6",
+  "head_sha": "b7ce542db1cd1e85f5c47a6ec7eb584aa189bffc",
+  "additions": 24,
+  "deletions": 2,
+  "changed_files": [
+    "CHANGES.rst",
+    "pyproject.toml",
+    "src/jinja2/__init__.py",
+    "uv.lock"
+  ],
+  "test_files": [],
+  "source_files": [
+    "src/jinja2/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/jinja",
+    "repo_short": "jinja",
+    "parameterized_identifiers": [
+      "annotations",
+      "attribute",
+      "backend",
+      "bccache",
+      "build",
+      "classifiers",
+      "dependencies",
+      "deprecated",
+      "description",
+      "detection"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:26:51Z"
+}

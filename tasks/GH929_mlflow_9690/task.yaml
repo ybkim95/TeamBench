@@ -1,0 +1,13 @@
+task_id: GH929_mlflow_9690
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Enable LangChain SQLDatabaseChain test and fix bug"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/mlflow/mlflow/pull/9690"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

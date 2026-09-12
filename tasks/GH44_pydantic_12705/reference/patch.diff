@@ -1,0 +1,101 @@
+diff --git a/pydantic/_internal/_generate_schema.py b/pydantic/_internal/_generate_schema.py
+index 19b6debe2fa..0317a011c41 100644
+--- a/pydantic/_internal/_generate_schema.py
++++ b/pydantic/_internal/_generate_schema.py
+@@ -58,7 +58,13 @@
+ from ..aliases import AliasChoices, AliasPath
+ from ..annotated_handlers import GetCoreSchemaHandler, GetJsonSchemaHandler
+ from ..config import ConfigDict, JsonDict, JsonEncoder, JsonSchemaExtraCallable
+-from ..errors import PydanticSchemaGenerationError, PydanticUndefinedAnnotation, PydanticUserError
++from ..errors import (
++    PydanticForbiddenQualifier,
++    PydanticInvalidForJsonSchema,
++    PydanticSchemaGenerationError,
++    PydanticUndefinedAnnotation,
++    PydanticUserError,
++)
+ from ..functional_validators import AfterValidator, BeforeValidator, FieldValidatorModes, PlainValidator, WrapValidator
+ from ..json_schema import JsonSchemaValue
+ from ..version import version_short
+@@ -328,6 +334,15 @@ def _add_custom_serialization_from_json_encoders(
+     return schema
+ 
+ 
++GENERATE_SCHEMA_ERRORS = (
++    PydanticForbiddenQualifier,
++    PydanticInvalidForJsonSchema,
++    PydanticSchemaGenerationError,
++    PydanticUndefinedAnnotation,
++)
++"""Errors raised during core schema generation. This does *not* include `InvalidSchemaError`, which is raised during schema cleaning."""
++
++
+ class InvalidSchemaError(Exception):
+     """The core schema is invalid."""
+ 
+diff --git a/pydantic/functional_validators.py b/pydantic/functional_validators.py
+index 2919e8b080a..592001a711a 100644
+--- a/pydantic/functional_validators.py
++++ b/pydantic/functional_validators.py
+@@ -782,7 +782,7 @@ def __class_getitem__(cls, item: AnyType) -> AnyType:
+ 
+         @classmethod
+         def __get_pydantic_core_schema__(cls, source: Any, handler: GetCoreSchemaHandler) -> core_schema.CoreSchema:
+-            from pydantic import PydanticSchemaGenerationError
++            from pydantic._internal._generate_schema import GENERATE_SCHEMA_ERRORS
+ 
+             # use the generic _origin_ as the second argument to isinstance when appropriate
+             instance_of_schema = core_schema.is_instance_schema(_generics.get_origin(source) or source)
+@@ -790,7 +790,7 @@ def __get_pydantic_core_schema__(cls, source: Any, handler: GetCoreSchemaHandler
+             try:
+                 # Try to generate the "standard" schema, which will be used when loading from JSON
+                 original_schema = handler(source)
+-            except PydanticSchemaGenerationError:
++            except GENERATE_SCHEMA_ERRORS:
+                 # If that fails, just produce a schema that can validate from python
+                 return instance_of_schema
+             else:
+diff --git a/tests/test_types.py b/tests/test_types.py
+index 3c8ed98ba88..cbb70480500 100644
+--- a/tests/test_types.py
++++ b/tests/test_types.py
+@@ -6268,14 +6268,22 @@ def test_instanceof_invalid_core_schema():
+     class MyClass:
+         pass
+ 
++    @dataclass
++    class ClassWithInvalidAnnotations:
++        a: 'Unknown' = 1  # noqa: F821
++        b: NotRequired[int] = 1
++
+     class MyModel(BaseModel):
+         a: InstanceOf[MyClass]
+         b: Optional[InstanceOf[MyClass]]
++        c: InstanceOf[ClassWithInvalidAnnotations]
++
++    MyModel(a=MyClass(), b=None, c=ClassWithInvalidAnnotations())
++    MyModel(a=MyClass(), b=MyClass(), c=ClassWithInvalidAnnotations())
+ 
+-    MyModel(a=MyClass(), b=None)
+-    MyModel(a=MyClass(), b=MyClass())
+     with pytest.raises(ValidationError) as exc_info:
+-        MyModel(a=1, b=1)
++        MyModel(a=1, b=1, c=1)
++
+     assert exc_info.value.errors(include_url=False) == [
+         {
+             'ctx': {'class': 'test_instanceof_invalid_core_schema.<locals>.MyClass'},
+@@ -6291,6 +6299,13 @@ class MyModel(BaseModel):
+             'msg': 'Input should be an instance of test_instanceof_invalid_core_schema.<locals>.MyClass',
+             'type': 'is_instance_of',
+         },
++        {
++            'ctx': {'class': 'test_instanceof_invalid_core_schema.<locals>.ClassWithInvalidAnnotations'},
++            'input': 1,
++            'loc': ('c',),
++            'msg': 'Input should be an instance of test_instanceof_invalid_core_schema.<locals>.ClassWithInvalidAnnotations',
++            'type': 'is_instance_of',
++        },
+     ]
+     with pytest.raises(
+         PydanticInvalidForJsonSchema, match='Cannot generate a JsonSchema for core_schema.IsInstanceSchema'

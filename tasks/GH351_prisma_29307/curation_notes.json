@@ -1,0 +1,51 @@
+{
+  "repo": "prisma/prisma",
+  "pr_number": 29307,
+  "pr_url": "https://github.com/prisma/prisma/pull/29307",
+  "issue_number": null,
+  "base_sha": "ccce14832f60ec24727a76dce25d661b46e94454",
+  "head_sha": "1e2c1d1fc46ae1b333c023fc02f0b341b4058a15",
+  "additions": 18,
+  "deletions": 5,
+  "changed_files": [
+    "packages/adapter-pg/src/__tests__/errors.test.ts",
+    "packages/adapter-pg/src/errors.ts"
+  ],
+  "test_files": [],
+  "source_files": [],
+  "parameterization": {
+    "repo": "prisma/prisma",
+    "repo_short": "prisma",
+    "parameterized_identifiers": [
+      "case",
+      "code",
+      "column",
+      "const",
+      "containing",
+      "describe",
+      "description",
+      "does",
+      "dots",
+      "each"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:12:09Z"
+}

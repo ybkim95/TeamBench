@@ -1,0 +1,58 @@
+{
+  "repo": "encode/httpx",
+  "pr_number": 3690,
+  "pr_url": "https://github.com/encode/httpx/pull/3690",
+  "issue_number": null,
+  "base_sha": "20380490fd0bd13c68704080754c1385bff96d69",
+  "head_sha": "350221558d4f079fc4ab3673d81a4bc730fbb9c3",
+  "additions": 51,
+  "deletions": 6,
+  "changed_files": [
+    "src/ahttpx/_parsers.py",
+    "src/ahttpx/_server.py",
+    "src/httpx/_parsers.py",
+    "src/httpx/_server.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "src/ahttpx/_parsers.py",
+    "src/ahttpx/_server.py",
+    "src/httpx/_parsers.py",
+    "src/httpx/_server.py"
+  ],
+  "parameterization": {
+    "repo": "encode/httpx",
+    "repo_short": "httpx",
+    "parameterized_identifiers": [
+      "arriving",
+      "body",
+      "break",
+      "buffer",
+      "buffering",
+      "bytes",
+      "client",
+      "close",
+      "closed",
+      "closes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:34:26Z"
+}

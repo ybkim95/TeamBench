@@ -1,0 +1,52 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 20768,
+  "pr_url": "https://github.com/keras-team/keras/pull/20768",
+  "issue_number": 20608,
+  "base_sha": "25d6d80a6ecd31f0da52c325cd16dbe4a29b7329",
+  "head_sha": "6000eeb23c8fc2f2b8ca089653c72f06a928a5cc",
+  "additions": 91,
+  "deletions": 30,
+  "changed_files": [
+    "keras/src/backend/tensorflow/image.py",
+    "keras/src/ops/image_test.py"
+  ],
+  "test_files": [
+    "keras/src/ops/image_test.py"
+  ],
+  "source_files": [
+    "keras/src/backend/tensorflow/image.py"
+  ],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "adjust",
+      "all_valid",
+      "and_",
+      "append",
+      "argument",
+      "axis",
+      "backend",
+      "because",
+      "case",
+      "cast"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:59:39Z"
+}

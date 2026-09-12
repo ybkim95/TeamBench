@@ -1,0 +1,51 @@
+{
+  "repo": "pytest-dev/pytest",
+  "pr_number": 14307,
+  "pr_url": "https://github.com/pytest-dev/pytest/pull/14307",
+  "issue_number": null,
+  "base_sha": "ecac57287b679cc707fb4d22aa9d48426eaacac4",
+  "head_sha": "76667b24b86e5fa3c976640b1120dda6855fa8a8",
+  "additions": 14,
+  "deletions": 36,
+  "changed_files": [
+    "src/_pytest/config/__init__.py"
+  ],
+  "test_files": [
+    "src/_pytest/config/__init__.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pytest-dev/pytest",
+    "repo_short": "pytest",
+    "parameterized_identifiers": [
+      "also",
+      "anchor",
+      "anchors",
+      "appears",
+      "append",
+      "break",
+      "consider",
+      "fact",
+      "foundanchor",
+      "glob"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:36:35Z"
+}

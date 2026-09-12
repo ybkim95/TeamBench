@@ -1,0 +1,13 @@
+task_id: GH324_django_20718
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fixed #36926 -- Made admin use boolean icons for related BooleanFields in list_display"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/django/django/pull/20718"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

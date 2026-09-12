@@ -1,0 +1,64 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 134903,
+  "pr_url": "https://github.com/home-assistant/core/pull/134903",
+  "issue_number": 139580,
+  "base_sha": "1286b5d9d8126436095f951539c241b98e9bb99e",
+  "head_sha": "4a28bf33088b70de44aa6ea74add11aebd797ca0",
+  "additions": 134,
+  "deletions": 9,
+  "changed_files": [
+    "homeassistant/components/http/auth.py",
+    "homeassistant/components/image/__init__.py",
+    "homeassistant/components/media_source/local_source.py",
+    "homeassistant/components/tts/__init__.py",
+    "tests/components/http/test_auth.py",
+    "tests/components/image/test_init.py",
+    "tests/components/media_source/test_local_source.py",
+    "tests/components/tts/test_init.py"
+  ],
+  "test_files": [
+    "tests/components/http/test_auth.py",
+    "tests/components/image/test_init.py",
+    "tests/components/media_source/test_local_source.py",
+    "tests/components/tts/test_init.py"
+  ],
+  "source_files": [
+    "homeassistant/components/http/auth.py",
+    "homeassistant/components/image/__init__.py",
+    "homeassistant/components/media_source/local_source.py",
+    "homeassistant/components/tts/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "about",
+      "access",
+      "against",
+      "allow",
+      "another_path",
+      "auth_middleware",
+      "authenticated",
+      "available",
+      "avoid",
+      "body"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:37:23Z"
+}

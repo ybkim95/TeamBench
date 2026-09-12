@@ -1,0 +1,57 @@
+diff --git a/arrow/__init__.py b/arrow/__init__.py
+index bc597097..9232b379 100644
+--- a/arrow/__init__.py
++++ b/arrow/__init__.py
+@@ -11,6 +11,7 @@
+     FORMAT_RFC1123,
+     FORMAT_RFC2822,
+     FORMAT_RFC3339,
++    FORMAT_RFC3339_STRICT,
+     FORMAT_RSS,
+     FORMAT_W3C,
+ )
+@@ -33,6 +34,7 @@
+     "FORMAT_RFC1123",
+     "FORMAT_RFC2822",
+     "FORMAT_RFC3339",
++    "FORMAT_RFC3339_STRICT",
+     "FORMAT_RSS",
+     "FORMAT_W3C",
+     "ParserError",
+diff --git a/arrow/formatter.py b/arrow/formatter.py
+index 8cd61e90..6634545f 100644
+--- a/arrow/formatter.py
++++ b/arrow/formatter.py
+@@ -17,6 +17,7 @@
+ FORMAT_RFC1123: Final[str] = "ddd, DD MMM YYYY HH:mm:ss Z"
+ FORMAT_RFC2822: Final[str] = "ddd, DD MMM YYYY HH:mm:ss Z"
+ FORMAT_RFC3339: Final[str] = "YYYY-MM-DD HH:mm:ssZZ"
++FORMAT_RFC3339_STRICT: Final[str] = "YYYY-MM-DDTHH:mm:ssZZ"
+ FORMAT_RSS: Final[str] = "ddd, DD MMM YYYY HH:mm:ss Z"
+ FORMAT_W3C: Final[str] = "YYYY-MM-DD HH:mm:ssZZ"
+ 
+diff --git a/tests/test_formatter.py b/tests/test_formatter.py
+index b09b778f..53868288 100644
+--- a/tests/test_formatter.py
++++ b/tests/test_formatter.py
+@@ -17,6 +17,7 @@
+     FORMAT_RFC1123,
+     FORMAT_RFC2822,
+     FORMAT_RFC3339,
++    FORMAT_RFC3339_STRICT,
+     FORMAT_RSS,
+     FORMAT_W3C,
+ )
+@@ -258,6 +259,12 @@ def test_rfc3339(self):
+             == "1975-12-25 14:15:16-05:00"
+         )
+ 
++    def test_rfc3339_strict(self):
++        assert (
++            self.formatter.format(self.datetime, FORMAT_RFC3339_STRICT)
++            == "1975-12-25T14:15:16-05:00"
++        )
++
+     def test_rss(self):
+         assert (
+             self.formatter.format(self.datetime, FORMAT_RSS)

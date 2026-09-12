@@ -1,0 +1,55 @@
+{
+  "repo": "tataratat/splinepy",
+  "pr_number": 482,
+  "pr_url": "https://github.com/tataratat/splinepy/pull/482",
+  "issue_number": null,
+  "base_sha": "a9e7e741ab18b1a691634563ba729a7a25a6acb5",
+  "head_sha": "b8417c3d440bed70b433acc8fe1d8dbf0e70fd54",
+  "additions": 98,
+  "deletions": 8,
+  "changed_files": [
+    ".github/pull_request_template.md",
+    "include/splinepy/py/py_multipatch.hpp",
+    "splinepy/multipatch.py",
+    "src/py/py_multipatch.cpp"
+  ],
+  "test_files": [],
+  "source_files": [
+    "splinepy/multipatch.py"
+  ],
+  "parameterization": {
+    "repo": "tataratat/splinepy",
+    "repo_short": "splinepy",
+    "parameterized_identifiers": [
+      "addressed",
+      "adjacent",
+      "already",
+      "always",
+      "array",
+      "array_t",
+      "auto",
+      "automatic",
+      "available",
+      "because"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:20:07Z"
+}

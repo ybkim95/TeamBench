@@ -1,0 +1,67 @@
+{
+  "repo": "celery/celery",
+  "pr_number": 10038,
+  "pr_url": "https://github.com/celery/celery/pull/10038",
+  "issue_number": null,
+  "base_sha": "b0fdb91ccf992348448345163e53ea6d0686453e",
+  "head_sha": "49e23689f253ce99b0791b880452dd4e88daccb4",
+  "additions": 96,
+  "deletions": 0,
+  "changed_files": [
+    "CONTRIBUTORS.txt",
+    "celery/app/base.py",
+    "celery/app/task.py",
+    "celery/canvas.py",
+    "celery/local.py",
+    "celery/result.py",
+    "celery/utils/objects.py",
+    "celery/utils/threads.py",
+    "t/unit/test_generics.py"
+  ],
+  "test_files": [
+    "t/unit/test_generics.py"
+  ],
+  "source_files": [
+    "celery/app/base.py",
+    "celery/app/task.py",
+    "celery/canvas.py",
+    "celery/local.py",
+    "celery/result.py",
+    "celery/utils/objects.py",
+    "celery/utils/threads.py"
+  ],
+  "parameterization": {
+    "repo": "celery/celery",
+    "repo_short": "celery",
+    "parameterized_identifiers": [
+      "abstractmethod",
+      "add_edge",
+      "attrgetter",
+      "attrs",
+      "available",
+      "base",
+      "being",
+      "billiard",
+      "build_graph",
+      "canvas"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:29:04Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH1101_darts_2811
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix SKLearn Multioutput string representation"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/unit8co/darts/pull/2811"
+source_issue: "https://github.com/unit8co/darts/issues/2810"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

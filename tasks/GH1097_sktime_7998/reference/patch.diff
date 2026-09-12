@@ -1,0 +1,16 @@
+diff --git a/sktime/tests/_config.py b/sktime/tests/_config.py
+index d71bce85d8e..15d516a1f2e 100644
+--- a/sktime/tests/_config.py
++++ b/sktime/tests/_config.py
+@@ -50,6 +50,11 @@
+     "DartsXGBModel",
+     # Large datasets
+     "M5Dataset",
++    # ptf global models fail the tests, see #7997
++    "PytorchForecastingTFT",
++    "PytorchForecastingNBeats",
++    "PytorchForecastingNHiTS",
++    "PytorchForecastingDeepAR",
+ ]
+ 
+ 

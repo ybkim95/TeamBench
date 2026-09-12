@@ -1,0 +1,54 @@
+{
+  "repo": "wandb/wandb",
+  "pr_number": 11248,
+  "pr_url": "https://github.com/wandb/wandb/pull/11248",
+  "issue_number": null,
+  "base_sha": "1c609a97c6cfcf0bd5a5363c92a84102a7bd6584",
+  "head_sha": "7de9e40e8dffd7e07e0c82952b9dd91b5210958d",
+  "additions": 165,
+  "deletions": 69,
+  "changed_files": [
+    "tests/unit_tests/test_public_api/test_public_api.py",
+    "wandb/apis/public/api.py"
+  ],
+  "test_files": [
+    "tests/unit_tests/test_public_api/test_public_api.py"
+  ],
+  "source_files": [
+    "wandb/apis/public/api.py"
+  ],
+  "parameterization": {
+    "repo": "wandb/wandb",
+    "repo_short": "wandb",
+    "parameterized_identifiers": [
+      "access",
+      "also",
+      "api_key",
+      "back",
+      "cached",
+      "call",
+      "cannot",
+      "care",
+      "changes",
+      "changing"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:07:01Z"
+}

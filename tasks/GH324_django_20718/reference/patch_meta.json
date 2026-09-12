@@ -1,0 +1,15 @@
+{
+ "task": "GH324_django_20718",
+ "patch": "tasks/GH324_django_20718/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "django/django",
+ "pr_number": 20718,
+ "base_sha": "ba4751e0ca558dd8f0d9e6153bec4280289ca2f4",
+ "head_sha": "43d4371bee497b59147a77f30e31177cdf5ddb13",
+ "bytes": 3531,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

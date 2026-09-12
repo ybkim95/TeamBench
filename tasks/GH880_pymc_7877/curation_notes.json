@@ -1,0 +1,52 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7877,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7877",
+  "issue_number": 7762,
+  "base_sha": "4220ed88bfe7ef50da981a51f3946178b0b1e81a",
+  "head_sha": "d25ce812f459f9ea1d146bc8570ab56bc6537104",
+  "additions": 31,
+  "deletions": 3,
+  "changed_files": [
+    "pymc/logprob/mixture.py",
+    "tests/logprob/test_mixture.py"
+  ],
+  "test_files": [
+    "tests/logprob/test_mixture.py"
+  ],
+  "source_files": [
+    "pymc/logprob/mixture.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "a_val",
+      "abstract",
+      "array",
+      "assert_almost_equal",
+      "assumes",
+      "b_val",
+      "both",
+      "broadcastable",
+      "child",
+      "conditional_logp"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:18Z"
+}

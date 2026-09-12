@@ -1,0 +1,53 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 162731,
+  "pr_url": "https://github.com/home-assistant/core/pull/162731",
+  "issue_number": 156045,
+  "base_sha": "6ce28987abef3f4082f5357ea096a8e3a8656043",
+  "head_sha": "066efec1ad3f54f6d6a1c45b86c94462c0d8a950",
+  "additions": 44,
+  "deletions": 7,
+  "changed_files": [
+    "homeassistant/components/homee/config_flow.py",
+    "homeassistant/components/homee/strings.json",
+    "tests/components/homee/test_config_flow.py"
+  ],
+  "test_files": [
+    "tests/components/homee/test_config_flow.py"
+  ],
+  "source_files": [
+    "homeassistant/components/homee/config_flow.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "abort",
+      "add_to_hass",
+      "address",
+      "already",
+      "already_configured",
+      "another",
+      "async_abort",
+      "async_init",
+      "async_set_unique_id",
+      "async_step_zeroconf"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:38:24Z"
+}

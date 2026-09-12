@@ -1,0 +1,211 @@
+diff --git a/CHANGES/12195.bugfix.rst b/CHANGES/12195.bugfix.rst
+new file mode 100644
+index 00000000000..34729b52f0d
+--- /dev/null
++++ b/CHANGES/12195.bugfix.rst
+@@ -0,0 +1,2 @@
++Fixed redirects with consumed non-rewindable request bodies to raise
++:class:`aiohttp.ClientPayloadError` instead of silently sending an empty body.
+diff --git a/aiohttp/client.py b/aiohttp/client.py
+index 36222827568..4217f000e65 100644
+--- a/aiohttp/client.py
++++ b/aiohttp/client.py
+@@ -821,7 +821,18 @@ async def _connect_and_send_request(
+                             # For 307/308, always preserve the request body
+                             # For 301/302 with non-POST methods, preserve the request body
+                             # https://www.rfc-editor.org/rfc/rfc9110#section-15.4.3-3.1
+-                            # Use the existing payload to avoid recreating it from a potentially consumed file
++                            # Use the existing payload to avoid recreating it from
++                            # a potentially consumed file.
++                            #
++                            # If the payload is already consumed and cannot be replayed,
++                            # fail fast instead of silently sending an empty body.
++                            if req._body.consumed:
++                                resp.close()
++                                raise ClientPayloadError(
++                                    "Cannot follow redirect with a consumed request "
++                                    "body. Use bytes, a seekable file-like object, "
++                                    "or set allow_redirects=False."
++                                )
+                             data = req._body
+ 
+                         r_url = resp.headers.get(hdrs.LOCATION) or resp.headers.get(
+diff --git a/docs/client_quickstart.rst b/docs/client_quickstart.rst
+index 1ab5610b824..25d0c7cc6a6 100644
+--- a/docs/client_quickstart.rst
++++ b/docs/client_quickstart.rst
+@@ -346,25 +346,34 @@ send large files without reading them into memory.
+ 
+ As a simple case, simply provide a file-like object for your body::
+ 
+-    with open('massive-body', 'rb') as f:
+-       await session.post('http://httpbin.org/post', data=f)
++    with open("massive-body", "rb") as f:
++       await session.post("https://httpbin.org/post", data=f)
+ 
+ 
+-Or you can use *asynchronous generator*::
++Or you can provide an *asynchronous generator*, for example to generate
++data on the fly::
+ 
+-  async def file_sender(file_name=None):
+-      async with aiofiles.open(file_name, 'rb') as f:
+-          chunk = await f.read(64*1024)
+-          while chunk:
+-              yield chunk
+-              chunk = await f.read(64*1024)
++  async def data_generator():
++      for i in range(10):
++          yield f"line {i}\n".encode()
+ 
+-  # Then you can use file_sender as a data provider:
+-
+-  async with session.post('http://httpbin.org/post',
+-                          data=file_sender(file_name='huge_file')) as resp:
++  async with session.post("https://httpbin.org/post",
++                          data=data_generator()) as resp:
+       print(await resp.text())
+ 
++.. warning::
++
++   Async generators and other non-rewindable data sources
++   (such as :class:`~aiohttp.StreamReader`) cannot be replayed if a
++   redirect occurs (for example, HTTP 307 or 308). If the request body
++   has already been streamed, :mod:`aiohttp` raises
++   :class:`~aiohttp.ClientPayloadError`.
++
++   If your endpoint may redirect, either:
++
++   * Pass a seekable file-like object or :class:`bytes`.
++   * Disable redirects with ``allow_redirects=False`` and handle them manually.
++
+ 
+ Because the :attr:`~aiohttp.ClientResponse.content` attribute is a
+ :class:`~aiohttp.StreamReader` (provides async iterator protocol), you
+diff --git a/docs/spelling_wordlist.txt b/docs/spelling_wordlist.txt
+index 365e99c3747..fea38e954d9 100644
+--- a/docs/spelling_wordlist.txt
++++ b/docs/spelling_wordlist.txt
+@@ -305,6 +305,7 @@ sa
+ Satisfiable
+ scalability
+ schemas
++seekable
+ sendfile
+ serializable
+ serializer
+diff --git a/tests/test_client_functional.py b/tests/test_client_functional.py
+index 971e7576d52..65d9cd28078 100644
+--- a/tests/test_client_functional.py
++++ b/tests/test_client_functional.py
+@@ -5077,7 +5077,7 @@ async def final_handler(request: web.Request) -> web.Response:
+ 
+ 
+ async def test_async_iterable_payload_redirect(aiohttp_client: AiohttpClient) -> None:
+-    """Test that AsyncIterablePayload cannot be reused across redirects."""
++    """Test redirecting consumed AsyncIterablePayload raises an error."""
+     data_received = []
+ 
+     async def redirect_handler(request: web.Request) -> web.Response:
+@@ -5105,17 +5105,50 @@ async def async_gen() -> AsyncIterator[bytes]:
+ 
+     payload = AsyncIterablePayload(async_gen())
+ 
+-    resp = await client.post("/redirect", data=payload)
+-    assert resp.status == 200
+-    text = await resp.text()
+-    # AsyncIterablePayload is consumed after first use, so redirect gets empty body
+-    assert text == "Received: "
++    with pytest.raises(
++        aiohttp.ClientPayloadError,
++        match="Cannot follow redirect with a consumed request body",
++    ):
++        await client.post("/redirect", data=payload)
++
++    # Only the first endpoint should have received data.
++    expected_data = b"".join(chunks)
++    assert data_received == [("redirect", expected_data)]
++
++
++@pytest.mark.parametrize("status", (301, 302))
++async def test_async_iterable_payload_redirect_non_post_301_302(
++    aiohttp_client: AiohttpClient, status: int
++) -> None:
++    """Test consumed async iterable body raises on 301/302 for non-POST methods."""
++    data_received = []
++
++    async def redirect_handler(request: web.Request) -> web.Response:
++        data = await request.read()
++        data_received.append(("redirect", data))
++        return web.Response(status=status, headers={"Location": "/final_destination"})
++
++    app = web.Application()
++    app.router.add_put("/redirect", redirect_handler)
++
++    client = await aiohttp_client(app)
++
++    chunks = [b"chunk1", b"chunk2", b"chunk3"]
++
++    async def async_gen() -> AsyncIterator[bytes]:
++        for chunk in chunks:
++            yield chunk
++
++    payload = AsyncIterablePayload(async_gen())
++
++    with pytest.raises(
++        aiohttp.ClientPayloadError,
++        match="Cannot follow redirect with a consumed request body",
++    ):
++        await client.put("/redirect", data=payload)
+ 
+-    # Only the first endpoint should have received data
+     expected_data = b"".join(chunks)
+-    assert len(data_received) == 2
+-    assert data_received[0] == ("redirect", expected_data)
+-    assert data_received[1] == ("final", b"")  # Empty after being consumed
++    assert data_received == [("redirect", expected_data)]
+ 
+ 
+ async def test_buffered_reader_payload_redirect(aiohttp_client: AiohttpClient) -> None:
+diff --git a/tests/test_client_ws_functional.py b/tests/test_client_ws_functional.py
+index 22c03f7c6c4..ea8a44ab04e 100644
+--- a/tests/test_client_ws_functional.py
++++ b/tests/test_client_ws_functional.py
+@@ -888,12 +888,14 @@ async def test_heartbeat_does_not_timeout_while_receiving_large_frame(
+     which could cause a ping/pong timeout while bytes were still being received.
+     """
+     payload = b"x" * 2048
+-    heartbeat = 0.05
++    heartbeat = 0.1
+     chunk_size = 64
+     delay = 0.01
+ 
+     async def handler(request: web.Request) -> web.WebSocketResponse:
+-        ws = web.WebSocketResponse()
++        # Disable auto-PONG so a heartbeat PING during frame streaming would
++        # surface as a timeout/closure on the client side.
++        ws = web.WebSocketResponse(autoping=False)
+         await ws.prepare(request)
+ 
+         assert ws._writer is not None
+@@ -920,10 +922,8 @@ async def handler(request: web.Request) -> web.WebSocketResponse:
+     client = await aiohttp_client(app)
+ 
+     async with client.ws_connect("/", heartbeat=heartbeat) as resp:
+-        # If heartbeat was not reset on any incoming bytes, the client would start
+-        # sending PINGs while we're still streaming the message body, and since the
+-        # server handler never calls receive(), no PONG would be produced and the
+-        # client would close with a ping/pong timeout.
++        # If heartbeat were not reset on incoming bytes, the client would send
++        # a PING while this frame is still being streamed.
+         with mock.patch.object(
+             resp._writer, "send_frame", wraps=resp._writer.send_frame
+         ) as sf:
+@@ -933,6 +933,7 @@ async def handler(request: web.Request) -> web.WebSocketResponse:
+             ), "Heartbeat PING sent while data was still being received"
+         assert msg.type is WSMsgType.BINARY
+         assert msg.data == payload
++        assert not resp.closed
+ 
+ 
+ async def test_heartbeat_no_pong_after_receive_many_messages(

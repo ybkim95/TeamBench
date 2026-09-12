@@ -1,0 +1,356 @@
+diff --git a/docs/source/marginal_log_likelihoods.rst b/docs/source/marginal_log_likelihoods.rst
+index df9e8411d..20bb840bc 100644
+--- a/docs/source/marginal_log_likelihoods.rst
++++ b/docs/source/marginal_log_likelihoods.rst
+@@ -43,6 +43,7 @@ These are MLLs for use with :obj:`~gpytorch.models.ExactGP` modules. They comput
+ .. autoclass:: LeaveOneOutPseudoLikelihood
+    :members:
+ 
++
+ Approximate GP Inference
+ -----------------------------------
+ 
+@@ -73,3 +74,22 @@ there is too much data for an ExactGP model).
+ 
+ .. autoclass:: DeepApproximateMLL
+    :members:
++
++
++Modifications to Objective Functions
++---------------------------------------
++
++.. autoclass:: AddedLossTerm
++   :members:
++
++:hidden:`InducingPointKernelAddedLossTerm`
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++.. autoclass:: InducingPointKernelAddedLossTerm
++   :members:
++
++:hidden:`KLGaussianAddedLossTerm`
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++.. autoclass:: KLGaussianAddedLossTerm
++   :members:
+diff --git a/gpytorch/mlls/added_loss_term.py b/gpytorch/mlls/added_loss_term.py
+index dd36031e8..11cb5c811 100644
+--- a/gpytorch/mlls/added_loss_term.py
++++ b/gpytorch/mlls/added_loss_term.py
+@@ -1,6 +1,73 @@
+ #!/usr/bin/env python3
+ 
++from abc import ABC, abstractmethod
+ 
+-class AddedLossTerm(object):
+-    def loss(self):
++from torch import Tensor
++
++
++class AddedLossTerm(ABC):
++    r"""
++    AddedLossTerms are registered onto GPyTorch models (or their children `gpytorch.Modules`).
++
++    If a model (or any of its children modules) has an added loss term, then
++    all optimization objective functions (e.g. :class:`~gpytorch.mlls.ExactMarginalLogLikelihood`,
++    :class:`~gpytorch.mlls.VariationalELBO`, etc.) will be ammended to include an additive term
++    defined by the :meth:`~gpytorch.mlls.AddedLossTerm.loss` method.
++
++    As an example, consider the following toy AddedLossTerm that adds a random number to any objective function:
++
++    .. code-block:: python
++
++        class RandomNumberAddedLoss
++            # Adds a random number ot the loss
++            def __init__(self, dtype, device):
++                self.dtype, self.device = dtype, device
++
++            def loss(self):
++                # This dynamically defines the added loss term
++                return torch.randn(torch.Size([]), dtype=self.dtype, device=self.device)
++
++        class MyExactGP(gpytorch.ExactGP):
++            def __init__(self, train_x, train_y):
++                super().__init__(train_x, train_y, gpytorch.likelihood.GaussianLikelihood())
++                self.mean_module = gpytorch.means.ZeroMean()
++                self.covar_module = gpytorch.kernels.RBFKernel()
++
++                # Create the added loss term
++                self.register_added_loss_term("random_added_loss")
++
++            def forward(self, x):
++                # Update loss term
++                new_added_loss_term = RandomNumberAddedLoss(dtype=x.dtype, device=x.device)
++                self.update_added_loss_term("random_added_loss", new_added_loss_term)
++
++                # Run the remainder of the forward method
++                return gpytorch.distribution.MultivariateNormal(self.mean_module(x), self.covar_module(x))
++
++
++        train_x = torch.randn(100, 2)
++        train_y = torch.randn(100)
++        model = MyExactGP(train_x, train_y)
++        model.train()
++
++        mll = gpytorch.mlls.ExactMarginalLogLikelihood(model.likelihood, model)
++        mll(model(train_x), train_y)  # Returns log marginal likelihood + a random number
++
++
++    To use an AddedLossTerm:
++
++    1. A model (or a child module where the AddedLossTerm should live) should register an additive loss term
++       with the :meth:`~gpytorch.module.register_added_loss_term` method.
++       All AddedLossTerms have an identifying name associated with them.
++    2. The :meth:`~gpytorch.Module.forward` function of the model (or the child module) should instantiate
++       the appropriate AddedLossTerm, calling the :meth:`~gpytorch.Module.update_added_loss_term` method.
++    """
++
++    @abstractmethod
++    def loss(self) -> Tensor:
++        """
++        (Implemented by each subclass.)
++
++        :return: The loss that will be added to a GPyTorch objective function.
++        """
+         raise NotImplementedError
+diff --git a/gpytorch/mlls/inducing_point_kernel_added_loss_term.py b/gpytorch/mlls/inducing_point_kernel_added_loss_term.py
+index d9d5fecc7..85ec4bbb8 100644
+--- a/gpytorch/mlls/inducing_point_kernel_added_loss_term.py
++++ b/gpytorch/mlls/inducing_point_kernel_added_loss_term.py
+@@ -1,18 +1,56 @@
+ #!/usr/bin/env python3
+ 
++import torch
++
++from ..distributions import MultivariateNormal
++from ..likelihoods import GaussianLikelihood, MultitaskGaussianLikelihood
+ from .added_loss_term import AddedLossTerm
+ 
+ 
+ class InducingPointKernelAddedLossTerm(AddedLossTerm):
+-    def __init__(self, prior_dist, variational_dist, likelihood):
++    r"""
++    An added loss term that computes the additional "regularization trace term" of the SGPR objective function.
++
++    .. math::
++        -\frac{1}{2 \sigma^2} \text{Tr} \left( \mathbf K_{\mathbf X \mathbf X} - \mathbf Q \right)
++
++
++    where :math:`\mathbf Q = \mathbf K_{\mathbf X \mathbf Z} \mathbf K_{\mathbf Z \mathbf Z}^{-1}
++    \mathbf K_{\mathbf Z \mathbf X}` is the Nystrom approximation of :math:`\mathbf K_{\mathbf X \mathbf X}`
++    given by inducing points :math:`\mathbf Z`, and :math:`\sigma^2` is the observational noise
++    of the Gaussian likelihood.
++
++    See `Titsias, 2009`_, Eq. 9 for more more information.
++
++    :param prior_dist: A multivariate normal :math:`\mathcal N ( \mathbf 0, \mathbf K_{\mathbf X \mathbf X} )`
++        with covariance matrix :math:`\mathbf K_{\mathbf X \mathbf X}`.
++    :param variational_dist: A multivariate normal :math:`\mathcal N ( \mathbf 0, \mathbf Q`
++        with covariance matrix :math:`\mathbf Q = \mathbf K_{\mathbf X \mathbf Z}
++        \mathbf K_{\mathbf Z \mathbf Z}^{-1} \mathbf K_{\mathbf Z \mathbf X}`.
++    :param likelihood: The Gaussian likelihood with observational noise :math:`\sigma^2`.
++
++    .. _Titsias, 2009:
++        https://arxiv.org/pdf/1302.4245.pdf
++    """
++
++    def __init__(
++        self, prior_dist: MultivariateNormal, variational_dist: MultivariateNormal, likelihood: GaussianLikelihood
++    ):
+         self.prior_dist = prior_dist
+         self.variational_dist = variational_dist
+         self.likelihood = likelihood
+ 
+-    def loss(self, *params):
++    def loss(self, *params) -> torch.Tensor:
+         prior_covar = self.prior_dist.lazy_covariance_matrix
+         variational_covar = self.variational_dist.lazy_covariance_matrix
+         diag = prior_covar.diagonal(dim1=-1, dim2=-2) - variational_covar.diagonal(dim1=-1, dim2=-2)
+         shape = prior_covar.shape[:-1]
++        if isinstance(self.likelihood, MultitaskGaussianLikelihood):
++            shape = torch.Size([*shape, 1])
++            diag = diag.unsqueeze(-1)
+         noise_diag = self.likelihood._shaped_noise_covar(shape, *params).diagonal(dim1=-1, dim2=-2)
+-        return -0.5 * (diag / noise_diag).sum()
++        if isinstance(self.likelihood, MultitaskGaussianLikelihood):
++            noise_diag = noise_diag.reshape(*shape[:-1], -1)
++            return -0.5 * (diag / noise_diag).sum(dim=[-1, -2])
++        else:
++            return -0.5 * (diag / noise_diag).sum(dim=-1)
+diff --git a/gpytorch/mlls/kl_gaussian_added_loss_term.py b/gpytorch/mlls/kl_gaussian_added_loss_term.py
+index 08f5da3f4..e4f1c1aff 100644
+--- a/gpytorch/mlls/kl_gaussian_added_loss_term.py
++++ b/gpytorch/mlls/kl_gaussian_added_loss_term.py
+@@ -2,11 +2,28 @@
+ 
+ from torch.distributions import kl_divergence
+ 
++from ..distributions import MultivariateNormal
+ from .added_loss_term import AddedLossTerm
+ 
+ 
+ class KLGaussianAddedLossTerm(AddedLossTerm):
+-    def __init__(self, q_x, p_x, n, data_dim):
++    r"""
++    This class is used by variational GPLVM models.
++    It adds the KL divergence between two multivariate Gaussian distributions:
++    scaled by the size of the data and the number of output dimensions.
++
++    .. math::
++
++        D_\text{KL} \left( q(\mathbf x) \Vert p(\mathbf x) \right)
++
++
++    :param q_x: The MVN distribution :math:`q(\mathbf x)`.
++    :param p_x: The MVN distribution :math:`p(\mathbf x)`.
++    :param n: Size of the latent space.
++    :param data_dim: Dimensionality of the :math:`\mathbf Y` values.
++    """
++
++    def __init__(self, q_x: MultivariateNormal, p_x: MultivariateNormal, n: int, data_dim: int):
+         super().__init__()
+         self.q_x = q_x
+         self.p_x = p_x
+diff --git a/test/examples/test_kronecker_multitask_sgpr_regression.py b/test/examples/test_kronecker_multitask_sgpr_regression.py
+new file mode 100644
+index 000000000..2725f4962
+--- /dev/null
++++ b/test/examples/test_kronecker_multitask_sgpr_regression.py
+@@ -0,0 +1,86 @@
++#!/usr/bin/env python3
++
++from math import pi
++
++import torch
++import unittest
++
++import gpytorch
++from gpytorch.means import ConstantMean, MultitaskMean
++from gpytorch.likelihoods import MultitaskGaussianLikelihood
++from gpytorch.distributions import MultitaskMultivariateNormal
++from gpytorch.test.base_test_case import BaseTestCase
++
++
++# Simple training data: let's try to learn a sine function
++train_x = torch.linspace(0, 1, 100)
++
++# y1 function is sin(2*pi*x) with noise N(0, 0.04)
++train_y1 = torch.sin(train_x * (2 * pi)) + torch.randn(train_x.size()) * 0.1
++# y2 function is cos(2*pi*x) with noise N(0, 0.04)
++train_y2 = torch.cos(train_x * (2 * pi)) + torch.randn(train_x.size()) * 0.1
++
++# Create a train_y which interleaves the two
++train_y = torch.stack([train_y1, train_y2], -1)
++
++
++class MultitaskGPModel(gpytorch.models.ExactGP):
++    def __init__(self, train_x, train_y, likelihood):
++        super(MultitaskGPModel, self).__init__(train_x, train_y, likelihood)
++        self.mean_module = MultitaskMean(ConstantMean(), num_tasks=2)
++        self.covar_module = gpytorch.kernels.MultitaskKernel(
++            gpytorch.kernels.InducingPointKernel(
++                gpytorch.kernels.RBFKernel(), inducing_points=torch.randn(50, 1), likelihood=likelihood
++            ), num_tasks=2, rank=2
++        )
++
++    def forward(self, x):
++        mean_x = self.mean_module(x)
++        covar_x = self.covar_module(x)
++        return MultitaskMultivariateNormal(mean_x, covar_x)
++
++
++class TestSimpleGPRegression(BaseTestCase, unittest.TestCase):
++    seed = 0
++
++    def test_multitask_gp_mean_abs_error(self):
++        likelihood = MultitaskGaussianLikelihood(num_tasks=2)
++        model = MultitaskGPModel(train_x, train_y, likelihood)
++        # Find optimal model hyperparameters
++        model.train()
++        likelihood.train()
++
++        # Use the adam optimizer
++        optimizer = torch.optim.Adam(model.parameters(), lr=0.1)  # Includes GaussianLikelihood parameters
++
++        # "Loss" for GPs - the marginal log likelihood
++        mll = gpytorch.mlls.ExactMarginalLogLikelihood(likelihood, model)
++
++        n_iter = 50
++        for _ in range(n_iter):
++            # Zero prev backpropped gradients
++            optimizer.zero_grad()
++            # Make predictions from training data
++            # Again, note feeding duplicated x_data and indices indicating which task
++            output = model(train_x)
++            # TODO: Fix this view call!!
++            loss = -mll(output, train_y)
++            loss.backward()
++            optimizer.step()
++
++        # Test the model
++        model.eval()
++        likelihood.eval()
++        test_x = torch.linspace(0, 1, 51)
++        test_y1 = torch.sin(test_x * (2 * pi))
++        test_y2 = torch.cos(test_x * (2 * pi))
++        test_preds = likelihood(model(test_x)).mean
++        mean_abs_error_task_1 = torch.mean(torch.abs(test_y1 - test_preds[:, 0]))
++        mean_abs_error_task_2 = torch.mean(torch.abs(test_y2 - test_preds[:, 1]))
++
++        self.assertLess(mean_abs_error_task_1.squeeze().item(), 0.05)
++        self.assertLess(mean_abs_error_task_2.squeeze().item(), 0.05)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/test/mlls/test_inducing_point_kernel_added_loss_term.py b/test/mlls/test_inducing_point_kernel_added_loss_term.py
+new file mode 100644
+index 000000000..c54035fb2
+--- /dev/null
++++ b/test/mlls/test_inducing_point_kernel_added_loss_term.py
+@@ -0,0 +1,45 @@
++#!/usr/bin/env python3
++
++import unittest
++
++import torch
++from linear_operator.operators import DiagLinearOperator
++
++from gpytorch.distributions import MultivariateNormal
++from gpytorch.likelihoods import GaussianLikelihood
++from gpytorch.mlls import InducingPointKernelAddedLossTerm
++from gpytorch.test.base_test_case import BaseTestCase
++
++
++class TestInducingPointKernelAddedLossTerm(BaseTestCase, unittest.TestCase):
++    def test_added_loss_term(self):
++        # This loss term won't usually be called with diagonal MVNs
++        # However, the loss term only accesses the diagonals of the MVN covariance matrices
++        # So we're simplifying the setup for the unit test
++        prior_dist = MultivariateNormal(torch.zeros(5), DiagLinearOperator(torch.tensor([1.0, 1.0, 1.0, 1.0, 1.0])))
++        variational_dist = MultivariateNormal(
++            torch.zeros(5), DiagLinearOperator(torch.tensor([0.6, 0.7, 0.8, 0.9, 1.0]))
++        )
++        likelihood = GaussianLikelihood()
++        likelihood.noise = 0.01
++
++        added_loss_term = InducingPointKernelAddedLossTerm(prior_dist, variational_dist, likelihood)
++        self.assertAllClose(added_loss_term.loss(), torch.tensor(-50.0))
++
++    def test_added_loss_term_batch(self):
++        prior_dist = MultivariateNormal(
++            torch.zeros(2, 5), DiagLinearOperator(torch.tensor([[1.0, 1.0, 1.0, 1.0, 1.0], [1.0, 1.0, 1.0, 1.0, 1.0]]))
++        )
++        variational_dist = MultivariateNormal(
++            torch.zeros(2, 5),
++            DiagLinearOperator(torch.tensor([[0.6, 0.7, 0.8, 0.9, 1.0], [0.8, 0.85, 0.9, 0.95, 1.0]])),
++        )
++        likelihood = GaussianLikelihood(batch_shape=torch.Size([3, 1]))
++        likelihood.noise = torch.Tensor([[0.01], [0.1], [1.0]])
++
++        added_loss_term = InducingPointKernelAddedLossTerm(prior_dist, variational_dist, likelihood)
++        self.assertAllClose(added_loss_term.loss(), torch.tensor([[-50.0, -25.0], [-5.0, -2.5], [-0.5, -0.25]]))
++
++
++if __name__ == "__main__":
++    unittest.main()

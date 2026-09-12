@@ -1,0 +1,26 @@
+diff --git a/dask/dataframe/dask_expr/_collection.py b/dask/dataframe/dask_expr/_collection.py
+--- a/dask/dataframe/dask_expr/_collection.py
++++ b/dask/dataframe/dask_expr/_collection.py
+@@ -416,6 +416,8 @@ def __getitem__(self, other):
+             other = list(other)
+         elif isinstance(other, list):
+             other = other.copy()
++        elif isinstance(other, np.generic):
++            other = other.item()
+         return new_collection(self.expr.__getitem__(other))
+ 
+     def __dask_tokenize__(self):
+
+diff --git a/dask/dataframe/dask_expr/_indexing.py b/dask/dataframe/dask_expr/_indexing.py
+--- a/dask/dataframe/dask_expr/_indexing.py
++++ b/dask/dataframe/dask_expr/_indexing.py
+@@ -78,6 +78,9 @@ def __getitem__(self, key):
+             iindexer = key
+             cindexer = None
+ 
++        if isinstance(cindexer, np.generic):
++            cindexer = cindexer.item()
++
+         return self._loc(iindexer, cindexer)
+ 
+     def _loc(self, iindexer, cindexer):

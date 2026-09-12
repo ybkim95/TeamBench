@@ -1,0 +1,39 @@
+diff --git a/wandb/__init__.py b/wandb/__init__.py
+--- a/wandb/__init__.py
++++ b/wandb/__init__.py
+@@ -153,14 +153,10 @@ def set_trace():
+     pdb.set_trace()
+ 
+ 
+-def load_ipython_extension(ipython):
+-    ipython.register_magics(wandb.jupyter.WandBMagics)
+-
+-
+ if wandb_sdk.lib.ipython.in_notebook():
+     from IPython import get_ipython  # type: ignore[import-not-found]
+ 
+-    load_ipython_extension(get_ipython())
++    jupyter._load_ipython_extension(get_ipython())
+ 
+ 
+ if "dev" in __version__:
+
+diff --git a/wandb/jupyter.py b/wandb/jupyter.py
+--- a/wandb/jupyter.py
++++ b/wandb/jupyter.py
+@@ -491,3 +491,15 @@ def save_history(self, run: wandb.Run):
+         except (OSError, validator.NotebookValidationError):
+             wandb.termerror("Unable to save notebook session history.")
+             logger.exception("Unable to save notebook session history.")
++
++
++def _load_ipython_extension(ipython):
++    """Best-effort auto-registration of W&B magics in notebook contexts."""
++    if ipython is None:
++        return
++
++    try:
++        ipython.register_magics(WandBMagics)
++    except Exception:
++        logger.debug("Failed to register IPython magics.", exc_info=True)
++        return

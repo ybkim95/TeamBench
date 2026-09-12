@@ -1,0 +1,54 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 139431,
+  "pr_url": "https://github.com/home-assistant/core/pull/139431",
+  "issue_number": 138937,
+  "base_sha": "7ae13a4d7245742d383d4e99f73b95c84feaef4b",
+  "head_sha": "18af7895f223eaf2e889484a99b89e6f54200e6e",
+  "additions": 128,
+  "deletions": 2,
+  "changed_files": [
+    "homeassistant/components/music_assistant/__init__.py",
+    "tests/components/music_assistant/conftest.py",
+    "tests/components/music_assistant/test_init.py"
+  ],
+  "test_files": [
+    "tests/components/music_assistant/conftest.py",
+    "tests/components/music_assistant/test_init.py"
+  ],
+  "source_files": [
+    "homeassistant/components/music_assistant/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "actions",
+      "all_player_configs",
+      "allowed",
+      "already",
+      "annotations",
+      "anyways",
+      "async_block_till_done",
+      "async_delete_issue",
+      "async_entries",
+      "async_get"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:40:38Z"
+}

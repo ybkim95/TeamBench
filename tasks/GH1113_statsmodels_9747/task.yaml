@@ -1,0 +1,13 @@
+task_id: GH1113_statsmodels_9747
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: raise error for invalid endog input in emplike.DescStat"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/statsmodels/statsmodels/pull/9747"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH526_napari_8149
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Ensure contrast limits are computed on original dtype with projected thick slices"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/napari/napari/pull/8149"
+source_issue: "https://github.com/napari/napari/issues/8148"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

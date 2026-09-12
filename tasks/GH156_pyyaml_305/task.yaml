@@ -1,0 +1,13 @@
+task_id: GH156_pyyaml_305
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Change default loader for add_implicit_resolver, add_path_resolver"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/yaml/pyyaml/pull/305"
+source_issue: "https://github.com/yaml/pyyaml/issues/294"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

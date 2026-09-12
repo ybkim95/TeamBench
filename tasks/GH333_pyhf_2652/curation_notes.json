@@ -1,0 +1,54 @@
+{
+  "repo": "scikit-hep/pyhf",
+  "pr_number": 2652,
+  "pr_url": "https://github.com/scikit-hep/pyhf/pull/2652",
+  "issue_number": 1772,
+  "base_sha": "c0a39fe31dcc57b610f872a87cf36938ec7a6778",
+  "head_sha": "c061b1458aa77e8e21ea3cb6127add8dd4e789e6",
+  "additions": 14,
+  "deletions": 15,
+  "changed_files": [
+    ".github/workflows/ci.yml",
+    "pyproject.toml",
+    "src/pyhf/tensor/numpy_backend.py",
+    "tests/constraints.txt"
+  ],
+  "test_files": [],
+  "source_files": [
+    "src/pyhf/tensor/numpy_backend.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-hep/pyhf",
+    "repo_short": "pyhf",
+    "parameterized_identifiers": [
+      "additional",
+      "against",
+      "annotations",
+      "argument",
+      "axis",
+      "bars",
+      "bound",
+      "call",
+      "cast",
+      "closed"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:11:04Z"
+}

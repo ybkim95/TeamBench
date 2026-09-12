@@ -1,0 +1,24 @@
+{
+  "fields": [
+    {
+      "name": "txn_id",
+      "type": "int32"
+    },
+    {
+      "name": "amt",
+      "type": "float32"
+    },
+    {
+      "name": "ccy",
+      "type": "string"
+    },
+    {
+      "name": "src_acct",
+      "type": "string"
+    },
+    {
+      "name": "dst_acct",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 12102,
+  "pr_url": "https://github.com/ray-project/ray/pull/12102",
+  "issue_number": 1234,
+  "base_sha": "ce18427017b811a61fecdb257a1cbbdee6862371",
+  "head_sha": "e6506c315485bbe600e1f4642bf48bdc68b53507",
+  "additions": 134,
+  "deletions": 65,
+  "changed_files": [
+    "dashboard/actor_utils.py",
+    "python/ray/_private/function_manager.py",
+    "python/ray/_raylet.pxd",
+    "python/ray/_raylet.pyx",
+    "python/ray/includes/function_descriptor.pxi",
+    "python/ray/job_config.py",
+    "python/ray/tests/test_basic_2.py",
+    "python/ray/workers/default_worker.py",
+    "src/ray/common/function_descriptor.h",
+    "src/ray/raylet/worker_pool.cc"
+  ],
+  "test_files": [
+    "python/ray/tests/test_basic_2.py"
+  ],
+  "source_files": [
+    "dashboard/actor_utils.py",
+    "python/ray/_private/function_manager.py",
+    "python/ray/job_config.py",
+    "python/ray/workers/default_worker.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "according",
+      "actor",
+      "actor_class",
+      "actor_class_info",
+      "actor_class_name",
+      "actor_method_names",
+      "actors",
+      "add_argument",
+      "after",
+      "append"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:55Z"
+}

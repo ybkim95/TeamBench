@@ -1,0 +1,13 @@
+task_id: GH1104_matplotlib_31128
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix relim() ignoring scatter PathCollection offsets"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/31128"
+source_issue: "https://github.com/matplotlib/matplotlib/issues/30859"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

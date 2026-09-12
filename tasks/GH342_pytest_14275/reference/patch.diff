@@ -1,0 +1,181 @@
+diff --git a/changelog/14114.bugfix.rst b/changelog/14114.bugfix.rst
+new file mode 100644
+index 00000000000..bcb1713c475
+--- /dev/null
++++ b/changelog/14114.bugfix.rst
+@@ -0,0 +1 @@
++An exception from :hook:`pytest_fixture_post_finalizer` no longer prevents fixtures from being torn down, causing additional errors in the following tests.
+diff --git a/changelog/5848.bugfix.rst b/changelog/5848.bugfix.rst
+new file mode 100644
+index 00000000000..c516ce92473
+--- /dev/null
++++ b/changelog/5848.bugfix.rst
+@@ -0,0 +1 @@
++:hook:`pytest_fixture_post_finalizer` is no longer called extra times for the same fixture teardown in some cases.
+diff --git a/src/_pytest/fixtures.py b/src/_pytest/fixtures.py
+index 84f90f946be..acb9fc4c5ee 100644
+--- a/src/_pytest/fixtures.py
++++ b/src/_pytest/fixtures.py
+@@ -1028,6 +1028,11 @@ def addfinalizer(self, finalizer: Callable[[], object]) -> None:
+         self._finalizers.append(finalizer)
+ 
+     def finish(self, request: SubRequest) -> None:
++        if self.cached_result is None:
++            # Already finished. It is assumed that finalizers cannot be added in
++            # this state.
++            return
++
+         exceptions: list[BaseException] = []
+         while self._finalizers:
+             fin = self._finalizers.pop()
+@@ -1036,7 +1041,6 @@ def finish(self, request: SubRequest) -> None:
+             except BaseException as e:
+                 exceptions.append(e)
+         node = request.node
+-        node.ihook.pytest_fixture_post_finalizer(fixturedef=self, request=request)
+         # Even if finalization fails, we invalidate the cached fixture
+         # value and remove all finalizers because they may be bound methods
+         # which will keep instances alive.
+@@ -1096,6 +1100,15 @@ def execute(self, request: SubRequest) -> FixtureValue:
+         for parent_fixture in requested_fixtures_that_should_finalize_us:
+             parent_fixture.addfinalizer(finalizer)
+ 
++        # Register the pytest_fixture_post_finalizer as the first finalizer,
++        # which is executed last.
++        assert not self._finalizers
++        self.addfinalizer(
++            lambda: request.node.ihook.pytest_fixture_post_finalizer(
++                fixturedef=self, request=request
++            )
++        )
++
+         ihook = request.node.ihook
+         try:
+             # Setup the fixture, run the code in it, and cache the value
+diff --git a/testing/python/fixtures.py b/testing/python/fixtures.py
+index 7122f7fef3b..4d8dfc3958f 100644
+--- a/testing/python/fixtures.py
++++ b/testing/python/fixtures.py
+@@ -4219,6 +4219,122 @@ def test_func(my_fixture):
+     )
+ 
+ 
++def test_fixture_post_finalizer_called_once(pytester: Pytester) -> None:
++    """Test that pytest_fixture_post_finalizer is called only once per fixture teardown.
++
++    When a fixture depends on multiple parametrized fixtures and all their parameters
++    change at the same time, the dependent fixture should be torn down only once,
++    and pytest_fixture_post_finalizer should be called only once for it.
++    """
++    pytester.makeconftest(
++        """
++        import pytest
++
++        finalizer_calls = []
++
++        def pytest_fixture_post_finalizer(fixturedef, request):
++            finalizer_calls.append(fixturedef.argname)
++
++        @pytest.fixture(autouse=True)
++        def check_finalizer_calls(request):
++            yield
++            # After each test, verify no duplicate finalizer calls.
++            if finalizer_calls:
++                assert len(finalizer_calls) == len(set(finalizer_calls)), (
++                    f"Duplicate finalizer calls detected: {finalizer_calls}"
++                )
++                finalizer_calls.clear()
++        """
++    )
++    pytester.makepyfile(
++        test_fixtures="""
++        import pytest
++
++        @pytest.fixture(scope="session")
++        def foo(request):
++            return request.param
++
++        @pytest.fixture(scope="session")
++        def bar(request):
++            return request.param
++
++        @pytest.fixture(scope="session")
++        def baz(foo, bar):
++            return f"{foo}-{bar}"
++
++        @pytest.mark.parametrize("foo,bar", [(1, 1)], indirect=True)
++        def test_first(foo, bar, baz):
++            assert foo == 1
++            assert bar == 1
++            assert baz == "1-1"
++
++        @pytest.mark.parametrize("foo,bar", [(2, 2)], indirect=True)
++        def test_second(foo, bar, baz):
++            assert foo == 2
++            assert bar == 2
++            assert baz == "2-2"
++        """
++    )
++    result = pytester.runpytest("-v")
++    # The test passes, which means no duplicate finalizer calls were detected
++    # by the check_finalizer_calls autouse fixture.
++    result.assert_outcomes(passed=2)
++
++
++def test_fixture_post_finalizer_hook_exception(pytester: Pytester) -> None:
++    """Test that exceptions in pytest_fixture_post_finalizer hook are caught.
++
++    Also verifies that the fixture cache is properly reset even when the
++    post_finalizer hook raises an exception, so the fixture can be rebuilt
++    in subsequent tests.
++    """
++    pytester.makeconftest(
++        """
++        import pytest
++
++        def pytest_fixture_post_finalizer(fixturedef, request):
++            if "test_first" in request.node.nodeid:
++                raise RuntimeError("Error in post finalizer hook")
++
++        @pytest.fixture
++        def my_fixture(request):
++            yield request.node.nodeid
++        """
++    )
++    pytester.makepyfile(
++        test_fixtures="""
++        def test_first(my_fixture):
++            assert "test_first" in my_fixture
++
++        def test_second(my_fixture):
++            assert "test_second" in my_fixture
++        """
++    )
++    result = pytester.runpytest("-v", "--setup-show")
++    result.assert_outcomes(passed=2, errors=1)
++    result.stdout.fnmatch_lines(
++        [
++            "*test_first*PASSED",
++            "*test_first*ERROR",
++            "*RuntimeError: Error in post finalizer hook*",
++        ]
++    )
++    # Verify fixture is setup twice (rebuilt for test_second despite error).
++    result.stdout.fnmatch_lines(
++        [
++            "test_fixtures.py::test_first ",
++            "        SETUP    F my_fixture",
++            "        test_fixtures.py::test_first (fixtures used: my_fixture, request)PASSED",
++            "test_fixtures.py::test_first ERROR",
++            "test_fixtures.py::test_second ",
++            "        SETUP    F my_fixture",
++            "        test_fixtures.py::test_second (fixtures used: my_fixture, request)PASSED",
++            "        TEARDOWN F my_fixture",
++        ],
++        consecutive=True,
++    )
++
++
+ class TestScopeOrdering:
+     """Class of tests that ensure fixtures are ordered based on their scopes (#2405)"""
+ 

@@ -1,0 +1,56 @@
+{
+  "repo": "explosion/spaCy",
+  "pr_number": 13249,
+  "pr_url": "https://github.com/explosion/spaCy/pull/13249",
+  "issue_number": null,
+  "base_sha": "68d7841df593986655d07f9840fcd35e79b28c7a",
+  "head_sha": "30a7171e583a8da9b4be038c22779bde491b182d",
+  "additions": 87,
+  "deletions": 1,
+  "changed_files": [
+    "spacy/ml/models/textcat.py",
+    "spacy/tests/pipeline/test_textcat.py",
+    "spacy/tests/tok2vec.py"
+  ],
+  "test_files": [
+    "spacy/tests/pipeline/test_textcat.py",
+    "spacy/tests/tok2vec.py"
+  ],
+  "source_files": [
+    "spacy/ml/models/textcat.py"
+  ],
+  "parameterization": {
+    "repo": "explosion/spaCy",
+    "repo_short": "spaCy",
+    "parameterized_identifiers": [
+      "add_label",
+      "add_pipe",
+      "added",
+      "after",
+      "alloc2f",
+      "architecture",
+      "architectures",
+      "attention_layer",
+      "attrs",
+      "backprop"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:03:31Z"
+}

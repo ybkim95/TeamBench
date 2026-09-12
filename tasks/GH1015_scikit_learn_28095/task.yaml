@@ -1,0 +1,13 @@
+task_id: GH1015_scikit_learn_28095
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "FIX divide by zero in line search of GradientBoostingClassifier"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scikit-learn/scikit-learn/pull/28095"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

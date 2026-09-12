@@ -1,0 +1,209 @@
+diff --git a/packages/python/plotly/_plotly_utils/basevalidators.py b/packages/python/plotly/_plotly_utils/basevalidators.py
+index 73fe92e3511..3e7bd9faddf 100644
+--- a/packages/python/plotly/_plotly_utils/basevalidators.py
++++ b/packages/python/plotly/_plotly_utils/basevalidators.py
+@@ -223,6 +223,17 @@ def type_str(v):
+     return "'{module}.{name}'".format(module=v.__module__, name=v.__name__)
+ 
+ 
++def is_typed_array_spec(v):
++    """
++    Return whether a value is considered to be a typed array spec for plotly.js
++    """
++    return isinstance(v, dict) and "bdata" in v and "dtype" in v
++
++
++def is_none_or_typed_array_spec(v):
++    return v is None or is_typed_array_spec(v)
++
++
+ # Validators
+ # ----------
+ class BaseValidator(object):
+@@ -393,8 +404,7 @@ def description(self):
+ 
+     def validate_coerce(self, v):
+ 
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif is_homogeneous_array(v):
+             v = copy_to_readonly_numpy_array(v)
+@@ -591,8 +601,7 @@ def in_values(self, e):
+         return False
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif self.array_ok and is_array(v):
+             v_replaced = [self.perform_replacemenet(v_el) for v_el in v]
+@@ -636,8 +645,7 @@ def description(self):
+         )
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif not isinstance(v, bool):
+             self.raise_invalid_val(v)
+@@ -661,8 +669,7 @@ def description(self):
+         )
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif isinstance(v, str):
+             pass
+@@ -752,8 +759,7 @@ def description(self):
+         return desc
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif self.array_ok and is_homogeneous_array(v):
+             np = get_module("numpy")
+@@ -899,8 +905,7 @@ def description(self):
+         return desc
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif v in self.extras:
+             return v
+@@ -1063,8 +1068,7 @@ def description(self):
+         return desc
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif self.array_ok and is_array(v):
+ 
+@@ -1365,8 +1369,7 @@ def description(self):
+         return valid_color_description
+ 
+     def validate_coerce(self, v, should_raise=True):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif self.array_ok and is_homogeneous_array(v):
+             v = copy_to_readonly_numpy_array(v)
+@@ -1510,8 +1513,7 @@ def description(self):
+ 
+     def validate_coerce(self, v):
+ 
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif is_array(v):
+             validated_v = [
+@@ -1708,16 +1710,17 @@ def description(self):
+     (e.g. 270 is converted to -90).
+         """.format(
+             plotly_name=self.plotly_name,
+-            array_ok=", or a list, numpy array or other iterable thereof"
+-            if self.array_ok
+-            else "",
++            array_ok=(
++                ", or a list, numpy array or other iterable thereof"
++                if self.array_ok
++                else ""
++            ),
+         )
+ 
+         return desc
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif self.array_ok and is_homogeneous_array(v):
+             try:
+@@ -1902,8 +1905,7 @@ def vc_scalar(self, v):
+             return None
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif self.array_ok and is_array(v):
+ 
+@@ -1961,8 +1963,7 @@ def description(self):
+         return desc
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             pass
+         elif self.array_ok and is_homogeneous_array(v):
+             v = copy_to_readonly_numpy_array(v, kind="O")
+@@ -2170,8 +2171,7 @@ def validate_element_with_indexed_name(self, val, validator, inds):
+         return val
+ 
+     def validate_coerce(self, v):
+-        if v is None:
+-            # Pass None through
++        if is_none_or_typed_array_spec(v):
+             return None
+         elif not is_array(v):
+             self.raise_invalid_val(v)
+diff --git a/packages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py b/packages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py
+new file mode 100644
+index 00000000000..2ad869310c2
+--- /dev/null
++++ b/packages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py
+@@ -0,0 +1,38 @@
++import copy
++import pytest
++import plotly.express as px
++
++"""
++This test is in the validators folder since copy.deepcopy ends up calling
++BaseFigure(*args) which hits `validate_coerce`.
++
++When inputs are dataframes and arrays, then the copied figure is called with
++base64 encoded arrays.
++"""
++
++
++@pytest.mark.parametrize("return_type", ["pandas", "polars", "pyarrow"])
++@pytest.mark.filterwarnings(
++    r"ignore:\*scattermapbox\* is deprecated! Use \*scattermap\* instead"
++)
++def test_deepcopy_dataframe(return_type):
++    gapminder = px.data.gapminder(return_type=return_type)
++    fig = px.line(gapminder, x="year", y="gdpPercap", color="country")
++    fig_copied = copy.deepcopy(fig)
++
++    assert fig_copied.to_dict() == fig.to_dict()
++
++
++@pytest.mark.filterwarnings(
++    r"ignore:\*scattermapbox\* is deprecated! Use \*scattermap\* instead"
++)
++def test_deepcopy_array():
++    gapminder = px.data.gapminder()
++    x = gapminder["year"].to_numpy()
++    y = gapminder["gdpPercap"].to_numpy()
++    color = gapminder["country"].to_numpy()
++
++    fig = px.line(x=x, y=y, color=color)
++    fig_copied = copy.deepcopy(fig)
++
++    assert fig_copied.to_dict() == fig.to_dict()

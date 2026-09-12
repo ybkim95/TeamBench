@@ -1,0 +1,123 @@
+diff --git a/src/napari/layers/image/_tests/test_image.py b/src/napari/layers/image/_tests/test_image.py
+index eeb9f311f12..8f41ce5eb96 100644
+--- a/src/napari/layers/image/_tests/test_image.py
++++ b/src/napari/layers/image/_tests/test_image.py
+@@ -960,6 +960,24 @@ def test_thick_slice():
+     )
+ 
+ 
++def test_thick_slice_maintains_contrast_limits():
++    data = np.ones((5, 5, 5)) * np.arange(5).reshape(-1, 1, 1)
++    layer = Image(data.astype(np.uint8))
++    layer._slice_dims(
++        Dims(
++            ndim=3,
++            point=(0, 0, 0),
++            margin_left=(1, 0, 0),
++            margin_right=(1, 0, 0),
++        )
++    )
++
++    layer.projection_mode = 'mean'
++    layer.reset_contrast_limits()
++    assert layer.contrast_limits == [0, 255]
++    np.testing.assert_array_equal(layer.thumbnail[..., -1], 255)
++
++
+ def test_adjust_contrast_out_of_range():
+     arr = np.linspace(1, 9, 5 * 5, dtype=np.float64).reshape((5, 5))
+     img_lay = Image(arr)
+diff --git a/src/napari/layers/image/image.py b/src/napari/layers/image/image.py
+index 7404d952d67..46fe42644c0 100644
+--- a/src/napari/layers/image/image.py
++++ b/src/napari/layers/image/image.py
+@@ -394,7 +394,9 @@ def _update_slice_response(self, response: _ImageSliceResponse) -> None:
+             data = response.image.raw
+             input_data = data[-1] if self.multiscale else data
+             self.contrast_limits = calc_data_range(
+-                typing.cast(LayerDataProtocol, input_data), rgb=self.rgb
++                typing.cast(LayerDataProtocol, input_data),
++                rgb=self.rgb,
++                dtype=self.dtype,
+             )
+ 
+         super()._update_slice_response(response)
+@@ -529,15 +531,16 @@ def _update_thumbnail(self):
+             if image.shape[2] == 4:  # image is RGBA
+                 colormapped = np.copy(downsampled)
+                 colormapped[..., 3] = downsampled[..., 3] * self.opacity
+-                if downsampled.dtype == np.uint8:
++                if self.dtype == np.uint8:
+                     colormapped = colormapped.astype(np.uint8)
+             else:  # image is RGB
+-                if downsampled.dtype == np.uint8:
++                if self.dtype == np.uint8:
+                     alpha = np.full(
+                         downsampled.shape[:2] + (1,),
+                         int(255 * self.opacity),
+                         dtype=np.uint8,
+                     )
++                    downsampled = downsampled.astype(np.uint8)
+                 else:
+                     alpha = np.full(downsampled.shape[:2] + (1,), self.opacity)
+                 colormapped = np.concatenate([downsampled, alpha], axis=2)
+@@ -579,7 +582,7 @@ def _calc_data_range(
+                 )
+             )
+         return calc_data_range(
+-            cast(LayerDataProtocol, input_data), rgb=self.rgb
++            cast(LayerDataProtocol, input_data), rgb=self.rgb, dtype=self.dtype
+         )
+ 
+     def _raw_to_displayed(self, raw: np.ndarray) -> np.ndarray:
+diff --git a/src/napari/layers/utils/_tests/test_layer_utils.py b/src/napari/layers/utils/_tests/test_layer_utils.py
+index 4b038752f94..205dccb66bf 100644
+--- a/src/napari/layers/utils/_tests/test_layer_utils.py
++++ b/src/napari/layers/utils/_tests/test_layer_utils.py
+@@ -77,6 +77,15 @@ def test_calc_data_range():
+     clim = calc_data_range(data)
+     np.testing.assert_array_equal(clim, (-1, 10))
+ 
++    # check that dtype guessing/kwarg works properly (see #8149)
++    data = np.zeros((10, 10, 10), dtype=np.uint8)
++    clim = calc_data_range(data)
++    np.testing.assert_array_equal(clim, (0, 255))
++
++    data = np.zeros((10, 10, 10), dtype=np.float32)
++    clim = calc_data_range(data, dtype=np.uint8)
++    np.testing.assert_array_equal(clim, (0, 255))
++
+ 
+ @pytest.mark.parametrize(
+     'data',
+diff --git a/src/napari/layers/utils/layer_utils.py b/src/napari/layers/utils/layer_utils.py
+index 82757345b55..111c6657ae5 100644
+--- a/src/napari/layers/utils/layer_utils.py
++++ b/src/napari/layers/utils/layer_utils.py
+@@ -202,7 +202,7 @@ def _nanmax(array):
+ 
+ 
+ def calc_data_range(
+-    data: LayerDataProtocol, rgb: bool = False
++    data: LayerDataProtocol, rgb: bool = False, dtype: np.dtype | None = None
+ ) -> tuple[float, float]:
+     """Calculate range of data values. If all values are equal return [0, 1].
+ 
+@@ -212,6 +212,8 @@ def calc_data_range(
+         Data to calculate range of values over.
+     rgb : bool
+         Flag if data is rgb.
++    dtype : np.dtype, optional
++        Dtype of the layer data. If None, the dtype of the data is used.
+ 
+     Returns
+     -------
+@@ -223,7 +225,7 @@ def calc_data_range(
+     If the data type is uint8, no calculation is performed, and 0-255 is
+     returned.
+     """
+-    if data.dtype == np.uint8:
++    if (dtype is not None and dtype == np.uint8) or data.dtype == np.uint8:
+         return (0, 255)
+ 
+     if isinstance(data, np.ndarray) and data.ndim < 3:

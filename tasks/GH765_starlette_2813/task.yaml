@@ -1,0 +1,13 @@
+task_id: GH765_starlette_2813
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix unclosed 'MemoryObjectReceiveStream' upon exception in 'BaseHTTPMiddleware' children"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Kludex/starlette/pull/2813"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH712_celery_10033
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Only use exceptiongroup backport for Python < 3.11"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/celery/celery/pull/10033"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

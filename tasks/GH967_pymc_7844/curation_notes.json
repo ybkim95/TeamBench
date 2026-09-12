@@ -1,0 +1,58 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7844,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7844",
+  "issue_number": 7397,
+  "base_sha": "794b5b865db0cab084bfb75ae627dfd540238253",
+  "head_sha": "e9dcc271ac64af8fdde2081010131f571889adaa",
+  "additions": 75,
+  "deletions": 69,
+  "changed_files": [
+    "pymc/model/core.py",
+    "pymc/model_graph.py",
+    "scripts/run_mypy.py",
+    "tests/model/test_core.py",
+    "tests/test_model_graph.py"
+  ],
+  "test_files": [
+    "tests/model/test_core.py",
+    "tests/test_model_graph.py"
+  ],
+  "source_files": [
+    "pymc/model/core.py",
+    "pymc/model_graph.py",
+    "scripts/run_mypy.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "actually",
+      "again",
+      "ancestor",
+      "ancestors",
+      "around",
+      "as_tensor_variable",
+      "attr",
+      "avoids",
+      "axis",
+      "basic"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:55:11Z"
+}

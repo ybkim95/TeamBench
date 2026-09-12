@@ -1,0 +1,54 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 123085,
+  "pr_url": "https://github.com/home-assistant/core/pull/123085",
+  "issue_number": 123008,
+  "base_sha": "5293fc73d80017f63564f6a6503c50df4406dad5",
+  "head_sha": "e7c256f610be89209c35d83a899eff70bf4592ac",
+  "additions": 92,
+  "deletions": 27,
+  "changed_files": [
+    "homeassistant/components/husqvarna_automower/coordinator.py",
+    "tests/components/husqvarna_automower/conftest.py",
+    "tests/components/husqvarna_automower/test_init.py"
+  ],
+  "test_files": [
+    "tests/components/husqvarna_automower/conftest.py",
+    "tests/components/husqvarna_automower/test_init.py"
+  ],
+  "source_files": [
+    "homeassistant/components/husqvarna_automower/coordinator.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "after",
+      "aioautomower",
+      "append",
+      "async_block_till_done",
+      "async_stop",
+      "asyncio",
+      "auth",
+      "automower_client",
+      "awaited",
+      "call_count"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:49Z"
+}

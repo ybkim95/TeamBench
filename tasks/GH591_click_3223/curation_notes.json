@@ -1,0 +1,57 @@
+{
+  "repo": "pallets/click",
+  "pr_number": 3223,
+  "pr_url": "https://github.com/pallets/click/pull/3223",
+  "issue_number": null,
+  "base_sha": "dacca25f9964d0e776b5481291e68c8ae90b5944",
+  "head_sha": "0480a56579de344bf40dcc40be8ec5ffc1b5fab3",
+  "additions": 90,
+  "deletions": 5,
+  "changed_files": [
+    "tests/test_arguments.py",
+    "tests/test_basic.py",
+    "tests/test_defaults.py",
+    "tests/test_options.py"
+  ],
+  "test_files": [
+    "tests/test_arguments.py",
+    "tests/test_basic.py",
+    "tests/test_defaults.py",
+    "tests/test_options.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pallets/click",
+    "repo_short": "click",
+    "parameterized_identifiers": [
+      "always",
+      "argument",
+      "argument_params",
+      "arguments",
+      "available",
+      "basic",
+      "both",
+      "carries",
+      "case",
+      "cases"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:27:41Z"
+}

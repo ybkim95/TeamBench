@@ -1,0 +1,13 @@
+task_id: GH955_pandas_64683
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: fix sum of empty series for python-backed str dtype and account for min_count"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64683"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

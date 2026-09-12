@@ -1,0 +1,196 @@
+diff --git a/doc/whats_new/v1.2.rst b/doc/whats_new/v1.2.rst
+index 2f8f9dc38d899..2795b21231779 100644
+--- a/doc/whats_new/v1.2.rst
++++ b/doc/whats_new/v1.2.rst
+@@ -22,6 +22,14 @@ Changelog
+ - |Fix| Inheriting from :class:`base.TransformerMixin` will only wrap the `transform`
+   method if the class defines `transform` itself. :pr:`25295` by `Thomas Fan`_.
+ 
++:mod:`sklearn.ensemble`
++.......................
++
++- |Fix| :class:`ensemble.RandomForestClassifier`,
++  :class:`ensemble.RandomForestRegressor` :class:`ensemble.ExtraTreesClassifier`
++  and :class:`ensemble.ExtraTreesRegressor` now support sparse readonly datasets.
++  :pr:`25341` by :user:`Julien Jerphanion <jjerphan>`
++
+ :mod:`sklearn.linear_model`
+ ...........................
+ 
+@@ -37,6 +45,14 @@ Changelog
+   supports DataFrames that are all numerical when `check_inverse=True`.
+   :pr:`25274` by `Thomas Fan`_.
+ 
++:mod:`sklearn.tree`
++...................
++
++- |Fix| :class:`tree.DecisionTreeClassifier`, :class:`tree.DecisionTreeRegressor`
++  :class:`tree.ExtraTreeClassifier` and :class:`tree.ExtraTreeRegressor`
++  now support sparse readonly datasets.
++  :pr:`25341` by :user:`Julien Jerphanion <jjerphan>`
++
+ :mod:`sklearn.utils`
+ ....................
+ 
+diff --git a/sklearn/ensemble/tests/test_forest.py b/sklearn/ensemble/tests/test_forest.py
+index 1b76b79df15b0..44de0f560195e 100644
+--- a/sklearn/ensemble/tests/test_forest.py
++++ b/sklearn/ensemble/tests/test_forest.py
+@@ -18,6 +18,7 @@
+ from typing import Dict, Any
+ 
+ import numpy as np
++from joblib import Parallel
+ from scipy.sparse import csr_matrix
+ from scipy.sparse import csc_matrix
+ from scipy.sparse import coo_matrix
+@@ -27,6 +28,7 @@
+ 
+ import joblib
+ 
++import sklearn
+ from sklearn.dummy import DummyRegressor
+ from sklearn.metrics import mean_poisson_deviance
+ from sklearn.utils._testing import assert_almost_equal
+@@ -47,7 +49,7 @@
+ from sklearn.ensemble import RandomForestRegressor
+ from sklearn.ensemble import RandomTreesEmbedding
+ from sklearn.metrics import explained_variance_score, f1_score
+-from sklearn.model_selection import train_test_split
++from sklearn.model_selection import train_test_split, cross_val_score
+ from sklearn.model_selection import GridSearchCV
+ from sklearn.svm import LinearSVC
+ from sklearn.utils.validation import check_random_state
+@@ -1786,3 +1788,22 @@ def test_base_estimator_property_deprecated(name):
+     )
+     with pytest.warns(FutureWarning, match=warn_msg):
+         model.base_estimator_
++
++
++def test_read_only_buffer(monkeypatch):
++    """RandomForestClassifier must work on readonly sparse data.
++
++    Non-regression test for: https://github.com/scikit-learn/scikit-learn/issues/25333
++    """
++    monkeypatch.setattr(
++        sklearn.ensemble._forest,
++        "Parallel",
++        partial(Parallel, max_nbytes=100),
++    )
++    rng = np.random.RandomState(seed=0)
++
++    X, y = make_classification(n_samples=100, n_features=200, random_state=rng)
++    X = csr_matrix(X, copy=True)
++
++    clf = RandomForestClassifier(n_jobs=2, random_state=rng)
++    cross_val_score(clf, X, y, cv=2)
+diff --git a/sklearn/tree/_splitter.pyx b/sklearn/tree/_splitter.pyx
+index a6343653e0840..ea2b07b274e02 100644
+--- a/sklearn/tree/_splitter.pyx
++++ b/sklearn/tree/_splitter.pyx
+@@ -817,9 +817,9 @@ cdef class SparsePartitioner:
+     cdef SIZE_t start
+     cdef SIZE_t end
+ 
+-    cdef DTYPE_t[::1] X_data
+-    cdef INT32_t[::1] X_indices
+-    cdef INT32_t[::1] X_indptr
++    cdef const DTYPE_t[::1] X_data
++    cdef const INT32_t[::1] X_indices
++    cdef const INT32_t[::1] X_indptr
+ 
+     cdef SIZE_t n_total_samples
+ 
+@@ -1031,8 +1031,8 @@ cdef class SparsePartitioner:
+         cdef SIZE_t n_samples = self.end - self.start
+         cdef SIZE_t[::1] index_to_samples = self.index_to_samples
+         cdef SIZE_t[::1] sorted_samples = self.sorted_samples
+-        cdef INT32_t[::1] X_indices = self.X_indices
+-        cdef DTYPE_t[::1] X_data = self.X_data
++        cdef const INT32_t[::1] X_indices = self.X_indices
++        cdef const DTYPE_t[::1] X_data = self.X_data
+ 
+         # Use binary search if n_samples * log(n_indices) <
+         # n_indices and index_to_samples approach otherwise.
+@@ -1065,7 +1065,7 @@ cdef int compare_SIZE_t(const void* a, const void* b) nogil:
+     return <int>((<SIZE_t*>a)[0] - (<SIZE_t*>b)[0])
+ 
+ 
+-cdef inline void binary_search(INT32_t[::1] sorted_array,
++cdef inline void binary_search(const INT32_t[::1] sorted_array,
+                                INT32_t start, INT32_t end,
+                                SIZE_t value, SIZE_t* index,
+                                INT32_t* new_start) nogil:
+@@ -1090,8 +1090,8 @@ cdef inline void binary_search(INT32_t[::1] sorted_array,
+     new_start[0] = start
+ 
+ 
+-cdef inline void extract_nnz_index_to_samples(INT32_t[::1] X_indices,
+-                                              DTYPE_t[::1] X_data,
++cdef inline void extract_nnz_index_to_samples(const INT32_t[::1] X_indices,
++                                              const DTYPE_t[::1] X_data,
+                                               INT32_t indptr_start,
+                                               INT32_t indptr_end,
+                                               SIZE_t[::1] samples,
+@@ -1130,8 +1130,8 @@ cdef inline void extract_nnz_index_to_samples(INT32_t[::1] X_indices,
+     start_positive[0] = start_positive_
+ 
+ 
+-cdef inline void extract_nnz_binary_search(INT32_t[::1] X_indices,
+-                                           DTYPE_t[::1] X_data,
++cdef inline void extract_nnz_binary_search(const INT32_t[::1] X_indices,
++                                           const DTYPE_t[::1] X_data,
+                                            INT32_t indptr_start,
+                                            INT32_t indptr_end,
+                                            SIZE_t[::1] samples,
+diff --git a/sklearn/tree/tests/test_tree.py b/sklearn/tree/tests/test_tree.py
+index a8681e101d0ee..715101a72219a 100644
+--- a/sklearn/tree/tests/test_tree.py
++++ b/sklearn/tree/tests/test_tree.py
+@@ -1936,10 +1936,31 @@ def assert_is_subtree(tree, subtree):
+             )
+ 
+ 
+-def check_apply_path_readonly(name):
+-    X_readonly = create_memmap_backed_data(X_small.astype(tree._tree.DTYPE, copy=False))
++@pytest.mark.parametrize("name", ALL_TREES)
++@pytest.mark.parametrize("splitter", ["best", "random"])
++@pytest.mark.parametrize("X_format", ["dense", "csr", "csc"])
++def test_apply_path_readonly_all_trees(name, splitter, X_format):
++    dataset = DATASETS["clf_small"]
++    X_small = dataset["X"].astype(tree._tree.DTYPE, copy=False)
++    if X_format == "dense":
++        X_readonly = create_memmap_backed_data(X_small)
++    else:
++        X_readonly = dataset["X_sparse"]  # CSR
++        if X_format == "csc":
++            # Cheap CSR to CSC conversion
++            X_readonly = X_readonly.tocsc()
++
++        X_readonly.data = np.array(X_readonly.data, dtype=tree._tree.DTYPE)
++        (
++            X_readonly.data,
++            X_readonly.indices,
++            X_readonly.indptr,
++        ) = create_memmap_backed_data(
++            (X_readonly.data, X_readonly.indices, X_readonly.indptr)
++        )
++
+     y_readonly = create_memmap_backed_data(np.array(y_small, dtype=tree._tree.DTYPE))
+-    est = ALL_TREES[name]()
++    est = ALL_TREES[name](splitter=splitter)
+     est.fit(X_readonly, y_readonly)
+     assert_array_equal(est.predict(X_readonly), est.predict(X_small))
+     assert_array_equal(
+@@ -1947,11 +1968,6 @@ def check_apply_path_readonly(name):
+     )
+ 
+ 
+-@pytest.mark.parametrize("name", ALL_TREES)
+-def test_apply_path_readonly_all_trees(name):
+-    check_apply_path_readonly(name)
+-
+-
+ @pytest.mark.parametrize("criterion", ["squared_error", "friedman_mse", "poisson"])
+ @pytest.mark.parametrize("Tree", REG_TREES.values())
+ def test_balance_property(criterion, Tree):

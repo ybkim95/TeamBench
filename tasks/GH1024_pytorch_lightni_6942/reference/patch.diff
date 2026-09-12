@@ -1,0 +1,42 @@
+diff --git a/pytorch_lightning/plugins/environments/cluster_environment.py b/pytorch_lightning/plugins/environments/cluster_environment.py
+--- a/pytorch_lightning/plugins/environments/cluster_environment.py
++++ b/pytorch_lightning/plugins/environments/cluster_environment.py
+@@ -52,3 +52,7 @@ def local_rank(self) -> int:
+     @abstractmethod
+     def node_rank(self) -> int:
+         """ The rank (index) of the node on which the current process runs. """
++
++    def teardown(self) -> None:
++        """ Clean up any state set after execution finishes. """
++        pass
+
+diff --git a/pytorch_lightning/plugins/environments/lightning_environment.py b/pytorch_lightning/plugins/environments/lightning_environment.py
+--- a/pytorch_lightning/plugins/environments/lightning_environment.py
++++ b/pytorch_lightning/plugins/environments/lightning_environment.py
+@@ -68,6 +68,10 @@ def node_rank(self) -> int:
+         group_rank = os.environ.get("GROUP_RANK", 0)
+         return int(os.environ.get("NODE_RANK", group_rank))
+ 
++    def teardown(self) -> None:
++        if "WORLD_SIZE" in os.environ:
++            del os.environ["WORLD_SIZE"]
++
+ 
+ def find_free_network_port() -> int:
+     """
+
+diff --git a/pytorch_lightning/plugins/training_type/ddp.py b/pytorch_lightning/plugins/training_type/ddp.py
+--- a/pytorch_lightning/plugins/training_type/ddp.py
++++ b/pytorch_lightning/plugins/training_type/ddp.py
+@@ -280,9 +280,8 @@ def pre_dispatch(self):
+ 
+         self.barrier()
+ 
+-    def post_dispatch(self):
+-        if "WORLD_SIZE" in os.environ:
+-            del os.environ["WORLD_SIZE"]
++    def post_dispatch(self) -> None:
++        self.cluster_environment.teardown()
+ 
+     def barrier(self, *args, **kwargs):
+         if torch_distrib.is_initialized():

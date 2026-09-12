@@ -1,0 +1,57 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64643,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64643",
+  "issue_number": null,
+  "base_sha": "160424b55977967eb520c794a528c03b04fa4d9d",
+  "head_sha": "b01f0041bf8901cd90094693dd9ed8f3f9d6c3dd",
+  "additions": 28,
+  "deletions": 16,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/core/arrays/timedeltas.py",
+    "pandas/core/tools/datetimes.py",
+    "pandas/tests/tools/test_to_timedelta.py"
+  ],
+  "test_files": [
+    "pandas/tests/tools/test_to_timedelta.py"
+  ],
+  "source_files": [
+    "pandas/core/arrays/timedeltas.py",
+    "pandas/core/tools/datetimes.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "all_round",
+      "any_numeric_ea_dtype",
+      "array",
+      "arrays",
+      "astype",
+      "astype_overflowsafe",
+      "avoid",
+      "back",
+      "bounds",
+      "cannot"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:51:38Z"
+}

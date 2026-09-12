@@ -1,0 +1,60 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3038,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3038",
+  "issue_number": null,
+  "base_sha": "b43ad6ec8679d20a778e93b1a9e852c1e2937f2a",
+  "head_sha": "9bca0b8eab3bdca5cd67a9a736988ac94eb7fa4f",
+  "additions": 137,
+  "deletions": 2,
+  "changed_files": [
+    "CHANGES.rst",
+    "docs/routing.rst",
+    "src/werkzeug/routing/exceptions.py",
+    "src/werkzeug/routing/matcher.py",
+    "src/werkzeug/routing/rules.py",
+    "tests/test_routing.py"
+  ],
+  "test_files": [
+    "tests/test_routing.py"
+  ],
+  "source_files": [
+    "src/werkzeug/routing/exceptions.py",
+    "src/werkzeug/routing/matcher.py",
+    "src/werkzeug/routing/rules.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "about",
+      "actually",
+      "adapter",
+      "added",
+      "alias",
+      "also",
+      "although",
+      "always",
+      "append",
+      "appended"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:35:52Z"
+}

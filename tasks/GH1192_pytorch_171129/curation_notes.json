@@ -1,0 +1,54 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 171129,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/171129",
+  "issue_number": null,
+  "base_sha": "0084d20edc4cb40875a132db4caa8a720365bf3c",
+  "head_sha": "e7b6d3975b110e04ac3162bdcc5f608254cdad55",
+  "additions": 65,
+  "deletions": 19,
+  "changed_files": [
+    "test/inductor/test_triton_kernels.py",
+    "torch/_higher_order_ops/triton_kernel_wrap.py"
+  ],
+  "test_files": [
+    "test/inductor/test_triton_kernels.py"
+  ],
+  "source_files": [
+    "torch/_higher_order_ops/triton_kernel_wrap.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "account",
+      "add_4_times_kernel",
+      "appear",
+      "arange",
+      "arguments",
+      "attrs",
+      "axis",
+      "become",
+      "both",
+      "chain"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:49Z"
+}

@@ -1,0 +1,55 @@
+{
+  "repo": "wandb/wandb",
+  "pr_number": 11491,
+  "pr_url": "https://github.com/wandb/wandb/pull/11491",
+  "issue_number": null,
+  "base_sha": "6c806f555a6d3febb6d33f672b535981e4f71019",
+  "head_sha": "8822a5e6fb6473e3874b4f7663f044e3a4c34f88",
+  "additions": 41,
+  "deletions": 9,
+  "changed_files": [
+    "CHANGELOG.unreleased.md",
+    "tests/unit_tests/test_lib/test_runid.py",
+    "wandb/sdk/lib/runid.py"
+  ],
+  "test_files": [
+    "tests/unit_tests/test_lib/test_runid.py"
+  ],
+  "source_files": [
+    "wandb/sdk/lib/runid.py"
+  ],
+  "parameterization": {
+    "repo": "wandb/wandb",
+    "repo_short": "wandb",
+    "parameterized_identifiers": [
+      "affected",
+      "affecting",
+      "after",
+      "after_in_child",
+      "artifact",
+      "ascii_lowercase",
+      "assumptions",
+      "avoid",
+      "base",
+      "basically"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:36Z"
+}

@@ -1,0 +1,123 @@
+diff --git a/homeassistant/components/aladdin_connect/__init__.py b/homeassistant/components/aladdin_connect/__init__.py
+index adcc53bfc75c8..48bedafdd1ab8 100644
+--- a/homeassistant/components/aladdin_connect/__init__.py
++++ b/homeassistant/components/aladdin_connect/__init__.py
+@@ -3,7 +3,6 @@
+ from __future__ import annotations
+ 
+ from genie_partner_sdk.client import AladdinConnectClient
+-from genie_partner_sdk.model import GarageDoor
+ 
+ from homeassistant.const import Platform
+ from homeassistant.core import HomeAssistant
+@@ -36,22 +35,7 @@ async def async_setup_entry(
+         api.AsyncConfigEntryAuth(aiohttp_client.async_get_clientsession(hass), session)
+     )
+ 
+-    sdk_doors = await client.get_doors()
+-
+-    # Convert SDK GarageDoor objects to integration GarageDoor objects
+-    doors = [
+-        GarageDoor(
+-            {
+-                "device_id": door.device_id,
+-                "door_number": door.door_number,
+-                "name": door.name,
+-                "status": door.status,
+-                "link_status": door.link_status,
+-                "battery_level": door.battery_level,
+-            }
+-        )
+-        for door in sdk_doors
+-    ]
++    doors = await client.get_doors()
+ 
+     entry.runtime_data = {
+         door.unique_id: AladdinConnectCoordinator(hass, entry, client, door)
+diff --git a/homeassistant/components/aladdin_connect/coordinator.py b/homeassistant/components/aladdin_connect/coordinator.py
+index 74afbe8fca972..718aed8e44572 100644
+--- a/homeassistant/components/aladdin_connect/coordinator.py
++++ b/homeassistant/components/aladdin_connect/coordinator.py
+@@ -41,4 +41,10 @@ def __init__(
+     async def _async_update_data(self) -> GarageDoor:
+         """Fetch data from the Aladdin Connect API."""
+         await self.client.update_door(self.data.device_id, self.data.door_number)
++        self.data.status = self.client.get_door_status(
++            self.data.device_id, self.data.door_number
++        )
++        self.data.battery_level = self.client.get_battery_status(
++            self.data.device_id, self.data.door_number
++        )
+         return self.data
+diff --git a/homeassistant/components/aladdin_connect/cover.py b/homeassistant/components/aladdin_connect/cover.py
+index 7af0e4eb2cee2..4bc787539fd9d 100644
+--- a/homeassistant/components/aladdin_connect/cover.py
++++ b/homeassistant/components/aladdin_connect/cover.py
+@@ -49,7 +49,9 @@ async def async_close_cover(self, **kwargs: Any) -> None:
+     @property
+     def is_closed(self) -> bool | None:
+         """Update is closed attribute."""
+-        return self.coordinator.data.status == "closed"
++        if (status := self.coordinator.data.status) is None:
++            return None
++        return status == "closed"
+ 
+     @property
+     def is_closing(self) -> bool | None:
+diff --git a/homeassistant/components/aladdin_connect/manifest.json b/homeassistant/components/aladdin_connect/manifest.json
+index 67c755e29a8ec..3b192d17b9871 100644
+--- a/homeassistant/components/aladdin_connect/manifest.json
++++ b/homeassistant/components/aladdin_connect/manifest.json
+@@ -7,5 +7,5 @@
+   "documentation": "https://www.home-assistant.io/integrations/aladdin_connect",
+   "integration_type": "hub",
+   "iot_class": "cloud_polling",
+-  "requirements": ["genie-partner-sdk==1.0.10"]
++  "requirements": ["genie-partner-sdk==1.0.11"]
+ }
+diff --git a/requirements_all.txt b/requirements_all.txt
+index 640002581bebd..3f8c6e6e61ecd 100644
+--- a/requirements_all.txt
++++ b/requirements_all.txt
+@@ -1002,7 +1002,7 @@ gassist-text==0.0.14
+ gcal-sync==8.0.0
+ 
+ # homeassistant.components.aladdin_connect
+-genie-partner-sdk==1.0.10
++genie-partner-sdk==1.0.11
+ 
+ # homeassistant.components.geniushub
+ geniushub-client==0.7.1
+diff --git a/requirements_test_all.txt b/requirements_test_all.txt
+index 841b840f236d7..897b3588fdc17 100644
+--- a/requirements_test_all.txt
++++ b/requirements_test_all.txt
+@@ -872,7 +872,7 @@ gassist-text==0.0.14
+ gcal-sync==8.0.0
+ 
+ # homeassistant.components.aladdin_connect
+-genie-partner-sdk==1.0.10
++genie-partner-sdk==1.0.11
+ 
+ # homeassistant.components.geniushub
+ geniushub-client==0.7.1
+diff --git a/tests/components/aladdin_connect/test_init.py b/tests/components/aladdin_connect/test_init.py
+index e26e5234f1c27..bc147839c2fed 100644
+--- a/tests/components/aladdin_connect/test_init.py
++++ b/tests/components/aladdin_connect/test_init.py
+@@ -30,6 +30,7 @@ async def test_setup_entry(hass: HomeAssistant) -> None:
+     mock_door.status = "closed"
+     mock_door.link_status = "connected"
+     mock_door.battery_level = 100
++    mock_door.unique_id = f"{mock_door.device_id}-{mock_door.door_number}"
+ 
+     mock_client = AsyncMock()
+     mock_client.get_doors.return_value = [mock_door]
+@@ -80,6 +81,7 @@ async def test_unload_entry(hass: HomeAssistant) -> None:
+     mock_door.status = "closed"
+     mock_door.link_status = "connected"
+     mock_door.battery_level = 100
++    mock_door.unique_id = f"{mock_door.device_id}-{mock_door.door_number}"
+ 
+     # Mock client
+     mock_client = AsyncMock()

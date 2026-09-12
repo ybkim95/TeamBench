@@ -1,0 +1,13 @@
+task_id: GH960_statsmodels_9581
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: make Binomial family more robust to corner case mu=0 , endog=0"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/statsmodels/statsmodels/pull/9581"
+source_issue: "https://github.com/statsmodels/statsmodels/issues/9580"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

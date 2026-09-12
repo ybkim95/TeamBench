@@ -1,0 +1,61 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 10406,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/10406",
+  "issue_number": null,
+  "base_sha": "0b351176bf70fdac9ca325e2761d064ab4c31a89",
+  "head_sha": "a7c46641fcfacc7a140eb9e4679d931385de8480",
+  "additions": 84,
+  "deletions": 25,
+  "changed_files": [
+    "great_expectations/compatibility/databricks.py",
+    "great_expectations/execution_engine/sqlalchemy_execution_engine.py",
+    "great_expectations/expectations/metrics/util.py",
+    "great_expectations/expectations/regex_based_column_map_expectation.py",
+    "pyproject.toml",
+    "tests/datasource/fluent/integration/test_sql_datasources.py"
+  ],
+  "test_files": [
+    "tests/datasource/fluent/integration/test_sql_datasources.py"
+  ],
+  "source_files": [
+    "great_expectations/compatibility/databricks.py",
+    "great_expectations/execution_engine/sqlalchemy_execution_engine.py",
+    "great_expectations/expectations/metrics/util.py",
+    "great_expectations/expectations/regex_based_column_map_expectation.py"
+  ],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "add_table_asset",
+      "asset",
+      "assignment",
+      "attr",
+      "base",
+      "being",
+      "bigquery",
+      "bigquery_types_tuple",
+      "boto3",
+      "botocore"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:58:42Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH868_pandas_64809
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: fix dt64[non_nano] + offsets with sub-unit offset parameter"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64809"
+source_issue: "https://github.com/pandas-dev/pandas/issues/56586"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

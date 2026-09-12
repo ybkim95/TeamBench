@@ -1,0 +1,13 @@
+task_id: GH1203_wandb_11226
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix(sweeps): stop the sweep when the sweep cannot be found"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/wandb/wandb/pull/11226"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

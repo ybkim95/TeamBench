@@ -1,0 +1,27 @@
+# Reference solution — GH294_sktime_7844
+
+> **GRADER-ONLY. DO NOT EXPOSE TO ANY AGENT ROLE.**
+>
+> This file holds the reference solution for `GH294_sktime_7844`. It was moved out of the
+> agent-visible `spec.md` / `brief.md` by `scripts/deleak_specs.py` because
+> the Planner could otherwise read the gold patch and the Executor could
+> otherwise read the changed-file list, so neither role had to localize
+> anything.
+>
+> `tasks/GH294_sktime_7844/reference/` must be excluded from every role's `allowed_roots`.
+> It ships with the benchmark: the graders and the reference-solution
+> admission gate need it.
+
+## Moved from `spec.md`
+
+## Files Changed in Fix
+
+- `.all-contributorsrc` (modified, +1/-0)
+- `CONTRIBUTORS.md` (modified, +3/-1)
+- `sktime/forecasting/tests/test_all_forecasters.py` (modified, +14/-8)
+
+## Moved from `brief.md`
+
+## Files That May Need Changes
+
+- (see workspace)

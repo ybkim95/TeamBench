@@ -1,0 +1,58 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 19869,
+  "pr_url": "https://github.com/numpy/numpy/pull/19869",
+  "issue_number": null,
+  "base_sha": "e4f85b08c252b576f3c589cc1202f040c22d64f2",
+  "head_sha": "9377d360297e72680b2140af6b0d0951d6ae3d9e",
+  "additions": 32,
+  "deletions": 25,
+  "changed_files": [
+    "numpy/lib/function_base.py",
+    "numpy/lib/tests/test_function_base.py",
+    "numpy/lib/utils.py",
+    "numpy/ma/extras.py"
+  ],
+  "test_files": [
+    "numpy/lib/tests/test_function_base.py"
+  ],
+  "source_files": [
+    "numpy/lib/function_base.py",
+    "numpy/lib/utils.py",
+    "numpy/ma/extras.py"
+  ],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "along",
+      "also",
+      "array",
+      "asorted",
+      "assert_equal",
+      "axes",
+      "axis",
+      "both",
+      "case",
+      "casting"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:57:58Z"
+}

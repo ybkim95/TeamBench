@@ -1,0 +1,12 @@
+diff --git a/src/transformers/models/nemotron/modeling_nemotron.py b/src/transformers/models/nemotron/modeling_nemotron.py
+--- a/src/transformers/models/nemotron/modeling_nemotron.py
++++ b/src/transformers/models/nemotron/modeling_nemotron.py
+@@ -76,7 +76,7 @@ def __init__(
+ 
+     def forward(self, input: Tensor) -> Tensor:
+         args = _cast_if_autocast_enabled(input, self.normalized_shape, self.weight + 1, self.bias, self.eps)
+-        with torch.cuda.amp.autocast(enabled=False):
++        with torch.amp.autocast(input.device.type, enabled=False):
+             return F.layer_norm(*args)
+ 
+ 

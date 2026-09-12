@@ -1,0 +1,47 @@
+{
+  "repo": "plotly/plotly.py",
+  "pr_number": 5322,
+  "pr_url": "https://github.com/plotly/plotly.py/pull/5322",
+  "issue_number": 5253,
+  "base_sha": "aa4c0882c5b7bd319d06dcd96a1408c947447eaa",
+  "head_sha": "ead0c767797879fb978743377b67541be98ea8f1",
+  "additions": 1,
+  "deletions": 1,
+  "changed_files": [
+    "plotly/matplotlylib/mplexporter/tests/test_utils.py"
+  ],
+  "test_files": [
+    "plotly/matplotlylib/mplexporter/tests/test_utils.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "plotly/plotly.py",
+    "repo_short": "plotly.py",
+    "parameterized_identifiers": [
+      "assert_allclose",
+      "assert_equal",
+      "matplotlib",
+      "numpy",
+      "pyplot",
+      "test_path_data",
+      "testing",
+      "utils"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:34Z"
+}

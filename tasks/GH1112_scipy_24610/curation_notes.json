@@ -1,0 +1,58 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24610,
+  "pr_url": "https://github.com/scipy/scipy/pull/24610",
+  "issue_number": null,
+  "base_sha": "f2633d438408381839f9b6379bf96733f20585e3",
+  "head_sha": "cc41f87acc094908acc10c34ba364446548640a5",
+  "additions": 21,
+  "deletions": 17,
+  "changed_files": [
+    "scipy/stats/_continuous_distns.py",
+    "scipy/stats/_discrete_distns.py",
+    "scipy/stats/_distribution_infrastructure.py",
+    "scipy/stats/tests/test_continuous.py"
+  ],
+  "test_files": [
+    "scipy/stats/tests/test_continuous.py"
+  ],
+  "source_files": [
+    "scipy/stats/_continuous_distns.py",
+    "scipy/stats/_discrete_distns.py",
+    "scipy/stats/_distribution_infrastructure.py"
+  ],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "accordingly",
+      "alpha",
+      "arange",
+      "arcsine",
+      "array",
+      "arrays",
+      "asarray",
+      "assert_allclose",
+      "axis",
+      "beta"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:06:29Z"
+}

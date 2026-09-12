@@ -1,0 +1,13 @@
+task_id: GH360_rain.orderbook_1936
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix partial select token deserialization issue"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/rainlanguage/rain.orderbook/pull/1936"
+source_issue: "https://github.com/rainlanguage/rain.orderbook/issues/1935"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

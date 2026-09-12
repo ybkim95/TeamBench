@@ -1,0 +1,52 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 22067,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/22067",
+  "issue_number": 22066,
+  "base_sha": "4aadbdfe21ac8e988819f00ef1e196a36ec6ceea",
+  "head_sha": "449b5f3eb5d11d75413198f79679ecd3c096df6e",
+  "additions": 37,
+  "deletions": 0,
+  "changed_files": [
+    "mlflow/assistant/providers/claude_code.py",
+    "tests/assistant/providers/test_claude_code_provider.py"
+  ],
+  "test_files": [
+    "tests/assistant/providers/test_claude_code_provider.py"
+  ],
+  "source_files": [
+    "mlflow/assistant/providers/claude_code.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "assistant",
+      "astream",
+      "asyncio",
+      "case",
+      "claude",
+      "claude_code",
+      "content",
+      "data",
+      "error",
+      "events"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:52:19Z"
+}

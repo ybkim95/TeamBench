@@ -1,0 +1,52 @@
+{
+  "repo": "explosion/spaCy",
+  "pr_number": 12817,
+  "pr_url": "https://github.com/explosion/spaCy/pull/12817",
+  "issue_number": 12816,
+  "base_sha": "ddffd096024004f27a0dee3701dc248c4647b3a7",
+  "head_sha": "9e985d4fdde2331733c9de854da7fc378dc5007d",
+  "additions": 20,
+  "deletions": 2,
+  "changed_files": [
+    "spacy/displacy/render.py",
+    "spacy/tests/test_displacy.py"
+  ],
+  "test_files": [
+    "spacy/tests/test_displacy.py"
+  ],
+  "source_files": [
+    "spacy/displacy/render.py"
+  ],
+  "parameterization": {
+    "repo": "explosion/spaCy",
+    "repo_short": "spaCy",
+    "parameterized_identifiers": [
+      "annotated",
+      "append",
+      "containing",
+      "correctly",
+      "displacy",
+      "en_vocab",
+      "entities",
+      "escape_html",
+      "escaped",
+      "escapes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:59Z"
+}

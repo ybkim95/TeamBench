@@ -1,0 +1,13 @@
+task_id: GH40_poetry_10720
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix non-deterministic dependency constraint ordering in lock file"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/python-poetry/poetry/pull/10720"
+source_issue: "https://github.com/python-poetry/poetry/issues/10702"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

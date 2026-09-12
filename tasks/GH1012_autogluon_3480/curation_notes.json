@@ -1,0 +1,54 @@
+{
+  "repo": "autogluon/autogluon",
+  "pr_number": 3480,
+  "pr_url": "https://github.com/autogluon/autogluon/pull/3480",
+  "issue_number": null,
+  "base_sha": "55cf01202edd9b243e3fe543c29950600a5e4776",
+  "head_sha": "d1dd8594a1781734c49b5497b8595fc258a675ad",
+  "additions": 74,
+  "deletions": 3,
+  "changed_files": [
+    "core/src/autogluon/core/utils/utils.py",
+    "core/tests/unittests/utils/test_utils.py"
+  ],
+  "test_files": [
+    "core/tests/unittests/utils/test_utils.py"
+  ],
+  "source_files": [
+    "core/src/autogluon/core/utils/utils.py"
+  ],
+  "parameterization": {
+    "repo": "autogluon/autogluon",
+    "repo_short": "autogluon",
+    "parameterized_identifiers": [
+      "allow",
+      "always",
+      "arange",
+      "autogluon",
+      "avoid",
+      "because",
+      "case",
+      "cases",
+      "classes",
+      "code"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:58:51Z"
+}

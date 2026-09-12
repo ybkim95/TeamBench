@@ -1,0 +1,53 @@
+{
+  "repo": "pallets/jinja",
+  "pr_number": 1706,
+  "pr_url": "https://github.com/pallets/jinja/pull/1706",
+  "issue_number": 1705,
+  "base_sha": "58a358f0928df381c003be244b930367c68dbb85",
+  "head_sha": "aaa083d265307f44f00b010acec61b6eb8e3c3a7",
+  "additions": 18,
+  "deletions": 7,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/jinja2/loaders.py",
+    "tests/test_loader.py"
+  ],
+  "test_files": [
+    "tests/test_loader.py"
+  ],
+  "source_files": [
+    "src/jinja2/loaders.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/jinja",
+    "repo_short": "jinja",
+    "parameterized_identifiers": [
+      "append",
+      "applied",
+      "archive",
+      "before",
+      "break",
+      "clearer",
+      "contain",
+      "correctly",
+      "could",
+      "directory"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:36:07Z"
+}

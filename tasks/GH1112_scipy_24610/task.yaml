@@ -1,0 +1,13 @@
+task_id: GH1112_scipy_24610
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "MAINT: stats.make_distribution: fix some issues with `rv_generic`s + array shape parameters"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scipy/scipy/pull/24610"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

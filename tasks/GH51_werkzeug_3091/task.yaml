@@ -1,0 +1,13 @@
+task_id: GH51_werkzeug_3091
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Check event type before pattern matching in watchdog reloader"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/werkzeug/pull/3091"
+source_issue: "https://github.com/pallets/werkzeug/issues/3090"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

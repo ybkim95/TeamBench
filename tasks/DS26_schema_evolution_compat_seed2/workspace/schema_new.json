@@ -1,0 +1,34 @@
+{
+  "fields": [
+    {
+      "name": "sensor_id",
+      "type": "int64"
+    },
+    {
+      "name": "epoch_ms",
+      "type": "int64"
+    },
+    {
+      "name": "temperature_c",
+      "type": "float32"
+    },
+    {
+      "name": "hum",
+      "type": "float32"
+    },
+    {
+      "name": "loc",
+      "type": "string"
+    },
+    {
+      "name": "battery_pct",
+      "type": "float64",
+      "nullable": true
+    }
+  ],
+  "aliases": {
+    "sensor_id": "sid",
+    "epoch_ms": "t",
+    "temperature_c": "temp"
+  }
+}

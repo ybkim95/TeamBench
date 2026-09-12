@@ -1,0 +1,56 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1385,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1385",
+  "issue_number": 1234,
+  "base_sha": "6a99202492a0e8e9e4cea14fbb2cf7bb02f52281",
+  "head_sha": "bf5f9a8a58b88a183846fb10d597706b8ae22f80",
+  "additions": 39,
+  "deletions": 9,
+  "changed_files": [
+    "flaml/automl/automl.py",
+    "flaml/automl/task/generic_task.py",
+    "flaml/automl/task/task.py",
+    "test/automl/test_split.py"
+  ],
+  "test_files": [
+    "test/automl/test_split.py"
+  ],
+  "source_files": [
+    "flaml/automl/automl.py",
+    "flaml/automl/task/generic_task.py",
+    "flaml/automl/task/task.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "accuracy_score",
+      "arrays",
+      "as_frame",
+      "auto",
+      "automl",
+      "automl_settings",
+      "choices",
+      "classification",
+      "cluster",
+      "custom_metric"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:03Z"
+}

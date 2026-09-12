@@ -1,0 +1,54 @@
+{
+  "repo": "apache/airflow",
+  "pr_number": 64216,
+  "pr_url": "https://github.com/apache/airflow/pull/64216",
+  "issue_number": null,
+  "base_sha": "10715fb8a810ac66074226c7538934e748a13197",
+  "head_sha": "0fec97b49c890fb5a97595af42776b38ad7e2c3c",
+  "additions": 63,
+  "deletions": 9,
+  "changed_files": [
+    "providers/amazon/src/airflow/providers/amazon/aws/hooks/base_aws.py",
+    "providers/amazon/tests/unit/amazon/aws/hooks/test_base_aws.py"
+  ],
+  "test_files": [
+    "providers/amazon/tests/unit/amazon/aws/hooks/test_base_aws.py"
+  ],
+  "source_files": [
+    "providers/amazon/src/airflow/providers/amazon/aws/hooks/base_aws.py"
+  ],
+  "parameterization": {
+    "repo": "apache/airflow",
+    "repo_short": "airflow",
+    "parameterized_identifiers": [
+      "airflow",
+      "airflow_test",
+      "amazon",
+      "assert_has_calls",
+      "assume",
+      "assume_role_method",
+      "aws_conn_id",
+      "aws_default",
+      "base_aws",
+      "base_session"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:14:30Z"
+}

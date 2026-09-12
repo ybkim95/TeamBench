@@ -1,0 +1,13 @@
+task_id: GH294_sktime_7844
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] Fix failing tests for pytorch forecasting models."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/7844"
+source_issue: "https://github.com/sktime/sktime/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH923_pandas_64643
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: fix float-to-int64 OOB handling on ARM in to_datetime/to_timedelta"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64643"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

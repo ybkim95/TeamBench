@@ -1,0 +1,100 @@
+diff --git a/docs/templates.md b/docs/templates.md
+index 01f343238..0b8973c82 100644
+--- a/docs/templates.md
++++ b/docs/templates.md
+@@ -1,13 +1,14 @@
+ Starlette is not _strictly_ coupled to any particular templating engine, but
+ Jinja2 provides an excellent choice.
+ 
+-### Jinja2Templates
+-
+-Signature: `Jinja2Templates(directory, context_processors=None, **env_options)`
+-
+-* `directory` - A string, [os.Pathlike][pathlike] or a list of strings or [os.Pathlike][pathlike] denoting a directory path.
+-* `context_processors` - A list of functions that return a dictionary to add to the template context.
+-* `**env_options` - Additional keyword arguments to pass to the Jinja2 environment.
++??? abstract "API Reference"
++    ::: starlette.templating.Jinja2Templates
++        options:
++            parameter_headings: false
++            show_root_heading: true
++            heading_level: 3
++            filters:
++                - "__init__"
+ 
+ Starlette provides a simple way to get `jinja2` configured. This is probably
+ what you want to use by default.
+@@ -73,6 +74,16 @@ templates = Jinja2Templates(env=env)
+ ```
+ 
+ 
++## Autoescape
++
++When using the `directory` argument, Starlette enables autoescape by default for
++`.html`, `.htm`, and `.xml` templates using [`jinja2.select_autoescape()`](https://jinja.palletsprojects.com/en/stable/api/#jinja2.select_autoescape).
++
++This protects against Cross-Site Scripting (XSS) vulnerabilities by escaping
++user-provided content before rendering it in the template. For example, if a user
++submits `<script>alert('XSS')</script>` as their name, it will be rendered as
++`&lt;script&gt;alert('XSS')&lt;/script&gt;` instead of being executed as JavaScript.
++
+ ## Context processors
+ 
+ A context processor is a function that returns a dictionary to be merged into a template context.
+@@ -126,20 +137,6 @@ def test_homepage():
+     assert "request" in response.context
+ ```
+ 
+-## Customizing Jinja2 Environment
+-
+-`Jinja2Templates` accepts all options supported by Jinja2 `Environment`.
+-This will allow more control over the `Environment` instance created by Starlette.
+-
+-For the list of options available to `Environment` you can check Jinja2 documentation [here](https://jinja.palletsprojects.com/en/3.0.x/api/#jinja2.Environment)
+-
+-```python
+-from starlette.templating import Jinja2Templates
+-
+-
+-templates = Jinja2Templates(directory='templates', autoescape=False, auto_reload=True)
+-```
+-
+ ## Asynchronous template rendering
+ 
+ Jinja2 supports async template rendering, however as a general rule
+diff --git a/starlette/templating.py b/starlette/templating.py
+index 70b12d8a6..67872b377 100644
+--- a/starlette/templating.py
++++ b/starlette/templating.py
+@@ -92,7 +92,7 @@ def __init__(
+         self.context_processors = context_processors or []
+         if directory is not None:
+             loader = jinja2.FileSystemLoader(directory)
+-            self.env = jinja2.Environment(loader=loader)
++            self.env = jinja2.Environment(loader=loader, autoescape=jinja2.select_autoescape())
+         elif env is not None:  # pragma: no branch
+             self.env = env
+ 
+diff --git a/tests/test_templates.py b/tests/test_templates.py
+index 33626bf57..e1b8990dc 100644
+--- a/tests/test_templates.py
++++ b/tests/test_templates.py
+@@ -34,6 +34,18 @@ async def homepage(request: Request) -> Response:
+     assert set(response.context.keys()) == {"request"}  # type: ignore
+ 
+ 
++def test_templates_autoescape(tmp_path: Path) -> None:
++    path = tmp_path / "index.html"
++    path.write_text("Hello, {{ name }}")
++
++    templates = Jinja2Templates(directory=tmp_path)
++    template = templates.get_template("index.html")
++    assert (
++        template.render(name="<script>alert('XSS')</script>")
++        == "Hello, &lt;script&gt;alert(&#39;XSS&#39;)&lt;/script&gt;"
++    )
++
++
+ def test_calls_context_processors(tmp_path: Path, test_client_factory: TestClientFactory) -> None:
+     path = tmp_path / "index.html"
+     path.write_text("<html>Hello {{ username }}</html>")

@@ -1,0 +1,13 @@
+task_id: GH1069_transformers_29370
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "🚨 Fully revert atomic checkpointing 🚨"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/huggingface/transformers/pull/29370"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

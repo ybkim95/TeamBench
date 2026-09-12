@@ -1,0 +1,58 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 21922,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/21922",
+  "issue_number": null,
+  "base_sha": "2ea54248f0fc639c20a28de5063d821dbb4f1221",
+  "head_sha": "5b294f1ce27ffe10a37c33cc476f1e14db092907",
+  "additions": 445,
+  "deletions": 13,
+  "changed_files": [
+    "mlflow/gateway/providers/anthropic.py",
+    "mlflow/metrics/genai/model_utils.py",
+    "tests/gateway/providers/test_anthropic.py",
+    "tests/metrics/genai/test_model_utils.py"
+  ],
+  "test_files": [
+    "tests/gateway/providers/test_anthropic.py",
+    "tests/metrics/genai/test_model_utils.py"
+  ],
+  "source_files": [
+    "mlflow/gateway/providers/anthropic.py",
+    "mlflow/metrics/genai/model_utils.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "adapter_class",
+      "aiohttp",
+      "also",
+      "anthropic",
+      "anthropic_api_key",
+      "anthropic_resp",
+      "append",
+      "arbitrary",
+      "array",
+      "assistant"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:00:22Z"
+}

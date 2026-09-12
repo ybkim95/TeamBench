@@ -1,0 +1,13 @@
+task_id: GH953_scikit_learn_20853
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix OvOClassifier.n_features_in_ and other unexpected warning at prediction time when checking feature_names_in_"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scikit-learn/scikit-learn/pull/20853"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

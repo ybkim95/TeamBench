@@ -1,0 +1,37 @@
+diff --git a/celery/app/base.py b/celery/app/base.py
+index 4d23459b320..4377fcb53e3 100644
+--- a/celery/app/base.py
++++ b/celery/app/base.py
+@@ -309,7 +309,11 @@ class name.
+     #: Signal sent after app has prepared the configuration.
+     on_after_configure = None
+ 
+-    #: Signal sent after app has been finalized.
++    #: Signal sent after the app has been finalized (i.e., all pending
++    #: task decorators have been evaluated, built-in tasks loaded, and
++    #: every currently registered task has been bound to the app).  This is
++    #: the earliest point at which the task registry is initialized/stable
++    #: and safe to inspect for tasks currently registered with this app.
+     on_after_finalize = None
+ 
+     #: Signal sent by every new process after fork.
+diff --git a/docs/reference/celery.rst b/docs/reference/celery.rst
+index 65c778cecd6..962fe0a1f35 100644
+--- a/docs/reference/celery.rst
++++ b/docs/reference/celery.rst
+@@ -126,7 +126,14 @@ and creating Celery applications.
+ 
+     .. data:: on_after_finalize
+ 
+-        Signal sent after app has been finalized.
++        Signal sent after the app has been finalized — that is, after all
++        pending task decorators have been evaluated, built-in tasks loaded,
++        and every task registered at that point has been bound to the app.
++        At this stage the task registry is initialized and stable enough to
++        import and inspect task objects reliably.
++
++        See :meth:`~celery.Celery.finalize` for more details on what
++        finalization does.
+ 
+     .. data:: on_after_fork
+ 

@@ -1,0 +1,97 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index dd7f1ce848..5b491bab53 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -51,6 +51,11 @@ jobs:
+         python -m pip install uv
+         uv pip install --system --upgrade ".[all]" --group test
+ 
++    # c.f. https://github.com/scikit-hep/pyhf/issues/2653
++    - name: Guard against Python 3.9 pyparsing
++      if: matrix.python-version == '3.9'
++      run: uv pip install --system "pyparsing<3.3.0"
++
+     - name: List installed Python packages
+       run: python -m pip list
+ 
+diff --git a/pyproject.toml b/pyproject.toml
+index d7d7796676..8a6a678eee 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -49,7 +49,7 @@ dependencies = [
+     # c.f. https://github.com/scikit-hep/pyhf/issues/2593 for excluded v1.16.x versions
+     "scipy>=1.5.4,!=1.16.0,!=1.16.1,!=1.16.2",  # requires numpy, which is required by pyhf
+     "rich>=10.0.0",  # for progress bars
+-    "numpy",  # compatible versions controlled through scipy
++    "numpy>=1.22.0",  # compatible versions controlled through scipy
+ ]
+ 
+ [project.scripts]
+@@ -185,8 +185,6 @@ markers = [
+ ]
+ filterwarnings = [
+     "error",
+-    'ignore:the `interpolation=` argument to percentile was renamed to `method=`, which has additional options:DeprecationWarning',  # Issue #1772
+-    "ignore:The interpolation= argument to 'quantile' is deprecated. Use 'method=' instead:DeprecationWarning",  # Issue #1772
+     'ignore: Exception ignored in:pytest.PytestUnraisableExceptionWarning',  #FIXME: Exception ignored in: <_io.FileIO [closed]>
+     'ignore:invalid value encountered in (true_)?divide:RuntimeWarning',  #FIXME
+     'ignore:invalid value encountered in add:RuntimeWarning',  #FIXME
+diff --git a/src/pyhf/tensor/numpy_backend.py b/src/pyhf/tensor/numpy_backend.py
+index 2cc36545a2..36b27ee071 100644
+--- a/src/pyhf/tensor/numpy_backend.py
++++ b/src/pyhf/tensor/numpy_backend.py
+@@ -3,17 +3,11 @@
+ from __future__ import annotations
+ 
+ import logging
+-from typing import TYPE_CHECKING, Callable, Generic, TypeVar, Union
++from typing import Callable, Generic, TypeVar, Union
+ from collections.abc import Mapping, Sequence
+ 
+ import numpy as np
+-
+-# Needed while numpy lower bound is older than v1.21.0
+-if TYPE_CHECKING:
+-    from numpy.typing import ArrayLike, DTypeLike, NBitBase, NDArray
+-else:
+-    ArrayLike = "ArrayLike"
+-    NBitBase = "NBitBase"
++from numpy.typing import ArrayLike, DTypeLike, NBitBase, NDArray
+ 
+ from scipy import special
+ from scipy.special import gammaln, xlogy
+@@ -311,8 +305,8 @@ def exp(self, tensor_in: Tensor[T]) -> ArrayLike:
+     def percentile(
+         self,
+         tensor_in: Tensor[T],
+-        q: Tensor[T],
+-        axis: None | Shape = None,
++        q: float | NDArray[np.floating[T]] | NDArray[np.integer[T]],
++        axis: int | Sequence[int] | None = None,
+         interpolation: Literal[
+             "linear", "lower", "higher", "midpoint", "nearest"
+         ] = "linear",
+@@ -354,7 +348,9 @@ def percentile(
+         .. versionadded:: 0.7.0
+         """
+         # see https://github.com/numpy/numpy/issues/22125
+-        return cast(ArrayLike, np.percentile(tensor_in, q, axis=axis, interpolation=interpolation))  # type: ignore[call-overload]
++        return cast(
++            ArrayLike, np.percentile(tensor_in, q, axis=axis, method=interpolation)
++        )
+ 
+     def stack(self, sequence: Sequence[Tensor[T]], axis: int = 0) -> ArrayLike:
+         return np.stack(sequence, axis=axis)
+diff --git a/tests/constraints.txt b/tests/constraints.txt
+index fd0d764f75..1b25d94dd4 100644
+--- a/tests/constraints.txt
++++ b/tests/constraints.txt
+@@ -6,7 +6,7 @@ jsonschema==4.15.0  # c.f. PR #1979
+ jsonpatch==1.15
+ pyyaml==5.1
+ importlib_resources==1.4.0  # c.f. PR #1979
+-numpy==1.21.0 # constrained by jax v0.4.1
++numpy==1.22.0  # c.f. PR #2652
+ # xmlio
+ uproot==4.1.1
+ # minuit

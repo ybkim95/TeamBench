@@ -1,0 +1,52 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 15506,
+  "pr_url": "https://github.com/ray-project/ray/pull/15506",
+  "issue_number": 1234,
+  "base_sha": "354c960fff36b60fbcc59b7e49e2f8c0d0955e35",
+  "head_sha": "dc2a5215927b09204bcc88ab85af416b677b1fba",
+  "additions": 22,
+  "deletions": 0,
+  "changed_files": [
+    "dashboard/head.py",
+    "dashboard/tests/test_dashboard.py"
+  ],
+  "test_files": [
+    "dashboard/tests/test_dashboard.py"
+  ],
+  "source_files": [
+    "dashboard/head.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "address",
+      "after",
+      "agent_ports",
+      "aiohttp",
+      "asyncio",
+      "collections",
+      "dashboard",
+      "dashboard_host",
+      "enable_test_module",
+      "find"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:45Z"
+}

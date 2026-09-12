@@ -1,0 +1,53 @@
+{
+  "repo": "pallets/flask",
+  "pr_number": 5903,
+  "pr_url": "https://github.com/pallets/flask/pull/5903",
+  "issue_number": null,
+  "base_sha": "407eb76b27884848383a37c7274654f0271e4bc4",
+  "head_sha": "3d03098a97ddc6a908aa4a50c2ef7381f8297d0a",
+  "additions": 2,
+  "deletions": 8,
+  "changed_files": [
+    "docs/tutorial/factory.rst",
+    "examples/tutorial/flaskr/__init__.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "examples/tutorial/flaskr/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/flask",
+    "repo_short": "flask",
+    "parameterized_identifiers": [
+      "config",
+      "create_app",
+      "directory",
+      "ensure",
+      "exist_ok",
+      "exists",
+      "folder",
+      "from_mapping",
+      "hello",
+      "instance"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:33:44Z"
+}

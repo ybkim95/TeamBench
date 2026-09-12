@@ -1,0 +1,13 @@
+task_id: GH332_django_20792
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fixed #36958 -- Reloaded logging config when logging settings are changed in tests."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/django/django/pull/20792"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

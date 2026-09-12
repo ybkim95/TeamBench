@@ -1,0 +1,56 @@
+{
+  "repo": "celery/celery",
+  "pr_number": 10171,
+  "pr_url": "https://github.com/celery/celery/pull/10171",
+  "issue_number": null,
+  "base_sha": "5c21d4a4ea7b06b48a5c78742d62b41df4e8343c",
+  "head_sha": "4fe9da10eed0bb26efcf9fc20b10fa6e4ded4a24",
+  "additions": 79,
+  "deletions": 3,
+  "changed_files": [
+    "celery/canvas.py",
+    "t/integration/test_canvas.py",
+    "t/unit/tasks/test_canvas.py"
+  ],
+  "test_files": [
+    "t/integration/test_canvas.py",
+    "t/unit/tasks/test_canvas.py"
+  ],
+  "source_files": [
+    "celery/canvas.py"
+  ],
+  "parameterization": {
+    "repo": "celery/celery",
+    "repo_short": "celery",
+    "parameterized_identifiers": [
+      "across",
+      "backend",
+      "body",
+      "chain",
+      "chained",
+      "chord",
+      "chords",
+      "clone",
+      "constant",
+      "dumps"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:08:49Z"
+}

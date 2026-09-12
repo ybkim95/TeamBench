@@ -1,0 +1,13 @@
+task_id: GH871_pandas_64755
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: raise on uint64 overflow in to_datetime and to_timedelta"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64755"
+source_issue: "https://github.com/pandas-dev/pandas/issues/60677"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

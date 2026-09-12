@@ -1,0 +1,13 @@
+task_id: GH199_core_158204
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix rain count sensors' state class of Ecowitt"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/158204"
+source_issue: "https://github.com/home-assistant/core/issues/157882"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

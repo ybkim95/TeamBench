@@ -1,0 +1,61 @@
+diff --git a/django/test/testcases.py b/django/test/testcases.py
+index 5f83612fe532..de2a3eb61dfe 100644
+--- a/django/test/testcases.py
++++ b/django/test/testcases.py
+@@ -575,6 +575,8 @@ def _assert_contains(self, response, text, status_code, msg_prefix, html):
+ 
+         if response.streaming:
+             content = b"".join(response.streaming_content)
++            # Reset the content so it can be checked again (idempotency).
++            response.streaming_content = [content]
+         else:
+             content = response.content
+         response_content = content
+diff --git a/docs/releases/6.1.txt b/docs/releases/6.1.txt
+index 6b18331a1b9d..1bd4f091aa39 100644
+--- a/docs/releases/6.1.txt
++++ b/docs/releases/6.1.txt
+@@ -355,7 +355,11 @@ Templates
+ Tests
+ ~~~~~
+ 
+-* ...
++* :meth:`~django.test.SimpleTestCase.assertContains` and
++  :meth:`~django.test.SimpleTestCase.assertNotContains` can now be called
++  multiple times on the same :class:`~django.http.StreamingHttpResponse`.
++  Previously, they would consume the streaming response's content, causing
++  subsequent calls to fail.
+ 
+ URLs
+ ~~~~
+diff --git a/tests/test_utils/tests.py b/tests/test_utils/tests.py
+index ef1d02cf4160..b9c8e2ac5827 100644
+--- a/tests/test_utils/tests.py
++++ b/tests/test_utils/tests.py
+@@ -29,7 +29,7 @@
+     ValidationError,
+     formset_factory,
+ )
+-from django.http import HttpResponse
++from django.http import HttpResponse, StreamingHttpResponse
+ from django.template import Context, Template
+ from django.template.loader import render_to_string
+ from django.test import (
+@@ -1047,6 +1047,17 @@ def test_unicode_handling(self):
+             html=True,
+         )
+ 
++    def test_streaming_response_idempotent(self):
++        response = StreamingHttpResponse(["hello world"])
++        self.assertContains(response, "hello")
++        self.assertContains(response, "world")
++
++    def test_streaming_response_not_contains_idempotent(self):
++        response = StreamingHttpResponse(["hello world"])
++        self.assertNotContains(response, "bye")
++        self.assertNotContains(response, "bye")
++        self.assertContains(response, "world")
++
+ 
+ class InHTMLTests(SimpleTestCase):
+     def test_needle_msg(self):

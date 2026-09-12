@@ -1,0 +1,52 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 166922,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/166922",
+  "issue_number": 165892,
+  "base_sha": "3d27d955fd257283b4adfad635a7ed240ff83489",
+  "head_sha": "be30e2f2d3dcd85590f4f551ab587b54c63bd2a3",
+  "additions": 26,
+  "deletions": 2,
+  "changed_files": [
+    "test/inductor/test_max_autotune.py",
+    "torch/_inductor/kernel/bmm.py"
+  ],
+  "test_files": [
+    "test/inductor/test_max_autotune.py"
+  ],
+  "source_files": [
+    "torch/_inductor/kernel/bmm.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "available",
+      "bmm_dtype",
+      "bmm_template",
+      "check",
+      "check_max_autotune",
+      "choices",
+      "code",
+      "compile",
+      "compiled_f",
+      "config"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:08:36Z"
+}

@@ -1,0 +1,52 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24778,
+  "pr_url": "https://github.com/scipy/scipy/pull/24778",
+  "issue_number": 24769,
+  "base_sha": "0abb317a48ce41633f10aa908d228d48ccb57b61",
+  "head_sha": "b517cb17e5236d5a5c380cc71471a558d8a6dc3d",
+  "additions": 19,
+  "deletions": 11,
+  "changed_files": [
+    "scipy/spatial/transform/_rotation.py",
+    "scipy/spatial/transform/tests/test_rotation.py"
+  ],
+  "test_files": [
+    "scipy/spatial/transform/tests/test_rotation.py"
+  ],
+  "source_files": [
+    "scipy/spatial/transform/_rotation.py"
+  ],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "align_vectors",
+      "angle",
+      "another",
+      "apply",
+      "approx_equal",
+      "approximately",
+      "array",
+      "as_davenport",
+      "atol",
+      "backend"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:38Z"
+}

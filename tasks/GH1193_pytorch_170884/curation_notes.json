@@ -1,0 +1,62 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 170884,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/170884",
+  "issue_number": 169951,
+  "base_sha": "62d4260257891861ff864f38ff4f7b61912d2614",
+  "head_sha": "6dfa931c5ec232c5d4174305e37a2d8e59d46f45",
+  "additions": 359,
+  "deletions": 116,
+  "changed_files": [
+    "test/inductor/test_compiled_autograd.py",
+    "test/inductor/test_cudagraph_trees.py",
+    "torch/_inductor/compile_fx.py",
+    "torch/_inductor/ir.py",
+    "torch/_inductor/lowering.py",
+    "torch/_inductor/scheduler.py",
+    "torch/_inductor/utils.py"
+  ],
+  "test_files": [
+    "test/inductor/test_compiled_autograd.py",
+    "test/inductor/test_cudagraph_trees.py"
+  ],
+  "source_files": [
+    "torch/_inductor/compile_fx.py",
+    "torch/_inductor/ir.py",
+    "torch/_inductor/lowering.py",
+    "torch/_inductor/scheduler.py",
+    "torch/_inductor/utils.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "accumulate",
+      "add_kernel",
+      "additional_inputs",
+      "after",
+      "against",
+      "alloc",
+      "allocation",
+      "allowed_dtypes",
+      "also",
+      "any_is_symbolic"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:12:56Z"
+}

@@ -1,0 +1,56 @@
+{
+  "repo": "marshmallow-code/marshmallow",
+  "pr_number": 2861,
+  "pr_url": "https://github.com/marshmallow-code/marshmallow/pull/2861",
+  "issue_number": null,
+  "base_sha": "fc8726244820b9f08fb7d02e007ed8d378a46c7b",
+  "head_sha": "80dbc9200783d88cb6e91ce6a756733430475846",
+  "additions": 15,
+  "deletions": 0,
+  "changed_files": [
+    "AUTHORS.rst",
+    "CHANGELOG.rst",
+    "src/marshmallow/constants.py",
+    "tests/test_deserialization.py"
+  ],
+  "test_files": [
+    "tests/test_deserialization.py"
+  ],
+  "source_files": [
+    "src/marshmallow/constants.py"
+  ],
+  "parameterization": {
+    "repo": "marshmallow-code/marshmallow",
+    "repo_short": "marshmallow",
+    "parameterized_identifiers": [
+      "against",
+      "agentgodzilla",
+      "changes",
+      "chronological",
+      "deserialize",
+      "dharani7998",
+      "exceptions",
+      "field",
+      "fields",
+      "github"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:25:50Z"
+}

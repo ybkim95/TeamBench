@@ -1,0 +1,142 @@
+diff --git a/packages/get-platform/jest.config.js b/packages/get-platform/jest.config.js
+deleted file mode 100644
+index bf73fb10bf58..000000000000
+--- a/packages/get-platform/jest.config.js
++++ /dev/null
+@@ -1,5 +0,0 @@
+-module.exports = {
+-  preset: '../../helpers/test/presets/default.js',
+-  snapshotSerializers: ['./src/test-utils/jestSnapshotSerializer'],
+-  prettierPath: '../../node_modules/prettier2',
+-}
+diff --git a/packages/get-platform/package.json b/packages/get-platform/package.json
+index d6844eb1c3d7..41da121dbca8 100644
+--- a/packages/get-platform/package.json
++++ b/packages/get-platform/package.json
+@@ -15,16 +15,11 @@
+   "bugs": "https://github.com/prisma/prisma/issues",
+   "devDependencies": {
+     "@codspeed/benchmark.js-plugin": "4.0.0",
+-    "@swc/core": "1.11.5",
+-    "@swc/jest": "0.2.37",
+-    "@types/jest": "29.5.14",
+     "@types/node": "~20.19.24",
+     "benchmark": "2.1.4",
+     "escape-string-regexp": "5.0.0",
+     "execa": "8.0.1",
+     "fs-jetpack": "5.1.0",
+-    "jest": "29.7.0",
+-    "jest-junit": "16.0.0",
+     "kleur": "4.1.5",
+     "tempy": "1.0.1",
+     "terminal-link": "4.0.0",
+@@ -37,7 +32,7 @@
+   "scripts": {
+     "dev": "DEV=true tsx helpers/build.ts",
+     "build": "tsx helpers/build.ts",
+-    "test": "jest",
++    "test": "vitest run",
+     "prepublishOnly": "pnpm run build"
+   },
+   "files": [
+diff --git a/packages/get-platform/src/__tests__/getPlatform.test.ts b/packages/get-platform/src/__tests__/getPlatform.test.ts
+index fa3eb98b2324..47fc45927e6a 100644
+--- a/packages/get-platform/src/__tests__/getPlatform.test.ts
++++ b/packages/get-platform/src/__tests__/getPlatform.test.ts
+@@ -1,9 +1,11 @@
+ import { stripVTControlCharacters } from 'node:util'
+ 
++import { describe, expect, it } from 'vitest'
++
+ import { getBinaryTargetForCurrentPlatformInternal, getPlatformInfoMemoized } from '../getPlatform'
+-import { jestConsoleContext, jestContext } from '../test-utils'
++import { vitestConsoleContext, vitestContext } from '../test-utils/vitestContext'
+ 
+-const ctx = jestContext.new().add(jestConsoleContext()).assemble()
++const ctx = vitestContext.new().add(vitestConsoleContext()).assemble()
+ 
+ describe('getPlatformInfoMemoized', () => {
+   it('repeated invocations are idempotent and memoized', async () => {
+diff --git a/packages/get-platform/src/__tests__/getSSLVersion.test.ts b/packages/get-platform/src/__tests__/getSSLVersion.test.ts
+index 00cedd1326fc..1e70571474d5 100644
+--- a/packages/get-platform/src/__tests__/getSSLVersion.test.ts
++++ b/packages/get-platform/src/__tests__/getSSLVersion.test.ts
+@@ -1,12 +1,13 @@
+-import { computeLibSSLSpecificPaths, getArchFromUname, getSSLVersion } from '../../src/getPlatform'
+-import { jestContext } from '..'
++import { describe, expect, it } from 'vitest'
++
++import { computeLibSSLSpecificPaths, getArchFromUname, getSSLVersion } from '../getPlatform'
++import { vitestContext } from '../test-utils/vitestContext'
+ 
+ const describeIf = (condition: boolean) => (condition ? describe : describe.skip)
+ 
+-const ctx = jestContext.new().assemble()
++const ctx = vitestContext.new().assemble()
+ 
+ describeIf(process.platform === 'linux')('computeLibSSLSpecificPaths', () => {
+-  // eslint-disable-next-line jest/no-identical-title
+   it('should not return an error', () => {
+     const arch = 'x64'
+     const archFromUname = 'x86_64'
+@@ -15,7 +16,6 @@ describeIf(process.platform === 'linux')('computeLibSSLSpecificPaths', () => {
+ })
+ 
+ describeIf(process.platform === 'linux')('getSSLVersion', () => {
+-  // eslint-disable-next-line jest/no-identical-title
+   it('should not return an error', async () => {
+     const archFromUname = await getArchFromUname()
+     await getSSLVersion([])
+diff --git a/packages/get-platform/src/__tests__/parseDistro.test.ts b/packages/get-platform/src/__tests__/parseDistro.test.ts
+index 4d8c20362ce9..710e9ffae232 100644
+--- a/packages/get-platform/src/__tests__/parseDistro.test.ts
++++ b/packages/get-platform/src/__tests__/parseDistro.test.ts
+@@ -1,3 +1,5 @@
++import { describe, expect, test } from 'vitest'
++
+ import { parseDistro } from '../getPlatform'
+ 
+ describe('parseDistro', () => {
+diff --git a/packages/get-platform/src/__tests__/parseOpenSSLVersion.test.ts b/packages/get-platform/src/__tests__/parseOpenSSLVersion.test.ts
+index 54833ff8b86b..1319e19e4579 100644
+--- a/packages/get-platform/src/__tests__/parseOpenSSLVersion.test.ts
++++ b/packages/get-platform/src/__tests__/parseOpenSSLVersion.test.ts
+@@ -1,3 +1,5 @@
++import { describe, expect, test } from 'vitest'
++
+ import { parseLibSSLVersion, parseOpenSSLVersion } from '../getPlatform'
+ 
+ describe('parseOpenSSLVersion', () => {
+diff --git a/pnpm-lock.yaml b/pnpm-lock.yaml
+index fe4f12147dad..7c12bcfdd210 100644
+--- a/pnpm-lock.yaml
++++ b/pnpm-lock.yaml
+@@ -1343,15 +1343,6 @@ importers:
+       '@codspeed/benchmark.js-plugin':
+         specifier: 4.0.0
+         version: 4.0.0(benchmark@2.1.4)
+-      '@swc/core':
+-        specifier: 1.11.5
+-        version: 1.11.5
+-      '@swc/jest':
+-        specifier: 0.2.37
+-        version: 0.2.37(@swc/core@1.11.5)
+-      '@types/jest':
+-        specifier: 29.5.14
+-        version: 29.5.14
+       '@types/node':
+         specifier: ~20.19.24
+         version: 20.19.25
+@@ -1367,12 +1358,6 @@ importers:
+       fs-jetpack:
+         specifier: 5.1.0
+         version: 5.1.0
+-      jest:
+-        specifier: 29.7.0
+-        version: 29.7.0(@types/node@20.19.25)(ts-node@10.9.2(@swc/core@1.11.5)(@types/node@20.19.25)(typescript@5.4.5))
+-      jest-junit:
+-        specifier: 16.0.0
+-        version: 16.0.0
+       kleur:
+         specifier: 4.1.5
+         version: 4.1.5

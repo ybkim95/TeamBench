@@ -1,0 +1,13 @@
+diff --git a/sktime/tests/_config.py b/sktime/tests/_config.py
+index 8c0efdb4bca..c1661346ba1 100644
+--- a/sktime/tests/_config.py
++++ b/sktime/tests/_config.py
+@@ -35,6 +35,8 @@
+     "TSFreshRelevantFeatureExtractor",
+     # PlateauFinder seems to be broken, see #2259
+     "PlateauFinder",
++    # RandomShapeletTransform is breaking with empty lists, see #3138
++    "RandomShapeletTransform",
+ ]
+ 
+ 

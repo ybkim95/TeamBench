@@ -1,0 +1,13 @@
+task_id: GH931_mlflow_21721
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix trace export DB contention by disabling incremental span export for gateway"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/mlflow/mlflow/pull/21721"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

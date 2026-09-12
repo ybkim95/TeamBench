@@ -1,0 +1,13 @@
+task_id: GH211_core_162731
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Add handling of 2 IP addresses to homee"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/162731"
+source_issue: "https://github.com/home-assistant/core/issues/156045"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

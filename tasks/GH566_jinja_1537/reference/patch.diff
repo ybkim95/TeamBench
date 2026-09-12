@@ -1,0 +1,52 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index de9bd4558..e859ab3fa 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -7,6 +7,8 @@ Unreleased
+ 
+ -   Fix traceback rewriting internals for Python 3.10 and 3.11.
+     :issue:`1535`
++-   Fix how the native environment treats leading and trailing spaces
++    when parsing values on Python 3.10. :pr:`1537`
+ 
+ 
+ Version 3.0.2
+diff --git a/src/jinja2/nativetypes.py b/src/jinja2/nativetypes.py
+index 88eeecc49..20597d50a 100644
+--- a/src/jinja2/nativetypes.py
++++ b/src/jinja2/nativetypes.py
+@@ -1,5 +1,6 @@
+ import typing as t
+ from ast import literal_eval
++from ast import parse
+ from itertools import chain
+ from itertools import islice
+ 
+@@ -33,7 +34,12 @@ def native_concat(values: t.Iterable[t.Any]) -> t.Optional[t.Any]:
+         raw = "".join([str(v) for v in chain(head, values)])
+ 
+     try:
+-        return literal_eval(raw)
++        return literal_eval(
++            # In Python 3.10+ ast.literal_eval removes leading spaces/tabs
++            # from the given string. For backwards compatibility we need to
++            # parse the string ourselves without removing leading spaces/tabs.
++            parse(raw, mode="eval")
++        )
+     except (ValueError, SyntaxError, MemoryError):
+         return raw
+ 
+diff --git a/tests/test_nativetypes.py b/tests/test_nativetypes.py
+index 22581813c..9bae938cd 100644
+--- a/tests/test_nativetypes.py
++++ b/tests/test_nativetypes.py
+@@ -147,3 +147,9 @@ def test_no_intermediate_eval(env):
+ def test_spontaneous_env():
+     t = NativeTemplate("{{ true }}")
+     assert isinstance(t.environment, NativeEnvironment)
++
++
++def test_leading_spaces(env):
++    t = env.from_string(" {{ True }}")
++    result = t.render()
++    assert result == " True"

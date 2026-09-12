@@ -1,0 +1,119 @@
+diff --git a/celery/canvas.py b/celery/canvas.py
+index febd97befdd..f06375b64f5 100644
+--- a/celery/canvas.py
++++ b/celery/canvas.py
+@@ -992,13 +992,13 @@ def __or__(self, other):
+                     sig.tasks[-2].body = sig.tasks[-2].body | sig.tasks[-1]
+                     sig.tasks = sig.tasks[:-1]
+                 return sig
+-            elif self.tasks and isinstance(self.tasks[-1], chord):
+-                # CHAIN [last item is chord] -> chain with chord body.
++            elif self.tasks and isinstance(self.tasks[-1], chord) and not isinstance(other, chord):
++                # CHAIN [last item is chord] | TASK -> chain with chord body.
+                 sig = self.clone()
+                 sig.tasks[-1].body = sig.tasks[-1].body | other
+                 return sig
+             else:
+-                # chain | task -> chain
++                # chain | task/chord -> chain
+                 # use type(self) for _chain subclasses
+                 return type(self)(seq_concat_item(
+                     self.unchain_tasks(), other), app=self._app)
+diff --git a/t/integration/test_canvas.py b/t/integration/test_canvas.py
+index 8d137b6a805..729c94e5d61 100644
+--- a/t/integration/test_canvas.py
++++ b/t/integration/test_canvas.py
+@@ -440,6 +440,48 @@ def test_chain_of_chords_with_two_tasks(self, manager):
+         res = c()
+         assert res.get(timeout=TIMEOUT) == 12
+ 
++    @flaky
++    def test_chain_of_explicit_chords(self, manager):
++        try:
++            manager.app.backend.ensure_chords_allowed()
++        except NotImplementedError as e:
++            raise pytest.skip(e.args[0])
++
++        c1 = chain(
++            chord(group(add.si(1, 0), add.si(1, 0)), tsum.s()),
++            chord(group(add.s(1), add.s(1)), tsum.s()),
++            chord(group(add.s(0), add.s(0)), tsum.s()),
++        )
++        c2 = chain(
++            chord(group(add.s(10), add.s(10)), tsum.s()),
++            chord(group(add.s(0), add.s(0)), tsum.s()),
++            chord(group(add.s(1), add.s(1)), tsum.s()),
++        )
++        c = c1 | c2
++        res = c()
++        assert res.get(timeout=TIMEOUT) == 178
++
++    @flaky
++    def test_chain_of_nine_chords(self, manager):
++        try:
++            manager.app.backend.ensure_chords_allowed()
++        except NotImplementedError as e:
++            raise pytest.skip(e.args[0])
++
++        c = chain(
++            chord(group(add.si(1, 0), add.si(1, 0), add.si(1, 0)), tsum.s()),
++            chord(group(add.s(1), add.s(1), add.s(1)), tsum.s()),
++            chord(group(add.s(1), add.s(1), add.s(1)), tsum.s()),
++            chord(group(add.s(1), add.s(1), add.s(1)), tsum.s()),
++            chord(group(add.s(1), add.s(1), add.s(1)), tsum.s()),
++            chord(group(add.s(1), add.s(1), add.s(1)), tsum.s()),
++            chord(group(add.s(1), add.s(1), add.s(1)), tsum.s()),
++            chord(group(add.s(1), add.s(1), add.s(1)), tsum.s()),
++            chord(group(add.s(0), add.s(0), add.s(0)), tsum.s()),
++        )
++        res = c()
++        assert res.get(timeout=TIMEOUT) == 29520
++
+     @flaky
+     def test_chain_of_a_chord_and_a_group_with_two_tasks(self, manager):
+         try:
+diff --git a/t/unit/tasks/test_canvas.py b/t/unit/tasks/test_canvas.py
+index 9b97c3dd65a..144ee625be7 100644
+--- a/t/unit/tasks/test_canvas.py
++++ b/t/unit/tasks/test_canvas.py
+@@ -592,6 +592,40 @@ def test_chain_of_chord_upgrade_on_chaining__protocol_3(self):
+         ), "Chord followed by a group should be upgraded to a single chord with chained body."
+         assert len(c.tasks) == 6
+ 
++    def test_chain_of_chords_stays_flat(self):
++        c = chain(
++            chord([signature('h1'), signature('h2')], signature('b1'), app=self.app),
++            chord([signature('h3'), signature('h4')], signature('b2'), app=self.app),
++            chord([signature('h5'), signature('h6')], signature('b3'), app=self.app),
++        )
++        assert isinstance(c, _chain)
++        assert len(c.tasks) == 3
++        for task in c.tasks:
++            assert isinstance(task, chord)
++        assert not isinstance(c.tasks[0].body, _chain)
++        assert not isinstance(c.tasks[1].body, _chain)
++        assert not isinstance(c.tasks[2].body, _chain)
++
++    def test_chain_of_chords_serialized_size_constant(self):
++        chords = [
++            chord([signature(f'h{i}_{j}') for j in range(3)],
++                  signature(f'b{i}'), app=self.app)
++            for i in range(6)
++        ]
++        c = chain(*chords)
++        assert isinstance(c, _chain)
++        sizes = [len(json.dumps(task.__json__())) for task in c.tasks]
++        assert max(sizes) == min(sizes), (
++            f"Chord sizes not constant across chain: {sizes}"
++        )
++
++    def test_chord_or_task_still_nests(self):
++        c = chord([signature('h1')], signature('b1'), app=self.app)
++        t = signature('t1')
++        result = chain(c) | t
++        assert isinstance(result, _chain)
++        assert isinstance(result.tasks[0].body, _chain)
++
+     def test_apply_options(self):
+ 
+         class static(Signature):

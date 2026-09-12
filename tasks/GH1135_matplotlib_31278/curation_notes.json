@@ -1,0 +1,52 @@
+{
+  "repo": "matplotlib/matplotlib",
+  "pr_number": 31278,
+  "pr_url": "https://github.com/matplotlib/matplotlib/pull/31278",
+  "issue_number": 27525,
+  "base_sha": "51a1ab6c6587e1f9e255469ba2fd50fdb4e90475",
+  "head_sha": "fd27483f8e055f508430b9dd99b1107f84b2e888",
+  "additions": 15,
+  "deletions": 2,
+  "changed_files": [
+    "lib/matplotlib/contour.py",
+    "lib/matplotlib/tests/test_datetime.py"
+  ],
+  "test_files": [
+    "lib/matplotlib/tests/test_datetime.py"
+  ],
+  "source_files": [
+    "lib/matplotlib/contour.py"
+  ],
+  "parameterization": {
+    "repo": "matplotlib/matplotlib",
+    "repo_short": "matplotlib",
+    "parameterized_identifiers": [
+      "add_label_near",
+      "approx",
+      "arange",
+      "axes",
+      "clabel",
+      "context",
+      "contour",
+      "convert_xunits",
+      "convert_yunits",
+      "data"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:08:24Z"
+}

@@ -1,0 +1,54 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 164015,
+  "pr_url": "https://github.com/home-assistant/core/pull/164015",
+  "issue_number": null,
+  "base_sha": "75ed7b2fa2c55dce08c6e6457643f80582e09bfe",
+  "head_sha": "401ecb46b958f72405a4701fd2540a38c1453ced",
+  "additions": 17,
+  "deletions": 1,
+  "changed_files": [
+    "homeassistant/util/file.py",
+    "tests/util/test_file.py"
+  ],
+  "test_files": [
+    "tests/util/test_file.py"
+  ],
+  "source_files": [
+    "homeassistant/util/file.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "ascii",
+      "atomicwrites",
+      "call",
+      "caplog",
+      "cleanup",
+      "content",
+      "emoji",
+      "encoding",
+      "even",
+      "failed"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-23T23:38:28Z"
+}

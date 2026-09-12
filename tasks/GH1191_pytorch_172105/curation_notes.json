@@ -1,0 +1,55 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 172105,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/172105",
+  "issue_number": null,
+  "base_sha": "ab1598ec9558544443bf77e2217e1d4355b69fa4",
+  "head_sha": "ed12ab7224c89c9af06f65a7a6d376e0126c9d4d",
+  "additions": 171,
+  "deletions": 2,
+  "changed_files": [
+    "test/test_serialization.py",
+    "torch/_weights_only_unpickler.py",
+    "torch/csrc/jit/python/init.cpp"
+  ],
+  "test_files": [
+    "test/test_serialization.py"
+  ],
+  "source_files": [
+    "torch/_weights_only_unpickler.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "allowed",
+      "append",
+      "archive",
+      "auto",
+      "before",
+      "bounds",
+      "buffer",
+      "bytes",
+      "call",
+      "calls"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:45Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH954_pandas_64754
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Cast np.str_ to str before Cython typed-str calls"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64754"
+source_issue: "https://github.com/pandas-dev/pandas/issues/48974"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

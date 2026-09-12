@@ -1,0 +1,13 @@
+task_id: GH1138_pytorch_166922
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[Inductor] No longer throw error in bmm out_dtype lowering due to tem…"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pytorch/pytorch/pull/166922"
+source_issue: "https://github.com/pytorch/pytorch/issues/165892"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

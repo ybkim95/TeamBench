@@ -1,0 +1,13 @@
+task_id: GH873_scipy_24749
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: signal.minimum_phase: correct calculation"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scipy/scipy/pull/24749"
+source_issue: "https://github.com/scipy/scipy/issues/22752"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

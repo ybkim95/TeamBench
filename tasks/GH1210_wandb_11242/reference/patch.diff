@@ -1,0 +1,610 @@
+diff --git a/CHANGELOG.unreleased.md b/CHANGELOG.unreleased.md
+index 317e8aabe32..0dd15782e05 100644
+--- a/CHANGELOG.unreleased.md
++++ b/CHANGELOG.unreleased.md
+@@ -12,3 +12,7 @@ Add here any changes made in a PR that are relevant to end users. Allowed sectio
+ Section headings should be at level 3 (e.g. `### Added`).
+ 
+ ## Unreleased
++
++### Fixed
++
++- Refresh presigned download url when it expires during artifact file downloads. (@pingleiwandb in https://github.com/wandb/wandb/pull/11242)
+diff --git a/tests/system_tests/test_artifacts/test_wandb_artifacts_full.py b/tests/system_tests/test_artifacts/test_wandb_artifacts_full.py
+index 935b11efce6..a0d58feff5f 100644
+--- a/tests/system_tests/test_artifacts/test_wandb_artifacts_full.py
++++ b/tests/system_tests/test_artifacts/test_wandb_artifacts_full.py
+@@ -2,12 +2,14 @@
+ 
+ import os
+ import platform
++import re
+ import shutil
+ import time
+ from datetime import datetime, timedelta, timezone
+ from pathlib import Path
+ 
+ import numpy as np
++import responses
+ import wandb
+ from pytest import MonkeyPatch, mark, raises
+ from pytest_mock import MockerFixture
+@@ -798,3 +800,58 @@ def test_storage_policy_storage_region_not_available():
+             art = Artifact("test", type="dataset", storage_region="coreweave-us")
+             run.log_artifact(art)
+             art.wait()
++
++
++@responses.activate()
++def test_artifact_multipart_download_refresh_presigned_url(
++    user: str,
++    api: Api,
++    tmp_path: Path,
++):
++    # Let graphql and manifest json (also stored on S3) passthrough.
++    responses.add_passthru(re.compile(r".*graphql.*"))
++    responses.add_passthru(re.compile(r".*wandb_manifest\.json.*"))
++
++    all_s3_requests = []
++
++    def s3_request_callback(request):
++        all_s3_requests.append(request.url)
++
++        if len(all_s3_requests) == 1:
++            return (403, {}, b"AccessDenied: Request has expired")
++        if len(all_s3_requests) == 2:
++            return (500, {}, b"500 retry the same url without refresh")
++        else:
++            return (200, {}, b"test data for retry")
++
++    # manifest json is not stored under wandb_artifacts/, only the file blobs are.
++    responses.add_callback(
++        responses.GET,
++        re.compile(r".*wandb_artifacts/.*"),
++        callback=s3_request_callback,
++    )
++
++    file_path = tmp_path / "test.txt"
++    file_path.write_text("test data for retry")
++    project = "test"
++
++    with wandb.init(entity=user, project=project) as run:
++        art = Artifact("test-retry-expired-download-url", type="dataset")
++        art.add_file(file_path)
++        run.log_artifact(art)
++        art.wait()
++
++    art = api.artifact(f"{user}/{project}/test-retry-expired-download-url:latest")
++    # NOTE: We need to use multipart=True to avoid triggering non multipart's retry
++    # logic, which is using the `aritifactsV2` handler to redirect to presigned url
++    # instead of calling graphql to get the download url (directUrl).
++    download_path = art.download(skip_cache=True, multipart=True)
++
++    downloaded_file = Path(download_path) / "test.txt"
++    assert downloaded_file.exists(), f"File not found at {downloaded_file}"
++    assert downloaded_file.read_text() == "test data for retry"
++
++    assert len(all_s3_requests) == 3, (
++        f"Expected 3 calls (initial 403 + refresh URL then 500 + built-in retry 200), got {len(all_s3_requests)}. "
++        f"Requests: {all_s3_requests}"
++    )
+diff --git a/tests/unit_tests/test_artifacts/test_wandb_artifacts.py b/tests/unit_tests/test_artifacts/test_wandb_artifacts.py
+index 5ec639d8e44..dbdd183fa06 100644
+--- a/tests/unit_tests/test_artifacts/test_wandb_artifacts.py
++++ b/tests/unit_tests/test_artifacts/test_wandb_artifacts.py
+@@ -3,14 +3,14 @@
+ import shutil
+ import unittest.mock as mock
+ from concurrent.futures import ThreadPoolExecutor
+-from contextlib import contextmanager
+ from pathlib import Path
+ from string import ascii_letters, digits
+-from typing import IO, TYPE_CHECKING, Any, AnyStr, ContextManager, Mapping, Optional
++from typing import TYPE_CHECKING, Any, Mapping, Optional
+ from unittest.mock import Mock
+ 
+ import pytest
+ import requests
++import responses
+ from hypothesis import given
+ from hypothesis.strategies import from_regex, text
+ from wandb.filesync.step_prepare import ResponsePrepare, StepPrepare
+@@ -21,6 +21,7 @@
+ from wandb.sdk.artifacts.artifact_manifest_entry import ArtifactManifestEntry
+ from wandb.sdk.artifacts.artifact_state import ArtifactState
+ from wandb.sdk.artifacts.exceptions import ArtifactNotLoggedError
++from wandb.sdk.artifacts.storage_policies._factories import make_http_session
+ from wandb.sdk.artifacts.storage_policies._multipart import (
+     multipart_download,
+     should_multipart_download,
+@@ -522,20 +523,6 @@ def test_artifact_multipart_download_threshold():
+     assert should_multipart_download(5070 * mb, override=False) is False
+ 
+ 
+-class MockOpener:
+-    """Wrap a file as a Opener."""
+-
+-    def __init__(self, file: IO):
+-        self.file = file
+-
+-    def __call__(self, mode: str = "r") -> ContextManager[IO]:
+-        @contextmanager
+-        def _fake_context():
+-            yield self.file
+-
+-        return _fake_context()
+-
+-
+ def test_artifact_multipart_download_network_error():
+     # Disable retries and backoff to avoid timeout in test
+     session = requests.Session()
+@@ -543,69 +530,125 @@ def test_artifact_multipart_download_network_error():
+     session.mount("http://", adapter)
+     session.mount("https://", adapter)
+ 
+-    class CountOnlyFile(IO):
+-        def __init__(self):
+-            self.write_count = 0
+-            self.seek_count = 0
+-
+-        def seek(self, offset: int, whence: int = 0) -> int:
+-            self.seek_count += 1
+-            return offset
+-
+-        def write(self, s: AnyStr) -> int:
+-            self.write_count += 1
+-            return len(s)
+-
+-    file = CountOnlyFile()
+-    opener = MockOpener(file)
++    opener = mock.mock_open()
+     with pytest.raises(requests.exceptions.ConnectionError):
+         with ThreadPoolExecutor(max_workers=2) as executor:
+             multipart_download(
+-                executor, session, "https://invalid.com", 4 * 1024 * 1024 * 1024, opener
++                executor,
++                session,
++                4 * 1024 * 1024 * 1024,
++                opener,
++                initial_url="https://invalid.com",
++                fetch_fn=lambda: "https://invalid.com",
+             )
+-    assert file.seek_count == 0
+-    assert file.write_count == 0
++    opener.return_value.seek.assert_not_called()
+ 
+ 
++@responses.activate()
+ def test_artifact_multipart_download_disk_error():
+-    class ThrowFile(IO):
+-        def seek(self, offset: int, whence: int = 0) -> int:
+-            raise ValueError("I/O operation on closed file")
++    resp = responses.get(
++        "http://s3.com/file",
++        body=b"test",
++        status=200,
++    )
+ 
+-    class MockResponse:
+-        def raise_for_status(self):
+-            pass
++    opener = mock.mock_open()
++    opener.return_value.write.side_effect = OSError("I/O operation on closed file")
++    with pytest.raises(OSError):
++        with ThreadPoolExecutor(max_workers=2) as executor:
++            multipart_download(
++                executor,
++                requests.Session(),
++                500 * 1024 * 1024,  # 500MB should have 5 parts
++                opener,
++                initial_url="https://s3.com/file",
++                fetch_fn=lambda: "https://s3.com/file",
++            )
++    # After first get call has errors, remaining get calls should return without making the call.
++    # It can be 5 depending on underlying environment, e.g. it fails on windows from time to time.
++    assert resp.call_count <= 5
++
++
++@responses.activate()
++def test_artifact_multipart_download_refresh_presigned_url():
++    # S3 returns 403 when presigned url expires. Built-in retry (via make_http_session)
++    # handles transient errors like 408/500 by retrying the same url, but can't help with
++    # expired urls. The refresh layer handles 403 and fetches a new presigned url.
++    #
++    # Test flow:
++    #   Request t1 (expired)
++    #       │
++    #       v
++    #      403 ──> fetch_fn() gets new URL t2
++    #                   │
++    #                   v
++    #             Request t2
++    #                   │
++    #                   v
++    #                  500 ──> built-in retry
++    #                              │
++    #                              v
++    #                        Request t2
++    #                              │
++    #                              v
++    #                             200 ✓
++    rsp1 = responses.get(
++        "https://s3.com/file/t1",
++        body=b"should be some 403 related error message",
++        status=403,
++    )
++    rsp2 = responses.get(
++        "https://s3.com/file/t2",
++        body=b"500 retry the same url without refresh",
++        status=500,
++    )
++    rsp3 = responses.get(
++        "https://s3.com/file/t2",
++        body=b"test",
++        status=200,
++    )
+ 
+-        def iter_content(self, chunk_size: int = 1024):
+-            return [b"test"]
++    fetch_fn = Mock(return_value="https://s3.com/file/t2")
+ 
+-        def __enter__(self):
+-            return self
++    opener = mock.mock_open()
+ 
+-        def __exit__(self, exc_type, exc_value, traceback):
+-            pass
++    with ThreadPoolExecutor(max_workers=2) as executor:
++        multipart_download(
++            executor,
++            make_http_session(),
++            100,
++            opener,
++            initial_url="https://s3.com/file/t1",
++            fetch_fn=fetch_fn,
++            part_size=100,
++        )
++
++    assert fetch_fn.call_count == 1  # fetched new url once
++    assert rsp1.call_count == 1
++    assert rsp2.call_count == 1
++    assert rsp3.call_count == 1
+ 
+-    class MockSession:
+-        def __init__(self):
+-            self.get_count = 0
+ 
+-        def get(self, url: str, stream: bool = False, headers: dict = None):
+-            self.get_count += 1
+-            return MockResponse()
++@responses.activate()
++def test_artifact_multipart_download_max_refresh_attempts_exceeded():
++    resp = responses.get(
++        "https://s3.com/file",
++        body=b"test",
++        status=403,
++    )
+ 
+-    session = MockSession()
++    opener = mock.mock_open()
+ 
+-    file = ThrowFile()
+-    opener = MockOpener(file)
+-    with pytest.raises(ValueError):
++    with pytest.raises(requests.HTTPError):
+         with ThreadPoolExecutor(max_workers=2) as executor:
+             multipart_download(
+                 executor,
+-                session,
+-                "https://mocked.com",
+-                500 * 1024 * 1024,  # 500MB should have 5 parts
++                make_http_session(),
++                100,
+                 opener,
++                initial_url="https://s3.com/file",
++                fetch_fn=lambda: "https://s3.com/file",
++                part_size=100,
+             )
+-    # After first get call has errors, reamining get call should return without making the call.
+-    # It can be 5 depends on underlying environment,e.g. it fails on winodws from time to time.
+-    assert session.get_count <= 5
++
++    assert resp.call_count == 4  # 1 initial + 3 retries
+diff --git a/wandb/sdk/artifacts/storage_policies/_factories.py b/wandb/sdk/artifacts/storage_policies/_factories.py
+index 56f18559f88..8c7718a6b3d 100644
+--- a/wandb/sdk/artifacts/storage_policies/_factories.py
++++ b/wandb/sdk/artifacts/storage_policies/_factories.py
+@@ -37,6 +37,9 @@ def make_http_session() -> Session:
+     HTTP_RETRY_STRATEGY: Final[Retry] = Retry(  # noqa: N806
+         backoff_factor=1,
+         total=16,
++        # 401, 403 are not retried because expired presigned url
++        # requires calling graphql to get a new url. Upper layer such as
++        # _download_chunk_with_refresh in _multipart handles refresh.
+         status_forcelist=(308, 408, 409, 429, 500, 502, 503, 504),
+     )
+ 
+diff --git a/wandb/sdk/artifacts/storage_policies/_multipart.py b/wandb/sdk/artifacts/storage_policies/_multipart.py
+index e19062aaf00..e8b1b9c85aa 100644
+--- a/wandb/sdk/artifacts/storage_policies/_multipart.py
++++ b/wandb/sdk/artifacts/storage_policies/_multipart.py
+@@ -8,12 +8,14 @@
+ from concurrent.futures import FIRST_EXCEPTION, Executor, wait
+ from dataclasses import dataclass, field
+ from queue import Queue
+-from typing import TYPE_CHECKING, Any, Final, Iterator, Union
++from typing import IO, TYPE_CHECKING, Any, Callable, Final, Iterator, Union
+ 
++import requests
+ from typing_extensions import TypeAlias, TypeIs, final
+ 
+ from wandb import env
+ from wandb.sdk.artifacts.artifact_file_cache import Opener
++from wandb.sdk.lib import retry
+ 
+ if TYPE_CHECKING:
+     from requests import Session
+@@ -95,79 +97,167 @@ def scan_chunks(path: str, chunk_size: int) -> Iterator[bytes]:
+ 
+ @dataclass
+ class MultipartDownloadContext:
++    """Shared state for multipart download threads."""
++
++    session: Session
+     q: Queue[QueuedChunk]
+     cancel: threading.Event = field(default_factory=threading.Event)
+ 
++    # URL state management (thread-safe)
++    _url_lock: threading.Lock = field(default_factory=threading.Lock)
++    _url: str = ""
++    _url_invalidated: bool = False
++    _url_fetch_fn: Callable[[], str] | None = None
++
++    def get_url(self) -> str:
++        """Get the current URL, fetching a fresh one only if invalidated."""
++        with self._url_lock:
++            if self._url_invalidated and self._url_fetch_fn:
++                self._url = self._url_fetch_fn()
++                self._url_invalidated = False
++            return self._url
++
++    def invalidate_url(self) -> None:
++        """Mark the cached URL as invalid, forcing next get_url() to fetch fresh."""
++        with self._url_lock:
++            self._url_invalidated = True
++
++
++def _download_chunk_with_refresh(
++    ctx: MultipartDownloadContext,
++    start: int,
++    end: int | None,
++) -> None:
++    """Download a single chunk with refresh logic for expired presigned URLs.
++
++    Args:
++        ctx: Shared download context with session, queue, cancel event, and URL state.
++        start: Start byte offset (inclusive).
++        end: End byte offset (inclusive), or None for end of file.
++    """
++    if ctx.cancel.is_set():
++        return
++
++    # https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Range
++    # Start and end are both inclusive. Example: "bytes=0-499".
++    bytes_range = f"{start}-" if (end is None) else f"{start}-{end}"
++    headers = {"Range": f"bytes={bytes_range}"}
++
++    def check_retry_fn(e: Exception) -> bool:
++        """Check if we should retry this exception and refresh URL if needed."""
++        if not isinstance(e, requests.HTTPError):
++            return False
++
++        # Only retry 401 and 403 because they are from expired presigned url.
++        # and not handled by existing retry strategy in make_http_session.
++        # Retry logic in make_http_session uses same url and cannot handle
++        # expired urls unless caller refresh and uses a new url.
++        status_code = getattr(e.response, "status_code", None)
++        if status_code in (401, 403):
++            # URL likely expired, invalidate so next get_url() fetches fresh
++            if env.is_debug():
++                logger.debug(f"Download got {status_code}, refreshing URL for retry")
++            ctx.invalidate_url()
++            return True
++        return False
++
++    def attempt_download() -> None:
++        with ctx.session.get(url=ctx.get_url(), headers=headers, stream=True) as rsp:
++            rsp.raise_for_status()
++
++            offset = start
++            for chunk in rsp.iter_content(chunk_size=RSP_CHUNK_SIZE):
++                if ctx.cancel.is_set():
++                    return
++                ctx.q.put(ChunkContent(offset=offset, data=chunk))
++                offset += len(chunk)
++
++    # Use common retry logic with exponential backoff
++    retrier = retry.Retry(
++        attempt_download,
++        num_retries=3,
++        check_retry_fn=check_retry_fn,
++        retryable_exceptions=(requests.HTTPError,),
++        error_prefix="Multipart download chunk url expired",
++    )
++    retrier(retry_sleep_base=0.5)
++
++
++def _write_chunks(ctx: MultipartDownloadContext, file: IO[bytes]) -> None:
++    """Write downloaded chunks to file.
++
++    Args:
++        ctx: Shared download context with queue and cancel event.
++        file: File handle to write to.
++    """
++    # Process chunks until cancelled or END_CHUNK sentinel received
++    while not (ctx.cancel.is_set() or is_end_chunk(chunk := ctx.q.get())):
++        try:
++            # NOTE: Seek works without pre-allocating the file on disk.
++            # It automatically creates a sparse file, e.g. ls -hl would show
++            # a bigger size compared to du -sh * because downloading different
++            # chunks is not a sequential write.
++            # See https://man7.org/linux/man-pages/man2/lseek.2.html
++            file.seek(chunk.offset)
++            file.write(chunk.data)
++        except Exception as e:
++            if env.is_debug():
++                logger.debug(f"Error writing chunk to file: {e}")
++            ctx.cancel.set()
++            raise
++
+ 
+ def multipart_download(
+     executor: Executor,
+     session: Session,
+-    url: str,
+     size: int,
+     cached_open: Opener,
++    initial_url: str,
++    fetch_fn: Callable[[], str],
+     part_size: int = MULTI_DEFAULT_PART_SIZE,
+-):
++) -> None:
+     """Download file as multiple parts in parallel.
+ 
+-    Only one thread for writing to file. Each part run one http request in one thread.
+-    HTTP response chunk of a file part is sent to the writer thread via a queue.
++    Uses one thread for writing to file. Each part runs one HTTP request in one thread.
++    HTTP response chunks are sent to the writer thread via a queue.
++
++    Args:
++        executor: Thread pool executor for parallel downloads.
++        session: HTTP session for making requests.
++        size: Total file size in bytes.
++        cached_open: Opener function for writing to cache.
++        initial_url: The initial presigned URL for downloading.
++        fetch_fn: Callable that fetches a fresh URL when the current one expires.
++        part_size: Size of each download part in bytes.
+     """
+-    # ------------------------------------------------------------------------------
+-    # Shared between threads
+-    ctx = MultipartDownloadContext(q=Queue(maxsize=500))
++    ctx = MultipartDownloadContext(
++        session=session,
++        q=Queue(maxsize=500),
++        _url=initial_url,
++        _url_fetch_fn=fetch_fn,
++    )
+ 
+     # Put cache_open at top so we remove the tmp file when there is network error.
+     with cached_open("wb") as f:
++        # Start writer thread first
++        write_future = executor.submit(_write_chunks, ctx, f)
+ 
+-        def download_chunk(start: int, end: int | None = None) -> None:
+-            # Error from another thread, no need to start
+-            if ctx.cancel.is_set():
+-                return
+-
+-            # https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Range
+-            # Start and end are both inclusive. An empty end uses the actual end
+-            # of the file. Example string: "bytes=0-499".
+-            bytes_range = f"{start}-" if (end is None) else f"{start}-{end}"
+-            headers = {"Range": f"bytes={bytes_range}"}
+-            with session.get(url=url, headers=headers, stream=True) as rsp:
+-                offset = start
+-                for chunk in rsp.iter_content(chunk_size=RSP_CHUNK_SIZE):
+-                    if ctx.cancel.is_set():
+-                        return
+-                    ctx.q.put(ChunkContent(offset=offset, data=chunk))
+-                    offset += len(chunk)
+-
+-        def write_chunks() -> None:
+-            # If all chunks are written or there's an error in another thread, shutdown
+-            while not (ctx.cancel.is_set() or is_end_chunk(chunk := ctx.q.get())):
+-                try:
+-                    # NOTE: Seek works without pre allocating the file on disk.
+-                    # It automatically creates a sparse file, e.g. ls -hl would show
+-                    # a bigger size compared to du -sh * because downloading different
+-                    # chunks is not a sequential write.
+-                    # See https://man7.org/linux/man-pages/man2/lseek.2.html
+-                    f.seek(chunk.offset)
+-                    f.write(chunk.data)
+-
+-                except Exception as e:
+-                    if env.is_debug():
+-                        logger.debug(f"Error writing chunk to file: {e}")
+-                    ctx.cancel.set()
+-                    raise
+-
+-        # Start writer thread first.
+-        write_future = executor.submit(write_chunks)
+-
+-        # Start download threads for each chunk.
++        # Start download threads for each chunk
+         download_futures = set()
+         for start in range(0, size, part_size):
+             # https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Range
+-            # Start and end are both inclusive. An empty end uses the actual end
+-            # of the file. Example string: "bytes=0-499".
++            # Start and end are both inclusive. None for end uses actual end of file.
+             end = end if (end := (start + part_size - 1)) < size else None
+-            download_futures.add(executor.submit(download_chunk, start=start, end=end))
+-
+-        # Wait for download
++            download_futures.add(
++                executor.submit(
++                    _download_chunk_with_refresh,
++                    ctx,
++                    start,
++                    end,
++                )
++            )
++
++        # Wait for downloads and handle errors
+         done, not_done = wait(download_futures, return_when=FIRST_EXCEPTION)
+         try:
+             for fut in done:
+diff --git a/wandb/sdk/artifacts/storage_policies/wandb_storage_policy.py b/wandb/sdk/artifacts/storage_policies/wandb_storage_policy.py
+index 8d6f8eff243..8a9768a0d06 100644
+--- a/wandb/sdk/artifacts/storage_policies/wandb_storage_policy.py
++++ b/wandb/sdk/artifacts/storage_policies/wandb_storage_policy.py
+@@ -12,6 +12,7 @@
+ from typing import TYPE_CHECKING, Any
+ from urllib.parse import quote
+ 
++import requests
+ from typing_extensions import assert_never
+ 
+ from wandb.errors.term import termwarn
+@@ -142,7 +143,30 @@ def load_file(
+         if url := manifest_entry._download_url:
+             # Use multipart parallel download for large file
+             if executor and (size := manifest_entry.size):
+-                multipart_download(executor, self._session, url, size, cache_open)
++                # Create URL provider with GraphQL-based refresh callback
++                def fetch_fresh_url() -> str:
++                    files = artifact.files(
++                        names=[str(manifest_entry.path)],
++                        per_page=1,
++                    )
++
++                    try:
++                        file = next(iter(files))
++                    except StopIteration:
++                        raise ValueError(
++                            f"Failed to fetch URL for file: {manifest_entry.path}"
++                        )
++                    else:
++                        return file.direct_url
++
++                multipart_download(
++                    executor,
++                    self._session,
++                    size,
++                    cache_open,
++                    initial_url=url,
++                    fetch_fn=fetch_fresh_url,
++                )
+                 return path
+ 
+             # Serial download

@@ -6,7 +6,8 @@ SUBMISSION="${3:-/submission}"
 TASK_DIR="${4:-/task}"
 cd "$WORKSPACE"
 
-pip install pip-audit pytest 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require pip-audit pytest || true
 
 pass=true
 partial=0
@@ -56,3 +57,5 @@ partial_score=$(awk "BEGIN {printf \"%.2f\", $partial / $total}")
 cat > "${REPORTS}/score.json" <<EOF
 {"pass":$( [ "$pass" = "true" ] && echo "true" || echo "false" ),"secondary":{"partial_score":$partial_score,"checks_passed":$partial,"total_checks":$total},"failure_modes":[]}
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

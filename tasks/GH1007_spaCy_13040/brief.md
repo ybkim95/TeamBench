@@ -2,10 +2,6 @@
 
 Fix the bug described by the Planner's guidance in the workspace.
 
-## Files That May Need Changes
-
-- `spacy/__init__.py`
-
 ## Verification
 
 Run the test suite to confirm your fix:

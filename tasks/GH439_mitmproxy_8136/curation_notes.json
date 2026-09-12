@@ -1,0 +1,64 @@
+{
+  "repo": "mitmproxy/mitmproxy",
+  "pr_number": 8136,
+  "pr_url": "https://github.com/mitmproxy/mitmproxy/pull/8136",
+  "issue_number": null,
+  "base_sha": "2a7bb7ba05a9a1c14b4fd7674d5356bc665a4182",
+  "head_sha": "67823c0dfad772c2c6a01b4fe65e3fe9dfc940f2",
+  "additions": 2,
+  "deletions": 44,
+  "changed_files": [
+    "CHANGELOG.md",
+    "mitmproxy/tools/console/common.py",
+    "mitmproxy/tools/console/consoleaddons.py",
+    "mitmproxy/tools/console/flowview.py",
+    "mitmproxy/tools/console/options.py",
+    "mitmproxy/utils/bits.py",
+    "pyproject.toml",
+    "test/mitmproxy/utils/test_bits.py"
+  ],
+  "test_files": [
+    "test/mitmproxy/utils/test_bits.py"
+  ],
+  "source_files": [
+    "mitmproxy/tools/console/common.py",
+    "mitmproxy/tools/console/consoleaddons.py",
+    "mitmproxy/tools/console/flowview.py",
+    "mitmproxy/tools/console/options.py",
+    "mitmproxy/utils/bits.py"
+  ],
+  "parameterization": {
+    "repo": "mitmproxy/mitmproxy",
+    "repo_short": "mitmproxy",
+    "parameterized_identifiers": [
+      "attr",
+      "bits",
+      "byte",
+      "can_edit_inplace",
+      "colorize_host",
+      "colorize_req",
+      "colorize_url",
+      "console",
+      "console_layouts",
+      "content_type"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:18:51Z"
+}

@@ -29,7 +29,8 @@ check() {
 
 cd "${WORKSPACE}"
 
-pip install pytest --quiet 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require pytest || true
 
 # C1: cli.py is valid Python
 result=$(python3 -c "import ast; ast.parse(open('cli.py').read()); print('pass')" 2>/dev/null || echo "fail")
@@ -146,3 +147,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

@@ -1,0 +1,55 @@
+{
+  "repo": "alteryx/featuretools",
+  "pr_number": 2432,
+  "pr_url": "https://github.com/alteryx/featuretools/pull/2432",
+  "issue_number": 2428,
+  "base_sha": "ede36712a5a5c41d0be17e8aa0d81be775ba9721",
+  "head_sha": "e9338587603b6d950cec1a08308cd391278629e4",
+  "additions": 56,
+  "deletions": 0,
+  "changed_files": [
+    "docs/source/release_notes.rst",
+    "featuretools/primitives/utils.py",
+    "featuretools/tests/primitive_tests/test_feature_serialization.py",
+    "featuretools/tests/primitive_tests/test_features_deserializer.py"
+  ],
+  "test_files": [
+    "featuretools/tests/primitive_tests/test_feature_serialization.py",
+    "featuretools/tests/primitive_tests/test_features_deserializer.py"
+  ],
+  "source_files": [
+    "featuretools/primitives/utils.py"
+  ],
+  "parameterization": {
+    "repo": "alteryx/featuretools",
+    "repo_short": "featuretools",
+    "parameterized_identifiers": [
+      "add_dataframe",
+      "allow",
+      "args_dict",
+      "argument",
+      "arguments",
+      "asizeof",
+      "back",
+      "backtracking",
+      "base",
+      "boto3"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:09:23Z"
+}

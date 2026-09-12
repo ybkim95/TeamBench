@@ -1,0 +1,53 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 21187,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/21187",
+  "issue_number": 18426,
+  "base_sha": "cd30ce45810874a8d74cf61412e17d221a94dc4d",
+  "head_sha": "e1cd01e9bc2459c62f5609db74461ae9f20b048e",
+  "additions": 71,
+  "deletions": 7,
+  "changed_files": [
+    "src/lightning/pytorch/CHANGELOG.md",
+    "src/lightning/pytorch/tuner/batch_size_scaling.py",
+    "tests/tests_pytorch/tuner/test_scale_batch_size.py"
+  ],
+  "test_files": [
+    "tests/tests_pytorch/tuner/test_scale_batch_size.py"
+  ],
+  "source_files": [
+    "src/lightning/pytorch/tuner/batch_size_scaling.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "adjust",
+      "after",
+      "any_success",
+      "based",
+      "batch",
+      "batch_arg_name",
+      "batch_idx",
+      "batch_size",
+      "batch_size_finder",
+      "before"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:59:43Z"
+}

@@ -1,0 +1,62 @@
+diff --git a/AUTHORS.rst b/AUTHORS.rst
+index 2f1e93e06..a7ffd703d 100644
+--- a/AUTHORS.rst
++++ b/AUTHORS.rst
+@@ -179,3 +179,4 @@ Contributors (chronological)
+ - Dharanikumar Sekar `@dharani7998 <https://github.com/dharani7998>`_
+ - Nicolas Simonds `@0xDEC0DE <https://github.com/0xDEC0DE>`_
+ - Florian Laport `@Florian-Laport <https://github.com/Florian-Laport>`_
++- `@agentgodzilla <https://github.com/agentgodzilla>`_
+diff --git a/CHANGELOG.rst b/CHANGELOG.rst
+index fde732507..e638d56a2 100644
+--- a/CHANGELOG.rst
++++ b/CHANGELOG.rst
+@@ -6,6 +6,9 @@ Changelog
+ 
+ Other changes:
+ 
++- Add `__len__` implementation to `missing` so that it can be used with
++  `validate.Length <marshmallow.validate.Length>` (:pr:`2861`).
++  Thanks :user:`agentgodzilla` for the PR.
+ - Drop support for Python 3.9 (:pr:`2363`).
+ - Test against Python 3.14.
+ 
+diff --git a/src/marshmallow/constants.py b/src/marshmallow/constants.py
+index 5b4c948a1..4a2e2311e 100644
+--- a/src/marshmallow/constants.py
++++ b/src/marshmallow/constants.py
+@@ -18,5 +18,8 @@ def __deepcopy__(self, _):
+     def __repr__(self):
+         return "<marshmallow.missing>"
+ 
++    def __len__(self):
++        return 0
++
+ 
+ missing: typing.Final = _Missing()
+diff --git a/tests/test_deserialization.py b/tests/test_deserialization.py
+index c3a970db8..6d5b465da 100644
+--- a/tests/test_deserialization.py
++++ b/tests/test_deserialization.py
+@@ -14,6 +14,7 @@
+     RAISE,
+     Schema,
+     fields,
++    missing,
+     validate,
+ )
+ from marshmallow.exceptions import ValidationError
+@@ -1005,6 +1006,13 @@ def test_function_field_deserialization_with_callable(self):
+         field = fields.Function(lambda x: None, deserialize=lambda val: val.upper())
+         assert field.deserialize("foo") == "FOO"
+ 
++    def test_function_field_deserialization_missing_with_length_validator(self):
++        field = fields.Function(
++            deserialize=lambda value: value.get("some-key", missing),
++            validate=validate.Length(min=0),
++        )
++        assert field.deserialize({}) is missing
++
+     def test_function_field_passed_deserialize_only_is_load_only(self):
+         field = fields.Function(deserialize=lambda val: val.upper())
+         assert field.load_only is True

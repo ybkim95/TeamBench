@@ -1,0 +1,13 @@
+task_id: GH1099_darts_2987
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix/max_samples_per_ts"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/unit8co/darts/pull/2987"
+source_issue: "https://github.com/unit8co/darts/issues/2986"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

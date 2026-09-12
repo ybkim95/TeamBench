@@ -1,0 +1,53 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 21191,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/21191",
+  "issue_number": 13643,
+  "base_sha": "3998b5d7954cba76f426875d878b97daf217bb05",
+  "head_sha": "78291c8fc6431c25f9475a8ac7293534741d812d",
+  "additions": 63,
+  "deletions": 2,
+  "changed_files": [
+    "src/lightning/pytorch/CHANGELOG.md",
+    "src/lightning/pytorch/callbacks/pruning.py",
+    "tests/tests_pytorch/callbacks/test_pruning.py"
+  ],
+  "test_files": [
+    "tests/tests_pytorch/callbacks/test_pruning.py"
+  ],
+  "source_files": [
+    "src/lightning/pytorch/callbacks/pruning.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "accelerator",
+      "actual",
+      "allclose",
+      "amount",
+      "applied",
+      "applies",
+      "apply_pruning",
+      "arange",
+      "atol",
+      "based"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:51:29Z"
+}

@@ -1,0 +1,51 @@
+{
+  "repo": "matplotlib/matplotlib",
+  "pr_number": 31014,
+  "pr_url": "https://github.com/matplotlib/matplotlib/pull/31014",
+  "issue_number": 0,
+  "base_sha": "74aa9ab0fb48a9ac0d6df38f567378c73d85f62f",
+  "head_sha": "fe7a689b3d041444af05f09f3b239a72f4a87ac0",
+  "additions": 12,
+  "deletions": 4,
+  "changed_files": [
+    "lib/matplotlib/tests/test_agg.py"
+  ],
+  "test_files": [
+    "lib/matplotlib/tests/test_agg.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "matplotlib/matplotlib",
+    "repo_short": "matplotlib",
+    "parameterized_identifiers": [
+      "alpha",
+      "available",
+      "avif",
+      "background",
+      "bluish",
+      "buf_large",
+      "buf_small",
+      "catch_warnings",
+      "check",
+      "color"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:10:06Z"
+}

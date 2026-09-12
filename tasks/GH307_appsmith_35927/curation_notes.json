@@ -1,0 +1,51 @@
+{
+  "repo": "appsmithorg/appsmith",
+  "pr_number": 35927,
+  "pr_url": "https://github.com/appsmithorg/appsmith/pull/35927",
+  "issue_number": 35137,
+  "base_sha": "4885337fd9112678705bb3a601561a3c374be025",
+  "head_sha": "65218a2ae2c2e9d6729a30466d72a2dd60fa03a0",
+  "additions": 12,
+  "deletions": 41,
+  "changed_files": [
+    "app/client/cypress/e2e/Regression/ServerSide/ApiTests/API_MultiPart_Spec.ts",
+    "app/client/cypress/support/Objects/DataManager.ts",
+    "app/client/cypress/support/Pages/ApiPage.ts"
+  ],
+  "test_files": [],
+  "source_files": [],
+  "parameterization": {
+    "repo": "appsmithorg/appsmith",
+    "repo_short": "appsmith",
+    "parameterized_identifiers": [
+      "call",
+      "case",
+      "catch",
+      "catfact",
+      "click",
+      "cloudinary",
+      "codes",
+      "const",
+      "data",
+      "describe"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:09:28Z"
+}

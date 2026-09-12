@@ -1,0 +1,55 @@
+{
+  "repo": "arrow-py/arrow",
+  "pr_number": 1179,
+  "pr_url": "https://github.com/arrow-py/arrow/pull/1179",
+  "issue_number": 1175,
+  "base_sha": "d05ca1dbd215515d4a346010ea329d7b3a472f5a",
+  "head_sha": "48eb157ae872c80c4c5fd1957d4a59647a1217f7",
+  "additions": 29,
+  "deletions": 5,
+  "changed_files": [
+    "pyproject.toml",
+    "requirements/requirements-tests.txt",
+    "tests/test_arrow.py",
+    "tests/test_formatter.py",
+    "tests/utils.py"
+  ],
+  "test_files": [
+    "tests/test_arrow.py",
+    "tests/test_formatter.py",
+    "tests/utils.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "arrow-py/arrow",
+    "repo_short": "arrow",
+    "parameterized_identifiers": [
+      "abbreviation",
+      "after",
+      "all_timezones",
+      "arrow",
+      "available_timezones",
+      "backports",
+      "before",
+      "change",
+      "commit",
+      "date"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:45:42Z"
+}

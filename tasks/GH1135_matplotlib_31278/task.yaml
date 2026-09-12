@@ -1,0 +1,13 @@
+task_id: GH1135_matplotlib_31278
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix `clabel` manual argument not accepting unit-typed coordinates"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/31278"
+source_issue: "https://github.com/matplotlib/matplotlib/issues/27525"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

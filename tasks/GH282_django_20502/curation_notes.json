@@ -1,0 +1,51 @@
+{
+  "repo": "django/django",
+  "pr_number": 20502,
+  "pr_url": "https://github.com/django/django/pull/20502",
+  "issue_number": null,
+  "base_sha": "3abf89887993140d28676f26420ee0d46a617f51",
+  "head_sha": "01cece347873538a19b1fdd843d696bbb5c2d586",
+  "additions": 4,
+  "deletions": 7,
+  "changed_files": [
+    "tests/field_defaults/tests.py"
+  ],
+  "test_files": [
+    "tests/field_defaults/tests.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "django/django",
+    "repo_short": "django",
+    "parameterized_identifiers": [
+      "added",
+      "bulk_create",
+      "connection",
+      "create",
+      "datetime",
+      "decimal",
+      "django",
+      "expected_num_queries",
+      "features",
+      "flat"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:07:41Z"
+}

@@ -1,0 +1,56 @@
+{
+  "repo": "matplotlib/matplotlib",
+  "pr_number": 31061,
+  "pr_url": "https://github.com/matplotlib/matplotlib/pull/31061",
+  "issue_number": 0,
+  "base_sha": "eb7c4cebdc589f894c165de1852f63791e0edb3f",
+  "head_sha": "bb9daeeef1a8dd2b03e0128116c12772eee53e61",
+  "additions": 35,
+  "deletions": 0,
+  "changed_files": [
+    "lib/matplotlib/axes/_base.py",
+    "lib/matplotlib/tests/test_text.py",
+    "lib/matplotlib/text.py"
+  ],
+  "test_files": [
+    "lib/matplotlib/tests/test_text.py"
+  ],
+  "source_files": [
+    "lib/matplotlib/axes/_base.py",
+    "lib/matplotlib/text.py"
+  ],
+  "parameterization": {
+    "repo": "matplotlib/matplotlib",
+    "repo_short": "matplotlib",
+    "parameterized_identifiers": [
+      "angle",
+      "axes",
+      "axis",
+      "background",
+      "bbox",
+      "bottom",
+      "canvas",
+      "color",
+      "coordinates",
+      "data"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:01:06Z"
+}

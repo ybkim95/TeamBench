@@ -1,0 +1,13 @@
+task_id: GH75_flask_5899
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "deprecate `should_ignore_error`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/flask/pull/5899"
+source_issue: "https://github.com/pallets/flask/issues/5816"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH665_narwhals_2363
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: Preserve pandas column name attribute"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/narwhals-dev/narwhals/pull/2363"
+source_issue: "https://github.com/narwhals-dev/narwhals/issues/1483"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

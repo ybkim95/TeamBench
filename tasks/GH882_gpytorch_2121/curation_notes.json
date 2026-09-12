@@ -1,0 +1,59 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 2121,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/2121",
+  "issue_number": 2113,
+  "base_sha": "8b23599efa75cc843dd46d3a2fdcf6a97c81448e",
+  "head_sha": "708c91bb1ae27f1fcbdf989ffaa37d8631a0e506",
+  "additions": 279,
+  "deletions": 6,
+  "changed_files": [
+    "docs/source/marginal_log_likelihoods.rst",
+    "gpytorch/mlls/added_loss_term.py",
+    "gpytorch/mlls/inducing_point_kernel_added_loss_term.py",
+    "gpytorch/mlls/kl_gaussian_added_loss_term.py",
+    "test/examples/test_kronecker_multitask_sgpr_regression.py",
+    "test/mlls/test_inducing_point_kernel_added_loss_term.py"
+  ],
+  "test_files": [
+    "test/examples/test_kronecker_multitask_sgpr_regression.py",
+    "test/mlls/test_inducing_point_kernel_added_loss_term.py"
+  ],
+  "source_files": [
+    "gpytorch/mlls/added_loss_term.py",
+    "gpytorch/mlls/inducing_point_kernel_added_loss_term.py",
+    "gpytorch/mlls/kl_gaussian_added_loss_term.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "abstractmethod",
+      "accesses",
+      "adam",
+      "added",
+      "added_loss_term",
+      "additional",
+      "additive",
+      "adds",
+      "ammended",
+      "appropriate"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:28Z"
+}

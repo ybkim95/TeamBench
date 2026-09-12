@@ -1,0 +1,103 @@
+diff --git a/CHANGES/12240.bugfix.rst b/CHANGES/12240.bugfix.rst
+new file mode 100644
+index 00000000000..49508b3f595
+--- /dev/null
++++ b/CHANGES/12240.bugfix.rst
+@@ -0,0 +1,5 @@
++Rejected duplicate singleton headers (``Host``, ``Content-Type``,
++``Content-Length``, etc.) in the C extension HTTP parser to match
++the pure Python parser behavior, preventing potential host-based
++access control bypasses via parser differentials
++-- by :user:`rodrigobnogueira`.
+diff --git a/aiohttp/_http_parser.pyx b/aiohttp/_http_parser.pyx
+index 496498d6f58..18c293bfda2 100644
+--- a/aiohttp/_http_parser.pyx
++++ b/aiohttp/_http_parser.pyx
+@@ -71,6 +71,20 @@ cdef object StreamReader = _StreamReader
+ cdef object DeflateBuffer = _DeflateBuffer
+ cdef bytes EMPTY_BYTES = b""
+ 
++# https://www.rfc-editor.org/rfc/rfc9110.html#section-5.5-6
++cdef tuple SINGLETON_HEADERS = (
++    hdrs.CONTENT_LENGTH,
++    hdrs.CONTENT_LOCATION,
++    hdrs.CONTENT_RANGE,
++    hdrs.CONTENT_TYPE,
++    hdrs.ETAG,
++    hdrs.HOST,
++    hdrs.MAX_FORWARDS,
++    hdrs.SERVER,
++    hdrs.TRANSFER_ENCODING,
++    hdrs.USER_AGENT,
++)
++
+ cdef inline object extend(object buf, const char* at, size_t length):
+     cdef Py_ssize_t s
+     cdef char* ptr
+@@ -430,6 +444,14 @@ cdef class HttpParser:
+         raw_headers = tuple(self._raw_headers)
+         headers = CIMultiDictProxy(CIMultiDict(self._headers))
+ 
++        # https://www.rfc-editor.org/rfc/rfc9110.html#name-collected-abnf
++        bad_hdr = next(
++            (h for h in SINGLETON_HEADERS if len(headers.getall(h, ())) > 1),
++            None,
++        )
++        if bad_hdr is not None:
++            raise BadHttpMessage(f"Duplicate '{bad_hdr}' header found.")
++
+         if self._cparser.type == cparser.HTTP_REQUEST:
+             h_upg = headers.get("upgrade", "")
+             allowed = upgrade and h_upg.isascii() and h_upg.lower() in ALLOWED_UPGRADES
+diff --git a/tests/test_http_parser.py b/tests/test_http_parser.py
+index ef058588181..569f3cd29fe 100644
+--- a/tests/test_http_parser.py
++++ b/tests/test_http_parser.py
+@@ -265,6 +265,47 @@ def test_content_length_transfer_encoding(parser: Any) -> None:
+         parser.feed_data(text)
+ 
+ 
++@pytest.mark.parametrize(
++    "hdr",
++    (
++        "Content-Length",
++        "Content-Location",
++        "Content-Range",
++        "Content-Type",
++        "ETag",
++        "Host",
++        "Max-Forwards",
++        "Server",
++        "Transfer-Encoding",
++        "User-Agent",
++    ),
++)
++def test_duplicate_singleton_header_rejected(
++    parser: HttpRequestParser, hdr: str
++) -> None:
++    val1, val2 = ("1", "2") if hdr == "Content-Length" else ("value1", "value2")
++    text = (
++        f"GET /test HTTP/1.1\r\n"
++        f"Host: example.com\r\n"
++        f"{hdr}: {val1}\r\n"
++        f"{hdr}: {val2}\r\n"
++        f"\r\n"
++    ).encode()
++    with pytest.raises(http_exceptions.BadHttpMessage, match="Duplicate"):
++        parser.feed_data(text)
++
++
++def test_duplicate_host_header_rejected(parser: HttpRequestParser) -> None:
++    text = (
++        b"GET /admin HTTP/1.1\r\n"
++        b"Host: admin.example\r\n"
++        b"Host: public.example\r\n"
++        b"\r\n"
++    )
++    with pytest.raises(http_exceptions.BadHttpMessage, match="Duplicate.*Host"):
++        parser.feed_data(text)
++
++
+ def test_bad_chunked(parser: HttpRequestParser) -> None:
+     """Test that invalid chunked encoding doesn't allow content-length to be used."""
+     text = (

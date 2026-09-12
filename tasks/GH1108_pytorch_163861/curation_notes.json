@@ -1,0 +1,54 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 163861,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/163861",
+  "issue_number": 147841,
+  "base_sha": "d6e84118898937529e274503c9e8f00cc322fc47",
+  "head_sha": "86e1cf1fdbeae9337fb9ca501bbd98ec490b2d58",
+  "additions": 25,
+  "deletions": 11,
+  "changed_files": [
+    "test/inductor/test_compile_subprocess.py",
+    "test/test_sympy_utils.py",
+    "torch/utils/_sympy/functions.py"
+  ],
+  "test_files": [
+    "test/inductor/test_compile_subprocess.py",
+    "test/test_sympy_utils.py"
+  ],
+  "source_files": [
+    "torch/utils/_sympy/functions.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "arbitrarily",
+      "arbitrary",
+      "artifact",
+      "backward",
+      "before",
+      "break",
+      "collections",
+      "compiled",
+      "direct_result",
+      "doesn"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:06:10Z"
+}

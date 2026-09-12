@@ -1,0 +1,54 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 43928,
+  "pr_url": "https://github.com/ray-project/ray/pull/43928",
+  "issue_number": 43929,
+  "base_sha": "52e1237cbf75bf1ae3b4639598f93bc6245bcb60",
+  "head_sha": "fc9ebda5c70c527b396bb78f54e58655c4198fc7",
+  "additions": 89,
+  "deletions": 7,
+  "changed_files": [
+    "python/ray/serve/_private/application_state.py",
+    "python/ray/serve/tests/test_deploy_2.py",
+    "python/ray/serve/tests/test_deploy_app.py"
+  ],
+  "test_files": [
+    "python/ray/serve/tests/test_deploy_2.py",
+    "python/ray/serve/tests/test_deploy_app.py"
+  ],
+  "source_files": [
+    "python/ray/serve/_private/application_state.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "app_details",
+      "applications",
+      "auto",
+      "autoscaling",
+      "autoscaling_config",
+      "bind",
+      "check_num_replicas_eq",
+      "check_running",
+      "check_switched",
+      "client"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:52:28Z"
+}

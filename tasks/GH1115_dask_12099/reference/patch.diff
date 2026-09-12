@@ -1,0 +1,32 @@
+diff --git a/dask/dataframe/dask_expr/_expr.py b/dask/dataframe/dask_expr/_expr.py
+--- a/dask/dataframe/dask_expr/_expr.py
++++ b/dask/dataframe/dask_expr/_expr.py
+@@ -593,7 +593,11 @@ def _divisions(self):
+         dependencies = self.dependencies()
+         for arg in dependencies:
+             if not self._broadcast_dep(arg):
+-                assert arg.divisions == dependencies[0].divisions
++                assert arg.divisions == dependencies[0].divisions, (
++                    "Mismatched divisions between multiple Blockwise dependencies. "
++                    f"Expected {dependencies[0].divisions}. Got {arg.divisions}. "
++                    "This may happen when a collection is passed to `meta=`."
++                )
+         return dependencies[0].divisions
+ 
+     @functools.cached_property
+
+diff --git a/dask/dataframe/dask_expr/_groupby.py b/dask/dataframe/dask_expr/_groupby.py
+--- a/dask/dataframe/dask_expr/_groupby.py
++++ b/dask/dataframe/dask_expr/_groupby.py
+@@ -1025,7 +1025,10 @@ def get_map_columns(df):
+             self.operand("args"),
+             self.operand("kwargs"),
+             grp_func,
+-            self.operand("meta"),
++            # Make sure the meta argument isn't a collection.
++            # Blockwise may treat it as an Expr dependency.
++            # See: https://github.com/dask/dask/issues/11990
++            self._meta,
+             *by,
+         )
+ 

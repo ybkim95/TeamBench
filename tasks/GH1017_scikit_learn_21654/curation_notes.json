@@ -1,0 +1,56 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 21654,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/21654",
+  "issue_number": null,
+  "base_sha": "2368132b70559de2e890d7f16ec10f6247c9d5a2",
+  "head_sha": "6e756b4e16973aaf385b9a90e0418c0870fccd68",
+  "additions": 68,
+  "deletions": 15,
+  "changed_files": [
+    "sklearn/utils/_readonly_array_wrapper.pyx",
+    "sklearn/utils/_testing.py",
+    "sklearn/utils/tests/test_readonly_wrapper.py",
+    "sklearn/utils/tests/test_testing.py"
+  ],
+  "test_files": [
+    "sklearn/utils/_testing.py",
+    "sklearn/utils/tests/test_readonly_wrapper.py",
+    "sklearn/utils/tests/test_testing.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "aligned",
+      "alignment",
+      "allows",
+      "also",
+      "approx",
+      "arange",
+      "aren",
+      "array",
+      "arrays",
+      "assert_raises"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:59:15Z"
+}

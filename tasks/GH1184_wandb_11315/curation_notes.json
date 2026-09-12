@@ -1,0 +1,54 @@
+{
+  "repo": "wandb/wandb",
+  "pr_number": 11315,
+  "pr_url": "https://github.com/wandb/wandb/pull/11315",
+  "issue_number": null,
+  "base_sha": "7ea45b65ac712312d4daec979aa6517969909de8",
+  "head_sha": "926ebafc2562592c491df423c5b7e0c386fa9b8a",
+  "additions": 125,
+  "deletions": 5,
+  "changed_files": [
+    "tests/unit_tests/test_launch/test_runner/test_local_container.py",
+    "wandb/sdk/launch/runner/local_container.py"
+  ],
+  "test_files": [
+    "tests/unit_tests/test_launch/test_runner/test_local_container.py"
+  ],
+  "source_files": [
+    "wandb/sdk/launch/runner/local_container.py"
+  ],
+  "parameterization": {
+    "repo": "wandb/wandb",
+    "repo_short": "wandb",
+    "parameterized_identifiers": [
+      "assert_not_called",
+      "asyncio",
+      "basename",
+      "bash",
+      "call_args",
+      "clear",
+      "command",
+      "compatible",
+      "cross",
+      "docker"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:15Z"
+}

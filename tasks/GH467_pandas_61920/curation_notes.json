@@ -1,0 +1,52 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 61920,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/61920",
+  "issue_number": 61917,
+  "base_sha": "95624ca2e99b0462831e0fb367dd62ddd8706e2f",
+  "head_sha": "b49a399e42686e17fd703dc9937e42cd1573d23a",
+  "additions": 39,
+  "deletions": 23,
+  "changed_files": [
+    "pandas/core/arrays/interval.py",
+    "pandas/tests/arrays/interval/test_interval.py"
+  ],
+  "test_files": [
+    "pandas/tests/arrays/interval/test_interval.py"
+  ],
+  "source_files": [
+    "pandas/core/arrays/interval.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "argument",
+      "array",
+      "asarray",
+      "assert_index_equal",
+      "astype",
+      "attr",
+      "attribute",
+      "axis",
+      "bool_",
+      "bytes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:20:31Z"
+}

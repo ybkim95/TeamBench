@@ -1,0 +1,15 @@
+{
+ "task": "GH482_openrag_167",
+ "patch": "tasks/GH482_openrag_167/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "linagora/openrag",
+ "pr_number": 167,
+ "base_sha": "7d6863fd44d71c5cc122b747572a91fd821fdda2",
+ "head_sha": "512d3fa21a72aea36ccc00a09cd4bb1eb7d05aa8",
+ "bytes": 6447,
+ "files_changed": 4,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

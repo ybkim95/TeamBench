@@ -1,0 +1,50 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12905,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12905",
+  "issue_number": 12888,
+  "base_sha": "6178953d163d31004ac8834131cfcd6c2a84f7a8",
+  "head_sha": "25afe641ea17b6e16962bf8cec1d139e85d78e57",
+  "additions": 38,
+  "deletions": 5,
+  "changed_files": [
+    "pydantic-core/src/serializers/type_serializers/model.rs",
+    "tests/types/test_union.py"
+  ],
+  "test_files": [
+    "tests/types/test_union.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "actually",
+      "animals",
+      "attrs",
+      "avoid",
+      "build_tools",
+      "called",
+      "cast_into",
+      "color",
+      "common",
+      "contains"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:35:35Z"
+}

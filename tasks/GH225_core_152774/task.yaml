@@ -1,0 +1,13 @@
+task_id: GH225_core_152774
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Add dc:title support for Sonos sharelinks"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/152774"
+source_issue: "https://github.com/home-assistant/core/issues/152305"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

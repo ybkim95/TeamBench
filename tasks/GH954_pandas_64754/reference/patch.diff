@@ -1,0 +1,135 @@
+diff --git a/doc/source/whatsnew/v3.1.0.rst b/doc/source/whatsnew/v3.1.0.rst
+index 9b4bdff6fa293..6468d2835e4fd 100644
+--- a/doc/source/whatsnew/v3.1.0.rst
++++ b/doc/source/whatsnew/v3.1.0.rst
+@@ -143,13 +143,14 @@ Categorical
+ 
+ Datetimelike
+ ^^^^^^^^^^^^
++- Bug in :class:`Timestamp` constructor where passing ``np.str_`` objects would fail in Cython string parsing (:issue:`48974`)
+ - Bug in :class:`Timestamp` constructor, :class:`Timedelta` constructor, :func:`to_datetime`, and :func:`to_timedelta` with non-round ``float`` input and ``unit`` failing to raise when the value is just outside the representable bounds (:issue:`57366`)
+ - Bug in :func:`to_datetime` and :func:`to_timedelta` on ARM platforms where round ``float`` values outside the int64 domain (e.g. ``float(2**63)``) could silently produce incorrect results instead of raising (:issue:`64619`)
+ - Bug in :meth:`DatetimeArray.isin` and :meth:`TimedeltaArray.isin` where mismatched resolutions could silently truncate finer-resolution values, leading to false matches (:issue:`64545`)
+ 
+ Timedelta
+ ^^^^^^^^^
+--
++- Bug in :func:`to_timedelta` where passing ``np.str_`` objects would fail in Cython string parsing (:issue:`48974`)
+ -
+ 
+ Timezones
+@@ -204,7 +205,7 @@ I/O
+ 
+ Period
+ ^^^^^^
+--
++- Bug in :class:`Period` constructor where passing ``np.str_`` objects would fail in Cython string parsing (:issue:`48974`)
+ -
+ 
+ Plotting
+diff --git a/pandas/_libs/tslibs/conversion.pyx b/pandas/_libs/tslibs/conversion.pyx
+index e61bb376539b1..55f9401c06d7f 100644
+--- a/pandas/_libs/tslibs/conversion.pyx
++++ b/pandas/_libs/tslibs/conversion.pyx
+@@ -373,6 +373,9 @@ cdef _TSObject convert_to_tsobject(object ts, tzinfo tz, str unit,
+     obj = _TSObject()
+ 
+     if isinstance(ts, str):
++        if type(ts) is not str:
++            # GH#48974 np.str_ object
++            ts = str(ts)
+         return convert_str_to_tsobject(ts, tz, dayfirst, yearfirst)
+ 
+     if checknull_with_nat_and_na(ts):
+diff --git a/pandas/_libs/tslibs/period.pyx b/pandas/_libs/tslibs/period.pyx
+index 15df70e7b2865..2b9f98cd7bcb6 100644
+--- a/pandas/_libs/tslibs/period.pyx
++++ b/pandas/_libs/tslibs/period.pyx
+@@ -3089,6 +3089,9 @@ class Period(_Period):
+                     value = "NaT"
+ 
+                 value = str(value)
++            elif type(value) is not str:
++                # GH#48974 np.str_ object
++                value = str(value)
+             value = value.upper()
+ 
+             freqstr = freq.rule_code if freq is not None else None
+diff --git a/pandas/_libs/tslibs/timedeltas.pyx b/pandas/_libs/tslibs/timedeltas.pyx
+index d995b1f7ac3db..2f9721f0ab2cc 100644
+--- a/pandas/_libs/tslibs/timedeltas.pyx
++++ b/pandas/_libs/tslibs/timedeltas.pyx
+@@ -450,6 +450,9 @@ def array_to_timedelta64(
+                 ival = delta_to_nanoseconds(item, reso=creso)
+ 
+             elif isinstance(item, str):
++                if type(item) is not str:
++                    # GH#48974 np.str_ object
++                    item = str(item)
+                 if (
+                     (len(item) > 0 and item[0] == "P")
+                     or (len(item) > 1 and item[:2] == "-P")
+diff --git a/pandas/tests/scalar/period/test_period.py b/pandas/tests/scalar/period/test_period.py
+index 98d1f76920c3c..ccccbdc879fe1 100644
+--- a/pandas/tests/scalar/period/test_period.py
++++ b/pandas/tests/scalar/period/test_period.py
+@@ -1207,3 +1207,14 @@ def test_negone_ordinals():
+     repr(period)
+     period = Period(ordinal=-1, freq="W")
+     repr(period)
++
++
++def test_period_np_str():
++    # GH#48974 np.str_ should not break Period construction
++    result = Period(np.str_("2023-01"), freq="M")
++    expected = Period("2023-01", freq="M")
++    assert result == expected
++
++    result = Period(np.str_("2023"), freq="Y")
++    expected = Period("2023", freq="Y")
++    assert result == expected
+diff --git a/pandas/tests/scalar/timestamp/test_constructors.py b/pandas/tests/scalar/timestamp/test_constructors.py
+index a7fec25320409..44a442866e412 100644
+--- a/pandas/tests/scalar/timestamp/test_constructors.py
++++ b/pandas/tests/scalar/timestamp/test_constructors.py
+@@ -1097,6 +1097,17 @@ def test_non_nano_value():
+     assert result == -52_700_112_000 * 10**6
+ 
+ 
++def test_timestamp_constructor_np_str():
++    # GH#48974 np.str_ should not break Timestamp construction
++    result = Timestamp(np.str_("2023-01-01"))
++    expected = Timestamp("2023-01-01")
++    assert result == expected
++
++    result = Timestamp(np.str_("2023-01-01 12:34:56"))
++    expected = Timestamp("2023-01-01 12:34:56")
++    assert result == expected
++
++
+ @pytest.mark.parametrize("na_value", [None, np.nan, np.datetime64("NaT"), NaT, NA])
+ def test_timestamp_constructor_na_value(na_value):
+     # GH45481
+diff --git a/pandas/tests/tools/test_to_timedelta.py b/pandas/tests/tools/test_to_timedelta.py
+index 0fd023ec8e7ac..c5173f0023e0c 100644
+--- a/pandas/tests/tools/test_to_timedelta.py
++++ b/pandas/tests/tools/test_to_timedelta.py
+@@ -410,6 +410,18 @@ def test_from_numeric_arrow_dtype(any_numeric_ea_dtype):
+     tm.assert_series_equal(result, expected)
+ 
+ 
++def test_to_timedelta_np_str():
++    # GH#48974 np.str_ should not break timedelta parsing
++    result = to_timedelta(np.array(["1 day", "2 days"], dtype=np.str_))
++    expected = TimedeltaIndex(["1 days", "2 days"])
++    tm.assert_index_equal(result, expected)
++
++    # ISO format
++    result = to_timedelta(np.array(["P1DT1H", "P2D"], dtype=np.str_))
++    expected = TimedeltaIndex(["1 days 01:00:00", "2 days"])
++    tm.assert_index_equal(result, expected)
++
++
+ @pytest.mark.parametrize("unit", ["ns", "ms"])
+ def test_from_timedelta_arrow_dtype(unit):
+     # GH 54298

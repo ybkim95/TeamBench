@@ -1,0 +1,64 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 8201,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/8201",
+  "issue_number": null,
+  "base_sha": "f89e6c8a0d32bb679028fb8bd858a5905ae0559b",
+  "head_sha": "cab545ad4aa0c3717fafbbfe005e606d714e601d",
+  "additions": 190,
+  "deletions": 101,
+  "changed_files": [
+    "pymc/progress_bar/marimo_progress.py",
+    "pymc/progress_bar/progress.py",
+    "pymc/progress_bar/rich_progress.py",
+    "pymc/smc/parallel.py",
+    "pymc/smc/sampling.py",
+    "tests/progress_bar/test_manager.py",
+    "tests/progress_bar/test_marimo.py"
+  ],
+  "test_files": [
+    "tests/progress_bar/test_manager.py",
+    "tests/progress_bar/test_marimo.py"
+  ],
+  "source_files": [
+    "pymc/progress_bar/marimo_progress.py",
+    "pymc/progress_bar/progress.py",
+    "pymc/progress_bar/rich_progress.py",
+    "pymc/smc/parallel.py",
+    "pymc/smc/sampling.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "add_task",
+      "advance",
+      "all_step_stats",
+      "approx",
+      "backend",
+      "beta",
+      "betas",
+      "captured",
+      "capturing_init",
+      "chain"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:55:00Z"
+}

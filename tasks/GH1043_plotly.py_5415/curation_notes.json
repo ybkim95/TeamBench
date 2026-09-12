@@ -1,0 +1,52 @@
+{
+  "repo": "plotly/plotly.py",
+  "pr_number": 5415,
+  "pr_url": "https://github.com/plotly/plotly.py/pull/5415",
+  "issue_number": 3957,
+  "base_sha": "11d50b056752033df792fc56efccae5d3835cf5d",
+  "head_sha": "aa30be57c36d0ca602c0683d2232e7724f2b9dcf",
+  "additions": 32,
+  "deletions": 2,
+  "changed_files": [
+    "_plotly_utils/basevalidators.py",
+    "tests/test_optional/test_graph_objs/test_numpy.py"
+  ],
+  "test_files": [
+    "tests/test_optional/test_graph_objs/test_numpy.py"
+  ],
+  "source_files": [
+    "_plotly_utils/basevalidators.py"
+  ],
+  "parameterization": {
+    "repo": "plotly/plotly.py",
+    "repo_short": "plotly.py",
+    "parameterized_identifiers": [
+      "already",
+      "astype",
+      "cast",
+      "contexts",
+      "converted",
+      "datetime",
+      "datetime64",
+      "datetimes",
+      "defined",
+      "dtype"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:01:14Z"
+}

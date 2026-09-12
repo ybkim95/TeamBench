@@ -1,0 +1,12 @@
+diff --git a/keras/src/layers/rnn/rnn.py b/keras/src/layers/rnn/rnn.py
+--- a/keras/src/layers/rnn/rnn.py
++++ b/keras/src/layers/rnn/rnn.py
+@@ -387,7 +387,7 @@ def call(
+                     batch_size=ops.shape(sequences)[0]
+                 )
+         if self.stateful:
+-            actual_batch_size = ops.shape(sequences)[0]
++            actual_batch_size = sequences.shape[0]
+             if (
+                 self._expected_batch_size is not None
+                 and actual_batch_size is not None

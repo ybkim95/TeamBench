@@ -1,0 +1,50 @@
+diff --git a/packages/adapter-pg/src/__tests__/errors.test.ts b/packages/adapter-pg/src/__tests__/errors.test.ts
+index 7577cadb75a4..07d7a2d3b409 100644
+--- a/packages/adapter-pg/src/__tests__/errors.test.ts
++++ b/packages/adapter-pg/src/__tests__/errors.test.ts
+@@ -126,11 +126,22 @@ describe('convertDriverError', () => {
+     })
+   })
+ 
+-  it('should handle ColumnNotFound (42703)', () => {
+-    const error = { code: '42703', message: 'column "foo" does not exist', severity: 'ERROR' }
++  it.each([
++    ['unquoted column name', 'column foo does not exist', 'foo'],
++    ['quoted column name', 'column "foo" does not exist', 'foo'],
++    ['unquoted qualified column name', 'column users.first_name does not exist', 'users.first_name'],
++    ['quoted qualified column name', 'column "users"."first name" does not exist', 'users.first name'],
++    ['partially quoted qualified column name (1)', 'column users."first name" does not exist', 'users.first name'],
++    ['partially quoted qualified column name (2)', 'column "users".first_name does not exist', 'users.first_name'],
++    ['quoted column name containing spaces', 'column "first name" does not exist', 'first name'],
++    ['quoted column name containing dots', 'column "first.name" does not exist', 'first.name'],
++    ['quoted qualified column name containing dots', 'column "users"."first.name" does not exist', 'users.first.name'],
++    ['quoted column name containing escaped quotes', 'column "a""b" does not exist', 'a"b'],
++  ])('should handle ColumnNotFound (42703) with %s', (description, message, expectedColumn) => {
++    const error = { code: '42703', message, severity: 'ERROR' }
+     expect(convertDriverError(error)).toEqual({
+       kind: 'ColumnNotFound',
+-      column: 'foo',
++      column: expectedColumn,
+       originalCode: error.code,
+       originalMessage: error.message,
+     })
+diff --git a/packages/adapter-pg/src/errors.ts b/packages/adapter-pg/src/errors.ts
+index e7188172231c..1c17555317a9 100644
+--- a/packages/adapter-pg/src/errors.ts
++++ b/packages/adapter-pg/src/errors.ts
+@@ -136,11 +136,13 @@ function mapDriverError(error: DatabaseError): MappedError {
+         kind: 'TableDoesNotExist',
+         table: error.message.split(' ').at(1)?.split('"').at(1),
+       }
+-    case '42703':
++    case '42703': {
++      const rawColumn = error.message.match(/^column (.+) does not exist$/)?.at(1)
+       return {
+         kind: 'ColumnNotFound',
+-        column: error.message.split(' ').at(1)?.split('"').at(1),
++        column: rawColumn?.replace(/"((?:""|[^"])*)"/g, (_, id) => id.replaceAll('""', '"')),
+       }
++    }
+     case '42P04':
+       return {
+         kind: 'DatabaseAlreadyExists',

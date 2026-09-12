@@ -1,0 +1,239 @@
+diff --git a/docs/concepts/fields.md b/docs/concepts/fields.md
+index 240a6c3d029..fb4d61728b8 100644
+--- a/docs/concepts/fields.md
++++ b/docs/concepts/fields.md
+@@ -800,15 +800,19 @@ Read more about JSON schema customization / modification with fields in the [Cus
+ ## The `computed_field` decorator
+ 
+ ??? api "API Documentation"
+-    [`computed_field`][pydantic.fields.computed_field]<br>
++    [`@computed_field`][pydantic.fields.computed_field]<br>
+ 
+-The [`computed_field`][pydantic.fields.computed_field] decorator can be used to include [`property`][] or
+-[`cached_property`][functools.cached_property] attributes when serializing a model or dataclass.
+-The property will also be taken into account in the JSON Schema (in serialization mode).
++/// version-added | v2.13
++Computed fields can be conditionally excluded from the serialization output by using the `exclude_if` parameter of the decorator.
++///
++
++The [`@computed_field`][pydantic.fields.computed_field] decorator can be used to include [properties][property] (or
++[cached properties][functools.cached_property]) when serializing a model or dataclass.
++The property will also be included in the JSON Schema (in serialization mode).
+ 
+ !!! note
+     Properties can be useful for fields that are computed from other fields, or for fields that
+-    are expensive to be computed (and thus, are cached if using [`cached_property`][functools.cached_property]).
++    are expensive to be computed (and thus, are cached if using [`@cached_property`][functools.cached_property]).
+ 
+     However, note that Pydantic will *not* perform any additional logic on the wrapped property
+     (validation, cache invalidation, etc.).
+@@ -846,11 +850,11 @@ print(Box.model_json_schema(mode='serialization'))
+ """
+ ```
+ 
+-1. If not specified, [`computed_field`][pydantic.fields.computed_field] will implicitly convert the method
+-   to a [`property`][]. However, it is preferable to explicitly use the [`@property`][property] decorator
++1. If not specified, [`@computed_field`][pydantic.fields.computed_field] will implicitly convert the method
++   to a [`@property`][property]. However, it is preferable to explicitly use the [`@property`][property] decorator
+    for type checking purposes.
+ 
+-Here's an example using the `model_dump` method with a computed field:
++Here's an example using the [`model_dump()`][pydantic.BaseModel.model_dump] method with a computed field:
+ 
+ ```python
+ from pydantic import BaseModel, computed_field
+diff --git a/pydantic-core/python/pydantic_core/core_schema.py b/pydantic-core/python/pydantic_core/core_schema.py
+index 9b3db0531b5..95564bf4e2a 100644
+--- a/pydantic-core/python/pydantic_core/core_schema.py
++++ b/pydantic-core/python/pydantic_core/core_schema.py
+@@ -505,11 +505,17 @@ class ComputedField(TypedDict, total=False):
+     property_name: Required[str]
+     return_schema: Required[CoreSchema]
+     alias: str
++    serialization_exclude_if: Callable[[Any], bool]
+     metadata: dict[str, Any]
+ 
+ 
+ def computed_field(
+-    property_name: str, return_schema: CoreSchema, *, alias: str | None = None, metadata: dict[str, Any] | None = None
++    property_name: str,
++    return_schema: CoreSchema,
++    *,
++    alias: str | None = None,
++    serialization_exclude_if: Callable[[Any], bool] | None = None,
++    metadata: dict[str, Any] | None = None,
+ ) -> ComputedField:
+     """
+     ComputedFields are properties of a model or dataclass that are included in serialization.
+@@ -521,7 +527,12 @@ def computed_field(
+         metadata: Any other information you want to include with the schema, not used by pydantic-core
+     """
+     return _dict_not_none(
+-        type='computed-field', property_name=property_name, return_schema=return_schema, alias=alias, metadata=metadata
++        type='computed-field',
++        property_name=property_name,
++        return_schema=return_schema,
++        alias=alias,
++        serialization_exclude_if=serialization_exclude_if,
++        metadata=metadata,
+     )
+ 
+ 
+diff --git a/pydantic-core/src/serializers/computed_fields.rs b/pydantic-core/src/serializers/computed_fields.rs
+index 3ec07125cbb..5bb3841b598 100644
+--- a/pydantic-core/src/serializers/computed_fields.rs
++++ b/pydantic-core/src/serializers/computed_fields.rs
+@@ -59,8 +59,7 @@ impl ComputedFields {
+                 &value,
+                 state,
+                 missing_sentinel,
+-                // TODO: support exclude_if for computed fields?
+-                None,
++                computed_field.serialization_exclude_if.as_ref(),
+             )? {
+                 continue;
+             }
+@@ -83,6 +82,7 @@ struct ComputedField {
+     serializer: Arc<CombinedSerializer>,
+     alias: PyBackedStr,
+     serialize_by_alias: Option<bool>,
++    serialization_exclude_if: Option<Py<PyAny>>,
+ }
+ 
+ impl ComputedField {
+@@ -105,6 +105,7 @@ impl ComputedField {
+             serializer,
+             alias,
+             serialize_by_alias: config.get_as(intern!(py, "serialize_by_alias"))?,
++            serialization_exclude_if: schema.get_as(intern!(py, "serialization_exclude_if"))?,
+         })
+     }
+ }
+diff --git a/pydantic/_internal/_generate_schema.py b/pydantic/_internal/_generate_schema.py
+index f46fcb128f0..e6cea2eb76b 100644
+--- a/pydantic/_internal/_generate_schema.py
++++ b/pydantic/_internal/_generate_schema.py
+@@ -2170,8 +2170,14 @@ def _computed_field_schema(
+             pydantic_js_updates={'readOnly': True, **(pydantic_js_updates if pydantic_js_updates else {})},
+             pydantic_js_extra=pydantic_js_extra,
+         )
++        exclude_if = d.info.exclude_if
++        # TODO: Should we support exclude_if from annotations?
+         return core_schema.computed_field(
+-            d.cls_var_name, return_schema=return_type_schema, alias=d.info.alias, metadata=core_metadata
++            d.cls_var_name,
++            return_schema=return_type_schema,
++            alias=d.info.alias,
++            serialization_exclude_if=exclude_if,
++            metadata=core_metadata,
+         )
+ 
+     def _annotated_schema(self, annotated_type: Any) -> core_schema.CoreSchema:
+diff --git a/pydantic/fields.py b/pydantic/fields.py
+index 2039c488c86..21bbe59eaeb 100644
+--- a/pydantic/fields.py
++++ b/pydantic/fields.py
+@@ -1550,6 +1550,7 @@ class ComputedFieldInfo:
+     return_type: Any
+     alias: str | None
+     alias_priority: int | None
++    exclude_if: Callable[[Any], bool] | None
+     title: str | None
+     field_title_generator: Callable[[str, ComputedFieldInfo], str] | None
+     description: str | None
+@@ -1565,6 +1566,7 @@ def __copy__(self) -> Self:
+             return_type=self.return_type,
+             alias=self.alias,
+             alias_priority=self.alias_priority,
++            exclude_if=self.exclude_if,
+             title=self.title,
+             field_title_generator=self.field_title_generator,
+             description=self.description,
+@@ -1651,6 +1653,7 @@ def computed_field(
+     *,
+     alias: str | None = None,
+     alias_priority: int | None = None,
++    exclude_if: Callable[[Any], bool] | None = None,
+     title: str | None = None,
+     field_title_generator: Callable[[str, ComputedFieldInfo], str] | None = None,
+     description: str | None = None,
+@@ -1668,6 +1671,7 @@ def computed_field(
+     *,
+     alias: str | None = None,
+     alias_priority: int | None = None,
++    exclude_if: Callable[[Any], bool] | None = None,
+     title: str | None = None,
+     field_title_generator: Callable[[str, ComputedFieldInfo], str] | None = None,
+     description: str | None = None,
+@@ -1802,6 +1806,7 @@ def _private_property(self) -> int:
+         func: the function to wrap.
+         alias: alias to use when serializing this computed field, only used when `by_alias=True`
+         alias_priority: priority of the alias. This affects whether an alias generator is used
++        exclude_if: A callable that determines whether to exclude this computed field during serialization based on its value.
+         title: Title to use when including this computed field in JSON Schema
+         field_title_generator: A callable that takes a field name and returns title for it.
+         description: Description to use when including this computed field in JSON Schema, defaults to the function's
+@@ -1846,6 +1851,7 @@ def dec(f: Any) -> Any:
+             return_type,
+             alias,
+             alias_priority,
++            exclude_if,
+             title,
+             field_title_generator,
+             description,
+diff --git a/tests/test_computed_fields.py b/tests/test_computed_fields.py
+index 9fb38ef7d13..52d835e3aee 100644
+--- a/tests/test_computed_fields.py
++++ b/tests/test_computed_fields.py
+@@ -2,7 +2,7 @@
+ import sys
+ from abc import ABC, abstractmethod
+ from functools import cached_property, lru_cache, singledispatchmethod
+-from typing import Any, Callable, ClassVar, Generic, TypeVar
++from typing import Annotated, Any, Callable, ClassVar, Generic, TypeVar
+ 
+ import pytest
+ from pydantic_core import ValidationError, core_schema
+@@ -853,3 +853,42 @@ def prop(self) -> int:
+     assert m.model_dump(mode='json', exclude_computed_fields=True) == {}
+     assert m.model_dump_json() == '{"prop":1}'
+     assert m.model_dump_json(exclude_computed_fields=True) == '{}'
++
++
++def test_computed_fields_serialization_exclude_if() -> None:
++    class Model(BaseModel):
++        foo: int
++
++        @computed_field(exclude_if=lambda x: x == 1)
++        def bar(self) -> int:
++            return 1
++
++        @computed_field(exclude_if=lambda x: x == 2)
++        def baz(self) -> int:
++            return self.foo
++
++    m = Model(foo=1)
++    assert m.model_dump() == {'foo': 1, 'baz': 1}
++    assert m.model_dump(exclude_computed_fields=True) == {'foo': 1}
++    assert m.model_dump(mode='json') == {'foo': 1, 'baz': 1}
++    assert m.model_dump(mode='json', exclude_computed_fields=True) == {'foo': 1}
++    assert m.model_dump_json() == '{"foo":1,"baz":1}'
++    assert m.model_dump_json(exclude_computed_fields=True) == '{"foo":1}'
++
++
++@pytest.mark.xfail(reason='Not supported yet. See: https://github.com/pydantic/pydantic/pull/12748')
++def test_computed_fields_serialization_exclude_if_from_annotated() -> None:
++    class Model(BaseModel):
++        foo: int
++
++        @computed_field
++        def prop(self) -> Annotated[int, Field(exclude_if=lambda x: x == 1)]:
++            return 1
++
++    m = Model(foo=1)
++    assert m.model_dump() == {'foo': 1}
++    assert m.model_dump(exclude_computed_fields=True) == {'foo': 1}
++    assert m.model_dump(mode='json') == {'foo': 1}
++    assert m.model_dump(mode='json', exclude_computed_fields=True) == {'foo': 1}
++    assert m.model_dump_json() == '{"foo":1}'
++    assert m.model_dump_json(exclude_computed_fields=True) == '{"foo":1}'

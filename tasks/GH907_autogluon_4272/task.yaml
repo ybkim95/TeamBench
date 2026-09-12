@@ -1,0 +1,13 @@
+task_id: GH907_autogluon_4272
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[tabular] Fix LightGBM quantile predict_proba dtype"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/autogluon/autogluon/pull/4272"
+source_issue: "https://github.com/autogluon/autogluon/issues/4270"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

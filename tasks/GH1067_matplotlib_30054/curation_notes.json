@@ -1,0 +1,55 @@
+{
+  "repo": "matplotlib/matplotlib",
+  "pr_number": 30054,
+  "pr_url": "https://github.com/matplotlib/matplotlib/pull/30054",
+  "issue_number": 0,
+  "base_sha": "716d046cba58277b2d67e90e8cf4ac5f63283806",
+  "head_sha": "7be8ccf926a32271879000fee4061c7d16cc1368",
+  "additions": 128,
+  "deletions": 81,
+  "changed_files": [
+    "lib/matplotlib/tests/baseline_images/test_image/log_scale_image.pdf",
+    "lib/matplotlib/tests/baseline_images/test_image/log_scale_image.png",
+    "lib/matplotlib/tests/baseline_images/test_image/log_scale_image.svg",
+    "lib/matplotlib/tests/test_image.py",
+    "src/_image_wrapper.cpp"
+  ],
+  "test_files": [
+    "lib/matplotlib/tests/test_image.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "matplotlib/matplotlib",
+    "repo_short": "matplotlib",
+    "parameterized_identifiers": [
+      "actual",
+      "affine",
+      "affine_result",
+      "affine_transform",
+      "array",
+      "arrays",
+      "assert_allclose",
+      "assert_array_equal",
+      "atol",
+      "attribute"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:03:02Z"
+}

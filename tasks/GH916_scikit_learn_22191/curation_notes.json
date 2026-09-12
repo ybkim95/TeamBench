@@ -1,0 +1,53 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 22191,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/22191",
+  "issue_number": 22186,
+  "base_sha": "6145cae3d1cefaeffcb49b3080233022bcd1368d",
+  "head_sha": "5426d2c74a6007077c165f3131d78ea252e419aa",
+  "additions": 45,
+  "deletions": 20,
+  "changed_files": [
+    "doc/whats_new/v1.1.rst",
+    "sklearn/ensemble/tests/test_forest.py",
+    "sklearn/tree/_criterion.pyx",
+    "sklearn/tree/tests/test_tree.py"
+  ],
+  "test_files": [
+    "sklearn/ensemble/tests/test_forest.py",
+    "sklearn/tree/tests/test_tree.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "ababino",
+      "above",
+      "absolute",
+      "acts",
+      "always",
+      "axis",
+      "been",
+      "best",
+      "better",
+      "case"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:51:06Z"
+}

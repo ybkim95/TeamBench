@@ -1,0 +1,12 @@
+diff --git a/lib/matplotlib/contour.py b/lib/matplotlib/contour.py
+--- a/lib/matplotlib/contour.py
++++ b/lib/matplotlib/contour.py
+@@ -451,6 +451,8 @@ def add_label_near(self, x, y, inline=True, inline_spacing=5,
+         if transform is None:
+             transform = self.axes.transData
+         if transform:
++            x = self.axes.convert_xunits(x)
++            y = self.axes.convert_yunits(y)
+             x, y = transform.transform((x, y))
+ 
+         idx_level_min, idx_vtx_min, proj = self._find_nearest_contour(

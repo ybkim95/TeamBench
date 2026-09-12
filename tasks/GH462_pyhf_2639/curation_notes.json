@@ -1,0 +1,53 @@
+{
+  "repo": "scikit-hep/pyhf",
+  "pr_number": 2639,
+  "pr_url": "https://github.com/scikit-hep/pyhf/pull/2639",
+  "issue_number": 2622,
+  "base_sha": "991672ec07f625a7a32b1a88288caf857b14fedf",
+  "head_sha": "2e0d80478ab7e96e861406d1673b31a41401f5b3",
+  "additions": 72,
+  "deletions": 34,
+  "changed_files": [
+    "pyproject.toml",
+    "src/pyhf/cli/complete.py",
+    "tests/test_cli.py"
+  ],
+  "test_files": [
+    "tests/test_cli.py"
+  ],
+  "source_files": [
+    "src/pyhf/cli/complete.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-hep/pyhf",
+    "repo_short": "pyhf",
+    "parameterized_identifiers": [
+      "argument",
+      "available",
+      "backends",
+      "bash",
+      "bash_source",
+      "bashrc",
+      "been",
+      "bold",
+      "case_sensitive",
+      "click"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:20:11Z"
+}

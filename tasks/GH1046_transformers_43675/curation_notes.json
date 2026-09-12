@@ -1,0 +1,54 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 43675,
+  "pr_url": "https://github.com/huggingface/transformers/pull/43675",
+  "issue_number": null,
+  "base_sha": "8fce0a18de037689384bc4b21da5107127eda539",
+  "head_sha": "9ff1d825c710c60200c0a263fca9bb72fa24ab70",
+  "additions": 20,
+  "deletions": 24,
+  "changed_files": [
+    "src/transformers/tokenization_utils_base.py",
+    "tests/models/auto/test_tokenization_auto.py"
+  ],
+  "test_files": [
+    "tests/models/auto/test_tokenization_auto.py"
+  ],
+  "source_files": [
+    "src/transformers/tokenization_utils_base.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "block",
+      "cache_dir",
+      "cached_file",
+      "chat",
+      "commit_hash",
+      "encoding",
+      "extra",
+      "extract_commit_hash",
+      "fast_tokenizer_file",
+      "fast_tokenizer_files"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:01:26Z"
+}

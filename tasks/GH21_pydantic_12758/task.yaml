@@ -1,0 +1,13 @@
+task_id: GH21_pydantic_12758
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Try other branches in smart union in case of omit errors"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pydantic/pydantic/pull/12758"
+source_issue: "https://github.com/pydantic/pydantic/issues/12750"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

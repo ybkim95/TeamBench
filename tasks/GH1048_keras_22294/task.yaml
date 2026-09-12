@@ -1,0 +1,13 @@
+task_id: GH1048_keras_22294
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix(progbar): handle target=0 to prevent crash with empty dataset"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/keras-team/keras/pull/22294"
+source_issue: "https://github.com/keras-team/keras/issues/19687"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

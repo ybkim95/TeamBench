@@ -1,0 +1,50 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24816,
+  "pr_url": "https://github.com/scipy/scipy/pull/24816",
+  "issue_number": 23577,
+  "base_sha": "d2146e6d91237bf39de854d5a3658ca8292d8f0c",
+  "head_sha": "335330b2ad51350b20d90a14dd8733c505f09815",
+  "additions": 23,
+  "deletions": 5,
+  "changed_files": [
+    "scipy/sparse/csgraph/_tools.pyx",
+    "scipy/sparse/csgraph/tests/test_conversions.py"
+  ],
+  "test_files": [
+    "scipy/sparse/csgraph/tests/test_conversions.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "algorithm",
+      "along",
+      "array",
+      "array_like",
+      "asarray",
+      "col_indices",
+      "csgraph",
+      "csgraph_from_dense",
+      "csgraph_orig",
+      "csgraph_to_dense"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:54:24Z"
+}

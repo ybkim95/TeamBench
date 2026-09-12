@@ -1,0 +1,13 @@
+task_id: GH1052_statsmodels_9524
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Fix bug in Runs.runs_test for the case of a single run yielding …"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/statsmodels/statsmodels/pull/9524"
+source_issue: "https://github.com/statsmodels/statsmodels/issues/9523"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

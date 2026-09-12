@@ -1,0 +1,54 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 162439,
+  "pr_url": "https://github.com/home-assistant/core/pull/162439",
+  "issue_number": 157636,
+  "base_sha": "0e439583a6c69aa30b49d518503fcc151b8ff78e",
+  "head_sha": "e95430920f7061948e0eba79f78f8a47398841de",
+  "additions": 68,
+  "deletions": 16,
+  "changed_files": [
+    "homeassistant/components/snapcast/media_player.py",
+    "tests/components/snapcast/conftest.py",
+    "tests/components/snapcast/test_media_player.py"
+  ],
+  "test_files": [
+    "tests/components/snapcast/conftest.py",
+    "tests/components/snapcast/test_media_player.py"
+  ],
+  "source_files": [
+    "homeassistant/components/snapcast/media_player.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "add_client",
+      "assert_not_awaited",
+      "assertion",
+      "async_unjoin_player",
+      "attempt",
+      "attributes",
+      "call",
+      "client",
+      "collections",
+      "config"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:30Z"
+}

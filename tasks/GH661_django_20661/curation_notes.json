@@ -1,0 +1,57 @@
+{
+  "repo": "django/django",
+  "pr_number": 20661,
+  "pr_url": "https://github.com/django/django/pull/20661",
+  "issue_number": null,
+  "base_sha": "d9adcfbd5e3ba5859cc0ce6e2e67f533efbc8f9b",
+  "head_sha": "f2169ef3688422d394d36007e320bac839117f0b",
+  "additions": 80,
+  "deletions": 33,
+  "changed_files": [
+    "tests/aggregation_regress/tests.py",
+    "tests/lookup/tests.py",
+    "tests/many_to_one/tests.py",
+    "tests/queries/tests.py"
+  ],
+  "test_files": [
+    "tests/aggregation_regress/tests.py",
+    "tests/lookup/tests.py",
+    "tests/many_to_one/tests.py",
+    "tests/queries/tests.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "django/django",
+    "repo_short": "django",
+    "parameterized_identifiers": [
+      "aggregate",
+      "aggregates",
+      "aggregations",
+      "aliases",
+      "annotate",
+      "annotation",
+      "annotations",
+      "article",
+      "article__headline",
+      "article__tag__name"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:32:01Z"
+}

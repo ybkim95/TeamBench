@@ -1,0 +1,55 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1512,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1512",
+  "issue_number": null,
+  "base_sha": "cd0e9fb0d2de71ea5b1718f8d5b671587d9bca5b",
+  "head_sha": "b8d1cb2b58d384395a90eb3bc9625918fe9d9648",
+  "additions": 116,
+  "deletions": 0,
+  "changed_files": [
+    ".github/copilot-instructions.md",
+    "flaml/automl/model.py",
+    "test/automl/test_sklearn_17_compat.py"
+  ],
+  "test_files": [
+    "test/automl/test_sklearn_17_compat.py"
+  ],
+  "source_files": [
+    "flaml/automl/model.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "adding",
+      "always",
+      "attribute",
+      "automl",
+      "avoid",
+      "base",
+      "before",
+      "binary",
+      "checking",
+      "classes_"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:29Z"
+}

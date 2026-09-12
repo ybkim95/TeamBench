@@ -1,0 +1,52 @@
+{
+  "repo": "python-poetry/poetry",
+  "pr_number": 10721,
+  "pr_url": "https://github.com/python-poetry/poetry/pull/10721",
+  "issue_number": 10422,
+  "base_sha": "d4e9399affb2c0f4b1f835131733f3185aa0d1f6",
+  "head_sha": "29b978473eb914a8ea04d8c78654d0ab853c9592",
+  "additions": 148,
+  "deletions": 0,
+  "changed_files": [
+    "src/poetry/console/commands/update.py",
+    "tests/console/commands/test_update.py"
+  ],
+  "test_files": [
+    "tests/console/commands/test_update.py"
+  ],
+  "source_files": [
+    "src/poetry/console/commands/update.py"
+  ],
+  "parameterization": {
+    "repo": "python-poetry/poetry",
+    "repo_short": "poetry",
+    "parameterized_identifiers": [
+      "accepted",
+      "accepts",
+      "activated_groups",
+      "add_package",
+      "all_dependencies",
+      "all_requires",
+      "allowed",
+      "annotations",
+      "argument",
+      "arguments"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:33:31Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH224_core_150355
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix for deCONZ issue - Detected that integration 'deconz' calls device_registry.async_get_or_create referencing a non existing via_device - #134539"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/150355"
+source_issue: "https://github.com/home-assistant/core/issues/134539"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

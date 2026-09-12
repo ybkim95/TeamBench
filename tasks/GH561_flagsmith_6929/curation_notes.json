@@ -1,0 +1,54 @@
+{
+  "repo": "Flagsmith/flagsmith",
+  "pr_number": 6929,
+  "pr_url": "https://github.com/Flagsmith/flagsmith/pull/6929",
+  "issue_number": 6914,
+  "base_sha": "1c67f96f779046ff99ca835b23873c27cf368e33",
+  "head_sha": "3a96a9f5d68ceaa7582f0db6ec350a5063346768",
+  "additions": 43,
+  "deletions": 11,
+  "changed_files": [
+    "api/segments/serializers.py",
+    "api/segments/views.py",
+    "api/tests/unit/segments/test_unit_segments_views.py"
+  ],
+  "test_files": [
+    "api/tests/unit/segments/test_unit_segments_views.py"
+  ],
+  "source_files": [
+    "api/segments/serializers.py",
+    "api/segments/views.py"
+  ],
+  "parameterization": {
+    "repo": "Flagsmith/flagsmith",
+    "repo_short": "flagsmith",
+    "parameterized_identifiers": [
+      "a_wild_pokemon",
+      "action",
+      "admin_client",
+      "allowed",
+      "assignment",
+      "attr",
+      "attrs",
+      "call",
+      "common",
+      "conditions"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:25:59Z"
+}

@@ -1,0 +1,56 @@
+{
+  "repo": "autogluon/autogluon",
+  "pr_number": 5436,
+  "pr_url": "https://github.com/autogluon/autogluon/pull/5436",
+  "issue_number": null,
+  "base_sha": "edb959764f3d32c9dc78379f7998bc3492daa974",
+  "head_sha": "e06ad2932b55442dbe7a34b27b80849b1b664fe2",
+  "additions": 92,
+  "deletions": 17,
+  "changed_files": [
+    "timeseries/src/autogluon/timeseries/models/abstract/abstract_timeseries_model.py",
+    "timeseries/src/autogluon/timeseries/trainer/ensemble_composer.py",
+    "timeseries/tests/unittests/trainer/test_ensemble_composer.py"
+  ],
+  "test_files": [
+    "timeseries/tests/unittests/trainer/test_ensemble_composer.py"
+  ],
+  "source_files": [
+    "timeseries/src/autogluon/timeseries/models/abstract/abstract_timeseries_model.py",
+    "timeseries/src/autogluon/timeseries/trainer/ensemble_composer.py"
+  ],
+  "parameterization": {
+    "repo": "autogluon/autogluon",
+    "repo_short": "autogluon",
+    "parameterized_identifiers": [
+      "additional",
+      "advance",
+      "ancestor",
+      "ancestor_model",
+      "ancestor_name",
+      "ancestor_sum",
+      "ancestors",
+      "arguments",
+      "base",
+      "base_models"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:02:37Z"
+}

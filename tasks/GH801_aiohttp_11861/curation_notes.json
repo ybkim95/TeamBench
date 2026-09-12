@@ -1,0 +1,56 @@
+{
+  "repo": "aio-libs/aiohttp",
+  "pr_number": 11861,
+  "pr_url": "https://github.com/aio-libs/aiohttp/pull/11861",
+  "issue_number": null,
+  "base_sha": "36649001bf3b479ce2e377a08d8708b35ac6c385",
+  "head_sha": "0e9d8d8a4f90e9899b50aa7070023c5e621e983a",
+  "additions": 123,
+  "deletions": 24,
+  "changed_files": [
+    "CHANGES/2596.bugfix.rst",
+    "CONTRIBUTORS.txt",
+    "aiohttp/connector.py",
+    "tests/test_connector.py"
+  ],
+  "test_files": [
+    "tests/test_connector.py"
+  ],
+  "source_files": [
+    "aiohttp/connector.py"
+  ],
+  "parameterization": {
+    "repo": "aio-libs/aiohttp",
+    "repo_short": "aiohttp",
+    "parameterized_identifiers": [
+      "aiohttp",
+      "assignment",
+      "asyncio",
+      "auth",
+      "authentication",
+      "authorization",
+      "autospec",
+      "available",
+      "avoid",
+      "becoming"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:39:56Z"
+}

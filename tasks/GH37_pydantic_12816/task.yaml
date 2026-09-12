@@ -1,0 +1,13 @@
+task_id: GH37_pydantic_12816
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Ensure `__pydantic_private__` is set in `model_construct()` with user-defined `model_post_init()`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pydantic/pydantic/pull/12816"
+source_issue: "https://github.com/pydantic/pydantic/issues/12813"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

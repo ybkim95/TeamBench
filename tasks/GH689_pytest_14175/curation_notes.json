@@ -1,0 +1,59 @@
+{
+  "repo": "pytest-dev/pytest",
+  "pr_number": 14175,
+  "pr_url": "https://github.com/pytest-dev/pytest/pull/14175",
+  "issue_number": null,
+  "base_sha": "abdb2b601d262edf6ccdaa396ee0d09a4a6bb040",
+  "head_sha": "51eb7a4e1788ca2a05ca4599ad4d371b3e796321",
+  "additions": 26,
+  "deletions": 20,
+  "changed_files": [
+    ".pre-commit-config.yaml",
+    "pyproject.toml",
+    "src/_pytest/config/findpaths.py",
+    "src/_pytest/terminal.py",
+    "src/_pytest/timing.py",
+    "testing/_py/test_local.py"
+  ],
+  "test_files": [
+    "src/_pytest/config/findpaths.py",
+    "src/_pytest/terminal.py",
+    "src/_pytest/timing.py",
+    "testing/_py/test_local.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pytest-dev/pytest",
+    "repo_short": "pytest",
+    "parameterized_identifiers": [
+      "activated",
+      "actual",
+      "alias",
+      "alternative",
+      "always",
+      "annotated",
+      "argument",
+      "assigned",
+      "assignment",
+      "astral"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:33:36Z"
+}

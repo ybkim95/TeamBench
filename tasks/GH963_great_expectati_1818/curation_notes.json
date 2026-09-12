@@ -1,0 +1,55 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 1818,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/1818",
+  "issue_number": null,
+  "base_sha": "2670010803a62add52a74fab50eb780684c3f710",
+  "head_sha": "d073927f03ca5282fa94756f10abecfe1c35a877",
+  "additions": 24,
+  "deletions": 1,
+  "changed_files": [
+    "docs/changelog.rst",
+    "great_expectations/render/renderer/suite_edit_notebook_renderer.py",
+    "tests/render/renderer/test_suite_edit_notebook_renderer.py"
+  ],
+  "test_files": [
+    "tests/render/renderer/test_suite_edit_notebook_renderer.py"
+  ],
+  "source_files": [
+    "great_expectations/render/renderer/suite_edit_notebook_renderer.py"
+  ],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "base_dir",
+      "batch_kwargs",
+      "break",
+      "bucket",
+      "data",
+      "empty_data_context",
+      "expected",
+      "isabs",
+      "join",
+      "keys"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:54:45Z"
+}

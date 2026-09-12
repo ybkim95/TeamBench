@@ -1,0 +1,51 @@
+{
+  "repo": "sktime/sktime",
+  "pr_number": 4432,
+  "pr_url": "https://github.com/sktime/sktime/pull/4432",
+  "issue_number": null,
+  "base_sha": "d9a038f9f259637aee5180bf7b0b420c93300e91",
+  "head_sha": "bfb53edaee0bdc28a2dfc1a27fea98588ebd3003",
+  "additions": 2,
+  "deletions": 1,
+  "changed_files": [
+    "sktime/tests/_config.py"
+  ],
+  "test_files": [
+    "sktime/tests/_config.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "sktime/sktime",
+    "repo_short": "sktime",
+    "parameterized_identifiers": [
+      "addition",
+      "distinguish",
+      "estimator",
+      "failure",
+      "further",
+      "hierarchies",
+      "issue",
+      "monotonicity",
+      "prediction",
+      "quantile"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:07:55Z"
+}

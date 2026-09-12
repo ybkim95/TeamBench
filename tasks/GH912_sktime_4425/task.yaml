@@ -1,0 +1,13 @@
+task_id: GH912_sktime_4425
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] temporarily skip `test_predict_quantiles` for `VAR` due to known sporadic bug #4420"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/4425"
+source_issue: "https://github.com/sktime/sktime/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

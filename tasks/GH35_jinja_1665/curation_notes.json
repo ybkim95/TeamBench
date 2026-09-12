@@ -1,0 +1,53 @@
+{
+  "repo": "pallets/jinja",
+  "pr_number": 1665,
+  "pr_url": "https://github.com/pallets/jinja/pull/1665",
+  "issue_number": 1253,
+  "base_sha": "fbc3a696c729d177340cc089531de7e2e5b6f065",
+  "head_sha": "66587ce989e5a478e0bb165371fa2b9d42b7040f",
+  "additions": 20,
+  "deletions": 10,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/jinja2/idtracking.py",
+    "tests/test_regression.py"
+  ],
+  "test_files": [
+    "tests/test_regression.py"
+  ],
+  "source_files": [
+    "src/jinja2/idtracking.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/jinja",
+    "repo_short": "jinja",
+    "parameterized_identifiers": [
+      "assignment",
+      "attribute",
+      "blocks",
+      "branch",
+      "branch_count",
+      "branch_symbols",
+      "branch_update",
+      "branches",
+      "cause",
+      "considered"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:34:20Z"
+}

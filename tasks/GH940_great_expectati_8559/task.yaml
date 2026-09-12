@@ -1,0 +1,13 @@
+task_id: GH940_great_expectati_8559
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUGFIX] Use a randomized schema name when running snowflake tests to support concurrency"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/great-expectations/great_expectations/pull/8559"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

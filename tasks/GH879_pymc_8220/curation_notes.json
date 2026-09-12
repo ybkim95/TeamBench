@@ -1,0 +1,52 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 8220,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/8220",
+  "issue_number": 8219,
+  "base_sha": "8a1896bad8a12fecc14bb59e71f60c01475581bb",
+  "head_sha": "e3f2f6e7217daf95d113507d4da31833f1f6af9f",
+  "additions": 11,
+  "deletions": 2,
+  "changed_files": [
+    "pymc/distributions/shape_utils.py",
+    "tests/sampling/test_forward.py"
+  ],
+  "test_files": [
+    "tests/sampling/test_forward.py"
+  ],
+  "source_files": [
+    "pymc/distributions/shape_utils.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "a_ancestor1",
+      "a_ancestor2",
+      "array_equiv",
+      "as_tensor",
+      "backends",
+      "base",
+      "cases",
+      "change_dist_size",
+      "change_rv_size",
+      "compile"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:14Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH890_pandas_64817
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: fix KeyError when looking up tuple in object Index with duplicates"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64817"
+source_issue: "https://github.com/pandas-dev/pandas/issues/37800"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

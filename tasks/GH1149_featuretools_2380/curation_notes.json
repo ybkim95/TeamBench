@@ -1,0 +1,69 @@
+{
+  "repo": "alteryx/featuretools",
+  "pr_number": 2380,
+  "pr_url": "https://github.com/alteryx/featuretools/pull/2380",
+  "issue_number": 2323,
+  "base_sha": "4a88d6f1de9ded010778a3ea4663019ae31de5a6",
+  "head_sha": "b90db9cf7c1aeab6071e67ef56e318e825dfe63f",
+  "additions": 217,
+  "deletions": 132,
+  "changed_files": [
+    "docs/source/release_notes.rst",
+    "featuretools/primitives/base/aggregation_primitive_base.py",
+    "featuretools/primitives/base/primitive_base.py",
+    "featuretools/synthesis/deep_feature_synthesis.py",
+    "featuretools/synthesis/utils.py",
+    "featuretools/tests/conftest.py",
+    "featuretools/tests/primitive_tests/test_agg_feats.py",
+    "featuretools/tests/primitive_tests/test_feature_base.py",
+    "featuretools/tests/synthesis/test_deep_feature_synthesis.py",
+    "featuretools/tests/testing_utils/__init__.py",
+    "featuretools/tests/testing_utils/features.py"
+  ],
+  "test_files": [
+    "featuretools/tests/conftest.py",
+    "featuretools/tests/primitive_tests/test_agg_feats.py",
+    "featuretools/tests/primitive_tests/test_feature_base.py",
+    "featuretools/tests/synthesis/test_deep_feature_synthesis.py",
+    "featuretools/tests/testing_utils/__init__.py",
+    "featuretools/tests/testing_utils/features.py"
+  ],
+  "source_files": [
+    "featuretools/primitives/base/aggregation_primitive_base.py",
+    "featuretools/primitives/base/primitive_base.py",
+    "featuretools/synthesis/deep_feature_synthesis.py",
+    "featuretools/synthesis/utils.py"
+  ],
+  "parameterization": {
+    "repo": "alteryx/featuretools",
+    "repo_short": "featuretools",
+    "parameterized_identifiers": [
+      "absolute",
+      "agg_prim",
+      "agg_primitives",
+      "agg_type",
+      "attributes",
+      "backward",
+      "backward_path",
+      "base",
+      "base_feature_names",
+      "base_features"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:09:32Z"
+}

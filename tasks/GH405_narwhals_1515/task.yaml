@@ -1,0 +1,13 @@
+task_id: GH405_narwhals_1515
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: allow np.scalar to be used in Series.__getitem__"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/narwhals-dev/narwhals/pull/1515"
+source_issue: "https://github.com/narwhals-dev/narwhals/issues/1493"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

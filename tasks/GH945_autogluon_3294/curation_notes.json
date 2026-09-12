@@ -1,0 +1,56 @@
+{
+  "repo": "autogluon/autogluon",
+  "pr_number": 3294,
+  "pr_url": "https://github.com/autogluon/autogluon/pull/3294",
+  "issue_number": null,
+  "base_sha": "7936bc39bb8d2c379adc627b49af4f6a278c5118",
+  "head_sha": "176c66355733d720d82f5dfa1c6c253311d1c484",
+  "additions": 114,
+  "deletions": 68,
+  "changed_files": [
+    "core/src/autogluon/core/utils/utils.py",
+    "tabular/src/autogluon/tabular/learner/abstract_learner.py",
+    "tabular/tests/unittests/test_tabular.py"
+  ],
+  "test_files": [
+    "tabular/tests/unittests/test_tabular.py"
+  ],
+  "source_files": [
+    "core/src/autogluon/core/utils/utils.py",
+    "tabular/src/autogluon/tabular/learner/abstract_learner.py"
+  ],
+  "parameterization": {
+    "repo": "autogluon/autogluon",
+    "repo_short": "autogluon",
+    "parameterized_identifiers": [
+      "align",
+      "array",
+      "array_equal",
+      "as_multiclass",
+      "as_pandas",
+      "binary",
+      "calls",
+      "can_infer",
+      "can_predict_proba",
+      "class_labels"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:53:15Z"
+}

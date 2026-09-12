@@ -1,0 +1,51 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 22458,
+  "pr_url": "https://github.com/keras-team/keras/pull/22458",
+  "issue_number": null,
+  "base_sha": "fd60d40519008b97941fa4a0c480bc5c2d492b89",
+  "head_sha": "856f54b10c863c2161f4a38de24aad7f00e46a9d",
+  "additions": 5,
+  "deletions": 5,
+  "changed_files": [
+    "keras/src/trainers/trainer_test.py"
+  ],
+  "test_files": [
+    "keras/src/trainers/trainer_test.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "backend",
+      "crashes",
+      "dataset_kwargs",
+      "dataset_type",
+      "datasets",
+      "fit_kwargs",
+      "grain_datast",
+      "jit_compile",
+      "pytest",
+      "skip"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:10:14Z"
+}

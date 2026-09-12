@@ -5,7 +5,8 @@ REPORTS="${2:-${REPORTS_DIR:-/reports}}"
 SUBMISSION="${3:-/submission}"
 TASK_DIR="${4:-/task}"
 cd "$WORKSPACE"
-pip install ruff pylint 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require ruff pylint || true
 
 ruff_output=$(ruff check app/ 2>&1 || true)
 ruff_errors=$(echo "$ruff_output" | grep -c "error\|warning\|E[0-9]\|W[0-9]\|F[0-9]" || true)
@@ -25,3 +26,5 @@ partial_score=$(awk "BEGIN {printf \"%.1f\", $partial / 2}")
 cat > "${REPORTS}/score.json" <<EOF
 {"pass":$( [ "$pass" = "true" ] && echo "true" || echo "false" ),"secondary":{"partial_score":$partial_score,"ruff_errors":$ruff_errors,"pylint_score":"${pylint_score:-0}"},"failure_modes":[]}
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

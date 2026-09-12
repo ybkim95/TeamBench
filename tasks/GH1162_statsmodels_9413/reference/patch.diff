@@ -1,0 +1,600 @@
+diff --git a/statsmodels/tsa/vector_ar/tests/test_var.py b/statsmodels/tsa/vector_ar/tests/test_var.py
+index e370279679f..38ac4e21cd8 100644
+--- a/statsmodels/tsa/vector_ar/tests/test_var.py
++++ b/statsmodels/tsa/vector_ar/tests/test_var.py
+@@ -1,6 +1,7 @@
+ """
+ Test VAR Model
+ """
++
+ from statsmodels.compat.pandas import QUARTER_END, assert_index_equal
+ from statsmodels.compat.python import lrange
+ 
+@@ -19,7 +20,7 @@
+ from statsmodels.tools.sm_exceptions import ValueWarning
+ from statsmodels.tsa.base.datetools import dates_from_str
+ import statsmodels.tsa.vector_ar.util as util
+-from statsmodels.tsa.vector_ar.var_model import VAR, var_acf
++from statsmodels.tsa.vector_ar.var_model import VAR, forecast, var_acf
+ 
+ DECIMAL_12 = 12
+ DECIMAL_6 = 6
+@@ -142,12 +143,8 @@ def __init__(self):
+         data = var_results.__dict__
+ 
+         self.names = data["coefs"].dtype.names
+-        self.params = data["coefs"].view(
+-            (float, len(self.names)), type=np.ndarray
+-        )
+-        self.stderr = data["stderr"].view(
+-            (float, len(self.names)), type=np.ndarray
+-        )
++        self.params = data["coefs"].view((float, len(self.names)), type=np.ndarray)
++        self.stderr = data["stderr"].view((float, len(self.names)), type=np.ndarray)
+ 
+         self.irf = data["irf"].item()
+         self.orth_irf = data["orthirf"].item()
+@@ -223,9 +220,7 @@ def test_plot_cum_effects(self, close_figures):
+     @pytest.mark.matplotlib
+     def test_plot_figsizes(self):
+         assert_equal(self.irf.plot().get_size_inches(), (10, 10))
+-        assert_equal(
+-            self.irf.plot(figsize=(14, 10)).get_size_inches(), (14, 10)
+-        )
++        assert_equal(self.irf.plot(figsize=(14, 10)).get_size_inches(), (14, 10))
+ 
+         assert_equal(self.irf.plot_cum_effects().get_size_inches(), (10, 10))
+         assert_equal(
+@@ -251,16 +246,11 @@ def test_fevd_repr(self):
+     def test_fevd_summary(self):
+         self.fevd.summary()
+ 
+-    @pytest.mark.xfail(
+-        reason="FEVD.cov() is not implemented",
+-        raises=NotImplementedError,
+-        strict=True,
+-    )
+     def test_fevd_cov(self):
+         # test does not crash
+         # not implemented
+-        covs = self.fevd.cov()
+-        raise NotImplementedError
++        with pytest.raises(NotImplementedError):
++            self.fevd.cov()
+ 
+ 
+ class TestVARResults(CheckIRF, CheckFEVD):
+@@ -285,7 +275,7 @@ def test_constructor(self):
+         # make sure this works with no names
+         ndarr = self.data.view((float, 3), type=np.ndarray)
+         model = VAR(ndarr)
+-        res = model.fit(self.p)
++        model.fit(self.p)
+ 
+     def test_names(self):
+         assert_equal(self.model.endog_names, self.ref.names)
+@@ -309,8 +299,8 @@ def test_get_eq_index(self):
+     @pytest.mark.smoke
+     def test_repr(self):
+         # just want this to work
+-        foo = str(self.res)
+-        bar = repr(self.res)
++        str(self.res)
++        repr(self.res)
+ 
+     def test_params(self):
+         assert_almost_equal(self.res.params, self.ref.params, DECIMAL_3)
+@@ -335,6 +325,7 @@ def test_pvalues(self):
+     @pytest.mark.smoke
+     def test_summary(self):
+         summ = self.res.summary()
++        assert "Summary of " in str(summ)
+ 
+     def test_detsig(self):
+         assert_almost_equal(self.res.detomega, self.ref.detomega)
+@@ -355,7 +346,8 @@ def test_lagorder_select(self):
+         ics = ["aic", "fpe", "hqic", "bic"]
+ 
+         for ic in ics:
+-            res = self.model.fit(maxlags=10, ic=ic, verbose=True)
++            # Smoke test
++            self.model.fit(maxlags=10, ic=ic, verbose=True)
+ 
+         with pytest.raises(Exception):
+             self.model.fit(ic="foo")
+@@ -407,7 +399,9 @@ def test_causality_no_lags(self):
+     @pytest.mark.smoke
+     def test_select_order(self):
+         result = self.model.fit(10, ic="aic", verbose=True)
++        assert isinstance(result.params, np.ndarray)
+         result = self.model.fit(10, ic="fpe", verbose=True)
++        assert isinstance(result.params, np.ndarray)
+ 
+         # bug
+         model = VAR(self.model.endog)
+@@ -448,6 +442,7 @@ def test_acf_2_lags(self):
+     @pytest.mark.smoke
+     def test_acorr(self):
+         acorrs = self.res.acorr(10)
++        assert acorrs.shape == (11, 3, 3)
+ 
+     @pytest.mark.smoke
+     def test_forecast(self):
+@@ -622,20 +617,17 @@ def test_approx_mse(self):
+     def test_irf_stderr(self):
+         irf_stderr = self.irf.stderr(orth=False)
+         for i in range(1, 1 + len(self.lut.irf_stderr)):
+-            assert_almost_equal(
+-                np.round(irf_stderr[i], 3), self.lut.irf_stderr[i - 1]
+-            )
++            assert_almost_equal(np.round(irf_stderr[i], 3), self.lut.irf_stderr[i - 1])
+ 
+     def test_cum_irf_stderr(self):
+         stderr = self.irf.cum_effect_stderr(orth=False)
+         for i in range(1, 1 + len(self.lut.cum_irf_stderr)):
+-            assert_almost_equal(
+-                np.round(stderr[i], 3), self.lut.cum_irf_stderr[i - 1]
+-            )
++            assert_almost_equal(np.round(stderr[i], 3), self.lut.cum_irf_stderr[i - 1])
+ 
+     def test_lr_effect_stderr(self):
+         stderr = self.irf.lr_effect_stderr(orth=False)
+         orth_stderr = self.irf.lr_effect_stderr(orth=True)
++        assert orth_stderr.shape == stderr.shape
+         assert_almost_equal(np.round(stderr, 3), self.lut.lr_stderr)
+ 
+ 
+@@ -679,11 +671,14 @@ def test_var_trend():
+     model = VAR(data)
+     results = model.fit(4)  # , trend = 'c')
+     irf = results.irf(10)
++    assert irf.irfs.shape == (11, 3, 3)
+ 
+     data_nc = data - data.mean(0)
+     model_nc = VAR(data_nc)
+-    results_nc = model_nc.fit(4, trend="n")
++    # Fit once with a trend
++    model_nc.fit(4, trend="n")
+     with pytest.raises(ValueError):
++        # Attempt to change the trend
+         model.fit(4, trend="t")
+ 
+ 
+@@ -746,15 +741,13 @@ def test_process(self, close_figures):
+         y_sim_init_2 = res0.simulate_var(seed=987128, initial_values=data[-1])
+         assert_allclose(y_sim_init[:k_ar], data[-k_ar:])
+         assert_allclose(y_sim_init_2[0], data[-1])
+-        assert_allclose(y_sim_init_2[k_ar-1], data[-1])
++        assert_allclose(y_sim_init_2[k_ar - 1], data[-1])
+ 
+         y_sim_init_3 = resl1.simulate_var(seed=987128, initial_values=data[-1])
+         assert_allclose(y_sim_init_3[0], data[-1])
+ 
+         n_sim = 900
+-        ysimz = res0.simulate_var(
+-            steps=n_sim, offset=np.zeros((n_sim, 3)), seed=987128
+-        )
++        ysimz = res0.simulate_var(steps=n_sim, offset=np.zeros((n_sim, 3)), seed=987128)
+         zero3 = np.zeros(3)
+         assert_allclose(ysimz.mean(0), zero3, atol=0.4)
+         # initialization does not use long run intercept, see #4542
+@@ -767,7 +760,8 @@ def test_process(self, close_figures):
+         assert_equal(res0.k_exog, 1)
+         assert_equal(res0.k_ar, 2)
+ 
+-        irf = res0.irf()
++        # Smoke test
++        res0.irf()
+ 
+     @pytest.mark.matplotlib
+     def test_process_plotting(self, close_figures):
+@@ -843,9 +837,7 @@ def test_exog(self):
+         # TODO: intercept differs by 4e-3, others are < 1e-12
+         assert_allclose(res_lin_trend.params, res_lin_trend1.params, rtol=5e-3)
+         assert_allclose(res_lin_trend.params, res_lin_trend2.params, rtol=5e-3)
+-        assert_allclose(
+-            res_lin_trend1.params, res_lin_trend2.params, rtol=1e-10
+-        )
++        assert_allclose(res_lin_trend1.params, res_lin_trend2.params, rtol=1e-10)
+ 
+         y1 = res_lin_trend.simulate_var(seed=987128)
+         y2 = res_lin_trend1.simulate_var(seed=987128)
+@@ -857,18 +849,12 @@ def test_exog(self):
+         h = 10
+         fc1 = res_lin_trend.forecast(res_lin_trend.endog[-2:], h)
+         exf = np.arange(len(data), len(data) + h)
+-        fc2 = res_lin_trend1.forecast(
+-            res_lin_trend1.endog[-2:], h, exog_future=exf
+-        )
++        fc2 = res_lin_trend1.forecast(res_lin_trend1.endog[-2:], h, exog_future=exf)
+         with pytest.raises(ValueError, match="exog_future only has"):
+             wrong_exf = np.arange(len(data), len(data) + h // 2)
+-            res_lin_trend1.forecast(
+-                res_lin_trend1.endog[-2:], h, exog_future=wrong_exf
+-            )
++            res_lin_trend1.forecast(res_lin_trend1.endog[-2:], h, exog_future=wrong_exf)
+         exf2 = exf[:, None] ** [0, 1]
+-        fc3 = res_lin_trend2.forecast(
+-            res_lin_trend2.endog[-2:], h, exog_future=exf2
+-        )
++        fc3 = res_lin_trend2.forecast(res_lin_trend2.endog[-2:], h, exog_future=exf2)
+         assert_allclose(fc2, fc1, rtol=1e-12, atol=1e-12)
+         assert_allclose(fc3, fc1, rtol=1e-12, atol=1e-12)
+         assert_allclose(fc3, fc2, rtol=1e-12, atol=1e-12)
+@@ -900,8 +886,8 @@ def test_multiple_simulations(self):
+         sim2_init = res0.simulate_var(
+             seed=987128, steps=10, initial_values=init, nsimulations=2
+         )
+-        assert_allclose(sim2_init[0,:k_ar], init)
+-        assert_allclose(sim2_init[1,:k_ar], init)
++        assert_allclose(sim2_init[0, :k_ar], init)
++        assert_allclose(sim2_init[1, :k_ar], init)
+ 
+ 
+ def test_var_cov_params_pandas(bivariate_var_data):
+@@ -919,9 +905,7 @@ def test_var_cov_params_pandas(bivariate_var_data):
+ def test_summaries_exog(reset_randomstate):
+     y = np.random.standard_normal((500, 6))
+     df = pd.DataFrame(y)
+-    cols = [f"endog_{i}" for i in range(2)] + [
+-        f"exog_{i}" for i in range(4)
+-    ]
++    cols = [f"endog_{i}" for i in range(2)] + [f"exog_{i}" for i in range(4)]
+     df.columns = cols
+     df.index = pd.date_range("1-1-1950", periods=500, freq="MS")
+     endog = df.iloc[:, :2]
+@@ -978,9 +962,7 @@ def test_correct_nobs():
+     # make a VAR model
+     model = VAR(endog=data, exog=data_exog)
+     results = model.fit(maxlags=1)
+-    irf = results.irf_resim(
+-        orth=False, repl=100, steps=10, seed=1, burn=100, cum=False
+-    )
++    irf = results.irf_resim(orth=False, repl=100, steps=10, seed=1, burn=100, cum=False)
+     assert irf.shape == (100, 11, 3, 3)
+ 
+ 
+@@ -991,7 +973,26 @@ def test_irf_err_bands():
+     model = VAR(data)
+     results = model.fit(maxlags=2)
+     irf = results.irf()
+-    bands_sz1 = irf.err_band_sz1()
+-    bands_sz2 = irf.err_band_sz2()
+-    bands_sz3 = irf.err_band_sz3()
+-    bands_mc = irf.errband_mc()
++    # Smoke tests only
++    irf.err_band_sz1()
++    irf.err_band_sz2()
++    irf.err_band_sz3()
++    irf.errband_mc()
++
++
++def test_0_lag(reset_randomstate):
++    # GH 9412
++    y = np.random.rand(300, 2)
++    results = VAR(y).fit(maxlags=1, ic="aic", trend="c")
++    assert results.params.shape == (1, 2)
++    fcasts = results.forecast(y, steps=5)
++    assert_allclose(fcasts, np.ones((5, 1)) * results.params)
++
++
++def test_forecast_wrong_shape_params(reset_randomstate):
++    # GH 9412
++    y = np.random.rand(300, 2)
++    mod = VAR(y)
++    results = mod.fit(maxlags=1, ic="aic", trend="c")
++    with pytest.raises(ValueError):
++        forecast(y, results.params, results.params, steps=5)
+diff --git a/statsmodels/tsa/vector_ar/var_model.py b/statsmodels/tsa/vector_ar/var_model.py
+index 9adb66784e2..648a47bbf72 100644
+--- a/statsmodels/tsa/vector_ar/var_model.py
++++ b/statsmodels/tsa/vector_ar/var_model.py
+@@ -5,6 +5,7 @@
+ ----------
+ Lütkepohl (2005) New Introduction to Multiple Time Series Analysis
+ """
++
+ from __future__ import annotations
+ 
+ from statsmodels.compat.python import lrange
+@@ -226,12 +227,13 @@ def forecast(y, coefs, trend_coefs, steps, exog=None):
+     -----
+     Lütkepohl p. 37
+     """
+-    p = len(coefs)
+-    k = len(coefs[0])
++    coefs = np.asarray(coefs)
++    if coefs.ndim != 3:
++        raise ValueError("coefs must be an array with 3 dimensions")
++    p, k = coefs.shape[:2]
+     if y.shape[0] < p:
+         raise ValueError(
+-            f"y must by have at least order ({p}) observations. "
+-            f"Got {y.shape[0]}."
++            f"y must by have at least order ({p}) observations. " f"Got {y.shape[0]}."
+         )
+     # initial value
+     forcs = np.zeros((steps, k))
+@@ -286,9 +288,7 @@ def _forecast_vars(steps, ma_coefs, sig_u):
+     return covs[:, inds, inds]
+ 
+ 
+-def forecast_interval(
+-    y, coefs, trend_coefs, sig_u, steps=5, alpha=0.05, exog=1
+-):
++def forecast_interval(y, coefs, trend_coefs, sig_u, steps=5, alpha=0.05, exog=1):
+     assert 0 < alpha < 1
+     q = util.norm_signif_level(alpha)
+ 
+@@ -362,9 +362,7 @@ def _reordered(self, order):
+             params_new_inc[0, i] = params[0, i]
+             endog_lagged_new[:, 0] = endog_lagged[:, 0]
+         for j in range(k_ar):
+-            params_new_inc[i + j * num_end + k, :] = self.params[
+-                c + j * num_end + k, :
+-            ]
++            params_new_inc[i + j * num_end + k, :] = self.params[c + j * num_end + k, :]
+             endog_lagged_new[:, i + j * num_end + k] = endog_lagged[
+                 :, c + j * num_end + k
+             ]
+@@ -444,8 +442,8 @@ def test_normality(results, signif=0.05):
+     Pinv = np.linalg.inv(np.linalg.cholesky(sig))
+ 
+     w = np.dot(Pinv, resid_c.T)
+-    b1 = (w ** 3).sum(1)[:, None] / results.nobs
+-    b2 = (w ** 4).sum(1)[:, None] / results.nobs - 3
++    b1 = (w**3).sum(1)[:, None] / results.nobs
++    b2 = (w**4).sum(1)[:, None] / results.nobs - 3
+ 
+     lam_skew = results.nobs * np.dot(b1.T, b1) / 6
+     lam_kurt = results.nobs * np.dot(b2.T, b2) / 24
+@@ -544,9 +542,7 @@ class VAR(TimeSeriesModel):
+ 
+     y = deprecated_alias("y", "endog", remove_version="0.11.0")
+ 
+-    def __init__(
+-        self, endog, exog=None, dates=None, freq=None, missing="none"
+-    ):
++    def __init__(self, endog, exog=None, dates=None, freq=None, missing="none"):
+         super().__init__(endog, exog, dates, freq, missing=missing)
+         if self.endog.ndim == 1:
+             raise ValueError("Only gave one variable to VAR")
+@@ -658,8 +654,7 @@ def fit(
+             selections = self.select_order(maxlags=maxlags)
+             if not hasattr(selections, ic):
+                 raise ValueError(
+-                    "%s not recognized, must be among %s"
+-                    % (ic, sorted(selections))
++                    "%s not recognized, must be among %s" % (ic, sorted(selections))
+                 )
+             lags = getattr(selections, ic)
+             if verbose:
+@@ -680,13 +675,9 @@ def fit(
+             if orig_exog_names:
+                 x_names_to_add = orig_exog_names
+             else:
+-                x_names_to_add = [
+-                    ("exog%d" % i) for i in range(self.exog.shape[1])
+-                ]
++                x_names_to_add = [("exog%d" % i) for i in range(self.exog.shape[1])]
+             self.data.xnames = (
+-                self.data.xnames[:k_trend]
+-                + x_names_to_add
+-                + self.data.xnames[k_trend:]
++                self.data.xnames[:k_trend] + x_names_to_add + self.data.xnames[k_trend:]
+             )
+         self.data.cov_names = pd.MultiIndex.from_product(
+             (self.data.xnames, self.data.ynames)
+@@ -716,9 +707,7 @@ def _estimate_var(self, lags, offset=0, trend="c"):
+         if exog is not None:
+             # TODO: currently only deterministic terms supported (exoglags==0)
+             # and since exoglags==0, x will be an array of size 0.
+-            x = util.get_var_endog(
+-                exog[-nobs:], 0, trend="n", has_constant="raise"
+-            )
++            x = util.get_var_endog(exog[-nobs:], 0, trend="n", has_constant="raise")
+             x_inst = exog[-nobs:]
+             x = np.column_stack((x, x_inst))
+             del x_inst  # free memory
+@@ -823,16 +812,12 @@ def select_order(self, maxlags=None, trend="c"):
+             for k, v in result.info_criteria.items():
+                 ics[k].append(v)
+ 
+-        selected_orders = {
+-            k: np.array(v).argmin() + p_min for k, v in ics.items()
+-        }
++        selected_orders = {k: np.array(v).argmin() + p_min for k, v in ics.items()}
+ 
+         return LagOrderResults(ics, selected_orders, vecm=False)
+ 
+     @classmethod
+-    def from_formula(
+-        cls, formula, data, subset=None, drop_cols=None, *args, **kwargs
+-    ):
++    def from_formula(cls, formula, data, subset=None, drop_cols=None, *args, **kwargs):
+         """
+         Not implemented. Formulas are not supported for VAR models.
+         """
+@@ -860,9 +845,7 @@ class VARProcess:
+         trend.
+     """
+ 
+-    def __init__(
+-        self, coefs, coefs_exog, sigma_u, names=None, _params_info=None
+-    ):
++    def __init__(self, coefs, coefs_exog, sigma_u, names=None, _params_info=None):
+         self.k_ar = len(coefs)
+         self.neqs = coefs.shape[1]
+         self.coefs = coefs
+@@ -920,7 +903,9 @@ def is_stable(self, verbose=False):
+         """
+         return is_stable(self.coefs, verbose=verbose)
+ 
+-    def simulate_var(self, steps=None, offset=None, seed=None, initial_values=None, nsimulations=None):
++    def simulate_var(
++        self, steps=None, offset=None, seed=None, initial_values=None, nsimulations=None
++    ):
+         """
+         simulate the VAR(p) process for the desired number of steps
+ 
+@@ -963,9 +948,7 @@ def simulate_var(self, steps=None, offset=None, seed=None, initial_values=None,
+                 # if more than intercept
+                 # endog_lagged contains all regressors, trend, exog_user
+                 # and lagged endog, trimmed initial observations
+-                offset = self.endog_lagged[:, : self.k_exog].dot(
+-                    self.coefs_exog.T
+-                )
++                offset = self.endog_lagged[:, : self.k_exog].dot(self.coefs_exog.T)
+                 steps_ = self.endog_lagged.shape[0]
+             else:
+                 offset = self.intercept
+@@ -992,7 +975,7 @@ def simulate_var(self, steps=None, offset=None, seed=None, initial_values=None,
+             steps=steps,
+             seed=seed,
+             initial_values=initial_values,
+-            nsimulations=nsimulations
++            nsimulations=nsimulations,
+         )
+         return y
+ 
+@@ -1111,9 +1094,7 @@ def acorr(self, nlags=None):
+ 
+     def plot_acorr(self, nlags=10, linewidth=8):
+         """Plot theoretical autocorrelation function"""
+-        fig = plotting.plot_full_acorr(
+-            self.acorr(nlags=nlags), linewidth=linewidth
+-        )
++        fig = plotting.plot_full_acorr(self.acorr(nlags=nlags), linewidth=linewidth)
+         return fig
+ 
+     def forecast(self, y, steps, exog_future=None):
+@@ -1135,18 +1116,14 @@ def forecast(self, y, steps, exog_future=None):
+         """
+         if self.exog is None and exog_future is not None:
+             raise ValueError(
+-                "No exog in model, so no exog_future supported "
+-                "in forecast method."
++                "No exog in model, so no exog_future supported " "in forecast method."
+             )
+         if self.exog is not None and exog_future is None:
+             raise ValueError(
+-                "Please provide an exog_future argument to "
+-                "the forecast method."
++                "Please provide an exog_future argument to " "the forecast method."
+             )
+ 
+-        exog_future = array_like(
+-            exog_future, "exog_future", optional=True, ndim=2
+-        )
++        exog_future = array_like(exog_future, "exog_future", optional=True, ndim=2)
+         if exog_future is not None:
+             if exog_future.shape[0] != steps:
+                 err_msg = f"""\
+@@ -1159,13 +1136,11 @@ def forecast(self, y, steps, exog_future=None):
+         exogs = []
+         if self.trend.startswith("c"):  # constant term
+             exogs.append(np.ones(steps))
+-        exog_lin_trend = np.arange(
+-            self.n_totobs + 1, self.n_totobs + 1 + steps
+-        )
++        exog_lin_trend = np.arange(self.n_totobs + 1, self.n_totobs + 1 + steps)
+         if "t" in self.trend:
+             exogs.append(exog_lin_trend)
+         if "tt" in self.trend:
+-            exogs.append(exog_lin_trend ** 2)
++            exogs.append(exog_lin_trend**2)
+         if exog_future is not None:
+             exogs.append(exog_future)
+ 
+@@ -1384,9 +1359,7 @@ def __init__(
+ 
+     def plot(self):
+         """Plot input time series"""
+-        return plotting.plot_mts(
+-            self.endog, names=self.names, index=self.dates
+-        )
++        return plotting.plot_mts(self.endog, names=self.names, index=self.dates)
+ 
+     @property
+     def df_model(self):
+@@ -1662,7 +1635,7 @@ def forecast_cov(self, steps=1, method="mse"):
+                 warnings.warn(
+                     "forecast cov takes parameter uncertainty into" "account",
+                     OutputWarning,
+-                    stacklevel = 2,
++                    stacklevel=2,
+                 )
+         else:
+             raise ValueError("method has to be either 'mse' or 'auto'")
+@@ -1766,9 +1739,7 @@ def irf_resim(
+ 
+         def fill_coll(sim):
+             ret = VAR(sim, exog=self.exog).fit(maxlags=k_ar, trend=self.trend)
+-            ret = (
+-                ret.orth_ma_rep(maxn=steps) if orth else ret.ma_rep(maxn=steps)
+-            )
++            ret = ret.orth_ma_rep(maxn=steps) if orth else ret.ma_rep(maxn=steps)
+             return ret.cumsum(axis=0) if cum else ret
+ 
+         for i in range(repl):
+@@ -1989,13 +1960,13 @@ def test_causality(self, caused, causing=None, kind="f", signif=0.05):
+         num_det_terms = self.k_exog
+ 
+         # Make restriction matrix
+-        C = np.zeros((num_restr, k * num_det_terms + k ** 2 * p), dtype=float)
++        C = np.zeros((num_restr, k * num_det_terms + k**2 * p), dtype=float)
+         cols_det = k * num_det_terms
+         row = 0
+         for j in range(p):
+             for ing_ind in causing_ind:
+                 for ed_ind in caused_ind:
+-                    C[row, cols_det + ed_ind + k * ing_ind + k ** 2 * j] = 1
++                    C[row, cols_det + ed_ind + k * ing_ind + k**2 * j] = 1
+                     row += 1
+ 
+         # Lütkepohl 3.6.5
+@@ -2111,7 +2082,7 @@ def test_inst_causality(self, causing, signif=0.05):
+         caused = [self.names[c] for c in caused_ind]
+ 
+         # Note: JMulTi seems to be using k_ar+1 instead of k_ar
+-        k, t, p = self.neqs, self.nobs, self.k_ar
++        k, t = self.neqs, self.nobs
+ 
+         num_restr = len(causing) * len(caused)  # called N in Lütkepohl
+ 
+@@ -2198,8 +2169,8 @@ def test_whiteness(self, nlags=10, signif=0.05, adjusted=False):
+             if adjusted:
+                 to_add /= self.nobs - t
+             statistic += to_add
+-        statistic *= self.nobs ** 2 if adjusted else self.nobs
+-        df = self.neqs ** 2 * (nlags - self.k_ar)
++        statistic *= self.nobs**2 if adjusted else self.nobs
++        df = self.neqs**2 * (nlags - self.k_ar)
+         dist = stats.chi2(df)
+         pvalue = dist.sf(statistic)
+         crit_value = dist.ppf(1 - signif)
+@@ -2284,7 +2255,7 @@ def info_criteria(self):
+         nobs = self.nobs
+         neqs = self.neqs
+         lag_order = self.k_ar
+-        free_params = lag_order * neqs ** 2 + neqs * self.k_exog
++        free_params = lag_order * neqs**2 + neqs * self.k_exog
+         if self.df_resid:
+             ld = logdet_symm(self.sigma_u_mle)
+         else:
+@@ -2355,13 +2326,9 @@ class VARResultsWrapper(wrap.ResultsWrapper):
+         "sigma_u_mle": "cov_eq",
+         "stderr": "columns_eq",
+     }
+-    _wrap_attrs = wrap.union_dicts(
+-        TimeSeriesResultsWrapper._wrap_attrs, _attrs
+-    )
++    _wrap_attrs = wrap.union_dicts(TimeSeriesResultsWrapper._wrap_attrs, _attrs)
+     _methods = {"conf_int": "multivariate_confint"}
+-    _wrap_methods = wrap.union_dicts(
+-        TimeSeriesResultsWrapper._wrap_methods, _methods
+-    )
++    _wrap_methods = wrap.union_dicts(TimeSeriesResultsWrapper._wrap_methods, _methods)
+ 
+ 
+ wrap.populate_wrapper(VARResultsWrapper, VARResults)  # noqa:E305

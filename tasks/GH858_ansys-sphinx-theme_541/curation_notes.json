@@ -1,0 +1,59 @@
+{
+  "repo": "ansys/ansys-sphinx-theme",
+  "pr_number": 541,
+  "pr_url": "https://github.com/ansys/ansys-sphinx-theme/pull/541",
+  "issue_number": 540,
+  "base_sha": "724d0efb674a26787b8a43f208f07d99277607b7",
+  "head_sha": "290dcc04e601b2b77636b345aa1b7e1e41a19a8b",
+  "additions": 125,
+  "deletions": 14,
+  "changed_files": [
+    "doc/changelog.d/541.documentation.md",
+    "doc/source/conf.py",
+    "doc/source/user-guide/options.rst",
+    "src/ansys_sphinx_theme/__init__.py",
+    "src/ansys_sphinx_theme/search/__init__.py",
+    "src/ansys_sphinx_theme/search/fuse_search.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "doc/source/conf.py",
+    "src/ansys_sphinx_theme/__init__.py",
+    "src/ansys_sphinx_theme/search/__init__.py",
+    "src/ansys_sphinx_theme/search/fuse_search.py"
+  ],
+  "parameterization": {
+    "repo": "ansys/ansys-sphinx-theme",
+    "repo_short": "ansys-sphinx-theme",
+    "parameterized_identifiers": [
+      "above",
+      "access",
+      "add_cheat_sheet",
+      "add_config_value",
+      "addnodes",
+      "amount",
+      "anchor",
+      "anchor_id",
+      "anchor_title",
+      "ansys_favicon"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:43:25Z"
+}

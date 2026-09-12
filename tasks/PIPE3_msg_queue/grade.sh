@@ -15,7 +15,7 @@ mkdir -p "$REPORTS"
 PYTHON="${PYTHON:-}"
 if [ -z "$PYTHON" ]; then
   for candidate in \
-      "$(dirname "$0")/../../../venv/bin/python" \
+      "$(dirname "$0")/../../..python3" \
       "python3"; do
     if "$candidate" -c "import json" >/dev/null 2>&1; then
       PYTHON="$candidate"
@@ -199,3 +199,5 @@ cat > "$REPORTS/score.json" <<JSON
   "failure_modes": $FM
 }
 JSON
+
+# hermetic-by: scripts/make_graders_hermetic.py

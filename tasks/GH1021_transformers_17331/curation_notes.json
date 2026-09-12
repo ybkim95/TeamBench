@@ -1,0 +1,64 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 17331,
+  "pr_url": "https://github.com/huggingface/transformers/pull/17331",
+  "issue_number": 17214,
+  "base_sha": "6e195eb9de4eee95c75a0225dd88a46d1f670692",
+  "head_sha": "2943480b3644833961848bcbcc99b013e1a76719",
+  "additions": 91,
+  "deletions": 121,
+  "changed_files": [
+    "examples/pytorch/image-classification/run_image_classification_no_trainer.py",
+    "examples/pytorch/multiple-choice/run_swag_no_trainer.py",
+    "examples/pytorch/semantic-segmentation/run_semantic_segmentation_no_trainer.py",
+    "examples/pytorch/summarization/run_summarization_no_trainer.py",
+    "examples/pytorch/test_accelerate_examples.py",
+    "examples/pytorch/text-classification/run_glue_no_trainer.py",
+    "examples/pytorch/token-classification/run_ner_no_trainer.py",
+    "examples/pytorch/translation/run_translation_no_trainer.py"
+  ],
+  "test_files": [
+    "examples/pytorch/test_accelerate_examples.py"
+  ],
+  "source_files": [
+    "examples/pytorch/image-classification/run_image_classification_no_trainer.py",
+    "examples/pytorch/multiple-choice/run_swag_no_trainer.py",
+    "examples/pytorch/semantic-segmentation/run_semantic_segmentation_no_trainer.py",
+    "examples/pytorch/summarization/run_summarization_no_trainer.py",
+    "examples/pytorch/text-classification/run_glue_no_trainer.py",
+    "examples/pytorch/token-classification/run_ner_no_trainer.py",
+    "examples/pytorch/translation/run_translation_no_trainer.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "accelerate",
+      "accelerator",
+      "add_batch",
+      "also",
+      "answering",
+      "append",
+      "argv",
+      "asctime",
+      "audio",
+      "base"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:59:34Z"
+}

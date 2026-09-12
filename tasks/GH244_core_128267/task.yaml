@@ -1,0 +1,13 @@
+task_id: GH244_core_128267
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Set friendly name of utility meter select entity when configured through YAML"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/128267"
+source_issue: "https://github.com/home-assistant/core/issues/128198"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH610_sktime_7872
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] MAPA forecaster - missing clone, using exogenous data"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/7872"
+source_issue: "https://github.com/sktime/sktime/issues/7822"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

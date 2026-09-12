@@ -1,0 +1,49 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 20318,
+  "pr_url": "https://github.com/huggingface/transformers/pull/20318",
+  "issue_number": 19733,
+  "base_sha": "8e777b3ba4f5f06b826f172c522ddd82e293f405",
+  "head_sha": "465e0e98ca82b5b2322d35d6fd77fccfa4c7aa73",
+  "additions": 2,
+  "deletions": 2,
+  "changed_files": [
+    "examples/pytorch/test_accelerate_examples.py"
+  ],
+  "test_files": [
+    "examples/pytorch/test_accelerate_examples.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "accelerate",
+      "environ",
+      "epoch_0",
+      "exists",
+      "fixtures",
+      "get_gpu_count",
+      "is_apex_available",
+      "is_flaky",
+      "join",
+      "json"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:59:27Z"
+}

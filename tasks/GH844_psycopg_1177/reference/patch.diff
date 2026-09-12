@@ -1,0 +1,191 @@
+diff --git a/docs/api/cursors.rst b/docs/api/cursors.rst
+index ec7c8249f..546a4fcd0 100644
+--- a/docs/api/cursors.rst
++++ b/docs/api/cursors.rst
+@@ -264,6 +264,7 @@ The `!Cursor` class
+     .. automethod:: fetchmany
+     .. automethod:: fetchall
+     .. automethod:: nextset
++
+     .. automethod:: results
+ 
+         The iterator yields the cursor itself upon iteration, but the cursor
+@@ -287,6 +288,10 @@ The `!Cursor` class
+             In previous version you may call `nextset()` in a loop until it
+             returns a false value.
+ 
++    .. automethod:: set_result
++
++        .. versionadded:: 3.3
++
+     .. automethod:: scroll
+ 
+     .. attribute:: pgresult
+@@ -562,6 +567,7 @@ semantic with an `!async` interface. The main interface is described in
+     .. automethod:: fetchmany
+     .. automethod:: fetchall
+     .. automethod:: results
++    .. automethod:: set_result
+     .. automethod:: scroll
+ 
+     .. note::
+diff --git a/docs/news.rst b/docs/news.rst
+index 0e891ac8e..cfdc1c447 100644
+--- a/docs/news.rst
++++ b/docs/news.rst
+@@ -19,11 +19,11 @@ Psycopg 3.3.0 (unreleased)
+ - More flexible :ref:`composite adaptation<adapt-composite>`: it is now possible
+   to adapt Python objects to PostgreSQL composites and back even if they are not
+   sequences or if they take keyword arguments (:ticket:`#932`, :ticket:`#1202`).
+-- Cursors are now iterators, not only iterables. This means you can call
++- Cursors are now *iterators*, not only *iterables*. This means you can call
+   ``next(cur)`` to fetch the next row (:ticket:`#1064`).
+-- Add `Cursor.results()` to iterate over the result sets of the queries
+-  executed though `~Cursor.executemany()` or `~Cursor.execute()`
+-  (:ticket:`#1080`).
++- Add `Cursor.set_result()` and `Cursor.results()` to move across the result
++  sets of queries executed though `~Cursor.executemany()` or
++  `~Cursor.execute()` with multiple statements (:tickets:`#1080, #1170`).
+ 
+ .. rubric:: New libpq wrapper features
+ 
+diff --git a/psycopg/psycopg/cursor.py b/psycopg/psycopg/cursor.py
+index a3383dbae..255075087 100644
+--- a/psycopg/psycopg/cursor.py
++++ b/psycopg/psycopg/cursor.py
+@@ -210,6 +210,32 @@ def results(self) -> Iterator[Self]:
+                 if not self.nextset():
+                     break
+ 
++    def set_result(self, index: int) -> Self:
++        """
++        Move to a specific result set.
++
++        :arg index: index of the result to go to
++        :type index: `!int`
++
++        More than one result will be available after executing calling
++        `executemany()` or `execute()` with more than one query.
++
++        `!index` is 0-based and supports negative values, counting from the end,
++        the same way you can index items in a list.
++
++        The function returns self, so that the result may be followed by a
++        fetch operation. See `results()` for details.
++        """
++        if not -len(self._results) <= index < len(self._results):
++            raise IndexError(
++                f"index {index} out of range: {len(self._results)} result(s) available"
++            )
++        if index < 0:
++            index = len(self._results) + index
++
++        self._select_current_result(index)
++        return self
++
+     def fetchone(self) -> Row | None:
+         """
+         Return the next record from the current result set.
+diff --git a/psycopg/psycopg/cursor_async.py b/psycopg/psycopg/cursor_async.py
+index 22dd94583..c7bca86f5 100644
+--- a/psycopg/psycopg/cursor_async.py
++++ b/psycopg/psycopg/cursor_async.py
+@@ -212,6 +212,32 @@ async def results(self) -> AsyncIterator[Self]:
+                 if not self.nextset():
+                     break
+ 
++    async def set_result(self, index: int) -> Self:
++        """
++        Move to a specific result set.
++
++        :arg index: index of the result to go to
++        :type index: `!int`
++
++        More than one result will be available after executing calling
++        `executemany()` or `execute()` with more than one query.
++
++        `!index` is 0-based and supports negative values, counting from the end,
++        the same way you can index items in a list.
++
++        The function returns self, so that the result may be followed by a
++        fetch operation. See `results()` for details.
++        """
++        if not -len(self._results) <= index < len(self._results):
++            raise IndexError(
++                f"index {index} out of range: {len(self._results)} result(s) available"
++            )
++        if index < 0:
++            index = len(self._results) + index
++
++        self._select_current_result(index)
++        return self
++
+     async def fetchone(self) -> Row | None:
+         """
+         Return the next record from the current result set.
+diff --git a/tests/test_cursor_common.py b/tests/test_cursor_common.py
+index 56db3b081..c59650933 100644
+--- a/tests/test_cursor_common.py
++++ b/tests/test_cursor_common.py
+@@ -224,6 +224,28 @@ def test_execute_many_results(conn):
+     assert cur.nextset() is None
+ 
+ 
++def test_set_results(conn):
++    cur = conn.cursor()
++
++    with pytest.raises(IndexError):
++        cur.set_result(0)
++
++    cur.execute("select 'foo'; select generate_series(1,3)")
++    assert cur.set_result(0) is cur
++    assert cur.fetchall() == [("foo",)]
++    assert cur.rowcount == 1
++
++    assert cur.set_result(-1) is cur
++    assert cur.fetchall() == [(1,), (2,), (3,)]
++    assert cur.rowcount == 3
++
++    with pytest.raises(IndexError):
++        cur.set_result(2)
++
++    with pytest.raises(IndexError):
++        cur.set_result(-3)
++
++
+ def test_execute_sequence(conn):
+     cur = conn.cursor()
+     rv = cur.execute(ph(cur, "select %s::int, %s::text, %s::text"), [1, "foo", None])
+diff --git a/tests/test_cursor_common_async.py b/tests/test_cursor_common_async.py
+index 3b7b50194..c565ab712 100644
+--- a/tests/test_cursor_common_async.py
++++ b/tests/test_cursor_common_async.py
+@@ -222,6 +222,28 @@ async def test_execute_many_results(aconn):
+     assert cur.nextset() is None
+ 
+ 
++async def test_set_results(aconn):
++    cur = aconn.cursor()
++
++    with pytest.raises(IndexError):
++        await cur.set_result(0)
++
++    await cur.execute("select 'foo'; select generate_series(1,3)")
++    assert await cur.set_result(0) is cur
++    assert (await cur.fetchall()) == [("foo",)]
++    assert cur.rowcount == 1
++
++    assert await cur.set_result(-1) is cur
++    assert (await cur.fetchall()) == [(1,), (2,), (3,)]
++    assert cur.rowcount == 3
++
++    with pytest.raises(IndexError):
++        await cur.set_result(2)
++
++    with pytest.raises(IndexError):
++        await cur.set_result(-3)
++
++
+ async def test_execute_sequence(aconn):
+     cur = aconn.cursor()
+     rv = await cur.execute(

@@ -1,0 +1,58 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1469,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1469",
+  "issue_number": 1464,
+  "base_sha": "1c9835dc0a05b93ffb01870f41c34793ae66c483",
+  "head_sha": "566972aaf8fdbe544e4df14d81c92b458b8a7d53",
+  "additions": 88,
+  "deletions": 7,
+  "changed_files": [
+    "flaml/automl/ml.py",
+    "flaml/automl/time_series/tcn.py",
+    "flaml/automl/time_series/tft.py",
+    "flaml/automl/time_series/ts_model.py",
+    "test/automl/test_forecast.py"
+  ],
+  "test_files": [
+    "test/automl/test_forecast.py"
+  ],
+  "source_files": [
+    "flaml/automl/ml.py",
+    "flaml/automl/time_series/tcn.py",
+    "flaml/automl/time_series/tft.py",
+    "flaml/automl/time_series/ts_model.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "above",
+      "add_time_idx_col",
+      "aligned",
+      "append",
+      "arima",
+      "automl",
+      "available",
+      "avoid",
+      "back",
+      "best_estimator"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:11:23Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH1042_matplotlib_31091
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Fix IndexLocator.tick_values returning values greater than vmax"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/31091"
+source_issue: "https://github.com/matplotlib/matplotlib/issues/31086"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

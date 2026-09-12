@@ -1,0 +1,54 @@
+{
+  "repo": "Kludex/starlette",
+  "pr_number": 3189,
+  "pr_url": "https://github.com/Kludex/starlette/pull/3189",
+  "issue_number": 3048,
+  "base_sha": "a0bcc26612c9c344737cd59fb4ef847326adf37a",
+  "head_sha": "e76c85941b4669e768a75b0a06ff8aa69ae3d9b4",
+  "additions": 100,
+  "deletions": 23,
+  "changed_files": [
+    "starlette/responses.py",
+    "tests/test_responses.py",
+    "tests/test_websockets.py"
+  ],
+  "test_files": [
+    "tests/test_responses.py",
+    "tests/test_websockets.py"
+  ],
+  "source_files": [
+    "starlette/responses.py"
+  ],
+  "parameterization": {
+    "repo": "Kludex/starlette",
+    "repo_short": "starlette",
+    "parameterized_identifiers": [
+      "aclose",
+      "anyio",
+      "append",
+      "asgi",
+      "background",
+      "background_called",
+      "body",
+      "body_iterator",
+      "branch",
+      "break"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:38:05Z"
+}

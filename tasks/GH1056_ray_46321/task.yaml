@@ -1,0 +1,13 @@
+task_id: GH1056_ray_46321
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[RLlib] Moving sampling coordination for `batch_mode=complete_episodes` to `synchronous_parallel_sample`."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/ray-project/ray/pull/46321"
+source_issue: "https://github.com/ray-project/ray/issues/45826"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

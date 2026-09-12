@@ -1,0 +1,13 @@
+task_id: GH1115_dask_12099
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Address collection-based ``meta`` arguments in ``GroupByApply``"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/dask/dask/pull/12099"
+source_issue: "https://github.com/dask/dask/issues/11990"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

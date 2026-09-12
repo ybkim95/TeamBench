@@ -1,0 +1,56 @@
+{
+  "repo": "alteryx/featuretools",
+  "pr_number": 2254,
+  "pr_url": "https://github.com/alteryx/featuretools/pull/2254",
+  "issue_number": 2253,
+  "base_sha": "76c20d77b79b2bdc1c7a0b4522881b331e4d80e2",
+  "head_sha": "eb44a37d9deeaab27e750f3466dd04aeb9558671",
+  "additions": 36,
+  "deletions": 21,
+  "changed_files": [
+    "docs/source/release_notes.rst",
+    "featuretools/primitives/standard/datetime_transform_primitives.py",
+    "featuretools/primitives/utils.py",
+    "featuretools/tests/primitive_tests/test_distancetoholiday_primitive.py",
+    "featuretools/tests/requirement_files/latest_requirements.txt"
+  ],
+  "test_files": [
+    "featuretools/tests/primitive_tests/test_distancetoholiday_primitive.py"
+  ],
+  "source_files": [
+    "featuretools/primitives/standard/datetime_transform_primitives.py",
+    "featuretools/primitives/utils.py"
+  ],
+  "parameterization": {
+    "repo": "alteryx/featuretools",
+    "repo_short": "featuretools",
+    "parameterized_identifiers": [
+      "answer",
+      "array",
+      "assert_series_equal",
+      "astype",
+      "available",
+      "available_countries",
+      "changed",
+      "changes",
+      "check_names",
+      "clear"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:07:26Z"
+}

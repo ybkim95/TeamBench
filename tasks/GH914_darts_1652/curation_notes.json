@@ -1,0 +1,52 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 1652,
+  "pr_url": "https://github.com/unit8co/darts/pull/1652",
+  "issue_number": 1547,
+  "base_sha": "1254ff67225c00eaa99327f02463eaa5ca6069f8",
+  "head_sha": "2e412a5b3ff6de10ec2ae7496415b020a1935749",
+  "additions": 10,
+  "deletions": 36,
+  "changed_files": [
+    "darts/models/forecasting/forecasting_model.py",
+    "darts/tests/models/forecasting/test_historical_forecasts.py"
+  ],
+  "test_files": [
+    "darts/tests/models/forecasting/test_historical_forecasts.py"
+  ],
+  "source_files": [
+    "darts/models/forecasting/forecasting_model.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "able",
+      "account",
+      "advance",
+      "backtest",
+      "been",
+      "before",
+      "bounds",
+      "build",
+      "case",
+      "continue"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:48Z"
+}

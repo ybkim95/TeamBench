@@ -1,0 +1,52 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 163096,
+  "pr_url": "https://github.com/home-assistant/core/pull/163096",
+  "issue_number": 150737,
+  "base_sha": "3219417a7ddc6a70f147387921554a1e58e71037",
+  "head_sha": "3cab5c80369920b4cc7ae1808742cd2fdfe866d4",
+  "additions": 79,
+  "deletions": 2,
+  "changed_files": [
+    "homeassistant/components/dwd_weather_warnings/sensor.py",
+    "tests/components/dwd_weather_warnings/test_init.py"
+  ],
+  "test_files": [
+    "tests/components/dwd_weather_warnings/test_init.py"
+  ],
+  "source_files": [
+    "homeassistant/components/dwd_weather_warnings/sensor.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "annotations",
+      "async_get_entity_id",
+      "attributes",
+      "common",
+      "components",
+      "const",
+      "coordinator",
+      "current_warning_level",
+      "current_warnings",
+      "data"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:38Z"
+}

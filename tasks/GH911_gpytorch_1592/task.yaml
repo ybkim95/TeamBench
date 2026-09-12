@@ -1,0 +1,13 @@
+task_id: GH911_gpytorch_1592
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix SGPR errors when testing on training data."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/cornellius-gp/gpytorch/pull/1592"
+source_issue: "https://github.com/cornellius-gp/gpytorch/issues/1581"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

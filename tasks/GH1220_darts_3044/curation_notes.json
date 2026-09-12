@@ -1,0 +1,51 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 3044,
+  "pr_url": "https://github.com/unit8co/darts/pull/3044",
+  "issue_number": null,
+  "base_sha": "e73554ffe0601a01efdc3c0f2d9d068fa5070e00",
+  "head_sha": "5e3330df733bab23d80089e91ac6b0f35afbca7e",
+  "additions": 1,
+  "deletions": 3,
+  "changed_files": [
+    "darts/tests/models/forecasting/test_torch_forecasting_model.py"
+  ],
+  "test_files": [
+    "darts/tests/models/forecasting/test_torch_forecasting_model.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "clean",
+      "float32",
+      "float64",
+      "have",
+      "input",
+      "model_32",
+      "model_32_loaded",
+      "must",
+      "predict",
+      "pytest"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:15:09Z"
+}

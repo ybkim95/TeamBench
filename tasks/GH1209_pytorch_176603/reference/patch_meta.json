@@ -1,0 +1,15 @@
+{
+ "task": "GH1209_pytorch_176603",
+ "patch": "tasks/GH1209_pytorch_176603/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "pytorch/pytorch",
+ "pr_number": 176603,
+ "base_sha": "f99ab991dcd3719ee25dd3377a53ea12e518308e",
+ "head_sha": "616cb0c2266419d370d2868451d2cc2b57b65b7a",
+ "bytes": 7236,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

@@ -1,0 +1,91 @@
+diff --git a/pytorch_lightning/core/hooks.py b/pytorch_lightning/core/hooks.py
+--- a/pytorch_lightning/core/hooks.py
++++ b/pytorch_lightning/core/hooks.py
+@@ -114,13 +114,13 @@ def on_validation_model_eval(self) -> None:
+         """
+         Sets the model to eval during the val loop
+         """
+-        self.eval()
++        self.trainer.model.eval()
+ 
+     def on_validation_model_train(self) -> None:
+         """
+         Sets the model to train during the val loop
+         """
+-        self.train()
++        self.trainer.model.train()
+ 
+     def on_validation_batch_start(self, batch: Any, batch_idx: int, dataloader_idx: int) -> None:
+         """
+@@ -172,19 +172,19 @@ def on_test_model_train(self) -> None:
+         """
+         Sets the model to train during the test loop
+         """
+-        self.train()
++        self.trainer.model.train()
+ 
+     def on_test_model_eval(self) -> None:
+         """
+         Sets the model to eval during the test loop
+         """
+-        self.eval()
++        self.trainer.model.eval()
+ 
+     def on_predict_model_eval(self) -> None:
+         """
+         Sets the model to eval during the predict loop
+         """
+-        self.eval()
++        self.trainer.model.eval()
+ 
+     def on_epoch_start(self) -> None:
+         """
+
+diff --git a/pytorch_lightning/trainer/predict_loop.py b/pytorch_lightning/trainer/predict_loop.py
+--- a/pytorch_lightning/trainer/predict_loop.py
++++ b/pytorch_lightning/trainer/predict_loop.py
+@@ -44,7 +44,6 @@ def on_predict_model_eval(self, *_, **__):
+         model_ref.on_predict_model_eval()
+ 
+     def setup(self, model, max_batches, dataloaders):
+-        self.trainer.call_hook("on_predict_start")
+ 
+         # copy properties for forward overrides
+         self.trainer.model_connector.copy_trainer_model_properties(model)
+
+diff --git a/pytorch_lightning/trainer/trainer.py b/pytorch_lightning/trainer/trainer.py
+--- a/pytorch_lightning/trainer/trainer.py
++++ b/pytorch_lightning/trainer/trainer.py
+@@ -582,11 +582,11 @@ def run_train(self) -> None:
+         self.checkpoint_connector.has_trained = False
+ 
+         # enable train mode
+-        model = self.lightning_module
+-        model.train()
++        self.model.train()
+         torch.set_grad_enabled(True)
+ 
+         # reload data when needed
++        model = self.lightning_module
+         self.train_loop.reset_train_val_dataloaders(model)
+ 
+         # hook
+@@ -772,8 +772,6 @@ def run_evaluate(self):
+         return eval_loop_results
+ 
+     def run_predict(self):
+-        self.predict_loop.on_predict_start()
+-
+         # prepare dataloaders
+         dataloaders, max_batches = self.predict_loop.get_predict_dataloaders()
+ 
+@@ -789,6 +787,9 @@ def run_predict(self):
+         model.zero_grad()
+         torch.set_grad_enabled(False)
+ 
++        # call hook
++        self.predict_loop.on_predict_start()
++
+         # set up the eval loop
+         self.predict_loop.setup(model, max_batches, dataloaders)
+ 

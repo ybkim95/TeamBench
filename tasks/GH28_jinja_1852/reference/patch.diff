@@ -1,0 +1,68 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 0a5694757..5d64b267c 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -8,6 +8,9 @@ Unreleased
+ -   The sandboxed environment handles indirect calls to ``str.format``, such as
+     by passing a stored reference to a filter that calls its argument.
+     :ghsa:`q2x7-8rv6-6q7h`
++-   Escape template name before formatting it into error messages, to avoid
++    issues with names that contain f-string syntax.
++    :issue:`1792`, :ghsa:`gmj6-6f8f-6699`
+ -   Sandbox does not allow ``clear`` and ``pop`` on known mutable sequence
+     types. :issue:`2032`
+ -   Calling sync ``render`` for an async template uses ``asyncio.run``.
+diff --git a/src/jinja2/compiler.py b/src/jinja2/compiler.py
+index 074e9b187..23295ec1f 100644
+--- a/src/jinja2/compiler.py
++++ b/src/jinja2/compiler.py
+@@ -1141,9 +1141,14 @@ def visit_FromImport(self, node: nodes.FromImport, frame: Frame) -> None:
+             )
+             self.writeline(f"if {frame.symbols.ref(alias)} is missing:")
+             self.indent()
++            # The position will contain the template name, and will be formatted
++            # into a string that will be compiled into an f-string. Curly braces
++            # in the name must be replaced with escapes so that they will not be
++            # executed as part of the f-string.
++            position = self.position(node).replace("{", "{{").replace("}", "}}")
+             message = (
+                 "the template {included_template.__name__!r}"
+-                f" (imported on {self.position(node)})"
++                f" (imported on {position})"
+                 f" does not export the requested name {name!r}"
+             )
+             self.writeline(
+diff --git a/tests/test_compile.py b/tests/test_compile.py
+index 42efa59c0..e1a5391ea 100644
+--- a/tests/test_compile.py
++++ b/tests/test_compile.py
+@@ -1,6 +1,9 @@
+ import os
+ import re
+ 
++import pytest
++
++from jinja2 import UndefinedError
+ from jinja2.environment import Environment
+ from jinja2.loaders import DictLoader
+ 
+@@ -87,3 +90,19 @@ def test_block_set_vars_unpacking_deterministic(tmp_path):
+         content,
+     )[:10]
+     assert found == expect
++
++
++def test_undefined_import_curly_name():
++    env = Environment(
++        loader=DictLoader(
++            {
++                "{bad}": "{% from 'macro' import m %}{{ m() }}",
++                "macro": "",
++            }
++        )
++    )
++
++    # Must not raise `NameError: 'bad' is not defined`, as that would indicate
++    # that `{bad}` is being interpreted as an f-string. It must be escaped.
++    with pytest.raises(UndefinedError):
++        env.get_template("{bad}").render()

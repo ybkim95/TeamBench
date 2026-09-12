@@ -1,0 +1,13 @@
+task_id: GH1033_ray_23187
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "`map` and `map_unordered` cancel previous tasks before submitting new ones"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/ray-project/ray/pull/23187"
+source_issue: "https://github.com/ray-project/ray/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

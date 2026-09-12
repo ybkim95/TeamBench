@@ -1,0 +1,40 @@
+diff --git a/dask/dataframe/groupby.py b/dask/dataframe/groupby.py
+--- a/dask/dataframe/groupby.py
++++ b/dask/dataframe/groupby.py
+@@ -35,7 +35,6 @@
+ )
+ from dask.dataframe.dispatch import grouper_dispatch
+ from dask.dataframe.methods import concat, drop_columns
+-from dask.dataframe.shuffle import shuffle
+ from dask.dataframe.utils import (
+     insert_meta_param_description,
+     is_dataframe_like,
+@@ -1742,15 +1741,12 @@ def _shuffle(self, meta):
+ 
+         if isinstance(self.by, DataFrame):  # add by columns to dataframe
+             df2 = df.assign(**{"_by_" + c: self.by[c] for c in self.by.columns})
+-            by = self.by
+         elif isinstance(self.by, Series):
+             df2 = df.assign(_by=self.by)
+-            by = self.by
+         else:
+             df2 = df
+-            by = df._select_columns_or_index(self.by)
+ 
+-        df3 = shuffle(df2, by)  # shuffle dataframe and index
++        df3 = df2.shuffle(on=self.by)  # shuffle dataframe and index
+ 
+         if isinstance(self.by, DataFrame):
+             # extract by from dataframe
+
+diff --git a/dask/dataframe/shuffle.py b/dask/dataframe/shuffle.py
+--- a/dask/dataframe/shuffle.py
++++ b/dask/dataframe/shuffle.py
+@@ -371,6 +371,7 @@ def shuffle(
+     shuffle_disk
+     """
+     list_like = pd.api.types.is_list_like(index) and not is_dask_collection(index)
++    shuffle = shuffle or get_default_shuffle_algorithm()
+     if shuffle == "tasks" and (isinstance(index, str) or list_like):
+         # Avoid creating the "_partitions" column if possible.
+         # We currently do this if the user is passing in

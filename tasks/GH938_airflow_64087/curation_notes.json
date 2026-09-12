@@ -1,0 +1,54 @@
+{
+  "repo": "apache/airflow",
+  "pr_number": 64087,
+  "pr_url": "https://github.com/apache/airflow/pull/64087",
+  "issue_number": null,
+  "base_sha": "03ff055ef32396a1fd9dcd8e8580c06495b2f9ea",
+  "head_sha": "2ae69e0a061e7e604b7a3de780f971843d8d631d",
+  "additions": 40,
+  "deletions": 1,
+  "changed_files": [
+    "airflow-core/src/airflow/models/dagrun.py",
+    "airflow-core/tests/unit/models/test_dagrun.py"
+  ],
+  "test_files": [
+    "airflow-core/tests/unit/models/test_dagrun.py"
+  ],
+  "source_files": [
+    "airflow-core/src/airflow/models/dagrun.py"
+  ],
+  "parameterization": {
+    "repo": "apache/airflow",
+    "repo_short": "airflow",
+    "parameterized_identifiers": [
+      "add_span_processor",
+      "airflow",
+      "backfilled",
+      "before",
+      "carrier_value",
+      "cleared",
+      "context",
+      "context_carrier",
+      "crash",
+      "create_dagrun"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:52:45Z"
+}

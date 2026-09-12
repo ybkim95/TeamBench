@@ -1,0 +1,15 @@
+{
+ "task": "GH483_prisma_29243",
+ "patch": "tasks/GH483_prisma_29243/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "prisma/prisma",
+ "pr_number": 29243,
+ "base_sha": "fd2de831a8b155f4a45fb343bd7134ae26a7c1af",
+ "head_sha": "cc7a63bd0c4c1c12851865e350efbd695dcec0b1",
+ "bytes": 10122,
+ "files_changed": 7,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

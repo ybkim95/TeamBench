@@ -1,0 +1,62 @@
+diff --git a/changelog/3731.feature.rst b/changelog/3731.feature.rst
+new file mode 100644
+index 0000000000..83f3090a10
+--- /dev/null
++++ b/changelog/3731.feature.rst
+@@ -0,0 +1,2 @@
++Restore previously removed ``HTTPResponse.getheaders()`` and
++``HTTPResponse.getheader()`` methods.
+diff --git a/docs/v2-migration-guide.rst b/docs/v2-migration-guide.rst
+index b7d48347e2..39b1292fa4 100644
+--- a/docs/v2-migration-guide.rst
++++ b/docs/v2-migration-guide.rst
+@@ -30,8 +30,6 @@ Here's a short summary of which changes in urllib3 2.x are most important:
+ - Removed the ``urllib3.contrib.ntlmpool`` module.
+ - Removed the ``urllib3.contrib.securetransport`` module.
+ - Removed the ``urllib3[secure]`` extra.
+-- Removed the ``HTTPResponse.getheaders()`` method in favor of ``HTTPResponse.headers``.
+-- Removed the ``HTTPResponse.getheader(name, default)`` method in favor of ``HTTPResponse.headers.get(name, default)``.
+ - Deprecated URLs without a scheme (ie 'https://') and will be raising an error in a future version of urllib3.
+ - Changed the default minimum TLS version to TLS 1.2 (previously was TLS 1.0).
+ - Changed the default request body encoding from 'ISO-8859-1' to 'UTF-8'.
+diff --git a/src/urllib3/response.py b/src/urllib3/response.py
+index 069f726cb8..219b5d9894 100644
+--- a/src/urllib3/response.py
++++ b/src/urllib3/response.py
+@@ -671,6 +671,13 @@ def readinto(self, b: bytearray) -> int:
+             b[: len(temp)] = temp
+             return len(temp)
+ 
++    # Methods used by dependent libraries
++    def getheaders(self) -> HTTPHeaderDict:
++        return self.headers
++
++    def getheader(self, name: str, default: str | None = None) -> str | None:
++        return self.headers.get(name, default)
++
+     # Compatibility method for http.cookiejar
+     def info(self) -> HTTPHeaderDict:
+         return self.headers
+diff --git a/test/test_response.py b/test/test_response.py
+index d824ae70b4..244d9ef49c 100644
+--- a/test/test_response.py
++++ b/test/test_response.py
+@@ -1698,11 +1698,16 @@ def test_chunked_head_response(self) -> None:
+             continue
+         resp.release_conn.assert_called_once_with()  # type: ignore[attr-defined]
+ 
++    def test_getheaders(self) -> None:
++        headers = {"host": "example.com"}
++        r = HTTPResponse(headers=headers)
++        assert r.getheaders() is r.headers
++
+     def test_get_case_insensitive_headers(self) -> None:
+         headers = {"host": "example.com"}
+         r = HTTPResponse(headers=headers)
+-        assert r.headers.get("host") == "example.com"
+-        assert r.headers.get("Host") == "example.com"
++        assert r.headers.get("host") == r.getheader("host") == "example.com"
++        assert r.headers.get("Host") == r.getheader("Host") == "example.com"
+ 
+     def test_retries(self) -> None:
+         fp = BytesIO(b"")

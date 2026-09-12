@@ -1,0 +1,13 @@
+task_id: GH898_plotly.py_5322
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix broken import in `mplexporter` tests"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/plotly/plotly.py/pull/5322"
+source_issue: "https://github.com/plotly/plotly.py/issues/5253"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

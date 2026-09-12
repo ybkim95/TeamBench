@@ -1,0 +1,13 @@
+task_id: GH1013_autogluon_4290
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[tabular] Fix Stacker max_models logic"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/autogluon/autogluon/pull/4290"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,12 @@
+diff --git a/python/ray/util/multiprocessing/pool.py b/python/ray/util/multiprocessing/pool.py
+--- a/python/ray/util/multiprocessing/pool.py
++++ b/python/ray/util/multiprocessing/pool.py
+@@ -435,7 +435,7 @@ def next(self, timeout=None):
+         return self._ready_objects.popleft()
+ 
+ 
+-@ray.remote(num_cpus=1)
++@ray.remote(num_cpus=0)
+ class PoolActor:
+     """Actor used to process tasks submitted to a Pool."""
+ 

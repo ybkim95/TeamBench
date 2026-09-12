@@ -1,0 +1,34 @@
+diff --git a/celery/fixups/django.py b/celery/fixups/django.py
+index 1f5532859e3..6b733e6d591 100644
+--- a/celery/fixups/django.py
++++ b/celery/fixups/django.py
+@@ -199,9 +199,15 @@ def close_database(self, **kwargs: Any) -> None:
+         self._db_recycles += 1
+ 
+     def _close_database(self) -> None:
++        try:
++            connections = self._db.connections.all(initialized_only=True)
++        except TypeError:
++            # Support Django < 4.1
++            connections = self._db.connections.all()
++
+         is_prefork = self.app.conf.get('worker_pool', 'prefork') == "prefork"
+ 
+-        for conn in self._db.connections.all():
++        for conn in connections:
+             try:
+                 conn.close()
+                 pool_enabled = self._settings.DATABASES.get(conn.alias, {}).get("OPTIONS", {}).get("pool")
+diff --git a/t/unit/fixups/test_django.py b/t/unit/fixups/test_django.py
+index 89a045dfc6a..f14348426a8 100644
+--- a/t/unit/fixups/test_django.py
++++ b/t/unit/fixups/test_django.py
+@@ -262,7 +262,7 @@ def test__close_database(self):
+             f.interface_errors = ()
+ 
+             f._db.connections = Mock()  # ConnectionHandler
+-            f._db.connections.all.side_effect = lambda: conns
++            f._db.connections.all.side_effect = lambda initialized_only: conns
+ 
+             f._close_database()
+             conns[0].close.assert_called_with()

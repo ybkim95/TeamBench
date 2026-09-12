@@ -1,0 +1,55 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1280,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1280",
+  "issue_number": null,
+  "base_sha": "e61b15ab1015d012d6f124ce2f2955bbf15a187f",
+  "head_sha": "e954881d1fa879ddc696a19f19fb5a0e6171778c",
+  "additions": 40,
+  "deletions": 2,
+  "changed_files": [
+    "docs/news.rst",
+    "psycopg_c/psycopg_c/_psycopg/generators.pyx",
+    "tests/test_connection.py",
+    "tests/test_connection_async.py"
+  ],
+  "test_files": [
+    "tests/test_connection.py",
+    "tests/test_connection_async.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "aconn_cls",
+      "affects",
+      "approx",
+      "away",
+      "cancel",
+      "cancel_conn",
+      "causing",
+      "cdef",
+      "conn_cls",
+      "conn_status"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:28:32Z"
+}

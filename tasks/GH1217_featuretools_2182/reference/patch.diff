@@ -1,0 +1,82 @@
+diff --git a/.github/workflows/unit_tests_with_latest_deps.yaml b/.github/workflows/unit_tests_with_latest_deps.yaml
+index aea6e93ad6..700af04a83 100644
+--- a/.github/workflows/unit_tests_with_latest_deps.yaml
++++ b/.github/workflows/unit_tests_with_latest_deps.yaml
+@@ -45,18 +45,18 @@ jobs:
+           JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+           python -m pip install -e unpacked_sdist/[spark]
+           python -m pip install -e unpacked_sdist/[test]
+-      - if: ${{ matrix.python_version != 3.7 || matrix.libraries != 'spark' }}
++      - if: ${{ matrix.libraries != 'spark' }}
+         name: Run unit tests (no code coverage)
+         run: |
+           cd unpacked_sdist
+           pytest featuretools/ -n 2
+-      - if: ${{ matrix.python_version == 3.7 && matrix.libraries == 'spark' }}
++      - if: ${{ matrix.libraries == 'spark' }}
+         name: Run unit tests with code coverage
+         run: |
+           cd unpacked_sdist/
+           coverage erase
+           pytest featuretools/ -n 2 --cov=featuretools --cov-config=../pyproject.toml --cov-report=xml:../coverage.xml
+-      - if: ${{ matrix.python_version == 3.7 && matrix.libraries == 'spark' }}
++      - if: ${{ matrix.libraries == 'spark' }}
+         name: Upload coverage to Codecov
+         uses: codecov/codecov-action@v3
+         with:
+diff --git a/docs/source/release_notes.rst b/docs/source/release_notes.rst
+index 682fbb6cee..6dabcd9af9 100644
+--- a/docs/source/release_notes.rst
++++ b/docs/source/release_notes.rst
+@@ -11,6 +11,7 @@ Future Release
+         * Add ``IsWorkingHours`` and ``IsLunchTime`` transform primitives (:pr:`2130`)
+         * Add periods parameter to ``Diff`` and add ``DiffDatetime`` primitive (:pr:`2155`)
+     * Fixes
++        * Resolves Woodwork integration test failure and removes Python version check for codecov (:pr:`2182`)
+     * Changes
+         * Drop Python 3.7 support (:pr:`2169`)
+         * Add pre-commit hooks for linting (:pr:`2177`)
+diff --git a/featuretools/tests/primitive_tests/test_transform_features.py b/featuretools/tests/primitive_tests/test_transform_features.py
+index 337c266072..5fb0979410 100644
+--- a/featuretools/tests/primitive_tests/test_transform_features.py
++++ b/featuretools/tests/primitive_tests/test_transform_features.py
+@@ -5,7 +5,7 @@
+ import pandas as pd
+ import pytest
+ from woodwork.column_schema import ColumnSchema
+-from woodwork.logical_types import Boolean, Datetime, Integer, Ordinal
++from woodwork.logical_types import Boolean, Datetime, Double, Integer, Ordinal
+ 
+ from featuretools import (
+     AggregationFeature,
+@@ -771,7 +771,12 @@ def pd_boolean_mult_es():
+         },
+     )
+ 
+-    es.add_dataframe(dataframe_name="test", dataframe=df, index="index")
++    es.add_dataframe(
++        dataframe_name="test",
++        dataframe=df,
++        index="index",
++        logical_types={"numeric": Double},
++    )
+ 
+     return es
+ 
+diff --git a/featuretools/tests/testing_utils/mock_ds.py b/featuretools/tests/testing_utils/mock_ds.py
+index ee1ed2b11f..9c729c057a 100644
+--- a/featuretools/tests/testing_utils/mock_ds.py
++++ b/featuretools/tests/testing_utils/mock_ds.py
+@@ -345,7 +345,11 @@ def make_semantic_tags():
+ def make_logical_types(with_integer_time_index=False):
+     region_logical_types = {"id": Categorical, "language": Categorical}
+ 
+-    store_logical_types = {"id": Integer, "région_id": Categorical}
++    store_logical_types = {
++        "id": Integer,
++        "région_id": Categorical,
++        "num_square_feet": Double,
++    }
+ 
+     product_logical_types = {
+         "id": Categorical,

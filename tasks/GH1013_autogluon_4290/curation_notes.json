@@ -1,0 +1,62 @@
+{
+  "repo": "autogluon/autogluon",
+  "pr_number": 4290,
+  "pr_url": "https://github.com/autogluon/autogluon/pull/4290",
+  "issue_number": null,
+  "base_sha": "dd4c117b2205573e4c14d781763074b985e78435",
+  "head_sha": "350d528deb3fd2b5bd49b8ad1ea67829e620170e",
+  "additions": 333,
+  "deletions": 49,
+  "changed_files": [
+    "common/src/autogluon/common/features/feature_metadata.py",
+    "core/src/autogluon/core/models/abstract/abstract_model.py",
+    "core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py",
+    "core/src/autogluon/core/trainer/abstract_trainer.py",
+    "features/tests/features/test_feature_metadata.py",
+    "tabular/tests/unittests/models/advanced/test_stack_feature_usage.py"
+  ],
+  "test_files": [
+    "features/tests/features/test_feature_metadata.py",
+    "tabular/tests/unittests/models/advanced/test_stack_feature_usage.py"
+  ],
+  "source_files": [
+    "common/src/autogluon/common/features/feature_metadata.py",
+    "core/src/autogluon/core/models/abstract/abstract_model.py",
+    "core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py",
+    "core/src/autogluon/core/trainer/abstract_trainer.py"
+  ],
+  "parameterization": {
+    "repo": "autogluon/autogluon",
+    "repo_short": "autogluon",
+    "parameterized_identifiers": [
+      "abstract",
+      "abstract_model",
+      "add_special_types",
+      "added",
+      "adding",
+      "adds",
+      "adult",
+      "ag_args_ensemble",
+      "allowed",
+      "already"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:58:57Z"
+}

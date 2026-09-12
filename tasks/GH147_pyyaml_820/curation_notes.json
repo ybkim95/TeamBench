@@ -1,0 +1,51 @@
+{
+  "repo": "yaml/pyyaml",
+  "pr_number": 820,
+  "pr_url": "https://github.com/yaml/pyyaml/pull/820",
+  "issue_number": 810,
+  "base_sha": "a2d19c0234866dc9d4d55abf3009699c258bb72f",
+  "head_sha": "be43716c1ffe542f5fd347f826acebce4b848dca",
+  "additions": 7,
+  "deletions": 4,
+  "changed_files": [
+    "setup.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "setup.py"
+  ],
+  "parameterization": {
+    "repo": "yaml/pyyaml",
+    "repo_short": "pyyaml",
+    "parameterized_identifiers": [
+      "build_cmd",
+      "build_lib",
+      "cmdclass",
+      "copytree",
+      "create",
+      "data",
+      "deprecated",
+      "designed",
+      "dev0",
+      "dir_exists_ok"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T22:48:38Z"
+}

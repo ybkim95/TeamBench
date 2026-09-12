@@ -28,7 +28,8 @@ check() {
 }
 
 # Install dependencies
-pip install pytest requests 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require pytest requests || true
 
 # -------------------------------------------------------------------
 # C1: Go server compiles (do not change Go source)
@@ -248,3 +249,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

@@ -1,0 +1,51 @@
+{
+  "repo": "sqlalchemy/sqlalchemy",
+  "pr_number": 13155,
+  "pr_url": "https://github.com/sqlalchemy/sqlalchemy/pull/13155",
+  "issue_number": 13132,
+  "base_sha": "f09778c70050391ab77e97e8043083f6a5177038",
+  "head_sha": "9dc66163b0ef6baba8ed494157ffb773d87beb7c",
+  "additions": 17,
+  "deletions": 17,
+  "changed_files": [
+    "lib/sqlalchemy/orm/relationships.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "lib/sqlalchemy/orm/relationships.py"
+  ],
+  "parameterization": {
+    "repo": "sqlalchemy/sqlalchemy",
+    "repo_short": "sqlalchemy",
+    "parameterized_identifiers": [
+      "above",
+      "against",
+      "alternative",
+      "association",
+      "attribute",
+      "behavior",
+      "beyond",
+      "cases",
+      "caveats",
+      "clause"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T22:36:37Z"
+}

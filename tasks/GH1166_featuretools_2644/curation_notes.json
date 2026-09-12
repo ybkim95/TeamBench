@@ -1,0 +1,64 @@
+{
+  "repo": "alteryx/featuretools",
+  "pr_number": 2644,
+  "pr_url": "https://github.com/alteryx/featuretools/pull/2644",
+  "issue_number": 2650,
+  "base_sha": "3681bbb6ceceed9f820473e5055c5bed7a3771bb",
+  "head_sha": "58aaaae2809395917220086d310849dd55548469",
+  "additions": 22,
+  "deletions": 22,
+  "changed_files": [
+    ".github/workflows/tests_with_latest_deps.yaml",
+    "docs/source/release_notes.rst",
+    "featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_false.py",
+    "featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_true.py",
+    "featuretools/primitives/standard/transform/datetime/date_to_holiday.py",
+    "featuretools/tests/entityset_tests/test_serialization.py",
+    "featuretools/tests/primitive_tests/test_feature_serialization.py",
+    "featuretools/tests/primitive_tests/transform_primitive_tests/test_datetoholiday_primitive.py",
+    "featuretools/tests/requirement_files/minimum_test_requirements.txt",
+    "pyproject.toml"
+  ],
+  "test_files": [
+    "featuretools/tests/entityset_tests/test_serialization.py",
+    "featuretools/tests/primitive_tests/test_feature_serialization.py",
+    "featuretools/tests/primitive_tests/transform_primitive_tests/test_datetoholiday_primitive.py"
+  ],
+  "source_files": [
+    "featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_false.py",
+    "featuretools/primitives/standard/transform/cumulative/cumulative_time_since_last_true.py",
+    "featuretools/primitives/standard/transform/datetime/date_to_holiday.py"
+  ],
+  "parameterization": {
+    "repo": "alteryx/featuretools",
+    "repo_short": "featuretools",
+    "parameterized_identifiers": [
+      "alteryx",
+      "answer",
+      "assert_array_equal",
+      "astype",
+      "autonormalize",
+      "bool_col",
+      "boto3",
+      "case",
+      "clear",
+      "click"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:10:57Z"
+}

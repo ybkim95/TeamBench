@@ -1,0 +1,54 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24615,
+  "pr_url": "https://github.com/scipy/scipy/pull/24615",
+  "issue_number": null,
+  "base_sha": "d5d3faa73f9822859851bdb0a6f5c936b38a5b2f",
+  "head_sha": "3a49034e1143a962bd8aafe6ed4c1e54a099130d",
+  "additions": 52,
+  "deletions": 7,
+  "changed_files": [
+    "scipy/ndimage/src/ni_splines.c",
+    "scipy/ndimage/tests/test_interpolation.py",
+    "scipy/ndimage/tests/test_splines.py"
+  ],
+  "test_files": [
+    "scipy/ndimage/tests/test_interpolation.py",
+    "scipy/ndimage/tests/test_splines.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "accuracy",
+      "affine_transform",
+      "after",
+      "aliasing",
+      "arange",
+      "asarray",
+      "assert_almost_equal",
+      "atol",
+      "available",
+      "axis"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:51:51Z"
+}

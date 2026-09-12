@@ -1,0 +1,55 @@
+{
+  "repo": "pallets/jinja",
+  "pr_number": 2061,
+  "pr_url": "https://github.com/pallets/jinja/pull/2061",
+  "issue_number": null,
+  "base_sha": "767b23617628419ae3709ccfb02f9602ae9fe51f",
+  "head_sha": "e45bc745a76b7aa573e68888bf49ecef70001815",
+  "additions": 14,
+  "deletions": 2,
+  "changed_files": [
+    "CHANGES.rst",
+    "src/jinja2/environment.py",
+    "tests/test_api.py"
+  ],
+  "test_files": [
+    "tests/test_api.py"
+  ],
+  "source_files": [
+    "src/jinja2/environment.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/jinja",
+    "repo_short": "jinja",
+    "parameterized_identifiers": [
+      "applied",
+      "attributes",
+      "auto_reload",
+      "bytecode_cache",
+      "cache",
+      "cache_size",
+      "copied",
+      "copy",
+      "correctly",
+      "current"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:39:04Z"
+}

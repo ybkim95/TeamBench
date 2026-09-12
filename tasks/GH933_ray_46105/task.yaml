@@ -1,0 +1,13 @@
+task_id: GH933_ray_46105
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[Serve] fix logging error on passing traceback object into exc_info"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/ray-project/ray/pull/46105"
+source_issue: "https://github.com/ray-project/ray/issues/45912"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

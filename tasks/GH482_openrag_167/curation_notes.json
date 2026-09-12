@@ -1,0 +1,58 @@
+{
+  "repo": "linagora/openrag",
+  "pr_number": 167,
+  "pr_url": "https://github.com/linagora/openrag/pull/167",
+  "issue_number": null,
+  "base_sha": "7d6863fd44d71c5cc122b747572a91fd821fdda2",
+  "head_sha": "512d3fa21a72aea36ccc00a09cd4bb1eb7d05aa8",
+  "additions": 81,
+  "deletions": 26,
+  "changed_files": [
+    "openrag/components/files.py",
+    "openrag/components/test_files.py",
+    "openrag/routers/indexer.py",
+    "openrag/routers/utils.py"
+  ],
+  "test_files": [
+    "openrag/components/test_files.py"
+  ],
+  "source_files": [
+    "openrag/components/files.py",
+    "openrag/routers/indexer.py",
+    "openrag/routers/utils.py"
+  ],
+  "parameterization": {
+    "repo": "linagora/openrag",
+    "repo_short": "openrag",
+    "parameterized_identifiers": [
+      "add_file",
+      "after",
+      "aiofiles",
+      "asyncio",
+      "buffer",
+      "cancel",
+      "cases",
+      "characters",
+      "chars",
+      "chunk_size"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:21:22Z"
+}

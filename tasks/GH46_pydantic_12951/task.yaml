@@ -1,0 +1,13 @@
+task_id: GH46_pydantic_12951
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Do not include annotations that are not part of named tuple fields"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pydantic/pydantic/pull/12951"
+source_issue: "https://github.com/pydantic/pydantic/issues/7987"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

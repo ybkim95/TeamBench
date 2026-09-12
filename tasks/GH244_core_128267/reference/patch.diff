@@ -1,0 +1,141 @@
+diff --git a/homeassistant/components/utility_meter/select.py b/homeassistant/components/utility_meter/select.py
+index d5b1206d04617..5815ce7ec95be 100644
+--- a/homeassistant/components/utility_meter/select.py
++++ b/homeassistant/components/utility_meter/select.py
+@@ -6,7 +6,7 @@
+ 
+ from homeassistant.components.select import SelectEntity
+ from homeassistant.config_entries import ConfigEntry
+-from homeassistant.const import CONF_UNIQUE_ID
++from homeassistant.const import CONF_NAME, CONF_UNIQUE_ID
+ from homeassistant.core import HomeAssistant
+ from homeassistant.helpers.device import async_device_info_to_link_from_entity
+ from homeassistant.helpers.device_registry import DeviceInfo
+@@ -36,9 +36,9 @@ async def async_setup_entry(
+     )
+ 
+     tariff_select = TariffSelect(
+-        name,
+-        tariffs,
+-        unique_id,
++        name=name,
++        tariffs=tariffs,
++        unique_id=unique_id,
+         device_info=device_info,
+     )
+     async_add_entities([tariff_select])
+@@ -62,13 +62,15 @@ async def async_setup_platform(
+     conf_meter_unique_id: str | None = hass.data[DATA_UTILITY][meter].get(
+         CONF_UNIQUE_ID
+     )
++    conf_meter_name = hass.data[DATA_UTILITY][meter].get(CONF_NAME, meter)
+ 
+     async_add_entities(
+         [
+             TariffSelect(
+-                meter,
+-                discovery_info[CONF_TARIFFS],
+-                conf_meter_unique_id,
++                name=conf_meter_name,
++                tariffs=discovery_info[CONF_TARIFFS],
++                yaml_slug=meter,
++                unique_id=conf_meter_unique_id,
+             )
+         ]
+     )
+@@ -82,12 +84,16 @@ class TariffSelect(SelectEntity, RestoreEntity):
+     def __init__(
+         self,
+         name,
+-        tariffs,
+-        unique_id,
++        tariffs: list[str],
++        *,
++        yaml_slug: str | None = None,
++        unique_id: str | None = None,
+         device_info: DeviceInfo | None = None,
+     ) -> None:
+         """Initialize a tariff selector."""
+         self._attr_name = name
++        if yaml_slug:  # Backwards compatibility with YAML configuration entries
++            self.entity_id = f"select.{yaml_slug}"
+         self._attr_unique_id = unique_id
+         self._attr_device_info = device_info
+         self._current_tariff: str | None = None
+diff --git a/tests/components/utility_meter/test_select.py b/tests/components/utility_meter/test_select.py
+index 61f6cbe75b948..1f54f3b500a16 100644
+--- a/tests/components/utility_meter/test_select.py
++++ b/tests/components/utility_meter/test_select.py
+@@ -3,10 +3,72 @@
+ from homeassistant.components.utility_meter.const import DOMAIN
+ from homeassistant.core import HomeAssistant
+ from homeassistant.helpers import device_registry as dr, entity_registry as er
++from homeassistant.setup import async_setup_component
+ 
+ from tests.common import MockConfigEntry
+ 
+ 
++async def test_select_entity_name_config_entry(
++    hass: HomeAssistant,
++) -> None:
++    """Test for Utility Meter select platform."""
++
++    config_entry_config = {
++        "cycle": "none",
++        "delta_values": False,
++        "name": "Energy bill",
++        "net_consumption": False,
++        "offset": 0,
++        "periodically_resetting": True,
++        "source": "sensor.energy",
++        "tariffs": ["peak", "offpeak"],
++    }
++
++    source_config_entry = MockConfigEntry()
++    source_config_entry.add_to_hass(hass)
++    utility_meter_config_entry = MockConfigEntry(
++        data={},
++        domain=DOMAIN,
++        options=config_entry_config,
++        title=config_entry_config["name"],
++    )
++
++    utility_meter_config_entry.add_to_hass(hass)
++
++    assert await hass.config_entries.async_setup(utility_meter_config_entry.entry_id)
++
++    await hass.async_block_till_done()
++
++    state = hass.states.get("select.energy_bill")
++    assert state is not None
++    assert state.attributes.get("friendly_name") == "Energy bill"
++
++
++async def test_select_entity_name_yaml(
++    hass: HomeAssistant,
++) -> None:
++    """Test for Utility Meter select platform."""
++
++    yaml_config = {
++        "utility_meter": {
++            "energy_bill": {
++                "name": "Energy bill",
++                "source": "sensor.energy",
++                "tariffs": ["peak", "offpeak"],
++                "unique_id": "1234abcd",
++            }
++        }
++    }
++
++    assert await async_setup_component(hass, DOMAIN, yaml_config)
++
++    await hass.async_block_till_done()
++
++    state = hass.states.get("select.energy_bill")
++    assert state is not None
++    assert state.attributes.get("friendly_name") == "Energy bill"
++
++
+ async def test_device_id(
+     hass: HomeAssistant,
+     device_registry: dr.DeviceRegistry,

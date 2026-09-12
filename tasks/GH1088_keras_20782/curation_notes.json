@@ -1,0 +1,52 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 20782,
+  "pr_url": "https://github.com/keras-team/keras/pull/20782",
+  "issue_number": 20178,
+  "base_sha": "a25881cc1bbd266cdcfc53914d24c47ac3ac965c",
+  "head_sha": "d9e7e8e885433d475aa34aa1303c9c9f17aca668",
+  "additions": 20,
+  "deletions": 0,
+  "changed_files": [
+    "keras/src/metrics/reduction_metrics.py",
+    "keras/src/metrics/reduction_metrics_test.py"
+  ],
+  "test_files": [
+    "keras/src/metrics/reduction_metrics_test.py"
+  ],
+  "source_files": [
+    "keras/src/metrics/reduction_metrics.py"
+  ],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "backend",
+      "cast",
+      "common",
+      "down",
+      "dtype",
+      "get_keras_mask",
+      "inputs",
+      "keras",
+      "keras_tensor",
+      "layers"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:04:42Z"
+}

@@ -1,0 +1,60 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7607,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7607",
+  "issue_number": 7605,
+  "base_sha": "5062f7cd4c72fe4cd73fee2123fb6f6b728f95a1",
+  "head_sha": "50e034b72f17507b904a2315eecc29d7545b1c29",
+  "additions": 21,
+  "deletions": 13,
+  "changed_files": [
+    "conda-envs/environment-dev.yml",
+    "conda-envs/environment-docs.yml",
+    "conda-envs/environment-jax.yml",
+    "conda-envs/environment-test.yml",
+    "conda-envs/windows-environment-dev.yml",
+    "conda-envs/windows-environment-test.yml",
+    "pymc/sampling/mcmc.py",
+    "requirements-dev.txt",
+    "requirements.txt",
+    "tests/distributions/test_custom.py"
+  ],
+  "test_files": [
+    "tests/distributions/test_custom.py"
+  ],
+  "source_files": [
+    "pymc/sampling/mcmc.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "allow",
+      "array",
+      "arviz",
+      "because",
+      "cachetools",
+      "chain",
+      "chains",
+      "cloudpickle",
+      "create",
+      "creation"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:02:49Z"
+}

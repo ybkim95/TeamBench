@@ -1,0 +1,53 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 25341,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/25341",
+  "issue_number": 25333,
+  "base_sha": "52e89a4e17b8b27dbc8dc41592d354f65e179260",
+  "head_sha": "ebcb81ab538394bbecc5075250a3823d16b43ae0",
+  "additions": 72,
+  "deletions": 19,
+  "changed_files": [
+    "doc/whats_new/v1.2.rst",
+    "sklearn/ensemble/tests/test_forest.py",
+    "sklearn/tree/_splitter.pyx",
+    "sklearn/tree/tests/test_tree.py"
+  ],
+  "test_files": [
+    "sklearn/ensemble/tests/test_forest.py",
+    "sklearn/tree/tests/test_tree.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "approach",
+      "array",
+      "assert_almost_equal",
+      "assert_array_equal",
+      "assert_is_subtree",
+      "astype",
+      "base",
+      "base_estimator_",
+      "best",
+      "binary"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:40Z"
+}

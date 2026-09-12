@@ -1,0 +1,13 @@
+task_id: GH897_sktime_8372
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[BUG] Fix boundary equality in `EmpiricalCoverage`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/sktime/sktime/pull/8372"
+source_issue: "https://github.com/sktime/sktime/issues/8371"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

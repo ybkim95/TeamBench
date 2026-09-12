@@ -1,0 +1,52 @@
+{
+  "repo": "sktime/sktime",
+  "pr_number": 4758,
+  "pr_url": "https://github.com/sktime/sktime/pull/4758",
+  "issue_number": 4744,
+  "base_sha": "bb494a74536cb45461273007d274076ecdca933c",
+  "head_sha": "5e6a0122c5113e70e72d2bcb442a8c0c00e62b9a",
+  "additions": 137,
+  "deletions": 12,
+  "changed_files": [
+    "sktime/forecasting/dynamic_factor.py",
+    "sktime/forecasting/tests/test_dynamic_factor.py"
+  ],
+  "test_files": [
+    "sktime/forecasting/tests/test_dynamic_factor.py"
+  ],
+  "source_files": [
+    "sktime/forecasting/dynamic_factor.py"
+  ],
+  "parameterization": {
+    "repo": "sktime/sktime",
+    "repo_short": "sktime",
+    "parameterized_identifiers": [
+      "absence",
+      "adapters",
+      "against",
+      "alpha",
+      "assert_frame_equal",
+      "available",
+      "axis",
+      "base",
+      "beginning",
+      "columns"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:55:39Z"
+}

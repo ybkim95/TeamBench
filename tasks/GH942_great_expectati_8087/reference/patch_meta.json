@@ -1,0 +1,15 @@
+{
+ "task": "GH942_great_expectati_8087",
+ "patch": "tasks/GH942_great_expectati_8087/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "great-expectations/great_expectations",
+ "pr_number": 8087,
+ "base_sha": "cc34dbbfd80edb0f1637aefacf712bd3f6e4699c",
+ "head_sha": "0bb30a98e04dcafb0c0eb707fddbdae92ad0e539",
+ "bytes": 907,
+ "files_changed": 1,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

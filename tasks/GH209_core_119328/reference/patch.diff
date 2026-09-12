@@ -1,0 +1,172 @@
+diff --git a/homeassistant/components/utility_meter/__init__.py b/homeassistant/components/utility_meter/__init__.py
+index 4bacde3236787..c579a684406df 100644
+--- a/homeassistant/components/utility_meter/__init__.py
++++ b/homeassistant/components/utility_meter/__init__.py
+@@ -191,6 +191,11 @@ async def async_reset_meters(service_call):
+ 
+ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+     """Set up Utility Meter from a config entry."""
++
++    await async_remove_stale_device_links(
++        hass, entry.entry_id, entry.options[CONF_SOURCE_SENSOR]
++    )
++
+     entity_registry = er.async_get(hass)
+     hass.data[DATA_UTILITY][entry.entry_id] = {
+         "source": entry.options[CONF_SOURCE_SENSOR],
+@@ -230,22 +235,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+ 
+ async def config_entry_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None:
+     """Update listener, called when the config entry options are changed."""
+-    old_source = hass.data[DATA_UTILITY][entry.entry_id]["source"]
+-    await hass.config_entries.async_reload(entry.entry_id)
+-
+-    if old_source == entry.options[CONF_SOURCE_SENSOR]:
+-        return
+ 
+-    entity_registry = er.async_get(hass)
+-    device_registry = dr.async_get(hass)
+-
+-    old_source_entity = entity_registry.async_get(old_source)
+-    if not old_source_entity or not old_source_entity.device_id:
+-        return
+-
+-    device_registry.async_update_device(
+-        old_source_entity.device_id, remove_config_entry_id=entry.entry_id
+-    )
++    await hass.config_entries.async_reload(entry.entry_id)
+ 
+ 
+ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+@@ -275,3 +266,27 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) ->
+     _LOGGER.info("Migration to version %s successful", config_entry.version)
+ 
+     return True
++
++
++async def async_remove_stale_device_links(
++    hass: HomeAssistant, entry_id: str, entity_id: str
++) -> None:
++    """Remove device link for entry, the source device may have changed."""
++
++    device_registry = dr.async_get(hass)
++    entity_registry = er.async_get(hass)
++
++    # Resolve source entity device
++    current_device_id = None
++    if ((source_entity := entity_registry.async_get(entity_id)) is not None) and (
++        source_entity.device_id is not None
++    ):
++        current_device_id = source_entity.device_id
++
++    devices_in_entry = device_registry.devices.get_devices_for_config_entry_id(entry_id)
++
++    # Removes all devices from the config entry that are not the same as the current device
++    for device in devices_in_entry:
++        if device.id == current_device_id:
++            continue
++        device_registry.async_update_device(device.id, remove_config_entry_id=entry_id)
+diff --git a/tests/components/utility_meter/test_init.py b/tests/components/utility_meter/test_init.py
+index 5e000076fdc8d..77d223454eccb 100644
+--- a/tests/components/utility_meter/test_init.py
++++ b/tests/components/utility_meter/test_init.py
+@@ -24,7 +24,7 @@
+     UnitOfEnergy,
+ )
+ from homeassistant.core import HomeAssistant, State
+-from homeassistant.helpers import entity_registry as er
++from homeassistant.helpers import device_registry as dr, entity_registry as er
+ from homeassistant.setup import async_setup_component
+ import homeassistant.util.dt as dt_util
+ 
+@@ -442,3 +442,90 @@ async def test_setup_and_remove_config_entry(
+     # Check the state and entity registry entry are removed
+     assert len(hass.states.async_all()) == 0
+     assert len(entity_registry.entities) == 0
++
++
++async def test_device_cleaning(hass: HomeAssistant) -> None:
++    """Test for source entity device for Utility Meter."""
++    device_registry = dr.async_get(hass)
++    entity_registry = er.async_get(hass)
++
++    # Source entity device config entry
++    source_config_entry = MockConfigEntry()
++    source_config_entry.add_to_hass(hass)
++
++    # Device entry of the source entity
++    source_device1_entry = device_registry.async_get_or_create(
++        config_entry_id=source_config_entry.entry_id,
++        identifiers={("sensor", "identifier_test1")},
++        connections={("mac", "30:31:32:33:34:01")},
++    )
++
++    # Source entity registry
++    source_entity = entity_registry.async_get_or_create(
++        "sensor",
++        "test",
++        "source",
++        config_entry=source_config_entry,
++        device_id=source_device1_entry.id,
++    )
++    await hass.async_block_till_done()
++    assert entity_registry.async_get("sensor.test_source") is not None
++
++    # Configure the configuration entry for Utility Meter
++    utility_meter_config_entry = MockConfigEntry(
++        data={},
++        domain=DOMAIN,
++        options={
++            "cycle": "monthly",
++            "delta_values": False,
++            "name": "Meter",
++            "net_consumption": False,
++            "offset": 0,
++            "periodically_resetting": True,
++            "source": "sensor.test_source",
++            "tariffs": [],
++        },
++        title="Meter",
++    )
++    utility_meter_config_entry.add_to_hass(hass)
++    assert await hass.config_entries.async_setup(utility_meter_config_entry.entry_id)
++    await hass.async_block_till_done()
++
++    # Confirm the link between the source entity device and the meter sensor
++    utility_meter_entity = entity_registry.async_get("sensor.meter")
++    assert utility_meter_entity is not None
++    assert utility_meter_entity.device_id == source_entity.device_id
++
++    # Device entry incorrectly linked to Utility Meter config entry
++    device_registry.async_get_or_create(
++        config_entry_id=utility_meter_config_entry.entry_id,
++        identifiers={("sensor", "identifier_test2")},
++        connections={("mac", "30:31:32:33:34:02")},
++    )
++    device_registry.async_get_or_create(
++        config_entry_id=utility_meter_config_entry.entry_id,
++        identifiers={("sensor", "identifier_test3")},
++        connections={("mac", "30:31:32:33:34:03")},
++    )
++    await hass.async_block_till_done()
++
++    # Before reloading the config entry, two devices are expected to be linked
++    devices_before_reload = device_registry.devices.get_devices_for_config_entry_id(
++        utility_meter_config_entry.entry_id
++    )
++    assert len(devices_before_reload) == 3
++
++    # Config entry reload
++    await hass.config_entries.async_reload(utility_meter_config_entry.entry_id)
++    await hass.async_block_till_done()
++
++    # Confirm the link between the source entity device and the meter sensor after reload
++    utility_meter_entity = entity_registry.async_get("sensor.meter")
++    assert utility_meter_entity is not None
++    assert utility_meter_entity.device_id == source_entity.device_id
++
++    # After reloading the config entry, only one linked device is expected
++    devices_after_reload = device_registry.devices.get_devices_for_config_entry_id(
++        utility_meter_config_entry.entry_id
++    )
++    assert len(devices_after_reload) == 1

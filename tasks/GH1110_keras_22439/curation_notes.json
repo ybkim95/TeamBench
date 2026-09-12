@@ -1,0 +1,54 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 22439,
+  "pr_url": "https://github.com/keras-team/keras/pull/22439",
+  "issue_number": null,
+  "base_sha": "dc3bdb140db317677faf2c96e3a5915582fff69d",
+  "head_sha": "0bd940377aa40f2e0890473c9134f38ff1d76743",
+  "additions": 37,
+  "deletions": 0,
+  "changed_files": [
+    "keras/src/layers/convolutional/base_conv_transpose.py",
+    "keras/src/layers/convolutional/conv_transpose_test.py"
+  ],
+  "test_files": [
+    "keras/src/layers/convolutional/conv_transpose_test.py"
+  ],
+  "source_files": [
+    "keras/src/layers/convolutional/base_conv_transpose.py"
+  ],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "argument",
+      "build",
+      "channel_axis",
+      "channels_last",
+      "corresponding",
+      "data_format",
+      "dilation_rate",
+      "enumerate",
+      "filters",
+      "index"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:06:19Z"
+}

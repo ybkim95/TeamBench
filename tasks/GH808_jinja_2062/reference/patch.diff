@@ -1,0 +1,44 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 3955a32ba..e31de857d 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -40,6 +40,7 @@ Unreleased
+ -   ``PackageLoader`` shows a clearer error message when the package does not
+     contain the templates directory. :issue:`1705`
+ -   Improve annotations for methods returning copies. :pr:`1880`
++-   ``urlize`` does not add ``mailto:`` to values like `@a@b`. :pr:`1870`
+ 
+ 
+ Version 3.1.4
+diff --git a/src/jinja2/utils.py b/src/jinja2/utils.py
+index d7149bc31..7c922629a 100644
+--- a/src/jinja2/utils.py
++++ b/src/jinja2/utils.py
+@@ -333,6 +333,8 @@ def trim_url(x: str) -> str:
+         elif (
+             "@" in middle
+             and not middle.startswith("www.")
++            # ignore values like `@a@b`
++            and not middle.startswith("@")
+             and ":" not in middle
+             and _email_re.match(middle)
+         ):
+diff --git a/tests/test_utils.py b/tests/test_utils.py
+index 86e0f0420..b50a6b4c6 100644
+--- a/tests/test_utils.py
++++ b/tests/test_utils.py
+@@ -142,6 +142,14 @@ def test_escape_urlize_target(self):
+             "http://example.org</a>"
+         )
+ 
++    def test_urlize_mail_mastodon(self):
++        fr = "nabijaczleweli@nabijaczleweli.xyz\n@eater@cijber.social\n"
++        to = (
++            '<a href="mailto:nabijaczleweli@nabijaczleweli.xyz">'
++            "nabijaczleweli@nabijaczleweli.xyz</a>\n@eater@cijber.social\n"
++        )
++        assert urlize(fr) == to
++
+ 
+ class TestLoremIpsum:
+     def test_lorem_ipsum_markup(self):

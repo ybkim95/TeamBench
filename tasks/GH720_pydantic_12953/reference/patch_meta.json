@@ -1,0 +1,15 @@
+{
+ "task": "GH720_pydantic_12953",
+ "patch": "tasks/GH720_pydantic_12953/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "pydantic/pydantic",
+ "pr_number": 12953,
+ "base_sha": "d4d370897ca71c344cdbd7b2f5a6e687a6518b92",
+ "head_sha": "5882c65348fb34070a1bf3f1f42f19e3806702f8",
+ "bytes": 6703,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

@@ -1,0 +1,57 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 16849,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/16849",
+  "issue_number": 15186,
+  "base_sha": "b4757f7fe5b8d238ebb4cb150aeba52306c12071",
+  "head_sha": "7e49e0a43e89100b17a9a47fea2830295d7b3145",
+  "additions": 83,
+  "deletions": 156,
+  "changed_files": [
+    "doc/whats_new/v0.23.rst",
+    "sklearn/externals/_scipy_linalg.py",
+    "sklearn/linear_model/_bayes.py",
+    "sklearn/linear_model/tests/test_bayes.py",
+    "sklearn/utils/fixes.py"
+  ],
+  "test_files": [
+    "sklearn/linear_model/tests/test_bayes.py"
+  ],
+  "source_files": [
+    "sklearn/externals/_scipy_linalg.py",
+    "sklearn/linear_model/_bayes.py",
+    "sklearn/utils/fixes.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "above",
+      "above_cutoff",
+      "abs_coef_error",
+      "absgrad",
+      "absolute",
+      "accuracy",
+      "addressed",
+      "adds",
+      "algorithms",
+      "allclose"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:55:53Z"
+}

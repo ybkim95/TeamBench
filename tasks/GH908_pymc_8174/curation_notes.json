@@ -1,0 +1,54 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 8174,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/8174",
+  "issue_number": 8173,
+  "base_sha": "c9cd0c8c8701a804d1a789454a4b96b2ada93125",
+  "head_sha": "262f73c48b0f374c58dca7d8a6b6a63bd8eed63a",
+  "additions": 34,
+  "deletions": 11,
+  "changed_files": [
+    "pymc/logprob/transform_value.py",
+    "tests/distributions/test_transform.py",
+    "tests/logprob/test_transform_value.py"
+  ],
+  "test_files": [
+    "tests/distributions/test_transform.py",
+    "tests/logprob/test_transform_value.py"
+  ],
+  "source_files": [
+    "pymc/logprob/transform_value.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "allowed",
+      "assert_allclose",
+      "between",
+      "broadcast",
+      "broadcastable",
+      "broadcastable_axes",
+      "broadcasting",
+      "buggy_transform",
+      "causing",
+      "collections"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:25Z"
+}

@@ -1,0 +1,55 @@
+{
+  "repo": "celery/celery",
+  "pr_number": 10013,
+  "pr_url": "https://github.com/celery/celery/pull/10013",
+  "issue_number": null,
+  "base_sha": "cca11164860a1bee6ad8626c27a683b482f741eb",
+  "head_sha": "6b6ce79f29ddd7ab61cb8b8d7fb7c64cf62bb876",
+  "additions": 72,
+  "deletions": 3,
+  "changed_files": [
+    "Changelog.rst",
+    "celery/backends/redis.py",
+    "t/unit/backends/test_redis.py"
+  ],
+  "test_files": [
+    "t/unit/backends/test_redis.py"
+  ],
+  "source_files": [
+    "celery/backends/redis.py"
+  ],
+  "parameterization": {
+    "repo": "celery/celery",
+    "repo_short": "celery",
+    "parameterized_identifiers": [
+      "assert_called_once",
+      "authentication",
+      "backends",
+      "branch",
+      "bugfix",
+      "call_args",
+      "call_kwargs",
+      "celery",
+      "change",
+      "choice"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:14:01Z"
+}

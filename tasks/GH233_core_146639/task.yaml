@@ -1,0 +1,13 @@
+task_id: GH233_core_146639
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Add backward compatibility with older versions of Traccar server"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/146639"
+source_issue: "https://github.com/home-assistant/core/issues/110098"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

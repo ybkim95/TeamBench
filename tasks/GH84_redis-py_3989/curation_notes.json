@@ -1,0 +1,54 @@
+{
+  "repo": "redis/redis-py",
+  "pr_number": 3989,
+  "pr_url": "https://github.com/redis/redis-py/pull/3989",
+  "issue_number": 3936,
+  "base_sha": "abf5bcb2ded3f393cd3d74803b058df325e3755c",
+  "head_sha": "e689342e098020bf03c77f8d1a76efe06fdc4f75",
+  "additions": 67,
+  "deletions": 0,
+  "changed_files": [
+    "redis/asyncio/cluster.py",
+    "tests/test_asyncio/test_cluster.py",
+    "tests/test_asyncio/test_pipeline.py"
+  ],
+  "test_files": [
+    "tests/test_asyncio/test_cluster.py",
+    "tests/test_asyncio/test_pipeline.py"
+  ],
+  "source_files": [
+    "redis/asyncio/cluster.py"
+  ],
+  "parameterization": {
+    "repo": "redis/redis-py",
+    "repo_short": "redis-py",
+    "parameterized_identifiers": [
+      "access",
+      "aclose",
+      "arguments",
+      "asyncio",
+      "attributes",
+      "blocked",
+      "callback",
+      "callbacks",
+      "client",
+      "cluster"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:45:05Z"
+}

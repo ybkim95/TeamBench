@@ -1,0 +1,55 @@
+{
+  "repo": "wandb/wandb",
+  "pr_number": 11231,
+  "pr_url": "https://github.com/wandb/wandb/pull/11231",
+  "issue_number": null,
+  "base_sha": "6852003335a8b80976795124e1dffab2ac3037c4",
+  "head_sha": "cba7eab9811c617f587d12c33cacd6564455aa50",
+  "additions": 20,
+  "deletions": 2,
+  "changed_files": [
+    "CHANGELOG.unreleased.md",
+    "tests/system_tests/test_core/test_offline_sync_beta.py",
+    "wandb/cli/beta_sync.py"
+  ],
+  "test_files": [
+    "tests/system_tests/test_core/test_offline_sync_beta.py"
+  ],
+  "source_files": [
+    "wandb/cli/beta_sync.py"
+  ],
+  "parameterization": {
+    "repo": "wandb/wandb",
+    "repo_short": "wandb",
+    "parameterized_identifiers": [
+      "ask_for_confirmation",
+      "asyncer",
+      "asyncio_compat",
+      "auth",
+      "authenticate_session",
+      "authenticated",
+      "authenticates",
+      "base_url",
+      "beta",
+      "beta_sync"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:14:25Z"
+}

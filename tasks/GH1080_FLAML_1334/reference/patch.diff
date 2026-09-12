@@ -1,0 +1,186 @@
+diff --git a/notebook/autogen_chatgpt_gpt4.ipynb b/notebook/autogen_chatgpt_gpt4.ipynb
+index 04007d33f8..1140326d9b 100644
+--- a/notebook/autogen_chatgpt_gpt4.ipynb
++++ b/notebook/autogen_chatgpt_gpt4.ipynb
+@@ -174,7 +174,7 @@
+     "import datasets\n",
+     "\n",
+     "seed = 41\n",
+-    "data = datasets.load_dataset(\"competition_math\")\n",
++    "data = datasets.load_dataset(\"competition_math\", trust_remote_code=True)\n",
+     "train_data = data[\"train\"].shuffle(seed=seed)\n",
+     "test_data = data[\"test\"].shuffle(seed=seed)\n",
+     "n_tune_data = 20\n",
+@@ -390,7 +390,7 @@
+      "name": "stderr",
+      "output_type": "stream",
+      "text": [
+-      "\u001b[32m[I 2023-08-01 22:38:01,549]\u001b[0m A new study created in memory with name: optuna\u001b[0m\n"
++      "\u001B[32m[I 2023-08-01 22:38:01,549]\u001B[0m A new study created in memory with name: optuna\u001B[0m\n"
+      ]
+     },
+     {
+diff --git a/notebook/autogen_openai_completion.ipynb b/notebook/autogen_openai_completion.ipynb
+index 0c4b0d0ff3..3438621d81 100644
+--- a/notebook/autogen_openai_completion.ipynb
++++ b/notebook/autogen_openai_completion.ipynb
+@@ -196,7 +196,7 @@
+     "import datasets\n",
+     "\n",
+     "seed = 41\n",
+-    "data = datasets.load_dataset(\"openai_humaneval\")[\"test\"].shuffle(seed=seed)\n",
++    "data = datasets.load_dataset(\"openai_humaneval\", trust_remote_code=True)[\"test\"].shuffle(seed=seed)\n",
+     "n_tune_data = 20\n",
+     "tune_data = [\n",
+     "    {\n",
+@@ -444,8 +444,8 @@
+      "name": "stderr",
+      "output_type": "stream",
+      "text": [
+-      "\u001b[32m[I 2023-07-30 04:19:08,150]\u001b[0m A new study created in memory with name: optuna\u001b[0m\n",
+-      "\u001b[32m[I 2023-07-30 04:19:08,153]\u001b[0m A new study created in memory with name: optuna\u001b[0m\n"
++      "\u001B[32m[I 2023-07-30 04:19:08,150]\u001B[0m A new study created in memory with name: optuna\u001B[0m\n",
++      "\u001B[32m[I 2023-07-30 04:19:08,153]\u001B[0m A new study created in memory with name: optuna\u001B[0m\n"
+      ]
+     },
+     {
+diff --git a/notebook/research/autogen_code.ipynb b/notebook/research/autogen_code.ipynb
+index 653bd94393..312f3fe13b 100644
+--- a/notebook/research/autogen_code.ipynb
++++ b/notebook/research/autogen_code.ipynb
+@@ -152,7 +152,7 @@
+     "import datasets\n",
+     "\n",
+     "seed = 41\n",
+-    "data = datasets.load_dataset(\"openai_humaneval\")[\"test\"].shuffle(seed=seed)\n",
++    "data = datasets.load_dataset(\"openai_humaneval\", trust_remote_code=True)[\"test\"].shuffle(seed=seed)\n",
+     "data = data.select(range(len(data))).rename_column(\"prompt\", \"definition\").remove_columns([\"task_id\", \"canonical_solution\"])"
+    ]
+   },
+diff --git a/notebook/research/math_level5counting.ipynb b/notebook/research/math_level5counting.ipynb
+index d929000c8b..1a6edbed6c 100644
+--- a/notebook/research/math_level5counting.ipynb
++++ b/notebook/research/math_level5counting.ipynb
+@@ -121,7 +121,7 @@
+     "import datasets\n",
+     "\n",
+     "seed = 41\n",
+-    "data = datasets.load_dataset(\"competition_math\")\n",
++    "data = datasets.load_dataset(\"competition_math\", trust_remote_code=True)\n",
+     "train_data = data[\"train\"].shuffle(seed=seed)\n",
+     "test_data = data[\"test\"].shuffle(seed=seed)\n",
+     "n_tune_data = 20\n",
+diff --git a/notebook/tune_huggingface.ipynb b/notebook/tune_huggingface.ipynb
+index 35b7e78c21..abcd6c0f8f 100644
+--- a/notebook/tune_huggingface.ipynb
++++ b/notebook/tune_huggingface.ipynb
+@@ -112,9 +112,7 @@
+      ]
+     }
+    ],
+-   "source": [
+-    "raw_dataset = datasets.load_dataset(\"glue\", TASK)"
+-   ]
++   "source": "raw_dataset = datasets.load_dataset(\"glue\", TASK, trust_remote_code=True)"
+   },
+   {
+    "cell_type": "code",
+@@ -425,9 +423,7 @@
+    "execution_count": 14,
+    "metadata": {},
+    "outputs": [],
+-   "source": [
+-    "metric = datasets.load_metric(\"glue\", TASK)"
+-   ]
++   "source": "metric = datasets.load_metric(\"glue\", TASK, trust_remote_code=True)"
+   },
+   {
+    "cell_type": "code",
+@@ -646,7 +642,7 @@
+     "def train_distilbert(config: dict):\n",
+     "\n",
+     "    # Load CoLA dataset and apply tokenizer\n",
+-    "    cola_raw = datasets.load_dataset(\"glue\", TASK)\n",
++    "    cola_raw = datasets.load_dataset(\"glue\", TASK, trust_remote_code=True)\n",
+     "    cola_encoded = cola_raw.map(tokenize, batched=True)\n",
+     "    train_dataset, eval_dataset = cola_encoded[\"train\"], cola_encoded[\"validation\"]\n",
+     "\n",
+@@ -654,7 +650,7 @@
+     "        MODEL_CHECKPOINT, num_labels=NUM_LABELS\n",
+     "    )\n",
+     "\n",
+-    "    metric = datasets.load_metric(\"glue\", TASK)\n",
++    "    metric = datasets.load_metric(\"glue\", TASK, trust_remote_code=True)\n",
+     "    def compute_metrics(eval_pred):\n",
+     "        predictions, labels = eval_pred\n",
+     "        predictions = np.argmax(predictions, axis=1)\n",
+@@ -847,7 +843,7 @@
+      "name": "stderr",
+      "output_type": "stream",
+      "text": [
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m Reusing dataset glue (/home/ec2-user/.cache/huggingface/datasets/glue/cola/1.0.0/7c99657241149a24692c402a5c3f34d4c9f1df5ac2e4c3759fadea38f6cb29c4)\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m Reusing dataset glue (/home/ec2-user/.cache/huggingface/datasets/glue/cola/1.0.0/7c99657241149a24692c402a5c3f34d4c9f1df5ac2e4c3759fadea38f6cb29c4)\n",
+       "  0%|          | 0/9 [00:00<?, ?ba/s]\n",
+       " 22%|██▏       | 2/9 [00:00<00:00, 19.41ba/s]\n",
+       " 56%|█████▌    | 5/9 [00:00<00:00, 20.98ba/s]\n",
+@@ -856,25 +852,25 @@
+       "100%|██████████| 2/2 [00:00<00:00, 42.79ba/s]\n",
+       "  0%|          | 0/2 [00:00<?, ?ba/s]\n",
+       "100%|██████████| 2/2 [00:00<00:00, 41.48ba/s]\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertForSequenceClassification: ['vocab_transform.weight', 'vocab_transform.bias', 'vocab_layer_norm.weight', 'vocab_layer_norm.bias', 'vocab_projector.weight', 'vocab_projector.bias']\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m - This IS expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m - This IS NOT expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert-base-uncased and are newly initialized: ['pre_classifier.weight', 'pre_classifier.bias', 'classifier.weight', 'classifier.bias']\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.\n"
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertForSequenceClassification: ['vocab_transform.weight', 'vocab_transform.bias', 'vocab_layer_norm.weight', 'vocab_layer_norm.bias', 'vocab_projector.weight', 'vocab_projector.bias']\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m - This IS expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m - This IS NOT expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert-base-uncased and are newly initialized: ['pre_classifier.weight', 'pre_classifier.bias', 'classifier.weight', 'classifier.bias']\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.\n"
+      ]
+     },
+     {
+      "name": "stdout",
+      "output_type": "stream",
+      "text": [
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m To disable this warning, you can either:\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m \t- Avoid using `tokenizers` before the fork if possible\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m \t- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m To disable this warning, you can either:\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m \t- Avoid using `tokenizers` before the fork if possible\n",
+-      "\u001b[2m\u001b[36m(pid=11344)\u001b[0m \t- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)\n"
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m To disable this warning, you can either:\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m \t- Avoid using `tokenizers` before the fork if possible\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m \t- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m To disable this warning, you can either:\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m \t- Avoid using `tokenizers` before the fork if possible\n",
++      "\u001B[2m\u001B[36m(pid=11344)\u001B[0m \t- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)\n"
+      ]
+     }
+    ],
+diff --git a/test/autogen/oai/test_completion.py b/test/autogen/oai/test_completion.py
+index 422636e972..23b75adea4 100644
+--- a/test/autogen/oai/test_completion.py
++++ b/test/autogen/oai/test_completion.py
+@@ -187,7 +187,7 @@ def test_humaneval(num_samples=1):
+     )
+ 
+     seed = 41
+-    data = datasets.load_dataset("openai_humaneval")["test"].shuffle(seed=seed)
++    data = datasets.load_dataset("openai_humaneval", trust_remote_code=True)["test"].shuffle(seed=seed)
+     n_tune_data = 20
+     tune_data = [
+         {
+@@ -334,7 +334,7 @@ def test_math(num_samples=-1):
+         return
+ 
+     seed = 41
+-    data = datasets.load_dataset("competition_math")
++    data = datasets.load_dataset("competition_math", trust_remote_code=True)
+     train_data = data["train"].shuffle(seed=seed)
+     test_data = data["test"].shuffle(seed=seed)
+     n_tune_data = 20

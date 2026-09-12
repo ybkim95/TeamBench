@@ -1,0 +1,56 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 36455,
+  "pr_url": "https://github.com/huggingface/transformers/pull/36455",
+  "issue_number": null,
+  "base_sha": "dcbdf7e962c4b36140cc9ee76f870016121e69e5",
+  "head_sha": "1da95a5c3ede5fdd8af011f9ae2937be33d50fb6",
+  "additions": 105,
+  "deletions": 3,
+  "changed_files": [
+    "src/transformers/integrations/deepspeed.py",
+    "src/transformers/modeling_utils.py",
+    "tests/deepspeed/test_deepspeed.py"
+  ],
+  "test_files": [
+    "tests/deepspeed/test_deepspeed.py"
+  ],
+  "source_files": [
+    "src/transformers/integrations/deepspeed.py",
+    "src/transformers/modeling_utils.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "again",
+      "always",
+      "apply",
+      "argument",
+      "assign",
+      "because",
+      "child",
+      "children",
+      "code",
+      "collect"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:59:24Z"
+}

@@ -1,0 +1,50 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 176603,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/176603",
+  "issue_number": 176560,
+  "base_sha": "f99ab991dcd3719ee25dd3377a53ea12e518308e",
+  "head_sha": "616cb0c2266419d370d2868451d2cc2b57b65b7a",
+  "additions": 78,
+  "deletions": 11,
+  "changed_files": [
+    "test/test_accelerator.py",
+    "torch/csrc/Stream.cpp"
+  ],
+  "test_files": [
+    "test/test_accelerator.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "accelerator",
+      "active",
+      "already",
+      "auto",
+      "before",
+      "belong",
+      "const",
+      "context",
+      "ctx_device_index",
+      "ctx_stream"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:14:10Z"
+}

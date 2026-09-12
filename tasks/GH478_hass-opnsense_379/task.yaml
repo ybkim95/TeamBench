@@ -1,0 +1,13 @@
+task_id: GH478_hass-opnsense_379
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix system boot time calculation"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/travisghansen/hass-opnsense/pull/379"
+source_issue: "https://github.com/travisghansen/hass-opnsense/issues/378"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,15 @@
+{
+ "task": "GH629_psycopg_1215",
+ "patch": "tasks/GH629_psycopg_1215/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "psycopg/psycopg",
+ "pr_number": 1215,
+ "base_sha": "47b4dec61a8fc0df5559d9037463f945af042796",
+ "head_sha": "4e1cc65540ffcf85c3681d11fd6e742053bede65",
+ "bytes": 8992,
+ "files_changed": 8,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

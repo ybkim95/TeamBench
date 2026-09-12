@@ -1,0 +1,52 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 1416,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/1416",
+  "issue_number": 1300,
+  "base_sha": "c9d2d4ac55f9e7813e326139d83ac49da604ea2d",
+  "head_sha": "b72eee0bf8b5f3467563a650294913d34290ba00",
+  "additions": 22,
+  "deletions": 3,
+  "changed_files": [
+    "gpytorch/variational/natural_variational_distribution.py",
+    "test/variational/test_variational_strategy.py"
+  ],
+  "test_files": [
+    "test/variational/test_variational_strategy.py"
+  ],
+  "source_files": [
+    "gpytorch/variational/natural_variational_distribution.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "add_",
+      "annoying",
+      "autograd",
+      "cache",
+      "call_count",
+      "called",
+      "cg_mock",
+      "cholesky",
+      "cholesky_mock",
+      "choleskys"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:00:52Z"
+}

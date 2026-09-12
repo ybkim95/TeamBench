@@ -1,0 +1,15 @@
+{
+ "task": "GH307_appsmith_35927",
+ "patch": "tasks/GH307_appsmith_35927/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "appsmithorg/appsmith",
+ "pr_number": 35927,
+ "base_sha": "4885337fd9112678705bb3a601561a3c374be025",
+ "head_sha": "65218a2ae2c2e9d6729a30466d72a2dd60fa03a0",
+ "bytes": 5843,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

@@ -1,0 +1,51 @@
+{
+  "repo": "astral-sh/ruff",
+  "pr_number": 14098,
+  "pr_url": "https://github.com/astral-sh/ruff/pull/14098",
+  "issue_number": 13807,
+  "base_sha": "6c56a7a868a0c48e613bc879d0ceee7a2d62c01a",
+  "head_sha": "d4f6a81367c1c3810c7c895ddac449421a335839",
+  "additions": 96,
+  "deletions": 5,
+  "changed_files": [
+    "crates/ruff_linter/resources/test/fixtures/refurb/FURB157.py",
+    "crates/ruff_linter/src/rules/refurb/rules/verbose_decimal_constructor.rs",
+    "crates/ruff_linter/src/rules/refurb/snapshots/ruff_linter__rules__refurb__tests__FURB157_FURB157.py.snap"
+  ],
+  "test_files": [
+    "crates/ruff_linter/resources/test/fixtures/refurb/FURB157.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "astral-sh/ruff",
+    "repo_short": "ruff",
+    "parameterized_identifiers": [
+      "argument",
+      "as_bytes",
+      "assume",
+      "astral",
+      "blob",
+      "borrow",
+      "bytes",
+      "call",
+      "chars",
+      "checker"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:25:11Z"
+}

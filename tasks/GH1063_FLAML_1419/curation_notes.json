@@ -1,0 +1,52 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1419,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1419",
+  "issue_number": 1416,
+  "base_sha": "437c239c11b68e972ba77c431091bc5ec2ef480b",
+  "head_sha": "e9b29e54c6a44dea185c2dfcebff3b61362029e9",
+  "additions": 66,
+  "deletions": 0,
+  "changed_files": [
+    "flaml/automl/automl.py",
+    "test/automl/test_max_iter_1.py"
+  ],
+  "test_files": [
+    "test/automl/test_max_iter_1.py"
+  ],
+  "source_files": [
+    "flaml/automl/automl.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "automl",
+      "best_config",
+      "best_loss",
+      "best_run_id",
+      "config",
+      "copy",
+      "data_size",
+      "date_range",
+      "date_rng",
+      "estimator"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:02:41Z"
+}

@@ -1,0 +1,58 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 157960,
+  "pr_url": "https://github.com/home-assistant/core/pull/157960",
+  "issue_number": 151651,
+  "base_sha": "79b368cfc31ca869244080c0c0641a2b81bf7290",
+  "head_sha": "23d3a6ca3bd179d6eaa1a5a5091f1eaa029e1ee9",
+  "additions": 80,
+  "deletions": 8,
+  "changed_files": [
+    "homeassistant/components/tractive/__init__.py",
+    "homeassistant/components/tractive/const.py",
+    "homeassistant/components/tractive/sensor.py",
+    "tests/components/tractive/conftest.py",
+    "tests/components/tractive/test_sensor.py"
+  ],
+  "test_files": [
+    "tests/components/tractive/conftest.py",
+    "tests/components/tractive/test_sensor.py"
+  ],
+  "source_files": [
+    "homeassistant/components/tractive/__init__.py",
+    "homeassistant/components/tractive/const.py",
+    "homeassistant/components/tractive/sensor.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "activity",
+      "activity_time",
+      "after",
+      "async_block_till_done",
+      "async_setup_entry",
+      "async_unload_entry",
+      "asyncio",
+      "back",
+      "both",
+      "cancel_listen_task"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:41:19Z"
+}

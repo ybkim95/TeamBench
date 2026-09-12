@@ -1,0 +1,52 @@
+{
+  "repo": "boto/boto3",
+  "pr_number": 4698,
+  "pr_url": "https://github.com/boto/boto3/pull/4698",
+  "issue_number": null,
+  "base_sha": "a6ff277f05d42fa6dc7814bbd0b6973f5c0628b1",
+  "head_sha": "74f13987385e50fe9f75bb67c8a68b18f6405027",
+  "additions": 12,
+  "deletions": 9,
+  "changed_files": [
+    "boto3/s3/inject.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "boto3/s3/inject.py"
+  ],
+  "parameterization": {
+    "repo": "boto/boto3",
+    "repo_short": "boto3",
+    "parameterized_identifiers": [
+      "access",
+      "both",
+      "boto3",
+      "botocore",
+      "bucket_copy",
+      "buckets",
+      "called",
+      "client",
+      "configuration",
+      "copy"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:28:34Z"
+}

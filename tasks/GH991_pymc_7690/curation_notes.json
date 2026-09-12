@@ -1,0 +1,54 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7690,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7690",
+  "issue_number": null,
+  "base_sha": "0772383430639348499e37968004842ac5e8224d",
+  "head_sha": "cacfd8b69db17abc1944a2f9f20e079a6b75fb10",
+  "additions": 75,
+  "deletions": 4,
+  "changed_files": [
+    "pymc/distributions/distribution.py",
+    "tests/distributions/test_custom.py"
+  ],
+  "test_files": [
+    "tests/distributions/test_custom.py"
+  ],
+  "source_files": [
+    "pymc/distributions/distribution.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "after",
+      "another",
+      "assert_allclose",
+      "based",
+      "basic",
+      "batch",
+      "before",
+      "builders",
+      "canonicalization",
+      "caused"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:57:15Z"
+}

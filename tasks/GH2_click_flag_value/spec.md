@@ -2,7 +2,7 @@
 
 ## Source
 GitHub Issue: https://github.com/pallets/click/issues/3084
-Fixed by PR: https://github.com/pallets/click/pull/3152
+Fixed by PR: (withheld: the upstream fix is not part of the task)
 
 ## Problem Description
 

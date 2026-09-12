@@ -1,0 +1,13 @@
+task_id: GH1114_statsmodels_9739
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Fix patsy eval_env handling in FormulaManager and add parametrized re…"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/statsmodels/statsmodels/pull/9739"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,142 @@
+diff --git a/.github/workflows/integration.yaml b/.github/workflows/integration.yaml
+index f25be28382..11e66a1f7c 100644
+--- a/.github/workflows/integration.yaml
++++ b/.github/workflows/integration.yaml
+@@ -45,6 +45,7 @@ jobs:
+           ignore-vulns: |
+             GHSA-w596-4wvx-j9j6  # subversion related git pull, dependency for pytest. There is no impact here.
+             CVE-2026-26007 # dependency for entraid tests
++            CVE-2026-32597 # PyJWT does not validate the crit (Critical) Header Parameter defined in RFC 7515, this will be fixed in the next release
+ 
+   lint:
+     name: Code linters
+diff --git a/redis/asyncio/connection.py b/redis/asyncio/connection.py
+index 20269b8eed..57b09748ce 100644
+--- a/redis/asyncio/connection.py
++++ b/redis/asyncio/connection.py
+@@ -1308,8 +1308,23 @@ def __init__(
+         if self._event_dispatcher is None:
+             self._event_dispatcher = EventDispatcher()
+ 
++    # Keys that should be redacted in __repr__ to avoid exposing sensitive information
++    SENSITIVE_REPR_KEYS = frozenset(
++        {
++            "password",
++            "username",
++            "ssl_password",
++            "credential_provider",
++        }
++    )
++
+     def __repr__(self):
+-        conn_kwargs = ",".join([f"{k}={v}" for k, v in self.connection_kwargs.items()])
++        conn_kwargs = ",".join(
++            [
++                f"{k}={'<REDACTED>' if k in self.SENSITIVE_REPR_KEYS else v}"
++                for k, v in self.connection_kwargs.items()
++            ]
++        )
+         return (
+             f"<{self.__class__.__module__}.{self.__class__.__name__}"
+             f"(<{self.connection_class.__module__}.{self.connection_class.__name__}"
+diff --git a/redis/connection.py b/redis/connection.py
+index 0ad11305ac..70d2bb2764 100644
+--- a/redis/connection.py
++++ b/redis/connection.py
+@@ -2876,8 +2876,23 @@ def __init__(
+ 
+         self.reset()
+ 
++    # Keys that should be redacted in __repr__ to avoid exposing sensitive information
++    SENSITIVE_REPR_KEYS = frozenset(
++        {
++            "password",
++            "username",
++            "ssl_password",
++            "credential_provider",
++        }
++    )
++
+     def __repr__(self) -> str:
+-        conn_kwargs = ",".join([f"{k}={v}" for k, v in self.connection_kwargs.items()])
++        conn_kwargs = ",".join(
++            [
++                f"{k}={'<REDACTED>' if k in self.SENSITIVE_REPR_KEYS else v}"
++                for k, v in self.connection_kwargs.items()
++            ]
++        )
+         return (
+             f"<{self.__class__.__module__}.{self.__class__.__name__}"
+             f"(<{self.connection_class.__module__}.{self.connection_class.__name__}"
+diff --git a/tests/test_asyncio/test_connection_pool.py b/tests/test_asyncio/test_connection_pool.py
+index d8c2bb1597..fd509a5bb9 100644
+--- a/tests/test_asyncio/test_connection_pool.py
++++ b/tests/test_asyncio/test_connection_pool.py
+@@ -418,6 +418,31 @@ def test_repr_contains_db_info_unix(self):
+         expected = "path=abc,db=0,client_name=test-client"
+         assert expected in repr(pool)
+ 
++    def test_repr_redacts_sensitive_information(self):
++        """Test that __repr__ redacts sensitive values like password and username."""
++        pool = ConnectionPool(
++            host="localhost",
++            port=6379,
++            password="secret_password_123",
++            username="myuser",
++            ssl_password="ssl_secret_456",
++            db=0,
++        )
++        repr_output = repr(pool)
++
++        # Verify sensitive values are redacted
++        assert "secret_password_123" not in repr_output
++        assert "myuser" not in repr_output
++        assert "ssl_secret_456" not in repr_output
++
++        # Verify the REDACTED placeholder is present
++        assert "<REDACTED>" in repr_output
++
++        # Verify non-sensitive values are still visible
++        assert "host=localhost" in repr_output
++        assert "port=6379" in repr_output
++        assert "db=0" in repr_output
++
+ 
+ class TestConnectionPoolURLParsing:
+     def test_hostname(self):
+diff --git a/tests/test_connection_pool.py b/tests/test_connection_pool.py
+index d5bd9e9e58..90f64b8e69 100644
+--- a/tests/test_connection_pool.py
++++ b/tests/test_connection_pool.py
+@@ -259,6 +259,31 @@ def test_repr_contains_db_info_unix(self):
+         expected = "path=abc,db=0,client_name=test-client"
+         assert expected in repr(pool)
+ 
++    def test_repr_redacts_sensitive_information(self):
++        """Test that __repr__ redacts sensitive values like password and username."""
++        pool = redis.ConnectionPool(
++            host="localhost",
++            port=6379,
++            password="secret_password_123",
++            username="myuser",
++            ssl_password="ssl_secret_456",
++            db=0,
++        )
++        repr_output = repr(pool)
++
++        # Verify sensitive values are redacted
++        assert "secret_password_123" not in repr_output
++        assert "myuser" not in repr_output
++        assert "ssl_secret_456" not in repr_output
++
++        # Verify the REDACTED placeholder is present
++        assert "<REDACTED>" in repr_output
++
++        # Verify non-sensitive values are still visible
++        assert "host=localhost" in repr_output
++        assert "port=6379" in repr_output
++        assert "db=0" in repr_output
++
+     @pytest.mark.onlynoncluster
+     @skip_if_resp_version(2)
+     @skip_if_server_version_lt("7.4.0")

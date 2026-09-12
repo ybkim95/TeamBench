@@ -1,0 +1,15 @@
+{
+ "task": "GH339_NeMo-Agent-Toolkit_787",
+ "patch": "tasks/GH339_NeMo-Agent-Toolkit_787/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "NVIDIA/NeMo-Agent-Toolkit",
+ "pr_number": 787,
+ "base_sha": "50b49dd4df5e08809b14f8c4a9f9957da13adbc9",
+ "head_sha": "c5d1223eb67a24509d399cb934a43cd7485735c9",
+ "bytes": 1755,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

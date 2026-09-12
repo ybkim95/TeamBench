@@ -1,0 +1,15 @@
+{
+ "task": "GH407_bench_709",
+ "patch": "tasks/GH407_bench_709/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "munich-quantum-toolkit/bench",
+ "pr_number": 709,
+ "base_sha": "8516fe211ca67ee55b0cf203a09570ece669b63e",
+ "head_sha": "190a41e0cfc3068c319ed080d3aef0fbdfd0fcf2",
+ "bytes": 5210,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

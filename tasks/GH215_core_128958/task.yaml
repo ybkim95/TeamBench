@@ -1,0 +1,13 @@
+task_id: GH215_core_128958
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix nfandroidtv service notify disappears when restarting home assistant"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/128958"
+source_issue: "https://github.com/home-assistant/core/issues/108296"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

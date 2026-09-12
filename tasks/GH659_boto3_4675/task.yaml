@@ -1,0 +1,13 @@
+task_id: GH659_boto3_4675
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Use f-strings instead of string concatenation"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/boto/boto3/pull/4675"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

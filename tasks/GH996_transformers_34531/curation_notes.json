@@ -1,0 +1,66 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 34531,
+  "pr_url": "https://github.com/huggingface/transformers/pull/34531",
+  "issue_number": null,
+  "base_sha": "74d3824cc0725829e7d92e1d43b97be1f18454f8",
+  "head_sha": "9024b7a2fc7ffe42cd7cbdefd60a59cf313905dc",
+  "additions": 129,
+  "deletions": 1,
+  "changed_files": [
+    "src/transformers/tokenization_utils_base.py",
+    "tests/models/layoutlmv2/test_tokenization_layoutlmv2.py",
+    "tests/models/layoutlmv3/test_tokenization_layoutlmv3.py",
+    "tests/models/layoutxlm/test_tokenization_layoutxlm.py",
+    "tests/models/markuplm/test_tokenization_markuplm.py",
+    "tests/models/tapas/test_tokenization_tapas.py",
+    "tests/models/udop/test_tokenization_udop.py",
+    "tests/test_tokenization_common.py"
+  ],
+  "test_files": [
+    "tests/models/layoutlmv2/test_tokenization_layoutlmv2.py",
+    "tests/models/layoutlmv3/test_tokenization_layoutlmv3.py",
+    "tests/models/layoutxlm/test_tokenization_layoutxlm.py",
+    "tests/models/markuplm/test_tokenization_markuplm.py",
+    "tests/models/tapas/test_tokenization_tapas.py",
+    "tests/models/udop/test_tokenization_udop.py",
+    "tests/test_tokenization_common.py"
+  ],
+  "source_files": [
+    "src/transformers/tokenization_utils_base.py"
+  ],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "amount",
+      "another",
+      "append",
+      "apply_chat_template",
+      "assistant",
+      "assistant_end",
+      "assistant_masks",
+      "assistant_start",
+      "assistant_start2",
+      "batched"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:57:41Z"
+}

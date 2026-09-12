@@ -1,0 +1,120 @@
+diff --git a/src/poetry/console/commands/env/activate.py b/src/poetry/console/commands/env/activate.py
+index 8cb0d5465fd..35b401883ba 100644
+--- a/src/poetry/console/commands/env/activate.py
++++ b/src/poetry/console/commands/env/activate.py
+@@ -11,6 +11,8 @@
+ 
+ 
+ if TYPE_CHECKING:
++    from pathlib import Path
++
+     from poetry.utils.env import Env
+ 
+ 
+@@ -48,25 +50,21 @@ def _get_activate_command(self, env: Env, shell: str) -> str:
+         elif shell in ["csh", "tcsh"]:
+             command, filename = "source", "activate.csh"
+         elif shell in ["powershell", "pwsh"]:
+-            command, filename = ".", "activate.ps1"
++            command, filename = "&", "activate.ps1"
+         elif shell == "cmd":
+-            command, filename = ".", "activate.bat"
++            command, filename = "", "activate.bat"
+         elif shell in ["bash", "mksh", "zsh"]:
+             command, filename = "source", "activate"
+         else:
+             command, filename = ".", "activate"
+ 
+         if (activation_script := env.bin_dir / filename).exists():
+-            if WINDOWS:
+-                return f"{self._quote(str(activation_script), shell)}"
+-            return f"{command} {self._quote(str(activation_script), shell)}"
++            quoted = self._quote(activation_script, shell)
++            return f"{command} {quoted}".strip()
+         return ""
+ 
+     @staticmethod
+-    def _quote(command: str, shell: str) -> str:
+-        if WINDOWS:
+-            if shell == "cmd":
+-                return f'"{command}"'
+-            if shell in ["powershell", "pwsh"]:
+-                return f'& "{command}"'
+-        return shlex.quote(command)
++    def _quote(activation_script: Path, shell: str) -> str:
++        if WINDOWS and shell in {"cmd", "powershell", "pwsh"}:
++            return f'"{activation_script}"'
++        return shlex.quote(activation_script.as_posix())
+diff --git a/tests/console/commands/env/test_activate.py b/tests/console/commands/env/test_activate.py
+index 904b4caf017..17c17ef1c77 100644
+--- a/tests/console/commands/env/test_activate.py
++++ b/tests/console/commands/env/test_activate.py
+@@ -4,6 +4,7 @@
+ 
+ import pytest
+ 
++from poetry.console.commands.env.activate import ShellNotSupportedError
+ from poetry.utils._compat import WINDOWS
+ 
+ 
+@@ -33,7 +34,6 @@ def tester(command_tester_factory: CommandTesterFactory) -> CommandTester:
+         ("tcsh", "source", ".csh"),
+     ),
+ )
+-@pytest.mark.skipif(WINDOWS, reason="Only Unix shells")
+ def test_env_activate_prints_correct_script(
+     tmp_venv: VirtualEnv,
+     mocker: MockerFixture,
+@@ -45,29 +45,33 @@ def test_env_activate_prints_correct_script(
+     mocker.patch("shellingham.detect_shell", return_value=(shell, None))
+     mocker.patch("poetry.utils.env.EnvManager.get", return_value=tmp_venv)
+ 
+-    tester.execute()
++    if WINDOWS and shell in {"csh", "tcsh"}:
++        with pytest.raises(ShellNotSupportedError):
++            tester.execute()
+ 
+-    line = tester.io.fetch_output().rstrip("\n")
+-    assert line == f"{command} {tmp_venv.bin_dir}/activate{ext}"
++    else:
++        tester.execute()
++
++        line = tester.io.fetch_output().rstrip("\n")
++        assert line == f"{command} {tmp_venv.bin_dir.as_posix()}/activate{ext}"
+ 
+ 
+ @pytest.mark.parametrize(
+-    "shell, command, ext, prefix",
++    "shell, command, ext",
+     (
+-        ("cmd", ".", "activate.bat", ""),
+-        ("pwsh", ".", "activate.ps1", "& "),
+-        ("powershell", ".", "activate.ps1", "& "),
++        ("cmd", "", ".bat"),
++        ("pwsh", "&", ".ps1"),
++        ("powershell", "&", ".ps1"),
+     ),
+ )
+ @pytest.mark.skipif(not WINDOWS, reason="Only Windows shells")
+-def test_env_activate_prints_correct_script_on_windows(
++def test_env_activate_prints_correct_script_for_windows_shells(
+     tmp_venv: VirtualEnv,
+     mocker: MockerFixture,
+     tester: CommandTester,
+     shell: str,
+     command: str,
+     ext: str,
+-    prefix: str,
+ ) -> None:
+     mocker.patch("shellingham.detect_shell", return_value=(shell, None))
+     mocker.patch("poetry.utils.env.EnvManager.get", return_value=tmp_venv)
+@@ -75,7 +79,8 @@ def test_env_activate_prints_correct_script_on_windows(
+     tester.execute()
+ 
+     line = tester.io.fetch_output().rstrip("\n")
+-    assert line == f'{prefix}"{tmp_venv.bin_dir / ext!s}"'
++    activation_script = tmp_venv.bin_dir / f"activate{ext}"
++    assert line == f'{command} "{activation_script}"'.strip()
+ 
+ 
+ @pytest.mark.parametrize("verbosity", ["", "-v", "-vv", "-vvv"])

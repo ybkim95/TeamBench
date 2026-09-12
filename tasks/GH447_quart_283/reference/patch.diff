@@ -1,0 +1,43 @@
+diff --git a/src/quart/app.py b/src/quart/app.py
+index 08387251..f964b901 100644
+--- a/src/quart/app.py
++++ b/src/quart/app.py
+@@ -2,7 +2,6 @@
+ 
+ import asyncio
+ import os
+-import platform
+ import signal
+ import sys
+ import warnings
+@@ -776,7 +775,8 @@ def run(
+             warnings.warn(
+                 f"Additional arguments, {','.join(kwargs.keys())}, are not supported.\n"
+                 "They may be supported by Hypercorn, which is the ASGI server Quart "
+-                "uses by default. This method is meant for development and debugging."
++                "uses by default. This method is meant for development and debugging.",
++                stacklevel=2,
+             )
+ 
+         if loop is None:
+@@ -832,8 +832,6 @@ def _signal_handler(*_: Any) -> None:
+         print(f" * Running on {scheme}://{host}:{port} (CTRL + C to quit)")  # noqa: T201
+ 
+         tasks = [loop.create_task(task)]
+-        if platform.system() == "Windows":
+-            tasks.append(loop.create_task(_windows_signal_support()))
+ 
+         if use_reloader:
+             tasks.append(loop.create_task(observe_changes(asyncio.sleep, shutdown_event)))
+@@ -1706,11 +1704,3 @@ def _cancel_all_tasks(loop: asyncio.AbstractEventLoop) -> None:
+                     "task": task,
+                 }
+             )
+-
+-
+-async def _windows_signal_support() -> None:
+-    # See https://bugs.python.org/issue23057, to catch signals on
+-    # Windows it is necessary for an IO event to happen periodically.
+-    # Fixed by Python 3.8
+-    while True:
+-        await asyncio.sleep(1)

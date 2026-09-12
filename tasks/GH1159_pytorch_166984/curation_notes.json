@@ -1,0 +1,56 @@
+{
+  "repo": "pytorch/pytorch",
+  "pr_number": 166984,
+  "pr_url": "https://github.com/pytorch/pytorch/pull/166984",
+  "issue_number": null,
+  "base_sha": "cbe1a35dbdfdc9b7490212bdd812f3e2f4ce9e2d",
+  "head_sha": "3164a50d33169d393bbed2a3a7cc9a51674e3cd7",
+  "additions": 126,
+  "deletions": 3,
+  "changed_files": [
+    "test/inductor/test_cudagraph_trees.py",
+    "torch/_inductor/codegen/wrapper.py",
+    "torch/_inductor/graph.py"
+  ],
+  "test_files": [
+    "test/inductor/test_cudagraph_trees.py"
+  ],
+  "source_files": [
+    "torch/_inductor/codegen/wrapper.py",
+    "torch/_inductor/graph.py"
+  ],
+  "parameterization": {
+    "repo": "pytorch/pytorch",
+    "repo_short": "pytorch",
+    "parameterized_identifiers": [
+      "addresses",
+      "append",
+      "attention",
+      "attn",
+      "attn_one",
+      "attn_output",
+      "attn_two",
+      "bias",
+      "code",
+      "codegen"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:10:10Z"
+}

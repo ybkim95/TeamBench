@@ -1,0 +1,54 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 31053,
+  "pr_url": "https://github.com/numpy/numpy/pull/31053",
+  "issue_number": null,
+  "base_sha": "fb18973f9e499a5d23dc60e41a404d821a24dc18",
+  "head_sha": "58f5a87e44b42805c937a9eba48fb808b6c9a4ab",
+  "additions": 19,
+  "deletions": 1,
+  "changed_files": [
+    "numpy/_core/src/umath/ufunc_object.c",
+    "numpy/_core/tests/test_ufunc.py",
+    "numpy/_core/tests/test_umath.py"
+  ],
+  "test_files": [
+    "numpy/_core/tests/test_ufunc.py",
+    "numpy/_core/tests/test_umath.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "assert_array_equal",
+      "assert_equal",
+      "axis",
+      "axis0",
+      "check",
+      "default",
+      "dtype",
+      "dtype0",
+      "equal",
+      "even"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:01:40Z"
+}

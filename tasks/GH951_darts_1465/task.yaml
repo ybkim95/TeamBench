@@ -1,0 +1,13 @@
+task_id: GH951_darts_1465
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix historical forecasts retraining of TFMs"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/unit8co/darts/pull/1465"
+source_issue: "https://github.com/unit8co/darts/issues/1461"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,15 @@
+{
+ "task": "GH1057_ray_28511",
+ "patch": "tasks/GH1057_ray_28511/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "ray-project/ray",
+ "pr_number": 28511,
+ "base_sha": "fd89891396061fca0cce0ed9cc7b95a9a622019a",
+ "head_sha": "d1e23cb9726451810e64608825b16a9cf1b5abd7",
+ "bytes": 16191,
+ "files_changed": 5,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

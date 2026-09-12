@@ -1,0 +1,51 @@
+{
+  "repo": "napari/napari",
+  "pr_number": 7914,
+  "pr_url": "https://github.com/napari/napari/pull/7914",
+  "issue_number": 7903,
+  "base_sha": "366ceed04fb6feeed9322d75fcf518097b30c90a",
+  "head_sha": "697b6307607da84c81c18419245022d23a262604",
+  "additions": 20,
+  "deletions": 6,
+  "changed_files": [
+    "napari/layers/shapes/shapes.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "napari/layers/shapes/shapes.py"
+  ],
+  "parameterization": {
+    "repo": "napari/napari",
+    "repo_short": "napari",
+    "parameterized_identifiers": [
+      "algorithm",
+      "array",
+      "cause",
+      "clear",
+      "custom_types",
+      "data",
+      "disappear",
+      "drawing",
+      "edit",
+      "ensure_iterable"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:35:04Z"
+}

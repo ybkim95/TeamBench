@@ -1,0 +1,52 @@
+{
+  "repo": "UselessToys/SimpleChestShop-Pyspigot",
+  "pr_number": 21,
+  "pr_url": "https://github.com/UselessToys/SimpleChestShop-Pyspigot/pull/21",
+  "issue_number": null,
+  "base_sha": "fd277a0c939d413182a645c51e5025af4e22795b",
+  "head_sha": "8acf27cf720e6251643f5ca738942cd2d4c7e4fc",
+  "additions": 26,
+  "deletions": 17,
+  "changed_files": [
+    "SimpleChestShop/main.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "SimpleChestShop/main.py"
+  ],
+  "parameterization": {
+    "repo": "UselessToys/SimpleChestShop-Pyspigot",
+    "repo_short": "SimpleChestShop-Pyspigot",
+    "parameterized_identifiers": [
+      "add_shop",
+      "arguments",
+      "block",
+      "bukkit",
+      "coding",
+      "command",
+      "database",
+      "economy",
+      "entity",
+      "entry"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:39:34Z"
+}

@@ -1,0 +1,59 @@
+{
+  "repo": "huggingface/transformers",
+  "pr_number": 16669,
+  "pr_url": "https://github.com/huggingface/transformers/pull/16669",
+  "issue_number": null,
+  "base_sha": "d57da992371c1c8258dc683275b4711dee949d20",
+  "head_sha": "13fd5df43c8f76cccc6177ef8f6bca662e50fe9c",
+  "additions": 19,
+  "deletions": 99,
+  "changed_files": [
+    "examples/flax/test_flax_examples.py",
+    "examples/pytorch/test_accelerate_examples.py",
+    "examples/pytorch/test_pytorch_examples.py",
+    "examples/pytorch/test_xla_examples.py",
+    "examples/research_projects/rag/_test_finetune_rag.py"
+  ],
+  "test_files": [
+    "examples/flax/test_flax_examples.py",
+    "examples/pytorch/test_accelerate_examples.py",
+    "examples/pytorch/test_pytorch_examples.py",
+    "examples/pytorch/test_xla_examples.py",
+    "examples/research_projects/rag/_test_finetune_rag.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "huggingface/transformers",
+    "repo_short": "transformers",
+    "parameterized_identifiers": [
+      "broken",
+      "classification",
+      "content",
+      "currently",
+      "data",
+      "data_dir",
+      "distributed",
+      "distributed_retriever",
+      "epoch_0",
+      "epochs"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:01:31Z"
+}

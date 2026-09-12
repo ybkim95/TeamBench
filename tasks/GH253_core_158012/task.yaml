@@ -1,0 +1,13 @@
+task_id: GH253_core_158012
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix Ring integration log flooding for accounts without subscription"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/158012"
+source_issue: "https://github.com/home-assistant/core/issues/134095"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

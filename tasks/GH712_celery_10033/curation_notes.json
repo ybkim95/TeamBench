@@ -1,0 +1,55 @@
+{
+  "repo": "celery/celery",
+  "pr_number": 10033,
+  "pr_url": "https://github.com/celery/celery/pull/10033",
+  "issue_number": null,
+  "base_sha": "21675299bc2d10c648448ec5221136e07c1eec1a",
+  "head_sha": "3916326a23c6467fedd99d3922c97af77286f3d0",
+  "additions": 10,
+  "deletions": 5,
+  "changed_files": [
+    "celery/worker/consumer/delayed_delivery.py",
+    "requirements/default.txt",
+    "t/unit/worker/test_native_delayed_delivery.py"
+  ],
+  "test_files": [
+    "t/unit/worker/test_native_delayed_delivery.py"
+  ],
+  "source_files": [
+    "celery/worker/consumer/delayed_delivery.py"
+  ],
+  "parameterization": {
+    "repo": "celery/celery",
+    "repo_short": "celery",
+    "parameterized_identifiers": [
+      "amqp",
+      "bootstep",
+      "built",
+      "click",
+      "configuration",
+      "cover",
+      "dateutil",
+      "delayed",
+      "delivery",
+      "didyoumean"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:34:55Z"
+}

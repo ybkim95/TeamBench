@@ -1,0 +1,54 @@
+{
+  "repo": "python-attrs/attrs",
+  "pr_number": 1471,
+  "pr_url": "https://github.com/python-attrs/attrs/pull/1471",
+  "issue_number": null,
+  "base_sha": "b1dc8f673579137e14e44afdf0e40e4b4f1b9e3c",
+  "head_sha": "8f78ef5914e97c37846d0daa4e4f52d6af9c106a",
+  "additions": 62,
+  "deletions": 1,
+  "changed_files": [
+    "changelog.d/1474.change.md",
+    "src/attr/validators.pyi",
+    "typing-examples/baseline_examples.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "typing-examples/baseline_examples.py"
+  ],
+  "parameterization": {
+    "repo": "python-attrs/attrs",
+    "repo_short": "attrs",
+    "parameterized_identifiers": [
+      "allows",
+      "annotation",
+      "attrs",
+      "bound",
+      "define",
+      "different",
+      "exc_types",
+      "field",
+      "instance_of",
+      "issue"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:08:08Z"
+}

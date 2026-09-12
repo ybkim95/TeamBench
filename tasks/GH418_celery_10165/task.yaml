@@ -1,0 +1,13 @@
+task_id: GH418_celery_10165
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix NameError with TYPE_CHECKING annotations on Python 3.14+ (PEP 649)"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/celery/celery/pull/10165"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

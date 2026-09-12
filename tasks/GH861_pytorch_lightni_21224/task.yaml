@@ -1,0 +1,13 @@
+task_id: GH861_pytorch_lightni_21224
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Bugfix for `BackboneFinetuning` + `LearningRateFinder`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/Lightning-AI/pytorch-lightning/pull/21224"
+source_issue: "https://github.com/Lightning-AI/pytorch-lightning/issues/14674"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

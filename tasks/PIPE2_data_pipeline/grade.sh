@@ -29,7 +29,8 @@ check() {
 
 cd "${WORKSPACE}"
 
-pip install pytest --quiet 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require pytest || true
 
 # ── C1: Extractor only drops rows where key columns are null ────────────
 if python3 - <<'PYEOF' 2>/dev/null
@@ -247,3 +248,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

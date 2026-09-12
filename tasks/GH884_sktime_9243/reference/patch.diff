@@ -1,0 +1,17 @@
+diff --git a/sktime/transformations/series/summarize.py b/sktime/transformations/series/summarize.py
+--- a/sktime/transformations/series/summarize.py
++++ b/sktime/transformations/series/summarize.py
+@@ -481,9 +481,11 @@ class description for in-depth explanation.
+         raise ValueError("The provided summarizer is not callable.")
+     feat = pd.DataFrame(feat)
+ 
+-    # Handle backfill
+     if bfill is True:
+-        feat = feat.bfill()
++        if hasattr(Z, "grouper"):
++            feat = feat.groupby(Z.grouper).bfill()
++        else:
++            feat = feat.bfill()
+ 
+     if callable(summarizer):
+         name = summarizer.__name__

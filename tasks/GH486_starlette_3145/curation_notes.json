@@ -1,0 +1,53 @@
+{
+  "repo": "Kludex/starlette",
+  "pr_number": 3145,
+  "pr_url": "https://github.com/Kludex/starlette/pull/3145",
+  "issue_number": null,
+  "base_sha": "6a99d99485d8a380ca99d248ad16a319dea8c769",
+  "head_sha": "507b711dd1f2bbf50b2b5109f450beaa71fec275",
+  "additions": 95,
+  "deletions": 1,
+  "changed_files": [
+    "docs/release-notes.md",
+    "starlette/__init__.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "starlette/__init__.py"
+  ],
+  "parameterization": {
+    "repo": "Kludex/starlette",
+    "repo_short": "starlette",
+    "parameterized_identifiers": [
+      "abersheeran",
+      "add_event_handler",
+      "adriangb",
+      "agronholm",
+      "alex",
+      "alixlahuec",
+      "allowed",
+      "almost",
+      "along",
+      "also"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:21:38Z"
+}

@@ -1,0 +1,53 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 128958,
+  "pr_url": "https://github.com/home-assistant/core/pull/128958",
+  "issue_number": 108296,
+  "base_sha": "160163b0cc3a2b27b29e9ca854d3032305f9022d",
+  "head_sha": "c34c38013bff3e6156302a4d10dfce8906bb3587",
+  "additions": 33,
+  "deletions": 29,
+  "changed_files": [
+    "homeassistant/components/nfandroidtv/__init__.py",
+    "homeassistant/components/nfandroidtv/notify.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "homeassistant/components/nfandroidtv/__init__.py",
+    "homeassistant/components/nfandroidtv/notify.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "async_create_task",
+      "async_get_service",
+      "async_load_platform",
+      "async_setup",
+      "async_setup_entry",
+      "auth",
+      "bkgcolor",
+      "config",
+      "config_entries",
+      "config_validation"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T23:38:37Z"
+}

@@ -1,0 +1,228 @@
+diff --git a/arrow/arrow.py b/arrow/arrow.py
+index 78285256..c3f208df 100644
+--- a/arrow/arrow.py
++++ b/arrow/arrow.py
+@@ -11,7 +11,7 @@
+ from datetime import date
+ from datetime import datetime as dt_datetime
+ from datetime import time as dt_time
+-from datetime import timedelta
++from datetime import timedelta, timezone
+ from datetime import tzinfo as dt_tzinfo
+ from math import trunc
+ from time import struct_time
+@@ -1144,7 +1144,7 @@ def humanize(
+         locale = locales.get_locale(locale)
+ 
+         if other is None:
+-            utc = dt_datetime.utcnow().replace(tzinfo=dateutil_tz.tzutc())
++            utc = dt_datetime.now(timezone.utc).replace(tzinfo=dateutil_tz.tzutc())
+             dt = utc.astimezone(self._datetime.tzinfo)
+ 
+         elif isinstance(other, Arrow):
+diff --git a/tests/test_arrow.py b/tests/test_arrow.py
+index 507c1ab0..becdd53a 100644
+--- a/tests/test_arrow.py
++++ b/tests/test_arrow.py
+@@ -1,7 +1,7 @@
+ import pickle
+ import sys
+ import time
+-from datetime import date, datetime, timedelta
++from datetime import date, datetime, timedelta, timezone
+ from typing import List
+ 
+ import dateutil
+@@ -91,7 +91,7 @@ def test_utcnow(self):
+         result = arrow.Arrow.utcnow()
+ 
+         assert_datetime_equality(
+-            result._datetime, datetime.utcnow().replace(tzinfo=tz.tzutc())
++            result._datetime, datetime.now(timezone.utc).replace(tzinfo=tz.tzutc())
+         )
+ 
+         assert result.fold == 0
+@@ -124,7 +124,7 @@ def test_utcfromtimestamp(self):
+ 
+         result = arrow.Arrow.utcfromtimestamp(timestamp)
+         assert_datetime_equality(
+-            result._datetime, datetime.utcnow().replace(tzinfo=tz.tzutc())
++            result._datetime, datetime.now(timezone.utc).replace(tzinfo=tz.tzutc())
+         )
+ 
+         with pytest.raises(ValueError):
+@@ -1055,7 +1055,11 @@ def test_imaginary(self):
+ 
+     def test_unsupported(self):
+         with pytest.raises(ValueError):
+-            next(arrow.Arrow.range("abc", datetime.utcnow(), datetime.utcnow()))
++            next(
++                arrow.Arrow.range(
++                    "abc", datetime.now(timezone.utc), datetime.now(timezone.utc)
++                )
++            )
+ 
+     def test_range_over_months_ending_on_different_days(self):
+         # regression test for issue #842
+@@ -2889,7 +2893,7 @@ def test_get_datetime(self):
+         get_datetime = arrow.Arrow._get_datetime
+ 
+         arw = arrow.Arrow.utcnow()
+-        dt = datetime.utcnow()
++        dt = datetime.now(timezone.utc)
+         timestamp = time.time()
+ 
+         assert get_datetime(arw) == arw.datetime
+diff --git a/tests/test_factory.py b/tests/test_factory.py
+index 4e328000..0ee9c4e0 100644
+--- a/tests/test_factory.py
++++ b/tests/test_factory.py
+@@ -1,5 +1,5 @@
+ import time
+-from datetime import date, datetime
++from datetime import date, datetime, timezone
+ from decimal import Decimal
+ 
+ import pytest
+@@ -15,7 +15,7 @@
+ class TestGet:
+     def test_no_args(self):
+         assert_datetime_equality(
+-            self.factory.get(), datetime.utcnow().replace(tzinfo=tz.tzutc())
++            self.factory.get(), datetime.now(timezone.utc).replace(tzinfo=tz.tzutc())
+         )
+ 
+     def test_timestamp_one_arg_no_arg(self):
+@@ -31,7 +31,7 @@ def test_one_arg_none(self):
+     def test_struct_time(self):
+         assert_datetime_equality(
+             self.factory.get(time.gmtime()),
+-            datetime.utcnow().replace(tzinfo=tz.tzutc()),
++            datetime.now(timezone.utc).replace(tzinfo=tz.tzutc()),
+         )
+ 
+     def test_one_arg_timestamp(self):
+@@ -91,7 +91,7 @@ def test_one_arg_arrow(self):
+         assert arw == result
+ 
+     def test_one_arg_datetime(self):
+-        dt = datetime.utcnow().replace(tzinfo=tz.tzutc())
++        dt = datetime.now(timezone.utc).replace(tzinfo=tz.tzutc())
+ 
+         assert self.factory.get(dt) == dt
+ 
+@@ -103,7 +103,7 @@ def test_one_arg_date(self):
+ 
+     def test_one_arg_tzinfo(self):
+         self.expected = (
+-            datetime.utcnow()
++            datetime.now(timezone.utc)
+             .replace(tzinfo=tz.tzutc())
+             .astimezone(tz.gettz("US/Pacific"))
+         )
+@@ -123,7 +123,7 @@ def test_one_arg_dateparser_datetime(self):
+ 
+     def test_kwarg_tzinfo(self):
+         self.expected = (
+-            datetime.utcnow()
++            datetime.now(timezone.utc)
+             .replace(tzinfo=tz.tzutc())
+             .astimezone(tz.gettz("US/Pacific"))
+         )
+@@ -134,7 +134,7 @@ def test_kwarg_tzinfo(self):
+ 
+     def test_kwarg_tzinfo_string(self):
+         self.expected = (
+-            datetime.utcnow()
++            datetime.now(timezone.utc)
+             .replace(tzinfo=tz.tzutc())
+             .astimezone(tz.gettz("US/Pacific"))
+         )
+@@ -199,7 +199,7 @@ def test_one_arg_iso_calendar_tzinfo_kwarg(self):
+         assert_datetime_equality(result, expected)
+ 
+     def test_one_arg_iso_str(self):
+-        dt = datetime.utcnow()
++        dt = datetime.now(timezone.utc)
+ 
+         assert_datetime_equality(
+             self.factory.get(dt.isoformat()), dt.replace(tzinfo=tz.tzutc())
+@@ -273,7 +273,7 @@ def test_two_args_date_tz_str(self):
+ 
+     def test_two_args_datetime_other(self):
+         with pytest.raises(TypeError):
+-            self.factory.get(datetime.utcnow(), object())
++            self.factory.get(datetime.now(timezone.utc), object())
+ 
+     def test_two_args_date_other(self):
+         with pytest.raises(TypeError):
+@@ -374,7 +374,7 @@ class TestUtcNow:
+     def test_utcnow(self):
+         assert_datetime_equality(
+             self.factory.utcnow()._datetime,
+-            datetime.utcnow().replace(tzinfo=tz.tzutc()),
++            datetime.now(timezone.utc).replace(tzinfo=tz.tzutc()),
+         )
+ 
+ 
+diff --git a/tests/test_formatter.py b/tests/test_formatter.py
+index 0b6c256c..36e15d9f 100644
+--- a/tests/test_formatter.py
++++ b/tests/test_formatter.py
+@@ -1,4 +1,4 @@
+-from datetime import datetime
++from datetime import datetime, timezone
+ 
+ import pytest
+ import pytz
+@@ -113,7 +113,7 @@ def test_timestamp(self):
+         assert self.formatter._format_token(dt, "x") == expected
+ 
+     def test_timezone(self):
+-        dt = datetime.utcnow().replace(tzinfo=dateutil_tz.gettz("US/Pacific"))
++        dt = datetime.now(timezone.utc).replace(tzinfo=dateutil_tz.gettz("US/Pacific"))
+ 
+         result = self.formatter._format_token(dt, "ZZ")
+         assert result == "-07:00" or result == "-08:00"
+diff --git a/tests/test_parser.py b/tests/test_parser.py
+index 1932b450..3eb44d16 100644
+--- a/tests/test_parser.py
++++ b/tests/test_parser.py
+@@ -1,7 +1,7 @@
+ import calendar
+ import os
+ import time
+-from datetime import datetime
++from datetime import datetime, timezone
+ 
+ import pytest
+ from dateutil import tz
+@@ -1149,7 +1149,7 @@ def test_gnu_date(self):
+         )
+ 
+     def test_isoformat(self):
+-        dt = datetime.utcnow()
++        dt = datetime.now(timezone.utc)
+ 
+         assert self.parser.parse_iso(dt.isoformat()) == dt
+ 
+diff --git a/tests/test_util.py b/tests/test_util.py
+index 3b32e1bc..2454dac5 100644
+--- a/tests/test_util.py
++++ b/tests/test_util.py
+@@ -1,5 +1,5 @@
+ import time
+-from datetime import datetime
++from datetime import datetime, timezone
+ 
+ import pytest
+ 
+@@ -87,7 +87,7 @@ def test_validate_ordinal(self):
+         except (ValueError, TypeError) as exp:
+             pytest.fail(f"Exception raised when shouldn't have ({type(exp)}).")
+ 
+-        ordinal = datetime.utcnow().toordinal()
++        ordinal = datetime.now(timezone.utc).toordinal()
+         ordinal_str = str(ordinal)
+         ordinal_float = float(ordinal) + 0.5
+ 

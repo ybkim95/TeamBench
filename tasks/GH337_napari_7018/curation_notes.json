@@ -1,0 +1,54 @@
+{
+  "repo": "napari/napari",
+  "pr_number": 7018,
+  "pr_url": "https://github.com/napari/napari/pull/7018",
+  "issue_number": null,
+  "base_sha": "76abb1a681d1386357f4b200ec4857ba5f92c753",
+  "head_sha": "45f333c4b7ce3c7eba18a69cdb616ca8529b3bbc",
+  "additions": 63,
+  "deletions": 2,
+  "changed_files": [
+    "napari/_vispy/_tests/test_vispy_scale_bar_visual.py",
+    "napari/_vispy/overlays/scale_bar.py"
+  ],
+  "test_files": [
+    "napari/_vispy/_tests/test_vispy_scale_bar_visual.py"
+  ],
+  "source_files": [
+    "napari/_vispy/overlays/scale_bar.py"
+  ],
+  "parameterization": {
+    "repo": "napari/napari",
+    "repo_short": "napari",
+    "parameterized_identifiers": [
+      "account",
+      "approx",
+      "back",
+      "base",
+      "because",
+      "being",
+      "bottom",
+      "bottom_right",
+      "canvas",
+      "changing"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:11:15Z"
+}

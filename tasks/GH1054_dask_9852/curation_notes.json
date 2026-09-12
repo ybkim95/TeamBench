@@ -1,0 +1,52 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 9852,
+  "pr_url": "https://github.com/dask/dask/pull/9852",
+  "issue_number": 9851,
+  "base_sha": "253b009bc9f1dc503c6544062bba002ce411b158",
+  "head_sha": "b61f06972ed76be996d1dd4c7a421080d4cb0d44",
+  "additions": 13,
+  "deletions": 2,
+  "changed_files": [
+    "dask/dataframe/multi.py",
+    "dask/dataframe/tests/test_multi.py"
+  ],
+  "test_files": [
+    "dask/dataframe/tests/test_multi.py"
+  ],
+  "source_files": [
+    "dask/dataframe/multi.py"
+  ],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "b_left",
+      "b_right",
+      "base",
+      "base_df",
+      "bcast",
+      "bcast_side",
+      "broadcast",
+      "dask",
+      "from_dict",
+      "from_pandas"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:02:00Z"
+}

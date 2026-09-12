@@ -1,0 +1,49 @@
+{
+  "repo": "scipy/scipy",
+  "pr_number": 24108,
+  "pr_url": "https://github.com/scipy/scipy/pull/24108",
+  "issue_number": 24099,
+  "base_sha": "e987feb77a4d2fc742097f4b9927a5249b6afc96",
+  "head_sha": "35e12b806519d1514626ed3cc63d078415f372d1",
+  "additions": 21,
+  "deletions": 0,
+  "changed_files": [
+    "scipy/special/tests/test_legendre.py"
+  ],
+  "test_files": [
+    "scipy/special/tests/test_legendre.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scipy/scipy",
+    "repo_short": "scipy",
+    "parameterized_identifiers": [
+      "arange",
+      "assert_allclose",
+      "assoc_legendre_p",
+      "assoc_legendre_p_all",
+      "factor",
+      "linspace",
+      "m_max",
+      "mark",
+      "n_max",
+      "newaxis"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:08:47Z"
+}

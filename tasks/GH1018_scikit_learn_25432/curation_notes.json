@@ -1,0 +1,51 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 25432,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/25432",
+  "issue_number": 7981,
+  "base_sha": "e2e705021eb6c9f23f0972f119b56e37cd7567ef",
+  "head_sha": "ea3863308fe8fd642b2f3adcf130e8c9eb5e4ada",
+  "additions": 27,
+  "deletions": 3,
+  "changed_files": [
+    "doc/whats_new/v1.3.rst",
+    "sklearn/metrics/_pairwise_fast.pyx",
+    "sklearn/metrics/tests/test_pairwise.py"
+  ],
+  "test_files": [
+    "sklearn/metrics/tests/test_pairwise.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "assert_allclose",
+      "call",
+      "const",
+      "csr_matrix",
+      "datasets",
+      "delayed",
+      "dist",
+      "distance",
+      "distances",
+      "double"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:59:19Z"
+}

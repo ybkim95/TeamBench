@@ -1,0 +1,54 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7695,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7695",
+  "issue_number": null,
+  "base_sha": "2fbc8a927fce87d0dca7f23296fafd3ef290f77a",
+  "head_sha": "9ad9cf7892b8197277bd53f3f324b4d9d7a6f834",
+  "additions": 25,
+  "deletions": 1,
+  "changed_files": [
+    "pymc/sampling/jax.py",
+    "tests/sampling/test_jax.py"
+  ],
+  "test_files": [
+    "tests/sampling/test_jax.py"
+  ],
+  "source_files": [
+    "pymc/sampling/jax.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "accept",
+      "array",
+      "arrays",
+      "asarray",
+      "attribute",
+      "attributeerror",
+      "available",
+      "blackjax",
+      "caused",
+      "chains"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:53:25Z"
+}

@@ -1,14 +1,9 @@
 # Redis-Py 3998 — Bug Fix
 
-- PR: https://github.com/redis/redis-py/pull/3998
+- PR: (withheld: the upstream fix is not part of the task)
 
 The Planner will analyze the root cause and provide guidance.
 Follow the Planner's instructions to fix the issue.
-
-## Files That May Need Changes
-
-        - `redis/asyncio/connection.py`
-- `redis/connection.py`
 
         ## Verification
 

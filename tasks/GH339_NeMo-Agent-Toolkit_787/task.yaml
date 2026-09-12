@@ -1,0 +1,13 @@
+task_id: GH339_NeMo-Agent-Toolkit_787
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix(cli): nat workflow create should validate workflow name"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/NVIDIA/NeMo-Agent-Toolkit/pull/787"
+source_issue: "https://github.com/NVIDIA/NeMo-Agent-Toolkit/issues/765"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH232_core_123085
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix RecursionError in Husqvarna Automower coordinator"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/home-assistant/core/pull/123085"
+source_issue: "https://github.com/home-assistant/core/issues/123008"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

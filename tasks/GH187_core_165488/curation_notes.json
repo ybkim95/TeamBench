@@ -1,0 +1,60 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 165488,
+  "pr_url": "https://github.com/home-assistant/core/pull/165488",
+  "issue_number": 165319,
+  "base_sha": "7140826dbbbe445d4e4cfac37a28111ccac01103",
+  "head_sha": "137b8ade8af0d74239df41e1e921a35cfc2850d5",
+  "additions": 85,
+  "deletions": 14,
+  "changed_files": [
+    "homeassistant/components/bsblan/__init__.py",
+    "homeassistant/components/bsblan/climate.py",
+    "homeassistant/components/bsblan/diagnostics.py",
+    "tests/components/bsblan/test_climate.py",
+    "tests/components/bsblan/test_diagnostics.py",
+    "tests/components/bsblan/test_init.py"
+  ],
+  "test_files": [
+    "tests/components/bsblan/test_climate.py",
+    "tests/components/bsblan/test_diagnostics.py",
+    "tests/components/bsblan/test_init.py"
+  ],
+  "source_files": [
+    "homeassistant/components/bsblan/__init__.py",
+    "homeassistant/components/bsblan/climate.py",
+    "homeassistant/components/bsblan/diagnostics.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "add_to_hass",
+      "aiohttp_client",
+      "already",
+      "appropriate",
+      "assertion",
+      "async_block_till_done",
+      "async_setup",
+      "async_setup_entry",
+      "async_setup_services",
+      "asyncio"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:36:50Z"
+}

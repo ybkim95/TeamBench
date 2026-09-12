@@ -1,0 +1,54 @@
+{
+  "repo": "apache/airflow",
+  "pr_number": 62174,
+  "pr_url": "https://github.com/apache/airflow/pull/62174",
+  "issue_number": null,
+  "base_sha": "930f733f27011c319c679f3ef42f44091ab423cb",
+  "head_sha": "e53ea144b995d73b86958905445f9196f088031d",
+  "additions": 184,
+  "deletions": 1,
+  "changed_files": [
+    "task-sdk/src/airflow/sdk/bases/decorator.py",
+    "task-sdk/tests/task_sdk/bases/test_decorator.py"
+  ],
+  "test_files": [
+    "task-sdk/tests/task_sdk/bases/test_decorator.py"
+  ],
+  "source_files": [
+    "task-sdk/src/airflow/sdk/bases/decorator.py"
+  ],
+  "parameterization": {
+    "repo": "apache/airflow",
+    "repo_short": "airflow",
+    "parameterized_identifiers": [
+      "a_task",
+      "actually",
+      "after",
+      "airflow",
+      "append",
+      "applies",
+      "argument",
+      "bad_default",
+      "bases",
+      "below"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:12:20Z"
+}

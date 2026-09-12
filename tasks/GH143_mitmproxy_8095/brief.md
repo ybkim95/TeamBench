@@ -1,15 +1,9 @@
 # Mitmproxy 8095 — Bug Fix
 
-- PR: https://github.com/mitmproxy/mitmproxy/pull/8095
+- PR: (withheld: the upstream fix is not part of the task)
 
 The Planner will analyze the root cause and provide guidance.
 Follow the Planner's instructions to fix the issue.
-
-## Files That May Need Changes
-
-        - `mitmproxy/tools/console/consoleaddons.py`
-- `mitmproxy/tools/console/defaultkeys.py`
-- `mitmproxy/tools/console/statusbar.py`
 
         ## Verification
 

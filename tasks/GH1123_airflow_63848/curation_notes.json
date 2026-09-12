@@ -1,0 +1,54 @@
+{
+  "repo": "apache/airflow",
+  "pr_number": 63848,
+  "pr_url": "https://github.com/apache/airflow/pull/63848",
+  "issue_number": null,
+  "base_sha": "bfb8e497a1a62967afb682866758244124caaf0c",
+  "head_sha": "e3e0d37587f1478946a54e19912a36f71c8a8ec1",
+  "additions": 24,
+  "deletions": 1,
+  "changed_files": [
+    "airflow-core/src/airflow/assets/manager.py",
+    "airflow-core/tests/unit/assets/test_manager.py"
+  ],
+  "test_files": [
+    "airflow-core/tests/unit/assets/test_manager.py"
+  ],
+  "source_files": [
+    "airflow-core/src/airflow/assets/manager.py"
+  ],
+  "parameterization": {
+    "repo": "apache/airflow",
+    "repo_short": "airflow",
+    "parameterized_identifiers": [
+      "asset",
+      "aware",
+      "bundle_name",
+      "clear_assets",
+      "condition",
+      "consumer_dag",
+      "count",
+      "dag_id",
+      "dags",
+      "dags_to_queue"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:07:14Z"
+}

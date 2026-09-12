@@ -1,0 +1,54 @@
+{
+  "repo": "boto/boto3",
+  "pr_number": 4586,
+  "pr_url": "https://github.com/boto/boto3/pull/4586",
+  "issue_number": null,
+  "base_sha": "8a46af6c97b8d2890641bc4b65de7a3584a1ed73",
+  "head_sha": "12026e94700d9b265fb168b464a2aacef8b0f15f",
+  "additions": 25,
+  "deletions": 24,
+  "changed_files": [
+    "boto3/session.py",
+    "tests/unit/test_session.py"
+  ],
+  "test_files": [
+    "tests/unit/test_session.py"
+  ],
+  "source_files": [
+    "boto3/session.py"
+  ],
+  "parameterization": {
+    "repo": "boto/boto3",
+    "repo_short": "boto3",
+    "parameterized_identifiers": [
+      "access_key",
+      "account_id",
+      "arbitrary",
+      "assert_called_with",
+      "aws_access_key_id",
+      "aws_account_id",
+      "aws_secret_access_key",
+      "aws_session_token",
+      "bc_session",
+      "bc_session_cls"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:38:51Z"
+}

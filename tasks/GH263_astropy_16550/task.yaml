@@ -1,0 +1,13 @@
+task_id: GH263_astropy_16550
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix bug for integer compressed images with blanks"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/astropy/astropy/pull/16550"
+source_issue: "https://github.com/astropy/astropy/issues/15236"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

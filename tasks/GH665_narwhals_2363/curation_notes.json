@@ -1,0 +1,54 @@
+{
+  "repo": "narwhals-dev/narwhals",
+  "pr_number": 2363,
+  "pr_url": "https://github.com/narwhals-dev/narwhals/pull/2363",
+  "issue_number": 1483,
+  "base_sha": "3992fe34798c395c4aeebd11420ad9bc5daab3ad",
+  "head_sha": "538764987946081deff307d2830e9e1254f7158e",
+  "additions": 44,
+  "deletions": 5,
+  "changed_files": [
+    "narwhals/_pandas_like/dataframe.py",
+    "tests/frame/join_test.py",
+    "tests/preserve_pandas_like_columns_name_attr_test.py"
+  ],
+  "test_files": [
+    "tests/frame/join_test.py",
+    "tests/preserve_pandas_like_columns_name_attr_test.py"
+  ],
+  "source_files": [
+    "narwhals/_pandas_like/dataframe.py"
+  ],
+  "parameterization": {
+    "repo": "narwhals-dev/narwhals",
+    "repo_short": "narwhals",
+    "parameterized_identifiers": [
+      "annotations",
+      "antananarivo",
+      "antananarivo_right",
+      "applymarker",
+      "attr",
+      "backend",
+      "codepath",
+      "collect",
+      "columns",
+      "concat"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:32:17Z"
+}

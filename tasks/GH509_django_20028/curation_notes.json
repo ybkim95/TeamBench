@@ -1,0 +1,56 @@
+{
+  "repo": "django/django",
+  "pr_number": 20028,
+  "pr_url": "https://github.com/django/django/pull/20028",
+  "issue_number": null,
+  "base_sha": "23931eb7ff562b44d78859f29ca81d77d212df06",
+  "head_sha": "a6d997397e1ff0ccf9077ef906fcbcb5ca400f58",
+  "additions": 86,
+  "deletions": 3,
+  "changed_files": [
+    "django/contrib/humanize/templatetags/humanize.py",
+    "tests/humanize_tests/locale/fr/LC_MESSAGES/django.mo",
+    "tests/humanize_tests/locale/fr/LC_MESSAGES/django.po",
+    "tests/humanize_tests/tests.py"
+  ],
+  "test_files": [
+    "tests/humanize_tests/tests.py"
+  ],
+  "source_files": [
+    "django/contrib/humanize/templatetags/humanize.py"
+  ],
+  "parameterization": {
+    "repo": "django/django",
+    "repo_short": "django",
+    "parameterized_identifiers": [
+      "abspath",
+      "change",
+      "charset",
+      "contrib",
+      "datetime",
+      "decimal",
+      "default",
+      "dirname",
+      "django",
+      "ends"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:22:58Z"
+}

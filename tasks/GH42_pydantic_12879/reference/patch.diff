@@ -1,0 +1,115 @@
+diff --git a/pydantic/mypy.py b/pydantic/mypy.py
+index 6e8228ef97e..7f750a15d21 100644
+--- a/pydantic/mypy.py
++++ b/pydantic/mypy.py
+@@ -47,6 +47,7 @@
+ from mypy.plugin import (
+     CheckerPluginInterface,
+     ClassDefContext,
++    DynamicClassDefContext,
+     MethodContext,
+     Plugin,
+     ReportConfigContext,
+@@ -82,6 +83,7 @@
+ CONFIGFILE_KEY = 'pydantic-mypy'
+ METADATA_KEY = 'pydantic-mypy-metadata'
+ BASEMODEL_FULLNAME = 'pydantic.main.BaseModel'
++CREATE_MODEL_FULLNAME = 'pydantic.main.create_model'
+ BASESETTINGS_FULLNAME = 'pydantic_settings.main.BaseSettings'
+ ROOT_MODEL_FULLNAME = 'pydantic.root_model.RootModel'
+ MODEL_METACLASS_FULLNAME = 'pydantic._internal._model_construction.ModelMetaclass'
+@@ -150,6 +152,12 @@ def get_method_hook(self, fullname: str) -> Callable[[MethodContext], Type] | No
+             return from_attributes_callback
+         return None
+ 
++    def get_dynamic_class_hook(self, fullname: str) -> Callable[[DynamicClassDefContext], None] | None:
++        """Recognize `create_model()` calls as dynamic BaseModel subclasses."""
++        if fullname == CREATE_MODEL_FULLNAME:
++            return self._pydantic_create_model_callback
++        return None
++
+     def report_config_data(self, ctx: ReportConfigContext) -> dict[str, Any]:
+         """Return all plugin config data.
+ 
+@@ -174,6 +182,33 @@ def _pydantic_model_metaclass_marker_callback(self, ctx: ClassDefContext) -> Non
+         if getattr(info_metaclass.type, 'dataclass_transform_spec', None):
+             info_metaclass.type.dataclass_transform_spec = None
+ 
++    def _pydantic_create_model_callback(self, ctx: DynamicClassDefContext) -> None:
++        """Make variables assigned from `create_model()` usable as types by mypy."""
++        # Determine the base class from __base__ argument if provided
++        base_fullname = BASEMODEL_FULLNAME
++        for arg_name, arg_expr in zip(ctx.call.arg_names, ctx.call.args):
++            if arg_name == '__base__' and isinstance(arg_expr, RefExpr) and arg_expr.node is not None:
++                if isinstance(arg_expr.node, TypeInfo):
++                    base_fullname = arg_expr.node.fullname
++                elif isinstance(arg_expr.node, Var) and isinstance(arg_expr.node.type, Instance):
++                    base_fullname = arg_expr.node.type.type.fullname
++
++        base_sym = ctx.api.lookup_fully_qualified_or_none(base_fullname)
++        if base_sym is None or not isinstance(base_sym.node, TypeInfo):
++            # Fall back to BaseModel
++            base_sym = ctx.api.lookup_fully_qualified_or_none(BASEMODEL_FULLNAME)
++            if base_sym is None or not isinstance(base_sym.node, TypeInfo):
++                return
++
++        base_info = base_sym.node
++        base_instance = fill_typevars(base_info)
++        assert isinstance(base_instance, Instance)
++
++        info = ctx.api.basic_new_typeinfo(ctx.name, base_instance, ctx.call.line)
++        info.metaclass_type = base_info.metaclass_type
++
++        ctx.api.add_symbol_table_node(ctx.name, SymbolTableNode(MDEF, info))
++
+ 
+ class PydanticPluginConfig:
+     """A Pydantic mypy plugin config holder.
+diff --git a/tests/mypy/modules/create_model_var.py b/tests/mypy/modules/create_model_var.py
+new file mode 100644
+index 00000000000..cc2c72b1b81
+--- /dev/null
++++ b/tests/mypy/modules/create_model_var.py
+@@ -0,0 +1,12 @@
++from pydantic import BaseModel, create_model
++
++
++class Model(BaseModel):
++    a: int
++
++
++SubModel = create_model('SubModel', __base__=Model)
++
++
++class Main(BaseModel):
++    sub: SubModel
+diff --git a/tests/mypy/outputs/mypy-plugin_ini/create_model_var.py b/tests/mypy/outputs/mypy-plugin_ini/create_model_var.py
+new file mode 100644
+index 00000000000..cc2c72b1b81
+--- /dev/null
++++ b/tests/mypy/outputs/mypy-plugin_ini/create_model_var.py
+@@ -0,0 +1,12 @@
++from pydantic import BaseModel, create_model
++
++
++class Model(BaseModel):
++    a: int
++
++
++SubModel = create_model('SubModel', __base__=Model)
++
++
++class Main(BaseModel):
++    sub: SubModel
+diff --git a/tests/mypy/test_mypy.py b/tests/mypy/test_mypy.py
+index 679d184f95e..4fa0527764f 100644
+--- a/tests/mypy/test_mypy.py
++++ b/tests/mypy/test_mypy.py
+@@ -109,6 +109,7 @@ def build_cases(
+         ('mypy-plugin.ini', 'root_models.py'),
+         ('mypy-plugin.ini', 'plugin_strict_fields.py'),
+         ('mypy-plugin.ini', 'final_with_default.py'),
++        ('mypy-plugin.ini', 'create_model_var.py'),
+         ('mypy-plugin-strict-no-any.ini', 'dataclass_no_any.py'),
+         ('mypy-plugin-very-strict.ini', 'metaclass_args.py'),
+         ('pyproject-plugin-no-strict-optional.toml', 'no_strict_optional.py'),

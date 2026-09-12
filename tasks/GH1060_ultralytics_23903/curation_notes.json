@@ -1,0 +1,58 @@
+{
+  "repo": "ultralytics/ultralytics",
+  "pr_number": 23903,
+  "pr_url": "https://github.com/ultralytics/ultralytics/pull/23903",
+  "issue_number": null,
+  "base_sha": "63168d89be8266bd2c090f72043c71c2cd3846ef",
+  "head_sha": "fa3bff53392ac96209d08d8ef111a45a60c2b58f",
+  "additions": 14,
+  "deletions": 10,
+  "changed_files": [
+    "tests/test_python.py",
+    "ultralytics/data/base.py",
+    "ultralytics/data/utils.py",
+    "ultralytics/utils/metrics.py"
+  ],
+  "test_files": [
+    "tests/test_python.py"
+  ],
+  "source_files": [
+    "ultralytics/data/base.py",
+    "ultralytics/data/utils.py",
+    "ultralytics/utils/metrics.py"
+  ],
+  "parameterization": {
+    "repo": "ultralytics/ultralytics",
+    "repo_short": "ultralytics",
+    "parameterized_identifiers": [
+      "allow_pickle",
+      "array",
+      "as_posix",
+      "augment",
+      "avoiding",
+      "cache",
+      "cache_images_to_disk",
+      "caching",
+      "check_cache_disk",
+      "close_mosaic"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:02:28Z"
+}

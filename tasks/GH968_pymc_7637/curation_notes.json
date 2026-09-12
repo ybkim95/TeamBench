@@ -1,0 +1,69 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7637,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7637",
+  "issue_number": 7612,
+  "base_sha": "ae4a6292aa48d5722dba6ab422e1a3d895ca7bf7",
+  "head_sha": "9dcd50ad8c96bde7e1b3383913fad262325c118f",
+  "additions": 129,
+  "deletions": 55,
+  "changed_files": [
+    ".pre-commit-config.yaml",
+    "pymc/sampling/mcmc.py",
+    "pymc/sampling/parallel.py",
+    "pymc/step_methods/compound.py",
+    "pymc/step_methods/hmc/quadpotential.py",
+    "pymc/step_methods/state.py",
+    "pymc/util.py",
+    "tests/logprob/test_transform_value.py",
+    "tests/sampling/test_mcmc.py",
+    "tests/sampling/test_parallel.py",
+    "tests/step_methods/test_metropolis.py"
+  ],
+  "test_files": [
+    "tests/logprob/test_transform_value.py",
+    "tests/sampling/test_mcmc.py",
+    "tests/sampling/test_parallel.py",
+    "tests/step_methods/test_metropolis.py"
+  ],
+  "source_files": [
+    "pymc/sampling/mcmc.py",
+    "pymc/sampling/parallel.py",
+    "pymc/step_methods/compound.py",
+    "pymc/step_methods/hmc/quadpotential.py",
+    "pymc/step_methods/state.py",
+    "pymc/util.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "a_backward_fn",
+      "a_backward_fn_",
+      "a_trans_value",
+      "across",
+      "adapt_diag",
+      "adapt_diag_grad",
+      "adapt_full",
+      "advi",
+      "advi_map",
+      "alpha"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:55:21Z"
+}

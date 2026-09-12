@@ -1,0 +1,54 @@
+{
+  "repo": "arrow-py/arrow",
+  "pr_number": 1218,
+  "pr_url": "https://github.com/arrow-py/arrow/pull/1218",
+  "issue_number": null,
+  "base_sha": "0fe5f065718e5af3ab47903d1bec82d87d202a63",
+  "head_sha": "8f52f6e856300c5c78b44e16acb007fa309a8e7d",
+  "additions": 57,
+  "deletions": 8,
+  "changed_files": [
+    "arrow/locales.py",
+    "tests/test_locales.py"
+  ],
+  "test_files": [
+    "tests/test_locales.py"
+  ],
+  "source_files": [
+    "arrow/locales.py"
+  ],
+  "parameterization": {
+    "repo": "arrow-py/arrow",
+    "repo_short": "arrow",
+    "parameterized_identifiers": [
+      "actual",
+      "arrow",
+      "available",
+      "commonly",
+      "correct",
+      "day_abbreviation",
+      "day_abbreviations",
+      "day_name",
+      "day_names",
+      "days"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:14:53Z"
+}

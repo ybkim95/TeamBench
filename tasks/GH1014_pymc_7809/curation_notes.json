@@ -1,0 +1,52 @@
+{
+  "repo": "pymc-devs/pymc",
+  "pr_number": 7809,
+  "pr_url": "https://github.com/pymc-devs/pymc/pull/7809",
+  "issue_number": 7808,
+  "base_sha": "360cb6edde9ccba306c0e046d9576c936fa4e571",
+  "head_sha": "8efaec40ec90db0244351aa04c11a80bebd9a7f6",
+  "additions": 15,
+  "deletions": 0,
+  "changed_files": [
+    "pymc/model/core.py",
+    "tests/model/test_core.py"
+  ],
+  "test_files": [
+    "tests/model/test_core.py"
+  ],
+  "source_files": [
+    "pymc/model/core.py"
+  ],
+  "parameterization": {
+    "repo": "pymc-devs/pymc",
+    "repo_short": "pymc",
+    "parameterized_identifiers": [
+      "add_coord",
+      "add_coords",
+      "array_equal",
+      "basic",
+      "coord",
+      "coordinate",
+      "coords",
+      "dim1",
+      "dim_lengths",
+      "dims"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:59:01Z"
+}

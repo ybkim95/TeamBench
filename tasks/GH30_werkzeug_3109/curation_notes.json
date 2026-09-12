@@ -1,0 +1,57 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3109,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3109",
+  "issue_number": 3105,
+  "base_sha": "bf7529e62685e0b87350481703ddae5b6351072d",
+  "head_sha": "08cf07f9accc3f6005a03947f7466dff64a56801",
+  "additions": 72,
+  "deletions": 20,
+  "changed_files": [
+    "docs/routing.rst",
+    "src/werkzeug/routing/exceptions.py",
+    "src/werkzeug/routing/matcher.py",
+    "src/werkzeug/routing/rules.py",
+    "tests/test_routing.py"
+  ],
+  "test_files": [
+    "tests/test_routing.py"
+  ],
+  "source_files": [
+    "src/werkzeug/routing/exceptions.py",
+    "src/werkzeug/routing/matcher.py",
+    "src/werkzeug/routing/rules.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "actually",
+      "added",
+      "adds",
+      "alias",
+      "although",
+      "always",
+      "another",
+      "append",
+      "arguments",
+      "automatically"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:34:02Z"
+}

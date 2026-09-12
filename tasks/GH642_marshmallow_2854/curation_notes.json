@@ -1,0 +1,56 @@
+{
+  "repo": "marshmallow-code/marshmallow",
+  "pr_number": 2854,
+  "pr_url": "https://github.com/marshmallow-code/marshmallow/pull/2854",
+  "issue_number": null,
+  "base_sha": "c860f56d7b7232037c1e1636e499b0d15cb671cc",
+  "head_sha": "eff41d6ab95895451cc3245da9da9d389a12a0b4",
+  "additions": 66,
+  "deletions": 5,
+  "changed_files": [
+    "AUTHORS.rst",
+    "CHANGELOG.rst",
+    "src/marshmallow/fields.py",
+    "tests/test_schema.py"
+  ],
+  "test_files": [
+    "tests/test_schema.py"
+  ],
+  "source_files": [
+    "src/marshmallow/fields.py"
+  ],
+  "parameterization": {
+    "repo": "marshmallow-code/marshmallow",
+    "repo_short": "marshmallow",
+    "parameterized_identifiers": [
+      "agentgodzilla",
+      "argument",
+      "arguments",
+      "book",
+      "books",
+      "cast",
+      "changes",
+      "chronological",
+      "class_registry",
+      "collection"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:30:47Z"
+}

@@ -1,7 +1,7 @@
 # GH141_urllib3_3736: Fix `HTTPResponse.read_chunked` when leftover data is present in decoder's buffer — Full Specification (Planner Only)
 
 ## Source
-- PR: https://github.com/urllib3/urllib3/pull/3736
+- PR: (withheld: the upstream fix is not part of the task)
 - Issue: https://github.com/urllib3/urllib3/issues/3734
 - Repo: https://github.com/urllib3/urllib3
 
@@ -138,24 +138,24 @@ The error suggests that the brotli decoder signals completion (`can_accept_more_
 
 ## Issue Discussion (Root Cause Analysis)
 
-### Comment 1 (@hanamurayuki):
+### Comment 1 ([user]):
 
 same here
 
-### Comment 2 (@Cycloctane):
+### Comment 2 ([user]):
 
 [Code changes omitted — Planner should analyze the issue and guide the Executor]
 
-### Comment 3 (@illia-v):
+### Comment 3 ([user]):
 
 Please check if #3736 fixes your issue. Thanks for the reproducer, it doesn't fail with the fix.
 
-### Comment 4 (@illia-v):
+### Comment 4 ([user]):
 
-@Cycloctane that's the same logic as in my fix, thanks 👍🏻
+[user] that's the same logic as in my fix, thanks 👍🏻
 I reused your approach to simplify #3736.
 
-### Comment 5 (@corsac-s):
+### Comment 5 ([user]):
 
 So for what it's worth I'm experiencing this on Debian sid with:
 
@@ -169,7 +169,7 @@ ii  python3-brotlicffi                           1.2.0.0+ds-1+b1
 
 So it might be more related to the brotli update than an urllib update. Unfortunately I don't seem to be able to apply the patch in #3736 to 2.5.0 so I might have to wait until Debian updates urllib (or maybe switch to a venv at least temporarily)
 
-### Comment 6 (@kesara):
+### Comment 6 ([user]):
 
 Indeed this seems to be an error related to brotli 1.2.0 update.
 
@@ -191,28 +191,19 @@ Traceback (most recent call last):
   File "/opt/homebrew/Cellar/python@3.12/3.12.12/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
 ```
 
-### Comment 7 (@aborigeth):
+### Comment 7 ([user]):
 
-> Please check if [#3736](https://github.com/urllib3/urllib3/pull/3736) fixes your issue. Thanks for the reproducer, it doesn't fail with the fix.
+> Please check if [#3736]((withheld: the upstream fix is not part of the task)) fixes your issue. Thanks for the reproducer, it doesn't fail with the fix.
 
 So far, fix works for me.
 
-### Comment 8 (@illia-v):
+### Comment 8 ([user]):
 
 The fix was released in [v2.6.2](https://github.com/urllib3/urllib3/releases/tag/2.6.2).
 
-### Comment 9 (@zanllan24-spec):
+### Comment 9 ([user]):
 
 My until el aporte gracias por em apoyo y las cknfirmaciones.
-
-## Files Changed in Fix
-
-- `changelog/3734.bugfix.rst` (added, +2/-0)
-- `src/urllib3/response.py` (modified, +8/-4)
-- `test/test_response.py` (modified, +41/-0)
-
-## `src/urllib3/response.py`
-[Code changes omitted — Planner should analyze the issue and guide the Executor]
 
 ## Acceptance Criteria
 
@@ -222,6 +213,6 @@ My until el aporte gracias por em apoyo y las cknfirmaciones.
 
 ## Important Notes
 
-- Only modify the source files listed above (not test files)
+- Only modify source files, not test files
 - The test files already encode the correct expected behaviour
 - Run `pytest -x -q` to verify your fix

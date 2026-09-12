@@ -1,0 +1,52 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 150439,
+  "pr_url": "https://github.com/home-assistant/core/pull/150439",
+  "issue_number": 150269,
+  "base_sha": "711afa306c37f2d5c29adfc7e762d647320dca1e",
+  "head_sha": "c25366cb38ef6824c9048d3386c23bcc634cb0c0",
+  "additions": 55,
+  "deletions": 7,
+  "changed_files": [
+    "homeassistant/components/tuya/light.py",
+    "tests/components/tuya/test_light.py"
+  ],
+  "test_files": [
+    "tests/components/tuya/test_light.py"
+  ],
+  "source_files": [
+    "homeassistant/components/tuya/light.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "actually",
+      "annotations",
+      "async_block_till_done",
+      "bright_value_v2",
+      "brightness",
+      "code",
+      "dj_mki13ie507rlry4r",
+      "entity_id",
+      "expected_commands",
+      "garage_light"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:26Z"
+}

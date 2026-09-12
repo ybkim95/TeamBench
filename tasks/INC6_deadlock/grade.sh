@@ -234,12 +234,14 @@ print(f\"LOCK_HIERARCHY_CONSISTENT: both services acquire {lock_a} before {lock_
 '" "lock_hierarchy_inconsistent"
 
 # ── Check 12: Attestation verdict=pass ────────────────────────────────────────
-check "python3 -c '
-import json, sys
-att = json.load(open(\"$SUBMISSION/attestation.json\"))
-assert att.get(\"verdict\") == \"pass\", f\"verdict={att.get(chr(39)+chr(118)+chr(101)+chr(114)+chr(100)+chr(105)+chr(99)+chr(116)+chr(39))!r}\"
-print(\"ATTESTATION_OK\")
-'" "bad_attestation"
+# ── Attestation recorded as METADATA, never scored ───────────────────────
+# de-scored-by: scripts/repair_graders.py (R3 attestation-is-protocol)
+# attestation.json is a PROTOCOL property of the run (already enforced as a
+# hard gate in harness/grade_task.py), not a property of the submitted
+# artifact. Scoring it let an agent buy partial credit by writing one JSON
+# file, which is the confound behind the withdrawn "removing the Verifier
+# improves partial score" result. Recorded here, excluded from partial_score.
+echo "metadata: attestation_present=$([ -f "${SUBMISSION:-}/attestation.json" ] && echo yes || echo no)"
 
 # ── Write score ────────────────────────────────────────────────────────────────
 PARTIAL=$(python3 -c "print(round($PASSED/max(1,$CHECKS), 2))")

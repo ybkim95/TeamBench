@@ -1,0 +1,53 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 1569,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/1569",
+  "issue_number": 123,
+  "base_sha": "416a72d3dc8ec11a8f31ed5c2fd37d11d465d765",
+  "head_sha": "1baaed41f3be1948b6a45b581157cba5e872236b",
+  "additions": 3,
+  "deletions": 2,
+  "changed_files": [
+    "docs/reference/changelog.rst",
+    "great_expectations/render/renderer/suite_scaffold_notebook_renderer.py",
+    "tests/render/renderer/test_suite_scaffold_notebook_renderer.py"
+  ],
+  "test_files": [
+    "tests/render/renderer/test_suite_scaffold_notebook_renderer.py"
+  ],
+  "source_files": [
+    "great_expectations/render/renderer/suite_scaffold_notebook_renderer.py"
+  ],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "applicable",
+      "article",
+      "auto",
+      "batch_kwargs",
+      "broken",
+      "columns",
+      "configurable",
+      "contains",
+      "custom",
+      "date"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:57Z"
+}

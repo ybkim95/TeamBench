@@ -1,0 +1,66 @@
+{
+  "repo": "encode/httpx",
+  "pr_number": 3673,
+  "pr_url": "https://github.com/encode/httpx/pull/3673",
+  "issue_number": null,
+  "base_sha": "68989ae47d9fd10381a3859619a3880014d187f6",
+  "head_sha": "a711667febc881914bd117d6e86dfbf0b91c9f47",
+  "additions": 62,
+  "deletions": 27,
+  "changed_files": [
+    "src/ahttpx/_parsers.py",
+    "src/ahttpx/_pool.py",
+    "src/ahttpx/_server.py",
+    "src/httpx/_network.py",
+    "src/httpx/_parsers.py",
+    "src/httpx/_pool.py",
+    "src/httpx/_server.py",
+    "tests/test_parsers.py"
+  ],
+  "test_files": [
+    "tests/test_parsers.py"
+  ],
+  "source_files": [
+    "src/ahttpx/_parsers.py",
+    "src/ahttpx/_pool.py",
+    "src/ahttpx/_server.py",
+    "src/httpx/_network.py",
+    "src/httpx/_parsers.py",
+    "src/httpx/_pool.py",
+    "src/httpx/_server.py"
+  ],
+  "parameterization": {
+    "repo": "encode/httpx",
+    "repo_short": "httpx",
+    "parameterized_identifiers": [
+      "accept",
+      "again",
+      "append",
+      "body",
+      "break",
+      "bytes",
+      "client",
+      "close",
+      "code",
+      "complete"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:38:18Z"
+}

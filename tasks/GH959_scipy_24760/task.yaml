@@ -1,0 +1,13 @@
+task_id: GH959_scipy_24760
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: integrate: fix ComplexWarning in _sparse_num_jac with complex ODE"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/scipy/scipy/pull/24760"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

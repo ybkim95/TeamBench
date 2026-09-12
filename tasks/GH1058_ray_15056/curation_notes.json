@@ -1,0 +1,52 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 15056,
+  "pr_url": "https://github.com/ray-project/ray/pull/15056",
+  "issue_number": null,
+  "base_sha": "268409b6ad29822e5a30aee90772615bc4c23247",
+  "head_sha": "3681280b4fab66481aa31b69000931eda72986f9",
+  "additions": 49,
+  "deletions": 0,
+  "changed_files": [
+    "python/ray/tests/test_environ.py",
+    "src/ray/raylet/worker_pool.cc"
+  ],
+  "test_files": [
+    "python/ray/tests/test_environ.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "actor_os_environ",
+      "actor_proc_environ",
+      "auto",
+      "being",
+      "breaking",
+      "causing",
+      "change",
+      "chrono",
+      "const",
+      "continue"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:02:18Z"
+}

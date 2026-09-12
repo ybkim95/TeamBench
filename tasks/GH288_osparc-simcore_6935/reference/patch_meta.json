@@ -1,0 +1,15 @@
+{
+ "task": "GH288_osparc-simcore_6935",
+ "patch": "tasks/GH288_osparc-simcore_6935/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "ITISFoundation/osparc-simcore",
+ "pr_number": 6935,
+ "base_sha": "e97f83b915d659c0ec0c5910b3fc915e85b51429",
+ "head_sha": "a71c718769218c29048eee7330c83e2d41963436",
+ "bytes": 11788,
+ "files_changed": 6,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

@@ -1,0 +1,15 @@
+{
+ "task": "GH983_dask_11144",
+ "patch": "tasks/GH983_dask_11144/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "dask/dask",
+ "pr_number": 11144,
+ "base_sha": "484fc3f1136827308db133cd256ba74df7a38d8c",
+ "head_sha": "a6a8686ce2a5fa0ee9f112db28c684e6e8d9edba",
+ "bytes": 628,
+ "files_changed": 1,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

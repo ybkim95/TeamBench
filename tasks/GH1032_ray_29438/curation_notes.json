@@ -1,0 +1,52 @@
+{
+  "repo": "ray-project/ray",
+  "pr_number": 29438,
+  "pr_url": "https://github.com/ray-project/ray/pull/29438",
+  "issue_number": 1234,
+  "base_sha": "4ffd5d70961804ded503690475cfe01bda47c585",
+  "head_sha": "00a47a558f7a5ec8f608906a90426885b7f6654c",
+  "additions": 34,
+  "deletions": 2,
+  "changed_files": [
+    "python/ray/tune/syncer.py",
+    "python/ray/tune/tests/test_syncer_callback.py"
+  ],
+  "test_files": [
+    "python/ray/tune/tests/test_syncer_callback.py"
+  ],
+  "source_files": [
+    "python/ray/tune/syncer.py"
+  ],
+  "parameterization": {
+    "repo": "ray-project/ray",
+    "repo_short": "ray",
+    "parameterized_identifiers": [
+      "assert_file",
+      "callback",
+      "caplog",
+      "catch",
+      "checkpoint_manager",
+      "dead",
+      "delete_at_uri",
+      "does",
+      "error",
+      "errors"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:00:26Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH877_FLAML_1385
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: KeyError no longer occurs when using groupfolds for regression tasks."
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/microsoft/FLAML/pull/1385"
+source_issue: "https://github.com/microsoft/FLAML/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

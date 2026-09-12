@@ -1,0 +1,42 @@
+diff --git a/AUTHORS.rst b/AUTHORS.rst
+index a7ffd703d..2459c8c0d 100644
+--- a/AUTHORS.rst
++++ b/AUTHORS.rst
+@@ -180,3 +180,4 @@ Contributors (chronological)
+ - Nicolas Simonds `@0xDEC0DE <https://github.com/0xDEC0DE>`_
+ - Florian Laport `@Florian-Laport <https://github.com/Florian-Laport>`_
+ - `@agentgodzilla <https://github.com/agentgodzilla>`_
++- Xiao `@T90REAL <https://github.com/T90REAL>`_
+\ No newline at end of file
+diff --git a/src/marshmallow/validate.py b/src/marshmallow/validate.py
+index ee89f765f..5d36519a6 100644
+--- a/src/marshmallow/validate.py
++++ b/src/marshmallow/validate.py
+@@ -187,7 +187,7 @@ def __init__(
+         self.relative = relative
+         self.absolute = absolute
+         self.error: str = error or self.default_message
+-        self.schemes = schemes or self.default_schemes
++        self.schemes = {s.lower() for s in schemes} if schemes else self.default_schemes
+         self.require_tld = require_tld
+ 
+     def _repr_args(self) -> str:
+diff --git a/tests/test_validate.py b/tests/test_validate.py
+index 783e90063..d878b1180 100644
+--- a/tests/test_validate.py
++++ b/tests/test_validate.py
+@@ -205,6 +205,14 @@ def test_url_custom_scheme():
+     assert validator(url) == url
+ 
+ 
++def test_url_custom_scheme_case_insensitive():
++    validator = validate.URL(schemes={"HTTP"})
++    assert validator("http://example.com") == "http://example.com"
++
++    validator = validate.URL(schemes={"HtTp"})
++    assert validator("hTtP://example.com") == "hTtP://example.com"
++
++
+ @pytest.mark.parametrize(
+     "valid_url",
+     (

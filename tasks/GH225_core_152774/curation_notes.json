@@ -1,0 +1,52 @@
+{
+  "repo": "home-assistant/core",
+  "pr_number": 152774,
+  "pr_url": "https://github.com/home-assistant/core/pull/152774",
+  "issue_number": 152305,
+  "base_sha": "0a6ae3b52ab29202c6ee4ce649c70d53846fe313",
+  "head_sha": "12a0919ce1f2794c08045eb1e74deb701ac15185",
+  "additions": 52,
+  "deletions": 20,
+  "changed_files": [
+    "homeassistant/components/sonos/media_player.py",
+    "tests/components/sonos/test_media_player.py"
+  ],
+  "test_files": [
+    "tests/components/sonos/test_media_player.py"
+  ],
+  "source_files": [
+    "homeassistant/components/sonos/media_player.py"
+  ],
+  "parameterization": {
+    "repo": "home-assistant/core",
+    "repo_short": "core",
+    "parameterized_identifiers": [
+      "blocking",
+      "call_args_list",
+      "clear_queue",
+      "coordinator",
+      "dc_title",
+      "enqueue",
+      "is_share_link",
+      "item",
+      "media",
+      "media_id"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T23:39:23Z"
+}

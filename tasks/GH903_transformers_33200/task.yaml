@@ -1,0 +1,13 @@
+task_id: GH903_transformers_33200
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "🚨🚨🚨 [SuperPoint] Fix keypoint coordinate output and add post processing"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/huggingface/transformers/pull/33200"
+source_issue: "https://github.com/huggingface/transformers/issues/33825"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

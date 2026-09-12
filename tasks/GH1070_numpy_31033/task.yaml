@@ -1,0 +1,13 @@
+task_id: GH1070_numpy_31033
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: Fix `np.vecdot` on empty object vectors returning None"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/numpy/numpy/pull/31033"
+source_issue: "https://github.com/numpy/numpy/issues/31019"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

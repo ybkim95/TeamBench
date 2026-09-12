@@ -1,0 +1,15 @@
+{
+ "task": "GH872_scipy_24778",
+ "patch": "tasks/GH872_scipy_24778/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "scipy/scipy",
+ "pr_number": 24778,
+ "base_sha": "0abb317a48ce41633f10aa908d228d48ccb57b61",
+ "head_sha": "b517cb17e5236d5a5c380cc71471a558d8a6dc3d",
+ "bytes": 3556,
+ "files_changed": 2,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

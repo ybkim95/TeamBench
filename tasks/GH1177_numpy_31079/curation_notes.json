@@ -1,0 +1,51 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 31079,
+  "pr_url": "https://github.com/numpy/numpy/pull/31079",
+  "issue_number": null,
+  "base_sha": "8052c4b69ef18e582709af946f93f9e58b848f39",
+  "head_sha": "9e496cbd0a281195bd779ae1833f2a8f4a1d46a7",
+  "additions": 33,
+  "deletions": 1,
+  "changed_files": [
+    "numpy/_core/tests/test_cpu_features.py"
+  ],
+  "test_files": [
+    "numpy/_core/tests/test_cpu_features.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "auxv",
+      "check_output",
+      "decode",
+      "features",
+      "features_flags",
+      "features_map",
+      "group",
+      "is_linux",
+      "is_power",
+      "is_zarch"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:11:47Z"
+}

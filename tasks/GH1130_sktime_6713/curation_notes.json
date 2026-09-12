@@ -1,0 +1,51 @@
+{
+  "repo": "sktime/sktime",
+  "pr_number": 6713,
+  "pr_url": "https://github.com/sktime/sktime/pull/6713",
+  "issue_number": null,
+  "base_sha": "e59577063bef000e85adb60ae62f5f52c494e40a",
+  "head_sha": "4ba6221904c302b2ff83a22821bb92ad3221f8e7",
+  "additions": 6,
+  "deletions": 2,
+  "changed_files": [
+    "sktime/forecasting/tests/test_interval_wrappers.py"
+  ],
+  "test_files": [
+    "sktime/forecasting/tests/test_interval_wrappers.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "sktime/sktime",
+    "repo_short": "sktime",
+    "parameterized_identifiers": [
+      "accept",
+      "both",
+      "convert_to",
+      "datatypes",
+      "forecaster",
+      "forecasting",
+      "incrementally",
+      "load_airline",
+      "mark",
+      "mimic"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:07:49Z"
+}

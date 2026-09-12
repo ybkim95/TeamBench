@@ -1,0 +1,13 @@
+task_id: GH467_pandas_61920
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: IntervalIndex.unique() only contains the first interval if all interval borders are negative"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/61920"
+source_issue: "https://github.com/pandas-dev/pandas/issues/61917"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

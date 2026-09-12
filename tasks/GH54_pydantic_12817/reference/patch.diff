@@ -1,0 +1,39 @@
+diff --git a/pydantic/main.py b/pydantic/main.py
+index dbefb394ecb..e9888941170 100644
+--- a/pydantic/main.py
++++ b/pydantic/main.py
+@@ -1096,6 +1096,7 @@ def _setattr_handler(self, name: str, value: Any) -> Callable[[BaseModel, str, A
+                 elif attr is None:
+                     # attribute does not exist, so put it in extra
+                     self.__pydantic_extra__[name] = value
++                    self.__pydantic_fields_set__.add(name)
+                     return None  # Can not return memoized handler with possibly freeform attr names
+                 else:
+                     # attribute _does_ exist, and was not in extra, so update it
+diff --git a/tests/test_edge_cases.py b/tests/test_edge_cases.py
+index 65a35f590b5..dd23f32fbe9 100644
+--- a/tests/test_edge_cases.py
++++ b/tests/test_edge_cases.py
+@@ -3135,3 +3135,22 @@ def my_model_validator(self):
+         @classmethod
+         def __get_validators__(cls):
+             raise AssertionError('This should not be called')
++
++
++def test_model_fields_set_includes_extra_after_assignment():
++    """Regression test for https://github.com/pydantic/pydantic/issues/11134.
++
++    Extra fields set after initialization should be included in model_fields_set.
++    """
++    from pydantic import BaseModel, ConfigDict
++
++    class Model(BaseModel):
++        model_config = ConfigDict(extra='allow')
++        field: int
++
++    m = Model.model_validate({'field': 1, 'extra_at_init': 2})
++    assert m.model_fields_set == {'field', 'extra_at_init'}
++
++    m.extra_after_init = 3
++    assert m.model_fields_set == {'field', 'extra_at_init', 'extra_after_init'}
++    assert m.model_extra == {'extra_at_init': 2, 'extra_after_init': 3}

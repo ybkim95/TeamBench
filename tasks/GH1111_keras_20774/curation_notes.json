@@ -1,0 +1,56 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 20774,
+  "pr_url": "https://github.com/keras-team/keras/pull/20774",
+  "issue_number": null,
+  "base_sha": "25d6d80a6ecd31f0da52c325cd16dbe4a29b7329",
+  "head_sha": "cc697dd967c8cbd96275ab61507740a7bbd4b9e7",
+  "additions": 108,
+  "deletions": 67,
+  "changed_files": [
+    "keras/src/backend/torch/nn.py",
+    "keras/src/layers/pooling/average_pooling_test.py",
+    "keras/src/ops/nn_test.py"
+  ],
+  "test_files": [
+    "keras/src/layers/pooling/average_pooling_test.py",
+    "keras/src/ops/nn_test.py"
+  ],
+  "source_files": [
+    "keras/src/backend/torch/nn.py"
+  ],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "along",
+      "amount",
+      "append",
+      "apply",
+      "arange",
+      "asymmetric",
+      "average",
+      "average_pool",
+      "avg_pool1d",
+      "axis"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:06:23Z"
+}

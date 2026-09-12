@@ -1,0 +1,247 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 3c0fe26c4..81dd7df81 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -5,6 +5,20 @@ Version 3.2.0
+ 
+ Unreleased
+ 
++-   ``redirect`` returns a ``303`` status code by default instead of ``302``.
++    This tells the client to always switch to ``GET``, rather than only
++    switching ``POST`` to ``GET``. This preserves the current behavior of
++    ``GET`` and ``POST`` redirects, and is also correct for frontend libraries
++    such as HTMX. :pr:`3092`
++-   The test client clears more request body information when a redirect
++    switches to ``GET``. :pr:`3092`
++-   The test client only switches ``301`` and ``302`` redirects to ``GET`` if
++    the request was ``POST``. :pr:`3092`
++-   The test client does not handle ``305`` as a redirect, as it is no longer
++    part of the HTTP spec. :pr:`3092`
++-   ``EnvironBuilder.close`` closes all open files in ``files`` rather than only
++    the first for each key. :pr:`3092`
++
+ 
+ Version 3.1.5
+ -------------
+diff --git a/src/werkzeug/datastructures/file_storage.py b/src/werkzeug/datastructures/file_storage.py
+index 3a17f5125..8f5ec6234 100644
+--- a/src/werkzeug/datastructures/file_storage.py
++++ b/src/werkzeug/datastructures/file_storage.py
+@@ -204,6 +204,16 @@ def add_file(
+ 
+         self.add(name, FileStorage(file_obj, filename, name, content_type))
+ 
++    def close(self) -> None:
++        """Call :meth:`~FileStorage.close` on every open file.
++
++        .. versionadded:: 3.2
++        """
++        for values in self.listvalues():
++            for value in values:
++                if not value.closed:
++                    value.close()
++
+ 
+ # circular dependencies
+ from .. import http  # noqa: E402
+diff --git a/src/werkzeug/test.py b/src/werkzeug/test.py
+index 58b4ce7fa..356ce15f6 100644
+--- a/src/werkzeug/test.py
++++ b/src/werkzeug/test.py
+@@ -653,15 +653,10 @@ def close(self) -> None:
+         """
+         if self.closed:
+             return
+-        try:
+-            files = self.files.values()
+-        except AttributeError:
+-            files = ()
+-        for f in files:
+-            try:
+-                f.close()
+-            except Exception:
+-                pass
++
++        if self._files is not None:
++            self.files.close()
++
+         self.closed = True
+ 
+     def get_environ(self) -> WSGIEnvironment:
+@@ -1037,20 +1032,23 @@ def resolve_redirect(
+             builder.path = path
+             builder.script_root = ""
+ 
+-        # Only 307 and 308 preserve all of the original request.
+-        if response.status_code not in {307, 308}:
+-            # HEAD is preserved, everything else becomes GET.
+-            if builder.method != "HEAD":
+-                builder.method = "GET"
+-
+-            # Clear the body and the headers that describe it.
++        # Certain statuses switch to GET in some cases
++        # https://fetch.spec.whatwg.org/#http-redirect-fetch
++        if (response.status_code in {301, 302} and builder.method == "POST") or (
++            response.status_code == 303 and builder.method not in {"GET", "HEAD"}
++        ):
++            builder.method = "GET"
+ 
+             if builder.input_stream is not None:
+                 builder.input_stream.close()
+-                builder.input_stream = None
+ 
++            builder.close()
++            builder.input_stream = None
+             builder.content_type = None
+             builder.content_length = None
++            builder.headers.pop("Content-Encoding", None)
++            builder.headers.pop("Content-Language", None)
++            builder.headers.pop("Content-Location", None)
+             builder.headers.pop("Transfer-Encoding", None)
+ 
+         return self.open(builder, buffered=buffered)
+@@ -1122,14 +1120,7 @@ def open(
+         if not follow_redirects:
+             return response
+ 
+-        while response.status_code in {
+-            301,
+-            302,
+-            303,
+-            305,
+-            307,
+-            308,
+-        }:
++        while response.status_code in {301, 302, 303, 307, 308}:
+             # Exhaust intermediate response bodies to ensure middleware
+             # that returns an iterator runs any cleanup code.
+             if not buffered:
+diff --git a/src/werkzeug/utils.py b/src/werkzeug/utils.py
+index 0d4a700f0..849617c31 100644
+--- a/src/werkzeug/utils.py
++++ b/src/werkzeug/utils.py
+@@ -233,26 +233,43 @@ def secure_filename(filename: str) -> str:
+ 
+ 
+ def redirect(
+-    location: str, code: int = 302, Response: type[Response] | None = None
++    location: str, code: int = 303, Response: type[Response] | None = None
+ ) -> Response:
+-    """Returns a response object (a WSGI application) that, if called,
+-    redirects the client to the target location. Supported codes are
+-    301, 302, 303, 305, 307, and 308. 300 is not supported because
+-    it's not a real redirect and 304 because it's the answer for a
+-    request with a request with defined If-Modified-Since headers.
+-
+-    .. versionadded:: 0.6
+-       The location can now be a unicode string that is encoded using
+-       the :func:`iri_to_uri` function.
+-
+-    .. versionadded:: 0.10
+-        The class used for the Response object can now be passed in.
+-
+-    :param location: the location the response should redirect to.
+-    :param code: the redirect status code. defaults to 302.
+-    :param class Response: a Response class to use when instantiating a
+-        response. The default is :class:`werkzeug.wrappers.Response` if
+-        unspecified.
++    """Create a response that redirects the client to the target location.
++
++    The default ``303 See Other`` status code instructs the client to make a
++    ``GET`` request to the target, regardless of what method the current request
++    is. This produces the correct result for the common use cases: page redirects
++    and form success. The status codes you're likely to use are:
++
++    -   ``303 See Other`` always uses a ``GET`` request.
++    -   ``307 Temporary Redirect`` preserves the current method.
++    -   ``308 Permanent Redirect`` preserves the current method, and instructs
++        the client to permanently apply the result. This is hard to undo once
++        you've sent it, so be sure the permanence is what you want.
++
++    Two older codes, ``302 Found`` and ``301 Moved Permanently``, are
++    superseded by ``307`` and ``308`` respectively. They were not consistently
++    implemented by clients, which tend to switch ``POST`` to ``GET`` but
++    preserve other methods. Prefer using ``303``, ``307``, and ``308`` to get
++    the exact behavior you intend. Other ``3xx`` codes are either not defined or
++    have specific use cases.
++
++    :param location: The URL to redirect to. The client will interpret a
++        relative URL (without the host) as relative to the host it's accessing.
++    :param code: The redirect status code. This affects how the client issues
++        the next request. Defaults to ``303``.
++    :param Response: The response class. Defaults to
++        :class:`werkzeug.wrappers.Response`.
++
++    .. versionchanged:: 3.2
++        ``code`` defaults to 303 instead of 302.
++
++    .. versionchanged:: 0.10
++        Added the ``response`` parameter.
++
++    .. versionchanged:: 0.6
++        ``location`` can contain Unicode characters.
+     """
+     if Response is None:
+         from .wrappers import Response
+diff --git a/tests/test_test.py b/tests/test_test.py
+index b89c121f8..be547eef8 100644
+--- a/tests/test_test.py
++++ b/tests/test_test.py
+@@ -1,3 +1,4 @@
++import io
+ import json
+ import sys
+ from functools import partial
+@@ -425,12 +426,10 @@ def test_builder_from_environ():
+ def test_file_closing():
+     closed = []
+ 
+-    class SpecialInput:
+-        def read(self, size):
+-            return b""
+-
++    class SpecialInput(io.BytesIO):
+         def close(self):
+             closed.append(self)
++            super().close()
+ 
+     create_environ(data={"foo": SpecialInput()})
+     assert len(closed) == 1
+@@ -593,13 +592,13 @@ def app(request):
+     assert len(response.history) == 2
+ 
+     assert response.history[-1].request.path == "/second"
+-    assert response.history[-1].status_code == 302
++    assert response.history[-1].status_code == 303
+     assert response.history[-1].location == "/third"
+     assert len(response.history[-1].history) == 1
+     assert response.history[-1].history[-1] is response.history[-2]
+ 
+     assert response.history[-2].request.path == "/first"
+-    assert response.history[-2].status_code == 302
++    assert response.history[-2].status_code == 303
+     assert response.history[-2].location == "/second"
+     assert len(response.history[-2].history) == 0
+ 
+diff --git a/tests/test_utils.py b/tests/test_utils.py
+index c48eba556..26f08e56a 100644
+--- a/tests/test_utils.py
++++ b/tests/test_utils.py
+@@ -19,7 +19,7 @@
+     ("url", "code", "expect"),
+     [
+         ("http://example.com", None, "http://example.com"),
+-        ("/füübär", 305, "/f%C3%BC%C3%BCb%C3%A4r"),
++        ("/füübär", 301, "/f%C3%BC%C3%BCb%C3%A4r"),
+         ("http://☃.example.com/", 307, "http://xn--n3h.example.com/"),
+         ("itms-services://?url=abc", None, "itms-services://?url=abc"),
+     ],
+@@ -29,7 +29,7 @@ def test_redirect(url: str, code: int | None, expect: str) -> None:
+ 
+     if code is None:
+         resp = utils.redirect(url)
+-        assert resp.status_code == 302
++        assert resp.status_code == 303
+     else:
+         resp = utils.redirect(url, code)
+         assert resp.status_code == code

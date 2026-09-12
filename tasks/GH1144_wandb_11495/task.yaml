@@ -1,0 +1,13 @@
+task_id: GH1144_wandb_11495
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "chore: clean up dev requirements and fix bokeh 3.9 serialization issue"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/wandb/wandb/pull/11495"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

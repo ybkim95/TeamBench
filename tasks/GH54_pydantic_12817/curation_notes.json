@@ -1,0 +1,52 @@
+{
+  "repo": "pydantic/pydantic",
+  "pr_number": 12817,
+  "pr_url": "https://github.com/pydantic/pydantic/pull/12817",
+  "issue_number": 11134,
+  "base_sha": "fc68422064fefb4414eb6c391b78595dddd67ac2",
+  "head_sha": "6ac5ac63775940f2923a4ce3d9fa5a9e3aa3fcd7",
+  "additions": 20,
+  "deletions": 0,
+  "changed_files": [
+    "pydantic/main.py",
+    "tests/test_edge_cases.py"
+  ],
+  "test_files": [
+    "tests/test_edge_cases.py"
+  ],
+  "source_files": [
+    "pydantic/main.py"
+  ],
+  "parameterization": {
+    "repo": "pydantic/pydantic",
+    "repo_short": "pydantic",
+    "parameterized_identifiers": [
+      "after",
+      "allow",
+      "attr",
+      "attribute",
+      "called",
+      "does",
+      "exist",
+      "extra",
+      "extra_after_init",
+      "extra_at_init"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-23T22:36:28Z"
+}

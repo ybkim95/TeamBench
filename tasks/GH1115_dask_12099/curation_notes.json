@@ -1,0 +1,54 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 12099,
+  "pr_url": "https://github.com/dask/dask/pull/12099",
+  "issue_number": 11990,
+  "base_sha": "c039144ec0e59fc6bea57949582094664fe03d5f",
+  "head_sha": "87489cda046ebd6777de473fa27354d7fea7d995",
+  "additions": 23,
+  "deletions": 2,
+  "changed_files": [
+    "dask/dataframe/dask_expr/_expr.py",
+    "dask/dataframe/dask_expr/_groupby.py",
+    "dask/dataframe/dask_expr/tests/test_groupby.py"
+  ],
+  "test_files": [
+    "dask/dataframe/dask_expr/tests/test_groupby.py"
+  ],
+  "source_files": [
+    "dask/dataframe/dask_expr/_expr.py",
+    "dask/dataframe/dask_expr/_groupby.py"
+  ],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "apply",
+      "argument",
+      "assert_eq",
+      "between",
+      "cached_property",
+      "collection",
+      "dask",
+      "dependencies",
+      "dependency",
+      "divisions"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:06:41Z"
+}

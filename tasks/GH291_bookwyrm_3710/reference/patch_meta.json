@@ -1,0 +1,15 @@
+{
+ "task": "GH291_bookwyrm_3710",
+ "patch": "tasks/GH291_bookwyrm_3710/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "bookwyrm-social/bookwyrm",
+ "pr_number": 3710,
+ "base_sha": "ba46e53b750af6a5c276959cd0aad612fe615817",
+ "head_sha": "f136dea188b4060e02a96ec6782b959276fd833f",
+ "bytes": 6260,
+ "files_changed": 4,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

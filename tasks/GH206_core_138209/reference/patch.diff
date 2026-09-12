@@ -1,0 +1,103 @@
+diff --git a/homeassistant/components/generic_thermostat/climate.py b/homeassistant/components/generic_thermostat/climate.py
+index 190caa58b3fae..185040f02c95f 100644
+--- a/homeassistant/components/generic_thermostat/climate.py
++++ b/homeassistant/components/generic_thermostat/climate.py
+@@ -539,10 +539,14 @@ async def _async_control_heating(
+                     return
+ 
+             assert self._cur_temp is not None and self._target_temp is not None
+-            too_cold = self._target_temp >= self._cur_temp + self._cold_tolerance
+-            too_hot = self._cur_temp >= self._target_temp + self._hot_tolerance
++
++            min_temp = self._target_temp - self._cold_tolerance
++            max_temp = self._target_temp + self._hot_tolerance
++
+             if self._is_device_active:
+-                if (self.ac_mode and too_cold) or (not self.ac_mode and too_hot):
++                if (self.ac_mode and self._cur_temp <= min_temp) or (
++                    not self.ac_mode and self._cur_temp >= max_temp
++                ):
+                     _LOGGER.debug("Turning off heater %s", self.heater_entity_id)
+                     await self._async_heater_turn_off()
+                 elif time is not None:
+@@ -552,7 +556,9 @@ async def _async_control_heating(
+                         self.heater_entity_id,
+                     )
+                     await self._async_heater_turn_on()
+-            elif (self.ac_mode and too_hot) or (not self.ac_mode and too_cold):
++            elif (self.ac_mode and self._cur_temp > max_temp) or (
++                not self.ac_mode and self._cur_temp < min_temp
++            ):
+                 _LOGGER.debug("Turning on heater %s", self.heater_entity_id)
+                 await self._async_heater_turn_on()
+             elif time is not None:
+diff --git a/homeassistant/components/generic_thermostat/strings.json b/homeassistant/components/generic_thermostat/strings.json
+index 58280e9954345..9b88d590eeaae 100644
+--- a/homeassistant/components/generic_thermostat/strings.json
++++ b/homeassistant/components/generic_thermostat/strings.json
+@@ -21,7 +21,7 @@
+           "heater": "Switch entity used to cool or heat depending on A/C mode.",
+           "target_sensor": "Temperature sensor that reflects the current temperature.",
+           "min_cycle_duration": "Set a minimum amount of time that the switch specified must be in its current state prior to being switched either off or on.",
+-          "cold_tolerance": "Minimum amount of difference between the temperature read by the temperature sensor the target temperature that must change prior to being switched on. For example, if the target temperature is 25 and the tolerance is 0.5 the heater will start when the sensor equals or goes below 24.5.",
++          "cold_tolerance": "Minimum amount of difference between the temperature read by the temperature sensor the target temperature that must change prior to being switched on. For example, if the target temperature is 25 and the tolerance is 0.5 the heater will start when the sensor goes below 24.5.",
+           "hot_tolerance": "Minimum amount of difference between the temperature read by the temperature sensor the target temperature that must change prior to being switched off. For example, if the target temperature is 25 and the tolerance is 0.5 the heater will stop when the sensor equals or goes above 25.5."
+         }
+       },
+diff --git a/tests/components/generic_thermostat/test_climate.py b/tests/components/generic_thermostat/test_climate.py
+index 7e2e92f025b21..65be83bad2092 100644
+--- a/tests/components/generic_thermostat/test_climate.py
++++ b/tests/components/generic_thermostat/test_climate.py
+@@ -1119,6 +1119,52 @@ async def test_precision(hass: HomeAssistant) -> None:
+     assert state.attributes.get("target_temp_step") == 0.1
+ 
+ 
++@pytest.fixture(
++    params=[
++        HVACMode.HEAT,
++        HVACMode.COOL,
++    ]
++)
++async def setup_comp_10(hass: HomeAssistant, request: pytest.FixtureRequest) -> None:
++    """Initialize components."""
++    assert await async_setup_component(
++        hass,
++        CLIMATE_DOMAIN,
++        {
++            "climate": {
++                "platform": "generic_thermostat",
++                "name": "test",
++                "cold_tolerance": 0,
++                "hot_tolerance": 0,
++                "target_temp": 25,
++                "heater": ENT_SWITCH,
++                "target_sensor": ENT_SENSOR,
++                "initial_hvac_mode": request.param,
++            }
++        },
++    )
++    await hass.async_block_till_done()
++
++
++@pytest.mark.usefixtures("setup_comp_10")
++async def test_zero_tolerances(hass: HomeAssistant) -> None:
++    """Test that having a zero tolerance doesn't cause the switch to flip-flop."""
++
++    # if the switch is off, it should remain off
++    calls = _setup_switch(hass, False)
++    _setup_sensor(hass, 25)
++    await hass.async_block_till_done()
++    await common.async_set_temperature(hass, 25)
++    assert len(calls) == 0
++
++    # if the switch is on, it should turn off
++    calls = _setup_switch(hass, True)
++    _setup_sensor(hass, 25)
++    await hass.async_block_till_done()
++    await common.async_set_temperature(hass, 25)
++    assert len(calls) == 1
++
++
+ async def test_custom_setup_params(hass: HomeAssistant) -> None:
+     """Test the setup with custom parameters."""
+     result = await async_setup_component(

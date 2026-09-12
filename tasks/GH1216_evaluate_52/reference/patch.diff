@@ -1,0 +1,44 @@
+diff --git a/measurements/word_length/word_length.py b/measurements/word_length/word_length.py
+--- a/measurements/word_length/word_length.py
++++ b/measurements/word_length/word_length.py
+@@ -17,6 +17,7 @@
+ import datasets
+ from statistics import mean
+ 
++
+ _DESCRIPTION = """
+ Returns the average length (in terms of the number of words) of the input data.
+ """
+@@ -36,7 +37,7 @@
+     >>> wordlength = evaluate.load("word_length", type="measurement")
+     >>> results = wordlength.compute(data=data)
+     >>> print(results)
+-    {"average_word_length": 2}
++    {'average_word_length': 2}
+ """
+ 
+ # TODO: Add BibTeX citation
+@@ -66,6 +67,10 @@ def _info(self):
+             })
+         )
+ 
++    def _download_and_prepare(self, dl_manager):
++        import nltk
++        nltk.download("punkt")
++
+     def _compute(self, data, tokenizer=word_tokenize):
+         """Returns the average word length of the input data"""
+         lengths = [len(tokenizer(d)) for d in data]
+
+diff --git a/src/evaluate/utils/file_utils.py b/src/evaluate/utils/file_utils.py
+--- a/src/evaluate/utils/file_utils.py
++++ b/src/evaluate/utils/file_utils.py
+@@ -104,7 +104,7 @@ def hf_github_url(path: str, name: str, type: str, revision: Optional[str] = Non
+         return config.REPO_METRICS_URL.format(revision=revision, path=path, name=name)
+     elif type == "comparison":
+         return config.REPO_COMPARISONS_URL.format(revision=revision, path=path, name=name)
+-    elif type == "measurements":
++    elif type == "measurement":
+         return config.REPO_MEASUREMENTS_URL.format(revision=revision, path=path, name=name)
+     else:
+         raise TypeError(

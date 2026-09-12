@@ -1,0 +1,159 @@
+diff --git a/src/pymovements/gaze/_utils/parsing.py b/src/pymovements/gaze/_utils/parsing.py
+index 4afbb451e..009347b38 100755
+--- a/src/pymovements/gaze/_utils/parsing.py
++++ b/src/pymovements/gaze/_utils/parsing.py
+@@ -18,6 +18,7 @@
+ # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ # SOFTWARE.
+ """Module for parsing input data."""
++# pylint: disable=too-many-statements
+ from __future__ import annotations
+ 
+ import calendar
+@@ -48,7 +49,7 @@
+             r'\s+(?P<day>\d\d?)\s+(?P<time>\d\d:\d\d:\d\d)\s+(?P<year>\d{4})\s*'
+         ),
+         r'\*\*\s+(?P<version_2>EYELINK.*)',
+-        r'MSG\s+\d+[.]?\d*\s+DISPLAY_COORDS\s*=?\s*(?P<resolution>.*)',
++        r'MSG\s+\d+[.]?\d*\s+DISPLAY_COORDS\s*=?\s*(?P<DISPLAY_COORDS>.*)',
+         r'PUPIL\s+(?P<pupil_data_type>(AREA|DIAMETER))\s*',
+         r'MSG\s+\d+[.]?\d*\s+ELCLCFG\s+(?P<mount_configuration>.*)',
+     )
+@@ -95,6 +96,9 @@
+     r'(?P<link_sample_filter>0|1|2)\s+'
+     r'(?P<tracked_eye>LR|[LR])\s*',
+ )
++RESOLUTION_REGEX = re.compile(
++    r'MSG\s+\d+[.]?\d*\s+GAZE_COORDS\s*=?\s*(?P<resolution>.*)',
++)
+ 
+ 
+ def check_nan(sample_location: str) -> float:
+@@ -303,6 +307,11 @@ def parse_eyelink(
+         elif eye_side_match := RECORDING_CONFIG.match(line):
+             recording_config.append(eye_side_match.groupdict())
+ 
++        elif match := RESOLUTION_REGEX.match(line):
++            left, top, right, bottom = (float(coord) for coord in match.group('resolution').split())
++            # GAZE_COORDS is always logged after RECCFG -> add it to the last recording_config
++            recording_config[-1]['resolution'] = (right - left + 1, bottom - top + 1)
++
+         elif match := START_RECORDING_REGEX.match(line):
+             start_recording_timestamp = match.groupdict()['timestamp']
+ 
+@@ -373,6 +382,7 @@ def parse_eyelink(
+     )
+ 
+     metadata['tracked_eye'] = _check_reccfg_key(recording_config, 'tracked_eye')
++    metadata['resolution'] = _check_reccfg_key(recording_config, 'resolution')
+ 
+     pre_processed_metadata: dict[str, Any] = _pre_process_metadata(metadata)
+     # is not yet pre-processed but should be
+@@ -416,10 +426,9 @@ def _pre_process_metadata(metadata: defaultdict[str, Any]) -> dict[str, Any]:
+         metadata['version_1'], metadata['version_2'],
+     )
+ 
+-    if 'resolution' in metadata:
+-        coordinates = [int(coord) for coord in metadata['resolution'].split()]
+-        resolution = (coordinates[2] - coordinates[0] + 1, coordinates[3] - coordinates[1] + 1)
+-        metadata['resolution'] = resolution
++    if 'DISPLAY_COORDS' in metadata:
++        display_coords = tuple(float(coord) for coord in metadata['DISPLAY_COORDS'].split())
++        metadata['DISPLAY_COORDS'] = display_coords
+ 
+     # if the date has been parsed fully, convert the date to a datetime object
+     if 'day' in metadata and 'year' in metadata and 'month' in metadata and 'time' in metadata:
+diff --git a/src/pymovements/gaze/io.py b/src/pymovements/gaze/io.py
+index e6f73da80..db42c7f5a 100644
+--- a/src/pymovements/gaze/io.py
++++ b/src/pymovements/gaze/io.py
+@@ -20,6 +20,7 @@
+ """Functionality to load GazeDataFrame from a csv file."""
+ from __future__ import annotations
+ 
++import math
+ from pathlib import Path
+ from typing import Any
+ 
+@@ -510,7 +511,9 @@ def _fill_experiment_from_parsing_metadata(
+     # Screen resolution (assuming that width and height will always be missing or set together)
+     experiment_resolution = (experiment.screen.width_px, experiment.screen.height_px)
+     if experiment_resolution == (None, None):
+-        experiment.screen.width_px, experiment.screen.height_px = metadata['resolution']
++        width, height = metadata['resolution']
++        experiment.screen.width_px = math.ceil(width)
++        experiment.screen.height_px = math.ceil(height)
+     elif experiment_resolution != metadata['resolution']:
+         issues.append(f"Screen resolution: {experiment_resolution} != {metadata['resolution']}")
+ 
+diff --git a/tests/unit/gaze/_utils/_parsing_test.py b/tests/unit/gaze/_utils/_parsing_test.py
+index 892c114f2..0aebf7197 100644
+--- a/tests/unit/gaze/_utils/_parsing_test.py
++++ b/tests/unit/gaze/_utils/_parsing_test.py
+@@ -43,9 +43,10 @@
+ 
+ some
+ lines
++MSG	2095865 DISPLAY_COORDS 0 0 1279 1023
+ MSG	2154555 RECCFG CR 1000 2 1 L
+ MSG	2154555 ELCLCFG BTABLER
+-MSG	2095865 DISPLAY_COORDS 0 0 1279 1023
++MSG	2154555 GAZE_COORDS 0.00 0.00 1279.00 1023.00
+ PRESCALER	1
+ VPRESCALER	1
+ PUPIL	AREA
+@@ -166,6 +167,7 @@
+     'calibrations': [],
+     'validations': [],
+     'resolution': (1280, 1024),
++    'DISPLAY_COORDS': (0.0, 0.0, 1279.0, 1023.0),
+     'data_loss_ratio_blinks': 0.18181818181818182,
+     'data_loss_ratio': 0.2727272727272727,
+     'total_recording_duration_ms': 11.0,
+@@ -194,6 +196,7 @@
+             'timestamp': '2154555',
+             'tracked_eye': 'L',
+             'tracking_mode': 'CR',
++            'resolution': (1280.0, 1024.0),
+         },
+     ],
+ }
+@@ -369,7 +372,16 @@ def test_parse_eyelink_version(tmp_path, metadata, expected_version, expected_mo
+             'MSG	2154555 RECCFG CR 1000 2 1 L\n'
+             'MSG	2154556 RECCFG CR 2000 2 1 L\n',
+             r"Found inconsistent values for 'sampling_rate': \['1000', '2000'\]",
+-            id='inconsistent_reccfg',
++            id='inconsistent_sampling_rate',
++        ),
++        pytest.param(
++            'MSG	2154555 RECCFG CR 1000 2 1 L\n'
++            'MSG	2154555 GAZE_COORDS 0 0 1919 1079\n'
++            'MSG	2154556 RECCFG CR 1000 2 1 L\n'
++            'MSG	2154556 GAZE_COORDS 0 0 1023 767\n',
++            "Found inconsistent values for 'resolution': "
++            r'\[\(1024.0, 768.0\), \(1920.0, 1080.0\)\]',
++            id='inconsistent_resolution',
+         ),
+     ],
+ )
+@@ -389,7 +401,6 @@ def test_metadata_warnings(tmp_path, metadata, expected_msg):
+     ('metadata', 'expected_validation', 'expected_calibration'),
+     [
+         pytest.param(
+-            'MSG	2095865 DISPLAY_COORDS 0 0 1279 1023\n'
+             'MSG	7045618 !CAL \n'
+             '>>>>>>> CALIBRATION (HV9,P-CR) FOR LEFT: <<<<<<<<<\n'
+             'MSG	7045618 !CAL Calibration points:  \n'
+diff --git a/tests/unit/gaze/io/asc_test.py b/tests/unit/gaze/io/asc_test.py
+index 1439f54d7..2f8482e06 100644
+--- a/tests/unit/gaze/io/asc_test.py
++++ b/tests/unit/gaze/io/asc_test.py
+@@ -323,7 +323,7 @@ def test_from_asc_fills_in_experiment_metadata(file, metadata):
+                 'screen_height_px': 1080,
+                 'sampling_rate': 1000,
+             },
+-            ['Screen resolution: (1920, 1080) != (1280, 1024)'],
++            ['Screen resolution: (1920, 1080) != (1280.0, 1024.0)'],
+             id='screen_resolution',
+         ),
+         pytest.param(

@@ -1,0 +1,13 @@
+task_id: GH216_mitmproxy_8041
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix mitmweb blank page on Windows due to incorrect JavaScript MIME type"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/mitmproxy/mitmproxy/pull/8041"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

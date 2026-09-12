@@ -1,0 +1,15 @@
+{
+ "task": "GH1170_FLAML_1520",
+ "patch": "tasks/GH1170_FLAML_1520/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "microsoft/FLAML",
+ "pr_number": 1520,
+ "base_sha": "e27e4ad96846df2576c85392e748fe087d0e4b32",
+ "head_sha": "2bf0b1ec864fed111c7d88370d1e47758ba8df8f",
+ "bytes": 1209,
+ "files_changed": 1,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

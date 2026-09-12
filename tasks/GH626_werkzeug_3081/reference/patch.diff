@@ -1,0 +1,141 @@
+diff --git a/CHANGES.rst b/CHANGES.rst
+index 385d97e23..e95b562c2 100644
+--- a/CHANGES.rst
++++ b/CHANGES.rst
+@@ -5,6 +5,9 @@ Version 3.1.5
+ 
+ Unreleased
+ 
++-   The multipart form parser handles a ``\r\n`` sequence at a chunk boundary.
++    This fixes the previous attempt, which caused incorrect content lengths.
++    :issue:`3065` :issue:`3077`
+ -   Fix ``AttributeError`` when initializing ``DebuggedApplication`` with
+     ``pin_security=False``. :issue:`3075`
+ 
+diff --git a/src/werkzeug/sansio/multipart.py b/src/werkzeug/sansio/multipart.py
+index 279b25e7e..5a3844ebb 100644
+--- a/src/werkzeug/sansio/multipart.py
++++ b/src/werkzeug/sansio/multipart.py
+@@ -124,18 +124,6 @@ def __init__(
+         self._search_position = 0
+         self._parts_decoded = 0
+ 
+-    def last_newline(self, data: bytes | bytearray) -> int:
+-        try:
+-            last_nl = data.rindex(b"\n")
+-        except ValueError:
+-            last_nl = len(data)
+-        try:
+-            last_cr = data.rindex(b"\r")
+-        except ValueError:
+-            last_cr = len(data)
+-
+-        return min(last_nl, last_cr)
+-
+     def receive_data(self, data: bytes | None) -> None:
+         if data is None:
+             self.complete = True
+@@ -258,20 +246,10 @@ def _parse_data(
+         else:
+             data_start = 0
+ 
+-        boundary = b"--" + self.boundary
+-
+-        if self.buffer.find(boundary) == -1:
++        if self.buffer.find(b"--" + self.boundary) == -1:
+             # No complete boundary in the buffer, but there may be
+-            # a partial boundary at the end. As the boundary
+-            # starts with either a nl or cr find the earliest and
+-            # return up to that as data.
+-            data_end = del_index = self.last_newline(data[data_start:]) + data_start
+-            # If amount of data after last newline is far from
+-            # possible length of partial boundary, we should
+-            # assume that there is no partial boundary in the buffer
+-            # and return all pending data.
+-            if (len(data) - data_end) > len(b"\n" + boundary):
+-                data_end = del_index = len(data)
++            # a partial boundary at the end.
++            data_end = del_index = self._last_partial_boundary_index(data)
+             more_data = True
+         else:
+             match = self.boundary_re.search(data)
+@@ -283,16 +261,34 @@ def _parse_data(
+                 data_end = match.start()
+                 del_index = match.end()
+             else:
+-                data_end = del_index = self.last_newline(data[data_start:]) + data_start
++                data_end = del_index = self._last_partial_boundary_index(data)
+             more_data = match is None
+ 
+-        # Keep \r\n sequence intact rather than splitting across chunks.
+-        if data_end > data_start and data[data_end - 1] == 0x0D:
+-            data_end -= 1
+-            del_index -= 1
+-
+         return bytes(data[data_start:data_end]), del_index, more_data
+ 
++    def _last_partial_boundary_index(self, data: bytes | bytearray) -> int:
++        # Find the last index following which a partial boundary
++        # could be present in the data. This will be the earliest
++        # position of a LR or a CR, unless that position is more
++        # than a complete boundary from the end in which case there
++        # is no partial boundary.
++        complete_boundary_index = len(data) - len(b"\r\n--" + self.boundary)
++        try:
++            last_nl = data.rindex(b"\n")
++        except ValueError:
++            last_nl = len(data)
++        else:
++            if last_nl < complete_boundary_index:
++                last_nl = len(data)
++        try:
++            last_cr = data.rindex(b"\r")
++        except ValueError:
++            last_cr = len(data)
++        else:
++            if last_cr < complete_boundary_index:
++                last_cr = len(data)
++        return min(last_nl, last_cr)
++
+ 
+ class MultipartEncoder:
+     def __init__(self, boundary: bytes) -> None:
+diff --git a/tests/sansio/test_multipart.py b/tests/sansio/test_multipart.py
+index 2bcc77a0b..42690c0d8 100644
+--- a/tests/sansio/test_multipart.py
++++ b/tests/sansio/test_multipart.py
+@@ -86,14 +86,7 @@ def test_decoder_data_start_with_different_newline_positions(
+     while not isinstance(events[-1], Data):
+         events.append(decoder.next_event())
+ 
+-    expected = data_start
+-
+-    if data_end == b"":
+-        # a split \r\n is deferred to the next event
+-        if expected[-1] == 0x0D:
+-            expected = expected[:-1]
+-    else:
+-        expected += b"\r\nBCDE"
++    expected = data_start if data_end == b"" else data_start + b"\r\nBCDE"
+ 
+     assert events == [
+         Preamble(data=b""),
+diff --git a/tests/test_formparser.py b/tests/test_formparser.py
+index 7cd8f7b76..eb2a9b0ef 100644
+--- a/tests/test_formparser.py
++++ b/tests/test_formparser.py
+@@ -200,6 +200,14 @@ def test_parse_form_data_get_without_content(self):
+         assert len(form) == 0
+         assert len(files) == 0
+ 
++    def test_parse_form_post_data_trailing_CR(self):
++        for k in [1, 2]:
++            sample = b"\0" * 65535 + b"\x0d" * k
++            with Request.from_values(
++                data={"foo": (io.BytesIO(sample), "test.txt")}, method="POST"
++            ) as req:
++                assert req.files["foo"].read() == sample
++
+     @pytest.mark.parametrize(
+         ("no_spooled", "size"), ((False, 100), (False, 3000), (True, 100), (True, 3000))
+     )

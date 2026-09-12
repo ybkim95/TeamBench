@@ -1,0 +1,50 @@
+{
+  "repo": "great-expectations/great_expectations",
+  "pr_number": 8087,
+  "pr_url": "https://github.com/great-expectations/great_expectations/pull/8087",
+  "issue_number": null,
+  "base_sha": "cc34dbbfd80edb0f1637aefacf712bd3f6e4699c",
+  "head_sha": "0bb30a98e04dcafb0c0eb707fddbdae92ad0e539",
+  "additions": 1,
+  "deletions": 1,
+  "changed_files": [
+    "tests/data_context/cloud_data_context/test_include_rendered_content.py"
+  ],
+  "test_files": [
+    "tests/data_context/cloud_data_context/test_include_rendered_content.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "great-expectations/great_expectations",
+    "repo_short": "great_expectations",
+    "parameterized_identifiers": [
+      "cloud_ref",
+      "data_context",
+      "great_expectations",
+      "has_key",
+      "mock",
+      "patch",
+      "return_value",
+      "store",
+      "test_suite"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:53:00Z"
+}

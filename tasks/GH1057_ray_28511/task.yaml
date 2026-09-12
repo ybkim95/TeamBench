@@ -1,0 +1,13 @@
+task_id: GH1057_ray_28511
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[Tune] [PBT] Maintain consistent `Trial`/`TrialRunner` state when pausing and resuming trial"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/ray-project/ray/pull/28511"
+source_issue: "https://github.com/ray-project/ray/issues/1234"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

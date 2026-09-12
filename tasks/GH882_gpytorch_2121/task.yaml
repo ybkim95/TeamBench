@@ -1,0 +1,13 @@
+task_id: GH882_gpytorch_2121
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix multitask/added_loss_term bugs in SGPR regression"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/cornellius-gp/gpytorch/pull/2121"
+source_issue: "https://github.com/cornellius-gp/gpytorch/issues/2113"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

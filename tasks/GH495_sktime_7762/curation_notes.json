@@ -1,0 +1,55 @@
+{
+  "repo": "sktime/sktime",
+  "pr_number": 7762,
+  "pr_url": "https://github.com/sktime/sktime/pull/7762",
+  "issue_number": 7763,
+  "base_sha": "fcfe13da2a8510d0d1cd78bcb09bf667c7fe7ffb",
+  "head_sha": "6a00527a9241615108ec907bac4d03aac0a130b2",
+  "additions": 28,
+  "deletions": 16,
+  "changed_files": [
+    "CONTRIBUTORS.md",
+    "sktime/datatypes/_series/_convert.py",
+    "sktime/datatypes/tests/test_convert_bugfixes.py",
+    "sktime/forecasting/exp_smoothing.py"
+  ],
+  "test_files": [
+    "sktime/datatypes/tests/test_convert_bugfixes.py"
+  ],
+  "source_files": [
+    "sktime/datatypes/_series/_convert.py",
+    "sktime/forecasting/exp_smoothing.py"
+  ],
+  "parameterization": {
+    "repo": "sktime/sktime",
+    "repo_short": "sktime",
+    "parameterized_identifiers": [
+      "a1383821b",
+      "aa25desh",
+      "abandus",
+      "adoherty21",
+      "align",
+      "all_contributors",
+      "allcontributors",
+      "attr",
+      "author",
+      "avatars"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:22:09Z"
+}

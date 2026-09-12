@@ -1,0 +1,13 @@
+task_id: GH1067_matplotlib_30054
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fixed an off-by-half-pixel bug in image resampling when using a nonaffine transform (e.g., a log axis)"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/matplotlib/matplotlib/pull/30054"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

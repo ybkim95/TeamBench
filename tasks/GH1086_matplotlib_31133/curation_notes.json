@@ -1,0 +1,52 @@
+{
+  "repo": "matplotlib/matplotlib",
+  "pr_number": 31133,
+  "pr_url": "https://github.com/matplotlib/matplotlib/pull/31133",
+  "issue_number": 31126,
+  "base_sha": "a01f57d81757f495eaed62adf3eb232cbcdf5a4b",
+  "head_sha": "65cabc93b760a724e544c5aad2ecb567edf4fbef",
+  "additions": 64,
+  "deletions": 4,
+  "changed_files": [
+    "lib/matplotlib/backends/_backend_tk.py",
+    "lib/matplotlib/tests/test_backend_tk.py"
+  ],
+  "test_files": [
+    "lib/matplotlib/tests/test_backend_tk.py"
+  ],
+  "source_files": [
+    "lib/matplotlib/backends/_backend_tk.py"
+  ],
+  "parameterization": {
+    "repo": "matplotlib/matplotlib",
+    "repo_short": "matplotlib",
+    "parameterized_identifiers": [
+      "actual",
+      "actual_h",
+      "actual_w",
+      "add_subplot",
+      "after",
+      "approach",
+      "area",
+      "backend_tkagg",
+      "backends",
+      "backing"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:04:33Z"
+}

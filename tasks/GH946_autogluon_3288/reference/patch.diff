@@ -1,0 +1,226 @@
+diff --git a/common/src/autogluon/common/utils/path_converter.py b/common/src/autogluon/common/utils/path_converter.py
+index 5d7b8a1a2408..7e71152aec40 100644
+--- a/common/src/autogluon/common/utils/path_converter.py
++++ b/common/src/autogluon/common/utils/path_converter.py
+@@ -1,5 +1,6 @@
++import os
+ import platform
+-from pathlib import PurePosixPath, PureWindowsPath
++from pathlib import Path, PurePosixPath, PureWindowsPath
+ 
+ 
+ class PathConverter:
+@@ -20,13 +21,53 @@ def _validate_path(path: str):
+     @staticmethod
+     def to_windows(path: str) -> str:
+         PathConverter._validate_path(path)
+-        return str(PureWindowsPath(PurePosixPath(path)))
++        return str(PathConverter._to_windows(path))
++
++    @staticmethod
++    def _to_windows(path: str) -> PureWindowsPath:
++        return PureWindowsPath(PurePosixPath(path))
+ 
+     @staticmethod
+     def to_posix(path: str) -> str:
+         PathConverter._validate_path(path)
+-        return str(PurePosixPath(PureWindowsPath(path)))
++        return str(PathConverter._to_posix(path))
++
++    @staticmethod
++    def _to_posix(path: str) -> PurePosixPath:
++        return PurePosixPath(PureWindowsPath(path))
+ 
+     @staticmethod
+     def to_current(path: str) -> str:
+         return PathConverter.to_windows(path) if PathConverter._is_windows() else PathConverter.to_posix(path)
++
++    @staticmethod
++    def os_path_sep() -> str:
++        return os.path.sep
++
++    # v0.9 FIXME: Avoid calling this as much as possible
++    #  Refactor code so that calling this is not necessary
++    @staticmethod
++    def to_relative(path: str) -> str:
++        if path == '':
++            return path
++        if not PathConverter._is_absolute(path=path):
++            return path
++        os_path_sep = PathConverter.os_path_sep()
++        path_relative = os.path.relpath(path)
++        if path.endswith(os_path_sep):
++            if not path_relative.endswith(os_path_sep):
++                path_relative += os_path_sep
++        return path_relative
++
++    @staticmethod
++    def to_absolute(path: str) -> str:
++        if path == '':
++            return path
++        if PathConverter._is_absolute(path=path):
++            return path
++        path_absolute = str(Path(path).resolve())
++        os_path_sep = PathConverter.os_path_sep()
++        if path.endswith(os_path_sep):
++            if not path_absolute.endswith(os_path_sep):
++                path_absolute += os_path_sep
++        return path_absolute
+diff --git a/core/src/autogluon/core/models/abstract/abstract_model.py b/core/src/autogluon/core/models/abstract/abstract_model.py
+index 1e3aeb0f57f7..48e26c8de6e9 100644
+--- a/core/src/autogluon/core/models/abstract/abstract_model.py
++++ b/core/src/autogluon/core/models/abstract/abstract_model.py
+@@ -17,6 +17,7 @@
+ from autogluon.common.features.feature_metadata import FeatureMetadata
+ from autogluon.common.utils.try_import import try_import_ray
+ from autogluon.common.utils.pandas_utils import get_approximate_df_mem_usage
++from autogluon.common.utils.path_converter import PathConverter
+ from autogluon.common.utils.utils import setup_outputdir
+ from autogluon.common.utils.lite import disable_if_lite_mode
+ from autogluon.common.utils.log_utils import DuplicateFilter
+@@ -112,6 +113,10 @@ def __init__(self,
+             path_cur = setup_outputdir(path=None, create_dir=True, path_suffix=path_suffix)
+             self.path_root = path_cur.rsplit(self.path_suffix, 1)[0]
+             logger.log(20, f'Warning: No path was specified for model, defaulting to: {self.path_root}')
++
++        # v0.9 FIXME: This is a hack, change so we aren't vulnerable to self.path_root breaking things
++        self.path_root = PathConverter.to_relative(self.path_root)
++
+         self.path = self.create_contexts(self.path_root + self.path_suffix)  # TODO: Make this path a function for consistency.
+ 
+         self.num_classes = None
+diff --git a/core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py b/core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py
+index b33d4089f63c..271ff58eecd0 100644
+--- a/core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py
++++ b/core/src/autogluon/core/models/ensemble/stacker_ensemble_model.py
+@@ -53,6 +53,12 @@ def __init__(self,
+         self.base_model_names = base_model_names
+         self.base_models_dict: Dict[str, AbstractModel] = base_models_dict  # String name -> Model objects
+         self.base_model_paths_dict = base_model_paths_dict
++
++        # FIXME: DO NOT DO THIS, FIX ASAP
++        self.base_model_paths_dict = {
++            k: PathConverter.to_relative(v) for k, v in self.base_model_paths_dict.items()
++        }
++
+         self.base_model_types_dict = base_model_types_dict
+ 
+         # TODO: Consider deleting these variables after initialization
+diff --git a/core/src/autogluon/core/trainer/abstract_trainer.py b/core/src/autogluon/core/trainer/abstract_trainer.py
+index dac4cf6f0b8e..063b359f4657 100644
+--- a/core/src/autogluon/core/trainer/abstract_trainer.py
++++ b/core/src/autogluon/core/trainer/abstract_trainer.py
+@@ -53,6 +53,7 @@ def __init__(self, path: str, problem_type: str, eval_metric=None,
+                  num_classes=None, quantile_levels=None, low_memory=False, feature_metadata=None, k_fold=0, n_repeats=1,
+                  sample_weight=None, weight_evaluation=False, save_data=False, random_state=0, verbosity=2):
+         self.path = path
++        self.path = PathConverter.to_relative(self.path)
+         self.problem_type = problem_type
+         self.feature_metadata = feature_metadata
+         self.save_data = save_data
+diff --git a/tabular/tests/conftest.py b/tabular/tests/conftest.py
+index e7cd70aac456..67a27530ffc9 100644
+--- a/tabular/tests/conftest.py
++++ b/tabular/tests/conftest.py
+@@ -8,6 +8,7 @@
+ from typing import List
+ 
+ from autogluon.common.utils.resource_utils import ResourceManager
++from autogluon.common.utils.path_converter import PathConverter
+ from autogluon.core.utils import download, unzip
+ from autogluon.core.constants import BINARY, MULTICLASS, REGRESSION
+ from autogluon.core.data.label_cleaner import LabelCleaner
+@@ -144,6 +145,7 @@ def fit_and_validate_dataset(dataset_name,
+                                  delete_directory=True,
+                                  extra_metrics=None,
+                                  expected_model_count=2,
++                                 path_as_absolute=False,
+                                  compile_models=False,
+                                  compiler_configs=None):
+         if compiler_configs is None:
+@@ -151,16 +153,21 @@ def fit_and_validate_dataset(dataset_name,
+         directory_prefix = './datasets/'
+         train_data, test_data, dataset_info = DatasetLoaderHelper.load_dataset(name=dataset_name, directory_prefix=directory_prefix)
+         label = dataset_info['label']
+-        save_path = os.path.join(directory_prefix, dataset_name, f'AutogluonOutput_{uuid.uuid4()}')
+         _init_args = dict(
+             label=label,
+-            path=save_path,
+         )
+         if init_args is None:
+             init_args = _init_args
+         else:
++            init_args = copy.deepcopy(init_args)
+             _init_args.update(init_args)
+             init_args = _init_args
++        if 'path' not in init_args:
++            init_args['path'] = os.path.join(directory_prefix, dataset_name, f'AutogluonOutput_{uuid.uuid4()}')
++        if path_as_absolute:
++            init_args['path'] = PathConverter.to_absolute(path=init_args['path'])
++            assert PathConverter._is_absolute(path=init_args['path'])
++        save_path = init_args['path']
+         predictor = FitHelper.fit_dataset(train_data=train_data, init_args=init_args, fit_args=fit_args, sample_size=sample_size)
+         if compile_models:
+             predictor.compile_models(models="all", compiler_configs=compiler_configs)
+@@ -191,6 +198,9 @@ def fit_and_validate_dataset(dataset_name,
+         predictor.info()
+         predictor.leaderboard(test_data, extra_info=True, extra_metrics=extra_metrics)
+ 
++        predictor_load = predictor.load(path=predictor.path)
++        predictor_load.predict(test_data)
++
+         assert os.path.realpath(save_path) == os.path.realpath(predictor.path)
+         if delete_directory:
+             shutil.rmtree(save_path, ignore_errors=True)  # Delete AutoGluon output directory to ensure runs' information has been removed.
+diff --git a/tabular/tests/unittests/models/test_dummy.py b/tabular/tests/unittests/models/test_dummy.py
+index ca20e9c94869..d9d921f48c71 100644
+--- a/tabular/tests/unittests/models/test_dummy.py
++++ b/tabular/tests/unittests/models/test_dummy.py
+@@ -1,3 +1,5 @@
++import os
++from pathlib import Path
+ 
+ from autogluon.core.models.dummy.dummy_model import DummyModel
+ from autogluon.core.constants import BINARY, MULTICLASS, REGRESSION
+@@ -62,3 +64,41 @@ def test_dummy_regression_model(model_fit_helper):
+     fit_args = dict()
+     dataset_name = 'ames'
+     model_fit_helper.fit_and_validate_dataset(dataset_name=dataset_name, model=DummyModel(), fit_args=fit_args)
++
++
++def test_dummy_binary_absolute_path(fit_helper):
++    """Test that absolute path works"""
++    fit_args = dict(
++        hyperparameters={DummyModel: {}},
++    )
++    path = Path('.') / 'AG_test'
++    path = str(path.resolve()) + os.path.sep
++    init_args = dict(path=path)
++
++    dataset_name = 'adult'
++
++    fit_helper.fit_and_validate_dataset(dataset_name=dataset_name, init_args=init_args, fit_args=fit_args)
++
++
++def test_dummy_binary_absolute_path_stack(fit_helper):
++    """Test that absolute path works"""
++    fit_args = dict(
++        hyperparameters={DummyModel: {}},
++        num_bag_folds=2,
++        num_bag_sets=2,
++        num_stack_levels=1,
++    )
++
++    dataset_name = 'adult'
++
++    fit_helper.fit_and_validate_dataset(dataset_name=dataset_name, fit_args=fit_args, expected_model_count=4, path_as_absolute=True)
++
++
++def test_dummy_binary_model_absolute_path(model_fit_helper):
++    """Test that absolute path works"""
++    fit_args = dict()
++    path = Path('.') / 'AG_test'
++    path = str(path.resolve()) + os.path.sep
++    model = DummyModel(path=path)
++    dataset_name = 'adult'
++    model_fit_helper.fit_and_validate_dataset(dataset_name=dataset_name, model=model, fit_args=fit_args)

@@ -1,7 +1,7 @@
 # GH103_redis-py_3998: Fixing security concern in __repr__ methods for ConnectionPools - passwords might leak in plain text logs — Full Specification (Planner Only)
 
 ## Source
-- PR: https://github.com/redis/redis-py/pull/3998
+- PR: (withheld: the upstream fix is not part of the task)
 - Issue: https://github.com/redis/redis-py/issues/3993
 - Repo: https://github.com/redis/redis-py
 
@@ -12,10 +12,10 @@
 **Severity**: MEDIUM (CVSS 5.5)
 **CWE**: CWE-532 — Insertion of Sensitive Information into Log File
 **CVSS Vector**: CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N
-**Reporter**: Conner Webber (conner.webber000@gmail.com)
+**Reporter**: [reporter]
 **90-day disclosure deadline**: 2026-06-06
 
-> **Note**: I attempted to file this via GitHub's Private Vulnerability Reporting (PVRA), but it is not enabled on this repository. I also checked for a SECURITY.md — none exists for redis-py. The main redis/redis SECURITY.md points to redis@redis.io which I am also contacting. Filing here so the maintainers are aware.
+> **Note**: I attempted to file this via GitHub's Private Vulnerability Reporting (PVRA), but it is not enabled on this repository. I also checked for a SECURITY.md — none exists for redis-py. The main redis/redis SECURITY.md points to [email redacted] which I am also contacting. Filing here so the maintainers are aware.
 
 ## Summary
 
@@ -78,13 +78,13 @@ All current versions of redis-py that include `ConnectionPool.__repr__`.
 
 ## Issue Discussion (Root Cause Analysis)
 
-### Comment 1 (@spartan8806):
+### Comment 1 ([user]):
 
 Hey — apologies for the confusion here. We accidentally posted a reply meant for a different thread and then closed this one by mistake trying to clean it up. The actual report is still valid though. Sorry about the mess!
 
 ## PR Review Comments
 
-**@cursor[bot]** on `redis/connection.py`:
+**[user]** on `redis/connection.py`:
 
 ### Duplicated sensitive keys list may diverge across files
 
@@ -109,23 +109,9 @@ LOCATIONS END -->
 
 <p><a href="https://cursor.com/open?data=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJ1Z2JvdC12MiJ9.eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoiQlVHQk9UX0ZJWF9JTl9DVVJTT1IiLCJkYXRhIjp7InJlZGlzS2V5IjoiYnVnYm90OjYxMWMzNmQwLWQ1M2MtNDUyNS05ZDNkLTI5YTRjY2U0YWJmNyIsImVuY3J5cHRpb25LZXkiOiJjQWx2UWs1d2FKRTNOMDRleExidVlvdGpHT3lYdGRuRGpLeXNSQUIxTGs0IiwiYnJhbmNoIjoicHNfZml4X3NlY3VyaXR5X2NvbmNlcm5fcGFzc3dvcmRfZXhwb3NlZF90aHJvdWdoX19yZXByX18iLCJyZXBvT3duZXIiOiJyZWRpcyIsInJlcG9OYW1lIjoicmVkaXMtcHkifSwiaWF0IjoxNzczMTUwMjg1LCJleHAiOjE3NzU3NDIyODV9.y20QVfdhtbpkXi50omEJEMlWolgaHiH56f8FrEeDf8HrOvc2z90cLaWRV-kG2KdE6e1-0OtkoKwOQpOoO1pRjQMipQRldU7dnydT0Uv0UjXXzRhNIsKz-TKMVxeQgIBIWbig1ce146hiRsWEv7kLD5RxH9e_rrnwnNiLDV1yeoKRhADatyuwd1A89WK6tepbTY6jM6UIYty_kTexxbZny5Jb5CbPhX4byByed6KoBpoJhhz2AkNaCggukz4WH05jSBy8U4TPtuTHFDtZHgBxZWdfKBly0rXF9OtdsoWBoio5Dpw6rG6F4fjPOD6WkefuGTogLbmpRayOFlldtwHMfQ" target="_blank" rel="noopener noreferrer"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cursor.com/assets/images/fix-in-cursor-dark.png"><source media="(prefers-color-scheme: light)" srcset="https://cursor.com/assets/images/fix-in-cursor-light.png"><img alt="Fix in Cursor" width="115" height="28" src="https://cursor.com/assets/images/fix-in-cursor-dark.png"></picture></a>&nbsp;<a href="https://cursor.com/agents?data=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJ1Z2JvdC12MiJ9.eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoiQlVHQk9UX0ZJWF9JTl9XRUIiLCJkYXRhIjp7InJlZGlzS2V5IjoiYnVnYm90OjYxMWMzNmQwLWQ1M2MtNDUyNS05ZDNkLTI5YTRjY2U0YWJmNyIsImVuY3J5cHRpb25LZXkiOiJjQWx2UWs1d2FKRTNOMDRleExidVlvdGpHT3lYdGRuRGpLeXNSQUIxTGs0IiwiYnJhbmNoIjoicHNfZml4X3NlY3VyaXR5X2NvbmNlcm5fcGFzc3dvcmRfZXhwb3NlZF90aHJvdWdoX19yZXByX18iLCJyZXBvT3duZXIiOiJyZWRpcyIsInJlcG9OYW1lIjoicmVkaXMtcHkiLCJwck51bWJlciI6Mzk5OCwiY29tbWl0U2hhIjoiMDFmYTdhOWQ4Njk4NjUyZGQwZjBmYWY4OGE2ZWE0MDk4NDllZGRlNCIsInByb3ZpZGVyIjoiZ2l0aHViIn0sImlhdCI6MTc3MzE1MDI4NSwiZXhwIjoxNzc1NzQyMjg1fQ.bVyA1guCmG7OzQ-KZ4yvdQlEB0fisvvK2znJDUcSC1kcm88c_ZduViVbJVXw41NbrXz3CACZEYEuKoXTYJjYIJQGcTFB3zVdbsUptPi-UKq9_VS85EDY6c0iSkQog7Tz3w0w27m3CF4Id5901KPcqle51D5OiNgR-F8nbee9Tsxi6r8hb-YD07p8Nyvd1Zu-eS7DVwp9rHyWaaN1z9WMyx4vT0FRrrMSG_B3OboXVR-7RQ2DDKJAoZ9aP-uGaVFZUAhjbbhWILIj0FuSQgcWpC26tYtoKwre5JRMcwtBd2EXZkDNiBJ4eg9Qb7xD2H7bqn57PAHB_UpFvlilG_-O3g" target="_blank" rel="noopener noreferrer"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cursor.com/assets/images/fix-in-web-dark.png"><source media="(prefers-color-scheme: light)" srcset="https://cursor.com/assets/images/fix-in-web-light.png"><img alt="Fix in Web" width="99" height="28" src="https://cursor.com/assets/images/fix-in-web-dark.png"></picture></a></p>
 
-**@petyaslavova** on `redis/connection.py`:
+**[user]** on `redis/connection.py`:
 
 Since the data is added separately in both connection pool, it is ok to have those separate as well. The arguments in both objects are not completely in sync.
-
-## Files Changed in Fix
-
-- `.github/workflows/integration.yaml` (modified, +1/-0)
-- `redis/asyncio/connection.py` (modified, +16/-1)
-- `redis/connection.py` (modified, +16/-1)
-- `tests/test_asyncio/test_connection_pool.py` (modified, +25/-0)
-- `tests/test_connection_pool.py` (modified, +25/-0)
-
-## `redis/asyncio/connection.py`
-[Code changes omitted — Planner should analyze the issue and guide the Executor]
-
-### `redis/connection.py`
-[Code changes omitted — Planner should analyze the issue and guide the Executor]
 
 ## Acceptance Criteria
 
@@ -135,6 +121,6 @@ Since the data is added separately in both connection pool, it is ok to have tho
 
 ## Important Notes
 
-- Only modify the source files listed above (not test files)
+- Only modify source files, not test files
 - The test files already encode the correct expected behaviour
 - Run `pytest -x -q` to verify your fix

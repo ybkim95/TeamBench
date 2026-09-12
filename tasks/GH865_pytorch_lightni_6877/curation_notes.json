@@ -1,0 +1,56 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 6877,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/6877",
+  "issue_number": 6876,
+  "base_sha": "19e67d18c472c3a03dec4dd9bfcef031e9ca8719",
+  "head_sha": "b8d473ff976dffeb13df75ce3b626722eba985df",
+  "additions": 42,
+  "deletions": 10,
+  "changed_files": [
+    "pytorch_lightning/core/hooks.py",
+    "pytorch_lightning/trainer/predict_loop.py",
+    "pytorch_lightning/trainer/trainer.py",
+    "tests/trainer/test_trainer.py"
+  ],
+  "test_files": [
+    "tests/trainer/test_trainer.py"
+  ],
+  "source_files": [
+    "pytorch_lightning/core/hooks.py",
+    "pytorch_lightning/trainer/predict_loop.py",
+    "pytorch_lightning/trainer/trainer.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "accelerator",
+      "batch",
+      "batch_idx",
+      "call",
+      "call_hook",
+      "checkpoint_connector",
+      "copy",
+      "data",
+      "dataloader_idx",
+      "dataloaders"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:47:00Z"
+}

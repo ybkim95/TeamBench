@@ -1,0 +1,58 @@
+{
+  "repo": "autogluon/autogluon",
+  "pr_number": 5475,
+  "pr_url": "https://github.com/autogluon/autogluon/pull/5475",
+  "issue_number": null,
+  "base_sha": "d258f3f44cce2050f5a42ae22747702930ba5a68",
+  "head_sha": "91c90e668caf106fd599ddd3e9d7297145636f4d",
+  "additions": 115,
+  "deletions": 18,
+  "changed_files": [
+    "timeseries/src/autogluon/timeseries/models/toto/hf_pretrained_model.py",
+    "timeseries/src/autogluon/timeseries/models/toto/model.py",
+    "timeseries/tests/conftest.py",
+    "timeseries/tests/smoketests/test_all_models.py"
+  ],
+  "test_files": [
+    "timeseries/tests/conftest.py",
+    "timeseries/tests/smoketests/test_all_models.py"
+  ],
+  "source_files": [
+    "timeseries/src/autogluon/timeseries/models/toto/hf_pretrained_model.py",
+    "timeseries/src/autogluon/timeseries/models/toto/model.py"
+  ],
+  "parameterization": {
+    "repo": "autogluon/autogluon",
+    "repo_short": "autogluon",
+    "parameterized_identifiers": [
+      "after",
+      "append",
+      "auto",
+      "autogluon",
+      "batch_means",
+      "batch_size",
+      "bias",
+      "bolt",
+      "break",
+      "cache_dir"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:00:39Z"
+}

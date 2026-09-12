@@ -1,0 +1,63 @@
+{
+  "repo": "plotly/plotly.py",
+  "pr_number": 2445,
+  "pr_url": "https://github.com/plotly/plotly.py/pull/2445",
+  "issue_number": null,
+  "base_sha": "40216829f12f4ed75be9f33cf87e31dc3d91d167",
+  "head_sha": "f03d88e66aadbf7c9b77f4a9db33a1b68a701889",
+  "additions": 109,
+  "deletions": 30,
+  "changed_files": [
+    "CHANGELOG.md",
+    "packages/python/plotly/codegen/__init__.py",
+    "packages/python/plotly/plotly/graph_objects/__init__.py",
+    "packages/python/plotly/plotly/graph_objs/__init__.py",
+    "packages/python/plotly/plotly/missing_ipywidgets.py",
+    "packages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_missing_ipywigets.py",
+    "packages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_validate_no_frames.py"
+  ],
+  "test_files": [
+    "packages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_missing_ipywigets.py",
+    "packages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_validate_no_frames.py"
+  ],
+  "source_files": [
+    "packages/python/plotly/codegen/__init__.py",
+    "packages/python/plotly/plotly/graph_objects/__init__.py",
+    "packages/python/plotly/plotly/graph_objs/__init__.py",
+    "packages/python/plotly/plotly/missing_ipywidgets.py"
+  ],
+  "parameterization": {
+    "repo": "plotly/plotly.py",
+    "repo_short": "plotly.py",
+    "parameterized_identifiers": [
+      "adheres",
+      "also",
+      "always",
+      "append",
+      "attribute",
+      "basedatatypes",
+      "called",
+      "changes",
+      "construction",
+      "constructor"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:53:54Z"
+}

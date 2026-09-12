@@ -1,0 +1,54 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1256,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1256",
+  "issue_number": 421,
+  "base_sha": "86a0e1b2bbf30c564c59bf3497d499e2f220ce0f",
+  "head_sha": "9e74d9646cc3fcbb9d8940182dcdb41119c3fda7",
+  "additions": 8,
+  "deletions": 18,
+  "changed_files": [
+    "docs/api/sql.rst",
+    "psycopg/psycopg/_tstrings.py",
+    "psycopg/psycopg/conninfo.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "psycopg/psycopg/_tstrings.py",
+    "psycopg/psycopg/conninfo.py"
+  ],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "accident",
+      "allow",
+      "already",
+      "also",
+      "approach",
+      "been",
+      "below",
+      "building",
+      "bytes",
+      "case"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T22:45:52Z"
+}

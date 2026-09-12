@@ -1,0 +1,45 @@
+diff --git a/changelog/3798.bugfix.rst b/changelog/3798.bugfix.rst
+new file mode 100644
+index 0000000000..2a3d02252a
+--- /dev/null
++++ b/changelog/3798.bugfix.rst
+@@ -0,0 +1,2 @@
++Updated ``_TYPE_BODY`` type alias to include missing ``Iterable[str]``, matching
++the documented and runtime behavior of chunked request bodies.
+diff --git a/src/urllib3/_base_connection.py b/src/urllib3/_base_connection.py
+index dc0f318c0b..992ec1657a 100644
+--- a/src/urllib3/_base_connection.py
++++ b/src/urllib3/_base_connection.py
+@@ -6,7 +6,9 @@
+ from .util.timeout import _DEFAULT_TIMEOUT, _TYPE_TIMEOUT
+ from .util.url import Url
+ 
+-_TYPE_BODY = typing.Union[bytes, typing.IO[typing.Any], typing.Iterable[bytes], str]
++_TYPE_BODY = typing.Union[
++    bytes, typing.IO[typing.Any], typing.Iterable[bytes | str], str
++]
+ 
+ 
+ class ProxyConfig(typing.NamedTuple):
+diff --git a/test/with_dummyserver/test_chunked_transfer.py b/test/with_dummyserver/test_chunked_transfer.py
+index 750c172461..43ede72f1d 100644
+--- a/test/with_dummyserver/test_chunked_transfer.py
++++ b/test/with_dummyserver/test_chunked_transfer.py
+@@ -46,7 +46,7 @@ def socket_handler(listener: socket.socket) -> None:
+     def test_chunks(self, chunks: list[bytes | str]) -> None:
+         self.start_chunked_handler()
+         with HTTPConnectionPool(self.host, self.port, retries=False) as pool:
+-            pool.urlopen("GET", "/", body=chunks, headers=dict(DNT="1"), chunked=True)  # type: ignore[arg-type]
++            pool.urlopen("GET", "/", body=chunks, headers=dict(DNT="1"), chunked=True)
+ 
+             assert b"Transfer-Encoding" in self.buffer
+             body = self.buffer.split(b"\r\n\r\n", 1)[1]
+@@ -74,7 +74,7 @@ def _test_body(
+     ) -> None:
+         self.start_chunked_handler()
+         with HTTPConnectionPool(self.host, self.port, retries=False) as pool:
+-            pool.urlopen("GET", "/", body=data, chunked=True)  # type: ignore[arg-type]
++            pool.urlopen("GET", "/", body=data, chunked=True)
+             header, body = self.buffer.split(b"\r\n\r\n", 1)
+ 
+             assert b"Transfer-Encoding: chunked" in header.split(b"\r\n")

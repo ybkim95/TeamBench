@@ -1,0 +1,15 @@
+{
+ "task": "GH954_pandas_64754",
+ "patch": "tasks/GH954_pandas_64754/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "pandas-dev/pandas",
+ "pr_number": 64754,
+ "base_sha": "eb5671454ebb33edb799915d85a45c19244fc690",
+ "head_sha": "032a4273a1001ce08f9c9437ba2fe92a469ded77",
+ "bytes": 5652,
+ "files_changed": 7,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

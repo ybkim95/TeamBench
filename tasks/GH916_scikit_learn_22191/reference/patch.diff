@@ -1,0 +1,174 @@
+diff --git a/doc/whats_new/v1.1.rst b/doc/whats_new/v1.1.rst
+index 68473e625a9d5..3e5bf6a01e23b 100644
+--- a/doc/whats_new/v1.1.rst
++++ b/doc/whats_new/v1.1.rst
+@@ -356,7 +356,7 @@ Changelog
+   :pr:`21481` by :user:`Guillaume Lemaitre <glemaitre>` and
+   :user:`Andrés Babino <ababino>`.
+ 
+-- |Enhancement| :func:`linear_model.ElasticNet` and 
++- |Enhancement| :func:`linear_model.ElasticNet` and
+   and other linear model classes using coordinate descent show error
+   messages when non-finite parameter weights are produced. :pr:`22148`
+   by :user:`Christian Ritter <chritter>` and :user:`Norbert Preining <norbusan>`.
+@@ -462,7 +462,7 @@ Changelog
+ :mod:`sklearn.neural_network`
+ .............................
+ 
+-- |Enhancement| :func:`neural_network.MLPClassifier` and 
++- |Enhancement| :func:`neural_network.MLPClassifier` and
+   :func:`neural_network.MLPRegressor` show error
+   messages when optimizers produce non-finite parameter weights. :pr:`22150`
+   by :user:`Christian Ritter <chritter>` and :user:`Norbert Preining <norbusan>`.
+@@ -525,6 +525,13 @@ Changelog
+   parameters in `fit` instead of `__init__`.
+   :pr:`21436` by :user:`Haidar Almubarak <Haidar13 >`.
+ 
++:mod:`sklearn.tree`
++.......................
++
++- |Fix| Fix a bug in the Poisson splitting criterion for
++  :class:`tree.DecisionTreeRegressor`.
++  :pr:`22191` by :user:`Christian Lorentzen <lorentzenchr>`.
++
+ - |Enhancement| :func:`svm.SVR`, :func:`svm.SVC`, :func:`svm.NuSVR`,
+   :func:`svm.OneClassSVM`, :func:`svm.NuSVC` now raise an error
+   when the dual-gap estimation produce non-finite parameter weights.
+diff --git a/sklearn/ensemble/tests/test_forest.py b/sklearn/ensemble/tests/test_forest.py
+index c366de1d08246..8408c870aa2d0 100644
+--- a/sklearn/ensemble/tests/test_forest.py
++++ b/sklearn/ensemble/tests/test_forest.py
+@@ -198,21 +198,23 @@ def test_regression(name, criterion):
+ 
+ def test_poisson_vs_mse():
+     """Test that random forest with poisson criterion performs better than
+-    mse for a poisson target."""
++    mse for a poisson target.
++
++    There is a similar test for DecisionTreeRegressor.
++    """
+     rng = np.random.RandomState(42)
+     n_train, n_test, n_features = 500, 500, 10
+     X = datasets.make_low_rank_matrix(
+         n_samples=n_train + n_test, n_features=n_features, random_state=rng
+     )
+-    X = np.abs(X)
+-    X /= np.max(np.abs(X), axis=0)
+-    # We create a log-linear Poisson model
+-    coef = rng.uniform(low=-4, high=1, size=n_features)
++    #  We create a log-linear Poisson model and downscale coef as it will get
++    # exponentiated.
++    coef = rng.uniform(low=-2, high=2, size=n_features) / np.max(X, axis=0)
+     y = rng.poisson(lam=np.exp(X @ coef))
+     X_train, X_test, y_train, y_test = train_test_split(
+         X, y, test_size=n_test, random_state=rng
+     )
+-
++    # We prevent some overfitting by setting min_samples_split=10.
+     forest_poi = RandomForestRegressor(
+         criterion="poisson", min_samples_leaf=10, max_features="sqrt", random_state=rng
+     )
+@@ -233,8 +235,8 @@ def test_poisson_vs_mse():
+         # If y = 0 for those, the poisson deviance gets too good.
+         # If we drew more samples, we would eventually get y > 0 and the
+         # poisson deviance would explode, i.e. be undefined. Therefore, we do
+-        # not clip to a tiny value like 1e-15, but to 0.1. This acts like a
+-        # mild penalty to the non-positive predictions.
++        # not clip to a tiny value like 1e-15, but to 1e-6. This acts like a
++        # small penalty to the non-positive predictions.
+         metric_mse = mean_poisson_deviance(
+             y, np.clip(forest_mse.predict(X), 1e-6, None)
+         )
+@@ -244,7 +246,7 @@ def test_poisson_vs_mse():
+         # test set. But keep the above comment for clipping in mind.
+         if val == "test":
+             assert metric_poi < metric_mse
+-        assert metric_poi < metric_dummy
++        assert metric_poi < 0.5 * metric_dummy
+ 
+ 
+ @pytest.mark.parametrize("criterion", ("poisson", "squared_error"))
+diff --git a/sklearn/tree/_criterion.pyx b/sklearn/tree/_criterion.pyx
+index 2c115d0bd6ea1..cf9c21a25e4db 100644
+--- a/sklearn/tree/_criterion.pyx
++++ b/sklearn/tree/_criterion.pyx
+@@ -907,6 +907,15 @@ cdef class MSE(RegressionCriterion):
+ 
+         The absolute impurity improvement is only computed by the
+         impurity_improvement method once the best split has been found.
++
++        The MSE proxy is derived from
++
++            sum_{i left}(y_i - y_pred_L)^2 + sum_{i right}(y_i - y_pred_R)^2
++            = sum(y_i^2) - n_L * mean_{i left}(y_i)^2 - n_R * mean_{i right}(y_i)^2
++
++        Neglecting constant terms, this gives:
++
++            - 1/n_L * sum_{i left}(y_i)^2 - 1/n_R * sum_{i right}(y_i)^2
+         """
+         cdef double* sum_left = self.sum_left
+         cdef double* sum_right = self.sum_right
+@@ -1337,7 +1346,7 @@ cdef class Poisson(RegressionCriterion):
+ 
+     Note that the deviance is >= 0, and since we have `y_pred = mean(y_true)`
+     at the leaves, one always has `sum(y_pred - y_true) = 0`. It remains the
+-    implemented impurity:
++    implemented impurity (factor 2 is skipped):
+         1/n * sum(y_true * log(y_true/y_pred)
+     """
+     # FIXME in 1.0:
+@@ -1372,8 +1381,17 @@ cdef class Poisson(RegressionCriterion):
+         The absolute impurity improvement is only computed by the
+         impurity_improvement method once the best split has been found.
+ 
+-        Poisson proxy is:
+-            - 1/n * sum(y_i * log(y_pred)) = -mean(y_i) * log(mean(y_i))
++        The Poisson proxy is derived from:
++
++              sum_{i left }(y_i * log(y_i / y_pred_L))
++            + sum_{i right}(y_i * log(y_i / y_pred_R))
++            = sum(y_i * log(y_i) - n_L * mean_{i left}(y_i) * log(mean_{i left}(y_i))
++                                 - n_R * mean_{i right}(y_i) * log(mean_{i right}(y_i))
++
++        Neglecting constant terms, this gives
++
++            - sum{i left }(y_i) * log(mean{i left}(y_i))
++            - sum{i right}(y_i) * log(mean{i right}(y_i))
+         """
+         cdef SIZE_t k
+         cdef double proxy_impurity_left = 0.0
+@@ -1393,8 +1411,8 @@ cdef class Poisson(RegressionCriterion):
+             else:
+                 y_mean_left = self.sum_left[k] / self.weighted_n_left
+                 y_mean_right = self.sum_right[k] / self.weighted_n_right
+-                proxy_impurity_left -= y_mean_left * log(y_mean_left)
+-                proxy_impurity_right -= y_mean_right * log(y_mean_right)
++                proxy_impurity_left -= self.sum_left[k] * log(y_mean_left)
++                proxy_impurity_right -= self.sum_right[k] * log(y_mean_right)
+ 
+         return - proxy_impurity_left - proxy_impurity_right
+ 
+diff --git a/sklearn/tree/tests/test_tree.py b/sklearn/tree/tests/test_tree.py
+index cd6b245bee60e..4573ddeb1576c 100644
+--- a/sklearn/tree/tests/test_tree.py
++++ b/sklearn/tree/tests/test_tree.py
+@@ -2067,8 +2067,6 @@ def test_poisson_vs_mse():
+     # than squared error measured in Poisson deviance as metric.
+     # We have a similar test, test_poisson(), in
+     # sklearn/ensemble/_hist_gradient_boosting/tests/test_gradient_boosting.py
+-    # Note: Some fine tuning was needed to have metric_poi < metric_dummy on
+-    # the test set!
+     rng = np.random.RandomState(42)
+     n_train, n_test, n_features = 500, 500, 10
+     X = datasets.make_low_rank_matrix(
+@@ -2102,8 +2100,8 @@ def test_poisson_vs_mse():
+         # score can be better than Poisson. This is no longer the case for the
+         # test set.
+         if val == "test":
+-            assert metric_poi < metric_mse
+-        assert metric_poi < metric_dummy
++            assert metric_poi < 0.5 * metric_mse
++        assert metric_poi < 0.75 * metric_dummy
+ 
+ 
+ @pytest.mark.parametrize("criterion", REG_CRITERIONS)

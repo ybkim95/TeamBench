@@ -1,0 +1,52 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9457,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9457",
+  "issue_number": 9455,
+  "base_sha": "61201b7b55618133c104414fec2e322f72799d4e",
+  "head_sha": "22621cda87ebb57ff2b3580e570bf76679544084",
+  "additions": 228,
+  "deletions": 125,
+  "changed_files": [
+    "statsmodels/tsa/tests/test_x13.py",
+    "statsmodels/tsa/x13.py"
+  ],
+  "test_files": [
+    "statsmodels/tsa/tests/test_x13.py"
+  ],
+  "source_files": [
+    "statsmodels/tsa/x13.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "also",
+      "analysis",
+      "anything",
+      "appendbcst",
+      "appendfcst",
+      "arima",
+      "asarray",
+      "auto",
+      "automatic",
+      "available"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:04:51Z"
+}

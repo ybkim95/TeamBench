@@ -1,13 +1,9 @@
 # Urllib3 3736 — Bug Fix
 
-- PR: https://github.com/urllib3/urllib3/pull/3736
+- PR: (withheld: the upstream fix is not part of the task)
 
 The Planner will analyze the root cause and provide guidance.
 Follow the Planner's instructions to fix the issue.
-
-## Files That May Need Changes
-
-- `src/urllib3/response.py`
 
 ## Verification
 

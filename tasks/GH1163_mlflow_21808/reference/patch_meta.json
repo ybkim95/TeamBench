@@ -1,0 +1,15 @@
+{
+ "task": "GH1163_mlflow_21808",
+ "patch": "tasks/GH1163_mlflow_21808/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "mlflow/mlflow",
+ "pr_number": 21808,
+ "base_sha": "f8d7800d6a551d324bc3e67746751b7d34e902a1",
+ "head_sha": "283ad28fe73e1bb8b0f7eeb2b0a2e5ca6f0ea43a",
+ "bytes": 733,
+ "files_changed": 1,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

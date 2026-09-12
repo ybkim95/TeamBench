@@ -1,0 +1,13 @@
+task_id: GH808_jinja_2062
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "don't apply `urlize` to `@a@b`"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pallets/jinja/pull/2062"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

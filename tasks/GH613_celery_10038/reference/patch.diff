@@ -1,0 +1,240 @@
+diff --git a/CONTRIBUTORS.txt b/CONTRIBUTORS.txt
+index 528d35736f5..eeb9c0b3bc6 100644
+--- a/CONTRIBUTORS.txt
++++ b/CONTRIBUTORS.txt
+@@ -306,3 +306,4 @@ Narasux, 2024/09/09
+ Colin Watson, 2025/03/01
+ Lucas Infante, 2025/05/15
+ Diego Margoni, 2025/07/01
++Brian Helba, 2026/01/12
+diff --git a/celery/app/base.py b/celery/app/base.py
+index 71ce9329d81..4d23459b320 100644
+--- a/celery/app/base.py
++++ b/celery/app/base.py
+@@ -5,6 +5,7 @@
+ import os
+ import sys
+ import threading
++import types
+ import typing
+ import warnings
+ from collections import UserDict, defaultdict, deque
+@@ -1266,6 +1267,8 @@ def __reduce__(self):
+ 
+         return type(name or Class.__name__, (Class,), attrs)
+ 
++    __class_getitem__ = classmethod(types.GenericAlias)
++
+     def _rgetattr(self, path):
+         return attrgetter(path)(self)
+ 
+diff --git a/celery/app/task.py b/celery/app/task.py
+index 051b91b6141..6e9495e7074 100644
+--- a/celery/app/task.py
++++ b/celery/app/task.py
+@@ -1,5 +1,6 @@
+ """Task implementation: request context and the task base class."""
+ import sys
++import types
+ 
+ from billiard.einfo import ExceptionInfo, ExceptionWithTraceback
+ from kombu import serialization
+@@ -472,6 +473,8 @@ def __call__(self, *args, **kwargs):
+             self.pop_request()
+             _task_stack.pop()
+ 
++    __class_getitem__ = classmethod(types.GenericAlias)
++
+     def __reduce__(self):
+         # - tasks are pickled into the name of the task only, and the receiver
+         # - simply grabs it from the local registry.
+diff --git a/celery/canvas.py b/celery/canvas.py
+index 396eb7d307b..febd97befdd 100644
+--- a/celery/canvas.py
++++ b/celery/canvas.py
+@@ -7,6 +7,7 @@
+ 
+ import itertools
+ import operator
++import types
+ import warnings
+ from abc import ABCMeta, abstractmethod
+ from collections import deque
+@@ -810,6 +811,8 @@ def reprcall(self, *args, **kwargs):
+         args, kwargs, _ = self._merge(args, kwargs, {}, force=True)
+         return reprcall(self['task'], args, kwargs)
+ 
++    __class_getitem__ = classmethod(types.GenericAlias)
++
+     def __deepcopy__(self, memo):
+         memo[id(self)] = self
+         return dict(self)  # TODO: Potential bug of being a shallow copy
+diff --git a/celery/local.py b/celery/local.py
+index 34eafff3482..631d1492241 100644
+--- a/celery/local.py
++++ b/celery/local.py
+@@ -8,6 +8,7 @@
+ 
+ import operator
+ import sys
++import types
+ from functools import reduce
+ from importlib import import_module
+ from types import ModuleType
+@@ -430,6 +431,8 @@ def __init__(self, getter=None, setter=None):
+         self.__name__ = info.__name__
+         self.__module__ = info.__module__
+ 
++    __class_getitem__ = classmethod(types.GenericAlias)
++
+     def __get__(self, obj, type=None):
+         if obj and type is None:
+             type = obj.__class__
+diff --git a/celery/result.py b/celery/result.py
+index 66a9e20aab8..5f02a7998dc 100644
+--- a/celery/result.py
++++ b/celery/result.py
+@@ -2,6 +2,7 @@
+ 
+ import datetime
+ import time
++import types
+ from collections import deque
+ from contextlib import contextmanager
+ from weakref import proxy
+@@ -384,6 +385,8 @@ def build_graph(self, intermediate=False, formatter=None):
+                 graph.add_edge(parent, node)
+         return graph
+ 
++    __class_getitem__ = classmethod(types.GenericAlias)
++
+     def __str__(self):
+         """`str(self) -> self.id`."""
+         return str(self.id)
+diff --git a/celery/utils/objects.py b/celery/utils/objects.py
+index 56e96ffde85..02e646151d8 100644
+--- a/celery/utils/objects.py
++++ b/celery/utils/objects.py
+@@ -1,4 +1,5 @@
+ """Object related utilities, including introspection, etc."""
++import types
+ from functools import reduce
+ 
+ __all__ = ('Bunch', 'FallbackContext', 'getitem_property', 'mro_lookup')
+@@ -90,6 +91,8 @@ def __exit__(self, *exc_info):
+         if self._context is not None:
+             return self._context.__exit__(*exc_info)
+ 
++    __class_getitem__ = classmethod(types.GenericAlias)
++
+ 
+ class getitem_property:
+     """Attribute -> dict key descriptor.
+diff --git a/celery/utils/threads.py b/celery/utils/threads.py
+index d78461a9b72..3fede0fa293 100644
+--- a/celery/utils/threads.py
++++ b/celery/utils/threads.py
+@@ -4,6 +4,7 @@
+ import sys
+ import threading
+ import traceback
++import types
+ from contextlib import contextmanager
+ from threading import TIMEOUT_MAX as THREAD_TIMEOUT_MAX
+ 
+@@ -226,6 +227,8 @@ def pop(self):
+         else:
+             return stack.pop()
+ 
++    __class_getitem__ = classmethod(types.GenericAlias)
++
+     def __len__(self):
+         stack = getattr(self._local, 'stack', None)
+         return len(stack) if stack else 0
+@@ -317,6 +320,8 @@ def top(self):
+         except (AttributeError, IndexError):
+             return None
+ 
++    __class_getitem__ = classmethod(types.GenericAlias)
++
+     def __len__(self):
+         return len(self.stack)
+ 
+diff --git a/t/unit/test_generics.py b/t/unit/test_generics.py
+new file mode 100644
+index 00000000000..f88341ae246
+--- /dev/null
++++ b/t/unit/test_generics.py
+@@ -0,0 +1,72 @@
++import contextlib
++import sys
++import typing
++from typing import get_args
++
++import pytest
++
++from celery.app import Celery
++from celery.app.task import Context, Task
++from celery.canvas import Signature
++from celery.local import class_property
++from celery.result import AsyncResult
++from celery.utils.objects import FallbackContext
++from celery.utils.threads import _FastLocalStack, _LocalStack
++
++
++class test_Generics:
++    def test_Celery__class_getitem__(self):
++        app = Celery[Task]()
++        assert isinstance(app, Celery), "Celery can be instantiated with type parameters"
++        assert get_args(Celery[Task]) == (Task,), "__class_getitem__ returns a GenericAlias"
++
++    def test_Task__class_getitem__(self):
++        task = Task[[int], str]()
++        assert isinstance(task, Task), "Task can be instantiated with type parameters"
++        assert get_args(Task[[int], str]) == ([int], str),  "__class_getitem__ returns a GenericAlias"
++
++    @pytest.mark.usefixtures('depends_on_current_app')
++    def test_AsyncResult__class_getitem__(self):
++        result = AsyncResult[str]("some-id")
++        assert isinstance(result, AsyncResult), "AsyncResult can be instantiated with type parameters"
++        assert get_args(AsyncResult[str]) == (str,), "__class_getitem__ returns a GenericAlias"
++
++    def test_Signature__class_getitem__(self):
++        s = Signature[str]()
++        assert isinstance(s, Signature), "Signature can be instantiated with type parameters"
++        assert get_args(Signature[str]) == (str,), "__class_getitem__ returns a GenericAlias"
++
++    def test__LocalStack__class_getitem__(self):
++        stack = _LocalStack[Context]()
++        assert isinstance(stack, _LocalStack), "_LocalStack can be instantiated with type parameters"
++        assert get_args(_LocalStack[Context]) == (Context,), "__class_getitem__ returns a GenericAlias"
++
++    def test__FastLocalStack__class_getitem__(self):
++        s = _FastLocalStack[Context]()
++        assert isinstance(s, _FastLocalStack), "_FastLocalStack can be instantiated with type parameters"
++        assert get_args(_FastLocalStack[Context]) == (Context,), "__class_getitem__ returns a GenericAlias"
++
++    def test_FallbackContext__class_getitem__(self):
++        @contextlib.contextmanager
++        def make_thing(int_count):
++            yield f'dynamic_thing_{int_count}'
++
++        thing_manager = FallbackContext[str, [int]]('static_thing', make_thing)
++        assert isinstance(thing_manager, FallbackContext), "FallbackContext can be instantiated with type parameters"
++        assert get_args(FallbackContext[str, [int]]) == (str, [int]), "__class_getitem__ returns a GenericAlias"
++
++    @pytest.mark.skipif(sys.version_info < (3, 11), reason="typing.Self is only available in Python 3.11 or newer.")
++    def test_class_property__class_getitem__(self):
++        class Thing:
++            def _get_my_prop(self):
++                return "hello"
++
++            def _set_my_prop(self, str_value):
++                pass
++
++            my_prop = class_property[typing.Self, str](_get_my_prop, _set_my_prop)
++
++        assert isinstance(Thing.__dict__['my_prop'], class_property), \
++            "class_property can be instantiated with type parameters"
++        assert Thing.my_prop == "hello", "class_property works as expected"
++        assert get_args(class_property[Thing, str]) == (Thing, str), "__class_getitem__ returns a GenericAlias"

@@ -1,0 +1,54 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 1312,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/1312",
+  "issue_number": null,
+  "base_sha": "fc59d9a1fe0a20b7ad60f7a4d0f64a1d6e6bf6ea",
+  "head_sha": "dfa38c38f362f5850081a1d6d632eccfc10591bb",
+  "additions": 39,
+  "deletions": 0,
+  "changed_files": [
+    "gpytorch/distributions/multitask_multivariate_normal.py",
+    "test/distributions/test_multitask_multivariate_normal.py"
+  ],
+  "test_files": [
+    "test/distributions/test_multitask_multivariate_normal.py"
+  ],
+  "source_files": [
+    "gpytorch/distributions/multitask_multivariate_normal.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "across",
+      "appropriately",
+      "batch",
+      "batch_shape",
+      "broadcasted",
+      "broadcasting",
+      "covar",
+      "covariance",
+      "covariance_matrix",
+      "cuda"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T15:55:29Z"
+}

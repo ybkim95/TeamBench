@@ -1,0 +1,52 @@
+{
+  "repo": "cornellius-gp/gpytorch",
+  "pr_number": 1299,
+  "pr_url": "https://github.com/cornellius-gp/gpytorch/pull/1299",
+  "issue_number": 1298,
+  "base_sha": "e9767d569ef0305e8f3b5460b2379d16d5f547be",
+  "head_sha": "192200f98d841661160f2bd83354866a853239e0",
+  "additions": 30,
+  "deletions": 39,
+  "changed_files": [
+    "gpytorch/lazy/added_diag_lazy_tensor.py",
+    "test/examples/test_white_noise_regression.py"
+  ],
+  "test_files": [
+    "test/examples/test_white_noise_regression.py"
+  ],
+  "source_files": [
+    "gpytorch/lazy/added_diag_lazy_tensor.py"
+  ],
+  "parameterization": {
+    "repo": "cornellius-gp/gpytorch",
+    "repo_short": "gpytorch",
+    "parameterized_identifiers": [
+      "accommodate",
+      "approx",
+      "approximation",
+      "batch_shape",
+      "because",
+      "cannot",
+      "cant",
+      "causes",
+      "closure",
+      "compute"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:49:27Z"
+}

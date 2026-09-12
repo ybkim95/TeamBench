@@ -1,0 +1,15 @@
+{
+ "task": "GH368_aiohttp_12242",
+ "patch": "tasks/GH368_aiohttp_12242/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "aio-libs/aiohttp",
+ "pr_number": 12242,
+ "base_sha": "0341d64536cbd3110793b90467aaea6a6fbf9b28",
+ "head_sha": "a7dac1852cf2e56393d64fb116c90b98944181d2",
+ "bytes": 3429,
+ "files_changed": 3,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

@@ -1,7 +1,7 @@
 # GH112_redis-py_3996: Expose basic Otel classes and funtions to be importable through redis.observability to match the examples in the readthedocs — Full Specification (Planner Only)
 
 ## Source
-- PR: https://github.com/redis/redis-py/pull/3996
+- PR: (withheld: the upstream fix is not part of the task)
 - Issue: https://github.com/redis/redis-py/issues/3992
 - Repo: https://github.com/redis/redis-py
 
@@ -33,27 +33,19 @@ or add these exports to the `__init__.py` file..
 
 ## Issue Discussion (Root Cause Analysis)
 
-### Comment 1 (@petyaslavova):
+### Comment 1 ([user]):
 
-Hey @vpmedia, thanks for bringing this to our attention. We will provide a fix for this soon.
+Hey [user], thanks for bringing this to our attention. We will provide a fix for this soon.
 
 ## PR Review Comments
 
-**@Copilot** on `redis/observability/__init__.py`:
+**[user]** on `redis/observability/__init__.py`:
 
 This new public import surface (`from redis.observability import ...`) isn’t currently covered by tests. Since the goal is to keep docs/examples working, add a small unit test that imports the re-exported symbols from `redis.observability` (e.g., `OTelConfig`, `MetricGroup`, `get_observability_instance`, `reset_observability_instance`) and asserts they are the same objects as the originals, to prevent regressions.
 
-**@petyaslavova** on `redis/observability/__init__.py`:
+**[user]** on `redis/observability/__init__.py`:
 
 done.
-
-## Files Changed in Fix
-
-- `redis/observability/__init__.py` (modified, +27/-0)
-- `tests/test_observability/test_public_api.py` (added, +83/-0)
-
-## `redis/observability/__init__.py`
-[Code changes omitted — Planner should analyze the issue and guide the Executor]
 
 ## Acceptance Criteria
 
@@ -63,6 +55,6 @@ done.
 
 ## Important Notes
 
-- Only modify the source files listed above (not test files)
+- Only modify source files, not test files
 - The test files already encode the correct expected behaviour
 - Run `pytest -x -q` to verify your fix

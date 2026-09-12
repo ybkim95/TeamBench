@@ -1,0 +1,56 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9673,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9673",
+  "issue_number": null,
+  "base_sha": "a3de41a8313276d3c84e1f29ae7b8283e0da57f1",
+  "head_sha": "71b00c4f37d766226d1319bbaa3690ea434c899a",
+  "additions": 3,
+  "deletions": 3,
+  "changed_files": [
+    "statsmodels/genmod/generalized_estimating_equations.py",
+    "statsmodels/regression/tests/test_lme.py",
+    "statsmodels/stats/descriptivestats.py"
+  ],
+  "test_files": [
+    "statsmodels/regression/tests/test_lme.py"
+  ],
+  "source_files": [
+    "statsmodels/genmod/generalized_estimating_equations.py",
+    "statsmodels/stats/descriptivestats.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "apply",
+      "covariance",
+      "dtype",
+      "effects",
+      "endog",
+      "endog_cuts",
+      "endog_out",
+      "endog_value",
+      "exog",
+      "exog_out"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:11:55Z"
+}

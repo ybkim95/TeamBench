@@ -1,0 +1,128 @@
+diff --git a/app/client/cypress/e2e/Regression/ServerSide/ApiTests/API_MultiPart_Spec.ts b/app/client/cypress/e2e/Regression/ServerSide/ApiTests/API_MultiPart_Spec.ts
+index ec7e2ab5801e..e2007f6b0c95 100644
+--- a/app/client/cypress/e2e/Regression/ServerSide/ApiTests/API_MultiPart_Spec.ts
++++ b/app/client/cypress/e2e/Regression/ServerSide/ApiTests/API_MultiPart_Spec.ts
+@@ -2,6 +2,7 @@ import {
+   agHelper,
+   apiPage,
+   assertHelper,
++  dataManager,
+   deployMode,
+   entityItems,
+   jsEditor,
+@@ -128,8 +129,8 @@ describe(
+       agHelper.AddDsl("multiPartFormDataDsl");
+ 
+       apiPage.CreateAndFillApi(
+-        "https://api.cloudinary.com/v1_1/appsmithautomationcloud/image/upload?upload_preset=fbbhg4xu",
+-        "CloudinaryUploadApi",
++        dataManager.dsValues[dataManager.defaultEnviorment].multipartAPI,
++        "MultipartAPI",
+         30000,
+         "POST",
+       );
+@@ -145,7 +146,7 @@ describe(
+             myVar1: [],
+             myVar2: {},
+             upload: async () => {
+-                await CloudinaryUploadApi.run().then(()=> showAlert('Image uploaded to Cloudinary successfully', 'success')).catch(err => showAlert(err.message, 'error'));
++                await MultipartAPI.run().then(()=> showAlert('Image uploaded to multipart successfully', 'success')).catch(err => showAlert(err.message, 'error'));
+                 await resetWidget('FilePicker1', true);
+             }
+         }`,
+@@ -161,15 +162,9 @@ describe(
+       propPane.EnterJSContext("onFilesSelected", `{{JSObject1.upload()}}`);
+ 
+       EditorNavigation.SelectEntityByName("Image1", EntityType.Widget);
+-      propPane.UpdatePropertyFieldValue(
+-        "Image",
+-        "{{CloudinaryUploadApi.data.url}}",
+-      );
++      propPane.UpdatePropertyFieldValue("Image", "{{MultipartAPI.data.url}}");
+ 
+-      EditorNavigation.SelectEntityByName(
+-        "CloudinaryUploadApi",
+-        EntityType.Api,
+-      );
++      EditorNavigation.SelectEntityByName("MultipartAPI", EntityType.Api);
+ 
+       apiPage.ToggleOnPageLoadRun(false); //Bug 12476
+       EditorNavigation.SelectEntityByName("Page1", EntityType.Page);
+@@ -177,9 +172,7 @@ describe(
+       agHelper.ClickButton("Select Files");
+       agHelper.UploadFile(imageNameToUpload);
+       assertHelper.AssertNetworkExecutionSuccess("@postExecute"); //validating Cloudinary api call
+-      agHelper.ValidateToastMessage(
+-        "Image uploaded to Cloudinary successfully",
+-      );
++      agHelper.ValidateToastMessage("Image uploaded to multipart successfully");
+       agHelper.Sleep();
+       cy.xpath(apiPage._imageSrc)
+         .find("img")
+@@ -192,31 +185,5 @@ describe(
+       agHelper.AssertElementVisibility(locators._buttonByText("Select Files")); //verifying if reset!
+       deployMode.NavigateBacktoEditor();
+     });
+-
+-    it("8. Checks MultiPart form data for a Array Type upload results in API error", () => {
+-      const imageNameToUpload = "AAAFlowerVase.jpeg";
+-      EditorNavigation.SelectEntityByName(
+-        "CloudinaryUploadApi",
+-        EntityType.Api,
+-      );
+-      apiPage.EnterBodyFormData(
+-        "MULTIPART_FORM_DATA",
+-        "file",
+-        "{{FilePicker1.files[0]}}",
+-        "Array",
+-        true,
+-      );
+-      EditorNavigation.SelectEntityByName("FilePicker1", EntityType.Widget);
+-      agHelper.ClickButton("Select Files");
+-      agHelper.UploadFile(imageNameToUpload);
+-      assertHelper.AssertNetworkExecutionSuccess("@postExecute", false);
+-
+-      deployMode.DeployApp(locators._buttonByText("Select Files"));
+-      agHelper.ClickButton("Select Files");
+-      agHelper.UploadFile(imageNameToUpload);
+-      assertHelper.AssertNetworkExecutionSuccess("@postExecute", false);
+-      agHelper.ValidateToastMessage("CloudinaryUploadApi failed to execute");
+-      agHelper.AssertElementVisibility(locators._buttonByText("Select Files")); //verifying if reset in case of failure!
+-    });
+   },
+ );
+diff --git a/app/client/cypress/support/Objects/DataManager.ts b/app/client/cypress/support/Objects/DataManager.ts
+index 515b3f050327..a54e1162eb30 100644
+--- a/app/client/cypress/support/Objects/DataManager.ts
++++ b/app/client/cypress/support/Objects/DataManager.ts
+@@ -80,6 +80,8 @@ export class DataManager {
+         "http://host.docker.internal:5001/v1/mock-api-object?records=10",
+       echoApiUrl: "http://host.docker.internal:5001/v1/mock-api/echo",
+       randomCatfactUrl: "http://host.docker.internal:5001/v1/catfact/random",
++      multipartAPI:
++        "http://host.docker.internal:5001/v1/mock-api/echo-multipart",
+       randomTrumpApi:
+         "http://host.docker.internal:5001/v1/whatdoestrumpthink/random",
+       mockHttpCodeUrl: "http://host.docker.internal:5001/v1/mock-http-codes/",
+@@ -179,6 +181,8 @@ export class DataManager {
+       mockApiUrl: "http://host.docker.internal:5001/v1/mock-api?records=10",
+       echoApiUrl: "http://host.docker.internal:5001/v1/mock-api/echo",
+       randomCatfactUrl: "http://host.docker.internal:5001/v1/catfact/random",
++      multipartAPI:
++        "http://host.docker.internal:5001/v1/mock-api/echo-multipart",
+       mockHttpCodeUrl: "http://host.docker.internal:5001/v1/mock-http-codes/",
+       AirtableBaseForME: "appubHrVbovcudwN6",
+       AirtableTableForME: "tblsFCQSskVFf7xNd",
+diff --git a/app/client/cypress/support/Pages/ApiPage.ts b/app/client/cypress/support/Pages/ApiPage.ts
+index 793a6d03c102..8804ae793dde 100644
+--- a/app/client/cypress/support/Pages/ApiPage.ts
++++ b/app/client/cypress/support/Pages/ApiPage.ts
+@@ -303,7 +303,7 @@ export class ApiPage {
+       | "RAW",
+   ) {
+     this.agHelper.GetNClick(this._bodyTypeSelect);
+-    cy.xpath(this._bodyTypeToSelect(subTabName)).should("be.visible").click();
++    this.agHelper.GetNClick(this._bodyTypeToSelect(subTabName));
+   }
+ 
+   AssertRightPaneSelectedTab(tabName: RightPaneTabs) {

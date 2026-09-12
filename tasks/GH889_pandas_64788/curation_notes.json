@@ -1,0 +1,53 @@
+{
+  "repo": "pandas-dev/pandas",
+  "pr_number": 64788,
+  "pr_url": "https://github.com/pandas-dev/pandas/pull/64788",
+  "issue_number": 46331,
+  "base_sha": "b9cc4a636d004c3343fb27610df7984748c249c3",
+  "head_sha": "8c2b1bcfc6216bdda3886a643742fb369a99e16d",
+  "additions": 47,
+  "deletions": 2,
+  "changed_files": [
+    "doc/source/whatsnew/v3.1.0.rst",
+    "pandas/core/arrays/datetimes.py",
+    "pandas/tests/indexes/datetimes/test_date_range.py"
+  ],
+  "test_files": [
+    "pandas/tests/indexes/datetimes/test_date_range.py"
+  ],
+  "source_files": [
+    "pandas/core/arrays/datetimes.py"
+  ],
+  "parameterization": {
+    "repo": "pandas-dev/pandas",
+    "repo_short": "pandas",
+    "parameterized_identifiers": [
+      "assert_index_equal",
+      "both",
+      "bounds",
+      "constructor",
+      "could",
+      "date_range",
+      "days",
+      "domain",
+      "end_i8",
+      "endpoints"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:48:57Z"
+}

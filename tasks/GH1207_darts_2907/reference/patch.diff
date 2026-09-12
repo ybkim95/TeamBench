@@ -1,0 +1,69 @@
+diff --git a/darts/tests/models/forecasting/test_regression_ensemble_model.py b/darts/tests/models/forecasting/test_regression_ensemble_model.py
+index fe36a67032..ef6cc8c547 100644
+--- a/darts/tests/models/forecasting/test_regression_ensemble_model.py
++++ b/darts/tests/models/forecasting/test_regression_ensemble_model.py
+@@ -580,8 +580,12 @@ def test_call_backtest_regression_ensemble_local_models(self):
+             [
+                 ("local", "local"),
+                 ("local", "sklearn"),
++            ]
++            + [
+                 ("local", "torch"),
+-            ],
++            ]
++            if TORCH_AVAILABLE
++            else [],
+             [False, True],
+         ),
+     )
+@@ -632,9 +636,13 @@ def test_with_fcm_retrain_local_and_global(self, config):
+             ],
+             [
+                 ("sklearn", "sklearn"),
++            ]
++            + [
+                 ("sklearn", "torch"),
+                 ("torch", "torch"),
+-            ],
++            ]
++            if TORCH_AVAILABLE
++            else [],
+             [True, False],
+             [False, True],
+         ),
+@@ -704,7 +712,10 @@ def test_without_fcm_retrain_global_only(self, config):
+ 
+         (n_points, expected_min_length), train_with_hfc, multi_series = config
+         m1 = LinearRegressionModel(lags=4, output_chunk_length=1)
+-        m2 = BlockRNNModel(3, 4, **tfm_kwargs, n_epochs=1)
++        if TORCH_AVAILABLE:
++            m2 = BlockRNNModel(3, 4, **tfm_kwargs, n_epochs=1)
++        else:
++            m2 = LinearRegressionModel(lags=3, output_chunk_length=4)
+         for model in [m1, m2]:
+             model.fit(self.sine_series[: model.min_train_series_length])
+ 
+diff --git a/darts/tests/utils/historical_forecasts/test_historical_forecasts.py b/darts/tests/utils/historical_forecasts/test_historical_forecasts.py
+index 15dde4012e..0806c7a064 100644
+--- a/darts/tests/utils/historical_forecasts/test_historical_forecasts.py
++++ b/darts/tests/utils/historical_forecasts/test_historical_forecasts.py
+@@ -4069,6 +4069,8 @@ def test_conformal_historical_forecast_start_stride(self, caplog, config):
+                         **xgb_test_params,
+                     },
+                 ),
++            ]
++            + [
+                 # supports val set, global model (multi series)
+                 (
+                     NLinearModel,
+@@ -4079,7 +4081,9 @@ def test_conformal_historical_forecast_start_stride(self, caplog, config):
+                         **tfm_kwargs,
+                     },
+                 ),
+-            ],
++            ]
++            if TORCH_AVAILABLE
++            else [],
+             [False, True],  # use covariates
+         ),
+     )

@@ -1,0 +1,64 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 8633,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/8633",
+  "issue_number": null,
+  "base_sha": "4fec50c7b46f85a55994655e3d3e24043be54d1e",
+  "head_sha": "3e6d5eca3f46e0e58a3a469039c860ccae9f96c8",
+  "additions": 377,
+  "deletions": 76,
+  "changed_files": [
+    "statsmodels/distributions/copula/_special.py",
+    "statsmodels/distributions/copula/archimedean.py",
+    "statsmodels/distributions/copula/copulas.py",
+    "statsmodels/distributions/copula/extreme_value.py",
+    "statsmodels/distributions/copula/other_copulas.py",
+    "statsmodels/distributions/copula/tests/test_copula.py",
+    "statsmodels/distributions/copula/transforms.py"
+  ],
+  "test_files": [
+    "statsmodels/distributions/copula/tests/test_copula.py"
+  ],
+  "source_files": [
+    "statsmodels/distributions/copula/_special.py",
+    "statsmodels/distributions/copula/archimedean.py",
+    "statsmodels/distributions/copula/copulas.py",
+    "statsmodels/distributions/copula/extreme_value.py",
+    "statsmodels/distributions/copula/other_copulas.py",
+    "statsmodels/distributions/copula/transforms.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "about",
+      "additional",
+      "adjusted",
+      "against",
+      "allow",
+      "also",
+      "arange",
+      "archimedean",
+      "array",
+      "asarray"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:00:08Z"
+}

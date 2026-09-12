@@ -1,0 +1,256 @@
+diff --git a/napari/_app_model/_tests/test_context.py b/napari/_app_model/_tests/test_context.py
+new file mode 100644
+index 00000000000..ad1ff38d41f
+--- /dev/null
++++ b/napari/_app_model/_tests/test_context.py
+@@ -0,0 +1,55 @@
++from unittest.mock import Mock
++
++import pytest
++
++from napari._app_model.context._context import (
++    ContextMapping,
++    create_context,
++    get_context,
++)
++
++
++def test_simple_mapping():
++    data = {'a': 1, 'b': 2}
++    mapping = ContextMapping(data)
++    assert mapping['a'] == 1
++    assert mapping['b'] == 2
++    assert 'a' in mapping
++    assert list(mapping) == ['a', 'b']
++    assert len(mapping) == 2
++
++
++def test_missed_key():
++    data = {'a': 1, 'b': 2}
++    mapping = ContextMapping(data)
++    with pytest.raises(KeyError):
++        mapping['c']
++
++
++def test_callable_value():
++    data = {'a': 1, 'b': Mock(return_value=2)}
++    mapping = ContextMapping(data)
++    assert mapping['a'] == 1
++    assert mapping['b'] == 2
++    assert mapping['b'] == 2  # it is important to use [] twice in this test
++    data['b'].assert_called_once()
++
++
++def test_context_integration():
++    obj = {1, 2, 3}
++    ctx = create_context(obj)
++    ctx['a'] = 1
++    ctx['b'] = Mock(return_value=2)
++
++    assert isinstance(get_context(obj), ContextMapping)
++    mapping = get_context(obj)
++    assert mapping['a'] == 1
++    assert mapping['b'] == 2
++    assert mapping['b'] == 2  # it is important to use [] twice in this test
++    ctx['b'].assert_called_once()
++
++    mapping2 = get_context(obj)
++    assert mapping2['b'] == 2
++    assert ctx['b'].call_count == 2
++    assert mapping2['b'] == 2
++    assert ctx['b'].call_count == 2
+diff --git a/napari/_app_model/context/_context.py b/napari/_app_model/context/_context.py
+index a4a9f0438f8..9e186096899 100644
+--- a/napari/_app_model/context/_context.py
++++ b/napari/_app_model/context/_context.py
+@@ -1,11 +1,12 @@
+ from __future__ import annotations
+ 
++import collections.abc
+ from typing import TYPE_CHECKING, Any, Final, Optional
+ 
+ from app_model.expressions import (
+     Context,
+     create_context as _create_context,
+-    get_context,
++    get_context as _get_context,
+ )
+ 
+ from napari.utils.translations import trans
+@@ -16,6 +17,45 @@
+ __all__ = ['create_context', 'get_context', 'Context', 'SettingsAwareContext']
+ 
+ 
++class ContextMapping(collections.abc.Mapping):
++    """Wrap app-model contexts, allowing keys to be evaluated at query time.
++
++    `ContextMapping` objects are created from a context any time someone calls
++    `NapariApplication.get_context`. This usually happens just before a menu is
++    about to be shown, when we update the menu's actions' states based on the
++    values of the context keys. The call to `get_context` triggers the creation
++    of the `ContextMapping` which stores (or, in the case of functional keys,
++    evaluates then stores) the value of each context key. Once keys are
++    evaluated, they are cached within the object for future accessing of the
++    same keys. However, any new `get_context` calls will create a brand new
++    `ContextMapping` object.
++    """
++
++    def __init__(self, initial_values: collections.abc.Mapping):
++        self._initial_context_mapping = initial_values
++        self._evaluated_context_mapping: dict[str, Any] = {}
++
++    def __getitem__(self, key):
++        if key in self._evaluated_context_mapping:
++            return self._evaluated_context_mapping[key]
++        if key not in self._initial_context_mapping:
++            raise KeyError(f'Key {key!r} not found')
++        value = self._initial_context_mapping[key]
++        if callable(value):
++            value = value()
++        self._evaluated_context_mapping[key] = value
++        return value
++
++    def __contains__(self, item):
++        return item in self._initial_context_mapping
++
++    def __len__(self):
++        return len(self._initial_context_mapping)
++
++    def __iter__(self):
++        return iter(self._initial_context_mapping)
++
++
+ class SettingsAwareContext(Context):
+     """A special context that allows access of settings using `settings.`
+ 
+@@ -87,3 +127,7 @@ def create_context(
+         root=root,
+         root_class=SettingsAwareContext,
+     )
++
++
++def get_context(obj: object) -> ContextMapping:
++    return ContextMapping(_get_context(obj))
+diff --git a/napari/_app_model/context/_layerlist_context.py b/napari/_app_model/context/_layerlist_context.py
+index 86e958bcba9..8b4a0818724 100644
+--- a/napari/_app_model/context/_layerlist_context.py
++++ b/napari/_app_model/context/_layerlist_context.py
+@@ -1,7 +1,7 @@
+ from __future__ import annotations
+ 
+ import contextlib
+-from typing import TYPE_CHECKING, Optional, Union
++from typing import TYPE_CHECKING, Callable, Optional, Union
+ 
+ from app_model.expressions import ContextKey
+ 
+@@ -163,8 +163,11 @@ def _active_is_image_3d(s: LayerSel) -> bool:
+     )
+ 
+ 
+-def _empty_shapes_layer_selected(s: LayerSel) -> bool:
+-    return any(x._type_string == 'shapes' and not len(x.data) for x in s)
++def _empty_shapes_layer_selected(s: LayerSel) -> Callable[[], bool]:
++    def fun() -> bool:
++        return any(x._type_string == 'shapes' and not len(x.data) for x in s)
++
++    return fun
+ 
+ 
+ class LayerListSelectionContextKeys(ContextNamespace['LayerSel']):
+diff --git a/napari/_qt/containers/_layer_delegate.py b/napari/_qt/containers/_layer_delegate.py
+index 39f7ddf8093..098f54403c5 100644
+--- a/napari/_qt/containers/_layer_delegate.py
++++ b/napari/_qt/containers/_layer_delegate.py
+@@ -46,9 +46,6 @@
+ from napari._app_model.constants import MenuId
+ from napari._app_model.context import get_context
+ from napari._qt._qapp_model import build_qmodel_menu
+-from napari._qt._qapp_model.qactions._layerlist_context import (
+-    is_valid_spatial_in_clipboard,
+-)
+ from napari._qt.containers._base_item_model import ItemRole
+ from napari._qt.containers.qt_layer_model import LoadedRole, ThumbnailRole
+ from napari._qt.qt_resources import QColoredSVGIcon
+@@ -317,12 +314,6 @@ def show_context_menu(self, index, model, pos: QPoint, parent):
+             )
+ 
+         layer_list: LayerList = model.sourceModel()._root
+-        # update context keys of selected layers
+-        for key, get in layer_list._selection_ctx_keys._getters.items():
+-            setattr(
+-                layer_list._selection_ctx_keys, key, get(layer_list.selection)
+-            )
+         ctx = get_context(layer_list)
+-        ctx['valid_spatial_json_clipboard'] = is_valid_spatial_in_clipboard()
+         self._context_menu.update_from_context(ctx)
+         self._context_menu.exec_(pos)
+diff --git a/napari/_qt/containers/_tests/test_qt_layer_list.py b/napari/_qt/containers/_tests/test_qt_layer_list.py
+index 8915583927b..eb80c74e785 100644
+--- a/napari/_qt/containers/_tests/test_qt_layer_list.py
++++ b/napari/_qt/containers/_tests/test_qt_layer_list.py
+@@ -165,14 +165,18 @@ def test_contextual_menu_updates_selection_ctx_keys(monkeypatch, qtbot):
+     delegate.show_context_menu(
+         index, view.model(), QPoint(10, 10), parent=view
+     )
+-    assert layer_list._selection_ctx_keys.selected_empty_shapes_layer
++    assert not delegate._context_menu.findAction(
++        'napari.layer.convert_to_labels'
++    ).isEnabled()
+ 
+     layer_list[0].add(np.array(([0, 0], [0, 10], [10, 10], [10, 0])))
+     assert layer_list[0].data
+     delegate.show_context_menu(
+         index, view.model(), QPoint(10, 10), parent=view
+     )
+-    assert not layer_list._selection_ctx_keys.selected_empty_shapes_layer
++    assert delegate._context_menu.findAction(
++        'napari.layer.convert_to_labels'
++    ).isEnabled()
+ 
+ 
+ def make_qt_layer_list_with_delegate(qtbot):
+diff --git a/napari/_qt/containers/qt_layer_list.py b/napari/_qt/containers/qt_layer_list.py
+index af22a7fd246..27fef905cc4 100644
+--- a/napari/_qt/containers/qt_layer_list.py
++++ b/napari/_qt/containers/qt_layer_list.py
+@@ -4,6 +4,9 @@
+ 
+ from qtpy.QtCore import QSortFilterProxyModel, Qt  # type: ignore[attr-defined]
+ 
++from napari._qt._qapp_model.qactions._layerlist_context import (
++    is_valid_spatial_in_clipboard,
++)
+ from napari._qt.containers._base_item_model import (
+     SortRole,
+     _BaseEventedItemModel,
+@@ -47,6 +50,9 @@ class QtLayerList(QtListView[Layer]):
+     def __init__(
+         self, root: LayerList, parent: Optional[QWidget] = None
+     ) -> None:
++        root._ctx['valid_spatial_json_clipboard'] = (
++            is_valid_spatial_in_clipboard
++        )
+         super().__init__(root, parent)
+         layer_delegate = LayerDelegate()
+         self.setItemDelegate(layer_delegate)
+diff --git a/napari/_qt/qt_main_window.py b/napari/_qt/qt_main_window.py
+index 05b7e7e9d33..c9ef50095a3 100644
+--- a/napari/_qt/qt_main_window.py
++++ b/napari/_qt/qt_main_window.py
+@@ -171,6 +171,7 @@ def __init__(
+ 
+         # Ideally this would be in `NapariApplication` but that is outside of Qt
+         self._viewer_context = create_context(self)
++        self._viewer_context['is_set_trace_active'] = _is_set_trace_active
+ 
+         settings = get_settings()
+ 
+@@ -842,7 +843,6 @@ def _update_help_menu_state(self):
+ 
+     def _update_debug_menu_state(self):
+         viewer_ctx = get_context(self._qt_window)
+-        viewer_ctx['is_set_trace_active'] = _is_set_trace_active()
+         self._debug_menu.update_from_context(viewer_ctx)
+ 
+     # TODO: Remove once npe1 deprecated

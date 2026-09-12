@@ -1,0 +1,53 @@
+{
+  "repo": "psycopg/psycopg",
+  "pr_number": 1260,
+  "pr_url": "https://github.com/psycopg/psycopg/pull/1260",
+  "issue_number": null,
+  "base_sha": "cb97ef7063520cb8a0cb5236bb9791f8dc4cc454",
+  "head_sha": "0237586c415ece15102742f5941874c29fb1221c",
+  "additions": 8,
+  "deletions": 5,
+  "changed_files": [
+    "docs/news.rst",
+    "psycopg/psycopg/_cursor_base.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "psycopg/psycopg/_cursor_base.py"
+  ],
+  "parameterization": {
+    "repo": "psycopg/psycopg",
+    "repo_short": "psycopg",
+    "parameterized_identifiers": [
+      "after",
+      "attempt",
+      "binary",
+      "connection",
+      "encoding",
+      "error",
+      "error_from_result",
+      "errors",
+      "exception",
+      "execute"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only",
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-24T00:10:56Z"
+}

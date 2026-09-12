@@ -1,0 +1,15 @@
+{
+ "task": "GH143_mitmproxy_8095",
+ "patch": "tasks/GH143_mitmproxy_8095/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "mitmproxy/mitmproxy",
+ "pr_number": 8095,
+ "base_sha": "50ba950494e79d8049a691c8d5373d1a3c232ea1",
+ "head_sha": "4d65b4a093cf479768321a2973938f03efb9163c",
+ "bytes": 9120,
+ "files_changed": 5,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

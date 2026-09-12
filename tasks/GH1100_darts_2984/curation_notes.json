@@ -1,0 +1,53 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 2984,
+  "pr_url": "https://github.com/unit8co/darts/pull/2984",
+  "issue_number": 2983,
+  "base_sha": "fe51221805d7b830e74edd24fd746cf0cedf116b",
+  "head_sha": "c22cf740b6ad7621eaa985a73f50aed5106aaf3d",
+  "additions": 29,
+  "deletions": 28,
+  "changed_files": [
+    "CHANGELOG.md",
+    "darts/metrics/metrics.py",
+    "darts/tests/metrics/test_metrics.py"
+  ],
+  "test_files": [
+    "darts/tests/metrics/test_metrics.py"
+  ],
+  "source_files": [
+    "darts/metrics/metrics.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "actual",
+      "actual_series",
+      "actuals",
+      "allclose",
+      "always",
+      "backwards",
+      "both",
+      "break",
+      "cannot",
+      "cases"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:05:33Z"
+}

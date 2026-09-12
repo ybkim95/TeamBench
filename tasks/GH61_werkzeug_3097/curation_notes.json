@@ -1,0 +1,51 @@
+{
+  "repo": "pallets/werkzeug",
+  "pr_number": 3097,
+  "pr_url": "https://github.com/pallets/werkzeug/pull/3097",
+  "issue_number": 3094,
+  "base_sha": "86e11c29e44726dae524cd9db11549b3b1ad681d",
+  "head_sha": "161c18b2a8800ae6ef377fb3cbdb933a878fea67",
+  "additions": 40,
+  "deletions": 63,
+  "changed_files": [
+    "src/werkzeug/routing/map.py"
+  ],
+  "test_files": [],
+  "source_files": [
+    "src/werkzeug/routing/map.py"
+  ],
+  "parameterization": {
+    "repo": "pallets/werkzeug",
+    "repo_short": "werkzeug",
+    "parameterized_identifiers": [
+      "absolute",
+      "accepts",
+      "added",
+      "adding",
+      "additional",
+      "allowed",
+      "allows",
+      "also",
+      "always",
+      "another"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No test files in PR \u2014 grade.sh uses generic pytest invocation"
+  ],
+  "conversion_timestamp": "2026-03-23T22:36:48Z"
+}

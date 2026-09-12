@@ -1,0 +1,126 @@
+diff --git a/pixi.lock b/pixi.lock
+index f1da2c4a2031..9fd64e2d0092 100644
+--- a/pixi.lock
++++ b/pixi.lock
+@@ -160,7 +160,7 @@ environments:
+     packages:
+       linux-64:
+       - conda: https://prefix.dev/conda-forge/linux-64/_openmp_mutex-4.5-7_kmp_llvm.conda
+-      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.4.1-pyhe01879c_0.conda
++      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.5-pyhcf101f3_0.conda
+       - conda: https://prefix.dev/conda-forge/noarch/asttokens-3.0.1-pyhd8ed1ab_0.conda
+       - conda: https://prefix.dev/conda-forge/linux-64/asv-0.6.4-py312h1289d80_2.conda
+       - conda: https://prefix.dev/conda-forge/noarch/asv_runner-0.2.1-pyhd8ed1ab_0.conda
+@@ -306,7 +306,7 @@ environments:
+       - conda: https://prefix.dev/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda
+       osx-arm64:
+       - conda: https://prefix.dev/conda-forge/osx-arm64/_openmp_mutex-4.5-7_kmp_llvm.conda
+-      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.4.1-pyhe01879c_0.conda
++      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.5-pyhcf101f3_0.conda
+       - conda: https://prefix.dev/conda-forge/noarch/asttokens-3.0.1-pyhd8ed1ab_0.conda
+       - conda: https://prefix.dev/conda-forge/osx-arm64/asv-0.6.4-py313hb4b7877_2.conda
+       - conda: https://prefix.dev/conda-forge/noarch/asv_runner-0.2.1-pyhd8ed1ab_0.conda
+@@ -442,7 +442,7 @@ environments:
+       - conda: https://prefix.dev/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
+       win-64:
+       - conda: https://prefix.dev/conda-forge/win-64/_openmp_mutex-4.5-2_gnu.conda
+-      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.4.1-pyhe01879c_0.conda
++      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.5-pyhcf101f3_0.conda
+       - conda: https://prefix.dev/conda-forge/noarch/asttokens-3.0.1-pyhd8ed1ab_0.conda
+       - conda: https://prefix.dev/conda-forge/win-64/asv-0.6.4-py313hfe59770_2.conda
+       - conda: https://prefix.dev/conda-forge/noarch/asv_runner-0.2.1-pyhd8ed1ab_0.conda
+@@ -579,7 +579,7 @@ environments:
+     packages:
+       linux-64:
+       - conda: https://prefix.dev/conda-forge/linux-64/_openmp_mutex-4.5-7_kmp_llvm.conda
+-      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.4.1-pyhe01879c_0.conda
++      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.5-pyhcf101f3_0.conda
+       - conda: https://prefix.dev/conda-forge/linux-64/asv-0.6.4-py312h1289d80_2.conda
+       - conda: https://prefix.dev/conda-forge/noarch/asv_runner-0.2.1-pyhd8ed1ab_0.conda
+       - conda: https://prefix.dev/conda-forge/noarch/attrs-25.4.0-pyhcf101f3_1.conda
+@@ -672,7 +672,7 @@ environments:
+       - conda: https://prefix.dev/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda
+       osx-arm64:
+       - conda: https://prefix.dev/conda-forge/osx-arm64/_openmp_mutex-4.5-7_kmp_llvm.conda
+-      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.4.1-pyhe01879c_0.conda
++      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.5-pyhcf101f3_0.conda
+       - conda: https://prefix.dev/conda-forge/osx-arm64/asv-0.6.4-py313hb4b7877_2.conda
+       - conda: https://prefix.dev/conda-forge/noarch/asv_runner-0.2.1-pyhd8ed1ab_0.conda
+       - conda: https://prefix.dev/conda-forge/noarch/attrs-25.4.0-pyhcf101f3_1.conda
+@@ -756,7 +756,7 @@ environments:
+       - conda: https://prefix.dev/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
+       win-64:
+       - conda: https://prefix.dev/conda-forge/win-64/_openmp_mutex-4.5-2_gnu.conda
+-      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.4.1-pyhe01879c_0.conda
++      - conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.5-pyhcf101f3_0.conda
+       - conda: https://prefix.dev/conda-forge/win-64/asv-0.6.4-py313hfe59770_2.conda
+       - conda: https://prefix.dev/conda-forge/noarch/asv_runner-0.2.1-pyhd8ed1ab_0.conda
+       - conda: https://prefix.dev/conda-forge/noarch/attrs-25.4.0-pyhcf101f3_1.conda
+@@ -6615,17 +6615,17 @@ packages:
+   license_family: MIT
+   size: 38653
+   timestamp: 1762509771011
+-- conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.4.1-pyhe01879c_0.conda
+-  sha256: e0057ab21157b50792651c6aa7e6d16349a271b8e7e6b9a430ad9ab7b8a8dc0f
+-  md5: 648e253c455718227c61e26f4a4ce701
++- conda: https://prefix.dev/conda-forge/noarch/array-api-strict-2.5-pyhcf101f3_0.conda
++  sha256: 2134909f7a04ddb046018625931d2f38fb8d824b54cf02aa5eaf3a147c766cf0
++  md5: e65c7d49168ef8014ad0563ea0d94ff1
+   depends:
+   - python >=3.10
+   - numpy
+   - python
+   license: BSD-3-Clause
+   license_family: BSD
+-  size: 62525
+-  timestamp: 1753634065508
++  size: 63403
++  timestamp: 1771867402299
+ - conda: https://prefix.dev/conda-forge/noarch/arrow-1.4.0-pyhcf101f3_0.conda
+   sha256: 792da8131b1b53ff667bd6fc617ea9087b570305ccb9913deb36b8e12b3b5141
+   md5: 85c4f19f377424eafc4ed7911b291642
+diff --git a/scipy/conftest.py b/scipy/conftest.py
+index 032f1b9b1c59..ba19634d77bb 100644
+--- a/scipy/conftest.py
++++ b/scipy/conftest.py
+@@ -193,7 +193,7 @@ def num_parallel_threads():
+         if version.parse(array_api_strict.__version__) < version.Version('2.3'):
+             raise ImportError("array-api-strict must be >= version 2.3")
+         array_api_strict.set_array_api_strict_flags(
+-            api_version='2024.12'
++            api_version='2025.12'
+         )
+     except ImportError:
+         pass
+@@ -515,8 +515,7 @@ def test_device(xp, devices):
+         devices = xp.__array_namespace_info__().devices()
+         # open an issue about this - cannot branch based on `any`/`all`?
+         return (device for device in devices if device.type != 'meta')
+-
+-    return xp.__array_namespace_info__().devices() + [None]
++    return tuple(xp.__array_namespace_info__().devices()) + (None,)
+ 
+ 
+ if hypothesis_available:
+diff --git a/scipy/signal/tests/test_signaltools.py b/scipy/signal/tests/test_signaltools.py
+index 2a8624c38256..0e2ccb8a3bf4 100644
+--- a/scipy/signal/tests/test_signaltools.py
++++ b/scipy/signal/tests/test_signaltools.py
+@@ -2790,7 +2790,9 @@ def test_basic(self, b, a, zi_expected, xp):
+         assert_array_almost_equal(zi, zi_expected)
+ 
+         y = lfilter(b, a, xp.ones(9), zi=zi)[0]  # test for constant filter response
+-        y_expected = xp.full_like(y, fill_value=sum(b)/sum(a))
++
++        fill_value = xp.sum(b) / xp.sum(a)
++        y_expected = xp.full_like(y, fill_value=float(fill_value))
+         assert_array_almost_equal(y, y_expected)
+ 
+     def test_scale_invariance(self, xp):
+diff --git a/subprojects/array_api_compat/array_api_compat b/subprojects/array_api_compat/array_api_compat
+index 946ce4ad7796..145bd7d3f41d 160000
+--- a/subprojects/array_api_compat/array_api_compat
++++ b/subprojects/array_api_compat/array_api_compat
+@@ -1 +1 @@
+-Subproject commit 946ce4ad77968b94e93594c79653162426ec3224
++Subproject commit 145bd7d3f41d0cf98f0a7f35ba7e255874dec948

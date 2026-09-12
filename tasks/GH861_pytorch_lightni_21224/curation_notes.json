@@ -1,0 +1,53 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 21224,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/21224",
+  "issue_number": 14674,
+  "base_sha": "a7cb33a59576072888da99659a1e5b3ed04691ad",
+  "head_sha": "5a79452b46fec7f704132d51ba31a3573da96868",
+  "additions": 56,
+  "deletions": 6,
+  "changed_files": [
+    "src/lightning/pytorch/CHANGELOG.md",
+    "src/lightning/pytorch/callbacks/finetuning.py",
+    "tests/tests_pytorch/tuner/test_lr_finder.py"
+  ],
+  "test_files": [
+    "tests/tests_pytorch/tuner/test_lr_finder.py"
+  ],
+  "source_files": [
+    "src/lightning/pytorch/callbacks/finetuning.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "after",
+      "architecture",
+      "backbone",
+      "backbone_features",
+      "backbone_finetuning",
+      "based",
+      "being",
+      "boring_classes",
+      "callback",
+      "callbacks"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:46:40Z"
+}

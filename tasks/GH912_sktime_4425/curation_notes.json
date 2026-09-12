@@ -1,0 +1,49 @@
+{
+  "repo": "sktime/sktime",
+  "pr_number": 4425,
+  "pr_url": "https://github.com/sktime/sktime/pull/4425",
+  "issue_number": 1234,
+  "base_sha": "4a8dc871b1f4900769df7e8ae8cdb7a9a52b67d8",
+  "head_sha": "6f5a6795772e7ec1e0950ece8181e2de8d772b72",
+  "additions": 2,
+  "deletions": 0,
+  "changed_files": [
+    "sktime/tests/_config.py"
+  ],
+  "test_files": [
+    "sktime/tests/_config.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "sktime/sktime",
+    "repo_short": "sktime",
+    "parameterized_identifiers": [
+      "addition",
+      "distinguish",
+      "estimator",
+      "further",
+      "hierarchies",
+      "issue",
+      "monotonicity",
+      "quantile",
+      "random",
+      "refer"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:50:40Z"
+}

@@ -1,0 +1,50 @@
+diff --git a/featuretools/entityset/deserialize.py b/featuretools/entityset/deserialize.py
+--- a/featuretools/entityset/deserialize.py
++++ b/featuretools/entityset/deserialize.py
+@@ -34,6 +34,11 @@ def description_to_entityset(description, **kwargs):
+     for df in description["dataframes"].values():
+         if path is not None:
+             data_path = os.path.join(path, "data", df["name"])
++            format = description.get("format")
++            if format is not None:
++                kwargs["format"] = format
++                if format == "parquet" and df["loading_info"]["table_type"] == "pandas":
++                    kwargs["filename"] = df["name"] + ".parquet"
+             dataframe = read_woodwork_table(data_path, validate=False, **kwargs)
+         else:
+             dataframe = empty_dataframe(df)
+
+diff --git a/featuretools/entityset/serialize.py b/featuretools/entityset/serialize.py
+--- a/featuretools/entityset/serialize.py
++++ b/featuretools/entityset/serialize.py
+@@ -13,10 +13,10 @@
+ ps = import_or_none("pyspark.pandas")
+ 
+ FORMATS = ["csv", "pickle", "parquet"]
+-SCHEMA_VERSION = "7.0.0"
++SCHEMA_VERSION = "8.0.0"
+ 
+ 
+-def entityset_to_description(entityset):
++def entityset_to_description(entityset, format=None):
+     """Serialize entityset to data description.
+ 
+     Args:
+@@ -38,6 +38,7 @@ def entityset_to_description(entityset):
+         "id": entityset.id,
+         "dataframes": dataframes,
+         "relationships": relationships,
++        "format": format,
+     }
+     return data_description
+ 
+@@ -71,7 +72,8 @@ def write_data_description(entityset, path, profile_name=None, **kwargs):
+ 
+ 
+ def dump_data_description(entityset, path, **kwargs):
+-    description = entityset_to_description(entityset)
++    format = kwargs.get("format")
++    description = entityset_to_description(entityset, format)
+     for df in entityset.dataframes:
+         data_path = os.path.join(path, "data", df.ww.name)
+         os.makedirs(os.path.join(data_path, "data"), exist_ok=True)

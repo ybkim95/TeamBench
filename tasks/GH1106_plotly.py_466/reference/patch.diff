@@ -1,0 +1,366 @@
+diff --git a/plotly/graph_reference/default-schema.json b/plotly/graph_reference/default-schema.json
+index b3a0640193b..cc0ae722eec 100644
+--- a/plotly/graph_reference/default-schema.json
++++ b/plotly/graph_reference/default-schema.json
+@@ -712,7 +712,8 @@
+                             "mollweide",
+                             "hammer",
+                             "transverse mercator",
+-                            "albers usa"
++                            "albers usa",
++                            "winkel tripel"
+                         ]
+                     }
+                 },
+@@ -838,6 +839,114 @@
+                     false
+                 ]
+             },
++            "images": {
++                "items": {
++                    "image": {
++                        "layer": {
++                            "description": "Specifies whether images are drawn below or above traces. When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.",
++                            "dflt": "above",
++                            "role": "info",
++                            "valType": "enumerated",
++                            "values": [
++                                "below",
++                                "above"
++                            ]
++                        },
++                        "opacity": {
++                            "description": "Sets the opacity of the image.",
++                            "dflt": 1,
++                            "max": 1,
++                            "min": 0,
++                            "role": "info",
++                            "valType": "number"
++                        },
++                        "role": "object",
++                        "sizex": {
++                            "description": "Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is set to `paper`, units are sized relative to the plot width.",
++                            "dflt": 0,
++                            "role": "info",
++                            "valType": "number"
++                        },
++                        "sizey": {
++                            "description": "Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is set to `paper`, units are sized relative to the plot height.",
++                            "dflt": 0,
++                            "role": "info",
++                            "valType": "number"
++                        },
++                        "sizing": {
++                            "description": "Specifies which dimension of the image to constrain.",
++                            "dflt": "contain",
++                            "role": "info",
++                            "valType": "enumerated",
++                            "values": [
++                                "fill",
++                                "contain",
++                                "stretch"
++                            ]
++                        },
++                        "source": {
++                            "description": "Specifies the URL of the image to be used. The URL must be accessible from the domain where the plot code is run, and can be either relative or absolute.",
++                            "role": "info",
++                            "valType": "string"
++                        },
++                        "x": {
++                            "description": "Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info",
++                            "dflt": 0,
++                            "role": "info",
++                            "valType": "number"
++                        },
++                        "xanchor": {
++                            "description": "Sets the anchor for the x position",
++                            "dflt": "left",
++                            "role": "info",
++                            "valType": "enumerated",
++                            "values": [
++                                "left",
++                                "center",
++                                "right"
++                            ]
++                        },
++                        "xref": {
++                            "description": "Sets the images's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set to *paper*, the `x` position refers to the distance from the left of plot in normalized coordinates where *0* (*1*) corresponds to the left (right).",
++                            "dflt": "paper",
++                            "role": "info",
++                            "valType": "enumerated",
++                            "values": [
++                                "paper",
++                                "/^x([2-9]|[1-9][0-9]+)?$/"
++                            ]
++                        },
++                        "y": {
++                            "description": "Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info",
++                            "dflt": 0,
++                            "role": "info",
++                            "valType": "number"
++                        },
++                        "yanchor": {
++                            "description": "Sets the anchor for the y position.",
++                            "dflt": "top",
++                            "role": "info",
++                            "valType": "enumerated",
++                            "values": [
++                                "top",
++                                "middle",
++                                "bottom"
++                            ]
++                        },
++                        "yref": {
++                            "description": "Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized coordinates where *0* (*1*) corresponds to the bottom (top).",
++                            "dflt": "paper",
++                            "role": "info",
++                            "valType": "enumerated",
++                            "values": [
++                                "paper",
++                                "/^y([2-9]|[1-9][0-9]+)?$/"
++                            ]
++                        }
++                    }
++                },
++                "role": "object"
++            },
+             "legend": {
+                 "bgcolor": {
+                     "description": "Sets the legend background color.",
+@@ -877,6 +986,16 @@
+                         "valType": "number"
+                     }
+                 },
++                "orientation": {
++                    "description": "Sets the orientation of the legend.",
++                    "dflt": "v",
++                    "role": "info",
++                    "valType": "enumerated",
++                    "values": [
++                        "v",
++                        "h"
++                    ]
++                },
+                 "role": "object",
+                 "tracegroupgap": {
+                     "description": "Sets the amount of vertical space (in px) between legend groups.",
+@@ -6018,14 +6137,15 @@
+                     "valType": "number"
+                 },
+                 "barmode": {
+-                    "description": "Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.",
++                    "description": "Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked on top of one another, with negative values below the axis, positive values above With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.",
+                     "dflt": "group",
+                     "role": "info",
+                     "valType": "enumerated",
+                     "values": [
+                         "stack",
+                         "group",
+-                        "overlay"
++                        "overlay",
++                        "relative"
+                     ]
+                 },
+                 "barnorm": {
+@@ -9298,14 +9418,15 @@
+                     "valType": "number"
+                 },
+                 "barmode": {
+-                    "description": "Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.",
++                    "description": "Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked on top of one another, with negative values below the axis, positive values above With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.",
+                     "dflt": "group",
+                     "role": "info",
+                     "valType": "enumerated",
+                     "values": [
+                         "stack",
+                         "group",
+-                        "overlay"
++                        "overlay",
++                        "relative"
+                     ]
+                 },
+                 "barnorm": {
+@@ -15156,6 +15277,12 @@
+         },
+         "scattergl": {
+             "attributes": {
++                "connectgaps": {
++                    "description": "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
++                    "dflt": false,
++                    "role": "info",
++                    "valType": "boolean"
++                },
+                 "dx": {
+                     "description": "Sets the x coordinate step. See `x0` for more info.",
+                     "dflt": 1,
+diff --git a/plotly/offline/offline.py b/plotly/offline/offline.py
+index bd50e2115ba..f51507136be 100644
+--- a/plotly/offline/offline.py
++++ b/plotly/offline/offline.py
+@@ -14,11 +14,10 @@
+ 
+ import plotly
+ from plotly import tools, utils
+-from plotly.exceptions import PlotlyError
+-
+ 
+ try:
+     import IPython
++    from IPython.display import HTML, display
+     _ipython_imported = True
+ except ImportError:
+     _ipython_imported = False
+@@ -30,9 +29,6 @@
+     _matplotlib_imported = False
+ 
+ 
+-__PLOTLY_OFFLINE_INITIALIZED = False
+-
+-
+ def download_plotlyjs(download_url):
+     warnings.warn('''
+         `download_plotlyjs` is deprecated and will be removed in the
+@@ -50,26 +46,36 @@ def get_plotlyjs():
+ 
+ def init_notebook_mode():
+     """
+-    Initialize Plotly Offline mode in an IPython Notebook.
+-    Run this function at the start of an IPython notebook
+-    to load the necessary javascript files for creating
+-    Plotly graphs with plotly.offline.iplot.
++    Initialize plotly.js in the browser if it hasn't been loaded into the DOM
++    yet. This is an idempotent method and can and should be called from any
++    offline methods that require plotly.js to be loaded into the notebook dom.
+     """
+-    if not tools._ipython_imported:
++    warnings.warn('''
++        `init_notebook_mode` is deprecated and will be removed in the
++        next release. Notebook mode is now automatically initialized when
++        notebook methods are invoked, so it is no
++        longer necessary to manually initialize.
++    ''', DeprecationWarning)
++
++    if not _ipython_imported:
+         raise ImportError('`iplot` can only run inside an IPython Notebook.')
+-    from IPython.display import HTML, display
+ 
+-    global __PLOTLY_OFFLINE_INITIALIZED
+-    if not __PLOTLY_OFFLINE_INITIALIZED:
+-        display(HTML("<script type='text/javascript'>" +
+-                     "define('plotly', function(require, exports, module) {" +
+-                     get_plotlyjs() +
+-                     "});" +
+-                     "require(['plotly'], function(Plotly) {" +
+-                     "window.Plotly = Plotly;" +
+-                     "});" +
+-                     "</script>"))
+-    __PLOTLY_OFFLINE_INITIALIZED = True
++    script_inject = (
++        ''
++        '<script type=\'text/javascript\'>'
++        'if(!window.Plotly){{'
++        'define(\'plotly\', function(require, exports, module) {{'
++        '{script}'
++        '}});'
++        'require([\'plotly\'], function(Plotly) {{'
++        'console.log(Plotly);'
++        'window.Plotly = Plotly;'
++        '}});'
++        '}}'
++        '</script>'
++        '').format(script=get_plotlyjs())
++
++    display(HTML(script_inject))
+ 
+ 
+ def _plot_html(figure_or_data, show_link, link_text,
+@@ -171,25 +177,13 @@ def iplot(figure_or_data, show_link=True, link_text='Export to plot.ly',
+ 
+     Example:
+     ```
+-    from plotly.offline import init_notebook_mode, iplot
+-    init_notebook_mode()
++    from plotly.offline import iplot
+ 
+     iplot([{'x': [1, 2, 3], 'y': [5, 2, 7]}])
+     ```
+     """
+-    if not __PLOTLY_OFFLINE_INITIALIZED:
+-        raise PlotlyError('\n'.join([
+-            'Plotly Offline mode has not been initialized in this notebook. '
+-            'Run: ',
+-            '',
+-            'import plotly',
+-            'plotly.offline.init_notebook_mode() '
+-            '# run at the start of every ipython notebook',
+-        ]))
+-    if not tools._ipython_imported:
+-        raise ImportError('`iplot` can only run inside an IPython Notebook.')
+ 
+-    from IPython.display import HTML, display
++    init_notebook_mode()
+ 
+     plot_html, plotdivid, width, height = _plot_html(
+         figure_or_data, show_link, link_text, validate,
+@@ -421,11 +415,9 @@ def iplot_mpl(mpl_fig, resize=False, strip_style=False,
+ 
+     Example:
+     ```
+-    from plotly.offline import init_notebook_mode, iplot_mpl
++    from plotly.offline import iplot_mpl
+     import matplotlib.pyplot as plt
+ 
+-    init_notebook_mode()
+-
+     fig = plt.figure()
+     x = [10, 15, 20, 25, 30]
+     y = [100, 250, 200, 150, 300]
+@@ -434,6 +426,8 @@ def iplot_mpl(mpl_fig, resize=False, strip_style=False,
+     iplot_mpl(fig)
+     ```
+     """
++    init_notebook_mode()
++
+     plotly_plot = tools.mpl_to_plotly(mpl_fig, resize, strip_style, verbose)
+     return iplot(plotly_plot, show_link, link_text, validate)
+ 
+@@ -454,10 +448,9 @@ def enable_mpl_offline(resize=False, strip_style=False,
+ 
+     Example:
+     ```
+-    from plotly.offline import init_notebook_mode, enable_mpl_offline
++    from plotly.offline import enable_mpl_offline
+     import matplotlib.pyplot as plt
+ 
+-    init_notebook_mode()
+     enable_mpl_offline()
+ 
+     fig = plt.figure()
+@@ -467,8 +460,8 @@ def enable_mpl_offline(resize=False, strip_style=False,
+     fig
+     ```
+     """
+-    if not __PLOTLY_OFFLINE_INITIALIZED:
+-        init_notebook_mode()
++    init_notebook_mode()
++
+     ip = IPython.core.getipython.get_ipython()
+     formatter = ip.display_formatter.formatters['text/html']
+     formatter.for_type(matplotlib.figure.Figure,
+diff --git a/plotly/tests/test_optional/test_offline/test_offline.py b/plotly/tests/test_optional/test_offline/test_offline.py
+index 5f4944b8c27..2311a70d77a 100644
+--- a/plotly/tests/test_optional/test_offline/test_offline.py
++++ b/plotly/tests/test_optional/test_offline/test_offline.py
+@@ -27,10 +27,9 @@
+ 
+ class PlotlyOfflineTestCase(TestCase):
+     def setUp(self):
+-        plotly.offline.offline.__PLOTLY_OFFLINE_INITIALIZED = False
++        pass
+ 
+-    @raises(plotly.exceptions.PlotlyError)
+-    def test_iplot_doesnt_work_before_you_call_init_notebook_mode(self):
++    def test_iplot_works_wihout_calling_init_notebook_mode(self):
+         plotly.offline.iplot([{}])
+ 
+     def test_iplot_works_after_you_call_init_notebook_mode(self):

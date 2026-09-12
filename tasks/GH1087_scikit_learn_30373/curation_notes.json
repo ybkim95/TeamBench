@@ -1,0 +1,58 @@
+{
+  "repo": "scikit-learn/scikit-learn",
+  "pr_number": 30373,
+  "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/30373",
+  "issue_number": null,
+  "base_sha": "d388d88b936f1c20b70ca466c9c9edd7975cd2a8",
+  "head_sha": "81c3c25e35942ac46fef11cfb9953ecb0de3a072",
+  "additions": 12,
+  "deletions": 19,
+  "changed_files": [
+    "sklearn/ensemble/_forest.py",
+    "sklearn/utils/_tags.py",
+    "sklearn/utils/estimator_checks.py",
+    "sklearn/utils/tests/test_tags.py"
+  ],
+  "test_files": [
+    "sklearn/utils/tests/test_tags.py"
+  ],
+  "source_files": [
+    "sklearn/ensemble/_forest.py",
+    "sklearn/utils/_tags.py",
+    "sklearn/utils/estimator_checks.py"
+  ],
+  "parameterization": {
+    "repo": "scikit-learn/scikit-learn",
+    "repo_short": "scikit-learn",
+    "parameterized_identifiers": [
+      "allow_nan",
+      "array_api_support",
+      "averaged_predictions",
+      "based",
+      "belong",
+      "bias",
+      "binary",
+      "binary_only",
+      "cases",
+      "check_valid_tag_types"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:04:38Z"
+}

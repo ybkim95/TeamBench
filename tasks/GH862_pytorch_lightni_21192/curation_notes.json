@@ -1,0 +1,55 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "pr_number": 21192,
+  "pr_url": "https://github.com/Lightning-AI/pytorch-lightning/pull/21192",
+  "issue_number": 21189,
+  "base_sha": "d73c50d264d30def2ac957590556ba659a0bf356",
+  "head_sha": "d7f15d3999418bf09b26ff0e1d7ad72a412d7aa1",
+  "additions": 117,
+  "deletions": 10,
+  "changed_files": [
+    "src/lightning/pytorch/CHANGELOG.md",
+    "src/lightning/pytorch/trainer/connectors/callback_connector.py",
+    "tests/tests_pytorch/test_cli.py",
+    "tests/tests_pytorch/trainer/connectors/test_callback_connector.py"
+  ],
+  "test_files": [
+    "tests/tests_pytorch/test_cli.py",
+    "tests/tests_pytorch/trainer/connectors/test_callback_connector.py"
+  ],
+  "source_files": [
+    "src/lightning/pytorch/trainer/connectors/callback_connector.py"
+  ],
+  "parameterization": {
+    "repo": "Lightning-AI/pytorch-lightning",
+    "repo_short": "pytorch-lightning",
+    "parameterized_identifiers": [
+      "all_states",
+      "applied",
+      "argv",
+      "based",
+      "batch_size_finder",
+      "boring_classes",
+      "callback",
+      "callback0",
+      "callback1",
+      "callback2"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:46:45Z"
+}

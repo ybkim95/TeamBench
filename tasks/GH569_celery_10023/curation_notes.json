@@ -1,0 +1,54 @@
+{
+  "repo": "celery/celery",
+  "pr_number": 10023,
+  "pr_url": "https://github.com/celery/celery/pull/10023",
+  "issue_number": null,
+  "base_sha": "cc3350ef9867a34b1f3563222bd015d123ef1ad7",
+  "head_sha": "c57a263fa571512894f4ba5c153f7bd04f3b9b07",
+  "additions": 53,
+  "deletions": 6,
+  "changed_files": [
+    "celery/fixups/django.py",
+    "t/unit/fixups/test_django.py"
+  ],
+  "test_files": [
+    "t/unit/fixups/test_django.py"
+  ],
+  "source_files": [
+    "celery/fixups/django.py"
+  ],
+  "parameterization": {
+    "repo": "celery/celery",
+    "repo_short": "celery",
+    "parameterized_identifiers": [
+      "alias",
+      "assert_called_with",
+      "assert_not_called",
+      "beat_embedded_init",
+      "cache",
+      "called",
+      "cast",
+      "celery",
+      "close",
+      "close_caches"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:26:23Z"
+}

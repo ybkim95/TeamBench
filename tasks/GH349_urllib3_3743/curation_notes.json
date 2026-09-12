@@ -1,0 +1,55 @@
+{
+  "repo": "urllib3/urllib3",
+  "pr_number": 3743,
+  "pr_url": "https://github.com/urllib3/urllib3/pull/3743",
+  "issue_number": null,
+  "base_sha": "83f8643ffb5b7f197457379148e2fa118ab0fcdc",
+  "head_sha": "6eab28002f6df1c66d799555d2aacbadb6bcdac1",
+  "additions": 29,
+  "deletions": 0,
+  "changed_files": [
+    "changelog/3743.bugfix.rst",
+    "src/urllib3/util/retry.py",
+    "test/test_retry.py"
+  ],
+  "test_files": [
+    "test/test_retry.py"
+  ],
+  "source_files": [
+    "src/urllib3/util/retry.py"
+  ],
+  "parameterization": {
+    "repo": "urllib3/urllib3",
+    "repo_short": "urllib3",
+    "parameterized_identifiers": [
+      "after",
+      "allow",
+      "allowed",
+      "allowed_methods",
+      "assigned",
+      "attr",
+      "backoff",
+      "backoff_factor",
+      "backoff_jitter",
+      "backoff_max"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:12:00Z"
+}

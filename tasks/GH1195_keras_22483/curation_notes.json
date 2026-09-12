@@ -1,0 +1,52 @@
+{
+  "repo": "keras-team/keras",
+  "pr_number": 22483,
+  "pr_url": "https://github.com/keras-team/keras/pull/22483",
+  "issue_number": null,
+  "base_sha": "57bd59a2af6bca09745fdf60f941fd7ac073bddf",
+  "head_sha": "47506632b5cf485ebc4f794fd89ad368e464d8fe",
+  "additions": 2,
+  "deletions": 19,
+  "changed_files": [
+    "keras/src/backend/common/dtypes_test.py",
+    "keras/src/backend/openvino/excluded_concrete_tests.txt"
+  ],
+  "test_files": [
+    "keras/src/backend/common/dtypes_test.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "keras-team/keras",
+    "repo_short": "keras",
+    "parameterized_identifiers": [
+      "available",
+      "cache_clear",
+      "dtype",
+      "dtype1",
+      "dtype2",
+      "dtypes",
+      "float32",
+      "implicit",
+      "int32",
+      "patch"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:05Z"
+}

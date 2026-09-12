@@ -1,0 +1,13 @@
+task_id: GH1205_FLAML_1470
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix eval_set preprocessing for XGBoost estimators with categorical features"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/microsoft/FLAML/pull/1470"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

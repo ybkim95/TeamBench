@@ -1,0 +1,13 @@
+task_id: GH1103_darts_2869
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix/hfc retrain with tfm and ocs"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/unit8co/darts/pull/2869"
+source_issue: "https://github.com/unit8co/darts/issues/2848"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

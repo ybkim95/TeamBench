@@ -1,0 +1,62 @@
+{
+  "repo": "napari/napari",
+  "pr_number": 6965,
+  "pr_url": "https://github.com/napari/napari/pull/6965",
+  "issue_number": 6643,
+  "base_sha": "f0c02a844cdd0eebceb64b696bb4ab73c2aed08f",
+  "head_sha": "5bfe1fc43cc7f182be487ee7e4093ab920452174",
+  "additions": 119,
+  "deletions": 16,
+  "changed_files": [
+    "napari/_app_model/_tests/test_context.py",
+    "napari/_app_model/context/_context.py",
+    "napari/_app_model/context/_layerlist_context.py",
+    "napari/_qt/containers/_layer_delegate.py",
+    "napari/_qt/containers/_tests/test_qt_layer_list.py",
+    "napari/_qt/containers/qt_layer_list.py",
+    "napari/_qt/qt_main_window.py"
+  ],
+  "test_files": [
+    "napari/_app_model/_tests/test_context.py",
+    "napari/_qt/containers/_tests/test_qt_layer_list.py"
+  ],
+  "source_files": [
+    "napari/_app_model/context/_context.py",
+    "napari/_app_model/context/_layerlist_context.py",
+    "napari/_qt/containers/_layer_delegate.py",
+    "napari/_qt/containers/qt_layer_list.py",
+    "napari/_qt/qt_main_window.py"
+  ],
+  "parameterization": {
+    "repo": "napari/napari",
+    "repo_short": "napari",
+    "parameterized_identifiers": [
+      "about",
+      "access",
+      "accessing",
+      "actions",
+      "allowing",
+      "allows",
+      "annotations",
+      "app_model",
+      "array",
+      "assert_called_once"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:31:02Z"
+}

@@ -1,0 +1,12 @@
+diff --git a/pytorch_lightning/utilities/enums.py b/pytorch_lightning/utilities/enums.py
+--- a/pytorch_lightning/utilities/enums.py
++++ b/pytorch_lightning/utilities/enums.py
+@@ -34,7 +34,7 @@ def __eq__(self, other: Union[str, Enum]) -> bool:
+     def __hash__(self) -> int:
+         # re-enable hashtable so it can be used as a dict key or in a set
+         # example: set(LightningEnum)
+-        return hash(self.name)
++        return hash(self.value.lower())
+ 
+ 
+ class AMPType(LightningEnum):

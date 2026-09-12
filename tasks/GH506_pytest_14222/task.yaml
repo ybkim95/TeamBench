@@ -1,0 +1,13 @@
+task_id: GH506_pytest_14222
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "raises: add missing | metacharacter to is_fully_escaped and unescape"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pytest-dev/pytest/pull/14222"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,13 @@
+task_id: GH1061_featuretools_2627
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix bug in PercentTrue primitive"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/alteryx/featuretools/pull/2627"
+source_issue: "https://github.com/alteryx/featuretools/issues/2625"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,54 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 10320,
+  "pr_url": "https://github.com/dask/dask/pull/10320",
+  "issue_number": null,
+  "base_sha": "940bcd1e702ca0a0dbb9a054074cd1ed31bbc9d1",
+  "head_sha": "088ed9b1deed35d141e203aea861c19426f49831",
+  "additions": 41,
+  "deletions": 1,
+  "changed_files": [
+    "dask/dataframe/io/parquet/core.py",
+    "dask/dataframe/io/tests/test_parquet.py"
+  ],
+  "test_files": [
+    "dask/dataframe/io/tests/test_parquet.py"
+  ],
+  "source_files": [
+    "dask/dataframe/io/parquet/core.py"
+  ],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "against",
+      "append",
+      "apply_conjunction",
+      "apply_filters",
+      "assert_eq",
+      "check_index",
+      "column",
+      "conjunction",
+      "double",
+      "engine"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:06:45Z"
+}

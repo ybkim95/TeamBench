@@ -1,0 +1,13 @@
+task_id: GH1078_ultralytics_23546
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix AutoBatch with multispectral images"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/ultralytics/ultralytics/pull/23546"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

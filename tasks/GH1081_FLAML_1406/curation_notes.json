@@ -1,0 +1,53 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1406,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1406",
+  "issue_number": 1234,
+  "base_sha": "6d539298036b144b968dd70b1089fb9436eef4b1",
+  "head_sha": "a0c1f6b6e51c52f8ff6d5cbd1f060ff7994d049d",
+  "additions": 12,
+  "deletions": 6,
+  "changed_files": [
+    ".github/workflows/python-package.yml",
+    "flaml/automl/model.py",
+    "test/automl/test_model.py"
+  ],
+  "test_files": [
+    "test/automl/test_model.py"
+  ],
+  "source_files": [
+    "flaml/automl/model.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "alarm",
+      "alarm_set",
+      "bugs",
+      "contextlib",
+      "contextmanager",
+      "current_thread",
+      "error",
+      "hard",
+      "https",
+      "issue40518"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:04:07Z"
+}

@@ -1,0 +1,49 @@
+{
+  "repo": "dask/dask",
+  "pr_number": 11144,
+  "pr_url": "https://github.com/dask/dask/pull/11144",
+  "issue_number": 11140,
+  "base_sha": "484fc3f1136827308db133cd256ba74df7a38d8c",
+  "head_sha": "a6a8686ce2a5fa0ee9f112db28c684e6e8d9edba",
+  "additions": 1,
+  "deletions": 2,
+  "changed_files": [
+    "dask/dataframe/tests/test_groupby.py"
+  ],
+  "test_files": [
+    "dask/dataframe/tests/test_groupby.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "dask/dask",
+    "repo_short": "dask",
+    "parameterized_identifiers": [
+      "aligns",
+      "assert_eq",
+      "behavior",
+      "expect",
+      "gd_grouper",
+      "groupby",
+      "grouper_dispatch",
+      "numeric",
+      "numeric_only",
+      "pd_grouper"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:32Z"
+}

@@ -1,0 +1,13 @@
+task_id: GH347_pymovements_1359
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "fix: preserve all columns in `data` on `Events` init"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pymovements/pymovements/pull/1359"
+source_issue: "https://github.com/pymovements/pymovements/issues/1349"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

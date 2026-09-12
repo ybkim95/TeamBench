@@ -1,0 +1,54 @@
+{
+  "repo": "mlflow/mlflow",
+  "pr_number": 22053,
+  "pr_url": "https://github.com/mlflow/mlflow/pull/22053",
+  "issue_number": null,
+  "base_sha": "897bdd47157c6d8b19d188999b6814ebaa7c4849",
+  "head_sha": "e7799e3f36d8662aa363032ebadb7bd5c4486f97",
+  "additions": 105,
+  "deletions": 6,
+  "changed_files": [
+    "mlflow/genai/evaluation/harness.py",
+    "tests/genai/evaluate/test_evaluation.py"
+  ],
+  "test_files": [
+    "tests/genai/evaluate/test_evaluation.py"
+  ],
+  "source_files": [
+    "mlflow/genai/evaluation/harness.py"
+  ],
+  "parameterization": {
+    "repo": "mlflow/mlflow",
+    "repo_short": "mlflow",
+    "parameterized_identifiers": [
+      "adaptive",
+      "assert_called_once",
+      "assert_not_called",
+      "assessment",
+      "assessment_source",
+      "backpressure",
+      "backpressure_buffer",
+      "base",
+      "bounds",
+      "buffer"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:06:54Z"
+}

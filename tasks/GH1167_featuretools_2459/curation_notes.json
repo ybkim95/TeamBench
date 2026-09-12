@@ -1,0 +1,55 @@
+{
+  "repo": "alteryx/featuretools",
+  "pr_number": 2459,
+  "pr_url": "https://github.com/alteryx/featuretools/pull/2459",
+  "issue_number": 2457,
+  "base_sha": "931cc70cf3c1b148b46f1143d0b5143c05c9812d",
+  "head_sha": "02fcd627368d84d29c77bdcf9a650e3bc13bba15",
+  "additions": 103,
+  "deletions": 7,
+  "changed_files": [
+    "docs/source/release_notes.rst",
+    "featuretools/primitives/standard/transform/natural_language/num_words.py",
+    "featuretools/tests/primitive_tests/natural_language_primitives_tests/test_num_words.py",
+    "featuretools/tests/primitive_tests/test_transform_features.py"
+  ],
+  "test_files": [
+    "featuretools/tests/primitive_tests/natural_language_primitives_tests/test_num_words.py",
+    "featuretools/tests/primitive_tests/test_transform_features.py"
+  ],
+  "source_files": [
+    "featuretools/primitives/standard/transform/natural_language/num_words.py"
+  ],
+  "parameterization": {
+    "repo": "alteryx/featuretools",
+    "repo_short": "featuretools",
+    "parameterized_identifiers": [
+      "actual",
+      "aggregation",
+      "append",
+      "apply",
+      "aren",
+      "arguments",
+      "array",
+      "assert_series_equal",
+      "base",
+      "black"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:11:03Z"
+}

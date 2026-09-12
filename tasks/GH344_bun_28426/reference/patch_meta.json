@@ -1,0 +1,15 @@
+{
+ "task": "GH344_bun_28426",
+ "patch": "tasks/GH344_bun_28426/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "oven-sh/bun",
+ "pr_number": 28426,
+ "base_sha": "73361607d70bd77041d0fc20e45a6dbe2373a677",
+ "head_sha": "c20364bff1147c6741d15ac90c693e13bacc8fae",
+ "bytes": 2964,
+ "files_changed": 2,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

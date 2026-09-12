@@ -28,7 +28,8 @@ check() {
 }
 
 # Install dependencies
-pip install PyJWT cryptography pytest 2>/dev/null | tail -1 || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require PyJWT cryptography pytest || true
 
 # -------------------------------------------------------------------
 # C1: Syntax validity — gateway/auth.py and gateway/rbac.py parse OK
@@ -341,3 +342,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

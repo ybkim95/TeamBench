@@ -1,0 +1,13 @@
+task_id: GH192_TensorRT-LLM_10364
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "[TRTLLM-10362][feat] Added Mamba and MLA layers to the sharding tests"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/NVIDIA/TensorRT-LLM/pull/10364"
+source_issue: "https://github.com/NVIDIA/TensorRT-LLM/issues/10362"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

@@ -1,0 +1,148 @@
+diff --git a/doc/release/upcoming_changes/30615.deprecation.rst b/doc/release/upcoming_changes/30615.deprecation.rst
+new file mode 100644
+index 000000000000..4f95a3bed811
+--- /dev/null
++++ b/doc/release/upcoming_changes/30615.deprecation.rst
+@@ -0,0 +1,7 @@
++* `numpy.take` now correctly checks if the result can be cast to
++  the provided ``out=out`` under the same-kind rule.
++  A ``DeprecationWarning`` is given now when this check fails.
++  Previously, ``take`` incorrectly checked if ``out`` could be cast to
++  the result (the wrong direction).
++  This deprecation also affects ``compress`` and possibly other functions.
++  (Future versions of NumPy may tighten the casting check further.)
+diff --git a/numpy/_core/src/multiarray/item_selection.c b/numpy/_core/src/multiarray/item_selection.c
+index 8946b93fbee3..454a434304bb 100644
+--- a/numpy/_core/src/multiarray/item_selection.c
++++ b/numpy/_core/src/multiarray/item_selection.c
+@@ -232,7 +232,7 @@ NPY_NO_EXPORT PyObject *
+ PyArray_TakeFrom(PyArrayObject *self0, PyObject *indices0, int axis,
+                  PyArrayObject *out, NPY_CLIPMODE clipmode)
+ {
+-    PyArray_Descr *dtype;
++    PyArray_Descr *dtype, *out_dtype;
+     PyArrayObject *obj = NULL, *self, *indices;
+     npy_intp nd, i, n, m, max_item, chunk, itemsize, nelem;
+     npy_intp shape[NPY_MAXDIMS];
+@@ -310,6 +310,19 @@ PyArray_TakeFrom(PyArrayObject *self0, PyObject *indices0, int axis,
+             flags |= NPY_ARRAY_ENSURECOPY;
+         }
+         dtype = PyArray_DESCR(self);
++        out_dtype = PyArray_DESCR(out);
++        if (dtype != out_dtype) {
++            /* Deprecated NumPy 2.5, 2026-01 */
++            if (!PyArray_CanCastTypeTo(dtype, out_dtype, NPY_SAME_KIND_CASTING)) {
++                if (DEPRECATE(
++                        "Implicit casting of output to a different kind is deprecated. "
++                        "In a future version, this will result in an error. (Deprecated NumPy 2.5)") <
++                    0) {
++                    goto fail;
++                }
++            }
++            flags |= NPY_ARRAY_FORCECAST;
++        }
+         Py_INCREF(dtype);
+         obj = (PyArrayObject *)PyArray_FromArray(out, dtype, flags);
+         if (obj == NULL) {
+@@ -3170,7 +3183,7 @@ PyArray_Sort(PyArrayObject *op, int axis, NPY_SORTKIND flags)
+         PyArray_Descr *given_descrs[2] = {descr, descr};
+         // Sort cannot be a view, so view_offset is unused
+         npy_intp view_offset = 0;
+-        
++
+         if (sort_method->resolve_descriptors(
+             sort_method, dtypes, given_descrs, loop_descrs, &view_offset) < 0) {
+             PyErr_SetString(PyExc_RuntimeError,
+@@ -3280,7 +3293,7 @@ PyArray_ArgSort(PyArrayObject *op, int axis, NPY_SORTKIND flags)
+         PyArray_Descr *given_descrs[2] = {descr, odescr};
+         // we can ignore the view_offset for sorting
+         npy_intp view_offset = 0;
+-        
++
+         int resolve_ret = argsort_method->resolve_descriptors(
+             argsort_method, dtypes, given_descrs, loop_descrs, &view_offset);
+         Py_DECREF(odescr);
+diff --git a/numpy/_core/tests/test_deprecations.py b/numpy/_core/tests/test_deprecations.py
+index fc1ae9d56fc0..c17f8afa3d3c 100644
+--- a/numpy/_core/tests/test_deprecations.py
++++ b/numpy/_core/tests/test_deprecations.py
+@@ -366,6 +366,7 @@ def test_round_emits_deprecation_warning_array(self):
+     def test_round_emits_deprecation_warning_scalar(self):
+         self.assert_deprecated(lambda: np.ma.round_(3.14))
+ 
++
+ class TestTriDeprecationWithNonInteger(_DeprecationTestCase):
+     # Deprecation in NumPy 2.5, 2026-03
+ 
+@@ -392,3 +393,15 @@ def test_tril_indices_from(self):
+            [ 8,  9, 10, 11],
+            [12, 13, 14, 15]])
+         self.assert_deprecated(lambda: np.tril_indices_from(a, k=9.8))
++
++
++class TestTakeOutDtype(_DeprecationTestCase):
++    # Deprecated in Numpy 2.5, 2026-01
++    message = "Implicit casting of output to a different kind."
++
++    def test_out_dtype_deprecated(self):
++        a = np.arange(3).astype(np.int32)
++        indices = np.arange(2)
++        different_dtype_out = np.zeros_like(indices, dtype=np.uint32)
++
++        self.assert_deprecated(lambda: np.take(a, indices, out=different_dtype_out))
+diff --git a/numpy/_core/tests/test_item_selection.py b/numpy/_core/tests/test_item_selection.py
+index 0e08b7cfd8e0..2d9caaf8061c 100644
+--- a/numpy/_core/tests/test_item_selection.py
++++ b/numpy/_core/tests/test_item_selection.py
+@@ -81,6 +81,17 @@ def test_empty_partition(self):
+ 
+         assert_array_equal(a, a_original)
+ 
++    @pytest.mark.parametrize("dtype",
++            [np.int8, np.int16, np.int32, np.int64,
++             np.float16, np.float32, np.float64, np.longdouble])
++    def test_out_dtype(self, dtype):
++        # In reference to github issue #25588
++        a = np.arange(3).astype(np.int32)
++        indices = np.arange(2)
++        out = np.zeros_like(indices, dtype=dtype)
++        np.take(a, indices, out=out)
++        assert_array_equal(a[indices], out)
++
+     def test_empty_argpartition(self):
+         # In reference to github issue #6530
+         a = np.array([0, 2, 4, 6, 8, 10])
+diff --git a/numpy/_core/tests/test_regression.py b/numpy/_core/tests/test_regression.py
+index f53e1b1c3dd3..5da357f32f7a 100644
+--- a/numpy/_core/tests/test_regression.py
++++ b/numpy/_core/tests/test_regression.py
+@@ -1093,18 +1093,24 @@ def test_astype_copy(self):
+         assert_(xp.__array_interface__['data'][0] !=
+                 xpd.__array_interface__['data'][0])
+ 
++    @pytest.mark.filterwarnings(
++        "error:Implicit casting of output.*:DeprecationWarning",
++    )
+     def test_compress_small_type(self):
+         # Ticket #789, changeset 5217.
+         # compress with out argument segfaulted if cannot cast safely
+         import numpy as np
+         a = np.array([[1, 2], [3, 4]])
+         b = np.zeros((2, 1), dtype=np.single)
++        a.compress([True, False], axis=1, out=b)
++        assert_equal(b, np.array([[1.0], [3.0]]))
+         try:
+-            a.compress([True, False], axis=1, out=b)
+-            raise AssertionError("compress with an out which cannot be "
+-                                 "safely casted should not return "
+-                                 "successfully")
+-        except TypeError:
++            # Previously the above already failed (and that is OK) but take
++            # currently allows same-kind casting for the output.
++            a.compress([True, False], axis=1, out=np.empty((2, 1), dtype=bool))
++            raise AssertionError("Expected TypeError due to unsafe out cast")
++        except DeprecationWarning:
++            # After deprecation remove TypeError the warnings filter.
+             pass
+ 
+     def test_attributes(self):

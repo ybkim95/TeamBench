@@ -1,0 +1,56 @@
+diff --git a/docs/news.rst b/docs/news.rst
+index 3fcf9d51e..684589945 100644
+--- a/docs/news.rst
++++ b/docs/news.rst
+@@ -15,6 +15,7 @@ Psycopg 3.2.13 (unreleased)
+   (:ticket:`#1205`).
+ - Fix `Cursor.copy()` and `AsyncCursor.copy()` to hold the connection lock
+   for the entire operation, preventing concurrent access issues (:ticket:`#1210`).
++- Fix GSSAPI check with C extension built with libpq < v16 (:ticket:`#1216`).
+ 
+ 
+ Current release
+diff --git a/psycopg/psycopg/_capabilities.py b/psycopg/psycopg/_capabilities.py
+index 323141efc..82e14f419 100644
+--- a/psycopg/psycopg/_capabilities.py
++++ b/psycopg/psycopg/_capabilities.py
+@@ -46,6 +46,13 @@ def has_set_trace_flags(self, check: bool = False) -> bool:
+         """
+         return self._has_feature("PGconn.set_trace_flags()", 140000, check=check)
+ 
++    def has_used_gssapi(self, check: bool = False) -> bool:
++        """Check if the `pq.PGconn.used_gssapi` attribute is implemented.
++
++        The feature requires libpq 16.0 or greater.
++        """
++        return self._has_feature("PGconn.used_gssapi", 160000, check=check)
++
+     def has_cancel_safe(self, check: bool = False) -> bool:
+         """Check if the `Connection.cancel_safe()` method is implemented.
+ 
+diff --git a/psycopg/psycopg/connection.py b/psycopg/psycopg/connection.py
+index b8c264c0b..20b52ad8c 100644
+--- a/psycopg/psycopg/connection.py
++++ b/psycopg/psycopg/connection.py
+@@ -127,7 +127,7 @@ def connect(
+             raise type(last_ex)("\n".join(lines)).with_traceback(None)
+ 
+         if (
+-            pq.version() >= 160000
++            capabilities.has_used_gssapi()
+             and rv.pgconn.used_gssapi
+             and (not gssapi_requested(params))
+         ):
+diff --git a/psycopg/psycopg/connection_async.py b/psycopg/psycopg/connection_async.py
+index 46168938b..0da729ff1 100644
+--- a/psycopg/psycopg/connection_async.py
++++ b/psycopg/psycopg/connection_async.py
+@@ -147,7 +147,7 @@ async def connect(
+             raise type(last_ex)("\n".join(lines)).with_traceback(None)
+ 
+         if (
+-            pq.version() >= 160000
++            capabilities.has_used_gssapi()
+             and rv.pgconn.used_gssapi
+             and not gssapi_requested(params)
+         ):

@@ -1,0 +1,54 @@
+{
+  "repo": "pymovements/pymovements",
+  "pr_number": 1359,
+  "pr_url": "https://github.com/pymovements/pymovements/pull/1359",
+  "issue_number": 1349,
+  "base_sha": "a561384347e53447b7e0ec53eaee858e82a603e9",
+  "head_sha": "98bd1ba57a8503359982d089990d740e494305cd",
+  "additions": 113,
+  "deletions": 14,
+  "changed_files": [
+    "src/pymovements/events/events.py",
+    "tests/unit/events/events_test.py",
+    "tests/unit/gaze/gaze_test.py"
+  ],
+  "test_files": [
+    "tests/unit/events/events_test.py",
+    "tests/unit/gaze/gaze_test.py"
+  ],
+  "source_files": [
+    "src/pymovements/events/events.py"
+  ],
+  "parameterization": {
+    "repo": "pymovements/pymovements",
+    "repo_short": "pymovements",
+    "parameterized_identifiers": [
+      "additional",
+      "all_decimals",
+      "assert_frame_equal",
+      "beyond",
+      "clone",
+      "column",
+      "columns",
+      "custom_property",
+      "data",
+      "dataframes"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:11:50Z"
+}

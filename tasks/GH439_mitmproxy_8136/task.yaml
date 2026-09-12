@@ -1,0 +1,13 @@
+task_id: GH439_mitmproxy_8136
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "cleanup: removed unused functions/classes and scripts"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/mitmproxy/mitmproxy/pull/8136"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

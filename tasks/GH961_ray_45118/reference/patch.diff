@@ -1,0 +1,43 @@
+diff --git a/python/ray/serve/_private/autoscaling_state.py b/python/ray/serve/_private/autoscaling_state.py
+--- a/python/ray/serve/_private/autoscaling_state.py
++++ b/python/ray/serve/_private/autoscaling_state.py
+@@ -100,10 +100,11 @@ def __init__(self, deployment_id: DeploymentID):
+         self._target_capacity: Optional[float] = None
+         self._target_capacity_direction: Optional[TargetCapacityDirection] = None
+ 
+-    def register(
+-        self, info: DeploymentInfo, curr_target_num_replicas: Optional[int] = None
+-    ) -> int:
+-        """Registers an autoscaling deployment's info."""
++    def register(self, info: DeploymentInfo, curr_target_num_replicas: int) -> int:
++        """Registers an autoscaling deployment's info.
++
++        Returns the number of replicas the target should be set to.
++        """
+ 
+         config = info.deployment_config.autoscaling_config
+         if (
+@@ -331,7 +332,7 @@ def register_deployment(
+         self,
+         deployment_id: DeploymentID,
+         info: DeploymentInfo,
+-        curr_target_num_replicas: Optional[int] = None,
++        curr_target_num_replicas: int,
+     ) -> int:
+         """Register autoscaling deployment info."""
+         assert info.deployment_config.autoscaling_config
+
+diff --git a/python/ray/serve/_private/deployment_state.py b/python/ray/serve/_private/deployment_state.py
+--- a/python/ray/serve/_private/deployment_state.py
++++ b/python/ray/serve/_private/deployment_state.py
+@@ -1301,7 +1301,9 @@ def recover_target_state_from_checkpoint(
+         )
+         if self._target_state.info.deployment_config.autoscaling_config:
+             self._autoscaling_state_manager.register_deployment(
+-                self._id, self._target_state.info
++                self._id,
++                self._target_state.info,
++                self._target_state.target_num_replicas,
+             )
+ 
+     def recover_current_state_from_replica_actor_names(

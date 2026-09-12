@@ -1,0 +1,13 @@
+task_id: GH1164_airflow_64085
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix AwsBaseWaiterTrigger losing error details on deferred task failure"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/apache/airflow/pull/64085"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

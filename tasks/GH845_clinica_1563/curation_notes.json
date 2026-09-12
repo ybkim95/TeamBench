@@ -1,0 +1,52 @@
+{
+  "repo": "aramis-lab/clinica",
+  "pr_number": 1563,
+  "pr_url": "https://github.com/aramis-lab/clinica/pull/1563",
+  "issue_number": 1560,
+  "base_sha": "d16ca3d65c4542758da6f4840d441310ea9ba97a",
+  "head_sha": "476c1c0c6333dbabbd93378a1371d37ecfff375f",
+  "additions": 14,
+  "deletions": 8,
+  "changed_files": [
+    "clinica/converters/ixi_to_bids/_utils.py",
+    "test/unittests/converters/test_ixi_to_bids_utils.py"
+  ],
+  "test_files": [
+    "test/unittests/converters/test_ixi_to_bids_utils.py"
+  ],
+  "source_files": [
+    "clinica/converters/ixi_to_bids/_utils.py"
+  ],
+  "parameterization": {
+    "repo": "aramis-lab/clinica",
+    "repo_short": "clinica",
+    "parameterized_identifiers": [
+      "acq_time",
+      "apply",
+      "assign",
+      "axis",
+      "bids_id_factory",
+      "clinica",
+      "clinical",
+      "clinical_data",
+      "columns",
+      "concat"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-24T00:42:32Z"
+}

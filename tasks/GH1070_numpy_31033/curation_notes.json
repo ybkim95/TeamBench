@@ -1,0 +1,50 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 31033,
+  "pr_url": "https://github.com/numpy/numpy/pull/31033",
+  "issue_number": 31019,
+  "base_sha": "621413ba39caa072d4e1b9e0e8ca78ba434a6f01",
+  "head_sha": "02a5ec48a4293f5891c55760aa075454b610da1d",
+  "additions": 16,
+  "deletions": 0,
+  "changed_files": [
+    "numpy/_core/src/umath/matmul.c.src",
+    "numpy/_core/tests/test_ufunc.py"
+  ],
+  "test_files": [
+    "numpy/_core/tests/test_ufunc.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "arr1",
+      "arr2",
+      "array",
+      "assert_array_equal",
+      "astype",
+      "char",
+      "conjugate",
+      "copy",
+      "dtype",
+      "empty"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:03:16Z"
+}

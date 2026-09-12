@@ -1,0 +1,56 @@
+{
+  "repo": "unit8co/darts",
+  "pr_number": 2776,
+  "pr_url": "https://github.com/unit8co/darts/pull/2776",
+  "issue_number": null,
+  "base_sha": "836436d5e8f4e228d6dfcbb4b6bac12791cda7df",
+  "head_sha": "4a5dcdef24d5e85ba3f8703b1000bb858b49f687",
+  "additions": 26,
+  "deletions": 6,
+  "changed_files": [
+    "darts/models/forecasting/catboost_model.py",
+    "darts/models/forecasting/regression_model.py",
+    "darts/tests/models/forecasting/test_regression_models.py"
+  ],
+  "test_files": [
+    "darts/tests/models/forecasting/test_regression_models.py"
+  ],
+  "source_files": [
+    "darts/models/forecasting/catboost_model.py",
+    "darts/models/forecasting/regression_model.py"
+  ],
+  "parameterization": {
+    "repo": "unit8co/darts",
+    "repo_short": "darts",
+    "parameterized_identifiers": [
+      "array",
+      "cat_features",
+      "cat_param_name",
+      "catboost",
+      "categorical",
+      "columns",
+      "correct",
+      "data",
+      "does",
+      "dtype"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:00:57Z"
+}

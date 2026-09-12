@@ -1,0 +1,56 @@
+{
+  "repo": "fastapi/fastapi",
+  "pr_number": 15139,
+  "pr_url": "https://github.com/fastapi/fastapi/pull/15139",
+  "issue_number": null,
+  "base_sha": "64feaec80244578bbdabe51e866bcfad1df8b708",
+  "head_sha": "cf6054db5b8c1e54fce36cd3f78c08eeded92934",
+  "additions": 100,
+  "deletions": 37,
+  "changed_files": [
+    ".github/workflows/test.yml",
+    "pyproject.toml",
+    "tests/test_schema_compat_pydantic_v2.py",
+    "tests/test_union_body_discriminator.py",
+    "uv.lock"
+  ],
+  "test_files": [
+    "tests/test_schema_compat_pydantic_v2.py",
+    "tests/test_union_body_discriminator.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "fastapi/fastapi",
+    "repo_short": "fastapi",
+    "parameterized_identifiers": [
+      "actions",
+      "adds",
+      "admin",
+      "annotated",
+      "application",
+      "classifiers",
+      "client",
+      "cloud",
+      "components",
+      "const"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-24T00:17:53Z"
+}

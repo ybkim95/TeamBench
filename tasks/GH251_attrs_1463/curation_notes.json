@@ -1,0 +1,55 @@
+{
+  "repo": "python-attrs/attrs",
+  "pr_number": 1463,
+  "pr_url": "https://github.com/python-attrs/attrs/pull/1463",
+  "issue_number": null,
+  "base_sha": "57f0d5441c9deaac44aebbbf45e38e477651e4f2",
+  "head_sha": "080dbc59221dad4932625b93e5c2187d95b3c897",
+  "additions": 49,
+  "deletions": 7,
+  "changed_files": [
+    "changelog.d/1463.change.md",
+    "src/attr/_funcs.py",
+    "tests/test_funcs.py"
+  ],
+  "test_files": [
+    "tests/test_funcs.py"
+  ],
+  "source_files": [
+    "src/attr/_funcs.py"
+  ],
+  "parameterization": {
+    "repo": "python-attrs/attrs",
+    "repo_short": "attrs",
+    "parameterized_identifiers": [
+      "anything",
+      "appears",
+      "argument",
+      "asdict",
+      "atomic",
+      "attrs",
+      "been",
+      "bytes",
+      "complex",
+      "deeply"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-23T23:41:00Z"
+}

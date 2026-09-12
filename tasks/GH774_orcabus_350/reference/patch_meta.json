@@ -1,0 +1,15 @@
+{
+ "task": "GH774_orcabus_350",
+ "patch": "tasks/GH774_orcabus_350/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "umccr/orcabus",
+ "pr_number": 350,
+ "base_sha": "56ceae4861ee8257a5f978c90647263f8073503f",
+ "head_sha": "1e777b6166738e9f6879678e10c7eec5f6006d93",
+ "bytes": 14181,
+ "files_changed": 4,
+ "fetched_reason": "missing",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

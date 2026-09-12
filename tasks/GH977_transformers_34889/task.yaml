@@ -1,0 +1,13 @@
+task_id: GH977_transformers_34889
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix test_eager_matches_sdpa_inference for XPU backend"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/huggingface/transformers/pull/34889"
+source_issue: "N/A"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

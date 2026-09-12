@@ -30,7 +30,8 @@ check() {
 cd "${WORKSPACE}"
 
 # ── Install dependencies ──────────────────────────────────────────────
-pip install flask pytest 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require flask pytest || true
 
 # Load expected values
 EXPECTED_JSON="${REPORTS}/expected.json"
@@ -218,3 +219,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "checklist": [$findings]
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

@@ -1,0 +1,54 @@
+{
+  "repo": "microsoft/FLAML",
+  "pr_number": 1470,
+  "pr_url": "https://github.com/microsoft/FLAML/pull/1470",
+  "issue_number": null,
+  "base_sha": "7a597adcc9f9b52c0946871f6f269279b2ebdd1e",
+  "head_sha": "2687b49f6803d04b8853ca9906c8f535426bd9fe",
+  "additions": 82,
+  "deletions": 0,
+  "changed_files": [
+    "flaml/default/estimator.py",
+    "test/default/test_defaults.py"
+  ],
+  "test_files": [
+    "test/default/test_defaults.py"
+  ],
+  "source_files": [
+    "flaml/default/estimator.py"
+  ],
+  "parameterization": {
+    "repo": "microsoft/FLAML",
+    "repo_short": "FLAML",
+    "parameterized_identifiers": [
+      "append",
+      "applicable",
+      "as_frame",
+      "astype",
+      "cat1",
+      "cat2",
+      "categorical",
+      "category",
+      "choice",
+      "choose_xgb"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [
+    "No linked issue found \u2014 spec.md uses PR description only"
+  ],
+  "conversion_timestamp": "2026-03-27T16:13:54Z"
+}

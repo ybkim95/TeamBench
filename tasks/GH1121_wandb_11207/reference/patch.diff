@@ -1,0 +1,364 @@
+diff --git a/CHANGELOG.unreleased.md b/CHANGELOG.unreleased.md
+index 317e8aabe32..24b0d9b2c93 100644
+--- a/CHANGELOG.unreleased.md
++++ b/CHANGELOG.unreleased.md
+@@ -12,3 +12,12 @@ Add here any changes made in a PR that are relevant to end users. Allowed sectio
+ Section headings should be at level 3 (e.g. `### Added`).
+ 
+ ## Unreleased
++
++### Changed
++
++- When a settings file (such as `./wandb/settings` or `~/.config/wandb/settings`) contains an invalid setting, all settings files are ignored and an error is printed (@timoffex in https://github.com/wandb/wandb/pull/11207)
++
++### Fixed
++
++- After `wandb login --host <invalid-url>`, using `wandb login --host <valid-url>` works as usual (@timoffex in https://github.com/wandb/wandb/pull/11207)
++  - Regression introduced in 0.24.0
+diff --git a/tests/fixtures/mock_wandb_log.py b/tests/fixtures/mock_wandb_log.py
+index 17091126c9d..26025bdb89f 100644
+--- a/tests/fixtures/mock_wandb_log.py
++++ b/tests/fixtures/mock_wandb_log.py
+@@ -1,5 +1,6 @@
+ from __future__ import annotations
+ 
++import re
+ import textwrap
+ import unittest.mock
+ from typing import Iterable
+@@ -56,30 +57,52 @@ def __init__(
+         self._termerror = termerror
+ 
+     def assert_logged(self, msg: str) -> None:
+-        """Raise if no message passed to termlog() contains msg_re."""
+-        self._assert_logged(self._termlog, msg)
++        """Raise if no message passed to termlog() contains msg."""
++        self._assert_logged(self._termlog, contains=msg)
++
++    def assert_logged_re(self, msg_re: str) -> None:
++        """Raise if no message passed to termlog() matches msg_re."""
++        self._assert_logged(self._termlog, matches=msg_re)
+ 
+     def assert_warned(self, msg: str) -> None:
+-        """Raise if no message passed to termwarn() contains msg_re."""
+-        self._assert_logged(self._termwarn, msg)
++        """Raise if no message passed to termwarn() contains msg."""
++        self._assert_logged(self._termwarn, contains=msg)
++
++    def assert_warned_re(self, msg_re: str) -> None:
++        """Raise if no message passed to termwarn() matches msg_re."""
++        self._assert_logged(self._termwarn, matches=msg_re)
+ 
+     def assert_errored(self, msg: str) -> None:
+-        """Raise if no message passed to termerror() contains msg_re."""
+-        self._assert_logged(self._termerror, msg)
++        """Raise if no message passed to termerror() contains msg."""
++        self._assert_logged(self._termerror, contains=msg)
++
++    def assert_errored_re(self, msg_re: str) -> None:
++        """Raise if no message passed to termerror() matches msg_re."""
++        self._assert_logged(self._termerror, matches=msg_re)
+ 
+     def _assert_logged(
+         self,
+         termfunc: unittest.mock.MagicMock,
+-        expected_msg: str,
++        *,
++        contains: str | None = None,
++        matches: str | None = None,
+     ) -> None:
+         messages = list(self._logs(termfunc))
+ 
+         for msg in messages:
+-            if expected_msg in msg:
++            if matches and re.match(matches, msg):
++                return
++            if contains and contains in msg:
+                 return
+         else:
+             messages_pretty = textwrap.indent("\n".join(messages), ">    ")
+-            raise AssertionError(f"{expected_msg!r} not in any of\n{messages_pretty}")
++
++            if contains:
++                raise AssertionError(f"{contains!r} not in any of\n{messages_pretty}")
++            else:
++                raise AssertionError(
++                    f"{matches!r} does not match any of \n{messages_pretty}"
++                )
+ 
+     def _logs(self, termfunc: unittest.mock.MagicMock) -> Iterable[str]:
+         # All the term*() functions have a similar API: the message is the
+diff --git a/tests/unit_tests/test_wandb_settings.py b/tests/unit_tests/test_wandb_settings.py
+index aa94d73d8fb..553505e04db 100644
+--- a/tests/unit_tests/test_wandb_settings.py
++++ b/tests/unit_tests/test_wandb_settings.py
+@@ -16,6 +16,8 @@
+ from wandb.sdk.lib.credentials import DEFAULT_WANDB_CREDENTIALS_FILE
+ from wandb.sdk.lib.run_moment import RunMoment
+ 
++from tests.fixtures.mock_wandb_log import MockWandbLog
++
+ is_pydantic_v1 = int(PYDANTIC_VERSION[0]) == 1
+ 
+ 
+@@ -604,3 +606,94 @@ def test_program_relpath_windows(root_dir, expected_result):
+ def test_run_id_validation(restricted_chars):
+     with pytest.raises(UsageError):
+         Settings(run_id=f"test{restricted_chars}")
++
++
++def test_reads_system_settings(
++    tmp_path: pathlib.Path,
++    mock_wandb_log: MockWandbLog,
++):
++    root_dir = tmp_path / "system-settings-test-root"
++    wandb_dir = root_dir / "wandb"
++    wandb_dir.mkdir(parents=True)
++    settings_file = wandb_dir / "settings"
++    settings_file.write_text("""
++        [default]
++        base_url = https://test-url
++        project = my-project
++    """)
++    settings = Settings(
++        root_dir=str(root_dir),
++        base_url="https://initial-url",
++        project="initial-project",
++    )
++
++    settings.update_from_system_settings()
++
++    assert settings.base_url == "https://test-url"
++    assert settings.project == "my-project"
++    mock_wandb_log.assert_logged_re(
++        r"^Loading settings from .+/system-settings-test-root/wandb/settings$",
++    )
++
++
++def test_invalid_system_settings_not_applied(tmp_path: pathlib.Path):
++    root_dir = tmp_path / "system-settings-test-root"
++    wandb_dir = root_dir / "wandb"
++    wandb_dir.mkdir(parents=True)
++    settings_file = wandb_dir / "settings"
++    settings_file.write_text("""
++        [default]
++        base_url = bad-url
++        project = new-project
++    """)
++    settings = Settings(
++        root_dir=str(root_dir),
++        base_url="https://initial-url",
++        project="initial-project",
++    )
++
++    settings.update_from_system_settings()
++
++    assert settings.base_url == "https://initial-url"
++    assert settings.project == "initial-project"
++
++
++@pytest.mark.parametrize("quiet", (False, True))
++@pytest.mark.parametrize(
++    "field,field_valid,field_invalid",
++    (
++        ("project", "initial-project", "slashes/not/allowed"),
++        ("base_url", "https://initial-url", "invalid-url"),
++    ),
++)
++def test_reports_invalid_system_settings(
++    quiet: bool,
++    field: str,
++    field_valid: object,
++    field_invalid: object,
++    tmp_path: pathlib.Path,
++    mock_wandb_log: MockWandbLog,
++):
++    root_dir = tmp_path / "system-settings-test-root"
++    wandb_dir = root_dir / "wandb"
++    wandb_dir.mkdir(parents=True)
++    settings_file = wandb_dir / "settings"
++    settings_file.write_text(f"""
++        [default]
++        {field} = {field_invalid}
++    """)
++    settings = Settings(root_dir=str(root_dir), quiet=quiet)
++    setattr(settings, field, field_valid)
++
++    settings.update_from_system_settings()
++
++    assert getattr(settings, field) == field_valid
++    mock_wandb_log.assert_errored(str(field_invalid))
++    if not quiet:
++        mock_wandb_log.assert_logged_re(
++            r"^Loading settings from .+/system-settings-test-root/wandb/settings$",
++        )
++    else:
++        mock_wandb_log.assert_errored_re(
++            r"Failed to load settings from .+/system-settings-test-root/wandb/settings$",
++        )
+diff --git a/wandb/_pydantic/__init__.py b/wandb/_pydantic/__init__.py
+index c06021b0ba8..1709cf5e268 100644
+--- a/wandb/_pydantic/__init__.py
++++ b/wandb/_pydantic/__init__.py
+@@ -22,8 +22,12 @@
+     "to_json",
+     "from_json",
+     "gql_typename",
++    "ValidationError",
+ ]
+ 
++# Available in all supported Pydantic versions.
++from pydantic import ValidationError
++
+ from .base import CompatBaseModel, GQLBase, GQLInput, GQLResult, JsonableModel
+ from .field_types import GQLId, Typename
+ from .pagination import Connection, ConnectionWithTotal, Edge, PageInfo
+diff --git a/wandb/sdk/wandb_settings.py b/wandb/sdk/wandb_settings.py
+index 2a630d8b196..3eb761bd607 100644
+--- a/wandb/sdk/wandb_settings.py
++++ b/wandb/sdk/wandb_settings.py
+@@ -9,6 +9,7 @@
+ import shutil
+ import socket
+ import sys
++import traceback
+ from datetime import datetime
+ 
+ # Optional and Union are used for type hinting instead of | because
+@@ -27,6 +28,7 @@
+ from wandb._pydantic import (
+     IS_PYDANTIC_V2,
+     AliasChoices,
++    ValidationError,
+     computed_field,
+     field_validator,
+     model_validator,
+@@ -1799,38 +1801,54 @@ def read_system_settings(self) -> settings_file.SettingsFiles:
+     def update_from_system_settings(self) -> None:
+         """Load settings from the settings files.
+ 
++        If settings files contain invalid settings, prints and suppresses
++        the error.
++
+         <!-- lazydoc-ignore: internal -->
+         """
+         system_settings = self.read_system_settings()
+ 
+-        if not self.quiet and (sources := system_settings.sources):
+-            parts = ["Loaded settings from"]
+-            for source in sources:
+-                parts.append(f"  {source}")
+-            wandb.termlog("\n".join(parts))
++        if len(system_settings.sources) == 0:
++            return
++        elif len(system_settings.sources) == 1:
++            source_string = str(system_settings.sources[0])
++        else:
++            source_string = "\n" + "\n".join(
++                f"  {source}" for source in system_settings.sources
++            )
+ 
+-        value: object  # Can be transformed arbitrarily.
+-        for key, value in system_settings.all().items():
+-            if key == "ignore_globs":
+-                value = value.split(",")
++        # Print at the start so that users can diagnose uncaught exceptions.
++        if not self.quiet:
++            printed_sources = True
++            wandb.termlog(f"Loading settings from {source_string}")
++        else:
++            printed_sources = False
+ 
+-            elif key == "anonymous":
+-                wandb.termwarn(
+-                    "Deprecated setting 'anonymous' has no effect and will be"
+-                    + " removed in a future version of wandb."
+-                    + " Please delete it manually or by running `wandb login`"
+-                    + " to avoid errors.",
+-                    repeat=False,
+-                )
+-                value = deprecation.UNSET
++        try:
++            parsed_settings = _parse_system_settings(system_settings)
++        except Exception as e:
++            if not printed_sources:
++                wandb.termerror(f"Failed to load settings from {source_string}")
+ 
+-            elif key in ("settings_system", "root_dir"):
+-                wandb.termwarn(
+-                    f"Ignoring setting {key!r} which is not allowed in a settings file."
+-                    + " Please delete it manually to avoid errors in the future."
+-                )
++            if isinstance(e, ValidationError):
++                # Pydantic ValidationErrors have detailed messages that we can
++                # print without a stack trace.
++                wandb.termerror(str(e))
+ 
+-            setattr(self, key, value)
++            else:
++                # For all other errors, we need to dump a stack trace to make
++                # sure they're debuggable.
++                tb = traceback.format_exception(type(e), e, e.__traceback__)
++                wandb.termerror("".join(tb))
++
++            return
++
++        # We parse and set in different steps so that we do not partially
++        # apply a broken settings file.
++        #
++        # Note that this runs validation functions a second time, but we expect
++        # them to succeed.
++        self.update_from_settings(parsed_settings)
+ 
+     def update_from_env_vars(self, environ: Dict[str, Any]):
+         """Update settings from environment variables.
+@@ -2223,3 +2241,49 @@ def _infer_code_paths_for_jupyter(self, program: str):
+             os.path.join(self.x_jupyter_root, program)
+         )
+         self.program_relpath = program
++
++
++def _parse_system_settings(
++    system_settings: settings_file.SettingsFiles,
++) -> Settings:
++    """Validate settings from a settings file.
++
++    Returns:
++        A validated Settings object.
++
++    Raises:
++        ValidationError: on invalid data.
++        Exception: arbitrary errors can occur when constructing Settings.
++    """
++    fields: dict[str, Any] = dict()
++
++    value: object  # Can be transformed arbitrarily.
++    for key, value in system_settings.all().items():
++        if key == "ignore_globs":
++            fields[key] = value.split(",")
++
++        elif key == "anonymous":
++            wandb.termwarn(
++                "Deprecated setting 'anonymous' has no effect and will be"
++                + " removed in a future version of wandb."
++                + " Please delete it manually or by running `wandb login`"
++                + " to avoid errors.",
++                repeat=False,
++            )
++            fields[key] = deprecation.UNSET
++
++        elif key in ("settings_system", "root_dir"):
++            wandb.termwarn(
++                f"Ignoring setting {key!r} which is not allowed in a settings file."
++                + " Please delete it manually to avoid errors in the future."
++            )
++
++        else:
++            fields[key] = value
++
++    # NOTE: Field validators must raise ValueError for Pydantic to wrap them
++    # in a ValidationError. Other kinds of errors will bubble up unaltered.
++    #
++    # Unfortunately, some validators return a UsageError, which has special
++    # handling in the CLI and may require care to change.
++    return Settings(**fields)

@@ -185,11 +185,14 @@ print('DELETE_OK')
 \"" "delete_wrong_behavior"
 
   # 12. Attestation check
-  check "python3 -c \"
-import json, sys
-att = json.load(open('$SUBMISSION/attestation.json'))
-assert att.get('verdict') == 'pass', f'Attestation verdict: {att.get(\"verdict\")}'
-\" " "bad_attestation"
+# ── Attestation recorded as METADATA, never scored ───────────────────────
+# de-scored-by: scripts/repair_graders.py (R3 attestation-is-protocol)
+# attestation.json is a PROTOCOL property of the run (already enforced as a
+# hard gate in harness/grade_task.py), not a property of the submitted
+# artifact. Scoring it let an agent buy partial credit by writing one JSON
+# file, which is the confound behind the withdrawn "removing the Verifier
+# improves partial score" result. Recorded here, excluded from partial_score.
+echo "metadata: attestation_present=$([ -f "${SUBMISSION:-}/attestation.json" ] && echo yes || echo no)"
 
 elif [ "$DOMAIN" = "inventory" ]; then
 
@@ -338,11 +341,6 @@ print('PUT_UPDATE_OK')
 \"" "put_update_fails"
 
   # 12. Attestation check
-  check "python3 -c \"
-import json, sys
-att = json.load(open('$SUBMISSION/attestation.json'))
-assert att.get('verdict') == 'pass', f'Attestation verdict: {att.get(\"verdict\")}'
-\" " "bad_attestation"
 
 elif [ "$DOMAIN" = "booking" ]; then
 
@@ -526,11 +524,6 @@ print('FILTER_BY_ROOM_ID_OK')
 \"" "filter_by_room_id_fails"
 
   # 12. Attestation check
-  check "python3 -c \"
-import json, sys
-att = json.load(open('$SUBMISSION/attestation.json'))
-assert att.get('verdict') == 'pass', f'Attestation verdict: {att.get(\"verdict\")}'
-\" " "bad_attestation"
 
 elif [ "$DOMAIN" = "user_management" ]; then
 
@@ -678,11 +671,6 @@ print('PUT_NO_PASSWORD_OK')
 \"" "put_exposes_password_or_fails"
 
   # 12. Attestation check
-  check "python3 -c \"
-import json, sys
-att = json.load(open('$SUBMISSION/attestation.json'))
-assert att.get('verdict') == 'pass', f'Attestation verdict: {att.get(\"verdict\")}'
-\" " "bad_attestation"
 
 else
   # Domain: blog (seed % 5 == 4)
@@ -829,11 +817,6 @@ print('FILTER_BY_STATUS_OK')
 \"" "filter_by_status_fails"
 
   # 12. Attestation check
-  check "python3 -c \"
-import json, sys
-att = json.load(open('$SUBMISSION/attestation.json'))
-assert att.get('verdict') == 'pass', f'Attestation verdict: {att.get(\"verdict\")}'
-\" " "bad_attestation"
 
 fi
 

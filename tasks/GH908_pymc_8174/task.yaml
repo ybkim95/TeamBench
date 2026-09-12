@@ -1,0 +1,13 @@
+task_id: GH908_pymc_8174
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "Fix broadcast check on log_jac_det"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pymc-devs/pymc/pull/8174"
+source_issue: "https://github.com/pymc-devs/pymc/issues/8173"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]

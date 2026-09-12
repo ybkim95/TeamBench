@@ -1,0 +1,51 @@
+{
+  "repo": "numpy/numpy",
+  "pr_number": 30965,
+  "pr_url": "https://github.com/numpy/numpy/pull/30965",
+  "issue_number": 27696,
+  "base_sha": "3f199ea46c4114e966ce2a47f207be7a0c181c26",
+  "head_sha": "09f1a4316c7fdd3b2066a1838f96759c00d9dc09",
+  "additions": 53,
+  "deletions": 0,
+  "changed_files": [
+    "doc/release/upcoming_changes/30965.improvement.rst",
+    "numpy/f2py/src/fortranobject.c",
+    "numpy/f2py/tests/test_modules.py"
+  ],
+  "test_files": [
+    "numpy/f2py/tests/test_modules.py"
+  ],
+  "source_files": [],
+  "parameterization": {
+    "repo": "numpy/numpy",
+    "repo_short": "numpy",
+    "parameterized_identifiers": [
+      "accessibility",
+      "allocatable",
+      "appear",
+      "arrays",
+      "contains",
+      "data",
+      "data_array",
+      "datonly",
+      "defs",
+      "destructor"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T15:56:10Z"
+}

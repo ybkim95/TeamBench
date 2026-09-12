@@ -1,0 +1,15 @@
+{
+ "task": "GH1046_transformers_43675",
+ "patch": "tasks/GH1046_transformers_43675/reference/patch.diff",
+ "complete": true,
+ "problems": [],
+ "source": "github_api_pull_diff",
+ "repo": "huggingface/transformers",
+ "pr_number": 43675,
+ "base_sha": "8fce0a18de037689384bc4b21da5107127eda539",
+ "head_sha": "9ff1d825c710c60200c0a263fca9bb72fa24ab70",
+ "bytes": 3593,
+ "files_changed": 2,
+ "fetched_reason": "truncated",
+ "note": "Authoritative upstream diff fetched from the GitHub API. GRADER-ONLY: harness ReadFileTool denies any path containing a 'reference' component, so no agent role can read this."
+}

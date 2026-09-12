@@ -1,0 +1,52 @@
+{
+  "repo": "statsmodels/statsmodels",
+  "pr_number": 9413,
+  "pr_url": "https://github.com/statsmodels/statsmodels/pull/9413",
+  "issue_number": 9412,
+  "base_sha": "0838f111df35d73fdd921ed3007099b56928ce4f",
+  "head_sha": "58cfd998cb7a454113325648ab5a5ed0d3515599",
+  "additions": 98,
+  "deletions": 130,
+  "changed_files": [
+    "statsmodels/tsa/vector_ar/tests/test_var.py",
+    "statsmodels/tsa/vector_ar/var_model.py"
+  ],
+  "test_files": [
+    "statsmodels/tsa/vector_ar/tests/test_var.py"
+  ],
+  "source_files": [
+    "statsmodels/tsa/vector_ar/var_model.py"
+  ],
+  "parameterization": {
+    "repo": "statsmodels/statsmodels",
+    "repo_short": "statsmodels",
+    "parameterized_identifiers": [
+      "account",
+      "acorr",
+      "acorrs",
+      "adjusted",
+      "alpha",
+      "among",
+      "annotations",
+      "append",
+      "arange",
+      "argmin"
+    ],
+    "seed_variants": [
+      {
+        "seed": 0,
+        "suffix": ""
+      },
+      {
+        "seed": 1,
+        "suffix": "_v2"
+      },
+      {
+        "seed": 2,
+        "suffix": "_v3"
+      }
+    ]
+  },
+  "warnings": [],
+  "conversion_timestamp": "2026-03-27T16:10:26Z"
+}

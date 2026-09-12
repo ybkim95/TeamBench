@@ -9,7 +9,8 @@ TASK_DIR="${4:-/task}"
 cd "$WORKSPACE"
 
 # Run coverage measurement
-pip install pytest pytest-cov coverage 2>/dev/null || true
+# was: pip install (grade-time network fetch), replaced scripts/make_graders_hermetic.py
+tb_require pytest pytest-cov coverage || true
 coverage_output=$(python -m pytest --cov=validator --cov-branch --cov-report=term 2>&1 || true)
 
 # Extract branch coverage percentage
@@ -35,3 +36,5 @@ cat > "${REPORTS}/score.json" <<EOF
   "failure_modes": []
 }
 EOF
+
+# hermetic-by: scripts/make_graders_hermetic.py

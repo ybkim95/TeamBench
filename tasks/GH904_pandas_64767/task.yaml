@@ -1,0 +1,13 @@
+task_id: GH904_pandas_64767
+category: Real-World GitHub
+difficulty: medium
+languages: [python]
+description: "BUG: MultiIndex.sortlevel raises TypeError for incomparable types"
+tni_pattern: A
+parameterized: true
+seeds: [0, 1, 2]
+source_pr: "https://github.com/pandas-dev/pandas/pull/64767"
+source_issue: "https://github.com/pandas-dev/pandas/issues/21136"
+network: false
+time_limit_sec: 900
+tags: [github-sourced, real-world, automated-conversion]
