@@ -1,0 +1,2270 @@
+{
+  "per_model": {
+    "claude-haiku-4.5": {
+      "mcnemar": {
+        "n_tasks": 116,
+        "both_pass": 10,
+        "oracle_only": 1,
+        "team_only": 25,
+        "both_fail": 80,
+        "team_unique_win_rate": 0.21551724137931033,
+        "oracle_unique_win_rate": 0.008620689655172414,
+        "mcnemar_chi2": 20.3462,
+        "mcnemar_p": 6e-06,
+        "significant_005": true
+      },
+      "partial_score": {
+        "n_tasks": 116,
+        "mean_oracle_partial": 0.5595,
+        "mean_full_partial": 0.7436,
+        "mean_improvement": 0.1841,
+        "median_improvement": 0.1,
+        "improved": 80,
+        "worsened": 8,
+        "tied": 28,
+        "wilcoxon_stat": 286.0,
+        "wilcoxon_p_twosided": 0.0,
+        "wilcoxon_p_greater": 0.0,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 116,
+        "oracle_pass_rate": 0.0948,
+        "full_pass_rate": 0.3017,
+        "absolute_uplift": 0.2069,
+        "relative_uplift": 2.1818,
+        "cohens_h": 0.537,
+        "cohens_h_interpretation": "medium",
+        "odds_ratio": 3.996,
+        "odds_ratio_ci95": [
+          1.9351,
+          8.2517
+        ],
+        "nnt": 4.83,
+        "z_test_p": 7.7e-05,
+        "significant_005": true
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.4286,
+        "team_no_plan_rate": 0.1786,
+        "team_no_verify_rate": 0.2143,
+        "best_ablated_rate": 0.2143,
+        "best_ablated": "team_no_verify",
+        "assembly_bonus": 0.2143,
+        "synergy_exists": true,
+        "planning_value": 0.25,
+        "verification_value": 0.2143
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.1071,
+          "team_no_plan": 0.1786,
+          "team_no_verify": 0.2143,
+          "full": 0.4286,
+          "oracle": 0.1429
+        },
+        "marginal_contribution": {
+          "planner": 0.25,
+          "verifier": 0.2143
+        },
+        "shapley_values": {
+          "planner": 0.1786,
+          "verifier": 0.1429
+        },
+        "interaction_term": 0.1429,
+        "superadditive": true
+      }
+    },
+    "claude-sonnet-4.6": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 7,
+        "oracle_only": 0,
+        "team_only": 5,
+        "both_fail": 16,
+        "team_unique_win_rate": 0.17857142857142858,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 3.2,
+        "mcnemar_p": 0.073638,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.7875,
+        "mean_full_partial": 0.6686,
+        "mean_improvement": -0.1189,
+        "median_improvement": 0.0,
+        "improved": 7,
+        "worsened": 11,
+        "tied": 10,
+        "wilcoxon_stat": 46.0,
+        "wilcoxon_p_twosided": 0.089767,
+        "wilcoxon_p_greater": 0.959286,
+        "significant_005": false
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.25,
+        "full_pass_rate": 0.4286,
+        "absolute_uplift": 0.1786,
+        "relative_uplift": 0.7143,
+        "cohens_h": 0.3803,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 2.1717,
+        "odds_ratio_ci95": [
+          0.716,
+          6.5866
+        ],
+        "nnt": 5.6,
+        "z_test_p": 0.158188,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.4286,
+        "team_no_plan_rate": 0.3571,
+        "team_no_verify_rate": 0.3571,
+        "best_ablated_rate": 0.3571,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0714,
+        "synergy_exists": true,
+        "planning_value": 0.0714,
+        "verification_value": 0.0714
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.1786,
+          "team_no_plan": 0.3571,
+          "team_no_verify": 0.3571,
+          "full": 0.4286,
+          "oracle": 0.25
+        },
+        "marginal_contribution": {
+          "planner": 0.0714,
+          "verifier": 0.0714
+        },
+        "shapley_values": {
+          "planner": 0.125,
+          "verifier": 0.125
+        },
+        "interaction_term": -0.1071,
+        "superadditive": false
+      }
+    },
+    "codegemma-7b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 28,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.0,
+        "mean_full_partial": 0.0,
+        "mean_improvement": 0.0,
+        "median_improvement": 0.0,
+        "improved": 0,
+        "worsened": 0,
+        "tied": 28,
+        "wilcoxon_stat": null,
+        "wilcoxon_p_twosided": null,
+        "wilcoxon_p_greater": null,
+        "significant_005": null
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0192,
+          52.1559
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "deepseek-r1-32b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 28,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.3262,
+        "mean_full_partial": 0.1269,
+        "mean_improvement": -0.1993,
+        "median_improvement": -0.0355,
+        "improved": 1,
+        "worsened": 14,
+        "tied": 13,
+        "wilcoxon_stat": 4.0,
+        "wilcoxon_p_twosided": 0.000427,
+        "wilcoxon_p_greater": 0.999847,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0192,
+          52.1559
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "devstral-24b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 28,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.0,
+        "mean_full_partial": 0.0,
+        "mean_improvement": 0.0,
+        "median_improvement": 0.0,
+        "improved": 0,
+        "worsened": 0,
+        "tied": 28,
+        "wilcoxon_stat": null,
+        "wilcoxon_p_twosided": null,
+        "wilcoxon_p_greater": null,
+        "significant_005": null
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0192,
+          52.1559
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "gemini-3-flash": {
+      "mcnemar": {
+        "n_tasks": 213,
+        "both_pass": 30,
+        "oracle_only": 2,
+        "team_only": 41,
+        "both_fail": 140,
+        "team_unique_win_rate": 0.19248826291079812,
+        "oracle_unique_win_rate": 0.009389671361502348,
+        "mcnemar_chi2": 33.5814,
+        "mcnemar_p": 0.0,
+        "significant_005": true
+      },
+      "partial_score": {
+        "n_tasks": 213,
+        "mean_oracle_partial": 0.5948,
+        "mean_full_partial": 0.67,
+        "mean_improvement": 0.0752,
+        "median_improvement": 0.0,
+        "improved": 94,
+        "worsened": 20,
+        "tied": 99,
+        "wilcoxon_stat": 1358.5,
+        "wilcoxon_p_twosided": 0.0,
+        "wilcoxon_p_greater": 0.0,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 213,
+        "oracle_pass_rate": 0.1502,
+        "full_pass_rate": 0.3333,
+        "absolute_uplift": 0.1831,
+        "relative_uplift": 1.2187,
+        "cohens_h": 0.4349,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 2.8021,
+        "odds_ratio_ci95": [
+          1.7529,
+          4.4793
+        ],
+        "nnt": 5.46,
+        "z_test_p": 1e-05,
+        "significant_005": true
+      },
+      "assembly_bonus": {
+        "n_tasks": 160,
+        "full_rate": 0.3937,
+        "team_no_plan_rate": 0.2,
+        "team_no_verify_rate": 0.3375,
+        "best_ablated_rate": 0.3375,
+        "best_ablated": "team_no_verify",
+        "assembly_bonus": 0.0562,
+        "synergy_exists": true,
+        "planning_value": 0.1937,
+        "verification_value": 0.0562
+      },
+      "role_contribution": {
+        "n_tasks": 160,
+        "pass_rates": {
+          "restricted": 0.1437,
+          "team_no_plan": 0.2,
+          "team_no_verify": 0.3375,
+          "full": 0.3937,
+          "oracle": 0.1812
+        },
+        "marginal_contribution": {
+          "planner": 0.1937,
+          "verifier": 0.0562
+        },
+        "shapley_values": {
+          "planner": 0.1938,
+          "verifier": 0.0562
+        },
+        "interaction_term": -0.0,
+        "superadditive": false
+      }
+    },
+    "gemini-3.1-lite": {
+      "mcnemar": {
+        "n_tasks": 119,
+        "both_pass": 4,
+        "oracle_only": 2,
+        "team_only": 18,
+        "both_fail": 95,
+        "team_unique_win_rate": 0.15126050420168066,
+        "oracle_unique_win_rate": 0.01680672268907563,
+        "mcnemar_chi2": 11.25,
+        "mcnemar_p": 0.000796,
+        "significant_005": true
+      },
+      "partial_score": {
+        "n_tasks": 119,
+        "mean_oracle_partial": 0.4851,
+        "mean_full_partial": 0.5628,
+        "mean_improvement": 0.0777,
+        "median_improvement": 0.0,
+        "improved": 48,
+        "worsened": 12,
+        "tied": 59,
+        "wilcoxon_stat": 305.5,
+        "wilcoxon_p_twosided": 7e-06,
+        "wilcoxon_p_greater": 4e-06,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 119,
+        "oracle_pass_rate": 0.0504,
+        "full_pass_rate": 0.1849,
+        "absolute_uplift": 0.1345,
+        "relative_uplift": 2.6667,
+        "cohens_h": 0.436,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 4.0296,
+        "odds_ratio_ci95": [
+          1.6159,
+          10.0487
+        ],
+        "nnt": 7.44,
+        "z_test_p": 0.001286,
+        "significant_005": true
+      },
+      "assembly_bonus": {
+        "n_tasks": 31,
+        "full_rate": 0.3226,
+        "team_no_plan_rate": 0.129,
+        "team_no_verify_rate": 0.2258,
+        "best_ablated_rate": 0.2258,
+        "best_ablated": "team_no_verify",
+        "assembly_bonus": 0.0968,
+        "synergy_exists": true,
+        "planning_value": 0.1935,
+        "verification_value": 0.0968
+      },
+      "role_contribution": {
+        "n_tasks": 31,
+        "pass_rates": {
+          "restricted": 0.129,
+          "team_no_plan": 0.129,
+          "team_no_verify": 0.2258,
+          "full": 0.3226,
+          "oracle": 0.0968
+        },
+        "marginal_contribution": {
+          "planner": 0.1935,
+          "verifier": 0.0968
+        },
+        "shapley_values": {
+          "planner": 0.1452,
+          "verifier": 0.0484
+        },
+        "interaction_term": 0.0968,
+        "superadditive": true
+      }
+    },
+    "gemini-3.1-pro": {
+      "mcnemar": {
+        "n_tasks": 100,
+        "both_pass": 11,
+        "oracle_only": 2,
+        "team_only": 14,
+        "both_fail": 73,
+        "team_unique_win_rate": 0.14,
+        "oracle_unique_win_rate": 0.02,
+        "mcnemar_chi2": 7.5625,
+        "mcnemar_p": 0.00596,
+        "significant_005": true
+      },
+      "partial_score": {
+        "n_tasks": 100,
+        "mean_oracle_partial": 0.5314,
+        "mean_full_partial": 0.5766,
+        "mean_improvement": 0.0452,
+        "median_improvement": 0.0,
+        "improved": 40,
+        "worsened": 9,
+        "tied": 51,
+        "wilcoxon_stat": 284.0,
+        "wilcoxon_p_twosided": 0.00081,
+        "wilcoxon_p_greater": 0.000405,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 100,
+        "oracle_pass_rate": 0.13,
+        "full_pass_rate": 0.25,
+        "absolute_uplift": 0.12,
+        "relative_uplift": 0.9231,
+        "cohens_h": 0.3095,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 2.1891,
+        "odds_ratio_ci95": [
+          1.0571,
+          4.5336
+        ],
+        "nnt": 8.33,
+        "z_test_p": 0.030545,
+        "significant_005": true
+      },
+      "assembly_bonus": {
+        "n_tasks": 100,
+        "full_rate": 0.25,
+        "team_no_plan_rate": 0.15,
+        "team_no_verify_rate": 0.23,
+        "best_ablated_rate": 0.23,
+        "best_ablated": "team_no_verify",
+        "assembly_bonus": 0.02,
+        "synergy_exists": true,
+        "planning_value": 0.1,
+        "verification_value": 0.02
+      },
+      "role_contribution": {
+        "n_tasks": 100,
+        "pass_rates": {
+          "restricted": 0.13,
+          "team_no_plan": 0.15,
+          "team_no_verify": 0.23,
+          "full": 0.25,
+          "oracle": 0.13
+        },
+        "marginal_contribution": {
+          "planner": 0.1,
+          "verifier": 0.02
+        },
+        "shapley_values": {
+          "planner": 0.1,
+          "verifier": 0.02
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "gemma3-27b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 28,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.1519,
+        "mean_full_partial": 0.0,
+        "mean_improvement": -0.1519,
+        "median_improvement": 0.0,
+        "improved": 0,
+        "worsened": 11,
+        "tied": 17,
+        "wilcoxon_stat": 0.0,
+        "wilcoxon_p_twosided": 0.000977,
+        "wilcoxon_p_greater": 1.0,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0192,
+          52.1559
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "glm4-9b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 28,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.3318,
+        "mean_full_partial": 0.3497,
+        "mean_improvement": 0.0179,
+        "median_improvement": 0.0,
+        "improved": 1,
+        "worsened": 0,
+        "tied": 27,
+        "wilcoxon_stat": null,
+        "wilcoxon_p_twosided": null,
+        "wilcoxon_p_greater": null,
+        "significant_005": null
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0192,
+          52.1559
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "gpt-5-mini": {
+      "mcnemar": {
+        "n_tasks": 89,
+        "both_pass": 9,
+        "oracle_only": 4,
+        "team_only": 16,
+        "both_fail": 60,
+        "team_unique_win_rate": 0.1797752808988764,
+        "oracle_unique_win_rate": 0.0449438202247191,
+        "mcnemar_chi2": 6.05,
+        "mcnemar_p": 0.013906,
+        "significant_005": true
+      },
+      "partial_score": {
+        "n_tasks": 89,
+        "mean_oracle_partial": 0.6592,
+        "mean_full_partial": 0.7213,
+        "mean_improvement": 0.0621,
+        "median_improvement": 0.0,
+        "improved": 37,
+        "worsened": 11,
+        "tied": 41,
+        "wilcoxon_stat": 365.0,
+        "wilcoxon_p_twosided": 0.021522,
+        "wilcoxon_p_greater": 0.010761,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 89,
+        "oracle_pass_rate": 0.1461,
+        "full_pass_rate": 0.2809,
+        "absolute_uplift": 0.1348,
+        "relative_uplift": 0.9231,
+        "cohens_h": 0.3329,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 2.2403,
+        "odds_ratio_ci95": [
+          1.0708,
+          4.6873
+        ],
+        "nnt": 7.42,
+        "z_test_p": 0.028163,
+        "significant_005": true
+      },
+      "assembly_bonus": {
+        "n_tasks": 70,
+        "full_rate": 0.2714,
+        "team_no_plan_rate": 0.1571,
+        "team_no_verify_rate": 0.2,
+        "best_ablated_rate": 0.2,
+        "best_ablated": "team_no_verify",
+        "assembly_bonus": 0.0714,
+        "synergy_exists": true,
+        "planning_value": 0.1143,
+        "verification_value": 0.0714
+      },
+      "role_contribution": {
+        "n_tasks": 70,
+        "pass_rates": {
+          "restricted": 0.0571,
+          "team_no_plan": 0.1571,
+          "team_no_verify": 0.2,
+          "full": 0.2714,
+          "oracle": 0.0857
+        },
+        "marginal_contribution": {
+          "planner": 0.1143,
+          "verifier": 0.0714
+        },
+        "shapley_values": {
+          "planner": 0.1286,
+          "verifier": 0.0857
+        },
+        "interaction_term": -0.0286,
+        "superadditive": false
+      }
+    },
+    "gpt-5-nano": {
+      "mcnemar": {
+        "n_tasks": 116,
+        "both_pass": 2,
+        "oracle_only": 5,
+        "team_only": 9,
+        "both_fail": 100,
+        "team_unique_win_rate": 0.07758620689655173,
+        "oracle_unique_win_rate": 0.04310344827586207,
+        "mcnemar_chi2": 0.6429,
+        "mcnemar_p": 0.422678,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 116,
+        "mean_oracle_partial": 0.497,
+        "mean_full_partial": 0.5238,
+        "mean_improvement": 0.0269,
+        "median_improvement": 0.0,
+        "improved": 49,
+        "worsened": 28,
+        "tied": 39,
+        "wilcoxon_stat": 1221.5,
+        "wilcoxon_p_twosided": 0.155063,
+        "wilcoxon_p_greater": 0.077531,
+        "significant_005": false
+      },
+      "effect_size": {
+        "n_tasks": 116,
+        "oracle_pass_rate": 0.0603,
+        "full_pass_rate": 0.0948,
+        "absolute_uplift": 0.0345,
+        "relative_uplift": 0.5714,
+        "cohens_h": 0.1297,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.5915,
+        "odds_ratio_ci95": [
+          0.6106,
+          4.1481
+        ],
+        "nnt": 29.0,
+        "z_test_p": 0.326268,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.1786,
+        "team_no_plan_rate": 0.1429,
+        "team_no_verify_rate": 0.1786,
+        "best_ablated_rate": 0.1786,
+        "best_ablated": "team_no_verify",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0357,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.1429,
+          "team_no_verify": 0.1786,
+          "full": 0.1786,
+          "oracle": 0.1429
+        },
+        "marginal_contribution": {
+          "planner": 0.0357,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.1071,
+          "verifier": 0.0714
+        },
+        "interaction_term": -0.1429,
+        "superadditive": false
+      }
+    },
+    "gpt-5.3-chat": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 3,
+        "oracle_only": 1,
+        "team_only": 5,
+        "both_fail": 19,
+        "team_unique_win_rate": 0.17857142857142858,
+        "oracle_unique_win_rate": 0.03571428571428571,
+        "mcnemar_chi2": 1.5,
+        "mcnemar_p": 0.220671,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.6112,
+        "mean_full_partial": 0.6667,
+        "mean_improvement": 0.0555,
+        "median_improvement": 0.08,
+        "improved": 17,
+        "worsened": 4,
+        "tied": 7,
+        "wilcoxon_stat": 54.0,
+        "wilcoxon_p_twosided": 0.031919,
+        "wilcoxon_p_greater": 0.01596,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.1429,
+        "full_pass_rate": 0.2857,
+        "absolute_uplift": 0.1429,
+        "relative_uplift": 1.0,
+        "cohens_h": 0.3527,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 2.2575,
+        "odds_ratio_ci95": [
+          0.6249,
+          8.1555
+        ],
+        "nnt": 7.0,
+        "z_test_p": 0.192685,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.2857,
+        "team_no_plan_rate": 0.0714,
+        "team_no_verify_rate": 0.2143,
+        "best_ablated_rate": 0.2143,
+        "best_ablated": "team_no_verify",
+        "assembly_bonus": 0.0714,
+        "synergy_exists": true,
+        "planning_value": 0.2143,
+        "verification_value": 0.0714
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.1071,
+          "team_no_plan": 0.0714,
+          "team_no_verify": 0.2143,
+          "full": 0.2857,
+          "oracle": 0.1429
+        },
+        "marginal_contribution": {
+          "planner": 0.2143,
+          "verifier": 0.0714
+        },
+        "shapley_values": {
+          "planner": 0.1607,
+          "verifier": 0.0179
+        },
+        "interaction_term": 0.1071,
+        "superadditive": true
+      }
+    },
+    "gpt-5.4": {
+      "mcnemar": {
+        "n_tasks": 116,
+        "both_pass": 11,
+        "oracle_only": 0,
+        "team_only": 21,
+        "both_fail": 84,
+        "team_unique_win_rate": 0.1810344827586207,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 19.0476,
+        "mcnemar_p": 1.3e-05,
+        "significant_005": true
+      },
+      "partial_score": {
+        "n_tasks": 116,
+        "mean_oracle_partial": 0.6078,
+        "mean_full_partial": 0.6594,
+        "mean_improvement": 0.0515,
+        "median_improvement": 0.0,
+        "improved": 51,
+        "worsened": 14,
+        "tied": 51,
+        "wilcoxon_stat": 494.0,
+        "wilcoxon_p_twosided": 0.000156,
+        "wilcoxon_p_greater": 7.8e-05,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 116,
+        "oracle_pass_rate": 0.0948,
+        "full_pass_rate": 0.2759,
+        "absolute_uplift": 0.181,
+        "relative_uplift": 1.9091,
+        "cohens_h": 0.4799,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 3.5284,
+        "odds_ratio_ci95": [
+          1.6989,
+          7.3279
+        ],
+        "nnt": 5.52,
+        "z_test_p": 0.000388,
+        "significant_005": true
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.4643,
+        "team_no_plan_rate": 0.3571,
+        "team_no_verify_rate": 0.2143,
+        "best_ablated_rate": 0.3571,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.1071,
+        "synergy_exists": true,
+        "planning_value": 0.1071,
+        "verification_value": 0.25
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.3571,
+          "team_no_verify": 0.2143,
+          "full": 0.4643,
+          "oracle": 0.1071
+        },
+        "marginal_contribution": {
+          "planner": 0.1071,
+          "verifier": 0.25
+        },
+        "shapley_values": {
+          "planner": 0.1607,
+          "verifier": 0.3036
+        },
+        "interaction_term": -0.1071,
+        "superadditive": false
+      }
+    },
+    "gpt-oss-20b": {
+      "mcnemar": {
+        "n_tasks": 116,
+        "both_pass": 1,
+        "oracle_only": 1,
+        "team_only": 1,
+        "both_fail": 113,
+        "team_unique_win_rate": 0.008620689655172414,
+        "oracle_unique_win_rate": 0.008620689655172414,
+        "mcnemar_chi2": 0.5,
+        "mcnemar_p": 0.4795,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 116,
+        "mean_oracle_partial": 0.1082,
+        "mean_full_partial": 0.0733,
+        "mean_improvement": -0.0349,
+        "median_improvement": 0.0,
+        "improved": 6,
+        "worsened": 9,
+        "tied": 101,
+        "wilcoxon_stat": 25.0,
+        "wilcoxon_p_twosided": 0.047913,
+        "wilcoxon_p_greater": 0.97937,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 116,
+        "oracle_pass_rate": 0.0172,
+        "full_pass_rate": 0.0172,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.17,
+          5.8833
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 116,
+        "full_rate": 0.0172,
+        "team_no_plan_rate": 0.0086,
+        "team_no_verify_rate": 0.0086,
+        "best_ablated_rate": 0.0086,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0086,
+        "synergy_exists": true,
+        "planning_value": 0.0086,
+        "verification_value": 0.0086
+      },
+      "role_contribution": {
+        "n_tasks": 116,
+        "pass_rates": {
+          "restricted": 0.0086,
+          "team_no_plan": 0.0086,
+          "team_no_verify": 0.0086,
+          "full": 0.0172,
+          "oracle": 0.0172
+        },
+        "marginal_contribution": {
+          "planner": 0.0086,
+          "verifier": 0.0086
+        },
+        "shapley_values": {
+          "planner": 0.0043,
+          "verifier": 0.0043
+        },
+        "interaction_term": 0.0086,
+        "superadditive": true
+      }
+    },
+    "phi4-14b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 28,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.3247,
+        "mean_full_partial": 0.3497,
+        "mean_improvement": 0.025,
+        "median_improvement": 0.0,
+        "improved": 2,
+        "worsened": 0,
+        "tied": 26,
+        "wilcoxon_stat": null,
+        "wilcoxon_p_twosided": null,
+        "wilcoxon_p_greater": null,
+        "significant_005": null
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0192,
+          52.1559
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "phi4-mini": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 28,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.3283,
+        "mean_full_partial": 0.3497,
+        "mean_improvement": 0.0214,
+        "median_improvement": 0.0,
+        "improved": 1,
+        "worsened": 0,
+        "tied": 27,
+        "wilcoxon_stat": null,
+        "wilcoxon_p_twosided": null,
+        "wilcoxon_p_greater": null,
+        "significant_005": null
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0192,
+          52.1559
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "qwen2.5-coder-32b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 28,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.3498,
+        "mean_full_partial": 0.3348,
+        "mean_improvement": -0.015,
+        "median_improvement": 0.0,
+        "improved": 2,
+        "worsened": 2,
+        "tied": 24,
+        "wilcoxon_stat": null,
+        "wilcoxon_p_twosided": null,
+        "wilcoxon_p_greater": null,
+        "significant_005": null
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0192,
+          52.1559
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "qwen3-14b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 2,
+        "both_fail": 26,
+        "team_unique_win_rate": 0.07142857142857142,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.5,
+        "mcnemar_p": 0.4795,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.295,
+        "mean_full_partial": 0.3279,
+        "mean_improvement": 0.0328,
+        "median_improvement": 0.0,
+        "improved": 9,
+        "worsened": 7,
+        "tied": 12,
+        "wilcoxon_stat": 58.5,
+        "wilcoxon_p_twosided": 0.668549,
+        "wilcoxon_p_greater": 0.334274,
+        "significant_005": false
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0714,
+        "absolute_uplift": 0.0714,
+        "relative_uplift": 71.4286,
+        "cohens_h": 0.5411,
+        "cohens_h_interpretation": "medium",
+        "odds_ratio": 5.3774,
+        "odds_ratio_ci95": [
+          0.2466,
+          117.2536
+        ],
+        "nnt": 14.0,
+        "z_test_p": 0.149821,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0714,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0714,
+        "synergy_exists": true,
+        "planning_value": 0.0714,
+        "verification_value": 0.0714
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0714,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0714,
+          "verifier": 0.0714
+        },
+        "shapley_values": {
+          "planner": 0.0357,
+          "verifier": 0.0357
+        },
+        "interaction_term": 0.0714,
+        "superadditive": true
+      }
+    },
+    "qwen3-4b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 28,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.26,
+        "mean_full_partial": 0.1807,
+        "mean_improvement": -0.0793,
+        "median_improvement": 0.0,
+        "improved": 2,
+        "worsened": 8,
+        "tied": 18,
+        "wilcoxon_stat": 14.0,
+        "wilcoxon_p_twosided": 0.193359,
+        "wilcoxon_p_greater": 0.919922,
+        "significant_005": false
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0192,
+          52.1559
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0357,
+        "best_ablated_rate": 0.0357,
+        "best_ablated": "team_no_verify",
+        "assembly_bonus": -0.0357,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": -0.0357
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0357,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": -0.0357
+        },
+        "shapley_values": {
+          "planner": 0.0179,
+          "verifier": -0.0179
+        },
+        "interaction_term": -0.0357,
+        "superadditive": false
+      }
+    },
+    "qwen3-8b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 1,
+        "both_fail": 27,
+        "team_unique_win_rate": 0.03571428571428571,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.3197,
+        "mean_full_partial": 0.2954,
+        "mean_improvement": -0.0243,
+        "median_improvement": 0.0,
+        "improved": 8,
+        "worsened": 7,
+        "tied": 13,
+        "wilcoxon_stat": 55.0,
+        "wilcoxon_p_twosided": 0.803955,
+        "wilcoxon_p_greater": 0.619232,
+        "significant_005": false
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0357,
+        "absolute_uplift": 0.0357,
+        "relative_uplift": 35.7143,
+        "cohens_h": 0.3803,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 3.1091,
+        "odds_ratio_ci95": [
+          0.1214,
+          79.6461
+        ],
+        "nnt": 28.0,
+        "z_test_p": 0.312951,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0357,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0357,
+        "synergy_exists": true,
+        "planning_value": 0.0357,
+        "verification_value": 0.0357
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0357,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0357,
+          "verifier": 0.0357
+        },
+        "shapley_values": {
+          "planner": 0.0179,
+          "verifier": 0.0179
+        },
+        "interaction_term": 0.0357,
+        "superadditive": true
+      }
+    },
+    "qwen3-coder-30b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 1,
+        "team_only": 0,
+        "both_fail": 27,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.03571428571428571,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.2429,
+        "mean_full_partial": 0.0296,
+        "mean_improvement": -0.2132,
+        "median_improvement": 0.0,
+        "improved": 1,
+        "worsened": 8,
+        "tied": 19,
+        "wilcoxon_stat": 1.0,
+        "wilcoxon_p_twosided": 0.007812,
+        "wilcoxon_p_greater": 0.998047,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0357,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": -0.0357,
+        "relative_uplift": -1.0,
+        "cohens_h": -0.3803,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 0.3216,
+        "odds_ratio_ci95": [
+          0.0126,
+          8.2394
+        ],
+        "nnt": null,
+        "z_test_p": 0.312951,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0357,
+        "team_no_verify_rate": 0.0357,
+        "best_ablated_rate": 0.0357,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": -0.0357,
+        "synergy_exists": false,
+        "planning_value": -0.0357,
+        "verification_value": -0.0357
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0357,
+          "team_no_verify": 0.0357,
+          "full": 0.0,
+          "oracle": 0.0357
+        },
+        "marginal_contribution": {
+          "planner": -0.0357,
+          "verifier": -0.0357
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": -0.0714,
+        "superadditive": false
+      }
+    },
+    "qwen3.5-0.8b": {
+      "mcnemar": {
+        "n_tasks": 116,
+        "both_pass": 0,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 116,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 116,
+        "mean_oracle_partial": 0.4272,
+        "mean_full_partial": 0.4114,
+        "mean_improvement": -0.0158,
+        "median_improvement": 0.0,
+        "improved": 3,
+        "worsened": 10,
+        "tied": 103,
+        "wilcoxon_stat": 23.0,
+        "wilcoxon_p_twosided": 0.127197,
+        "wilcoxon_p_greater": 0.945068,
+        "significant_005": false
+      },
+      "effect_size": {
+        "n_tasks": 116,
+        "oracle_pass_rate": 0.0,
+        "full_pass_rate": 0.0,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0197,
+          50.8257
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 116,
+        "full_rate": 0.0,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 116,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0,
+          "oracle": 0.0
+        },
+        "marginal_contribution": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "qwen3.5-27b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 0,
+        "oracle_only": 1,
+        "team_only": 1,
+        "both_fail": 26,
+        "team_unique_win_rate": 0.03571428571428571,
+        "oracle_unique_win_rate": 0.03571428571428571,
+        "mcnemar_chi2": 0.5,
+        "mcnemar_p": 0.4795,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.2432,
+        "mean_full_partial": 0.0643,
+        "mean_improvement": -0.179,
+        "median_improvement": 0.0,
+        "improved": 2,
+        "worsened": 9,
+        "tied": 17,
+        "wilcoxon_stat": 4.0,
+        "wilcoxon_p_twosided": 0.006836,
+        "wilcoxon_p_greater": 0.997559,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0357,
+        "full_pass_rate": 0.0357,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.0979,
+          10.2177
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.0357,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0357,
+        "best_ablated_rate": 0.0357,
+        "best_ablated": "team_no_verify",
+        "assembly_bonus": 0.0,
+        "synergy_exists": false,
+        "planning_value": 0.0357,
+        "verification_value": 0.0
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0357,
+          "full": 0.0357,
+          "oracle": 0.0357
+        },
+        "marginal_contribution": {
+          "planner": 0.0357,
+          "verifier": 0.0
+        },
+        "shapley_values": {
+          "planner": 0.0357,
+          "verifier": 0.0
+        },
+        "interaction_term": 0.0,
+        "superadditive": false
+      }
+    },
+    "qwen3.5-2b": {
+      "mcnemar": {
+        "n_tasks": 116,
+        "both_pass": 1,
+        "oracle_only": 0,
+        "team_only": 0,
+        "both_fail": 115,
+        "team_unique_win_rate": 0.0,
+        "oracle_unique_win_rate": 0.0,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 116,
+        "mean_oracle_partial": 0.3352,
+        "mean_full_partial": 0.4148,
+        "mean_improvement": 0.0796,
+        "median_improvement": 0.0,
+        "improved": 32,
+        "worsened": 10,
+        "tied": 74,
+        "wilcoxon_stat": 187.5,
+        "wilcoxon_p_twosided": 0.000685,
+        "wilcoxon_p_greater": 0.000343,
+        "significant_005": true
+      },
+      "effect_size": {
+        "n_tasks": 116,
+        "oracle_pass_rate": 0.0086,
+        "full_pass_rate": 0.0086,
+        "absolute_uplift": 0.0,
+        "relative_uplift": 0.0,
+        "cohens_h": 0.0,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.0,
+        "odds_ratio_ci95": [
+          0.1025,
+          9.7558
+        ],
+        "nnt": null,
+        "z_test_p": 1.0,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 116,
+        "full_rate": 0.0086,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0086,
+        "synergy_exists": true,
+        "planning_value": 0.0086,
+        "verification_value": 0.0086
+      },
+      "role_contribution": {
+        "n_tasks": 116,
+        "pass_rates": {
+          "restricted": 0.0,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.0086,
+          "oracle": 0.0086
+        },
+        "marginal_contribution": {
+          "planner": 0.0086,
+          "verifier": 0.0086
+        },
+        "shapley_values": {
+          "planner": 0.0043,
+          "verifier": 0.0043
+        },
+        "interaction_term": 0.0086,
+        "superadditive": true
+      }
+    },
+    "qwen3.5-35b-a3b": {
+      "mcnemar": {
+        "n_tasks": 24,
+        "both_pass": 2,
+        "oracle_only": 2,
+        "team_only": 4,
+        "both_fail": 16,
+        "team_unique_win_rate": 0.16666666666666666,
+        "oracle_unique_win_rate": 0.08333333333333333,
+        "mcnemar_chi2": 0.1667,
+        "mcnemar_p": 0.683091,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 24,
+        "mean_oracle_partial": 0.6737,
+        "mean_full_partial": 0.5971,
+        "mean_improvement": -0.0766,
+        "median_improvement": 0.0,
+        "improved": 8,
+        "worsened": 7,
+        "tied": 9,
+        "wilcoxon_stat": 43.0,
+        "wilcoxon_p_twosided": 0.359131,
+        "wilcoxon_p_greater": 0.834869,
+        "significant_005": false
+      },
+      "effect_size": {
+        "n_tasks": 24,
+        "oracle_pass_rate": 0.1667,
+        "full_pass_rate": 0.25,
+        "absolute_uplift": 0.0833,
+        "relative_uplift": 0.5,
+        "cohens_h": 0.2061,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 1.6006,
+        "odds_ratio_ci95": [
+          0.4123,
+          6.2137
+        ],
+        "nnt": 12.0,
+        "z_test_p": 0.477197,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 24,
+        "full_rate": 0.25,
+        "team_no_plan_rate": 0.0,
+        "team_no_verify_rate": 0.0,
+        "best_ablated_rate": 0.0,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.25,
+        "synergy_exists": true,
+        "planning_value": 0.25,
+        "verification_value": 0.25
+      },
+      "role_contribution": {
+        "n_tasks": 23,
+        "pass_rates": {
+          "restricted": 0.1304,
+          "team_no_plan": 0.0,
+          "team_no_verify": 0.0,
+          "full": 0.2609,
+          "oracle": 0.1739
+        },
+        "marginal_contribution": {
+          "planner": 0.2609,
+          "verifier": 0.2609
+        },
+        "shapley_values": {
+          "planner": 0.0652,
+          "verifier": 0.0652
+        },
+        "interaction_term": 0.3913,
+        "superadditive": true
+      }
+    },
+    "qwen3.5-4b": {
+      "mcnemar": {
+        "n_tasks": 116,
+        "both_pass": 2,
+        "oracle_only": 1,
+        "team_only": 4,
+        "both_fail": 109,
+        "team_unique_win_rate": 0.034482758620689655,
+        "oracle_unique_win_rate": 0.008620689655172414,
+        "mcnemar_chi2": 0.8,
+        "mcnemar_p": 0.371093,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 116,
+        "mean_oracle_partial": 0.2271,
+        "mean_full_partial": 0.2301,
+        "mean_improvement": 0.003,
+        "median_improvement": 0.0,
+        "improved": 17,
+        "worsened": 14,
+        "tied": 85,
+        "wilcoxon_stat": 246.5,
+        "wilcoxon_p_twosided": 0.992295,
+        "wilcoxon_p_greater": 0.496147,
+        "significant_005": false
+      },
+      "effect_size": {
+        "n_tasks": 116,
+        "oracle_pass_rate": 0.0259,
+        "full_pass_rate": 0.0517,
+        "absolute_uplift": 0.0259,
+        "relative_uplift": 1.0,
+        "cohens_h": 0.1358,
+        "cohens_h_interpretation": "negligible",
+        "odds_ratio": 1.9076,
+        "odds_ratio_ci95": [
+          0.5067,
+          7.1809
+        ],
+        "nnt": 38.67,
+        "z_test_p": 0.307738,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 113,
+        "full_rate": 0.0442,
+        "team_no_plan_rate": 0.0265,
+        "team_no_verify_rate": 0.0177,
+        "best_ablated_rate": 0.0265,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0177,
+        "synergy_exists": true,
+        "planning_value": 0.0177,
+        "verification_value": 0.0265
+      },
+      "role_contribution": {
+        "n_tasks": 113,
+        "pass_rates": {
+          "restricted": 0.0177,
+          "team_no_plan": 0.0265,
+          "team_no_verify": 0.0177,
+          "full": 0.0442,
+          "oracle": 0.0265
+        },
+        "marginal_contribution": {
+          "planner": 0.0177,
+          "verifier": 0.0265
+        },
+        "shapley_values": {
+          "planner": 0.0088,
+          "verifier": 0.0177
+        },
+        "interaction_term": 0.0177,
+        "superadditive": true
+      }
+    },
+    "qwen3.5-9b": {
+      "mcnemar": {
+        "n_tasks": 28,
+        "both_pass": 1,
+        "oracle_only": 1,
+        "team_only": 4,
+        "both_fail": 22,
+        "team_unique_win_rate": 0.14285714285714285,
+        "oracle_unique_win_rate": 0.03571428571428571,
+        "mcnemar_chi2": 0.8,
+        "mcnemar_p": 0.371093,
+        "significant_005": false
+      },
+      "partial_score": {
+        "n_tasks": 28,
+        "mean_oracle_partial": 0.6284,
+        "mean_full_partial": 0.5002,
+        "mean_improvement": -0.1281,
+        "median_improvement": 0.0,
+        "improved": 10,
+        "worsened": 12,
+        "tied": 6,
+        "wilcoxon_stat": 75.0,
+        "wilcoxon_p_twosided": 0.098411,
+        "wilcoxon_p_greater": 0.954134,
+        "significant_005": false
+      },
+      "effect_size": {
+        "n_tasks": 28,
+        "oracle_pass_rate": 0.0714,
+        "full_pass_rate": 0.1786,
+        "absolute_uplift": 0.1071,
+        "relative_uplift": 1.5,
+        "cohens_h": 0.3315,
+        "cohens_h_interpretation": "small",
+        "odds_ratio": 2.4809,
+        "odds_ratio_ci95": [
+          0.5035,
+          12.2246
+        ],
+        "nnt": 9.33,
+        "z_test_p": 0.225442,
+        "significant_005": false
+      },
+      "assembly_bonus": {
+        "n_tasks": 28,
+        "full_rate": 0.1786,
+        "team_no_plan_rate": 0.1071,
+        "team_no_verify_rate": 0.0714,
+        "best_ablated_rate": 0.1071,
+        "best_ablated": "team_no_plan",
+        "assembly_bonus": 0.0714,
+        "synergy_exists": true,
+        "planning_value": 0.0714,
+        "verification_value": 0.1071
+      },
+      "role_contribution": {
+        "n_tasks": 28,
+        "pass_rates": {
+          "restricted": 0.0357,
+          "team_no_plan": 0.1071,
+          "team_no_verify": 0.0714,
+          "full": 0.1786,
+          "oracle": 0.0714
+        },
+        "marginal_contribution": {
+          "planner": 0.0714,
+          "verifier": 0.1071
+        },
+        "shapley_values": {
+          "planner": 0.0536,
+          "verifier": 0.0893
+        },
+        "interaction_term": 0.0357,
+        "superadditive": true
+      }
+    }
+  },
+  "cross_model": {
+    "kendalls_w": {
+      "n_models": 28,
+      "models": [
+        "claude-haiku-4.5",
+        "claude-sonnet-4.6",
+        "codegemma-7b",
+        "deepseek-r1-32b",
+        "devstral-24b",
+        "gemini-3-flash",
+        "gemini-3.1-lite",
+        "gemini-3.1-pro",
+        "gemma3-27b",
+        "glm4-9b",
+        "gpt-5-mini",
+        "gpt-5-nano",
+        "gpt-5.3-chat",
+        "gpt-5.4",
+        "gpt-oss-20b",
+        "phi4-14b",
+        "phi4-mini",
+        "qwen2.5-coder-32b",
+        "qwen3-14b",
+        "qwen3-4b",
+        "qwen3-8b",
+        "qwen3-coder-30b",
+        "qwen3.5-0.8b",
+        "qwen3.5-27b",
+        "qwen3.5-2b",
+        "qwen3.5-35b-a3b",
+        "qwen3.5-4b",
+        "qwen3.5-9b"
+      ],
+      "n_common_tasks": 9,
+      "kendalls_W": 0.0379,
+      "interpretation": "no agreement",
+      "chi2": 8.4952,
+      "p_value": 0.386646,
+      "significant_005": false,
+      "consistently_team_helped": [],
+      "consistently_team_hurt": [],
+      "n_consistently_helped": 0,
+      "n_consistently_hurt": 0
+    },
+    "difficulty_stratified": {
+      "hard (oracle \u2264 10%)": {
+        "n_tasks": 186,
+        "mean_benefit": 0.1651,
+        "std_benefit": 0.3232,
+        "median_benefit": 0.0,
+        "pct_helped": 0.3065,
+        "t_stat": 6.9487,
+        "t_p": 0.0,
+        "significant_005": true
+      },
+      "medium (10% < oracle \u2264 50%)": {
+        "n_tasks": 15,
+        "mean_benefit": 0.0384,
+        "std_benefit": 0.1967,
+        "median_benefit": 0.0357,
+        "pct_helped": 0.6667,
+        "t_stat": 0.7301,
+        "t_p": 0.477369,
+        "significant_005": false
+      },
+      "easy (oracle > 50%)": {
+        "n_tasks": 25,
+        "mean_benefit": -0.1368,
+        "std_benefit": 0.3216,
+        "median_benefit": 0.0,
+        "pct_helped": 0.0,
+        "t_stat": -2.0838,
+        "t_p": 0.047996,
+        "significant_005": false
+      }
+    }
+  },
+  "meta": {
+    "n_models": 28,
+    "models": [
+      "claude-haiku-4.5",
+      "claude-sonnet-4.6",
+      "codegemma-7b",
+      "deepseek-r1-32b",
+      "devstral-24b",
+      "gemini-3-flash",
+      "gemini-3.1-lite",
+      "gemini-3.1-pro",
+      "gemma3-27b",
+      "glm4-9b",
+      "gpt-5-mini",
+      "gpt-5-nano",
+      "gpt-5.3-chat",
+      "gpt-5.4",
+      "gpt-oss-20b",
+      "phi4-14b",
+      "phi4-mini",
+      "qwen2.5-coder-32b",
+      "qwen3-14b",
+      "qwen3-4b",
+      "qwen3-8b",
+      "qwen3-coder-30b",
+      "qwen3.5-0.8b",
+      "qwen3.5-27b",
+      "qwen3.5-2b",
+      "qwen3.5-35b-a3b",
+      "qwen3.5-4b",
+      "qwen3.5-9b"
+    ]
+  }
+}

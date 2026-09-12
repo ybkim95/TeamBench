@@ -1,0 +1,158 @@
+[
+  {
+    "model": "gemini-3-flash-preview",
+    "n_tasks": 28,
+    "tasks": [
+      "CR5_test_coverage",
+      "CROSS1_api_contract",
+      "CROSS3_protocol_bridge",
+      "CRYPTO1_nonce_reuse",
+      "D1_schema_drift",
+      "D8_csv_cleanup",
+      "DIST1_queue_race",
+      "INC1_cascade_failure",
+      "INC4_dns_miscfg",
+      "IR1_evidence_qa",
+      "MULTI1_fullstack_fix",
+      "NEG1_tradeoff_config",
+      "O1_service_health",
+      "O2_incident_rootcause",
+      "O3_log_analysis",
+      "P1_policy_config",
+      "P3_access_control",
+      "PIPE1_etl_fix",
+      "SEC1_vuln_patch",
+      "SEC3_crypto_upgrade",
+      "SPEC1_feature_impl",
+      "SPEC3_data_model",
+      "TEST1_spec_to_tests",
+      "TEST2_regression",
+      "TEST5_mutation_resistant",
+      "TRAP1_spec_conflict",
+      "TRAP3_metric_mirage",
+      "TRAP5_security_theater"
+    ],
+    "per_condition": {
+      "oracle": {
+        "n": 28,
+        "mean_partial": 0.6991428571428571,
+        "mean_partial_ci95": [
+          0.5998571428571431,
+          0.791857142857143
+        ],
+        "success_rate": 0.4642857142857143,
+        "success_rate_ci95": [
+          0.2857142857142857,
+          0.6428571428571429
+        ]
+      },
+      "restricted": {
+        "n": 28,
+        "mean_partial": 0.6958107142857143,
+        "mean_partial_ci95": [
+          0.6027142857142859,
+          0.7829285714285712
+        ],
+        "success_rate": 0.39285714285714285,
+        "success_rate_ci95": [
+          0.21428571428571427,
+          0.5714285714285714
+        ]
+      },
+      "team_no_plan": {
+        "n": 28,
+        "mean_partial": 0.714775,
+        "mean_partial_ci95": [
+          0.6360964285714286,
+          0.7914428571428571
+        ],
+        "success_rate": 0.42857142857142855,
+        "success_rate_ci95": [
+          0.25,
+          0.6071428571428571
+        ]
+      },
+      "team_no_verify": {
+        "n": 28,
+        "mean_partial": 0.738725,
+        "mean_partial_ci95": [
+          0.6366178571428572,
+          0.8303571428571429
+        ],
+        "success_rate": 0.6071428571428571,
+        "success_rate_ci95": [
+          0.42857142857142855,
+          0.7857142857142857
+        ]
+      },
+      "full": {
+        "n": 28,
+        "mean_partial": 0.7544178571428571,
+        "mean_partial_ci95": [
+          0.6468,
+          0.8522750000000002
+        ],
+        "success_rate": 0.5714285714285714,
+        "success_rate_ci95": [
+          0.39285714285714285,
+          0.75
+        ]
+      },
+      "oracle_cot": {
+        "n": 28,
+        "mean_partial": 0.7162750000000001,
+        "mean_partial_ci95": [
+          0.6092500000000001,
+          0.8095714285714287
+        ],
+        "success_rate": 0.5357142857142857,
+        "success_rate_ci95": [
+          0.35714285714285715,
+          0.7142857142857143
+        ]
+      },
+      "oracle_2pass": {
+        "n": 28,
+        "mean_partial": 0.7165249999999999,
+        "mean_partial_ci95": [
+          0.6161928571428572,
+          0.8104535714285716
+        ],
+        "success_rate": 0.5,
+        "success_rate_ci95": [
+          0.32142857142857145,
+          0.6785714285714286
+        ]
+      }
+    },
+    "contrasts": {
+      "full_vs_oracle": {
+        "mean_delta": 0.055275,
+        "mean_delta_ci95": [
+          -0.08854642857142825,
+          0.1919535714285714
+        ],
+        "sig": false,
+        "mcnemar_p": 0.5049850750938458
+      },
+      "full_vs_oracle_cot": {
+        "mean_delta": 0.03814285714285713,
+        "mean_delta_ci95": [
+          -0.10278571428571404,
+          0.1797749999999998
+        ],
+        "sig": false,
+        "mcnemar_p": 1.0
+      },
+      "full_vs_oracle_2pass": {
+        "mean_delta": 0.03789285714285713,
+        "mean_delta_ci95": [
+          -0.10557142857142887,
+          0.17491428571428558
+        ],
+        "sig": false,
+        "mcnemar_p": 0.6830913983096087
+      }
+    }
+  }
+]

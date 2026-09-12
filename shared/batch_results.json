@@ -1,0 +1,1946 @@
+{
+  "timestamp": "2026-02-26T07:15:35.371873+00:00",
+  "total": 80,
+  "passed": 0,
+  "failed": 80,
+  "success_rate": 0.0,
+  "results": [
+    {
+      "task_id": "CR1_review_respond",
+      "seed": 0,
+      "run_id": "20260226_071006_07f7451b",
+      "run_dir": "shared/runs/CR1_review_respond/20260226_071006_07f7451b",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 8,
+        "partial_score": 0.25
+      },
+      "failure_modes": [
+        "sql_injection_not_fixed",
+        "n_plus_one_not_fixed",
+        "function_not_renamed",
+        "bare_except_not_fixed",
+        "tests_failing",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "CR2_style_enforce",
+      "seed": 0,
+      "run_id": "20260226_071007_1bd92a5e",
+      "run_dir": "shared/runs/CR2_style_enforce/20260226_071007_1bd92a5e",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 13,
+        "partial_score": 0.15
+      },
+      "failure_modes": [
+        "class_names_not_pascal_case",
+        "function_names_not_snake_case",
+        "variable_names_not_snake_case",
+        "wildcard_imports_present",
+        "import_order_incorrect",
+        "type_hints_missing",
+        "line_length_exceeded",
+        "docstrings_missing_or_bad",
+        "trailing_commas_missing",
+        "tests_failing",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "CR3_perf_review",
+      "seed": 0,
+      "run_id": "20260226_071009_5c7bdef0",
+      "run_dir": "shared/runs/CR3_perf_review/20260226_071009_5c7bdef0",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 10,
+        "partial_score": 0.2
+      },
+      "failure_modes": [
+        "tests_failing",
+        "hotspot1_not_optimized",
+        "hotspot1_no_set_dict",
+        "hotspot2_not_cached",
+        "hotspot3_not_generator",
+        "n2_patterns_remain",
+        "perf_over_budget",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "CR4_api_review",
+      "seed": 0,
+      "run_id": "20260226_071013_a678ca6f",
+      "run_dir": "shared/runs/CR4_api_review/20260226_071013_a678ca6f",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 16,
+        "partial_score": 0.12
+      },
+      "failure_modes": [
+        "import_error",
+        "tests_failing",
+        "missing_api_v1_prefix",
+        "wrong_http_method_not_fixed",
+        "get_used_for_create",
+        "camelcase_route_not_fixed",
+        "camelcase_function_not_fixed",
+        "pagination_not_implemented",
+        "pagination_envelope_missing",
+        "create_not_returning_201",
+        "notfound_not_returning_404",
+        "bare_string_errors_remain",
+        "error_schema_missing_fields",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260226_071016_57aa2558",
+      "run_dir": "shared/runs/CR5_test_coverage/20260226_071016_57aa2558",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 9,
+        "checks_total": 13,
+        "partial_score": 0.69
+      },
+      "failure_modes": [
+        "tests_fail_on_correct_code",
+        "pytest_nonzero_exit",
+        "too_few_tests",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260226_071019_9e9af543",
+      "run_dir": "shared/runs/D1_schema_drift/20260226_071019_9e9af543",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 16,
+        "partial_score": 0.12
+      },
+      "failure_modes": [
+        "etl_crash",
+        "wrong_columns",
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "extra_columns_not_dropped",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "D2_data_quality",
+      "seed": 0,
+      "run_id": "20260226_071022_59e81572",
+      "run_dir": "shared/runs/D2_data_quality/20260226_071022_59e81572",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 11,
+        "partial_score": 0.36
+      },
+      "failure_modes": [
+        "wrong_row_count",
+        "range_check_fail",
+        "missing_values_not_replaced",
+        "dedup_higher_score_fail",
+        "sort_order_wrong",
+        "department_correction_fail",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "D3_schema_migration",
+      "seed": 0,
+      "run_id": "20260226_071023_57e4e667",
+      "run_dir": "shared/runs/D3_schema_migration/20260226_071023_57e4e667",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 11,
+        "partial_score": 0.36
+      },
+      "failure_modes": [
+        "wrong_columns",
+        "data_not_preserved",
+        "renames_not_applied",
+        "new_columns_wrong",
+        "schema_v2_mismatch",
+        "no_unique_index",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "D4_data_pipeline",
+      "seed": 0,
+      "run_id": "20260226_071025_457c55ee",
+      "run_dir": "shared/runs/D4_data_pipeline/20260226_071025_457c55ee",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 10,
+        "checks_total": 17,
+        "partial_score": 0.59
+      },
+      "failure_modes": [
+        "wrong_row_count",
+        "null_check_fail",
+        "range_validation_fail",
+        "dedup_winner_fail",
+        "false_positives_in_valid",
+        "missing_from_invalid_csv",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "D5_query_optimize",
+      "seed": 0,
+      "run_id": "20260226_071027_a32bf9c5",
+      "run_dir": "shared/runs/D5_query_optimize/20260226_071027_a32bf9c5",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 11,
+        "checks_total": 15,
+        "partial_score": 0.73
+      },
+      "failure_modes": [
+        "n_plus_1_pattern_present",
+        "required_indexes_missing",
+        "no_create_index_in_database_py",
+        "performance_target_missed"
+      ]
+    },
+    {
+      "task_id": "D6_data_reconcile",
+      "seed": 0,
+      "run_id": "20260226_071103_dbb3f64e",
+      "run_dir": "shared/runs/D6_data_reconcile/20260226_071103_dbb3f64e",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 12,
+        "checks_total": 18,
+        "partial_score": 0.67
+      },
+      "failure_modes": [
+        "missing_output_fields",
+        "manual_override_wrong",
+        "field_ownership_wrong",
+        "agree_records_wrong",
+        "per_record_values_wrong",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260226_071104_7c5ad3c1",
+      "run_dir": "shared/runs/GO1_concurrency_fix/20260226_071104_7c5ad3c1",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 8,
+        "partial_score": 0.5
+      },
+      "failure_modes": [
+        "race_or_test_failed",
+        "results_channel_unbuffered",
+        "lock_order_inconsistent",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "GO2_race_condition",
+      "seed": 0,
+      "run_id": "20260226_071115_9dce41e7",
+      "run_dir": "shared/runs/GO2_race_condition/20260226_071115_9dce41e7",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 12,
+        "partial_score": 0.5,
+        "race_type": "slice_append"
+      },
+      "failure_modes": [
+        "required_primitive_missing",
+        "race_pattern_not_fixed_slice_append",
+        "bug_comments_not_addressed",
+        "vet_failed",
+        "race_test_failed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260226_071121_52a7ed47",
+      "run_dir": "shared/runs/INC1_cascade_failure/20260226_071121_52a7ed47",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 8,
+        "checks_total": 10,
+        "partial_score": 0.8
+      },
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "INC2_data_corruption",
+      "seed": 0,
+      "run_id": "20260226_071122_def1003f",
+      "run_dir": "shared/runs/INC2_data_corruption/20260226_071122_def1003f",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 10,
+        "partial_score": 0.4
+      },
+      "failure_modes": [
+        "recover_py_crashes",
+        "corrupted_records_not_recovered",
+        "required_fields_null",
+        "validate_py_fails",
+        "recover_not_idempotent",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "INC3_memory_leak",
+      "seed": 0,
+      "run_id": "20260226_071124_6d86cf8a",
+      "run_dir": "shared/runs/INC3_memory_leak/20260226_071124_6d86cf8a",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 10,
+        "checks_total": 12,
+        "partial_score": 0.83
+      },
+      "failure_modes": [
+        "leak_fn_not_fixed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260226_071125_4f0133ac",
+      "run_dir": "shared/runs/INC4_dns_miscfg/20260226_071125_4f0133ac",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 7,
+        "checks_total": 12,
+        "partial_score": 0.58
+      },
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "INC5_cert_expiry",
+      "seed": 0,
+      "run_id": "20260226_071126_60626eb0",
+      "run_dir": "shared/runs/INC5_cert_expiry/20260226_071126_60626eb0",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 11,
+        "partial_score": 0.36
+      },
+      "failure_modes": [
+        "certs_still_expired",
+        "service_cert_refs_invalid",
+        "trust_stores_stale",
+        "renewal_log_wrong_order",
+        "old_cert_paths_still_referenced",
+        "cert_tests_fail",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "INC6_deadlock",
+      "seed": 0,
+      "run_id": "20260226_071127_5a23e4ca",
+      "run_dir": "shared/runs/INC6_deadlock/20260226_071127_5a23e4ca",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 8,
+        "checks_total": 12,
+        "partial_score": 0.67
+      },
+      "failure_modes": [
+        "lock_ordering_not_fixed",
+        "check_fix_fails",
+        "lock_hierarchy_inconsistent",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "INC7_rollback",
+      "seed": 0,
+      "run_id": "20260226_071129_a8f11e6f",
+      "run_dir": "shared/runs/INC7_rollback/20260226_071129_a8f11e6f",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 1,
+        "checks_total": 12,
+        "partial_score": 0.08
+      },
+      "failure_modes": [
+        "rollback_script_failed",
+        "deploy_state_not_rolled_back",
+        "version_not_reverted",
+        "wrong_step_order",
+        "db_rollback_incorrect",
+        "config_not_restored",
+        "config_key_not_restored",
+        "preserved_data_missing",
+        "discarded_data_present",
+        "health_check_failed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "INT1_pipeline_repair",
+      "seed": 0,
+      "run_id": "20260226_071131_f272a921",
+      "run_dir": "shared/runs/INT1_pipeline_repair/20260226_071131_f272a921",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 1,
+        "checks_total": 12,
+        "partial_score": 0.08
+      },
+      "failure_modes": [
+        "pipeline_crash",
+        "wrong_record_count",
+        "wrong_error_count",
+        "records_silently_dropped",
+        "plus_emails_rejected",
+        "wrong_field_names",
+        "collector_not_json_array",
+        "missing_required_fields",
+        "integration_test_fail",
+        "report_broken",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260226_071133_8c774ccb",
+      "run_dir": "shared/runs/IR1_evidence_qa/20260226_071133_8c774ccb",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 6,
+        "partial_score": 0.33
+      },
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "IR2_misinformation_trap",
+      "seed": 0,
+      "run_id": "20260226_071134_3c02d469",
+      "run_dir": "shared/runs/IR2_misinformation_trap/20260226_071134_3c02d469",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 7,
+        "partial_score": 0.29
+      },
+      "failure_modes": [
+        "invalid_answer_structure",
+        "invalid_evidence_format",
+        "wrong_answer",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "IR3_multi_source",
+      "seed": 0,
+      "run_id": "20260226_071135_ab017437",
+      "run_dir": "shared/runs/IR3_multi_source/20260226_071135_ab017437",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 11,
+        "checks_total": 13,
+        "partial_score": 0.85,
+        "per_question_score": 1.0
+      },
+      "failure_modes": [
+        "blank_answers",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "IR4_temporal",
+      "seed": 0,
+      "run_id": "20260226_071136_ab4f054f",
+      "run_dir": "shared/runs/IR4_temporal/20260226_071136_ab4f054f",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 13,
+        "checks_total": 15,
+        "partial_score": 0.87,
+        "per_question_score": 1.0
+      },
+      "failure_modes": [
+        "blank_answers",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "JS1_api_migration",
+      "seed": 0,
+      "run_id": "20260226_071137_9a2680c2",
+      "run_dir": "shared/runs/JS1_api_migration/20260226_071137_9a2680c2",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 3,
+        "checks_total": 7,
+        "partial_score": 0.43
+      },
+      "failure_modes": [
+        "express_not_v5",
+        "req_param_not_removed",
+        "app_del_not_renamed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "JS2_xss_sanitize",
+      "seed": 0,
+      "run_id": "20260226_071154_93dd8afe",
+      "run_dir": "shared/runs/JS2_xss_sanitize/20260226_071154_93dd8afe",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 5,
+        "checks_total": 18,
+        "partial_score": 0.28
+      },
+      "failure_modes": [
+        "raw_user_vars_in_templates",
+        "sanitize_html_fn_missing",
+        "sanitize_url_fn_missing",
+        "security_headers_fn_missing",
+        "csp_missing_default_src",
+        "csp_missing_object_src_none",
+        "csp_missing_script_src",
+        "sanitize_url_no_scheme_check",
+        "sanitize_html_not_applied",
+        "bad_attestation",
+        "xss_reflected_in_index",
+        "javascript_uri_in_href",
+        "csp_header_missing_in_response"
+      ]
+    },
+    {
+      "task_id": "LH1_long_horizon",
+      "seed": 0,
+      "run_id": "20260226_071234_97f5e56b",
+      "run_dir": "shared/runs/LH1_long_horizon/20260226_071234_97f5e56b",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 1,
+        "checks_total": 4,
+        "partial_score": 0.25
+      },
+      "failure_modes": [
+        "workflow_crash",
+        "missing_result",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "LH2_budgeted_workflow",
+      "seed": 0,
+      "run_id": "20260226_071235_535918d0",
+      "run_dir": "shared/runs/LH2_budgeted_workflow/20260226_071235_535918d0",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 0,
+        "checks_total": 6,
+        "partial_score": 0.0,
+        "budget_used": 0
+      },
+      "failure_modes": [
+        "validation_fail",
+        "missing_report",
+        "file_a_not_fixed",
+        "file_b_not_fixed",
+        "file_c_not_fixed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "LH3_multi_service",
+      "seed": 0,
+      "run_id": "20260226_071236_1e69c40e",
+      "run_dir": "shared/runs/LH3_multi_service/20260226_071236_1e69c40e",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 18,
+        "checks_total": 20,
+        "partial_score": 0.9
+      },
+      "failure_modes": [
+        "wrong_response_fields_remain",
+        "missing_error_handling_not_fixed"
+      ]
+    },
+    {
+      "task_id": "LH4_staged_deploy",
+      "seed": 0,
+      "run_id": "20260226_071241_71935381",
+      "run_dir": "shared/runs/LH4_staged_deploy/20260226_071241_71935381",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 1,
+        "checks_total": 14,
+        "partial_score": 0.07
+      },
+      "failure_modes": [
+        "deploy_crash",
+        "missing_deploy_log",
+        "incomplete_stages",
+        "wrong_stage_order",
+        "migration_not_applied",
+        "config_update_not_applied",
+        "canary_gate_fail",
+        "validation_gate_fail",
+        "rollout_incomplete",
+        "post_deploy_incomplete",
+        "config_values_wrong",
+        "monitoring_config_wrong",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "LH5_data_migration",
+      "seed": 0,
+      "run_id": "20260226_071243_a2e9860a",
+      "run_dir": "shared/runs/LH5_data_migration/20260226_071243_a2e9860a",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 0,
+        "checks_total": 11,
+        "partial_score": 0.0
+      },
+      "failure_modes": [
+        "validate_fail",
+        "missing_migration_report",
+        "missing_migration_log",
+        "steps_out_of_order",
+        "backup_missing",
+        "row_count_mismatch",
+        "checksums_invalid",
+        "verification_report_invalid",
+        "orphaned_references",
+        "invalid_jsonl_output",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260226_071244_5d55b037",
+      "run_dir": "shared/runs/MULTI1_fullstack_fix/20260226_071244_5d55b037",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 0,
+        "checks_total": 8,
+        "partial_score": 0.0
+      },
+      "failure_modes": [
+        "import_error",
+        "test_create_fail",
+        "test_get_fail",
+        "test_sorted_fail",
+        "test_delete_fail",
+        "deploy_flask_app_wrong",
+        "frontend_content_type_wrong",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "MULTI2_api_frontend",
+      "seed": 0,
+      "run_id": "20260226_071246_d789d4b5",
+      "run_dir": "shared/runs/MULTI2_api_frontend/20260226_071246_d789d4b5",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 18,
+        "partial_score": 0.22
+      },
+      "failure_modes": [
+        "backend_import_error",
+        "post_wrong_status",
+        "post_missing_item_key",
+        "get_list_wrong_key",
+        "get_list_wrong_pagination",
+        "cors_header_missing",
+        "error_wrong_key",
+        "get_single_wrong_key",
+        "get_404_wrong_key",
+        "frontend_wrong_url_path",
+        "frontend_missing_auth_header",
+        "frontend_wrong_error_field",
+        "test_suite_failures",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "MULTI3_polyglot",
+      "seed": 0,
+      "run_id": "20260226_071250_274be284",
+      "run_dir": "shared/runs/MULTI3_polyglot/20260226_071250_274be284",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 10,
+        "checks_total": 20,
+        "partial_score": 0.5
+      },
+      "failure_modes": [
+        "schema_wrong_fields",
+        "schema_field_alias_wrong",
+        "backend_wrong_id_key",
+        "backend_wrong_date_format",
+        "frontend_wrong_id_read",
+        "frontend_null_crash",
+        "frontend_wrong_date_parse",
+        "frontend_wrong_envelope",
+        "round_trip_failed",
+        "test_suite_failed"
+      ]
+    },
+    {
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260226_071252_c17cd52e",
+      "run_dir": "shared/runs/NEG1_tradeoff_config/20260226_071252_c17cd52e",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 3,
+        "checks_total": 10,
+        "partial_score": 0.3
+      },
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "NEG2_cost_perf",
+      "seed": 0,
+      "run_id": "20260226_071255_07016dae",
+      "run_dir": "shared/runs/NEG2_cost_perf/20260226_071255_07016dae",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 8,
+        "checks_total": 12,
+        "partial_score": 0.67
+      },
+      "failure_modes": [
+        "cost_exceeds_budget",
+        "reliability_below_threshold",
+        "over_provisioned",
+        "simulator_check_fail"
+      ]
+    },
+    {
+      "task_id": "NEG3_tech_debt",
+      "seed": 0,
+      "run_id": "20260226_071256_e746e9c0",
+      "run_dir": "shared/runs/NEG3_tech_debt/20260226_071256_e746e9c0",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 12,
+        "checks_total": 15,
+        "partial_score": 0.8
+      },
+      "failure_modes": [
+        "plan_not_defined",
+        "not_exactly_3_items",
+        "low_value_items_selected"
+      ]
+    },
+    {
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260226_071257_366c1b41",
+      "run_dir": "shared/runs/O1_service_health/20260226_071257_366c1b41",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 0,
+        "checks_total": 4,
+        "partial_score": 0.0
+      },
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260226_071313_972c3347",
+      "run_dir": "shared/runs/O2_incident_rootcause/20260226_071313_972c3347",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 5,
+        "partial_score": 0.4,
+        "diff_lines": 0
+      },
+      "failure_modes": [
+        "security_policy_violation",
+        "endpoint_no_response",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260226_071321_67f09aed",
+      "run_dir": "shared/runs/O3_log_analysis/20260226_071321_67f09aed",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 13,
+        "partial_score": 0.46,
+        "diff_lines": 0,
+        "bug_type": "race_condition",
+        "fix_file": "src/server.py"
+      },
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied"
+      ]
+    },
+    {
+      "task_id": "O4_monitoring",
+      "seed": 0,
+      "run_id": "20260226_071328_1144db1e",
+      "run_dir": "shared/runs/O4_monitoring/20260226_071328_1144db1e",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 3,
+        "checks_total": 14,
+        "partial_score": 0.21
+      },
+      "failure_modes": [
+        "grouping_window_wrong",
+        "latency_warning_threshold_wrong",
+        "latency_critical_threshold_wrong",
+        "error_rate_warning_threshold_wrong",
+        "error_rate_critical_threshold_wrong",
+        "availability_warning_threshold_wrong",
+        "availability_critical_threshold_wrong",
+        "routing_critical_wrong",
+        "routing_warning_wrong",
+        "routing_info_wrong",
+        "simulator_failed"
+      ]
+    },
+    {
+      "task_id": "O5_container_debug",
+      "seed": 0,
+      "run_id": "20260226_071331_81a84e62",
+      "run_dir": "shared/runs/O5_container_debug/20260226_071331_81a84e62",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 9,
+        "checks_total": 15,
+        "partial_score": 0.6,
+        "diff_lines": 0,
+        "app_type": "go-http",
+        "port": 8080,
+        "bug_types": "missing_dependency_install,wrong_base_image,wrong_cmd"
+      },
+      "failure_modes": [
+        "wrong_base_image",
+        "missing_dependency_install",
+        "wrong_cmd",
+        "missing_fix_notes",
+        "fix_notes_incomplete",
+        "dockerfile_not_modified"
+      ]
+    },
+    {
+      "task_id": "O6_perf_tuning",
+      "seed": 0,
+      "run_id": "20260226_071333_e7128a7e",
+      "run_dir": "shared/runs/O6_perf_tuning/20260226_071333_e7128a7e",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 13,
+        "partial_score": 0.46
+      },
+      "failure_modes": [
+        "cpu_target_missed",
+        "p99_target_missed",
+        "throughput_target_missed",
+        "error_rate_target_missed",
+        "score_below_baseline",
+        "no_improvement_over_baseline",
+        "simulator_check_fail"
+      ]
+    },
+    {
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260226_071334_76834628",
+      "run_dir": "shared/runs/P1_policy_config/20260226_071334_76834628",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 0,
+        "checks_total": 2,
+        "partial_score": 0.0
+      },
+      "failure_modes": [
+        "missing_config_json",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "P2_spec_arbitration",
+      "seed": 0,
+      "run_id": "20260226_071334_bd3a37d8",
+      "run_dir": "shared/runs/P2_spec_arbitration/20260226_071334_bd3a37d8",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 0,
+        "checks_total": 2,
+        "partial_score": 0.0
+      },
+      "failure_modes": [
+        "missing_resolved_config",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260226_071335_a80e4674",
+      "run_dir": "shared/runs/P3_access_control/20260226_071335_a80e4674",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 5,
+        "checks_total": 11,
+        "partial_score": 0.45
+      },
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "P4_data_retention",
+      "seed": 0,
+      "run_id": "20260226_071338_0b809685",
+      "run_dir": "shared/runs/P4_data_retention/20260226_071338_0b809685",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 8,
+        "checks_total": 14,
+        "partial_score": 0.57
+      },
+      "failure_modes": [
+        "audit_log_not_written",
+        "exempt_records_not_skipped",
+        "pii_not_anonymized",
+        "audit_entries_malformed",
+        "delete_count_incorrect",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "P5_audit_logging",
+      "seed": 0,
+      "run_id": "20260226_071406_5256ae55",
+      "run_dir": "shared/runs/P5_audit_logging/20260226_071406_5256ae55",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 15,
+        "partial_score": 0.27
+      },
+      "failure_modes": [
+        "log_event_returns_wrong_type",
+        "log_id_not_unique_or_missing",
+        "get_log_wrong_behavior",
+        "not_all_event_types_supported",
+        "required_fields_missing",
+        "tamper_detection_field_missing",
+        "verify_log_false_positive",
+        "verify_log_tamper_not_detected",
+        "verify_log_wrong_return_type",
+        "pytest_fewer_than_5_passed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260226_071408_2373f312",
+      "run_dir": "shared/runs/PIPE1_etl_fix/20260226_071408_2373f312",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 11,
+        "partial_score": 0.36
+      },
+      "failure_modes": [
+        "wrong_field_names",
+        "field_renames_wrong",
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "data_loss_detected",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "PIPE2_api_gateway",
+      "seed": 0,
+      "run_id": "20260226_071410_9b6ea7ba",
+      "run_dir": "shared/runs/PIPE2_api_gateway/20260226_071410_9b6ea7ba",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 12,
+        "partial_score": 0.5
+      },
+      "failure_modes": [
+        "wrong_upstreams",
+        "wrong_path_rewrites",
+        "wrong_auth_methods",
+        "wrong_rate_limits",
+        "pytest_tests_failed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "PIPE3_msg_queue",
+      "seed": 0,
+      "run_id": "20260226_071416_2b0a8871",
+      "run_dir": "shared/runs/PIPE3_msg_queue/20260226_071416_2b0a8871",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 10,
+        "checks_total": 13,
+        "partial_score": 0.77
+      },
+      "failure_modes": [
+        "wrong_field_names_not_fixed",
+        "pytest_tests_failed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "PIPE4_ci_cd",
+      "seed": 0,
+      "run_id": "20260226_071421_85c0ffea",
+      "run_dir": "shared/runs/PIPE4_ci_cd/20260226_071421_85c0ffea",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 7,
+        "checks_total": 15,
+        "partial_score": 0.47
+      },
+      "failure_modes": [
+        "missing_required_stages",
+        "wrong_stage_order",
+        "build_stage_env_wrong",
+        "integration_test_env_wrong",
+        "depends_on_wrong",
+        "validate_pipeline_failed",
+        "pipeline_runner_dry_run_failed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "S1_hidden_spec",
+      "seed": 0,
+      "run_id": "20260226_071423_f809d6ba",
+      "run_dir": "shared/runs/S1_hidden_spec/20260226_071423_f809d6ba",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 3,
+        "checks_total": 8,
+        "partial_score": 0.38
+      },
+      "failure_modes": [
+        "hidden_spec_normal_key_order",
+        "hidden_spec_items_not_stripped",
+        "hidden_spec_empty_exit_code",
+        "hidden_spec_empty_output",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "S2_dependency_conflict",
+      "seed": 0,
+      "run_id": "20260226_071424_8e17123a",
+      "run_dir": "shared/runs/S2_dependency_conflict/20260226_071424_8e17123a",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 0,
+        "checks_total": 4,
+        "partial_score": 0.0
+      },
+      "failure_modes": [
+        "bad_requirements",
+        "pkg2_not_fixed",
+        "integration_test_fail",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "S3_refactor_extract",
+      "seed": 0,
+      "run_id": "20260226_071426_53de32a4",
+      "run_dir": "shared/runs/S3_refactor_extract/20260226_071426_53de32a4",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 12,
+        "partial_score": 0.17
+      },
+      "failure_modes": [
+        "missing_module_files",
+        "module_not_independently_importable",
+        "circular_imports_detected",
+        "public_api_missing",
+        "module_contents_wrong",
+        "tests_fail",
+        "tests_have_failures",
+        "monolith_not_split",
+        "too_few_lines",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "S4_backward_compat",
+      "seed": 0,
+      "run_id": "20260226_071430_2f570607",
+      "run_dir": "shared/runs/S4_backward_compat/20260226_071430_2f570607",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 3,
+        "checks_total": 14,
+        "partial_score": 0.21
+      },
+      "failure_modes": [
+        "new_feature_not_implemented",
+        "feat_func_returns_wrong_object",
+        "process_shape_broken",
+        "constructor_compat_broken",
+        "deprecated_alias_broken",
+        "deprecation_warning_suppressed",
+        "error_message_changed",
+        "enhancement_not_instance_scoped",
+        "enhancement_not_idempotent",
+        "pytest_suite_failed",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "S5_error_handling",
+      "seed": 0,
+      "run_id": "20260226_071432_0cfda4a9",
+      "run_dir": "shared/runs/S5_error_handling/20260226_071432_0cfda4a9",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 1,
+        "checks_total": 15,
+        "partial_score": 0.07
+      },
+      "failure_modes": [
+        "bare_except_clauses_present",
+        "missing_error_classes",
+        "wrong_http_statuses",
+        "e001_wrong_status",
+        "e002_wrong_status",
+        "e003_wrong_status_or_missing_header",
+        "e005_wrong_status",
+        "e005_session_not_cleared",
+        "e004_wrong_status",
+        "retry_logic_missing",
+        "tests_fail",
+        "tests_have_failures",
+        "error_code_field_missing",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "S6_caching",
+      "seed": 0,
+      "run_id": "20260226_071435_e7bb8843",
+      "run_dir": "shared/runs/S6_caching/20260226_071435_e7bb8843",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 13,
+        "partial_score": 0.31
+      },
+      "failure_modes": [
+        "cache_set_get_broken",
+        "cache_ttl_not_enforced",
+        "cache_delete_pattern_broken",
+        "app_does_not_import_cache",
+        "cacheable_endpoints_not_cached",
+        "cache_too_slow",
+        "post_does_not_invalidate_cache",
+        "put_does_not_invalidate_cache",
+        "ttl_values_wrong"
+      ]
+    },
+    {
+      "task_id": "SCALE1_codebase_migration",
+      "seed": 0,
+      "run_id": "20260226_071443_62276a14",
+      "run_dir": "shared/runs/SCALE1_codebase_migration/20260226_071443_62276a14",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 14,
+        "partial_score": 0.43
+      },
+      "failure_modes": [
+        "requests_import_found",
+        "bad_requirements",
+        "client_not_migrated",
+        "auth_not_migrated",
+        "retry_not_migrated",
+        "conftest_not_migrated",
+        "tests_not_migrated",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260226_071446_815f0b07",
+      "run_dir": "shared/runs/SEC1_vuln_patch/20260226_071446_815f0b07",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 5,
+        "checks_total": 12,
+        "partial_score": 0.42
+      },
+      "failure_modes": [
+        "sql_injection_present",
+        "hardcoded_secret_present",
+        "path_traversal_present",
+        "insecure_session",
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SEC2_auth_bypass",
+      "seed": 0,
+      "run_id": "20260226_071447_396a7707",
+      "run_dir": "shared/runs/SEC2_auth_bypass/20260226_071447_396a7707",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 10,
+        "partial_score": 0.6
+      },
+      "failure_modes": [
+        "jwt_expiry_not_validated",
+        "admin_missing_role_check",
+        "reset_token_not_invalidated",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260226_071449_b9cfd210",
+      "run_dir": "shared/runs/SEC3_crypto_upgrade/20260226_071449_b9cfd210",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 7,
+        "checks_total": 13,
+        "partial_score": 0.54
+      },
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ]
+    },
+    {
+      "task_id": "SEC4_input_validation",
+      "seed": 0,
+      "run_id": "20260226_071450_c08cb17b",
+      "run_dir": "shared/runs/SEC4_input_validation/20260226_071450_c08cb17b",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 4,
+        "checks_total": 13,
+        "partial_score": 0.31
+      },
+      "failure_modes": [
+        "missing_per_field_validation",
+        "sql_injection_string_interpolation",
+        "xss_no_html_encoding",
+        "path_traversal_not_prevented",
+        "ssrf_url_not_validated",
+        "missing_fields_not_rejected",
+        "sql_injection_chars_not_rejected",
+        "tests_failing",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SEC5_secrets_rotation",
+      "seed": 0,
+      "run_id": "20260226_071455_0b8980c6",
+      "run_dir": "shared/runs/SEC5_secrets_rotation/20260226_071455_0b8980c6",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 10,
+        "checks_total": 13,
+        "partial_score": 0.77
+      },
+      "failure_modes": [
+        "hardcoded_secrets_present",
+        "secret_files_contain_hardcoded",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SEC6_csrf_protection",
+      "seed": 0,
+      "run_id": "20260226_071456_d7bee6f9",
+      "run_dir": "shared/runs/SEC6_csrf_protection/20260226_071456_d7bee6f9",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 13,
+        "partial_score": 0.46
+      },
+      "failure_modes": [
+        "csrf_token_not_generated",
+        "csrf_token_not_in_form",
+        "double_submit_cookie_missing",
+        "csrf_validation_missing",
+        "csrf_failure_wrong_response",
+        "csrf_error_body_wrong",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SEC7_rate_limiting",
+      "seed": 0,
+      "run_id": "20260226_071458_aeaae420",
+      "run_dir": "shared/runs/SEC7_rate_limiting/20260226_071458_aeaae420",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 3,
+        "checks_total": 15,
+        "partial_score": 0.2
+      },
+      "failure_modes": [
+        "rate_limit_logic_missing",
+        "rate_limit_headers_missing",
+        "unauthenticated_not_rejected",
+        "valid_key_rejected",
+        "rate_limit_not_enforced",
+        "429_body_missing_fields",
+        "remaining_not_decrementing",
+        "unlimited_tier_gets_429",
+        "health_endpoint_broken",
+        "app_not_importable",
+        "tests_failing",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SEC8_dependency_audit",
+      "seed": 0,
+      "run_id": "20260226_071502_e8fcb02a",
+      "run_dir": "shared/runs/SEC8_dependency_audit/20260226_071502_e8fcb02a",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 7,
+        "checks_total": 12,
+        "partial_score": 0.58
+      },
+      "failure_modes": [
+        "pkg_a_still_vulnerable",
+        "pkg_a_version_wrong",
+        "pkg_b_still_vulnerable",
+        "trap_pkg_still_vulnerable",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260226_071506_21360672",
+      "run_dir": "shared/runs/SPEC1_feature_impl/20260226_071506_21360672",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 1,
+        "checks_total": 11,
+        "partial_score": 0.09,
+        "domain": "task_management"
+      },
+      "failure_modes": [
+        "tests_fail",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SPEC2_api_design",
+      "seed": 0,
+      "run_id": "20260226_071508_d675d26e",
+      "run_dir": "shared/runs/SPEC2_api_design/20260226_071508_d675d26e",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 1,
+        "checks_total": 12,
+        "partial_score": 0.08,
+        "domain": "task_management"
+      },
+      "failure_modes": [
+        "basic_tests_fail",
+        "missing_required_field_not_400",
+        "post_schema_fields_wrong",
+        "duplicate_title_not_409",
+        "duplicate_title_case_sensitive",
+        "not_found_wrong_error_code",
+        "title_length_not_validated",
+        "invalid_priority_not_400",
+        "put_update_fails",
+        "delete_wrong_behavior",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260226_071510_b727b5ee",
+      "run_dir": "shared/runs/SPEC3_data_model/20260226_071510_b727b5ee",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 1,
+        "checks_total": 14,
+        "partial_score": 0.071,
+        "domain": "ecommerce"
+      },
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ]
+    },
+    {
+      "task_id": "SPEC4_migration",
+      "seed": 0,
+      "run_id": "20260226_071513_82fbed94",
+      "run_dir": "shared/runs/SPEC4_migration/20260226_071513_82fbed94",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 13,
+        "partial_score": 0.46
+      },
+      "failure_modes": [
+        "wrong_columns",
+        "data_not_preserved",
+        "new_columns_wrong",
+        "type_change_wrong",
+        "no_unique_index",
+        "fk_missing",
+        "schema_v2_mismatch"
+      ]
+    },
+    {
+      "task_id": "SPEC5_config_system",
+      "seed": 0,
+      "run_id": "20260226_071515_9f7b9090",
+      "run_dir": "shared/runs/SPEC5_config_system/20260226_071515_9f7b9090",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 0,
+        "checks_total": 19,
+        "partial_score": 0.0,
+        "domain": "web_service"
+      },
+      "failure_modes": [
+        "config_system_missing",
+        "import_error",
+        "missing_keys",
+        "defaults_wrong",
+        "env_override_fail",
+        "cli_priority_fail",
+        "file_load_fail",
+        "int_range_validation_fail",
+        "int_boundary_fail",
+        "enum_validation_fail",
+        "bool_coercion_fail",
+        "bool_env_fail",
+        "bool_invalid_fail",
+        "int_coercion_fail",
+        "file_not_found_fail",
+        "int_parse_error_fail",
+        "schema_structure_fail",
+        "cli_file_priority_fail",
+        "unknown_keys_error"
+      ]
+    },
+    {
+      "task_id": "SQL1_query_repair",
+      "seed": 0,
+      "run_id": "20260226_071518_a6e6eb72",
+      "run_dir": "shared/runs/SQL1_query_repair/20260226_071518_a6e6eb72",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 2,
+        "checks_total": 9,
+        "partial_score": 0.22
+      },
+      "failure_modes": [
+        "main_crash_or_query_fail",
+        "q1_uses_global_avg",
+        "q2_wrong_departments",
+        "q3_wrong_overdue_projects",
+        "q4_wrong_manager_names",
+        "q5_wrong_count_or_order",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "SQL2_query_optimize",
+      "seed": 0,
+      "run_id": "20260226_071521_c86c5c9d",
+      "run_dir": "shared/runs/SQL2_query_optimize/20260226_071521_c86c5c9d",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 7,
+        "checks_total": 15,
+        "partial_score": 0.47
+      },
+      "failure_modes": [
+        "optimizer_crash",
+        "no_create_index_in_schema",
+        "wrong_index_count",
+        "missing_required_index_names",
+        "wrong_index_columns",
+        "queries_not_covered",
+        "missing_type_annotations",
+        "optimizer_functions_broken"
+      ]
+    },
+    {
+      "task_id": "SYNTH1_distributed_debug",
+      "seed": 0,
+      "run_id": "20260226_071522_d1778172",
+      "run_dir": "shared/runs/SYNTH1_distributed_debug/20260226_071522_d1778172",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 1,
+        "checks_total": 11,
+        "partial_score": 0.09
+      },
+      "failure_modes": [
+        "tests_not_all_passing",
+        "email_update_broken",
+        "discount_calculation_wrong",
+        "cache_not_invalidated",
+        "regression_detected",
+        "excessive_changes",
+        "wrong_field_name",
+        "cache_fix_not_applied",
+        "no_timezone_handling",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260226_071524_75a7a44d",
+      "run_dir": "shared/runs/TEST1_spec_to_tests/20260226_071524_75a7a44d",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 10,
+        "partial_score": 0.6
+      },
+      "failure_modes": [
+        "too_few_tests",
+        "tests_fail_on_correct_engine",
+        "low_coverage",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260226_071527_40c86817",
+      "run_dir": "shared/runs/TEST2_regression/20260226_071527_40c86817",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 6,
+        "checks_total": 11,
+        "partial_score": 0.55
+      },
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit",
+        "bad_attestation"
+      ]
+    },
+    {
+      "task_id": "TEST3_integration",
+      "seed": 0,
+      "run_id": "20260226_071529_dcceebe7",
+      "run_dir": "shared/runs/TEST3_integration/20260226_071529_dcceebe7",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 7,
+        "checks_total": 12,
+        "partial_score": 0.58
+      },
+      "failure_modes": [
+        "tests_not_implemented",
+        "too_few_tests",
+        "no_assertions",
+        "schema_not_verified",
+        "tests_fail_on_working_server"
+      ]
+    },
+    {
+      "task_id": "TEST4_property",
+      "seed": 0,
+      "run_id": "20260226_071534_ba75aaff",
+      "run_dir": "shared/runs/TEST4_property/20260226_071534_ba75aaff",
+      "pass": false,
+      "primary": {
+        "success": 0
+      },
+      "secondary": {
+        "checks_passed": 5,
+        "checks_total": 7,
+        "partial_score": 0.71
+      },
+      "failure_modes": [
+        "tests_fail_on_correct_module",
+        "too_few_tests"
+      ]
+    }
+  ]
+}

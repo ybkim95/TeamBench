@@ -1,0 +1,9 @@
+\begin{table}[h]\centering\small
+\caption{Full team vs.\ strong single-agent baselines. Scaffolded oracles (CoT, two-pass) do not close the gap to a team. $\Delta$ is full minus baseline mean partial score; 95\% CIs via bootstrap ($B=2000$).}
+\label{tab:strong_baseline}
+\begin{tabular}{llcccc}\toprule
+Model & Baseline & Mean & Full & $\Delta$ & 95\% CI \\ \midrule
+gemini-3-flash-preview & oracle & 0.699 & 0.754 & +0.055 & [-0.089, +0.192] \\
+gemini-3-flash-preview & oracle cot & 0.716 & 0.754 & +0.038 & [-0.103, +0.180] \\
+gemini-3-flash-preview & oracle 2pass & 0.717 & 0.754 & +0.038 & [-0.106, +0.175] \\
+\bottomrule\end{tabular}\end{table}

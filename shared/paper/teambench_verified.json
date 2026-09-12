@@ -1,0 +1,1527 @@
+{
+  "computed_at": "2026-04-30T20:37:42.559469+00:00",
+  "thresholds": {
+    "mutation_kill_rate_min": 0.5,
+    "discrimination_score_min": 0.1,
+    "g1_structural_required": false,
+    "canonical_solution_required": true
+  },
+  "lb100_total": 100,
+  "verified_total": 57,
+  "verified_task_ids": [
+    "TRAP5_security_theater",
+    "TRAP6_deprecated_api",
+    "CR4_api_review",
+    "CROSS1_api_contract",
+    "CROSS2_schema_evolution",
+    "CROSS3_protocol_bridge",
+    "D6_data_reconcile",
+    "D3_schema_migration",
+    "D4_data_pipeline",
+    "D7_etl_reconciliation",
+    "DIST1_queue_race",
+    "DIST2_consensus_partition",
+    "INC6_deadlock",
+    "INC1_cascade_failure",
+    "INC2_data_corruption",
+    "INC3_memory_leak",
+    "INC4_dns_miscfg",
+    "IR2_misinformation_trap",
+    "IR3_multi_source",
+    "IR4_temporal",
+    "LH2_budgeted_workflow",
+    "LH5_data_migration",
+    "CROSS6_grpc_rest_bridge",
+    "JS2_xss_sanitize",
+    "LH3_multi_service",
+    "O6_perf_tuning",
+    "TRAP3_metric_mirage",
+    "CROSS7_config_drift",
+    "API1_version_compat",
+    "TS1_type_mismatch",
+    "PIPE3_msg_queue",
+    "PIPE3_stream_processing",
+    "P3_access_control",
+    "RDS10_survey_analysis",
+    "RDS11_survivorship_bias",
+    "RDS12_simpsons_income",
+    "CRYPTO1_nonce_reuse",
+    "CRYPTO3_cert_chain",
+    "CRYPTO4_kdf_migration",
+    "CRYPTO5_tls_config",
+    "CRYPTO6_token_validation",
+    "GO1_concurrency_fix",
+    "SCALE1_codebase_migration",
+    "GH10_retry_backoff",
+    "GH11_middleware_order",
+    "GH1_flask_session_ctx",
+    "GH2_click_flag_value",
+    "SPEC2_api_design",
+    "GH7_fixture_scope_leak",
+    "TEST2_regression",
+    "TEST3_integration",
+    "TEST4_property",
+    "RDS13_smote_leakage",
+    "RDS14_housing_leakage",
+    "RDS15_taxi_circular",
+    "RDS16_retail_phacking",
+    "RDS17_macro_spurious"
+  ],
+  "triage_bucket_counts": {
+    "needs_review": 1,
+    "verified": 57,
+    "near_miss_very_close": 11,
+    "near_miss": 11,
+    "solvable_in_principle": 10,
+    "broken_grader_post_pr": 10
+  },
+  "drop_reasons_count": {
+    "mutation_kill_rate": 1,
+    "canonical=canonical_unknown+mutation_kill_rate+discrimination_score": 39,
+    "g1_structural+canonical=canonical_unknown+mutation_kill_rate+discrimination_score": 3
+  },
+  "rows": [
+    {
+      "task_id": "TRAP1_spec_conflict",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": 0.4167,
+        "mutation_passes": false,
+        "mutation_reason": "kill_rate=0.4167",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "needs_review"
+    },
+    {
+      "task_id": "TRAP5_security_theater",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": 0.5,
+        "mutation_passes": true,
+        "mutation_reason": "kill_rate=0.5",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "TRAP6_deprecated_api",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": 1.0,
+        "mutation_passes": true,
+        "mutation_reason": "kill_rate=1.0",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "CR4_api_review",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "CR6_review_checklist",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.91
+    },
+    {
+      "task_id": "CR1_review_respond",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.88
+    },
+    {
+      "task_id": "CROSS1_api_contract",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": 1.0,
+        "mutation_passes": true,
+        "mutation_reason": "kill_rate=1.0",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "CROSS2_schema_evolution",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": 0.625,
+        "mutation_passes": true,
+        "mutation_reason": "kill_rate=0.625",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "CROSS3_protocol_bridge",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": 1.0,
+        "mutation_passes": true,
+        "mutation_reason": "kill_rate=1.0",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "D6_data_reconcile",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "D3_schema_migration",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "D4_data_pipeline",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "D5_query_optimize",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.93
+    },
+    {
+      "task_id": "D7_etl_reconciliation",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": 0.625,
+        "mutation_passes": true,
+        "mutation_reason": "kill_rate=0.625",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "DIST1_queue_race",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "DIST2_consensus_partition",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "SYNTH1_distributed_debug",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.64
+    },
+    {
+      "task_id": "GH1000_numpy_19869",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.6
+    },
+    {
+      "task_id": "GH1001_numpy_30855",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.6
+    },
+    {
+      "task_id": "GH1002_scipy_24753",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.8
+    },
+    {
+      "task_id": "GH1003_scipy_24496",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.6
+    },
+    {
+      "task_id": "GH1004_dask_11665",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.8
+    },
+    {
+      "task_id": "GH1005_ray_60236",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.8
+    },
+    {
+      "task_id": "GH1006_spaCy_13068",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.6
+    },
+    {
+      "task_id": "GH1007_spaCy_13040",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.8
+    },
+    {
+      "task_id": "GH1008_spaCy_12749",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.6
+    },
+    {
+      "task_id": "GH1009_spaCy_12486",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.6
+    },
+    {
+      "task_id": "GH1010_great_expectati_10406",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.4
+    },
+    {
+      "task_id": "GH1011_great_expectati_8062",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.4
+    },
+    {
+      "task_id": "INC6_deadlock",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "INC10_rollback_plan",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.4
+    },
+    {
+      "task_id": "INC1_cascade_failure",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "INC2_data_corruption",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "INC3_memory_leak",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "INC4_dns_miscfg",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "no python files in workspace",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "IR2_misinformation_trap",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "no python files in workspace",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "IR3_multi_source",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "no python files in workspace",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "IR4_temporal",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "no python files in workspace",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "INT1_pipeline_repair",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.83
+    },
+    {
+      "task_id": "LH2_budgeted_workflow",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "LH5_data_migration",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "LH4_staged_deploy",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.93
+    },
+    {
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "JS2_xss_sanitize",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "no python files in workspace",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "MULTI2_microservice_debug",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.9
+    },
+    {
+      "task_id": "NEG1_tradeoff_config",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.9
+    },
+    {
+      "task_id": "LH3_multi_service",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "O6_perf_tuning",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": 0.0833,
+        "mutation_passes": true,
+        "mutation_reason": "exempt: grader scores config.json output via simulator.py; mutating optimizer.py / simulator.py is by-design irrelevant",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "TRAP3_metric_mirage",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "CROSS7_config_drift",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "MULTI5_deploy_pipeline",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.9
+    },
+    {
+      "task_id": "API1_version_compat",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "GH14_celery_chain_fail",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.83
+    },
+    {
+      "task_id": "INFRA2_cicd_repair",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.9
+    },
+    {
+      "task_id": "TS1_type_mismatch",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "no python files in workspace",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "GH103_redis-py_3998",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.75
+    },
+    {
+      "task_id": "GH112_redis-py_3996",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.88
+    },
+    {
+      "task_id": "GH120_redis-py_3863",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.7
+    },
+    {
+      "task_id": "GH121_quart_302",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.75
+    },
+    {
+      "task_id": "GH128_mitmproxy_8046",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.62
+    },
+    {
+      "task_id": "GH12_click_envvar_flag",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.88
+    },
+    {
+      "task_id": "GH136_mitmproxy_8054",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.44
+    },
+    {
+      "task_id": "GH139_marshmallow_2894",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.56
+    },
+    {
+      "task_id": "GH13_starlette_bg_block",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.83
+    },
+    {
+      "task_id": "GH140_marshmallow_2874",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss",
+      "best_historical_partial": 0.75
+    },
+    {
+      "task_id": "GH141_urllib3_3736",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.62
+    },
+    {
+      "task_id": "GH143_mitmproxy_8095",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.64
+    },
+    {
+      "task_id": "GH144_psycopg_1247",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "broken_grader_post_pr",
+      "best_historical_partial": 0.7
+    },
+    {
+      "task_id": "PIPE2_data_pipeline",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.9
+    },
+    {
+      "task_id": "PIPE3_msg_queue",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "PIPE3_stream_processing",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "P2_spec_arbitration",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "solvable_in_principle",
+      "best_historical_partial": 0.5
+    },
+    {
+      "task_id": "P3_access_control",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "P4_data_retention",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.93
+    },
+    {
+      "task_id": "RDS10_survey_analysis",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "RDS11_survivorship_bias",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "RDS12_simpsons_income",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "CRYPTO1_nonce_reuse",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "CRYPTO3_cert_chain",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "CRYPTO4_kdf_migration",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "SEC8_dependency_audit",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.92
+    },
+    {
+      "task_id": "CRYPTO5_tls_config",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "CRYPTO6_token_validation",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "GO1_concurrency_fix",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "no python files in workspace",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "SCALE1_codebase_migration",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "GH10_retry_backoff",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "GH11_middleware_order",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "GH1_flask_session_ctx",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "GH2_click_flag_value",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "SPEC5_config_system",
+      "eligible": false,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_unknown",
+        "mutation_kill_rate": null,
+        "mutation_passes": false,
+        "mutation_reason": "no passing workspace available",
+        "discrimination_score": 0.0,
+        "discrimination_passes": false
+      },
+      "triage_bucket": "near_miss_very_close",
+      "best_historical_partial": 0.95
+    },
+    {
+      "task_id": "SPEC2_api_design",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "GH7_fixture_scope_leak",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "no python files in workspace",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "TEST2_regression",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "TEST3_integration",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": 1.0,
+        "mutation_passes": true,
+        "mutation_reason": "kill_rate=1.0",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "TEST4_property",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": true,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "RDS13_smote_leakage",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "RDS14_housing_leakage",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "RDS15_taxi_circular",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "RDS16_retail_phacking",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    },
+    {
+      "task_id": "RDS17_macro_spurious",
+      "eligible": true,
+      "criteria": {
+        "g1_structural": false,
+        "canonical_solution": "canonical_via_llm_run",
+        "mutation_kill_rate": null,
+        "mutation_passes": true,
+        "mutation_reason": "base workspace did not pass grader; skipping mutation test",
+        "discrimination_score": 1.0,
+        "discrimination_passes": true
+      },
+      "triage_bucket": "verified"
+    }
+  ]
+}

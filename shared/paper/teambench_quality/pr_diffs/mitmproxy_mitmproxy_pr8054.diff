@@ -1,0 +1,109 @@
+diff --git a/mitmproxy/contentviews/__init__.py b/mitmproxy/contentviews/__init__.py
+index 5da13a2280..fece579197 100644
+--- a/mitmproxy/contentviews/__init__.py
++++ b/mitmproxy/contentviews/__init__.py
+@@ -39,6 +39,7 @@
+ from ._view_urlencoded import urlencoded
+ from ._view_wbxml import wbxml
+ from ._view_xml_html import xml_html
++from ._view_zip import zip
+ from .base import View
+ import mitmproxy_rs.contentviews
+ from mitmproxy import flow
+@@ -145,6 +146,7 @@ def reencode_message(
+     urlencoded,
+     wbxml,
+     xml_html,
++    zip,
+ ]
+ for view in _views:
+     registry.register(view)
+diff --git a/mitmproxy/contentviews/_view_zip.py b/mitmproxy/contentviews/_view_zip.py
+new file mode 100644
+index 0000000000..2bff22169d
+--- /dev/null
++++ b/mitmproxy/contentviews/_view_zip.py
+@@ -0,0 +1,22 @@
++import io
++import zipfile
++
++from mitmproxy.contentviews._api import Contentview
++from mitmproxy.contentviews._api import Metadata
++from mitmproxy.contentviews._utils import yaml_dumps
++
++
++class ZipContentview(Contentview):
++    name = "ZIP Archive"
++    syntax_highlight = "yaml"
++
++    def prettify(self, data: bytes, metadata: Metadata) -> str:
++        with zipfile.ZipFile(io.BytesIO(data), "r") as zip_file:
++            filenames = [info.filename for info in zip_file.infolist()]
++            return yaml_dumps(filenames) if filenames else "(empty zip file)"
++
++    def render_priority(self, data: bytes, metadata: Metadata) -> float:
++        return 1.0 if data and metadata.content_type == "application/zip" else 0
++
++
++zip = ZipContentview()
+diff --git a/test/mitmproxy/contentviews/test__view_zip.py b/test/mitmproxy/contentviews/test__view_zip.py
+new file mode 100644
+index 0000000000..90278b24d0
+--- /dev/null
++++ b/test/mitmproxy/contentviews/test__view_zip.py
+@@ -0,0 +1,55 @@
++import io
++import zipfile
++
++from mitmproxy import http
++from mitmproxy.contentviews import Metadata
++from mitmproxy.contentviews._view_zip import zip
++
++
++def meta(content_type: str) -> Metadata:
++    return Metadata(
++        content_type=content_type.split(";")[0],
++        http_message=http.Request.make(
++            "POST", "https://example.com/", headers={"content-type": content_type}
++        ),
++    )
++
++
++def test_view_zip():
++    buffer = io.BytesIO()
++    with zipfile.ZipFile(buffer, "w") as zf:
++        for name in [
++            "normal.txt",
++            "with spaces.txt",
++            "dir/nested.txt",
++            "file\nwith\nnewlines.txt",
++            "unicode_文件.txt",
++            "café.txt",
++        ]:
++            zf.writestr(name, b"content")
++    result = zip.prettify(buffer.getvalue(), meta("application/zip"))
++    for name in [
++        "normal.txt",
++        "with spaces.txt",
++        "dir/nested.txt",
++        "newlines",
++        "文件",
++        "café",
++    ]:
++        assert name in result
++    assert zip.syntax_highlight == "yaml"
++
++
++def test_view_zip_empty():
++    buffer = io.BytesIO()
++    with zipfile.ZipFile(buffer, "w"):
++        pass
++    assert (
++        zip.prettify(buffer.getvalue(), meta("application/zip")) == "(empty zip file)"
++    )
++
++
++def test_render_priority():
++    assert zip.render_priority(b"data", Metadata(content_type="application/zip")) == 1.0
++    assert zip.render_priority(b"data", Metadata(content_type="text/plain")) == 0
++    assert zip.render_priority(b"", Metadata(content_type="application/zip")) == 0

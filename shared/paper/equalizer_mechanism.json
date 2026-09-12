@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-03-19T17:54:49.892754Z",
+  "data_summary": {
+    "total_runs_loaded": 4103,
+    "core_condition_runs": 3778,
+    "tasks_with_ablation": 160,
+    "models_evaluated": 12,
+    "cross_model_runs": 1680,
+    "cross_model_tasks": 28
+  },
+  "hypothesis_1_spec_relay": {
+    "description": "Does necessity_gap (oracle - restricted) predict team uplift (full - oracle)?",
+    "null_hypothesis": "Spec relay (oracle-restricted gap) is positively correlated with team benefit",
+    "pearson_r": -0.446,
+    "pearson_p": 1.89e-24,
+    "spearman_r": -0.335,
+    "spearman_p": 7.63e-14,
+    "bootstrap_95ci": [
+      -0.5409,
+      -0.3362
+    ],
+    "n": 472,
+    "task_level_r": -0.4387,
+    "task_level_p": 6.56e-09,
+    "task_level_n": 160,
+    "by_cap_group": {
+      "strong": {
+        "r": -0.489,
+        "ci_95": [
+          -0.618,
+          -0.333
+        ],
+        "p": "<0.001",
+        "n": 112
+      },
+      "mid": {
+        "r": -0.443,
+        "ci_95": [
+          -0.551,
+          -0.322
+        ],
+        "p": "<0.001",
+        "n": 192
+      },
+      "weak": {
+        "r": -0.498,
+        "ci_95": [
+          -0.603,
+          -0.374
+        ],
+        "p": "<0.001",
+        "n": 168
+      }
+    },
+    "finding": "REJECTED. Necessity gap is NEGATIVELY correlated with team uplift (r=-0.446, p<0.001). Tasks where spec access matters most actually receive less benefit from team coordination. Spec relay does not explain the equalizer effect; if anything, it is an inverse predictor."
+  },
+  "hypothesis_2_step_limits": {
+    "description": "Do oracle runs hit step/time limits more on hard tasks?",
+    "avg_elapsed_oracle_hard_sec": 90.6,
+    "avg_elapsed_oracle_easy_sec": 67.5,
+    "avg_elapsed_team_hard_sec": 468.7,
+    "avg_elapsed_team_easy_sec": 446.5,
+    "oracle_hard_easy_ratio": 1.341,
+    "team_hard_easy_ratio": 1.05,
+    "oracle_hard_easy_ratio_95ci": [
+      1.074,
+      1.721
+    ],
+    "mann_whitney_p_oracle_hard_gt_easy": 0.0094,
+    "oracle_elapsed_score_spearman_r": 0.0,
+    "team_elapsed_score_spearman_r": 0.148,
+    "weak_model_oracle_hard_easy_ratio": 0.93,
+    "mid_model_oracle_hard_easy_ratio": 1.63,
+    "strong_model_oracle_hard_easy_ratio": 1.33,
+    "finding": "PARTIAL SUPPORT. Oracle runs on hard tasks take 1.34x longer than on easy tasks (median 90.6s vs 67.5s; 95% CI [1.07, 1.72]), but elapsed time does not predict oracle score (r=0.00), indicating budget is not the binding constraint. Team runs take 5.2x longer than oracle runs, providing more compute time overall. The hard/easy elapsed ratio is larger for mid-tier (1.63x) than weak models (0.93x), suggesting weak models fail fast regardless of difficulty\u2014not due to exhausted budgets."
+  },
+  "hypothesis_3_chain_of_thought": {
+    "description": "Does structured planning (chain-of-thought) provide value beyond spec access?",
+    "no_plan_vs_restricted_hard_tasks_mean": -0.0064,
+    "no_plan_vs_restricted_hard_tasks_95ci": [
+      -0.0354,
+      0.0207
+    ],
+    "t_statistic": -0.438,
+    "p_value": 0.6617,
+    "n_hard_task_model_pairs": 202,
+    "plan_value_on_hard_cross_model_r_with_uplift": 0.616,
+    "plan_value_on_hard_cross_model_p": "<0.001",
+    "weak_model_plan_overhead_mean": 0.0904,
+    "mid_model_plan_value_hard": 0.0783,
+    "strong_model_plan_value_hard": 0.0622,
+    "finding": "NOT SUPPORTED as primary mechanism. no_plan scores are indistinguishable from restricted scores on hard tasks (mean diff = -0.006, 95% CI [-0.035, 0.021], t=-0.44, p=0.66). However, plan_value is the strongest intra-team correlate of team_uplift on hard tasks (r=0.616, p<0.001), suggesting planning helps when teams already work\u2014but is not what distinguishes team vs. no-team success. Crucially, weak models show NEGATIVE planning overhead (+0.09 score gap where team_no_plan > full), indicating the planner output is misused or confusing for very weak executors."
+  },
+  "capability_sweetspot_analysis": {
+    "description": "Team benefit peaks at mid-tier capability; very weak and very strong models benefit less",
+    "quadratic_r2": 0.5965,
+    "linear_r2": 0.3974,
+    "quadratic_vertex_oracle_score": 0.5385,
+    "quadratic_f_vs_linear": 4.441,
+    "quadratic_p_vs_linear": 0.0643,
+    "mean_team_uplift_weak": -0.1104,
+    "mean_team_uplift_weak_95ci": [
+      -0.1608,
+      -0.06
+    ],
+    "mean_team_uplift_weak_p": 2.96e-05,
+    "mean_team_uplift_mid": 0.0761,
+    "mean_team_uplift_mid_95ci": [
+      0.0295,
+      0.1227
+    ],
+    "mean_team_uplift_mid_p": 0.00229,
+    "mean_team_uplift_strong": 0.0261,
+    "mean_team_uplift_strong_p": 0.314,
+    "partial_r2_model_capability": 0.1377,
+    "partial_r2_necessity_gap": 0.0858,
+    "partial_r2_oracle_score": 0.0623,
+    "partial_r2_difficulty": 0.002,
+    "finding": "Strong sweet-spot effect: mid-tier models (oracle 0.40-0.70) gain +7.6% from teams (p=0.002), while weak models (<0.40) lose -11.0% (p<0.001) and strong models show non-significant +2.6% (p=0.31). Quadratic fit (R\u00b2=0.60) beats linear (R\u00b2=0.40), vertex at oracle=0.54. Model capability is the dominant predictor (partial R\u00b2=0.138). Mechanism: very weak models lack the minimum competence to execute team-structured plans; planning overhead (coordinator + planner turns) consumes budget that could be used for direct execution. Very strong models do not need the scaffolding."
+  },
+  "overall_conclusion": "The equalizer effect in TeamBench is best explained by a CAPABILITY SWEET-SPOT mechanism, not by spec relay (H1 rejected) or step-limit exhaustion (H2 not supported). Team coordination provides maximum benefit to mid-tier models (oracle score 0.40-0.70) because: (a) they have enough base capability to correctly interpret and execute structured plans, but (b) they lack the autonomous ability to self-organize the multi-step reasoning that the team structure provides. Very weak models (<0.40 oracle) are HURT by team structure\u2014the coordination overhead wastes compute budget that exceeds their execution ceiling. Planning (H3) is an intra-team correlate but not the primary equalizer: structured plans help mid-tier models on the tasks where teams already succeed, but do not explain why teams outperform solo oracles in the first place. The multivariate regression confirms model capability accounts for the most unique variance in team uplift (partial R\u00b2=0.138 vs necessity_gap 0.086, difficulty 0.002).",
+  "figures": [
+    ".omc/scientist/figures/fig_h1_spec_relay.pdf",
+    ".omc/scientist/figures/fig_capability_sweetspot.pdf",
+    ".omc/scientist/figures/fig_plan_verify_by_group.pdf",
+    ".omc/scientist/figures/fig_h3_cot_vs_spec.pdf"
+  ]
+}

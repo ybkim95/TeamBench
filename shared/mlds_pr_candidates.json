@@ -1,0 +1,5322 @@
+[
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/17936",
+    "id": "GH859_transformers_17936",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 1.0,
+    "files_changed": 12,
+    "lines_changed": 43,
+    "test_files": 3,
+    "has_linked_issue": true,
+    "labels": [
+      "trainer",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21396",
+    "id": "GH860_pytorch_lightni_21396",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 1.0,
+    "files_changed": 3,
+    "lines_changed": 54,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "callback: swa",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21224",
+    "id": "GH861_pytorch_lightni_21224",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 1.0,
+    "files_changed": 3,
+    "lines_changed": 62,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "tuner",
+      "callback: finetuning",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21192",
+    "id": "GH862_pytorch_lightni_21192",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 1.0,
+    "files_changed": 4,
+    "lines_changed": 127,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "callback",
+      "lightningcli",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21147",
+    "id": "GH863_pytorch_lightni_21147",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 1.0,
+    "files_changed": 3,
+    "lines_changed": 65,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21108",
+    "id": "GH864_pytorch_lightni_21108",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 1.0,
+    "files_changed": 3,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/6877",
+    "id": "GH865_pytorch_lightni_6877",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 1.0,
+    "files_changed": 4,
+    "lines_changed": 52,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64569",
+    "id": "GH866_pandas_64569",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 1.0,
+    "files_changed": 3,
+    "lines_changed": 145,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug",
+      "IO HDF5",
+      "Strings"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64386",
+    "id": "GH867_pandas_64386",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 1.0,
+    "files_changed": 3,
+    "lines_changed": 23,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug",
+      "Sorting"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64809",
+    "id": "GH868_pandas_64809",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 1.0,
+    "files_changed": 4,
+    "lines_changed": 42,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64806",
+    "id": "GH869_pandas_64806",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 1.0,
+    "files_changed": 4,
+    "lines_changed": 62,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64791",
+    "id": "GH870_pandas_64791",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 1.0,
+    "files_changed": 4,
+    "lines_changed": 22,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64755",
+    "id": "GH871_pandas_64755",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 1.0,
+    "files_changed": 5,
+    "lines_changed": 98,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24778",
+    "id": "GH872_scipy_24778",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 1.0,
+    "files_changed": 2,
+    "lines_changed": 30,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "defect",
+      "scipy.spatial"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24749",
+    "id": "GH873_scipy_24749",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 1.0,
+    "files_changed": 2,
+    "lines_changed": 30,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "defect",
+      "scipy.signal"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/4042",
+    "id": "GH874_great_expectati_4042",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 1.0,
+    "files_changed": 3,
+    "lines_changed": 65,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "community",
+      "devrel"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/1616",
+    "id": "GH875_great_expectati_1616",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 1.0,
+    "files_changed": 5,
+    "lines_changed": 24,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/1569",
+    "id": "GH876_great_expectati_1569",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 1.0,
+    "files_changed": 3,
+    "lines_changed": 5,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1385",
+    "id": "GH877_FLAML_1385",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 1.0,
+    "files_changed": 4,
+    "lines_changed": 48,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/848",
+    "id": "GH878_FLAML_848",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 1.0,
+    "files_changed": 7,
+    "lines_changed": 242,
+    "test_files": 4,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/8220",
+    "id": "GH879_pymc_8220",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 1.0,
+    "files_changed": 2,
+    "lines_changed": 13,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7877",
+    "id": "GH880_pymc_7877",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 1.0,
+    "files_changed": 2,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "logprob",
+      "hackathon"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7858",
+    "id": "GH881_pymc_7858",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 1.0,
+    "files_changed": 2,
+    "lines_changed": 35,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "samplers"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/2121",
+    "id": "GH882_gpytorch_2121",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 1.0,
+    "files_changed": 6,
+    "lines_changed": 285,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "multitask"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/1517",
+    "id": "GH883_gpytorch_1517",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 1.0,
+    "files_changed": 2,
+    "lines_changed": 85,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "high priority"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/9243",
+    "id": "GH884_sktime_9243",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 1.0,
+    "files_changed": 2,
+    "lines_changed": 38,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "module:transformations"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/2548",
+    "id": "GH885_sktime_2548",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 1.0,
+    "files_changed": 2,
+    "lines_changed": 18,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "module:clustering"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/5258",
+    "id": "GH886_plotly.py_5258",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 1.0,
+    "files_changed": 2,
+    "lines_changed": 9,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "P1",
+      "fix"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/5040",
+    "id": "GH887_plotly.py_5040",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 1.0,
+    "files_changed": 3,
+    "lines_changed": 13,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "P1",
+      "community",
+      "fix"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/20872",
+    "id": "GH888_pytorch_lightni_20872",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 0.95,
+    "files_changed": 3,
+    "lines_changed": 82,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "fabric"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64788",
+    "id": "GH889_pandas_64788",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 0.95,
+    "files_changed": 3,
+    "lines_changed": 49,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64817",
+    "id": "GH890_pandas_64817",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 0.95,
+    "files_changed": 3,
+    "lines_changed": 58,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9487",
+    "id": "GH891_statsmodels_9487",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.95,
+    "files_changed": 3,
+    "lines_changed": 251,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "type-bug",
+      "type-enh",
+      "comp-stats"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/9871",
+    "id": "GH892_dask_9871",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.95,
+    "files_changed": 2,
+    "lines_changed": 33,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "highlevelgraph",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/23190",
+    "id": "GH893_ray_23190",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.95,
+    "files_changed": 2,
+    "lines_changed": 26,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "@author-action-required",
+      "windows",
+      "QS"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/4044",
+    "id": "GH894_great_expectati_4044",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.95,
+    "files_changed": 4,
+    "lines_changed": 192,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "community",
+      "devrel"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/1919",
+    "id": "GH895_gpytorch_1919",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.95,
+    "files_changed": 2,
+    "lines_changed": 106,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/1299",
+    "id": "GH896_gpytorch_1299",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.95,
+    "files_changed": 2,
+    "lines_changed": 69,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/8372",
+    "id": "GH897_sktime_8372",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.95,
+    "files_changed": 2,
+    "lines_changed": 40,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "bugfix",
+      "module:metrics&benchmarking"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/5322",
+    "id": "GH898_plotly.py_5322",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.95,
+    "files_changed": 1,
+    "lines_changed": 2,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "P1",
+      "community",
+      "fix",
+      "testing"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/25341",
+    "id": "GH899_scikit_learn_25341",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.9,
+    "files_changed": 4,
+    "lines_changed": 91,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug",
+      "module:ensemble",
+      "module:tree",
+      "cython",
+      "Quick Review",
+      "Waiting for Second Reviewer"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/14286",
+    "id": "GH900_scikit_learn_14286",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.9,
+    "files_changed": 3,
+    "lines_changed": 193,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/19085",
+    "id": "GH901_scikit_learn_19085",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.9,
+    "files_changed": 3,
+    "lines_changed": 104,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug",
+      "module:metrics"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/21336",
+    "id": "GH902_scikit_learn_21336",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.9,
+    "files_changed": 3,
+    "lines_changed": 29,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug",
+      "Blocker",
+      "module:svm",
+      "To backport"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/33200",
+    "id": "GH903_transformers_33200",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.9,
+    "files_changed": 5,
+    "lines_changed": 170,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "Vision"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64767",
+    "id": "GH904_pandas_64767",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 0.9,
+    "files_changed": 3,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/18357",
+    "id": "GH905_scipy_18357",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.9,
+    "files_changed": 2,
+    "lines_changed": 50,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "defect",
+      "scipy.sparse.linalg"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/29102",
+    "id": "GH906_ray_29102",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.9,
+    "files_changed": 6,
+    "lines_changed": 328,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "tune"
+    ]
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/4272",
+    "id": "GH907_autogluon_4272",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.9,
+    "files_changed": 3,
+    "lines_changed": 35,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "module: tabular"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/8174",
+    "id": "GH908_pymc_8174",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.9,
+    "files_changed": 3,
+    "lines_changed": 45,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "logprob"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7501",
+    "id": "GH909_pymc_7501",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.9,
+    "files_changed": 2,
+    "lines_changed": 45,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/2123",
+    "id": "GH910_gpytorch_2123",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.9,
+    "files_changed": 2,
+    "lines_changed": 50,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "multitask"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/1592",
+    "id": "GH911_gpytorch_1592",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.9,
+    "files_changed": 2,
+    "lines_changed": 26,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "high priority"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/4425",
+    "id": "GH912_sktime_4425",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.9,
+    "files_changed": 1,
+    "lines_changed": 2,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "module:forecasting"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/3549",
+    "id": "GH913_sktime_3549",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.9,
+    "files_changed": 2,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "module:forecasting"
+    ]
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/1652",
+    "id": "GH914_darts_1652",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.9,
+    "files_changed": 2,
+    "lines_changed": 46,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/4926",
+    "id": "GH915_plotly.py_4926",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.9,
+    "files_changed": 2,
+    "lines_changed": 96,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "P1",
+      "community",
+      "fix"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/22191",
+    "id": "GH916_scikit_learn_22191",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.85,
+    "files_changed": 4,
+    "lines_changed": 65,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug",
+      "Waiting for Reviewer",
+      "module:tree",
+      "cython"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/37544",
+    "id": "GH917_transformers_37544",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 21,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "Vision",
+      "Processing"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21399",
+    "id": "GH918_pytorch_lightni_21399",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 38,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "fabric",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21244",
+    "id": "GH919_pytorch_lightni_21244",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 73,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "callback: model checkpoint",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21223",
+    "id": "GH920_pytorch_lightni_21223",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 105,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "callback: pruning",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21191",
+    "id": "GH921_pytorch_lightni_21191",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 65,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "callback: pruning",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64882",
+    "id": "GH922_pandas_64882",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 23,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "Sorting"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64643",
+    "id": "GH923_pandas_64643",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 0.85,
+    "files_changed": 4,
+    "lines_changed": 44,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "Datetime"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/30615",
+    "id": "GH924_numpy_30615",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.85,
+    "files_changed": 5,
+    "lines_changed": 66,
+    "test_files": 3,
+    "has_linked_issue": true,
+    "labels": [
+      "00 - Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/31049",
+    "id": "GH925_numpy_31049",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 14,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "00 - Bug",
+      "08 - Backport"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24615",
+    "id": "GH926_scipy_24615",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 59,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "defect",
+      "scipy.ndimage",
+      "C/C++"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24706",
+    "id": "GH927_scipy_24706",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 46,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "defect",
+      "scipy.sparse.csgraph"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/9646",
+    "id": "GH928_dask_9646",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 9,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "dataframe",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/9690",
+    "id": "GH929_mlflow_9690",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 14,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "rn/none"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/1758",
+    "id": "GH930_mlflow_1758",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 48,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "rn/bug-fix"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/21721",
+    "id": "GH931_mlflow_21721",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.85,
+    "files_changed": 8,
+    "lines_changed": 313,
+    "test_files": 4,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/bug-fix",
+      "area/tracking",
+      "area/tracing",
+      "size/L"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/22067",
+    "id": "GH932_mlflow_22067",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 37,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "rn/bug-fix",
+      "area/uiux",
+      "size/S"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/46105",
+    "id": "GH933_ray_46105",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 57,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "serve",
+      "go"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/43928",
+    "id": "GH934_ray_43928",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 96,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "release-blocker",
+      "P0",
+      "serve"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/7026",
+    "id": "GH935_spaCy_7026",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 28,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / cli"
+    ]
+  },
+  {
+    "pr": "https://github.com/ultralytics/ultralytics/pull/23780",
+    "id": "GH936_ultralytics_23780",
+    "repo": "ultralytics/ultralytics",
+    "category": "cv",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 7,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "fixed",
+      "python"
+    ]
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/63617",
+    "id": "GH937_airflow_63617",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.85,
+    "files_changed": 4,
+    "lines_changed": 163,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "type:bug-fix",
+      "area:DAG-processing",
+      "backport-to-v3-1-test"
+    ]
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/64087",
+    "id": "GH938_airflow_64087",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 41,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "type:bug-fix"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/8567",
+    "id": "GH939_great_expectati_8567",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.85,
+    "files_changed": 1,
+    "lines_changed": 16,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/8559",
+    "id": "GH940_great_expectati_8559",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.85,
+    "files_changed": 1,
+    "lines_changed": 37,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "core"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/8116",
+    "id": "GH941_great_expectati_8116",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 205,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "cloud",
+      "core"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/8087",
+    "id": "GH942_great_expectati_8087",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.85,
+    "files_changed": 1,
+    "lines_changed": 2,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "core"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/7881",
+    "id": "GH943_great_expectati_7881",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.85,
+    "files_changed": 4,
+    "lines_changed": 162,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "cloud",
+      "core"
+    ]
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/2986",
+    "id": "GH944_autogluon_2986",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.85,
+    "files_changed": 5,
+    "lines_changed": 206,
+    "test_files": 3,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module: tabular",
+      "priority: 0"
+    ]
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/3294",
+    "id": "GH945_autogluon_3294",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.85,
+    "files_changed": 3,
+    "lines_changed": 182,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module: tabular",
+      "priority: 0"
+    ]
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/3288",
+    "id": "GH946_autogluon_3288",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.85,
+    "files_changed": 6,
+    "lines_changed": 113,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module: tabular",
+      "priority: 0"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7695",
+    "id": "GH947_pymc_7695",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 26,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "jax",
+      "samplers"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/2172",
+    "id": "GH948_gpytorch_2172",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.85,
+    "files_changed": 2,
+    "lines_changed": 36,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "multitask"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/1446",
+    "id": "GH949_gpytorch_1446",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.85,
+    "files_changed": 9,
+    "lines_changed": 238,
+    "test_files": 5,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "high priority"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/2375",
+    "id": "GH950_sktime_2375",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.85,
+    "files_changed": 4,
+    "lines_changed": 97,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module:datatypes",
+      "bugfix"
+    ]
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/1465",
+    "id": "GH951_darts_1465",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.85,
+    "files_changed": 4,
+    "lines_changed": 441,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/2445",
+    "id": "GH952_plotly.py_2445",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.85,
+    "files_changed": 7,
+    "lines_changed": 139,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/20853",
+    "id": "GH953_scikit_learn_20853",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.8,
+    "files_changed": 6,
+    "lines_changed": 193,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "Waiting for Reviewer",
+      "module:ensemble",
+      "No Changelog Needed"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64754",
+    "id": "GH954_pandas_64754",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 0.8,
+    "files_changed": 7,
+    "lines_changed": 48,
+    "test_files": 3,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64683",
+    "id": "GH955_pandas_64683",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 0.8,
+    "files_changed": 4,
+    "lines_changed": 50,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "Strings"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/28426",
+    "id": "GH956_numpy_28426",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.8,
+    "files_changed": 3,
+    "lines_changed": 44,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "00 - Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/20272",
+    "id": "GH957_scipy_20272",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.8,
+    "files_changed": 2,
+    "lines_changed": 16,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "defect",
+      "scipy.optimize"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24816",
+    "id": "GH958_scipy_24816",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.8,
+    "files_changed": 2,
+    "lines_changed": 28,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "defect",
+      "scipy.sparse.csgraph",
+      "backport-candidate",
+      "Cython"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24760",
+    "id": "GH959_scipy_24760",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.8,
+    "files_changed": 2,
+    "lines_changed": 22,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "defect",
+      "scipy.integrate"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9581",
+    "id": "GH960_statsmodels_9581",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.8,
+    "files_changed": 2,
+    "lines_changed": 18,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "type-bug",
+      "comp-genmod",
+      "corner-case"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/45118",
+    "id": "GH961_ray_45118",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.8,
+    "files_changed": 3,
+    "lines_changed": 28,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "P1",
+      "serve"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/22048",
+    "id": "GH962_ray_22048",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.8,
+    "files_changed": 2,
+    "lines_changed": 24,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/1818",
+    "id": "GH963_great_expectati_1818",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.8,
+    "files_changed": 3,
+    "lines_changed": 25,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/2865",
+    "id": "GH964_autogluon_2865",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.8,
+    "files_changed": 8,
+    "lines_changed": 124,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "OS: Windows",
+      "module: tabular",
+      "priority: 0"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/8201",
+    "id": "GH965_pymc_8201",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.8,
+    "files_changed": 7,
+    "lines_changed": 291,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "SMC",
+      "samplers"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7890",
+    "id": "GH966_pymc_7890",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.8,
+    "files_changed": 2,
+    "lines_changed": 41,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "maintenance"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7844",
+    "id": "GH967_pymc_7844",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.8,
+    "files_changed": 5,
+    "lines_changed": 144,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "model"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7637",
+    "id": "GH968_pymc_7637",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.8,
+    "files_changed": 11,
+    "lines_changed": 184,
+    "test_files": 4,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "samplers"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/2677",
+    "id": "GH969_gpytorch_2677",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.8,
+    "files_changed": 2,
+    "lines_changed": 42,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/1312",
+    "id": "GH970_gpytorch_1312",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.8,
+    "files_changed": 2,
+    "lines_changed": 39,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "high priority",
+      "multitask"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/8548",
+    "id": "GH971_sktime_8548",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.8,
+    "files_changed": 1,
+    "lines_changed": 27,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module:tests"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/7922",
+    "id": "GH972_sktime_7922",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.8,
+    "files_changed": 1,
+    "lines_changed": 2,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module:classification"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/4758",
+    "id": "GH973_sktime_4758",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.8,
+    "files_changed": 2,
+    "lines_changed": 149,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "module:forecasting"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/4922",
+    "id": "GH974_plotly.py_4922",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.8,
+    "files_changed": 3,
+    "lines_changed": 33,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "P1",
+      "fix"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/29612",
+    "id": "GH975_scikit_learn_29612",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.75,
+    "files_changed": 3,
+    "lines_changed": 19,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug",
+      "module:decomposition"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/16849",
+    "id": "GH976_scikit_learn_16849",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.75,
+    "files_changed": 5,
+    "lines_changed": 239,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "module:linear_model",
+      "module:utils"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/34889",
+    "id": "GH977_transformers_34889",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.75,
+    "files_changed": 5,
+    "lines_changed": 76,
+    "test_files": 4,
+    "has_linked_issue": false,
+    "labels": [
+      "Tests",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64846",
+    "id": "GH978_pandas_64846",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 0.75,
+    "files_changed": 7,
+    "lines_changed": 171,
+    "test_files": 5,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/30965",
+    "id": "GH979_numpy_30965",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.75,
+    "files_changed": 3,
+    "lines_changed": 53,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "00 - Bug",
+      "component: numpy.f2py"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9471",
+    "id": "GH980_statsmodels_9471",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.75,
+    "files_changed": 15,
+    "lines_changed": 237,
+    "test_files": 7,
+    "has_linked_issue": true,
+    "labels": [
+      "type-bug",
+      "comp-formula"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9468",
+    "id": "GH981_statsmodels_9468",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.75,
+    "files_changed": 2,
+    "lines_changed": 50,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "comp-tsa",
+      "type-bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9398",
+    "id": "GH982_statsmodels_9398",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.75,
+    "files_changed": 2,
+    "lines_changed": 130,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "type-bug",
+      "comp-discrete"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/11144",
+    "id": "GH983_dask_11144",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.75,
+    "files_changed": 1,
+    "lines_changed": 3,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/10042",
+    "id": "GH984_dask_10042",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.75,
+    "files_changed": 2,
+    "lines_changed": 35,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "dataframe",
+      "io",
+      "parquet",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/22113",
+    "id": "GH985_ray_22113",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.75,
+    "files_changed": 2,
+    "lines_changed": 48,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "QS"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/15506",
+    "id": "GH986_ray_15506",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.75,
+    "files_changed": 2,
+    "lines_changed": 22,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "dashboard"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/12102",
+    "id": "GH987_ray_12102",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.75,
+    "files_changed": 10,
+    "lines_changed": 199,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "tests-ok"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/12817",
+    "id": "GH988_spaCy_12817",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.75,
+    "files_changed": 2,
+    "lines_changed": 22,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "feat / visualizers"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/8084",
+    "id": "GH989_great_expectati_8084",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.75,
+    "files_changed": 6,
+    "lines_changed": 323,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "core"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/1612",
+    "id": "GH990_great_expectati_1612",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.75,
+    "files_changed": 4,
+    "lines_changed": 121,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7690",
+    "id": "GH991_pymc_7690",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.75,
+    "files_changed": 2,
+    "lines_changed": 79,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "logprob"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/5102",
+    "id": "GH992_plotly.py_5102",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.75,
+    "files_changed": 3,
+    "lines_changed": 31,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "P1",
+      "community",
+      "fix"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/4914",
+    "id": "GH993_plotly.py_4914",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.75,
+    "files_changed": 2,
+    "lines_changed": 51,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "P2",
+      "community",
+      "fix"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/24365",
+    "id": "GH994_scikit_learn_24365",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.7,
+    "files_changed": 3,
+    "lines_changed": 24,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "module:metrics",
+      "Quick Review",
+      "Numerical Stability"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/19490",
+    "id": "GH995_scikit_learn_19490",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.7,
+    "files_changed": 4,
+    "lines_changed": 289,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "Bug",
+      "Waiting for Reviewer",
+      "High Priority",
+      "module:decomposition"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/34531",
+    "id": "GH996_transformers_34531",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.7,
+    "files_changed": 8,
+    "lines_changed": 130,
+    "test_files": 7,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "Chat Template"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21395",
+    "id": "GH997_pytorch_lightni_21395",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 0.7,
+    "files_changed": 3,
+    "lines_changed": 41,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "profiler",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/pandas-dev/pandas/pull/64623",
+    "id": "GH998_pandas_64623",
+    "repo": "pandas-dev/pandas",
+    "category": "ds_analytics",
+    "bug_score": 0.7,
+    "files_changed": 1,
+    "lines_changed": 27,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "Datetime",
+      "Dtype Conversions"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/13813",
+    "id": "GH999_numpy_13813",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 28,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "00 - Bug",
+      "component: __array_function__"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/19869",
+    "id": "GH1000_numpy_19869",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.7,
+    "files_changed": 4,
+    "lines_changed": 57,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "00 - Bug",
+      "component: numpy.lib"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/30855",
+    "id": "GH1001_numpy_30855",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 9,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "00 - Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24753",
+    "id": "GH1002_scipy_24753",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 9,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "defect",
+      "scipy.spatial",
+      "backport-candidate",
+      "Cython"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24496",
+    "id": "GH1003_scipy_24496",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.7,
+    "files_changed": 4,
+    "lines_changed": 86,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "defect",
+      "scipy.sparse"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/11665",
+    "id": "GH1004_dask_11665",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 59,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "dataframe",
+      "io",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/60236",
+    "id": "GH1005_ray_60236",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 45,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "data",
+      "go"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/13068",
+    "id": "GH1006_spaCy_13068",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 61,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / visualizers"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/13040",
+    "id": "GH1007_spaCy_13040",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 11,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / cli"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/12749",
+    "id": "GH1008_spaCy_12749",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 11,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / cli",
+      "feat / spancat"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/12486",
+    "id": "GH1009_spaCy_12486",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 78,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / spancat"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/10406",
+    "id": "GH1010_great_expectati_10406",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.7,
+    "files_changed": 6,
+    "lines_changed": 109,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "databricks-sql"
+    ]
+  },
+  {
+    "pr": "https://github.com/great-expectations/great_expectations/pull/8062",
+    "id": "GH1011_great_expectati_8062",
+    "repo": "great-expectations/great_expectations",
+    "category": "data_eng",
+    "bug_score": 0.7,
+    "files_changed": 4,
+    "lines_changed": 194,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "core"
+    ]
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/3480",
+    "id": "GH1012_autogluon_3480",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 77,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module: tabular",
+      "priority: 1"
+    ]
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/4290",
+    "id": "GH1013_autogluon_4290",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.7,
+    "files_changed": 6,
+    "lines_changed": 382,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module: tabular",
+      "priority: 0"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7809",
+    "id": "GH1014_pymc_7809",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.7,
+    "files_changed": 2,
+    "lines_changed": 15,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "maintenance",
+      "model"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/28095",
+    "id": "GH1015_scikit_learn_28095",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 49,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "module:ensemble",
+      "To backport",
+      "Numerical Stability"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/17575",
+    "id": "GH1016_scikit_learn_17575",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 96,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "module:tree"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/21654",
+    "id": "GH1017_scikit_learn_21654",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 4,
+    "lines_changed": 83,
+    "test_files": 3,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "module:utils",
+      "segfault",
+      "No Changelog Needed",
+      "cython"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/25432",
+    "id": "GH1018_scikit_learn_25432",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 30,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "module:metrics",
+      "cython",
+      "Quick Review"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/36455",
+    "id": "GH1019_transformers_36455",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 108,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/20318",
+    "id": "GH1020_transformers_20318",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 1,
+    "lines_changed": 4,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Tests",
+      "Examples",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/17331",
+    "id": "GH1021_transformers_17331",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 8,
+    "lines_changed": 212,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Examples",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/20768",
+    "id": "GH1022_keras_20768",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 121,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "size:M"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/21187",
+    "id": "GH1023_pytorch_lightni_21187",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 78,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "tuner",
+      "pl"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/6942",
+    "id": "GH1024_pytorch_lightni_6942",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 0.65,
+    "files_changed": 5,
+    "lines_changed": 32,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "ready to be merged",
+      "priority: 0",
+      "distributed"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/30818",
+    "id": "GH1025_numpy_30818",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 14,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "00 - Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/30521",
+    "id": "GH1026_numpy_30521",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 21,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "00 - Bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24761",
+    "id": "GH1027_scipy_24761",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 8,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "defect",
+      "scipy.spatial",
+      "backport-candidate",
+      "Cython"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/8633",
+    "id": "GH1028_statsmodels_8633",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.65,
+    "files_changed": 7,
+    "lines_changed": 453,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "comp-distributions",
+      "type-bug",
+      "type-bug-wrong"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/12081",
+    "id": "GH1029_dask_12081",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 48,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/21824",
+    "id": "GH1030_mlflow_21824",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 191,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/bug-fix",
+      "area/scoring",
+      "team-review",
+      "size/M",
+      "v3.11.0"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/21922",
+    "id": "GH1031_mlflow_21922",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.65,
+    "files_changed": 4,
+    "lines_changed": 458,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/bug-fix",
+      "area/evaluation",
+      "size/L"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/29438",
+    "id": "GH1032_ray_29438",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 36,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "release-blocker"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/23187",
+    "id": "GH1033_ray_23187",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 39,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "QS"
+    ]
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/64145",
+    "id": "GH1034_airflow_64145",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 101,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "type:bug-fix",
+      "backport-to-v3-1-test"
+    ]
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/5475",
+    "id": "GH1035_autogluon_5475",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.65,
+    "files_changed": 4,
+    "lines_changed": 133,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module: timeseries"
+    ]
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1405",
+    "id": "GH1036_FLAML_1405",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 46,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/1685",
+    "id": "GH1037_gpytorch_1685",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 21,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/1416",
+    "id": "GH1038_gpytorch_1416",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 25,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2776",
+    "id": "GH1039_darts_2776",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 32,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2957",
+    "id": "GH1040_darts_2957",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 31,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31061",
+    "id": "GH1041_matplotlib_31061",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.65,
+    "files_changed": 3,
+    "lines_changed": 35,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: text",
+      "topic: axes"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31091",
+    "id": "GH1042_matplotlib_31091",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 23,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: ticks axis labels"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/5415",
+    "id": "GH1043_plotly.py_5415",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/5193",
+    "id": "GH1044_plotly.py_5193",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.65,
+    "files_changed": 2,
+    "lines_changed": 49,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/170555",
+    "id": "GH1045_pytorch_170555",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "module: inductor",
+      "module: dynamo",
+      "ciflow/inductor"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/43675",
+    "id": "GH1046_transformers_43675",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 44,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/16669",
+    "id": "GH1047_transformers_16669",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.6,
+    "files_changed": 5,
+    "lines_changed": 118,
+    "test_files": 5,
+    "has_linked_issue": false,
+    "labels": [
+      "Examples",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/22294",
+    "id": "GH1048_keras_22294",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 16,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "kokoro:force-run",
+      "ready to pull",
+      "size:S"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/31053",
+    "id": "GH1049_numpy_31053",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.6,
+    "files_changed": 3,
+    "lines_changed": 20,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "00 - Bug",
+      "08 - Backport"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/31045",
+    "id": "GH1050_numpy_31045",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.6,
+    "files_changed": 3,
+    "lines_changed": 20,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "00 - Bug",
+      "component: numpy.ufunc"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24742",
+    "id": "GH1051_scipy_24742",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 47,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "defect",
+      "scipy.stats"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9524",
+    "id": "GH1052_statsmodels_9524",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 16,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "type-enh",
+      "comp-stats",
+      "prio-elev"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/10590",
+    "id": "GH1053_dask_10590",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 22,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "dataframe",
+      "io",
+      "parquet",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/9852",
+    "id": "GH1054_dask_9852",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 15,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "dataframe",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/1227",
+    "id": "GH1055_mlflow_1227",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 64,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "rn/none"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/46321",
+    "id": "GH1056_ray_46321",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 25,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "rllib",
+      "rllib-evaluation",
+      "rllib-envrunners",
+      "go"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/28511",
+    "id": "GH1057_ray_28511",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.6,
+    "files_changed": 5,
+    "lines_changed": 188,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "tune"
+    ]
+  },
+  {
+    "pr": "https://github.com/ray-project/ray/pull/15056",
+    "id": "GH1058_ray_15056",
+    "repo": "ray-project/ray",
+    "category": "mlops",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 49,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/13400",
+    "id": "GH1059_spaCy_13400",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.6,
+    "files_changed": 3,
+    "lines_changed": 172,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / nel"
+    ]
+  },
+  {
+    "pr": "https://github.com/ultralytics/ultralytics/pull/23903",
+    "id": "GH1060_ultralytics_23903",
+    "repo": "ultralytics/ultralytics",
+    "category": "cv",
+    "bug_score": 0.6,
+    "files_changed": 4,
+    "lines_changed": 24,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "fixed",
+      "python"
+    ]
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2627",
+    "id": "GH1061_featuretools_2627",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.6,
+    "files_changed": 4,
+    "lines_changed": 46,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/5436",
+    "id": "GH1062_autogluon_5436",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.6,
+    "files_changed": 3,
+    "lines_changed": 109,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module: timeseries"
+    ]
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1419",
+    "id": "GH1063_FLAML_1419",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 66,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7607",
+    "id": "GH1064_pymc_7607",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.6,
+    "files_changed": 10,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "bug",
+      "dependencies"
+    ]
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/2132",
+    "id": "GH1065_gpytorch_2132",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 48,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31315",
+    "id": "GH1066_matplotlib_31315",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.6,
+    "files_changed": 2,
+    "lines_changed": 16,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: legend"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/30054",
+    "id": "GH1067_matplotlib_30054",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.6,
+    "files_changed": 5,
+    "lines_changed": 209,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: images"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/166924",
+    "id": "GH1068_pytorch_166924",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.55,
+    "files_changed": 4,
+    "lines_changed": 242,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "module: dynamo",
+      "ciflow/inductor"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/transformers/pull/29370",
+    "id": "GH1069_transformers_29370",
+    "repo": "huggingface/transformers",
+    "category": "ml_framework",
+    "bug_score": 0.55,
+    "files_changed": 3,
+    "lines_changed": 84,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/31033",
+    "id": "GH1070_numpy_31033",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.55,
+    "files_changed": 2,
+    "lines_changed": 16,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/11656",
+    "id": "GH1071_dask_11656",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.55,
+    "files_changed": 5,
+    "lines_changed": 29,
+    "test_files": 3,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/13321",
+    "id": "GH1072_spaCy_13321",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.55,
+    "files_changed": 3,
+    "lines_changed": 17,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / pipeline"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/13249",
+    "id": "GH1073_spaCy_13249",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.55,
+    "files_changed": 3,
+    "lines_changed": 88,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / textcat"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/13284",
+    "id": "GH1074_spaCy_13284",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.55,
+    "files_changed": 1,
+    "lines_changed": 7,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "tests",
+      "feat / serialize"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/13058",
+    "id": "GH1075_spaCy_13058",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.55,
+    "files_changed": 5,
+    "lines_changed": 41,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / doc"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/13053",
+    "id": "GH1076_spaCy_13053",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.55,
+    "files_changed": 11,
+    "lines_changed": 26,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / cli",
+      "projects"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/12623",
+    "id": "GH1077_spaCy_12623",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.55,
+    "files_changed": 3,
+    "lines_changed": 105,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / config"
+    ]
+  },
+  {
+    "pr": "https://github.com/ultralytics/ultralytics/pull/23546",
+    "id": "GH1078_ultralytics_23546",
+    "repo": "ultralytics/ultralytics",
+    "category": "cv",
+    "bug_score": 0.55,
+    "files_changed": 2,
+    "lines_changed": 4,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "fixed",
+      "python"
+    ]
+  },
+  {
+    "pr": "https://github.com/ultralytics/ultralytics/pull/23545",
+    "id": "GH1079_ultralytics_23545",
+    "repo": "ultralytics/ultralytics",
+    "category": "cv",
+    "bug_score": 0.55,
+    "files_changed": 2,
+    "lines_changed": 4,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "fixed",
+      "python"
+    ]
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1334",
+    "id": "GH1080_FLAML_1334",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.55,
+    "files_changed": 6,
+    "lines_changed": 58,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1406",
+    "id": "GH1081_FLAML_1406",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.55,
+    "files_changed": 3,
+    "lines_changed": 18,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/1528",
+    "id": "GH1082_gpytorch_1528",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.55,
+    "files_changed": 3,
+    "lines_changed": 56,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "high priority"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/3207",
+    "id": "GH1083_sktime_3207",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.55,
+    "files_changed": 3,
+    "lines_changed": 9,
+    "test_files": 3,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module:classification"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31307",
+    "id": "GH1084_matplotlib_31307",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.55,
+    "files_changed": 5,
+    "lines_changed": 47,
+    "test_files": 3,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: plotting methods",
+      "first-contribution"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31313",
+    "id": "GH1085_matplotlib_31313",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.55,
+    "files_changed": 9,
+    "lines_changed": 121,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: mpl_toolkit",
+      "topic: images"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31133",
+    "id": "GH1086_matplotlib_31133",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.55,
+    "files_changed": 2,
+    "lines_changed": 68,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "GUI: tk",
+      "first-contribution"
+    ]
+  },
+  {
+    "pr": "https://github.com/scikit-learn/scikit-learn/pull/30373",
+    "id": "GH1087_scikit_learn_30373",
+    "repo": "scikit-learn/scikit-learn",
+    "category": "ml_framework",
+    "bug_score": 0.5,
+    "files_changed": 4,
+    "lines_changed": 31,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "Bug",
+      "API",
+      "To backport",
+      "No Changelog Needed",
+      "Quick Review"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/20782",
+    "id": "GH1088_keras_20782",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 20,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "size:S"
+    ]
+  },
+  {
+    "pr": "https://github.com/Lightning-AI/pytorch-lightning/pull/8421",
+    "id": "GH1089_pytorch_lightni_8421",
+    "repo": "Lightning-AI/pytorch-lightning",
+    "category": "ml_framework",
+    "bug_score": 0.5,
+    "files_changed": 3,
+    "lines_changed": 14,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "ready to be merged"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9457",
+    "id": "GH1090_statsmodels_9457",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 353,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/11421",
+    "id": "GH1091_dask_11421",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 15,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "array",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/10885",
+    "id": "GH1092_dask_10885",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 41,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "array",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/8012",
+    "id": "GH1093_spaCy_8012",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 94,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "tests",
+      "feat / textcat",
+      "feat / tok2vec"
+    ]
+  },
+  {
+    "pr": "https://github.com/explosion/spaCy/pull/12575",
+    "id": "GH1094_spaCy_12575",
+    "repo": "explosion/spaCy",
+    "category": "nlp",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 75,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "feat / cli"
+    ]
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/63475",
+    "id": "GH1095_airflow_63475",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.5,
+    "files_changed": 3,
+    "lines_changed": 66,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "area:providers",
+      "provider:standard"
+    ]
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/5131",
+    "id": "GH1096_autogluon_5131",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 35,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module: timeseries"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/7998",
+    "id": "GH1097_sktime_7998",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.5,
+    "files_changed": 1,
+    "lines_changed": 5,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "maintenance"
+    ]
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2989",
+    "id": "GH1098_darts_2989",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.5,
+    "files_changed": 3,
+    "lines_changed": 103,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2987",
+    "id": "GH1099_darts_2987",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.5,
+    "files_changed": 3,
+    "lines_changed": 94,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2984",
+    "id": "GH1100_darts_2984",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.5,
+    "files_changed": 3,
+    "lines_changed": 57,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2811",
+    "id": "GH1101_darts_2811",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.5,
+    "files_changed": 4,
+    "lines_changed": 47,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2895",
+    "id": "GH1102_darts_2895",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.5,
+    "files_changed": 3,
+    "lines_changed": 29,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2869",
+    "id": "GH1103_darts_2869",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.5,
+    "files_changed": 4,
+    "lines_changed": 173,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31128",
+    "id": "GH1104_matplotlib_31128",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 33,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "status: needs revision",
+      "status: needs rebase",
+      "topic: axes",
+      "first-contribution"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31203",
+    "id": "GH1105_matplotlib_31203",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 24,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: hist",
+      "topic: plotting methods",
+      "first-contribution"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/466",
+    "id": "GH1106_plotly.py_466",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.5,
+    "files_changed": 3,
+    "lines_changed": 221,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/5535",
+    "id": "GH1107_plotly.py_5535",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.5,
+    "files_changed": 2,
+    "lines_changed": 13,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/163861",
+    "id": "GH1108_pytorch_163861",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.45,
+    "files_changed": 3,
+    "lines_changed": 36,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": [
+      "module: cpu",
+      "open source",
+      "module: inductor",
+      "ciflow/inductor"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/22477",
+    "id": "GH1109_keras_22477",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.45,
+    "files_changed": 4,
+    "lines_changed": 53,
+    "test_files": 3,
+    "has_linked_issue": false,
+    "labels": [
+      "stat:awaiting response from contributor"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/22439",
+    "id": "GH1110_keras_22439",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 37,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "kokoro:force-run",
+      "ready to pull",
+      "size:S"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/20774",
+    "id": "GH1111_keras_20774",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.45,
+    "files_changed": 3,
+    "lines_changed": 175,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "size:M"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24610",
+    "id": "GH1112_scipy_24610",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.45,
+    "files_changed": 4,
+    "lines_changed": 38,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "scipy.stats",
+      "maintenance"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9747",
+    "id": "GH1113_statsmodels_9747",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 23,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9739",
+    "id": "GH1114_statsmodels_9739",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 17,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/12099",
+    "id": "GH1115_dask_12099",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.45,
+    "files_changed": 3,
+    "lines_changed": 25,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "dataframe",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/10320",
+    "id": "GH1116_dask_10320",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 42,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "dataframe",
+      "io",
+      "parquet",
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/10043",
+    "id": "GH1117_dask_10043",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.45,
+    "files_changed": 3,
+    "lines_changed": 45,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "dataframe",
+      "bug",
+      "gpu"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/22053",
+    "id": "GH1118_mlflow_22053",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 111,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/none",
+      "size/M",
+      "v3.11.0"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/21965",
+    "id": "GH1119_mlflow_21965",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.45,
+    "files_changed": 1,
+    "lines_changed": 2,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/none",
+      "area/evaluation",
+      "size/XS"
+    ]
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11248",
+    "id": "GH1120_wandb_11248",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 234,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11207",
+    "id": "GH1121_wandb_11207",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.45,
+    "files_changed": 5,
+    "lines_changed": 259,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/ultralytics/ultralytics/pull/24022",
+    "id": "GH1122_ultralytics_24022",
+    "repo": "ultralytics/ultralytics",
+    "category": "cv",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 30,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "fixed",
+      "python"
+    ]
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/63848",
+    "id": "GH1123_airflow_63848",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 25,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2434",
+    "id": "GH1124_featuretools_2434",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.45,
+    "files_changed": 7,
+    "lines_changed": 174,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2254",
+    "id": "GH1125_featuretools_2254",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.45,
+    "files_changed": 5,
+    "lines_changed": 57,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/autogluon/autogluon/pull/4899",
+    "id": "GH1126_autogluon_4899",
+    "repo": "autogluon/autogluon",
+    "category": "automl",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 47,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module: timeseries"
+    ]
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1522",
+    "id": "GH1127_FLAML_1522",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.45,
+    "files_changed": 1,
+    "lines_changed": 2,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1475",
+    "id": "GH1128_FLAML_1475",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.45,
+    "files_changed": 4,
+    "lines_changed": 293,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/cornellius-gp/gpytorch/pull/2559",
+    "id": "GH1129_gpytorch_2559",
+    "repo": "cornellius-gp/gpytorch",
+    "category": "bayesian",
+    "bug_score": 0.45,
+    "files_changed": 6,
+    "lines_changed": 194,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "bug"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/6713",
+    "id": "GH1130_sktime_6713",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.45,
+    "files_changed": 1,
+    "lines_changed": 8,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module:datatypes"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/4442",
+    "id": "GH1131_sktime_4442",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.45,
+    "files_changed": 1,
+    "lines_changed": 1,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "maintenance",
+      "module:forecasting"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/4432",
+    "id": "GH1132_sktime_4432",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.45,
+    "files_changed": 1,
+    "lines_changed": 3,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "module:forecasting"
+    ]
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/3015",
+    "id": "GH1133_darts_3015",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.45,
+    "files_changed": 5,
+    "lines_changed": 77,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2887",
+    "id": "GH1134_darts_2887",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.45,
+    "files_changed": 10,
+    "lines_changed": 136,
+    "test_files": 7,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31278",
+    "id": "GH1135_matplotlib_31278",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.45,
+    "files_changed": 2,
+    "lines_changed": 17,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: contour",
+      "first-contribution"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/176783",
+    "id": "GH1136_pytorch_176783",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 48,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "module: cpu",
+      "open source",
+      "module: inductor",
+      "ciflow/inductor"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/171247",
+    "id": "GH1137_pytorch_171247",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 17,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "open source",
+      "module: inductor",
+      "ciflow/inductor",
+      "ciflow/xpu"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/166922",
+    "id": "GH1138_pytorch_166922",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 28,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "module: inductor",
+      "ciflow/inductor",
+      "ciflow/rocm",
+      "ciflow/h100",
+      "ciflow/b200"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/166925",
+    "id": "GH1139_pytorch_166925",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 30,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "module: dynamo",
+      "ciflow/inductor"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/21729",
+    "id": "GH1140_keras_21729",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 55,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "size:S"
+    ]
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24108",
+    "id": "GH1141_scipy_24108",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.4,
+    "files_changed": 1,
+    "lines_changed": 21,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "scipy.special"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9541",
+    "id": "GH1142_statsmodels_9541",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.4,
+    "files_changed": 1,
+    "lines_changed": 15,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/dask/dask/pull/9570",
+    "id": "GH1143_dask_9570",
+    "repo": "dask/dask",
+    "category": "ds_analytics",
+    "bug_score": 0.4,
+    "files_changed": 4,
+    "lines_changed": 157,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "dataframe",
+      "bug",
+      "gpu"
+    ]
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11495",
+    "id": "GH1144_wandb_11495",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.4,
+    "files_changed": 11,
+    "lines_changed": 330,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11237",
+    "id": "GH1145_wandb_11237",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.4,
+    "files_changed": 4,
+    "lines_changed": 21,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/huggingface/evaluate/pull/336",
+    "id": "GH1146_evaluate_336",
+    "repo": "huggingface/evaluate",
+    "category": "eval",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 71,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2636",
+    "id": "GH1147_featuretools_2636",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.4,
+    "files_changed": 10,
+    "lines_changed": 67,
+    "test_files": 4,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2432",
+    "id": "GH1148_featuretools_2432",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.4,
+    "files_changed": 4,
+    "lines_changed": 56,
+    "test_files": 2,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2380",
+    "id": "GH1149_featuretools_2380",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.4,
+    "files_changed": 11,
+    "lines_changed": 349,
+    "test_files": 6,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1494",
+    "id": "GH1150_FLAML_1494",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 126,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7856",
+    "id": "GH1151_pymc_7856",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 15,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "trace-backend"
+    ]
+  },
+  {
+    "pr": "https://github.com/pymc-devs/pymc/pull/7575",
+    "id": "GH1152_pymc_7575",
+    "repo": "pymc-devs/pymc",
+    "category": "bayesian",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 29,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "logprob"
+    ]
+  },
+  {
+    "pr": "https://github.com/sktime/sktime/pull/3139",
+    "id": "GH1153_sktime_3139",
+    "repo": "sktime/sktime",
+    "category": "timeseries",
+    "bug_score": 0.4,
+    "files_changed": 1,
+    "lines_changed": 2,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "bug",
+      "maintenance",
+      "module:transformations"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/30795",
+    "id": "GH1154_matplotlib_30795",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.4,
+    "files_changed": 3,
+    "lines_changed": 24,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: images"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/30746",
+    "id": "GH1155_matplotlib_30746",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 257,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "backend: pdf"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31031",
+    "id": "GH1156_matplotlib_31031",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 25,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: widgets/UI"
+    ]
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/30752",
+    "id": "GH1157_matplotlib_30752",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.4,
+    "files_changed": 2,
+    "lines_changed": 98,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/matplotlib/matplotlib/pull/31014",
+    "id": "GH1158_matplotlib_31014",
+    "repo": "matplotlib/matplotlib",
+    "category": "viz",
+    "bug_score": 0.4,
+    "files_changed": 1,
+    "lines_changed": 16,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": [
+      "topic: testing"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/166984",
+    "id": "GH1159_pytorch_166984",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.35,
+    "files_changed": 3,
+    "lines_changed": 129,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "open source",
+      "module: inductor",
+      "ciflow/inductor"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/22458",
+    "id": "GH1160_keras_22458",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.35,
+    "files_changed": 1,
+    "lines_changed": 10,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9728",
+    "id": "GH1161_statsmodels_9728",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.35,
+    "files_changed": 10,
+    "lines_changed": 186,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9413",
+    "id": "GH1162_statsmodels_9413",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.35,
+    "files_changed": 2,
+    "lines_changed": 228,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/21808",
+    "id": "GH1163_mlflow_21808",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.35,
+    "files_changed": 1,
+    "lines_changed": 9,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/none",
+      "area/build",
+      "team-review",
+      "size/XS"
+    ]
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/64085",
+    "id": "GH1164_airflow_64085",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.35,
+    "files_changed": 13,
+    "lines_changed": 263,
+    "test_files": 6,
+    "has_linked_issue": false,
+    "labels": [
+      "provider:amazon",
+      "area:providers"
+    ]
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2694",
+    "id": "GH1165_featuretools_2694",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.35,
+    "files_changed": 9,
+    "lines_changed": 85,
+    "test_files": 3,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2644",
+    "id": "GH1166_featuretools_2644",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.35,
+    "files_changed": 10,
+    "lines_changed": 44,
+    "test_files": 3,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2459",
+    "id": "GH1167_featuretools_2459",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.35,
+    "files_changed": 4,
+    "lines_changed": 110,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2413",
+    "id": "GH1168_featuretools_2413",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.35,
+    "files_changed": 3,
+    "lines_changed": 10,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/1825",
+    "id": "GH1169_featuretools_1825",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.35,
+    "files_changed": 3,
+    "lines_changed": 68,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1520",
+    "id": "GH1170_FLAML_1520",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.35,
+    "files_changed": 1,
+    "lines_changed": 4,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1469",
+    "id": "GH1171_FLAML_1469",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.35,
+    "files_changed": 5,
+    "lines_changed": 95,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/5000",
+    "id": "GH1172_plotly.py_5000",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.35,
+    "files_changed": 2,
+    "lines_changed": 41,
+    "test_files": 1,
+    "has_linked_issue": true,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/164368",
+    "id": "GH1173_pytorch_164368",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.3,
+    "files_changed": 2,
+    "lines_changed": 96,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "open source",
+      "module: inductor",
+      "ciflow/inductor"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/22478",
+    "id": "GH1174_keras_22478",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.3,
+    "files_changed": 2,
+    "lines_changed": 72,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/22438",
+    "id": "GH1175_keras_22438",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.3,
+    "files_changed": 2,
+    "lines_changed": 25,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "stat:awaiting response from contributor",
+      "size:XS"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/21706",
+    "id": "GH1176_keras_21706",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.3,
+    "files_changed": 3,
+    "lines_changed": 212,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "ready to pull",
+      "size:M"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/31079",
+    "id": "GH1177_numpy_31079",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.3,
+    "files_changed": 1,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "05 - Testing",
+      "08 - Backport"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/30801",
+    "id": "GH1178_numpy_30801",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.3,
+    "files_changed": 1,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "05 - Testing",
+      "09 - Backport-Candidate"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9673",
+    "id": "GH1179_statsmodels_9673",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.3,
+    "files_changed": 3,
+    "lines_changed": 6,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/22000",
+    "id": "GH1180_mlflow_22000",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.3,
+    "files_changed": 2,
+    "lines_changed": 13,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/none",
+      "team-review",
+      "size/S",
+      "v3.11.0"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/21864",
+    "id": "GH1181_mlflow_21864",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.3,
+    "files_changed": 2,
+    "lines_changed": 145,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/none",
+      "size/M",
+      "v3.11.0"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/21810",
+    "id": "GH1182_mlflow_21810",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.3,
+    "files_changed": 3,
+    "lines_changed": 53,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/none",
+      "team-review",
+      "area/tracing",
+      "size/M"
+    ]
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/21797",
+    "id": "GH1183_mlflow_21797",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.3,
+    "files_changed": 2,
+    "lines_changed": 36,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/none",
+      "team-review",
+      "size/S",
+      "v3.11.0"
+    ]
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11315",
+    "id": "GH1184_wandb_11315",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.3,
+    "files_changed": 2,
+    "lines_changed": 130,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/62174",
+    "id": "GH1185_airflow_62174",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.3,
+    "files_changed": 2,
+    "lines_changed": 185,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "area:task-sdk",
+      "backport-to-v3-1-test"
+    ]
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2052",
+    "id": "GH1186_featuretools_2052",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.3,
+    "files_changed": 3,
+    "lines_changed": 9,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1512",
+    "id": "GH1187_FLAML_1512",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.3,
+    "files_changed": 3,
+    "lines_changed": 116,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1500",
+    "id": "GH1188_FLAML_1500",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.3,
+    "files_changed": 2,
+    "lines_changed": 65,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2958",
+    "id": "GH1189_darts_2958",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.3,
+    "files_changed": 3,
+    "lines_changed": 75,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/175094",
+    "id": "GH1190_pytorch_175094",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.25,
+    "files_changed": 1,
+    "lines_changed": 8,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "open source",
+      "topic: not user facing",
+      "ci-no-td"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/172105",
+    "id": "GH1191_pytorch_172105",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.25,
+    "files_changed": 3,
+    "lines_changed": 173,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "open source",
+      "release notes: python_frontend",
+      "topic: security"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/171129",
+    "id": "GH1192_pytorch_171129",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.25,
+    "files_changed": 2,
+    "lines_changed": 84,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "open source",
+      "module: inductor",
+      "ciflow/inductor"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/170884",
+    "id": "GH1193_pytorch_170884",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.25,
+    "files_changed": 7,
+    "lines_changed": 475,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "module: inductor",
+      "module: dynamo",
+      "ciflow/inductor"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/22544",
+    "id": "GH1194_keras_22544",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.25,
+    "files_changed": 4,
+    "lines_changed": 16,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "ready to pull",
+      "size:S"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/22483",
+    "id": "GH1195_keras_22483",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.25,
+    "files_changed": 2,
+    "lines_changed": 21,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/21864",
+    "id": "GH1196_keras_21864",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.25,
+    "files_changed": 2,
+    "lines_changed": 34,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "ready to pull",
+      "size:S"
+    ]
+  },
+  {
+    "pr": "https://github.com/keras-team/keras/pull/21945",
+    "id": "GH1197_keras_21945",
+    "repo": "keras-team/keras",
+    "category": "ml_framework",
+    "bug_score": 0.25,
+    "files_changed": 2,
+    "lines_changed": 26,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "stat:awaiting response from contributor",
+      "ready to pull",
+      "size:S"
+    ]
+  },
+  {
+    "pr": "https://github.com/numpy/numpy/pull/30983",
+    "id": "GH1198_numpy_30983",
+    "repo": "numpy/numpy",
+    "category": "ds_analytics",
+    "bug_score": 0.25,
+    "files_changed": 4,
+    "lines_changed": 91,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/scipy/scipy/pull/24638",
+    "id": "GH1199_scipy_24638",
+    "repo": "scipy/scipy",
+    "category": "ds_analytics",
+    "bug_score": 0.25,
+    "files_changed": 4,
+    "lines_changed": 33,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": [
+      "scipy.signal",
+      "maintenance",
+      "array types"
+    ]
+  },
+  {
+    "pr": "https://github.com/statsmodels/statsmodels/pull/9595",
+    "id": "GH1200_statsmodels_9595",
+    "repo": "statsmodels/statsmodels",
+    "category": "ds_analytics",
+    "bug_score": 0.25,
+    "files_changed": 3,
+    "lines_changed": 16,
+    "test_files": 3,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/mlflow/mlflow/pull/21832",
+    "id": "GH1201_mlflow_21832",
+    "repo": "mlflow/mlflow",
+    "category": "mlops",
+    "bug_score": 0.25,
+    "files_changed": 1,
+    "lines_changed": 1,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "rn/none",
+      "area/build",
+      "size/XS"
+    ]
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11491",
+    "id": "GH1202_wandb_11491",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.25,
+    "files_changed": 3,
+    "lines_changed": 50,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11226",
+    "id": "GH1203_wandb_11226",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.25,
+    "files_changed": 11,
+    "lines_changed": 187,
+    "test_files": 4,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/huggingface/evaluate/pull/230",
+    "id": "GH1204_evaluate_230",
+    "repo": "huggingface/evaluate",
+    "category": "eval",
+    "bug_score": 0.25,
+    "files_changed": 2,
+    "lines_changed": 12,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1470",
+    "id": "GH1205_FLAML_1470",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.25,
+    "files_changed": 2,
+    "lines_changed": 82,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/microsoft/FLAML/pull/1477",
+    "id": "GH1206_FLAML_1477",
+    "repo": "microsoft/FLAML",
+    "category": "automl",
+    "bug_score": 0.25,
+    "files_changed": 2,
+    "lines_changed": 44,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/2907",
+    "id": "GH1207_darts_2907",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.25,
+    "files_changed": 2,
+    "lines_changed": 23,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/178062",
+    "id": "GH1208_pytorch_178062",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.2,
+    "files_changed": 1,
+    "lines_changed": 175,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "topic: not user facing",
+      "ci-no-td"
+    ]
+  },
+  {
+    "pr": "https://github.com/pytorch/pytorch/pull/176603",
+    "id": "GH1209_pytorch_176603",
+    "repo": "pytorch/pytorch",
+    "category": "ml_framework",
+    "bug_score": 0.2,
+    "files_changed": 2,
+    "lines_changed": 89,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "open source"
+    ]
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11242",
+    "id": "GH1210_wandb_11242",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.2,
+    "files_changed": 6,
+    "lines_changed": 453,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11240",
+    "id": "GH1211_wandb_11240",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.2,
+    "files_changed": 1,
+    "lines_changed": 1,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/wandb/wandb/pull/11231",
+    "id": "GH1212_wandb_11231",
+    "repo": "wandb/wandb",
+    "category": "mlops",
+    "bug_score": 0.2,
+    "files_changed": 3,
+    "lines_changed": 22,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/64216",
+    "id": "GH1213_airflow_64216",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.2,
+    "files_changed": 2,
+    "lines_changed": 72,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "provider:amazon",
+      "area:providers"
+    ]
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/64120",
+    "id": "GH1214_airflow_64120",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.2,
+    "files_changed": 2,
+    "lines_changed": 11,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "area:task-sdk"
+    ]
+  },
+  {
+    "pr": "https://github.com/apache/airflow/pull/63246",
+    "id": "GH1215_airflow_63246",
+    "repo": "apache/airflow",
+    "category": "data_eng",
+    "bug_score": 0.2,
+    "files_changed": 2,
+    "lines_changed": 27,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": [
+      "area:providers",
+      "area:logging",
+      "provider:alibaba",
+      "ready for maintainer review"
+    ]
+  },
+  {
+    "pr": "https://github.com/huggingface/evaluate/pull/52",
+    "id": "GH1216_evaluate_52",
+    "repo": "huggingface/evaluate",
+    "category": "eval",
+    "bug_score": 0.2,
+    "files_changed": 3,
+    "lines_changed": 11,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2182",
+    "id": "GH1217_featuretools_2182",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.2,
+    "files_changed": 4,
+    "lines_changed": 22,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2030",
+    "id": "GH1218_featuretools_2030",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.2,
+    "files_changed": 12,
+    "lines_changed": 37,
+    "test_files": 3,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/alteryx/featuretools/pull/2025",
+    "id": "GH1219_featuretools_2025",
+    "repo": "alteryx/featuretools",
+    "category": "feature_eng",
+    "bug_score": 0.2,
+    "files_changed": 3,
+    "lines_changed": 137,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/unit8co/darts/pull/3044",
+    "id": "GH1220_darts_3044",
+    "repo": "unit8co/darts",
+    "category": "timeseries",
+    "bug_score": 0.2,
+    "files_changed": 1,
+    "lines_changed": 4,
+    "test_files": 1,
+    "has_linked_issue": false,
+    "labels": []
+  },
+  {
+    "pr": "https://github.com/plotly/plotly.py/pull/5361",
+    "id": "GH1221_plotly.py_5361",
+    "repo": "plotly/plotly.py",
+    "category": "viz",
+    "bug_score": 0.2,
+    "files_changed": 2,
+    "lines_changed": 6,
+    "test_files": 2,
+    "has_linked_issue": false,
+    "labels": []
+  }
+]

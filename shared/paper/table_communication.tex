@@ -1,0 +1,33 @@
+\begin{table}[t]
+\centering
+\caption{Communication pattern analysis across 196 valid full-condition runs (130 unique tasks, Gemini 3 Flash Preview). Message volume shows no significant correlation with task score; the dominant predictor of outcome is task type rather than communication volume. Team-helping tasks exhibit higher active communication rates (86\% vs.\ 68\%) and longer planner messages, though the difference does not reach significance at available sample sizes.}
+\label{tab:communication}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Significance} \\
+\midrule
+\multicolumn{3}{l}{\textit{Overall Communication}} \\
+Avg.\ planner messages per run & 6.8 & -- \\
+Median planner messages per run & 2 & -- \\
+Avg.\ planner chars per run & 11,328 & -- \\
+Runs with active planner comms & 61.2\% & -- \\
+\midrule
+\multicolumn{3}{l}{\textit{Correlation with Task Score}} \\
+Message length vs.\ score ($r$) & 0.014 & $p = 0.848$ (n.s.) \\
+Message count vs.\ score ($r$) & 0.068 & $p = 0.343$ (n.s.) \\
+\midrule
+\multicolumn{3}{l}{\textit{Active vs.\ Silent Communication}} \\
+Active comms mean score & 0.779 & \multirow{2}{*}{$p = 0.288$ (n.s.)} \\
+Silent mean score & 0.739 & \\
+Active pass rate & 36.7\% & -- \\
+Silent pass rate & 31.6\% & -- \\
+\midrule
+\multicolumn{3}{l}{\textit{Team-Helps vs.\ Team-Hurts Tasks}} \\
+Helps: avg.\ planner chars & 16,300 & \multirow{2}{*}{$n_h=7, n_u=15$} \\
+Hurts: avg.\ planner chars & 12,857 & \\
+Helps: active comm rate & 85.7\% & -- \\
+Hurts: active comm rate & 68.4\% & -- \\
+\bottomrule
+\end{tabular}
+\end{table}

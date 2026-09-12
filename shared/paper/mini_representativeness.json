@@ -1,0 +1,272 @@
+{
+  "generated_at": "2026-03-19T17:51:08.936479",
+  "note": "22 of 28 Mini tasks found in task_regression_data.csv (147 tasks). 6 tasks absent from CSV: D1_schema_drift, P1_policy_config, SPEC1_feature_impl, INC1_cascade_failure, IR1_evidence_qa, NEG1_tradeoff_config. Their categories are inferred from benchmark metadata.",
+  "task_counts": {
+    "full_benchmark": 147,
+    "mini_in_csv": 22,
+    "mini_total_intended": 28,
+    "mini_missing_from_csv": 6
+  },
+  "oracle_score": {
+    "mini": {
+      "name": "mini_oracle",
+      "n": 22,
+      "mean": 0.37455454545454553,
+      "median": 0.25834999999999997,
+      "std": 0.2934952724974544,
+      "min": 0.0,
+      "max": 0.9333,
+      "q25": 0.203325,
+      "q75": 0.46035
+    },
+    "full": {
+      "name": "full_oracle",
+      "n": 147,
+      "mean": 0.5746578231292517,
+      "median": 0.62,
+      "std": 0.32636921102879407,
+      "min": 0.0,
+      "max": 1.0,
+      "q25": 0.26335,
+      "q75": 0.9
+    },
+    "mean_difference": -0.2001032776747062
+  },
+  "team_uplift": {
+    "mini": {
+      "name": "mini_uplift",
+      "n": 22,
+      "mean": 0.08026818181818181,
+      "median": 0.00185,
+      "std": 0.1561486117113884,
+      "min": -0.1117,
+      "max": 0.4067,
+      "q25": -0.020975,
+      "q75": 0.1333
+    },
+    "full": {
+      "name": "full_uplift",
+      "n": 147,
+      "mean": 0.017075510204081636,
+      "median": 0.0,
+      "std": 0.24881752641431137,
+      "min": -0.92,
+      "max": 1.0,
+      "q25": -0.02585,
+      "q75": 0.1
+    },
+    "mean_difference": 0.06319267161410017
+  },
+  "plan_value": {
+    "mini": {
+      "name": "mini_plan_value",
+      "n": 22,
+      "mean": 0.0594681818181818,
+      "median": 0.0228,
+      "std": 0.1586076482463916,
+      "min": -0.284,
+      "max": 0.48,
+      "q25": 0.0,
+      "q75": 0.07355
+    },
+    "full": {
+      "name": "full_plan_value",
+      "n": 147,
+      "mean": 0.04792925170068028,
+      "median": 0.0,
+      "std": 0.2904437573666747,
+      "min": -1.0,
+      "max": 1.0,
+      "q25": 0.0,
+      "q75": 0.1
+    }
+  },
+  "verify_value": {
+    "mini": {
+      "name": "mini_verify_value",
+      "n": 22,
+      "mean": 0.11828636363636363,
+      "median": 0.07680000000000001,
+      "std": 0.18745821704723464,
+      "min": -0.1517,
+      "max": 0.5,
+      "q25": 0.0,
+      "q75": 0.162825
+    },
+    "full": {
+      "name": "full_verify_value",
+      "n": 147,
+      "mean": 0.00012176870748299035,
+      "median": 0.0,
+      "std": 0.23057097843878815,
+      "min": -0.6367,
+      "max": 0.73,
+      "q25": -0.08,
+      "q75": 0.07930000000000001
+    }
+  },
+  "statistical_tests": {
+    "ks_oracle": {
+      "description": "Kolmogorov-Smirnov test comparing Mini vs Full oracle score distributions",
+      "statistic": 0.37353123067408783,
+      "p_value": 0.006675606952516746,
+      "interpretation": "p<0.05: Mini oracle scores differ significantly from Full (Mini skews toward harder/lower-oracle tasks)"
+    },
+    "ks_uplift": {
+      "description": "Kolmogorov-Smirnov test comparing Mini vs Full team uplift distributions",
+      "statistic": 0.17006802721088435,
+      "p_value": 0.5716585954657104,
+      "interpretation": "p>0.05: Mini uplift distribution is not significantly different from Full"
+    },
+    "welch_ttest_oracle": {
+      "description": "Welch t-test on oracle scores (Mini vs Full)",
+      "statistic": -2.7149344266476882,
+      "p_value": 0.007325571386932729
+    },
+    "mann_whitney_oracle": {
+      "description": "Mann-Whitney U test on oracle scores (Mini vs Full)",
+      "statistic": 1070.0,
+      "p_value": 0.010609300322324893
+    }
+  },
+  "category_coverage": {
+    "full_n_categories": 23,
+    "mini_n_categories_in_csv": 11,
+    "mini_n_categories_with_inferred": 13,
+    "mini_categories": [
+      "code_review",
+      "data",
+      "incident",
+      "ir",
+      "multi_layer",
+      "negotiation",
+      "ops",
+      "other",
+      "pipeline",
+      "policy",
+      "security",
+      "spec_driven",
+      "testing"
+    ],
+    "categories_not_in_mini": [
+      "adversarial",
+      "cross_system",
+      "crypto",
+      "distributed",
+      "github_real",
+      "integration",
+      "legalhold",
+      "multilang",
+      "scaling",
+      "swe"
+    ],
+    "full_category_counts": {
+      "other": 18,
+      "github_real": 11,
+      "incident": 10,
+      "multi_layer": 9,
+      "ops": 9,
+      "testing": 9,
+      "security": 9,
+      "data": 8,
+      "policy": 7,
+      "ir": 7,
+      "spec_driven": 6,
+      "legalhold": 6,
+      "pipeline": 6,
+      "code_review": 5,
+      "multilang": 5,
+      "swe": 5,
+      "negotiation": 4,
+      "cross_system": 3,
+      "adversarial": 3,
+      "distributed": 2,
+      "crypto": 2,
+      "integration": 2,
+      "scaling": 1
+    },
+    "mini_category_counts_in_csv": {
+      "other": 7,
+      "ops": 3,
+      "testing": 3,
+      "security": 2,
+      "incident": 1,
+      "code_review": 1,
+      "data": 1,
+      "pipeline": 1,
+      "policy": 1,
+      "multi_layer": 1,
+      "spec_driven": 1
+    }
+  },
+  "difficulty_distribution": {
+    "full": {
+      "1": {
+        "n": 6,
+        "pct": 4.081632653061225
+      },
+      "2": {
+        "n": 40,
+        "pct": 27.210884353741495
+      },
+      "3": {
+        "n": 91,
+        "pct": 61.904761904761905
+      },
+      "4": {
+        "n": 10,
+        "pct": 6.802721088435374
+      }
+    },
+    "mini": {
+      "1": {
+        "n": 1,
+        "pct": 4.545454545454546
+      },
+      "2": {
+        "n": 12,
+        "pct": 54.54545454545455
+      },
+      "3": {
+        "n": 9,
+        "pct": 40.90909090909091
+      },
+      "4": {
+        "n": 0,
+        "pct": 0.0
+      }
+    },
+    "note": "1=easy, 2=medium, 3=hard, 4=expert"
+  },
+  "task_classification": {
+    "full": {
+      "team_helps": {
+        "n": 54,
+        "pct": 36.734693877551024
+      },
+      "neutral": {
+        "n": 61,
+        "pct": 41.49659863945578
+      },
+      "team_hurts": {
+        "n": 32,
+        "pct": 21.768707482993197
+      }
+    },
+    "mini": {
+      "team_helps": {
+        "n": 8,
+        "pct": 36.36363636363637
+      },
+      "neutral": {
+        "n": 12,
+        "pct": 54.54545454545455
+      },
+      "team_hurts": {
+        "n": 2,
+        "pct": 9.090909090909092
+      }
+    },
+    "threshold": "uplift > 0.05 = team_helps; uplift < -0.05 = team_hurts; else neutral"
+  }
+}

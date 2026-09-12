@@ -1,0 +1,30 @@
+\begin{table}[t]
+\centering
+\caption{Coordination topology ablation (14 tasks, Gemini 3 Flash). The standard 3-phase pipeline (Plan$\to$Execute$\to$Verify) achieves the highest average score. Verify-First is competitive on investigation tasks; Iterative and Dual-Exec degrade performance. Partial scores shown (\%); \textbf{bold} = full pass.}
+\label{tab:topology}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+\textbf{Task} & \textbf{Oracle} & \textbf{3-Phase} & \textbf{Verify-First} & \textbf{Iterative} & \textbf{Dual-Exec} & \textbf{Self-Check} \\
+\midrule
+MULTI1\_fullstack\_fix & 88 & \textbf{100} & \textbf{100} & 88 & \textbf{100} & 88 \\
+TEST1\_spec\_to\_tests & 70 & 80 & 50 & 60 & 10 & 70 \\
+O2\_incident\_rootcause & 60 & 80 & 80 & 80 & 80 & 60 \\
+PIPE1\_etl\_fix & 64 & 82 & 73 & 82 & 82 & 73 \\
+TRAP1\_spec\_conflict & 90 & 90 & 90 & 90 & 40 & 90 \\
+TRAP3\_metric\_mirage & 60 & 80 & 60 & 60 & 40 & 80 \\
+CROSS1\_api\_contract & 70 & 70 & 70 & 50 & 60 & -- \\
+CRYPTO1\_nonce\_reuse & 60 & 60 & 60 & 50 & 60 & 60 \\
+DIST1\_queue\_race & 42 & 42 & 42 & 8 & 17 & -- \\
+SEC1\_vuln\_patch & 67 & 83 & 75 & 67 & 50 & -- \\
+D1\_schema\_drift & 88 & 94 & 94 & 33 & 12 & -- \\
+INC1\_cascade\_failure & 80 & 90 & 80 & 90 & 90 & -- \\
+SPEC1\_feature\_impl & 55 & 55 & 55 & 64 & 55 & -- \\
+NEG1\_tradeoff\_config & 30 & 50 & 40 & 40 & 30 & -- \\
+\midrule
+\textit{Avg (\%)} & 66.0 & 75.4 & 69.2 & 61.6 & 51.8 & 74.4$^*$ \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize $^*$Self-Check: 7/14 tasks completed; remaining runs in progress.} \\
+\end{tabular}
+\end{table}

@@ -1,0 +1,51 @@
+{
+  "source": "shared/role_ablation/results/per_run.jsonl",
+  "n_runs_total": 1061,
+  "n_runs_with_attestation": 627,
+  "n_runs_missing_attestation": 434,
+  "confusion_matrix": {
+    "true_positive": 166,
+    "false_positive_false_accept": 228,
+    "true_negative": 219,
+    "false_negative_false_reject": 14
+  },
+  "false_accept_rate": 0.5100671140939598,
+  "false_accept_ci95": [
+    0.4638361055188086,
+    0.5561265598607837
+  ],
+  "false_reject_rate": 0.07777777777777778,
+  "false_reject_ci95": [
+    0.046892990443628484,
+    0.1263082871779762
+  ],
+  "n_grader_fail_pool": 447,
+  "n_grader_pass_pool": 180,
+  "examples_false_accept": [
+    {
+      "task": "LH2_budgeted_workflow",
+      "config": "PAEAVA",
+      "run_dir": "/u/ybkim95/TeamBench/shared/role_ablation/runs/PAEAVA/LH2_budgeted_workflow/20260416_223525_696e9590"
+    },
+    {
+      "task": "GH14_celery_chain_fail",
+      "config": "PAEAVA",
+      "run_dir": "/u/ybkim95/TeamBench/shared/role_ablation/runs/PAEAVA/GH14_celery_chain_fail/20260416_225321_3832b736"
+    },
+    {
+      "task": "PIPE2_data_pipeline",
+      "config": "PAEAVA",
+      "run_dir": "/u/ybkim95/TeamBench/shared/role_ablation/runs/PAEAVA/PIPE2_data_pipeline/20260416_235022_2199a5c2"
+    },
+    {
+      "task": "P2_spec_arbitration",
+      "config": "PAEAVA",
+      "run_dir": "/u/ybkim95/TeamBench/shared/role_ablation/runs/PAEAVA/P2_spec_arbitration/20260416_235547_ef58d36f"
+    },
+    {
+      "task": "GO1_concurrency_fix",
+      "config": "PAEAVA",
+      "run_dir": "/u/ybkim95/TeamBench/shared/role_ablation/runs/PAEAVA/GO1_concurrency_fix/20260417_000753_fdf5e33a"
+    }
+  ]
+}

@@ -1,0 +1,463 @@
+{
+  "generated_at": "2026-03-19T00:53:24.547016Z",
+  "description": "Statistical robustness analyses for TeamBench paper",
+  "analysis_1_multiseed_significance": {
+    "description": "Paired bootstrap tests (n=5000 iterations) on 39-task multi-seed subset, seeds 0+1+2 pooled as per-task mean scores",
+    "n_tasks": 39,
+    "seeds": "0 (partial: 37 tasks), 1 (39 tasks), 2 (39 tasks); averaged per task",
+    "comparisons": {
+      "full vs oracle": {
+        "cond_a": "full",
+        "cond_b": "oracle",
+        "observed_diff_pp": 20.513,
+        "ci_95_low_pp": 8.547,
+        "ci_95_high_pp": 33.333,
+        "p_value": 0.0024,
+        "significant_0.05": true,
+        "n_tasks": 39,
+        "seeds_used": "0,1,2 pooled (mean per task)"
+      },
+      "full vs team_no_plan": {
+        "cond_a": "full",
+        "cond_b": "team_no_plan",
+        "observed_diff_pp": 21.795,
+        "ci_95_low_pp": 10.684,
+        "ci_95_high_pp": 33.771,
+        "p_value": 0.0002,
+        "significant_0.05": true,
+        "n_tasks": 39,
+        "seeds_used": "0,1,2 pooled (mean per task)"
+      },
+      "full vs team_no_verify": {
+        "cond_a": "full",
+        "cond_b": "team_no_verify",
+        "observed_diff_pp": -1.282,
+        "ci_95_low_pp": -10.684,
+        "ci_95_high_pp": 8.547,
+        "p_value": 0.7384,
+        "significant_0.05": false,
+        "n_tasks": 39,
+        "seeds_used": "0,1,2 pooled (mean per task)"
+      },
+      "full vs restricted": {
+        "cond_a": "full",
+        "cond_b": "restricted",
+        "observed_diff_pp": 26.068,
+        "ci_95_low_pp": 14.53,
+        "ci_95_high_pp": 38.462,
+        "p_value": 0.0002,
+        "significant_0.05": true,
+        "n_tasks": 39,
+        "seeds_used": "0,1,2 pooled (mean per task)"
+      },
+      "team_no_verify vs oracle": {
+        "cond_a": "team_no_verify",
+        "cond_b": "oracle",
+        "observed_diff_pp": 21.795,
+        "ci_95_low_pp": 7.692,
+        "ci_95_high_pp": 36.752,
+        "p_value": 0.0024,
+        "significant_0.05": true,
+        "n_tasks": 39,
+        "seeds_used": "0,1,2 pooled (mean per task)"
+      },
+      "seed_stability": {
+        "0": {
+          "diff_pp": 24.324,
+          "p": 0.0032,
+          "n": 37
+        },
+        "1": {
+          "diff_pp": 12.821,
+          "p": 0.1176,
+          "n": 39
+        },
+        "2": {
+          "diff_pp": 23.077,
+          "p": 0.0002,
+          "n": 39
+        }
+      },
+      "seed_stability_conclusion": "Consistent sign of Full > Oracle across all 3 seeds; direction is stable though each individual seed has limited power."
+    }
+  },
+  "analysis_2_effect_sizes": {
+    "description": "Cohen's d (paired) and practical significance for all key comparisons",
+    "cohens_d_scale": {
+      "negligible": "<0.2",
+      "small": "0.2-0.5",
+      "medium": "0.5-0.8",
+      "large": ">0.8"
+    },
+    "results": {
+      "full vs oracle": {
+        "cohens_d": 0.5104,
+        "interpretation": "medium",
+        "diff_pp": 20.513,
+        "practical_tasks_solved_on_147": 30.15,
+        "practical_tasks_solved_on_39": 8.0
+      },
+      "full vs team_no_plan": {
+        "cohens_d": 0.5906,
+        "interpretation": "medium",
+        "diff_pp": 21.795,
+        "practical_tasks_solved_on_147": 32.04,
+        "practical_tasks_solved_on_39": 8.5
+      },
+      "full vs team_no_verify": {
+        "cohens_d": -0.0418,
+        "interpretation": "negligible",
+        "diff_pp": -1.282,
+        "practical_tasks_solved_on_147": -1.88,
+        "practical_tasks_solved_on_39": -0.5
+      },
+      "full vs restricted": {
+        "cohens_d": 0.6724,
+        "interpretation": "medium",
+        "diff_pp": 26.068,
+        "practical_tasks_solved_on_147": 38.32,
+        "practical_tasks_solved_on_39": 10.17
+      },
+      "team_no_verify vs oracle": {
+        "cohens_d": 0.4764,
+        "interpretation": "small",
+        "diff_pp": 21.795,
+        "practical_tasks_solved_on_147": 32.04,
+        "practical_tasks_solved_on_39": 8.5
+      },
+      "full_vs_oracle_147tasks_seed0": {
+        "n": 147,
+        "diff_pp": 1.708,
+        "cohens_d": 0.0686,
+        "interpretation": "negligible",
+        "p_value": 0.3828,
+        "significant": false,
+        "tasks_solved_uplift": 2.51,
+        "ci_95_low_pp": -2.435,
+        "ci_95_high_pp": 5.574
+      },
+      "practical_guide": {
+        "+1pp_tasks_on_147": 1.47,
+        "+1pp_tasks_on_39": 0.39,
+        "note": "1 percentage point change in pass rate on the full 147-task benchmark set corresponds to 1.47 additional tasks solved."
+      }
+    }
+  },
+  "analysis_3_holm_bonferroni": {
+    "method": "Holm-Bonferroni (step-down)",
+    "m_total_tests": 15,
+    "alpha": 0.05,
+    "tests": [
+      {
+        "group": "A_conditions",
+        "label": "A: full vs restricted (n=39, multi-seed)",
+        "p": 0.0002,
+        "diff_pp": 26.068,
+        "ci_low": 14.53,
+        "ci_high": 38.462,
+        "n": 39,
+        "holm_rank": 1,
+        "holm_threshold": 0.003333,
+        "survives_correction": true
+      },
+      {
+        "group": "B_categories",
+        "label": "B: uplift in multi_layer (n=9)",
+        "p": 0.0002,
+        "diff_pp": 12.556,
+        "ci_low": 5.333,
+        "ci_high": 21.223,
+        "n": 9,
+        "holm_rank": 2,
+        "holm_threshold": 0.003571,
+        "survives_correction": true
+      },
+      {
+        "group": "C_quintiles",
+        "label": "C: Q1_uplift (oracle_mean=0.12, n=29)",
+        "p": 0.0002,
+        "diff_pp": 15.32,
+        "ci_low": 6.648,
+        "ci_high": 26.006,
+        "n": 29,
+        "holm_rank": 3,
+        "holm_threshold": 0.003846,
+        "survives_correction": true
+      },
+      {
+        "group": "B_categories",
+        "label": "B: uplift in github_real (n=11)",
+        "p": 0.0008,
+        "diff_pp": 15.818,
+        "ci_low": 4.636,
+        "ci_high": 29.727,
+        "n": 11,
+        "holm_rank": 4,
+        "holm_threshold": 0.004167,
+        "survives_correction": true
+      },
+      {
+        "group": "B_categories",
+        "label": "B: uplift in testing (n=9)",
+        "p": 0.0032,
+        "diff_pp": 18.876,
+        "ci_low": 3.337,
+        "ci_high": 41.943,
+        "n": 9,
+        "holm_rank": 5,
+        "holm_threshold": 0.004545,
+        "survives_correction": true
+      },
+      {
+        "group": "A_conditions",
+        "label": "A: full vs team_no_plan (n=147)",
+        "p": 0.0384,
+        "diff_pp": 4.793,
+        "ci_low": 0.307,
+        "ci_high": 9.441,
+        "n": 147,
+        "holm_rank": 6,
+        "holm_threshold": 0.005,
+        "survives_correction": false
+      },
+      {
+        "group": "C_quintiles",
+        "label": "C: Q5_uplift (oracle_mean=0.96, n=31)",
+        "p": 0.0436,
+        "diff_pp": -7.438,
+        "ci_low": -16.166,
+        "ci_high": -0.345,
+        "n": 31,
+        "holm_rank": 7,
+        "holm_threshold": 0.005556,
+        "survives_correction": false
+      },
+      {
+        "group": "B_categories",
+        "label": "B: uplift in pipeline (n=6)",
+        "p": 0.0648,
+        "diff_pp": -11.223,
+        "ci_low": -23.89,
+        "ci_high": 0.805,
+        "n": 6,
+        "holm_rank": 8,
+        "holm_threshold": 0.00625,
+        "survives_correction": false
+      },
+      {
+        "group": "C_quintiles",
+        "label": "C: Q2_uplift (oracle_mean=0.30, n=29)",
+        "p": 0.1588,
+        "diff_pp": 6.152,
+        "ci_low": -2.094,
+        "ci_high": 15.113,
+        "n": 29,
+        "holm_rank": 9,
+        "holm_threshold": 0.007143,
+        "survives_correction": false
+      },
+      {
+        "group": "C_quintiles",
+        "label": "C: Q4_uplift (oracle_mean=0.85, n=29)",
+        "p": 0.2148,
+        "diff_pp": -5.087,
+        "ci_low": -13.776,
+        "ci_high": 2.552,
+        "n": 29,
+        "holm_rank": 10,
+        "holm_threshold": 0.008333,
+        "survives_correction": false
+      },
+      {
+        "group": "A_conditions",
+        "label": "A: full vs oracle (n=147)",
+        "p": 0.3828,
+        "diff_pp": 1.708,
+        "ci_low": -2.435,
+        "ci_high": 5.574,
+        "n": 147,
+        "holm_rank": 11,
+        "holm_threshold": 0.01,
+        "survives_correction": false
+      },
+      {
+        "group": "A_conditions",
+        "label": "A: team_no_verify vs oracle (n=147)",
+        "p": 0.4516,
+        "diff_pp": 1.695,
+        "ci_low": -2.806,
+        "ci_high": 6.25,
+        "n": 147,
+        "holm_rank": 12,
+        "holm_threshold": 0.0125,
+        "survives_correction": false
+      },
+      {
+        "group": "B_categories",
+        "label": "B: uplift in cross_system (n=3)",
+        "p": 0.5356,
+        "diff_pp": -20.0,
+        "ci_low": -60.0,
+        "ci_high": 0.0,
+        "n": 3,
+        "holm_rank": 13,
+        "holm_threshold": 0.016667,
+        "survives_correction": false
+      },
+      {
+        "group": "C_quintiles",
+        "label": "C: Q3_uplift (oracle_mean=0.62, n=29)",
+        "p": 0.9356,
+        "diff_pp": 0.22,
+        "ci_low": -7.042,
+        "ci_high": 7.513,
+        "n": 29,
+        "holm_rank": 14,
+        "holm_threshold": 0.025,
+        "survives_correction": false
+      },
+      {
+        "group": "A_conditions",
+        "label": "A: full vs team_no_verify (n=147)",
+        "p": 0.9592,
+        "diff_pp": 0.012,
+        "ci_low": -3.663,
+        "ci_high": 3.796,
+        "n": 147,
+        "holm_rank": 15,
+        "holm_threshold": 0.05,
+        "survives_correction": false
+      }
+    ],
+    "surviving_labels": [
+      "A: full vs restricted (n=39, multi-seed)",
+      "B: uplift in multi_layer (n=9)",
+      "C: Q1_uplift (oracle_mean=0.12, n=29)",
+      "B: uplift in github_real (n=11)",
+      "B: uplift in testing (n=9)"
+    ],
+    "n_surviving": 5
+  },
+  "analysis_4_power_analysis": {
+    "n_tasks": 147,
+    "alpha": 0.05,
+    "desired_power": 0.8,
+    "observed_mean_diff_pp": 1.708,
+    "observed_std_diff_pp": 24.882,
+    "observed_cohens_d": 0.0686,
+    "z_alpha_over_2": 1.96,
+    "z_beta": 0.8416,
+    "mde_cohens_d": 0.2311,
+    "mde_pp": 5.75,
+    "achieved_power_at_observed_effect": 0.1297,
+    "conclusion": "With n=147 tasks and observed stdev=24.9pp, the study is powered to detect effects of >= 5.7pp at p<0.05 with 80% power.",
+    "multiseed_39tasks": {
+      "n": 39,
+      "std_diff_pp": 40.186,
+      "mde_pp": 18.03,
+      "observed_cohens_d": 0.5104,
+      "achieved_power": 0.8902
+    }
+  },
+  "analysis_5_interseed_variance": {
+    "description": "Per-condition inter-seed variance and ICC(1,1) on 37-task subset with all 3 seeds",
+    "icc_scale": {
+      "poor": "<0.4",
+      "moderate": "0.4-0.6",
+      "good": "0.6-0.75",
+      "excellent": ">0.75"
+    },
+    "results": {
+      "full": {
+        "n_tasks_all_3_seeds": 37,
+        "seed_means": {
+          "0": 0.3243,
+          "1": 0.1892,
+          "2": 0.2703
+        },
+        "seed_stds": {
+          "0": 0.4746,
+          "1": 0.3971,
+          "2": 0.4502
+        },
+        "mean_within_task_variance": 0.081081,
+        "icc_1_1": 0.5881,
+        "icc_interpretation": "moderate",
+        "ms_between": 0.428428,
+        "ms_within": 0.081081
+      },
+      "oracle": {
+        "n_tasks_all_3_seeds": 37,
+        "seed_means": {
+          "0": 0.0811,
+          "1": 0.0541,
+          "2": 0.0811
+        },
+        "seed_stds": {
+          "0": 0.2767,
+          "1": 0.2292,
+          "2": 0.2767
+        },
+        "mean_within_task_variance": 0.018018,
+        "icc_1_1": 0.7366,
+        "icc_interpretation": "good",
+        "ms_between": 0.169169,
+        "ms_within": 0.018018
+      },
+      "team_no_verify": {
+        "n_tasks_all_3_seeds": 37,
+        "seed_means": {
+          "0": 0.3243,
+          "1": 0.2703,
+          "2": 0.2703
+        },
+        "seed_stds": {
+          "0": 0.4746,
+          "1": 0.4502,
+          "2": 0.4502
+        },
+        "mean_within_task_variance": 0.018018,
+        "icc_1_1": 0.9144,
+        "icc_interpretation": "excellent",
+        "ms_between": 0.595596,
+        "ms_within": 0.018018
+      },
+      "team_no_plan": {
+        "n_tasks_all_3_seeds": 37,
+        "seed_means": {
+          "0": 0.027,
+          "1": 0.0541,
+          "2": 0.0541
+        },
+        "seed_stds": {
+          "0": 0.1644,
+          "1": 0.2292,
+          "2": 0.2292
+        },
+        "mean_within_task_variance": 0.036036,
+        "icc_1_1": 0.1724,
+        "icc_interpretation": "poor",
+        "ms_between": 0.058559,
+        "ms_within": 0.036036
+      },
+      "restricted": {
+        "n_tasks_all_3_seeds": 37,
+        "seed_means": {
+          "0": 0.0,
+          "1": 0.0541,
+          "2": 0.027
+        },
+        "seed_stds": {
+          "0": 0.0,
+          "1": 0.2292,
+          "2": 0.1644
+        },
+        "mean_within_task_variance": 0.018018,
+        "icc_1_1": 0.325,
+        "icc_interpretation": "poor",
+        "ms_between": 0.044044,
+        "ms_within": 0.018018
+      }
+    }
+  }
+}

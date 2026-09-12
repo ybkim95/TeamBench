@@ -1,0 +1,118 @@
+{
+  "n_runs_used": 792,
+  "n_tasks": 15,
+  "method": "Spec-critical tokens are content tokens (length >= 4, not stopwords) that appear at least twice in spec.md, capped at top 50 by frequency. Planner / Executor recall is the fraction of spec-critical tokens that appear in that role's dialogue text. Relay fidelity is the fraction that appear in BOTH the Planner and the Executor dialogues.",
+  "planner_recall": {
+    "n": 792,
+    "mean": 0.79,
+    "median": 0.88,
+    "p25": 0.681,
+    "p75": 0.964
+  },
+  "executor_recall": {
+    "n": 792,
+    "mean": 0.239,
+    "median": 0.191,
+    "p25": 0.0,
+    "p75": 0.45
+  },
+  "relay_fidelity": {
+    "n": 792,
+    "mean": 0.212,
+    "median": 0.128,
+    "p25": 0.0,
+    "p75": 0.389
+  },
+  "per_task": {
+    "API1_version_compat": {
+      "n_runs": 50,
+      "planner_recall_mean": 0.639,
+      "executor_recall_mean": 0.204,
+      "relay_fidelity_mean": 0.132
+    },
+    "CROSS1_api_contract": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.844,
+      "executor_recall_mean": 0.143,
+      "relay_fidelity_mean": 0.132
+    },
+    "CROSS6_grpc_rest_bridge": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.708,
+      "executor_recall_mean": 0.19,
+      "relay_fidelity_mean": 0.167
+    },
+    "CRYPTO1_nonce_reuse": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.876,
+      "executor_recall_mean": 0.302,
+      "relay_fidelity_mean": 0.287
+    },
+    "DIST1_queue_race": {
+      "n_runs": 54,
+      "planner_recall_mean": 0.921,
+      "executor_recall_mean": 0.19,
+      "relay_fidelity_mean": 0.179
+    },
+    "GH14_celery_chain_fail": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.69,
+      "executor_recall_mean": 0.215,
+      "relay_fidelity_mean": 0.18
+    },
+    "GH7_fixture_scope_leak": {
+      "n_runs": 52,
+      "planner_recall_mean": 0.71,
+      "executor_recall_mean": 0.159,
+      "relay_fidelity_mean": 0.121
+    },
+    "GO1_concurrency_fix": {
+      "n_runs": 54,
+      "planner_recall_mean": 0.705,
+      "executor_recall_mean": 0.09,
+      "relay_fidelity_mean": 0.075
+    },
+    "INC10_rollback_plan": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.73,
+      "executor_recall_mean": 0.289,
+      "relay_fidelity_mean": 0.272
+    },
+    "INFRA2_cicd_repair": {
+      "n_runs": 52,
+      "planner_recall_mean": 0.799,
+      "executor_recall_mean": 0.357,
+      "relay_fidelity_mean": 0.303
+    },
+    "IR2_misinformation_trap": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.964,
+      "executor_recall_mean": 0.315,
+      "relay_fidelity_mean": 0.315
+    },
+    "LH2_budgeted_workflow": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.879,
+      "executor_recall_mean": 0.278,
+      "relay_fidelity_mean": 0.278
+    },
+    "P2_spec_arbitration": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.689,
+      "executor_recall_mean": 0.432,
+      "relay_fidelity_mean": 0.332
+    },
+    "PIPE2_data_pipeline": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.796,
+      "executor_recall_mean": 0.156,
+      "relay_fidelity_mean": 0.146
+    },
+    "TRAP1_spec_conflict": {
+      "n_runs": 53,
+      "planner_recall_mean": 0.889,
+      "executor_recall_mean": 0.264,
+      "relay_fidelity_mean": 0.259
+    }
+  }
+}

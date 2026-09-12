@@ -1,0 +1,16 @@
+{
+  "cross_model_key_findings": [
+    "Team uplift is universal across all 6 closed models (+3.6pp to +32.1pp)",
+    "Weaker models benefit MORE: Haiku 4.5 achieves 4x relative gain vs 2x for Sonnet 4.6",
+    "Teamwork is an equalizer: Haiku 4.5 matches Sonnet 4.6 on Full condition (both 42.9%) despite 2x lower Oracle",
+    "Full > NoVerify > NoPlan > Oracle for 4/6 models \u2014 verification adds value for closed models",
+    "Open-source models (0-2.1%) fail due to tool-use infrastructure, not capability: 73-76% context overflow for larger models, 31-43% bad attestation for smaller ones",
+    "GPT-5 Nano is the weakest closed model but still benefits from teamwork (+3.6pp)"
+  ],
+  "paper_implications": [
+    "Section 5: Cross-model analysis shows teamwork benefit is model-general, not model-specific",
+    "Section 6: Open-source gap is infrastructure (context window, tool-calling), not intelligence",
+    "Figure: Team uplift vs model capability scatter plot with closed/open split",
+    "Table: Full cross-model comparison with per-condition breakdown"
+  ]
+}

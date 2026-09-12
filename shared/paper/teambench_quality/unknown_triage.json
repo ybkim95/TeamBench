@@ -1,0 +1,431 @@
+{
+  "n_unknown": 42,
+  "bucket_counts": {
+    "near_miss_very_close": 11,
+    "near_miss": 11,
+    "solvable_in_principle": 10,
+    "broken_grader_post_pr": 10
+  },
+  "rows": [
+    {
+      "task_id": "SPEC5_config_system",
+      "n_runs": 152,
+      "best_partial": 0.95,
+      "n_runs_partial_ge_0.7": 6,
+      "n_runs_partial_ge_0.5": 25,
+      "n_runs_partial_ge_0.3": 82,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "D5_query_optimize",
+      "n_runs": 162,
+      "best_partial": 0.93,
+      "n_runs_partial_ge_0.7": 107,
+      "n_runs_partial_ge_0.5": 117,
+      "n_runs_partial_ge_0.3": 123,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "LH4_staged_deploy",
+      "n_runs": 155,
+      "best_partial": 0.93,
+      "n_runs_partial_ge_0.7": 3,
+      "n_runs_partial_ge_0.5": 30,
+      "n_runs_partial_ge_0.3": 49,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "P4_data_retention",
+      "n_runs": 155,
+      "best_partial": 0.93,
+      "n_runs_partial_ge_0.7": 20,
+      "n_runs_partial_ge_0.5": 102,
+      "n_runs_partial_ge_0.3": 112,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "SEC8_dependency_audit",
+      "n_runs": 154,
+      "best_partial": 0.92,
+      "n_runs_partial_ge_0.7": 63,
+      "n_runs_partial_ge_0.5": 126,
+      "n_runs_partial_ge_0.3": 126,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "CR6_review_checklist",
+      "n_runs": 161,
+      "best_partial": 0.91,
+      "n_runs_partial_ge_0.7": 89,
+      "n_runs_partial_ge_0.5": 112,
+      "n_runs_partial_ge_0.3": 115,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "INFRA2_cicd_repair",
+      "n_runs": 154,
+      "best_partial": 0.9,
+      "n_runs_partial_ge_0.7": 125,
+      "n_runs_partial_ge_0.5": 125,
+      "n_runs_partial_ge_0.3": 137,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "MULTI2_microservice_debug",
+      "n_runs": 158,
+      "best_partial": 0.9,
+      "n_runs_partial_ge_0.7": 86,
+      "n_runs_partial_ge_0.5": 105,
+      "n_runs_partial_ge_0.3": 123,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "MULTI5_deploy_pipeline",
+      "n_runs": 154,
+      "best_partial": 0.9,
+      "n_runs_partial_ge_0.7": 78,
+      "n_runs_partial_ge_0.5": 119,
+      "n_runs_partial_ge_0.3": 120,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "NEG1_tradeoff_config",
+      "n_runs": 156,
+      "best_partial": 0.9,
+      "n_runs_partial_ge_0.7": 44,
+      "n_runs_partial_ge_0.5": 88,
+      "n_runs_partial_ge_0.3": 137,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "PIPE2_data_pipeline",
+      "n_runs": 155,
+      "best_partial": 0.9,
+      "n_runs_partial_ge_0.7": 99,
+      "n_runs_partial_ge_0.5": 117,
+      "n_runs_partial_ge_0.3": 119,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss_very_close"
+    },
+    {
+      "task_id": "CR1_review_respond",
+      "n_runs": 163,
+      "best_partial": 0.88,
+      "n_runs_partial_ge_0.7": 32,
+      "n_runs_partial_ge_0.5": 67,
+      "n_runs_partial_ge_0.3": 100,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH112_redis-py_3996",
+      "n_runs": 158,
+      "best_partial": 0.88,
+      "n_runs_partial_ge_0.7": 51,
+      "n_runs_partial_ge_0.5": 67,
+      "n_runs_partial_ge_0.3": 96,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH12_click_envvar_flag",
+      "n_runs": 157,
+      "best_partial": 0.88,
+      "n_runs_partial_ge_0.7": 97,
+      "n_runs_partial_ge_0.5": 98,
+      "n_runs_partial_ge_0.3": 98,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH13_starlette_bg_block",
+      "n_runs": 154,
+      "best_partial": 0.83,
+      "n_runs_partial_ge_0.7": 76,
+      "n_runs_partial_ge_0.5": 99,
+      "n_runs_partial_ge_0.3": 116,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH14_celery_chain_fail",
+      "n_runs": 156,
+      "best_partial": 0.83,
+      "n_runs_partial_ge_0.7": 2,
+      "n_runs_partial_ge_0.5": 103,
+      "n_runs_partial_ge_0.3": 110,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "INT1_pipeline_repair",
+      "n_runs": 158,
+      "best_partial": 0.83,
+      "n_runs_partial_ge_0.7": 89,
+      "n_runs_partial_ge_0.5": 106,
+      "n_runs_partial_ge_0.3": 112,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH1002_scipy_24753",
+      "n_runs": 165,
+      "best_partial": 0.8,
+      "n_runs_partial_ge_0.7": 5,
+      "n_runs_partial_ge_0.5": 99,
+      "n_runs_partial_ge_0.3": 100,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH1004_dask_11665",
+      "n_runs": 165,
+      "best_partial": 0.8,
+      "n_runs_partial_ge_0.7": 1,
+      "n_runs_partial_ge_0.5": 3,
+      "n_runs_partial_ge_0.3": 90,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH1005_ray_60236",
+      "n_runs": 165,
+      "best_partial": 0.8,
+      "n_runs_partial_ge_0.7": 2,
+      "n_runs_partial_ge_0.5": 10,
+      "n_runs_partial_ge_0.3": 93,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH1007_spaCy_13040",
+      "n_runs": 164,
+      "best_partial": 0.8,
+      "n_runs_partial_ge_0.7": 2,
+      "n_runs_partial_ge_0.5": 5,
+      "n_runs_partial_ge_0.3": 92,
+      "static_workspace_is_post_pr": false,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH103_redis-py_3998",
+      "n_runs": 157,
+      "best_partial": 0.75,
+      "n_runs_partial_ge_0.7": 60,
+      "n_runs_partial_ge_0.5": 76,
+      "n_runs_partial_ge_0.3": 78,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH121_quart_302",
+      "n_runs": 156,
+      "best_partial": 0.75,
+      "n_runs_partial_ge_0.7": 23,
+      "n_runs_partial_ge_0.5": 112,
+      "n_runs_partial_ge_0.3": 117,
+      "static_workspace_is_post_pr": false,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH140_marshmallow_2874",
+      "n_runs": 156,
+      "best_partial": 0.75,
+      "n_runs_partial_ge_0.7": 2,
+      "n_runs_partial_ge_0.5": 77,
+      "n_runs_partial_ge_0.3": 85,
+      "static_workspace_is_post_pr": false,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH120_redis-py_3863",
+      "n_runs": 158,
+      "best_partial": 0.7,
+      "n_runs_partial_ge_0.7": 68,
+      "n_runs_partial_ge_0.5": 72,
+      "n_runs_partial_ge_0.3": 81,
+      "static_workspace_is_post_pr": null,
+      "bucket": "near_miss"
+    },
+    {
+      "task_id": "GH144_psycopg_1247",
+      "n_runs": 157,
+      "best_partial": 0.7,
+      "n_runs_partial_ge_0.7": 2,
+      "n_runs_partial_ge_0.5": 80,
+      "n_runs_partial_ge_0.3": 90,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH143_mitmproxy_8095",
+      "n_runs": 157,
+      "best_partial": 0.64,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 7,
+      "n_runs_partial_ge_0.3": 86,
+      "static_workspace_is_post_pr": false,
+      "bucket": "solvable_in_principle"
+    },
+    {
+      "task_id": "SYNTH1_distributed_debug",
+      "n_runs": 161,
+      "best_partial": 0.64,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 41,
+      "n_runs_partial_ge_0.3": 87,
+      "static_workspace_is_post_pr": null,
+      "bucket": "solvable_in_principle"
+    },
+    {
+      "task_id": "GH128_mitmproxy_8046",
+      "n_runs": 158,
+      "best_partial": 0.62,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 77,
+      "n_runs_partial_ge_0.3": 86,
+      "static_workspace_is_post_pr": false,
+      "bucket": "solvable_in_principle"
+    },
+    {
+      "task_id": "GH141_urllib3_3736",
+      "n_runs": 157,
+      "best_partial": 0.62,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 79,
+      "n_runs_partial_ge_0.3": 89,
+      "static_workspace_is_post_pr": false,
+      "bucket": "solvable_in_principle"
+    },
+    {
+      "task_id": "GH1000_numpy_19869",
+      "n_runs": 166,
+      "best_partial": 0.6,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 3,
+      "n_runs_partial_ge_0.3": 98,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH1001_numpy_30855",
+      "n_runs": 166,
+      "best_partial": 0.6,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 16,
+      "n_runs_partial_ge_0.3": 102,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH1003_scipy_24496",
+      "n_runs": 165,
+      "best_partial": 0.6,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 6,
+      "n_runs_partial_ge_0.3": 95,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH1006_spaCy_13068",
+      "n_runs": 165,
+      "best_partial": 0.6,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 4,
+      "n_runs_partial_ge_0.3": 91,
+      "static_workspace_is_post_pr": false,
+      "bucket": "solvable_in_principle"
+    },
+    {
+      "task_id": "GH1008_spaCy_12749",
+      "n_runs": 164,
+      "best_partial": 0.6,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 3,
+      "n_runs_partial_ge_0.3": 88,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH1009_spaCy_12486",
+      "n_runs": 164,
+      "best_partial": 0.6,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 1,
+      "n_runs_partial_ge_0.3": 87,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH139_marshmallow_2894",
+      "n_runs": 158,
+      "best_partial": 0.56,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 82,
+      "n_runs_partial_ge_0.3": 93,
+      "static_workspace_is_post_pr": false,
+      "bucket": "solvable_in_principle"
+    },
+    {
+      "task_id": "P2_spec_arbitration",
+      "n_runs": 151,
+      "best_partial": 0.5,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 84,
+      "n_runs_partial_ge_0.3": 84,
+      "static_workspace_is_post_pr": null,
+      "bucket": "solvable_in_principle"
+    },
+    {
+      "task_id": "GH136_mitmproxy_8054",
+      "n_runs": 158,
+      "best_partial": 0.44,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 0,
+      "n_runs_partial_ge_0.3": 91,
+      "static_workspace_is_post_pr": false,
+      "bucket": "solvable_in_principle"
+    },
+    {
+      "task_id": "GH1010_great_expectati_10406",
+      "n_runs": 163,
+      "best_partial": 0.4,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 0,
+      "n_runs_partial_ge_0.3": 91,
+      "static_workspace_is_post_pr": true,
+      "bucket": "broken_grader_post_pr"
+    },
+    {
+      "task_id": "GH1011_great_expectati_8062",
+      "n_runs": 163,
+      "best_partial": 0.4,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 0,
+      "n_runs_partial_ge_0.3": 91,
+      "static_workspace_is_post_pr": false,
+      "bucket": "solvable_in_principle"
+    },
+    {
+      "task_id": "INC10_rollback_plan",
+      "n_runs": 156,
+      "best_partial": 0.4,
+      "n_runs_partial_ge_0.7": 0,
+      "n_runs_partial_ge_0.5": 0,
+      "n_runs_partial_ge_0.3": 112,
+      "static_workspace_is_post_pr": null,
+      "bucket": "solvable_in_principle"
+    }
+  ]
+}

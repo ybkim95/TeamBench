@@ -1,0 +1,454 @@
+{
+  "computed_at": "2026-04-27T21:04:43.283001",
+  "note": "Solo=oracle, Restricted=restricted, No Plan=team_no_plan, No Eval=team_no_verify, Full=full. Excludes errored runs.",
+  "models": {
+    "Claude Haiku 4.5": {
+      "oracle": {
+        "valid_n": 100,
+        "passed": 11,
+        "rate": 0.11,
+        "errored": 0
+      },
+      "restricted": {
+        "valid_n": 100,
+        "passed": 26,
+        "rate": 0.26,
+        "errored": 0
+      },
+      "team_no_plan": {
+        "valid_n": 100,
+        "passed": 15,
+        "rate": 0.15,
+        "errored": 0
+      },
+      "team_no_verify": {
+        "valid_n": 19,
+        "passed": 1,
+        "rate": 0.05263157894736842,
+        "errored": 81
+      },
+      "full": {
+        "valid_n": 185,
+        "passed": 45,
+        "rate": 0.24324324324324326,
+        "errored": 0
+      }
+    },
+    "Claude Opus 4.7": {
+      "oracle": {
+        "valid_n": 100,
+        "passed": 18,
+        "rate": 0.18,
+        "errored": 0
+      },
+      "restricted": {
+        "valid_n": 100,
+        "passed": 21,
+        "rate": 0.21,
+        "errored": 0
+      },
+      "team_no_plan": {
+        "valid_n": 69,
+        "passed": 17,
+        "rate": 0.2463768115942029,
+        "errored": 31
+      },
+      "team_no_verify": {
+        "valid_n": 100,
+        "passed": 30,
+        "rate": 0.3,
+        "errored": 0
+      },
+      "full": {
+        "valid_n": 0,
+        "passed": 0,
+        "rate": null,
+        "errored": 100
+      }
+    },
+    "Claude Sonnet 4.6": {
+      "oracle": {
+        "valid_n": 100,
+        "passed": 7,
+        "rate": 0.07,
+        "errored": 0
+      },
+      "restricted": {
+        "valid_n": 100,
+        "passed": 25,
+        "rate": 0.25,
+        "errored": 0
+      },
+      "team_no_plan": {
+        "valid_n": 53,
+        "passed": 7,
+        "rate": 0.1320754716981132,
+        "errored": 47
+      },
+      "team_no_verify": {
+        "valid_n": 39,
+        "passed": 6,
+        "rate": 0.15384615384615385,
+        "errored": 61
+      },
+      "full": {
+        "valid_n": 70,
+        "passed": 13,
+        "rate": 0.18571428571428572,
+        "errored": 0
+      }
+    },
+    "GPT-5 Nano": {
+      "oracle": {
+        "valid_n": 102,
+        "passed": 5,
+        "rate": 0.049019607843137254,
+        "errored": 0
+      },
+      "restricted": {
+        "valid_n": 0,
+        "passed": 0,
+        "rate": null,
+        "errored": 0
+      },
+      "team_no_plan": {
+        "valid_n": 0,
+        "passed": 0,
+        "rate": null,
+        "errored": 0
+      },
+      "team_no_verify": {
+        "valid_n": 0,
+        "passed": 0,
+        "rate": null,
+        "errored": 0
+      },
+      "full": {
+        "valid_n": 99,
+        "passed": 6,
+        "rate": 0.06060606060606061,
+        "errored": 1
+      }
+    },
+    "GPT-5.4": {
+      "oracle": {
+        "valid_n": 100,
+        "passed": 11,
+        "rate": 0.11,
+        "errored": 0
+      },
+      "restricted": {
+        "valid_n": 99,
+        "passed": 31,
+        "rate": 0.31313131313131315,
+        "errored": 1
+      },
+      "team_no_plan": {
+        "valid_n": 99,
+        "passed": 20,
+        "rate": 0.20202020202020202,
+        "errored": 1
+      },
+      "team_no_verify": {
+        "valid_n": 100,
+        "passed": 31,
+        "rate": 0.31,
+        "errored": 0
+      },
+      "full": {
+        "valid_n": 100,
+        "passed": 25,
+        "rate": 0.25,
+        "errored": 0
+      }
+    },
+    "GPT-5.4 Mini": {
+      "oracle": {
+        "valid_n": 99,
+        "passed": 17,
+        "rate": 0.1717171717171717,
+        "errored": 1
+      },
+      "restricted": {
+        "valid_n": 100,
+        "passed": 21,
+        "rate": 0.21,
+        "errored": 0
+      },
+      "team_no_plan": {
+        "valid_n": 100,
+        "passed": 22,
+        "rate": 0.22,
+        "errored": 0
+      },
+      "team_no_verify": {
+        "valid_n": 100,
+        "passed": 22,
+        "rate": 0.22,
+        "errored": 0
+      },
+      "full": {
+        "valid_n": 99,
+        "passed": 26,
+        "rate": 0.26262626262626265,
+        "errored": 1
+      }
+    },
+    "GPT-5.4 Nano": {
+      "oracle": {
+        "valid_n": 0,
+        "passed": 0,
+        "rate": null,
+        "errored": 0
+      },
+      "restricted": {
+        "valid_n": 99,
+        "passed": 16,
+        "rate": 0.16161616161616163,
+        "errored": 1
+      },
+      "team_no_plan": {
+        "valid_n": 96,
+        "passed": 9,
+        "rate": 0.09375,
+        "errored": 4
+      },
+      "team_no_verify": {
+        "valid_n": 99,
+        "passed": 17,
+        "rate": 0.1717171717171717,
+        "errored": 1
+      },
+      "full": {
+        "valid_n": 0,
+        "passed": 0,
+        "rate": null,
+        "errored": 0
+      }
+    },
+    "Gemini-3 Flash": {
+      "oracle": {
+        "valid_n": 100,
+        "passed": 11,
+        "rate": 0.11,
+        "errored": 0
+      },
+      "restricted": {
+        "valid_n": 100,
+        "passed": 14,
+        "rate": 0.14,
+        "errored": 0
+      },
+      "team_no_plan": {
+        "valid_n": 100,
+        "passed": 8,
+        "rate": 0.08,
+        "errored": 0
+      },
+      "team_no_verify": {
+        "valid_n": 100,
+        "passed": 25,
+        "rate": 0.25,
+        "errored": 0
+      },
+      "full": {
+        "valid_n": 100,
+        "passed": 22,
+        "rate": 0.22,
+        "errored": 0
+      }
+    },
+    "Gemini-3.1 Flash Lite": {
+      "oracle": {
+        "valid_n": 99,
+        "passed": 4,
+        "rate": 0.04040404040404041,
+        "errored": 1
+      },
+      "restricted": {
+        "valid_n": 100,
+        "passed": 13,
+        "rate": 0.13,
+        "errored": 0
+      },
+      "team_no_plan": {
+        "valid_n": 100,
+        "passed": 9,
+        "rate": 0.09,
+        "errored": 0
+      },
+      "team_no_verify": {
+        "valid_n": 99,
+        "passed": 16,
+        "rate": 0.16161616161616163,
+        "errored": 1
+      },
+      "full": {
+        "valid_n": 98,
+        "passed": 14,
+        "rate": 0.14285714285714285,
+        "errored": 2
+      }
+    },
+    "Gemini-3.1 Pro": {
+      "oracle": {
+        "valid_n": 99,
+        "passed": 13,
+        "rate": 0.13131313131313133,
+        "errored": 1
+      },
+      "restricted": {
+        "valid_n": 99,
+        "passed": 18,
+        "rate": 0.18181818181818182,
+        "errored": 1
+      },
+      "team_no_plan": {
+        "valid_n": 87,
+        "passed": 15,
+        "rate": 0.1724137931034483,
+        "errored": 13
+      },
+      "team_no_verify": {
+        "valid_n": 98,
+        "passed": 23,
+        "rate": 0.23469387755102042,
+        "errored": 2
+      },
+      "full": {
+        "valid_n": 97,
+        "passed": 25,
+        "rate": 0.25773195876288657,
+        "errored": 3
+      }
+    },
+    "Gemma 4 31B": {
+      "oracle": {
+        "valid_n": 73,
+        "passed": 15,
+        "rate": 0.2054794520547945,
+        "errored": 27
+      },
+      "restricted": {
+        "valid_n": 73,
+        "passed": 23,
+        "rate": 0.3150684931506849,
+        "errored": 27
+      },
+      "team_no_plan": {
+        "valid_n": 62,
+        "passed": 21,
+        "rate": 0.3387096774193548,
+        "errored": 38
+      },
+      "team_no_verify": {
+        "valid_n": 80,
+        "passed": 18,
+        "rate": 0.225,
+        "errored": 20
+      },
+      "full": {
+        "valid_n": 56,
+        "passed": 20,
+        "rate": 0.35714285714285715,
+        "errored": 44
+      }
+    },
+    "openrouter:qwen/qwen3-14b": {
+      "oracle": {
+        "valid_n": 100,
+        "passed": 3,
+        "rate": 0.03,
+        "errored": 0
+      },
+      "restricted": {
+        "valid_n": 100,
+        "passed": 2,
+        "rate": 0.02,
+        "errored": 0
+      },
+      "team_no_plan": {
+        "valid_n": 100,
+        "passed": 2,
+        "rate": 0.02,
+        "errored": 0
+      },
+      "team_no_verify": {
+        "valid_n": 100,
+        "passed": 1,
+        "rate": 0.01,
+        "errored": 0
+      },
+      "full": {
+        "valid_n": 6,
+        "passed": 0,
+        "rate": 0.0,
+        "errored": 94
+      }
+    },
+    "openrouter:qwen/qwen3-32b": {
+      "oracle": {
+        "valid_n": 100,
+        "passed": 0,
+        "rate": 0.0,
+        "errored": 0
+      },
+      "restricted": {
+        "valid_n": 100,
+        "passed": 3,
+        "rate": 0.03,
+        "errored": 0
+      },
+      "team_no_plan": {
+        "valid_n": 65,
+        "passed": 0,
+        "rate": 0.0,
+        "errored": 35
+      },
+      "team_no_verify": {
+        "valid_n": 100,
+        "passed": 5,
+        "rate": 0.05,
+        "errored": 0
+      },
+      "full": {
+        "valid_n": 0,
+        "passed": 0,
+        "rate": null,
+        "errored": 100
+      }
+    },
+    "openrouter:qwen/qwen3-8b": {
+      "oracle": {
+        "valid_n": 99,
+        "passed": 1,
+        "rate": 0.010101010101010102,
+        "errored": 1
+      },
+      "restricted": {
+        "valid_n": 99,
+        "passed": 4,
+        "rate": 0.04040404040404041,
+        "errored": 1
+      },
+      "team_no_plan": {
+        "valid_n": 100,
+        "passed": 1,
+        "rate": 0.01,
+        "errored": 0
+      },
+      "team_no_verify": {
+        "valid_n": 100,
+        "passed": 3,
+        "rate": 0.03,
+        "errored": 0
+      },
+      "full": {
+        "valid_n": 8,
+        "passed": 0,
+        "rate": 0.0,
+        "errored": 92
+      }
+    }
+  }
+}

@@ -1,0 +1,2592 @@
+{
+  "computed_at": "2026-04-30T18:28:03.115701+00:00",
+  "n": 100,
+  "counts": {
+    "canonical_in_workspace": 0,
+    "canonical_via_llm_run": 58,
+    "canonical_via_pr": 0,
+    "canonical_pr_already_applied": 0,
+    "canonical_unknown": 42
+  },
+  "results": [
+    {
+      "task_id": "TRAP1_spec_conflict",
+      "checked_at": "2026-04-30T16:01:02.711965+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 77,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "77 historical pass records"
+    },
+    {
+      "task_id": "TRAP5_security_theater",
+      "checked_at": "2026-04-30T16:01:07.880022+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 0.86,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 33,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "33 historical pass records"
+    },
+    {
+      "task_id": "TRAP6_deprecated_api",
+      "checked_at": "2026-04-30T16:01:07.880099+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 65,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "65 historical pass records"
+    },
+    {
+      "task_id": "CR4_api_review",
+      "checked_at": "2026-04-30T16:01:07.880163+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 2,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "2 historical pass records"
+    },
+    {
+      "task_id": "CROSS1_api_contract",
+      "checked_at": "2026-04-30T16:01:36.156986+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 15,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "15 historical pass records"
+    },
+    {
+      "task_id": "CROSS2_schema_evolution",
+      "checked_at": "2026-04-30T16:01:36.157064+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 81,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "81 historical pass records"
+    },
+    {
+      "task_id": "CROSS3_protocol_bridge",
+      "checked_at": "2026-04-30T16:01:36.157169+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 87,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "87 historical pass records"
+    },
+    {
+      "task_id": "D6_data_reconcile",
+      "checked_at": "2026-04-30T16:01:36.157256+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 7,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "7 historical pass records"
+    },
+    {
+      "task_id": "D3_schema_migration",
+      "checked_at": "2026-04-30T16:01:36.290154+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 2,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "full"
+            },
+            {
+              "model": "?",
+              "condition": "full"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "2 historical pass records"
+    },
+    {
+      "task_id": "D4_data_pipeline",
+      "checked_at": "2026-04-30T16:01:36.290213+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 21,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "full"
+            },
+            {
+              "model": "?",
+              "condition": "full"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "21 historical pass records"
+    },
+    {
+      "task_id": "D7_etl_reconciliation",
+      "checked_at": "2026-04-30T16:02:04.128962+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 55,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "full"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "55 historical pass records"
+    },
+    {
+      "task_id": "DIST1_queue_race",
+      "checked_at": "2026-04-30T16:02:04.129058+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 8,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "oracle"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "8 historical pass records"
+    },
+    {
+      "task_id": "DIST2_consensus_partition",
+      "checked_at": "2026-04-30T16:07:25.426811+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 2,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "2 historical pass records"
+    },
+    {
+      "task_id": "INC6_deadlock",
+      "checked_at": "2026-04-30T16:14:01.192696+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 57,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "57 historical pass records"
+    },
+    {
+      "task_id": "INC1_cascade_failure",
+      "checked_at": "2026-04-30T16:14:02.868894+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 2,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "2 historical pass records"
+    },
+    {
+      "task_id": "INC2_data_corruption",
+      "checked_at": "2026-04-30T16:14:02.868954+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 65,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "65 historical pass records"
+    },
+    {
+      "task_id": "INC3_memory_leak",
+      "checked_at": "2026-04-30T16:14:02.869038+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 50,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "50 historical pass records"
+    },
+    {
+      "task_id": "INC4_dns_miscfg",
+      "checked_at": "2026-04-30T16:14:02.869088+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 59,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "59 historical pass records"
+    },
+    {
+      "task_id": "IR2_misinformation_trap",
+      "checked_at": "2026-04-30T16:14:02.939209+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 39,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "full"
+            },
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "39 historical pass records"
+    },
+    {
+      "task_id": "IR3_multi_source",
+      "checked_at": "2026-04-30T16:14:02.939284+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 68,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "68 historical pass records"
+    },
+    {
+      "task_id": "IR4_temporal",
+      "checked_at": "2026-04-30T16:14:02.939351+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 55,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "55 historical pass records"
+    },
+    {
+      "task_id": "LH2_budgeted_workflow",
+      "checked_at": "2026-04-30T16:14:16.043665+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 2,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "2 historical pass records"
+    },
+    {
+      "task_id": "LH5_data_migration",
+      "checked_at": "2026-04-30T16:14:16.094054+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 9,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "full"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "9 historical pass records"
+    },
+    {
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "checked_at": "2026-04-30T16:14:17.813323+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 90,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "90 historical pass records"
+    },
+    {
+      "task_id": "JS2_xss_sanitize",
+      "checked_at": "2026-04-30T16:14:17.813438+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 2,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "2 historical pass records"
+    },
+    {
+      "task_id": "LH3_multi_service",
+      "checked_at": "2026-04-30T16:14:55.310937+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 2,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "oracle"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "2 historical pass records"
+    },
+    {
+      "task_id": "O6_perf_tuning",
+      "checked_at": "2026-04-30T16:14:55.310995+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 52,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "52 historical pass records"
+    },
+    {
+      "task_id": "TRAP3_metric_mirage",
+      "checked_at": "2026-04-30T16:14:55.311064+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 43,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "oracle"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "43 historical pass records"
+    },
+    {
+      "task_id": "CROSS7_config_drift",
+      "checked_at": "2026-04-30T16:14:55.311118+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 27,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "27 historical pass records"
+    },
+    {
+      "task_id": "API1_version_compat",
+      "checked_at": "2026-04-30T16:15:25.455402+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 84,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "84 historical pass records"
+    },
+    {
+      "task_id": "TS1_type_mismatch",
+      "checked_at": "2026-04-30T16:15:53.127546+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 49,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "49 historical pass records"
+    },
+    {
+      "task_id": "PIPE3_msg_queue",
+      "checked_at": "2026-04-30T16:22:15.081650+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 2,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "2 historical pass records"
+    },
+    {
+      "task_id": "PIPE3_stream_processing",
+      "checked_at": "2026-04-30T16:22:15.156720+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 88,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "88 historical pass records"
+    },
+    {
+      "task_id": "P3_access_control",
+      "checked_at": "2026-04-30T16:22:16.106711+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 6,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "6 historical pass records"
+    },
+    {
+      "task_id": "RDS10_survey_analysis",
+      "checked_at": "2026-04-30T16:22:31.627517+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 12,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "12 historical pass records"
+    },
+    {
+      "task_id": "RDS11_survivorship_bias",
+      "checked_at": "2026-04-30T16:22:31.706111+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 8,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "full"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "8 historical pass records"
+    },
+    {
+      "task_id": "RDS12_simpsons_income",
+      "checked_at": "2026-04-30T16:22:31.706172+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 6,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "6 historical pass records"
+    },
+    {
+      "task_id": "CRYPTO1_nonce_reuse",
+      "checked_at": "2026-04-30T16:22:31.706201+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 53,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "53 historical pass records"
+    },
+    {
+      "task_id": "CRYPTO3_cert_chain",
+      "checked_at": "2026-04-30T16:22:31.706265+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 56,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "56 historical pass records"
+    },
+    {
+      "task_id": "CRYPTO4_kdf_migration",
+      "checked_at": "2026-04-30T16:22:31.706327+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 69,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "69 historical pass records"
+    },
+    {
+      "task_id": "CRYPTO5_tls_config",
+      "checked_at": "2026-04-30T16:22:52.086142+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 19,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "19 historical pass records"
+    },
+    {
+      "task_id": "CRYPTO6_token_validation",
+      "checked_at": "2026-04-30T16:22:52.086209+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 5,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "full"
+            },
+            {
+              "model": "?",
+              "condition": "full"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "5 historical pass records"
+    },
+    {
+      "task_id": "GO1_concurrency_fix",
+      "checked_at": "2026-04-30T16:22:52.086234+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 1,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "1 historical pass records"
+    },
+    {
+      "task_id": "SCALE1_codebase_migration",
+      "checked_at": "2026-04-30T16:22:52.086252+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 2,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "2 historical pass records"
+    },
+    {
+      "task_id": "GH10_retry_backoff",
+      "checked_at": "2026-04-30T16:22:52.160701+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 66,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "66 historical pass records"
+    },
+    {
+      "task_id": "GH11_middleware_order",
+      "checked_at": "2026-04-30T16:22:52.160827+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 48,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "48 historical pass records"
+    },
+    {
+      "task_id": "GH1_flask_session_ctx",
+      "checked_at": "2026-04-30T16:22:52.160886+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 47,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "47 historical pass records"
+    },
+    {
+      "task_id": "GH2_click_flag_value",
+      "checked_at": "2026-04-30T16:22:52.160937+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 35,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "35 historical pass records"
+    },
+    {
+      "task_id": "SPEC2_api_design",
+      "checked_at": "2026-04-30T16:22:55.271412+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 8,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "8 historical pass records"
+    },
+    {
+      "task_id": "GH7_fixture_scope_leak",
+      "checked_at": "2026-04-30T16:22:55.271474+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 58,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "58 historical pass records"
+    },
+    {
+      "task_id": "TEST2_regression",
+      "checked_at": "2026-04-30T16:22:55.271535+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 24,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "24 historical pass records"
+    },
+    {
+      "task_id": "TEST3_integration",
+      "checked_at": "2026-04-30T16:22:55.271570+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 16,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "16 historical pass records"
+    },
+    {
+      "task_id": "TEST4_property",
+      "checked_at": "2026-04-30T16:22:55.271597+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 3,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "3 historical pass records"
+    },
+    {
+      "task_id": "RDS13_smote_leakage",
+      "checked_at": "2026-04-30T16:22:55.330873+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 6,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "full"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "6 historical pass records"
+    },
+    {
+      "task_id": "RDS14_housing_leakage",
+      "checked_at": "2026-04-30T16:22:55.330931+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 4,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "4 historical pass records"
+    },
+    {
+      "task_id": "RDS15_taxi_circular",
+      "checked_at": "2026-04-30T16:22:55.330954+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 4,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "4 historical pass records"
+    },
+    {
+      "task_id": "RDS16_retail_phacking",
+      "checked_at": "2026-04-30T16:22:55.330973+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 3,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "oracle"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_verify"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "3 historical pass records"
+    },
+    {
+      "task_id": "RDS17_macro_spurious",
+      "checked_at": "2026-04-30T16:22:55.330990+00:00",
+      "result": "canonical_via_llm_run",
+      "primary_score": 1.0,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 12,
+          "examples": [
+            {
+              "model": "?",
+              "condition": "restricted"
+            },
+            {
+              "model": "?",
+              "condition": "team_no_plan"
+            },
+            {
+              "model": "?",
+              "condition": "restricted"
+            }
+          ]
+        }
+      ],
+      "pr_url": null,
+      "notes": "12 historical pass records"
+    },
+    {
+      "task_id": "CR6_review_checklist",
+      "checked_at": "2026-04-30T18:07:54.190629+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "CR1_review_respond",
+      "checked_at": "2026-04-30T18:08:25.386338+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "D5_query_optimize",
+      "checked_at": "2026-04-30T18:08:56.695446+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "SYNTH1_distributed_debug",
+      "checked_at": "2026-04-30T18:09:27.154880+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "GH1000_numpy_19869",
+      "checked_at": "2026-04-30T18:09:58.001518+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/numpy/numpy/pull/19869",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1001_numpy_30855",
+      "checked_at": "2026-04-30T18:10:30.535865+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/numpy/numpy/pull/30855",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1002_scipy_24753",
+      "checked_at": "2026-04-30T18:11:04.883569+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/scipy/scipy/pull/24753",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1003_scipy_24496",
+      "checked_at": "2026-04-30T18:11:37.226830+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/scipy/scipy/pull/24496",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1004_dask_11665",
+      "checked_at": "2026-04-30T18:12:09.845218+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/dask/dask/pull/11665",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1005_ray_60236",
+      "checked_at": "2026-04-30T18:12:43.848481+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/ray-project/ray/pull/60236",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1006_spaCy_13068",
+      "checked_at": "2026-04-30T18:13:16.897840+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/explosion/spaCy/pull/13068",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1007_spaCy_13040",
+      "checked_at": "2026-04-30T18:13:51.770442+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/explosion/spaCy/pull/13040",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1008_spaCy_12749",
+      "checked_at": "2026-04-30T18:14:26.543948+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/explosion/spaCy/pull/12749",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1009_spaCy_12486",
+      "checked_at": "2026-04-30T18:15:02.577570+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/explosion/spaCy/pull/12486",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1010_great_expectati_10406",
+      "checked_at": "2026-04-30T18:15:36.953781+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/great-expectations/great_expectations/pull/10406",
+      "notes": ""
+    },
+    {
+      "task_id": "GH1011_great_expectati_8062",
+      "checked_at": "2026-04-30T18:16:19.141766+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/great-expectations/great_expectations/pull/8062",
+      "notes": ""
+    },
+    {
+      "task_id": "INC10_rollback_plan",
+      "checked_at": "2026-04-30T18:16:55.174147+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "INT1_pipeline_repair",
+      "checked_at": "2026-04-30T18:17:07.247626+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "LH4_staged_deploy",
+      "checked_at": "2026-04-30T18:17:40.121705+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "MULTI2_microservice_debug",
+      "checked_at": "2026-04-30T18:17:47.296997+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "NEG1_tradeoff_config",
+      "checked_at": "2026-04-30T18:18:19.945691+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "MULTI5_deploy_pipeline",
+      "checked_at": "2026-04-30T18:18:32.088172+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "GH14_celery_chain_fail",
+      "checked_at": "2026-04-30T18:19:03.672235+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "INFRA2_cicd_repair",
+      "checked_at": "2026-04-30T18:19:35.120474+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "GH103_redis-py_3998",
+      "checked_at": "2026-04-30T18:19:48.579723+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "GH112_redis-py_3996",
+      "checked_at": "2026-04-30T18:20:25.136361+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "GH120_redis-py_3863",
+      "checked_at": "2026-04-30T18:20:58.790126+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "materialize",
+          "status": "no_workspace"
+        }
+      ],
+      "pr_url": null,
+      "notes": "no workspace and no generator"
+    },
+    {
+      "task_id": "GH121_quart_302",
+      "checked_at": "2026-04-30T18:20:58.817143+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/pallets/quart/pull/302",
+      "notes": ""
+    },
+    {
+      "task_id": "GH128_mitmproxy_8046",
+      "checked_at": "2026-04-30T18:21:30.454132+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/mitmproxy/mitmproxy/pull/8046",
+      "notes": ""
+    },
+    {
+      "task_id": "GH12_click_envvar_flag",
+      "checked_at": "2026-04-30T18:22:06.354749+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "GH136_mitmproxy_8054",
+      "checked_at": "2026-04-30T18:22:38.639249+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/mitmproxy/mitmproxy/pull/8054",
+      "notes": ""
+    },
+    {
+      "task_id": "GH139_marshmallow_2894",
+      "checked_at": "2026-04-30T18:23:11.204691+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/marshmallow-code/marshmallow/pull/2894",
+      "notes": ""
+    },
+    {
+      "task_id": "GH13_starlette_bg_block",
+      "checked_at": "2026-04-30T18:23:43.543816+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "GH140_marshmallow_2874",
+      "checked_at": "2026-04-30T18:24:14.197582+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/marshmallow-code/marshmallow/pull/2874",
+      "notes": ""
+    },
+    {
+      "task_id": "GH141_urllib3_3736",
+      "checked_at": "2026-04-30T18:24:48.187379+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/urllib3/urllib3/pull/3736",
+      "notes": ""
+    },
+    {
+      "task_id": "GH143_mitmproxy_8095",
+      "checked_at": "2026-04-30T18:25:19.421735+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/mitmproxy/mitmproxy/pull/8095",
+      "notes": ""
+    },
+    {
+      "task_id": "GH144_psycopg_1247",
+      "checked_at": "2026-04-30T18:25:50.944152+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        },
+        {
+          "step": "fetch_pr",
+          "status": "cache_hit"
+        },
+        {
+          "step": "apply_pr",
+          "status": "patch_rc=1; "
+        }
+      ],
+      "pr_url": "https://github.com/psycopg/psycopg/pull/1247",
+      "notes": ""
+    },
+    {
+      "task_id": "PIPE2_data_pipeline",
+      "checked_at": "2026-04-30T18:26:22.617618+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "P2_spec_arbitration",
+      "checked_at": "2026-04-30T18:26:53.370454+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "P4_data_retention",
+      "checked_at": "2026-04-30T18:26:57.895101+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "SEC8_dependency_audit",
+      "checked_at": "2026-04-30T18:27:28.511447+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    },
+    {
+      "task_id": "SPEC5_config_system",
+      "checked_at": "2026-04-30T18:27:58.999129+00:00",
+      "result": "canonical_unknown",
+      "primary_score": null,
+      "tried": [
+        {
+          "step": "llm_run_pass_index",
+          "n_pass_records": 0,
+          "examples": []
+        },
+        {
+          "step": "seed0_workspace",
+          "primary": 0.0,
+          "pass": false
+        }
+      ],
+      "pr_url": null,
+      "notes": ""
+    }
+  ]
+}

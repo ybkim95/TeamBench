@@ -1,0 +1,3641 @@
+{
+ "attestation_lb90_after_with": {
+  "mean_partial_over_scored": 0.4912,
+  "n": 90,
+  "n_pass_true": 4,
+  "per_task": {
+   "API1_version_compat": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CR1_review_respond": {
+    "checks_passed": 2,
+    "checks_total": 7,
+    "partial": 0.29,
+    "pass": false,
+    "rc": 0
+   },
+   "CR4_api_review": {
+    "checks_passed": 3,
+    "checks_total": 15,
+    "partial": 0.2,
+    "pass": false,
+    "rc": 0
+   },
+   "CR6_review_checklist": {
+    "checks_passed": 2,
+    "checks_total": 10,
+    "partial": 0.2,
+    "pass": false,
+    "rc": 0
+   },
+   "CROSS1_api_contract": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS2_schema_evolution": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS3_protocol_bridge": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS6_grpc_rest_bridge": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS7_config_drift": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO1_nonce_reuse": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO3_cert_chain": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO4_kdf_migration": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO5_tls_config": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO6_token_validation": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "D3_schema_migration": {
+    "checks_passed": 4,
+    "checks_total": 10,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "D4_data_pipeline": {
+    "checks_passed": 10,
+    "checks_total": 16,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "D5_query_optimize": {
+    "checks_passed": 10,
+    "checks_total": 14,
+    "partial": 0.71,
+    "pass": false,
+    "rc": 0
+   },
+   "D6_data_reconcile": {
+    "checks_passed": 12,
+    "checks_total": 17,
+    "partial": 0.71,
+    "pass": false,
+    "rc": 0
+   },
+   "D7_etl_reconciliation": {
+    "checks_passed": 9,
+    "checks_total": null,
+    "partial": 0.9,
+    "pass": false,
+    "rc": 0
+   },
+   "DIST1_queue_race": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "DIST2_consensus_partition": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH1006_spaCy_13068": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1007_spaCy_13040": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1011_great_expectati_8062": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH103_redis-py_3998": {
+    "checks_passed": 9,
+    "checks_total": 11,
+    "partial": 0.82,
+    "pass": false,
+    "rc": 0
+   },
+   "GH10_retry_backoff": {
+    "checks_passed": 11,
+    "checks_total": 11,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH112_redis-py_3996": {
+    "checks_passed": 6,
+    "checks_total": 7,
+    "partial": 0.86,
+    "pass": false,
+    "rc": 0
+   },
+   "GH11_middleware_order": {
+    "checks_passed": 10,
+    "checks_total": 10,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH120_redis-py_3863": {
+    "checks_passed": 0,
+    "checks_total": 1,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "GH121_quart_302": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH128_mitmproxy_8046": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH12_click_envvar_flag": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH136_mitmproxy_8054": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH139_marshmallow_2894": {
+    "checks_passed": 5,
+    "checks_total": 8,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "GH13_starlette_bg_block": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH140_marshmallow_2874": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH141_urllib3_3736": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH143_mitmproxy_8095": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH14_celery_chain_fail": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1_flask_session_ctx": {
+    "checks_passed": 7,
+    "checks_total": 7,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH2_click_flag_value": {
+    "checks_passed": 7,
+    "checks_total": 9,
+    "partial": 0.78,
+    "pass": false,
+    "rc": 0
+   },
+   "GH7_fixture_scope_leak": {
+    "checks_passed": 9,
+    "checks_total": 9,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GO1_concurrency_fix": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "INC10_rollback_plan": {
+    "checks_passed": 0,
+    "checks_total": 10,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "INC1_cascade_failure": {
+    "checks_passed": 8,
+    "checks_total": 9,
+    "partial": 0.89,
+    "pass": false,
+    "rc": 0
+   },
+   "INC2_data_corruption": {
+    "checks_passed": 4,
+    "checks_total": 9,
+    "partial": 0.44,
+    "pass": false,
+    "rc": 0
+   },
+   "INC3_memory_leak": {
+    "checks_passed": 10,
+    "checks_total": 11,
+    "partial": 0.91,
+    "pass": false,
+    "rc": 0
+   },
+   "INC4_dns_miscfg": {
+    "checks_passed": 7,
+    "checks_total": 11,
+    "partial": 0.64,
+    "pass": false,
+    "rc": 0
+   },
+   "INC6_deadlock": {
+    "checks_passed": 8,
+    "checks_total": 11,
+    "partial": 0.73,
+    "pass": false,
+    "rc": 0
+   },
+   "INFRA2_cicd_repair": {
+    "checks_passed": 3,
+    "checks_total": 10,
+    "partial": 0.3,
+    "pass": false,
+    "rc": 0
+   },
+   "INT1_pipeline_repair": {
+    "checks_passed": 1,
+    "checks_total": 11,
+    "partial": 0.09,
+    "pass": false,
+    "rc": 0
+   },
+   "IR2_misinformation_trap": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.33,
+    "pass": false,
+    "rc": 0
+   },
+   "IR3_multi_source": {
+    "checks_passed": 11,
+    "checks_total": 12,
+    "partial": 0.92,
+    "pass": false,
+    "rc": 0
+   },
+   "IR4_temporal": {
+    "checks_passed": 13,
+    "checks_total": 14,
+    "partial": 0.93,
+    "pass": false,
+    "rc": 0
+   },
+   "JS2_xss_sanitize": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "LH2_budgeted_workflow": {
+    "checks_passed": 0,
+    "checks_total": 5,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "LH3_multi_service": {
+    "checks_passed": 18,
+    "checks_total": 20,
+    "partial": 0.9,
+    "pass": false,
+    "rc": 0
+   },
+   "LH4_staged_deploy": {
+    "checks_passed": 1,
+    "checks_total": 13,
+    "partial": 0.08,
+    "pass": false,
+    "rc": 0
+   },
+   "LH5_data_migration": {
+    "checks_passed": 0,
+    "checks_total": 10,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "MULTI2_microservice_debug": {
+    "checks_passed": 6,
+    "checks_total": 10,
+    "partial": 0.6,
+    "pass": false,
+    "rc": 0
+   },
+   "MULTI5_deploy_pipeline": {
+    "checks_passed": 5,
+    "checks_total": null,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "NEG1_tradeoff_config": {
+    "checks_passed": 3,
+    "checks_total": 9,
+    "partial": 0.33,
+    "pass": false,
+    "rc": 0
+   },
+   "O6_perf_tuning": {
+    "checks_passed": 6,
+    "checks_total": 13,
+    "partial": 0.46,
+    "pass": false,
+    "rc": 0
+   },
+   "P2_spec_arbitration": {
+    "checks_passed": 0,
+    "checks_total": 1,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "P3_access_control": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "P4_data_retention": {
+    "checks_passed": 8,
+    "checks_total": 13,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "PIPE2_data_pipeline": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "PIPE3_msg_queue": {
+    "checks_passed": 11,
+    "checks_total": 13,
+    "partial": 0.85,
+    "pass": false,
+    "rc": 0
+   },
+   "PIPE3_stream_processing": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS10_survey_analysis": {
+    "checks_passed": 1,
+    "checks_total": 8,
+    "partial": 0.125,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS11_survivorship_bias": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS12_simpsons_income": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.3333333333333333,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS13_smote_leakage": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS14_housing_leakage": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS15_taxi_circular": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS16_retail_phacking": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS17_macro_spurious": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "SCALE1_codebase_migration": {
+    "checks_passed": 6,
+    "checks_total": 13,
+    "partial": 0.46,
+    "pass": false,
+    "rc": 0
+   },
+   "SEC8_dependency_audit": {
+    "checks_passed": 7,
+    "checks_total": 11,
+    "partial": 0.64,
+    "pass": false,
+    "rc": 0
+   },
+   "SPEC2_api_design": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "SPEC5_config_system": {
+    "checks_passed": 0,
+    "checks_total": 19,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "SYNTH1_distributed_debug": {
+    "checks_passed": 1,
+    "checks_total": 10,
+    "partial": 0.1,
+    "pass": false,
+    "rc": 0
+   },
+   "TEST2_regression": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TEST3_integration": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TEST4_property": {
+    "checks_passed": 5,
+    "checks_total": 7,
+    "partial": 0.71,
+    "pass": false,
+    "rc": 0
+   },
+   "TRAP1_spec_conflict": {
+    "checks_passed": 4,
+    "checks_total": 10,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "TRAP3_metric_mirage": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "TRAP5_security_theater": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TRAP6_deprecated_api": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TS1_type_mismatch": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   }
+  },
+  "scored": 67,
+  "timeouts": 23
+ },
+ "attestation_lb90_after_without": {
+  "mean_partial_over_scored": 0.5704,
+  "n": 35,
+  "n_pass_true": 4,
+  "per_task": {
+   "CR1_review_respond": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CR4_api_review": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CR6_review_checklist": {
+    "checks_passed": 2,
+    "checks_total": 10,
+    "partial": 0.2,
+    "pass": false,
+    "rc": 0
+   },
+   "D3_schema_migration": {
+    "checks_passed": 4,
+    "checks_total": 10,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "D4_data_pipeline": {
+    "checks_passed": 10,
+    "checks_total": 16,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "D5_query_optimize": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "D6_data_reconcile": {
+    "checks_passed": 12,
+    "checks_total": 17,
+    "partial": 0.71,
+    "pass": false,
+    "rc": 0
+   },
+   "GH10_retry_backoff": {
+    "checks_passed": 11,
+    "checks_total": 11,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH11_middleware_order": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH1_flask_session_ctx": {
+    "checks_passed": 7,
+    "checks_total": 7,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH2_click_flag_value": {
+    "checks_passed": 7,
+    "checks_total": 9,
+    "partial": 0.78,
+    "pass": false,
+    "rc": 0
+   },
+   "GH7_fixture_scope_leak": {
+    "checks_passed": 9,
+    "checks_total": 9,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GO1_concurrency_fix": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "INC1_cascade_failure": {
+    "checks_passed": 9,
+    "checks_total": 9,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "INC2_data_corruption": {
+    "checks_passed": 4,
+    "checks_total": 9,
+    "partial": 0.44,
+    "pass": false,
+    "rc": 0
+   },
+   "INC3_memory_leak": {
+    "checks_passed": 10,
+    "checks_total": 11,
+    "partial": 0.91,
+    "pass": false,
+    "rc": 0
+   },
+   "INC4_dns_miscfg": {
+    "checks_passed": 7,
+    "checks_total": 11,
+    "partial": 0.64,
+    "pass": false,
+    "rc": 0
+   },
+   "INC6_deadlock": {
+    "checks_passed": 8,
+    "checks_total": 11,
+    "partial": 0.73,
+    "pass": false,
+    "rc": 0
+   },
+   "INT1_pipeline_repair": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "IR2_misinformation_trap": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.33,
+    "pass": false,
+    "rc": 0
+   },
+   "IR3_multi_source": {
+    "checks_passed": 11,
+    "checks_total": 12,
+    "partial": 0.92,
+    "pass": false,
+    "rc": 0
+   },
+   "IR4_temporal": {
+    "checks_passed": 13,
+    "checks_total": 14,
+    "partial": 0.93,
+    "pass": false,
+    "rc": 0
+   },
+   "JS2_xss_sanitize": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "LH2_budgeted_workflow": {
+    "checks_passed": 0,
+    "checks_total": 5,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "LH4_staged_deploy": {
+    "checks_passed": 1,
+    "checks_total": 13,
+    "partial": 0.08,
+    "pass": false,
+    "rc": 0
+   },
+   "LH5_data_migration": {
+    "checks_passed": 0,
+    "checks_total": 10,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "NEG1_tradeoff_config": {
+    "checks_passed": 3,
+    "checks_total": 9,
+    "partial": 0.33,
+    "pass": false,
+    "rc": 0
+   },
+   "P2_spec_arbitration": {
+    "checks_passed": 0,
+    "checks_total": 1,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "P3_access_control": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "P4_data_retention": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "SCALE1_codebase_migration": {
+    "checks_passed": 6,
+    "checks_total": 13,
+    "partial": 0.46,
+    "pass": false,
+    "rc": 0
+   },
+   "SEC8_dependency_audit": {
+    "checks_passed": 7,
+    "checks_total": 11,
+    "partial": 0.64,
+    "pass": false,
+    "rc": 0
+   },
+   "SPEC2_api_design": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "SYNTH1_distributed_debug": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TEST2_regression": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   }
+  },
+  "scored": 23,
+  "timeouts": 12
+ },
+ "attestation_lb90_before_with": {
+  "mean_partial_over_scored": 0.63,
+  "n": 35,
+  "n_pass_true": 4,
+  "per_task": {
+   "CR1_review_respond": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CR4_api_review": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CR6_review_checklist": {
+    "checks_passed": 3,
+    "checks_total": 11,
+    "partial": 0.27,
+    "pass": false,
+    "rc": 0
+   },
+   "D3_schema_migration": {
+    "checks_passed": 5,
+    "checks_total": 11,
+    "partial": 0.45,
+    "pass": false,
+    "rc": 0
+   },
+   "D4_data_pipeline": {
+    "checks_passed": 11,
+    "checks_total": 17,
+    "partial": 0.65,
+    "pass": false,
+    "rc": 0
+   },
+   "D5_query_optimize": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "D6_data_reconcile": {
+    "checks_passed": 13,
+    "checks_total": 18,
+    "partial": 0.72,
+    "pass": false,
+    "rc": 0
+   },
+   "GH10_retry_backoff": {
+    "checks_passed": 12,
+    "checks_total": 12,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH11_middleware_order": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH1_flask_session_ctx": {
+    "checks_passed": 8,
+    "checks_total": 8,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH2_click_flag_value": {
+    "checks_passed": 8,
+    "checks_total": 10,
+    "partial": 0.8,
+    "pass": false,
+    "rc": 0
+   },
+   "GH7_fixture_scope_leak": {
+    "checks_passed": 10,
+    "checks_total": 10,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GO1_concurrency_fix": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "INC1_cascade_failure": {
+    "checks_passed": 10,
+    "checks_total": 10,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "INC2_data_corruption": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "INC3_memory_leak": {
+    "checks_passed": 11,
+    "checks_total": 12,
+    "partial": 0.92,
+    "pass": false,
+    "rc": 0
+   },
+   "INC4_dns_miscfg": {
+    "checks_passed": 8,
+    "checks_total": 12,
+    "partial": 0.67,
+    "pass": false,
+    "rc": 0
+   },
+   "INC6_deadlock": {
+    "checks_passed": 9,
+    "checks_total": 12,
+    "partial": 0.75,
+    "pass": false,
+    "rc": 0
+   },
+   "INT1_pipeline_repair": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "IR2_misinformation_trap": {
+    "checks_passed": 3,
+    "checks_total": 7,
+    "partial": 0.43,
+    "pass": false,
+    "rc": 0
+   },
+   "IR3_multi_source": {
+    "checks_passed": 12,
+    "checks_total": 13,
+    "partial": 0.92,
+    "pass": false,
+    "rc": 0
+   },
+   "IR4_temporal": {
+    "checks_passed": 14,
+    "checks_total": 15,
+    "partial": 0.93,
+    "pass": false,
+    "rc": 0
+   },
+   "JS2_xss_sanitize": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "LH2_budgeted_workflow": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.17,
+    "pass": false,
+    "rc": 0
+   },
+   "LH4_staged_deploy": {
+    "checks_passed": 2,
+    "checks_total": 14,
+    "partial": 0.14,
+    "pass": false,
+    "rc": 0
+   },
+   "LH5_data_migration": {
+    "checks_passed": 1,
+    "checks_total": 11,
+    "partial": 0.09,
+    "pass": false,
+    "rc": 0
+   },
+   "NEG1_tradeoff_config": {
+    "checks_passed": 4,
+    "checks_total": 10,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "P2_spec_arbitration": {
+    "checks_passed": 1,
+    "checks_total": 2,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "P3_access_control": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "P4_data_retention": {
+    "checks_passed": 9,
+    "checks_total": 14,
+    "partial": 0.64,
+    "pass": false,
+    "rc": 0
+   },
+   "SCALE1_codebase_migration": {
+    "checks_passed": 7,
+    "checks_total": 14,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "SEC8_dependency_audit": {
+    "checks_passed": 8,
+    "checks_total": 12,
+    "partial": 0.67,
+    "pass": false,
+    "rc": 0
+   },
+   "SPEC2_api_design": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "SYNTH1_distributed_debug": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TEST2_regression": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   }
+  },
+  "scored": 24,
+  "timeouts": 11
+ },
+ "attestation_lb90_before_without": {
+  "mean_partial_over_scored": 0.4855,
+  "n": 35,
+  "n_pass_true": 0,
+  "per_task": {
+   "CR1_review_respond": {
+    "checks_passed": 2,
+    "checks_total": 8,
+    "partial": 0.25,
+    "pass": false,
+    "rc": 0
+   },
+   "CR4_api_review": {
+    "checks_passed": 3,
+    "checks_total": 16,
+    "partial": 0.19,
+    "pass": false,
+    "rc": 0
+   },
+   "CR6_review_checklist": {
+    "checks_passed": 2,
+    "checks_total": 11,
+    "partial": 0.18,
+    "pass": false,
+    "rc": 0
+   },
+   "D3_schema_migration": {
+    "checks_passed": 4,
+    "checks_total": 11,
+    "partial": 0.36,
+    "pass": false,
+    "rc": 0
+   },
+   "D4_data_pipeline": {
+    "checks_passed": 10,
+    "checks_total": 17,
+    "partial": 0.59,
+    "pass": false,
+    "rc": 0
+   },
+   "D5_query_optimize": {
+    "checks_passed": 11,
+    "checks_total": 15,
+    "partial": 0.73,
+    "pass": false,
+    "rc": 0
+   },
+   "D6_data_reconcile": {
+    "checks_passed": 12,
+    "checks_total": 18,
+    "partial": 0.67,
+    "pass": false,
+    "rc": 0
+   },
+   "GH10_retry_backoff": {
+    "checks_passed": 11,
+    "checks_total": 12,
+    "partial": 0.92,
+    "pass": false,
+    "rc": 0
+   },
+   "GH11_middleware_order": {
+    "checks_passed": 10,
+    "checks_total": 11,
+    "partial": 0.91,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1_flask_session_ctx": {
+    "checks_passed": 7,
+    "checks_total": 8,
+    "partial": 0.88,
+    "pass": false,
+    "rc": 0
+   },
+   "GH2_click_flag_value": {
+    "checks_passed": 7,
+    "checks_total": 10,
+    "partial": 0.7,
+    "pass": false,
+    "rc": 0
+   },
+   "GH7_fixture_scope_leak": {
+    "checks_passed": 9,
+    "checks_total": 10,
+    "partial": 0.9,
+    "pass": false,
+    "rc": 0
+   },
+   "GO1_concurrency_fix": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "INC1_cascade_failure": {
+    "checks_passed": 9,
+    "checks_total": 10,
+    "partial": 0.9,
+    "pass": false,
+    "rc": 0
+   },
+   "INC2_data_corruption": {
+    "checks_passed": 4,
+    "checks_total": 10,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "INC3_memory_leak": {
+    "checks_passed": 10,
+    "checks_total": 12,
+    "partial": 0.83,
+    "pass": false,
+    "rc": 0
+   },
+   "INC4_dns_miscfg": {
+    "checks_passed": 7,
+    "checks_total": 12,
+    "partial": 0.58,
+    "pass": false,
+    "rc": 0
+   },
+   "INC6_deadlock": {
+    "checks_passed": 8,
+    "checks_total": 12,
+    "partial": 0.67,
+    "pass": false,
+    "rc": 0
+   },
+   "INT1_pipeline_repair": {
+    "checks_passed": 1,
+    "checks_total": 12,
+    "partial": 0.08,
+    "pass": false,
+    "rc": 0
+   },
+   "IR2_misinformation_trap": {
+    "checks_passed": 2,
+    "checks_total": 7,
+    "partial": 0.29,
+    "pass": false,
+    "rc": 0
+   },
+   "IR3_multi_source": {
+    "checks_passed": 11,
+    "checks_total": 13,
+    "partial": 0.85,
+    "pass": false,
+    "rc": 0
+   },
+   "IR4_temporal": {
+    "checks_passed": 13,
+    "checks_total": 15,
+    "partial": 0.87,
+    "pass": false,
+    "rc": 0
+   },
+   "JS2_xss_sanitize": {
+    "checks_passed": 5,
+    "checks_total": 18,
+    "partial": 0.28,
+    "pass": false,
+    "rc": 0
+   },
+   "LH2_budgeted_workflow": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "LH4_staged_deploy": {
+    "checks_passed": 1,
+    "checks_total": 14,
+    "partial": 0.07,
+    "pass": false,
+    "rc": 0
+   },
+   "LH5_data_migration": {
+    "checks_passed": 0,
+    "checks_total": 11,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "NEG1_tradeoff_config": {
+    "checks_passed": 3,
+    "checks_total": 10,
+    "partial": 0.3,
+    "pass": false,
+    "rc": 0
+   },
+   "P2_spec_arbitration": {
+    "checks_passed": 0,
+    "checks_total": 2,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "P3_access_control": {
+    "checks_passed": 5,
+    "checks_total": 11,
+    "partial": 0.45,
+    "pass": false,
+    "rc": 0
+   },
+   "P4_data_retention": {
+    "checks_passed": 8,
+    "checks_total": 14,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "SCALE1_codebase_migration": {
+    "checks_passed": 6,
+    "checks_total": 14,
+    "partial": 0.43,
+    "pass": false,
+    "rc": 0
+   },
+   "SEC8_dependency_audit": {
+    "checks_passed": 7,
+    "checks_total": 12,
+    "partial": 0.58,
+    "pass": false,
+    "rc": 0
+   },
+   "SPEC2_api_design": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "SYNTH1_distributed_debug": {
+    "checks_passed": 1,
+    "checks_total": 11,
+    "partial": 0.09,
+    "pass": false,
+    "rc": 0
+   },
+   "TEST2_regression": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   }
+  },
+  "scored": 33,
+  "timeouts": 2
+ },
+ "gh_probe_after": {
+  "mean_partial_over_scored": 0.5262,
+  "n": 45,
+  "n_pass_true": 0,
+  "per_task": {
+   "GH1006_spaCy_13068": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1007_spaCy_13040": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1011_great_expectati_8062": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1038_gpytorch_1416": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH103_redis-py_3998": {
+    "checks_passed": 9,
+    "checks_total": 11,
+    "partial": 0.82,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1048_keras_22294": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH1058_ray_15056": {
+    "checks_passed": 3,
+    "checks_total": 4,
+    "partial": 0.75,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1070_numpy_31033": {
+    "checks_passed": 3,
+    "checks_total": 4,
+    "partial": 0.75,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1073_spaCy_13249": {
+    "checks_passed": 1,
+    "checks_total": 4,
+    "partial": 0.25,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1088_keras_20782": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH1092_dask_10885": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1096_autogluon_5131": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH112_redis-py_3996": {
+    "checks_passed": 6,
+    "checks_total": 7,
+    "partial": 0.86,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1154_matplotlib_30795": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1219_featuretools_2025": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH121_quart_302": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH128_mitmproxy_8046": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH136_mitmproxy_8054": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH139_marshmallow_2894": {
+    "checks_passed": 5,
+    "checks_total": 8,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "GH140_marshmallow_2874": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH141_urllib3_3736": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH143_mitmproxy_8095": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH147_pyyaml_820": {
+    "checks_passed": 3,
+    "checks_total": 9,
+    "partial": 0.33,
+    "pass": false,
+    "rc": 0
+   },
+   "GH156_pyyaml_305": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH217_core_153674": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH258_fastapi_15088": {
+    "checks_passed": 3,
+    "checks_total": 7,
+    "partial": 0.43,
+    "pass": false,
+    "rc": 0
+   },
+   "GH325_core_157208": {
+    "checks_passed": 3,
+    "checks_total": 8,
+    "partial": 0.38,
+    "pass": false,
+    "rc": 0
+   },
+   "GH436_sqlalchemy_13063": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH447_quart_283": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH467_pandas_61920": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH478_hass-opnsense_379": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH486_starlette_3145": {
+    "checks_passed": 3,
+    "checks_total": 7,
+    "partial": 0.43,
+    "pass": false,
+    "rc": 0
+   },
+   "GH600_psycopg_1269": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH629_psycopg_1215": {
+    "checks_passed": 5,
+    "checks_total": 9,
+    "partial": 0.56,
+    "pass": false,
+    "rc": 0
+   },
+   "GH678_starlette_3179": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH715_napari_7914": {
+    "checks_passed": 3,
+    "checks_total": 7,
+    "partial": 0.43,
+    "pass": false,
+    "rc": 0
+   },
+   "GH775_werkzeug_3134": {
+    "checks_passed": 4,
+    "checks_total": 9,
+    "partial": 0.44,
+    "pass": false,
+    "rc": 0
+   },
+   "GH785_jinja_2061": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH813_quart_436": {
+    "checks_passed": 3,
+    "checks_total": 8,
+    "partial": 0.38,
+    "pass": false,
+    "rc": 0
+   },
+   "GH866_pandas_64569": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH872_scipy_24778": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH883_gpytorch_1517": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH958_scipy_24816": {
+    "checks_passed": 3,
+    "checks_total": 4,
+    "partial": 0.75,
+    "pass": false,
+    "rc": 0
+   },
+   "GH95_arrow_1242": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH985_ray_22113": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   }
+  },
+  "scored": 42,
+  "timeouts": 3
+ },
+ "gh_probe_before": {
+  "mean_partial_over_scored": 0.5097,
+  "n": 45,
+  "n_pass_true": 0,
+  "per_task": {
+   "GH1006_spaCy_13068": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1007_spaCy_13040": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1011_great_expectati_8062": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1038_gpytorch_1416": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH103_redis-py_3998": {
+    "checks_passed": 9,
+    "checks_total": 12,
+    "partial": 0.75,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1048_keras_22294": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH1058_ray_15056": {
+    "checks_passed": 3,
+    "checks_total": 5,
+    "partial": 0.6,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1070_numpy_31033": {
+    "checks_passed": 3,
+    "checks_total": 5,
+    "partial": 0.6,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1073_spaCy_13249": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1088_keras_20782": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH1092_dask_10885": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1096_autogluon_5131": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH112_redis-py_3996": {
+    "checks_passed": 6,
+    "checks_total": 8,
+    "partial": 0.75,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1154_matplotlib_30795": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1219_featuretools_2025": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH121_quart_302": {
+    "checks_passed": 5,
+    "checks_total": 8,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "GH128_mitmproxy_8046": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH136_mitmproxy_8054": {
+    "checks_passed": 4,
+    "checks_total": 9,
+    "partial": 0.44,
+    "pass": false,
+    "rc": 0
+   },
+   "GH139_marshmallow_2894": {
+    "checks_passed": 5,
+    "checks_total": 9,
+    "partial": 0.56,
+    "pass": false,
+    "rc": 0
+   },
+   "GH140_marshmallow_2874": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH141_urllib3_3736": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH143_mitmproxy_8095": {
+    "checks_passed": 5,
+    "checks_total": 11,
+    "partial": 0.45,
+    "pass": false,
+    "rc": 0
+   },
+   "GH147_pyyaml_820": {
+    "checks_passed": 5,
+    "checks_total": 11,
+    "partial": 0.45,
+    "pass": false,
+    "rc": 0
+   },
+   "GH156_pyyaml_305": {
+    "checks_passed": 6,
+    "checks_total": 10,
+    "partial": 0.6,
+    "pass": false,
+    "rc": 0
+   },
+   "GH217_core_153674": {
+    "checks_passed": 5,
+    "checks_total": 11,
+    "partial": 0.45,
+    "pass": false,
+    "rc": 0
+   },
+   "GH258_fastapi_15088": {
+    "checks_passed": 5,
+    "checks_total": 9,
+    "partial": 0.56,
+    "pass": false,
+    "rc": 0
+   },
+   "GH325_core_157208": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH436_sqlalchemy_13063": {
+    "checks_passed": 5,
+    "checks_total": 8,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "GH447_quart_283": {
+    "checks_passed": 5,
+    "checks_total": 8,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "GH467_pandas_61920": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH478_hass-opnsense_379": {
+    "checks_passed": 6,
+    "checks_total": 9,
+    "partial": 0.67,
+    "pass": false,
+    "rc": 0
+   },
+   "GH486_starlette_3145": {
+    "checks_passed": 5,
+    "checks_total": 9,
+    "partial": 0.56,
+    "pass": false,
+    "rc": 0
+   },
+   "GH600_psycopg_1269": {
+    "checks_passed": 5,
+    "checks_total": 8,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "GH629_psycopg_1215": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH678_starlette_3179": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH715_napari_7914": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH775_werkzeug_3134": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH785_jinja_2061": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH813_quart_436": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH866_pandas_64569": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH872_scipy_24778": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH883_gpytorch_1517": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH958_scipy_24816": {
+    "checks_passed": 3,
+    "checks_total": 5,
+    "partial": 0.6,
+    "pass": false,
+    "rc": 0
+   },
+   "GH95_arrow_1242": {
+    "checks_passed": 6,
+    "checks_total": 9,
+    "partial": 0.67,
+    "pass": false,
+    "rc": 0
+   },
+   "GH985_ray_22113": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   }
+  },
+  "scored": 40,
+  "timeouts": 5
+ },
+ "gh_probe_strata": {
+  "all_present": [
+   "GH1006_spaCy_13068",
+   "GH1007_spaCy_13040",
+   "GH1011_great_expectati_8062",
+   "GH1038_gpytorch_1416",
+   "GH103_redis-py_3998",
+   "GH1048_keras_22294",
+   "GH1058_ray_15056",
+   "GH1070_numpy_31033",
+   "GH1073_spaCy_13249",
+   "GH1088_keras_20782",
+   "GH1092_dask_10885",
+   "GH1096_autogluon_5131",
+   "GH112_redis-py_3996",
+   "GH1154_matplotlib_30795",
+   "GH1219_featuretools_2025",
+   "GH128_mitmproxy_8046",
+   "GH136_mitmproxy_8054",
+   "GH139_marshmallow_2894",
+   "GH140_marshmallow_2874",
+   "GH141_urllib3_3736",
+   "GH143_mitmproxy_8095",
+   "GH217_core_153674",
+   "GH467_pandas_61920",
+   "GH629_psycopg_1215",
+   "GH785_jinja_2061",
+   "GH866_pandas_64569",
+   "GH872_scipy_24778",
+   "GH883_gpytorch_1517",
+   "GH958_scipy_24816",
+   "GH985_ray_22113"
+  ],
+  "none_present": [
+   "GH121_quart_302",
+   "GH147_pyyaml_820",
+   "GH156_pyyaml_305",
+   "GH258_fastapi_15088",
+   "GH325_core_157208",
+   "GH436_sqlalchemy_13063",
+   "GH447_quart_283",
+   "GH478_hass-opnsense_379",
+   "GH486_starlette_3145",
+   "GH600_psycopg_1269",
+   "GH678_starlette_3179",
+   "GH715_napari_7914",
+   "GH775_werkzeug_3134",
+   "GH813_quart_436",
+   "GH95_arrow_1242"
+  ]
+ },
+ "lb90_pristine_after": {
+  "mean_partial_over_scored": 0.4912,
+  "n": 90,
+  "n_pass_true": 4,
+  "per_task": {
+   "API1_version_compat": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CR1_review_respond": {
+    "checks_passed": 2,
+    "checks_total": 7,
+    "partial": 0.29,
+    "pass": false,
+    "rc": 0
+   },
+   "CR4_api_review": {
+    "checks_passed": 3,
+    "checks_total": 15,
+    "partial": 0.2,
+    "pass": false,
+    "rc": 0
+   },
+   "CR6_review_checklist": {
+    "checks_passed": 2,
+    "checks_total": 10,
+    "partial": 0.2,
+    "pass": false,
+    "rc": 0
+   },
+   "CROSS1_api_contract": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS2_schema_evolution": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS3_protocol_bridge": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS6_grpc_rest_bridge": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS7_config_drift": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO1_nonce_reuse": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO3_cert_chain": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO4_kdf_migration": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO5_tls_config": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO6_token_validation": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "D3_schema_migration": {
+    "checks_passed": 4,
+    "checks_total": 10,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "D4_data_pipeline": {
+    "checks_passed": 10,
+    "checks_total": 16,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "D5_query_optimize": {
+    "checks_passed": 10,
+    "checks_total": 14,
+    "partial": 0.71,
+    "pass": false,
+    "rc": 0
+   },
+   "D6_data_reconcile": {
+    "checks_passed": 12,
+    "checks_total": 17,
+    "partial": 0.71,
+    "pass": false,
+    "rc": 0
+   },
+   "D7_etl_reconciliation": {
+    "checks_passed": 9,
+    "checks_total": null,
+    "partial": 0.9,
+    "pass": false,
+    "rc": 0
+   },
+   "DIST1_queue_race": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "DIST2_consensus_partition": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH1006_spaCy_13068": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1007_spaCy_13040": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1011_great_expectati_8062": {
+    "checks_passed": 2,
+    "checks_total": 4,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH103_redis-py_3998": {
+    "checks_passed": 9,
+    "checks_total": 11,
+    "partial": 0.82,
+    "pass": false,
+    "rc": 0
+   },
+   "GH10_retry_backoff": {
+    "checks_passed": 11,
+    "checks_total": 11,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH112_redis-py_3996": {
+    "checks_passed": 6,
+    "checks_total": 7,
+    "partial": 0.86,
+    "pass": false,
+    "rc": 0
+   },
+   "GH11_middleware_order": {
+    "checks_passed": 10,
+    "checks_total": 10,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH120_redis-py_3863": {
+    "checks_passed": 0,
+    "checks_total": 1,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "GH121_quart_302": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH128_mitmproxy_8046": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH12_click_envvar_flag": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH136_mitmproxy_8054": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH139_marshmallow_2894": {
+    "checks_passed": 5,
+    "checks_total": 8,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "GH13_starlette_bg_block": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH140_marshmallow_2874": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH141_urllib3_3736": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "GH143_mitmproxy_8095": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH14_celery_chain_fail": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1_flask_session_ctx": {
+    "checks_passed": 7,
+    "checks_total": 7,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH2_click_flag_value": {
+    "checks_passed": 7,
+    "checks_total": 9,
+    "partial": 0.78,
+    "pass": false,
+    "rc": 0
+   },
+   "GH7_fixture_scope_leak": {
+    "checks_passed": 9,
+    "checks_total": 9,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GO1_concurrency_fix": {
+    "checks_passed": 4,
+    "checks_total": 7,
+    "partial": 0.57,
+    "pass": false,
+    "rc": 0
+   },
+   "INC10_rollback_plan": {
+    "checks_passed": 0,
+    "checks_total": 10,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "INC1_cascade_failure": {
+    "checks_passed": 8,
+    "checks_total": 9,
+    "partial": 0.89,
+    "pass": false,
+    "rc": 0
+   },
+   "INC2_data_corruption": {
+    "checks_passed": 4,
+    "checks_total": 9,
+    "partial": 0.44,
+    "pass": false,
+    "rc": 0
+   },
+   "INC3_memory_leak": {
+    "checks_passed": 10,
+    "checks_total": 11,
+    "partial": 0.91,
+    "pass": false,
+    "rc": 0
+   },
+   "INC4_dns_miscfg": {
+    "checks_passed": 7,
+    "checks_total": 11,
+    "partial": 0.64,
+    "pass": false,
+    "rc": 0
+   },
+   "INC6_deadlock": {
+    "checks_passed": 8,
+    "checks_total": 11,
+    "partial": 0.73,
+    "pass": false,
+    "rc": 0
+   },
+   "INFRA2_cicd_repair": {
+    "checks_passed": 3,
+    "checks_total": 10,
+    "partial": 0.3,
+    "pass": false,
+    "rc": 0
+   },
+   "INT1_pipeline_repair": {
+    "checks_passed": 1,
+    "checks_total": 11,
+    "partial": 0.09,
+    "pass": false,
+    "rc": 0
+   },
+   "IR2_misinformation_trap": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.33,
+    "pass": false,
+    "rc": 0
+   },
+   "IR3_multi_source": {
+    "checks_passed": 11,
+    "checks_total": 12,
+    "partial": 0.92,
+    "pass": false,
+    "rc": 0
+   },
+   "IR4_temporal": {
+    "checks_passed": 13,
+    "checks_total": 14,
+    "partial": 0.93,
+    "pass": false,
+    "rc": 0
+   },
+   "JS2_xss_sanitize": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "LH2_budgeted_workflow": {
+    "checks_passed": 0,
+    "checks_total": 5,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "LH3_multi_service": {
+    "checks_passed": 18,
+    "checks_total": 20,
+    "partial": 0.9,
+    "pass": false,
+    "rc": 0
+   },
+   "LH4_staged_deploy": {
+    "checks_passed": 1,
+    "checks_total": 13,
+    "partial": 0.08,
+    "pass": false,
+    "rc": 0
+   },
+   "LH5_data_migration": {
+    "checks_passed": 0,
+    "checks_total": 10,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "MULTI2_microservice_debug": {
+    "checks_passed": 6,
+    "checks_total": 10,
+    "partial": 0.6,
+    "pass": false,
+    "rc": 0
+   },
+   "MULTI5_deploy_pipeline": {
+    "checks_passed": 5,
+    "checks_total": null,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "NEG1_tradeoff_config": {
+    "checks_passed": 3,
+    "checks_total": 9,
+    "partial": 0.33,
+    "pass": false,
+    "rc": 0
+   },
+   "O6_perf_tuning": {
+    "checks_passed": 6,
+    "checks_total": 13,
+    "partial": 0.46,
+    "pass": false,
+    "rc": 0
+   },
+   "P2_spec_arbitration": {
+    "checks_passed": 0,
+    "checks_total": 1,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "P3_access_control": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "P4_data_retention": {
+    "checks_passed": 8,
+    "checks_total": 13,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "PIPE2_data_pipeline": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "PIPE3_msg_queue": {
+    "checks_passed": 11,
+    "checks_total": 13,
+    "partial": 0.85,
+    "pass": false,
+    "rc": 0
+   },
+   "PIPE3_stream_processing": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS10_survey_analysis": {
+    "checks_passed": 1,
+    "checks_total": 8,
+    "partial": 0.125,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS11_survivorship_bias": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS12_simpsons_income": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.3333333333333333,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS13_smote_leakage": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS14_housing_leakage": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS15_taxi_circular": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS16_retail_phacking": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS17_macro_spurious": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "SCALE1_codebase_migration": {
+    "checks_passed": 6,
+    "checks_total": 13,
+    "partial": 0.46,
+    "pass": false,
+    "rc": 0
+   },
+   "SEC8_dependency_audit": {
+    "checks_passed": 7,
+    "checks_total": 11,
+    "partial": 0.64,
+    "pass": false,
+    "rc": 0
+   },
+   "SPEC2_api_design": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "SPEC5_config_system": {
+    "checks_passed": 0,
+    "checks_total": 19,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "SYNTH1_distributed_debug": {
+    "checks_passed": 1,
+    "checks_total": 10,
+    "partial": 0.1,
+    "pass": false,
+    "rc": 0
+   },
+   "TEST2_regression": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TEST3_integration": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TEST4_property": {
+    "checks_passed": 5,
+    "checks_total": 7,
+    "partial": 0.71,
+    "pass": false,
+    "rc": 0
+   },
+   "TRAP1_spec_conflict": {
+    "checks_passed": 4,
+    "checks_total": 10,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "TRAP3_metric_mirage": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "TRAP5_security_theater": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TRAP6_deprecated_api": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TS1_type_mismatch": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   }
+  },
+  "scored": 67,
+  "timeouts": 23
+ },
+ "lb90_pristine_before": {
+  "mean_partial_over_scored": 0.5113,
+  "n": 90,
+  "n_pass_true": 4,
+  "per_task": {
+   "API1_version_compat": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CR1_review_respond": {
+    "checks_passed": 3,
+    "checks_total": 8,
+    "partial": 0.38,
+    "pass": false,
+    "rc": 0
+   },
+   "CR4_api_review": {
+    "checks_passed": 4,
+    "checks_total": 16,
+    "partial": 0.25,
+    "pass": false,
+    "rc": 0
+   },
+   "CR6_review_checklist": {
+    "checks_passed": 3,
+    "checks_total": 11,
+    "partial": 0.27,
+    "pass": false,
+    "rc": 0
+   },
+   "CROSS1_api_contract": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS2_schema_evolution": {
+    "checks_passed": 6,
+    "checks_total": null,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "CROSS3_protocol_bridge": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CROSS6_grpc_rest_bridge": {
+    "checks_passed": 3,
+    "checks_total": null,
+    "partial": 0.3,
+    "pass": false,
+    "rc": 0
+   },
+   "CROSS7_config_drift": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO1_nonce_reuse": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO3_cert_chain": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO4_kdf_migration": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO5_tls_config": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "CRYPTO6_token_validation": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "D3_schema_migration": {
+    "checks_passed": 5,
+    "checks_total": 11,
+    "partial": 0.45,
+    "pass": false,
+    "rc": 0
+   },
+   "D4_data_pipeline": {
+    "checks_passed": 11,
+    "checks_total": 17,
+    "partial": 0.65,
+    "pass": false,
+    "rc": 0
+   },
+   "D5_query_optimize": {
+    "checks_passed": 11,
+    "checks_total": 15,
+    "partial": 0.73,
+    "pass": false,
+    "rc": 0
+   },
+   "D6_data_reconcile": {
+    "checks_passed": 13,
+    "checks_total": 18,
+    "partial": 0.72,
+    "pass": false,
+    "rc": 0
+   },
+   "D7_etl_reconciliation": {
+    "checks_passed": 9,
+    "checks_total": null,
+    "partial": 0.9,
+    "pass": false,
+    "rc": 0
+   },
+   "DIST1_queue_race": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "DIST2_consensus_partition": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH1006_spaCy_13068": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1007_spaCy_13040": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1011_great_expectati_8062": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "GH103_redis-py_3998": {
+    "checks_passed": 9,
+    "checks_total": 12,
+    "partial": 0.75,
+    "pass": false,
+    "rc": 0
+   },
+   "GH10_retry_backoff": {
+    "checks_passed": 12,
+    "checks_total": 12,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH112_redis-py_3996": {
+    "checks_passed": 6,
+    "checks_total": 8,
+    "partial": 0.75,
+    "pass": false,
+    "rc": 0
+   },
+   "GH11_middleware_order": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "GH120_redis-py_3863": {
+    "checks_passed": 0,
+    "checks_total": 1,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "GH121_quart_302": {
+    "checks_passed": 5,
+    "checks_total": 8,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "GH128_mitmproxy_8046": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH12_click_envvar_flag": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH136_mitmproxy_8054": {
+    "checks_passed": 4,
+    "checks_total": 9,
+    "partial": 0.44,
+    "pass": false,
+    "rc": 0
+   },
+   "GH139_marshmallow_2894": {
+    "checks_passed": 5,
+    "checks_total": 9,
+    "partial": 0.56,
+    "pass": false,
+    "rc": 0
+   },
+   "GH13_starlette_bg_block": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.17,
+    "pass": false,
+    "rc": 0
+   },
+   "GH140_marshmallow_2874": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH141_urllib3_3736": {
+    "checks_passed": 4,
+    "checks_total": 8,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH143_mitmproxy_8095": {
+    "checks_passed": 5,
+    "checks_total": 11,
+    "partial": 0.45,
+    "pass": false,
+    "rc": 0
+   },
+   "GH14_celery_chain_fail": {
+    "checks_passed": 3,
+    "checks_total": 6,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "GH1_flask_session_ctx": {
+    "checks_passed": 8,
+    "checks_total": 8,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GH2_click_flag_value": {
+    "checks_passed": 8,
+    "checks_total": 10,
+    "partial": 0.8,
+    "pass": false,
+    "rc": 0
+   },
+   "GH7_fixture_scope_leak": {
+    "checks_passed": 10,
+    "checks_total": 10,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "GO1_concurrency_fix": {
+    "checks_passed": 5,
+    "checks_total": 8,
+    "partial": 0.62,
+    "pass": false,
+    "rc": 0
+   },
+   "INC10_rollback_plan": {
+    "checks_passed": 0,
+    "checks_total": 10,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "INC1_cascade_failure": {
+    "checks_passed": 10,
+    "checks_total": 10,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "INC2_data_corruption": {
+    "checks_passed": 5,
+    "checks_total": 10,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "INC3_memory_leak": {
+    "checks_passed": 11,
+    "checks_total": 12,
+    "partial": 0.92,
+    "pass": false,
+    "rc": 0
+   },
+   "INC4_dns_miscfg": {
+    "checks_passed": 8,
+    "checks_total": 12,
+    "partial": 0.67,
+    "pass": false,
+    "rc": 0
+   },
+   "INC6_deadlock": {
+    "checks_passed": 9,
+    "checks_total": 12,
+    "partial": 0.75,
+    "pass": false,
+    "rc": 0
+   },
+   "INFRA2_cicd_repair": {
+    "checks_passed": 3,
+    "checks_total": 10,
+    "partial": 0.3,
+    "pass": false,
+    "rc": 0
+   },
+   "INT1_pipeline_repair": {
+    "checks_passed": 2,
+    "checks_total": 12,
+    "partial": 0.17,
+    "pass": false,
+    "rc": 0
+   },
+   "IR2_misinformation_trap": {
+    "checks_passed": 3,
+    "checks_total": 7,
+    "partial": 0.43,
+    "pass": false,
+    "rc": 0
+   },
+   "IR3_multi_source": {
+    "checks_passed": 12,
+    "checks_total": 13,
+    "partial": 0.92,
+    "pass": false,
+    "rc": 0
+   },
+   "IR4_temporal": {
+    "checks_passed": 14,
+    "checks_total": 15,
+    "partial": 0.93,
+    "pass": false,
+    "rc": 0
+   },
+   "JS2_xss_sanitize": {
+    "checks_passed": 6,
+    "checks_total": 18,
+    "partial": 0.33,
+    "pass": false,
+    "rc": 0
+   },
+   "LH2_budgeted_workflow": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.17,
+    "pass": false,
+    "rc": 0
+   },
+   "LH3_multi_service": {
+    "checks_passed": 18,
+    "checks_total": 20,
+    "partial": 0.9,
+    "pass": false,
+    "rc": 0
+   },
+   "LH4_staged_deploy": {
+    "checks_passed": 2,
+    "checks_total": 14,
+    "partial": 0.14,
+    "pass": false,
+    "rc": 0
+   },
+   "LH5_data_migration": {
+    "checks_passed": 1,
+    "checks_total": 11,
+    "partial": 0.09,
+    "pass": false,
+    "rc": 0
+   },
+   "MULTI2_microservice_debug": {
+    "checks_passed": 6,
+    "checks_total": 10,
+    "partial": 0.6,
+    "pass": false,
+    "rc": 0
+   },
+   "MULTI5_deploy_pipeline": {
+    "checks_passed": 5,
+    "checks_total": null,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "NEG1_tradeoff_config": {
+    "checks_passed": 4,
+    "checks_total": 10,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "O6_perf_tuning": {
+    "checks_passed": 6,
+    "checks_total": 13,
+    "partial": 0.46,
+    "pass": false,
+    "rc": 0
+   },
+   "P2_spec_arbitration": {
+    "checks_passed": 1,
+    "checks_total": 2,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "P3_access_control": {
+    "checks_passed": 6,
+    "checks_total": 11,
+    "partial": 0.55,
+    "pass": false,
+    "rc": 0
+   },
+   "P4_data_retention": {
+    "checks_passed": 9,
+    "checks_total": 14,
+    "partial": 0.64,
+    "pass": false,
+    "rc": 0
+   },
+   "PIPE2_data_pipeline": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "PIPE3_msg_queue": {
+    "checks_passed": 11,
+    "checks_total": 13,
+    "partial": 0.85,
+    "pass": false,
+    "rc": 0
+   },
+   "PIPE3_stream_processing": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS10_survey_analysis": {
+    "checks_passed": 1,
+    "checks_total": 8,
+    "partial": 0.125,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS11_survivorship_bias": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS12_simpsons_income": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.3333333333333333,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS13_smote_leakage": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS14_housing_leakage": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS15_taxi_circular": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS16_retail_phacking": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "RDS17_macro_spurious": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "SCALE1_codebase_migration": {
+    "checks_passed": 7,
+    "checks_total": 14,
+    "partial": 0.5,
+    "pass": false,
+    "rc": 0
+   },
+   "SEC8_dependency_audit": {
+    "checks_passed": 8,
+    "checks_total": 12,
+    "partial": 0.67,
+    "pass": false,
+    "rc": 0
+   },
+   "SPEC2_api_design": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "SPEC5_config_system": {
+    "checks_passed": 0,
+    "checks_total": 19,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "SYNTH1_distributed_debug": {
+    "checks_passed": 2,
+    "checks_total": 11,
+    "partial": 0.18,
+    "pass": false,
+    "rc": 0
+   },
+   "TEST2_regression": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TEST3_integration": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TEST4_property": {
+    "checks_passed": 5,
+    "checks_total": 7,
+    "partial": 0.71,
+    "pass": false,
+    "rc": 0
+   },
+   "TRAP1_spec_conflict": {
+    "checks_passed": 4,
+    "checks_total": 10,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "TRAP3_metric_mirage": {
+    "checks_passed": 2,
+    "checks_total": 5,
+    "partial": 0.4,
+    "pass": false,
+    "rc": 0
+   },
+   "TRAP5_security_theater": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TRAP6_deprecated_api": {
+    "checks_passed": null,
+    "checks_total": null,
+    "partial": null,
+    "pass": null,
+    "rc": "TIMEOUT"
+   },
+   "TS1_type_mismatch": {
+    "checks_passed": 7,
+    "checks_total": 10,
+    "partial": 0.7,
+    "pass": false,
+    "rc": 0
+   }
+  },
+  "scored": 66,
+  "timeouts": 24
+ },
+ "note": "Pristine (zero-edit) grader probes for scripts/repair_graders.py. Env: PIP_NO_INDEX=1 (no network at grade time), seed 0, 4 concurrent graders, 90s per-grader timeout (300s for the RDS probes). BEFORE runs used the pre-repair graders from shared/grader_repair_backup.tar.gz staged into a shadow task tree.",
+ "rds_overwrite_exploit_after": {
+  "mean_partial_over_scored": 0.1615,
+  "n": 8,
+  "n_pass_true": 0,
+  "per_task": {
+   "RDS10_survey_analysis": {
+    "checks_passed": 1,
+    "checks_total": 8,
+    "partial": 0.125,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS11_survivorship_bias": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.3333333333333333,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS12_simpsons_income": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.3333333333333333,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS13_smote_leakage": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS14_housing_leakage": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS15_taxi_circular": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS16_retail_phacking": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS17_macro_spurious": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   }
+  },
+  "scored": 8,
+  "timeouts": 0
+ },
+ "rds_overwrite_exploit_before": {
+  "mean_partial_over_scored": 1.0,
+  "n": 8,
+  "n_pass_true": 8,
+  "per_task": {
+   "RDS10_survey_analysis": {
+    "checks_passed": 99,
+    "checks_total": 99,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "RDS11_survivorship_bias": {
+    "checks_passed": 99,
+    "checks_total": 99,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "RDS12_simpsons_income": {
+    "checks_passed": 99,
+    "checks_total": 99,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "RDS13_smote_leakage": {
+    "checks_passed": 99,
+    "checks_total": 99,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "RDS14_housing_leakage": {
+    "checks_passed": 99,
+    "checks_total": 99,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "RDS15_taxi_circular": {
+    "checks_passed": 99,
+    "checks_total": 99,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "RDS16_retail_phacking": {
+    "checks_passed": 99,
+    "checks_total": 99,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   },
+   "RDS17_macro_spurious": {
+    "checks_passed": 99,
+    "checks_total": 99,
+    "partial": 1.0,
+    "pass": true,
+    "rc": 0
+   }
+  },
+  "scored": 8,
+  "timeouts": 0
+ },
+ "rds_pristine_after": {
+  "mean_partial_over_scored": 0.1615,
+  "n": 8,
+  "n_pass_true": 0,
+  "per_task": {
+   "RDS10_survey_analysis": {
+    "checks_passed": 1,
+    "checks_total": 8,
+    "partial": 0.125,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS11_survivorship_bias": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.3333333333333333,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS12_simpsons_income": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.3333333333333333,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS13_smote_leakage": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS14_housing_leakage": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS15_taxi_circular": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS16_retail_phacking": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS17_macro_spurious": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   }
+  },
+  "scored": 8,
+  "timeouts": 0
+ },
+ "rds_pristine_before": {
+  "mean_partial_over_scored": 0.1615,
+  "n": 8,
+  "n_pass_true": 0,
+  "per_task": {
+   "RDS10_survey_analysis": {
+    "checks_passed": 1,
+    "checks_total": 8,
+    "partial": 0.125,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS11_survivorship_bias": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.3333333333333333,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS12_simpsons_income": {
+    "checks_passed": 2,
+    "checks_total": 6,
+    "partial": 0.3333333333333333,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS13_smote_leakage": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS14_housing_leakage": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS15_taxi_circular": {
+    "checks_passed": 0,
+    "checks_total": 6,
+    "partial": 0.0,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS16_retail_phacking": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   },
+   "RDS17_macro_spurious": {
+    "checks_passed": 1,
+    "checks_total": 6,
+    "partial": 0.16666666666666666,
+    "pass": false,
+    "rc": 0
+   }
+  },
+  "scored": 8,
+  "timeouts": 0
+ }
+}

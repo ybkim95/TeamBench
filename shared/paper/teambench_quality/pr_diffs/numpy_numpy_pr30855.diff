@@ -1,0 +1,31 @@
+diff --git a/numpy/ma/core.py b/numpy/ma/core.py
+index 32c2f07c162b..6e3b3a54c7c8 100644
+--- a/numpy/ma/core.py
++++ b/numpy/ma/core.py
+@@ -2590,7 +2590,7 @@ def flatten_sequence(iterable):
+ 
+         """
+         for elm in iter(iterable):
+-            if hasattr(elm, '__iter__'):
++            if hasattr(elm, "__iter__") and not isinstance(elm, (str, bytes)):
+                 yield from flatten_sequence(elm)
+             else:
+                 yield elm
+diff --git a/numpy/ma/tests/test_core.py b/numpy/ma/tests/test_core.py
+index 067fce2f0777..2dc7fe5a9b17 100644
+--- a/numpy/ma/tests/test_core.py
++++ b/numpy/ma/tests/test_core.py
+@@ -998,6 +998,13 @@ def test_flatten_structured_array(self):
+         control = np.array([[[1., 1.], ], [[2., 2.], ]], dtype=float)
+         assert_equal(test, control)
+         assert_equal(test.dtype, control.dtype)
++        # for strings
++        ndtype = [('a', 'U5'), ('b', [('c', 'U5')])]
++        arr = np.array([('NumPy', ('array',)), ('array', ('numpy',))], dtype=ndtype)
++        test = flatten_structured_array(arr)
++        control = np.array([['NumPy', 'array'], ['array', 'numpy']], dtype='U5')
++        assert_equal(test, control)
++        assert_equal(test.dtype, control.dtype)
+ 
+     def test_void0d(self):
+         # Test creating a mvoid object

@@ -1,0 +1,677 @@
+{
+  "kendalls_w_capable": {
+    "n_models": 13,
+    "models": [
+      "claude-haiku-4.5",
+      "claude-sonnet-4.6",
+      "gemini-3-flash",
+      "gemini-3.1-lite",
+      "gemini-3.1-pro",
+      "gpt-5-mini",
+      "gpt-5-nano",
+      "gpt-5.3-chat",
+      "gpt-5.4",
+      "qwen3-coder-30b",
+      "qwen3.5-27b",
+      "qwen3.5-35b-a3b",
+      "qwen3.5-9b"
+    ],
+    "n_common_tasks": 9,
+    "relaxed_matching": false,
+    "kendalls_W": 0.1193,
+    "interpretation": "weak agreement",
+    "chi2": 12.4103,
+    "p_value": 0.133816,
+    "significant_005": false,
+    "consistently_team_helped": [],
+    "consistently_team_hurt": [],
+    "n_consistently_helped": 0,
+    "n_consistently_hurt": 0
+  },
+  "bootstrap_cis": {
+    "gemini-3-flash": {
+      "n_tasks": 213,
+      "oracle_rate": 0.1502,
+      "oracle_rate_ci95": [
+        0.1033,
+        0.2019
+      ],
+      "full_rate": 0.3333,
+      "full_rate_ci95": [
+        0.2723,
+        0.3991
+      ],
+      "uplift": 0.1831,
+      "uplift_ci95": [
+        0.1268,
+        0.2394
+      ],
+      "partial_improvement": 0.0752,
+      "partial_improvement_ci95": [
+        0.0423,
+        0.1079
+      ]
+    },
+    "codegemma-7b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": 0.0,
+      "partial_improvement_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "deepseek-r1-32b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": -0.1993,
+      "partial_improvement_ci95": [
+        -0.2986,
+        -0.1072
+      ]
+    },
+    "devstral-24b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": 0.0,
+      "partial_improvement_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "gemini-3.1-lite": {
+      "n_tasks": 119,
+      "oracle_rate": 0.0504,
+      "oracle_rate_ci95": [
+        0.0168,
+        0.0924
+      ],
+      "full_rate": 0.1849,
+      "full_rate_ci95": [
+        0.1176,
+        0.2605
+      ],
+      "uplift": 0.1345,
+      "uplift_ci95": [
+        0.0672,
+        0.2017
+      ],
+      "partial_improvement": 0.0777,
+      "partial_improvement_ci95": [
+        0.044,
+        0.1125
+      ]
+    },
+    "gemma3-27b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": -0.1519,
+      "partial_improvement_ci95": [
+        -0.2419,
+        -0.0719
+      ]
+    },
+    "glm4-9b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": 0.0179,
+      "partial_improvement_ci95": [
+        0.0,
+        0.0536
+      ]
+    },
+    "gpt-5.3-chat": {
+      "n_tasks": 28,
+      "oracle_rate": 0.1429,
+      "oracle_rate_ci95": [
+        0.0357,
+        0.2857
+      ],
+      "full_rate": 0.2857,
+      "full_rate_ci95": [
+        0.1429,
+        0.4643
+      ],
+      "uplift": 0.1429,
+      "uplift_ci95": [
+        0.0,
+        0.3214
+      ],
+      "partial_improvement": 0.0555,
+      "partial_improvement_ci95": [
+        -0.0275,
+        0.1312
+      ]
+    },
+    "gpt-5.4": {
+      "n_tasks": 116,
+      "oracle_rate": 0.0948,
+      "oracle_rate_ci95": [
+        0.0431,
+        0.1466
+      ],
+      "full_rate": 0.2759,
+      "full_rate_ci95": [
+        0.1983,
+        0.3534
+      ],
+      "uplift": 0.181,
+      "uplift_ci95": [
+        0.1121,
+        0.25
+      ],
+      "partial_improvement": 0.0515,
+      "partial_improvement_ci95": [
+        0.0193,
+        0.0837
+      ]
+    },
+    "gpt-5-mini": {
+      "n_tasks": 89,
+      "oracle_rate": 0.1461,
+      "oracle_rate_ci95": [
+        0.0787,
+        0.2247
+      ],
+      "full_rate": 0.2809,
+      "full_rate_ci95": [
+        0.191,
+        0.382
+      ],
+      "uplift": 0.1348,
+      "uplift_ci95": [
+        0.0449,
+        0.2247
+      ],
+      "partial_improvement": 0.0621,
+      "partial_improvement_ci95": [
+        0.0058,
+        0.119
+      ]
+    },
+    "gpt-5-nano": {
+      "n_tasks": 116,
+      "oracle_rate": 0.0603,
+      "oracle_rate_ci95": [
+        0.0172,
+        0.1034
+      ],
+      "full_rate": 0.0948,
+      "full_rate_ci95": [
+        0.0431,
+        0.1466
+      ],
+      "uplift": 0.0345,
+      "uplift_ci95": [
+        -0.0259,
+        0.0948
+      ],
+      "partial_improvement": 0.0269,
+      "partial_improvement_ci95": [
+        -0.0219,
+        0.0731
+      ]
+    },
+    "gpt-oss-20b": {
+      "n_tasks": 116,
+      "oracle_rate": 0.0172,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0431
+      ],
+      "full_rate": 0.0172,
+      "full_rate_ci95": [
+        0.0,
+        0.0431
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        -0.0259,
+        0.0259
+      ],
+      "partial_improvement": -0.0349,
+      "partial_improvement_ci95": [
+        -0.0693,
+        -0.0056
+      ]
+    },
+    "claude-haiku-4.5": {
+      "n_tasks": 116,
+      "oracle_rate": 0.0948,
+      "oracle_rate_ci95": [
+        0.0431,
+        0.1552
+      ],
+      "full_rate": 0.3017,
+      "full_rate_ci95": [
+        0.2241,
+        0.3879
+      ],
+      "uplift": 0.2069,
+      "uplift_ci95": [
+        0.1293,
+        0.2845
+      ],
+      "partial_improvement": 0.1841,
+      "partial_improvement_ci95": [
+        0.139,
+        0.2306
+      ]
+    },
+    "phi4-14b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": 0.025,
+      "partial_improvement_ci95": [
+        0.0,
+        0.0714
+      ]
+    },
+    "phi4-mini": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": 0.0214,
+      "partial_improvement_ci95": [
+        0.0,
+        0.0643
+      ]
+    },
+    "qwen2.5-coder-32b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": -0.015,
+      "partial_improvement_ci95": [
+        -0.0568,
+        0.0111
+      ]
+    },
+    "qwen3.5-0.8b": {
+      "n_tasks": 116,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": -0.0158,
+      "partial_improvement_ci95": [
+        -0.0356,
+        0.0027
+      ]
+    },
+    "qwen3.5-27b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0357,
+      "oracle_rate_ci95": [
+        0.0,
+        0.1071
+      ],
+      "full_rate": 0.0357,
+      "full_rate_ci95": [
+        0.0,
+        0.1071
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        -0.1071,
+        0.1071
+      ],
+      "partial_improvement": -0.179,
+      "partial_improvement_ci95": [
+        -0.3108,
+        -0.0629
+      ]
+    },
+    "qwen3.5-2b": {
+      "n_tasks": 116,
+      "oracle_rate": 0.0086,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0259
+      ],
+      "full_rate": 0.0086,
+      "full_rate_ci95": [
+        0.0,
+        0.0259
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": 0.0796,
+      "partial_improvement_ci95": [
+        0.0362,
+        0.1227
+      ]
+    },
+    "qwen3.5-35b-a3b": {
+      "n_tasks": 24,
+      "oracle_rate": 0.1667,
+      "oracle_rate_ci95": [
+        0.0417,
+        0.3333
+      ],
+      "full_rate": 0.25,
+      "full_rate_ci95": [
+        0.0833,
+        0.4167
+      ],
+      "uplift": 0.0833,
+      "uplift_ci95": [
+        -0.125,
+        0.2917
+      ],
+      "partial_improvement": -0.0766,
+      "partial_improvement_ci95": [
+        -0.2012,
+        0.0375
+      ]
+    },
+    "qwen3.5-4b": {
+      "n_tasks": 116,
+      "oracle_rate": 0.0259,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0603
+      ],
+      "full_rate": 0.0517,
+      "full_rate_ci95": [
+        0.0172,
+        0.0948
+      ],
+      "uplift": 0.0259,
+      "uplift_ci95": [
+        -0.0086,
+        0.069
+      ],
+      "partial_improvement": 0.003,
+      "partial_improvement_ci95": [
+        -0.047,
+        0.0518
+      ]
+    },
+    "qwen3.5-9b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0714,
+      "oracle_rate_ci95": [
+        0.0,
+        0.1786
+      ],
+      "full_rate": 0.1786,
+      "full_rate_ci95": [
+        0.0357,
+        0.3214
+      ],
+      "uplift": 0.1071,
+      "uplift_ci95": [
+        -0.0357,
+        0.25
+      ],
+      "partial_improvement": -0.1281,
+      "partial_improvement_ci95": [
+        -0.2611,
+        0.0067
+      ]
+    },
+    "qwen3-14b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0714,
+      "full_rate_ci95": [
+        0.0,
+        0.1786
+      ],
+      "uplift": 0.0714,
+      "uplift_ci95": [
+        0.0,
+        0.1786
+      ],
+      "partial_improvement": 0.0328,
+      "partial_improvement_ci95": [
+        -0.0879,
+        0.1596
+      ]
+    },
+    "qwen3-4b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "partial_improvement": -0.0793,
+      "partial_improvement_ci95": [
+        -0.1811,
+        0.0143
+      ]
+    },
+    "qwen3-8b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0,
+      "oracle_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "full_rate": 0.0357,
+      "full_rate_ci95": [
+        0.0,
+        0.1071
+      ],
+      "uplift": 0.0357,
+      "uplift_ci95": [
+        0.0,
+        0.1071
+      ],
+      "partial_improvement": -0.0243,
+      "partial_improvement_ci95": [
+        -0.1393,
+        0.0886
+      ]
+    },
+    "qwen3-coder-30b": {
+      "n_tasks": 28,
+      "oracle_rate": 0.0357,
+      "oracle_rate_ci95": [
+        0.0,
+        0.1071
+      ],
+      "full_rate": 0.0,
+      "full_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "uplift": -0.0357,
+      "uplift_ci95": [
+        -0.1071,
+        0.0
+      ],
+      "partial_improvement": -0.2132,
+      "partial_improvement_ci95": [
+        -0.3657,
+        -0.0718
+      ]
+    },
+    "claude-sonnet-4.6": {
+      "n_tasks": 28,
+      "oracle_rate": 0.25,
+      "oracle_rate_ci95": [
+        0.1071,
+        0.4286
+      ],
+      "full_rate": 0.4286,
+      "full_rate_ci95": [
+        0.25,
+        0.6071
+      ],
+      "uplift": 0.1786,
+      "uplift_ci95": [
+        0.0357,
+        0.3214
+      ],
+      "partial_improvement": -0.1189,
+      "partial_improvement_ci95": [
+        -0.2346,
+        -0.015
+      ]
+    },
+    "gemini-3.1-pro": {
+      "n_tasks": 100,
+      "oracle_rate": 0.13,
+      "oracle_rate_ci95": [
+        0.07,
+        0.2
+      ],
+      "full_rate": 0.25,
+      "full_rate_ci95": [
+        0.17,
+        0.34
+      ],
+      "uplift": 0.12,
+      "uplift_ci95": [
+        0.05,
+        0.19
+      ],
+      "partial_improvement": 0.0452,
+      "partial_improvement_ci95": [
+        0.006,
+        0.081
+      ]
+    }
+  }
+}

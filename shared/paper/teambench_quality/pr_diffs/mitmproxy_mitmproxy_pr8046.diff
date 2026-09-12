@@ -1,0 +1,65 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 2ebba8e139..b867defe4b 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -18,6 +18,8 @@
+ - Switch all content-encoding compression algorithms to use fastest settings by default.
+   This significantly improves addon runtime performance when assigning to `message.content`.
+   ([#8055](https://github.com/mitmproxy/mitmproxy/pull/8055), @Copilot)
++- Fix `modify_body` crash when replacement strings contain backslash sequences.
++  ([#8046](https://github.com/mitmproxy/mitmproxy/pull/8046), @HueCodes)
+ - Added support for adding and editing comments on individual flows in the mitmproxy console.
+   ([#7944](https://github.com/mitmproxy/mitmproxy/pull/7944), @lups2000)
+ 
+diff --git a/mitmproxy/addons/modifybody.py b/mitmproxy/addons/modifybody.py
+index 657dbe07ce..7cef8e5872 100644
+--- a/mitmproxy/addons/modifybody.py
++++ b/mitmproxy/addons/modifybody.py
+@@ -73,11 +73,14 @@ def run(self, flow):
+                 if flow.response:
+                     flow.response.content = re.sub(
+                         spec.subject,
+-                        replacement,
++                        lambda _: replacement,
+                         flow.response.content,
+                         flags=re.DOTALL,
+                     )
+                 else:
+                     flow.request.content = re.sub(
+-                        spec.subject, replacement, flow.request.content, flags=re.DOTALL
++                        spec.subject,
++                        lambda _: replacement,
++                        flow.request.content,
++                        flags=re.DOTALL,
+                     )
+diff --git a/test/mitmproxy/addons/test_modifybody.py b/test/mitmproxy/addons/test_modifybody.py
+index 3d52900169..548edc4378 100644
+--- a/test/mitmproxy/addons/test_modifybody.py
++++ b/test/mitmproxy/addons/test_modifybody.py
+@@ -78,6 +78,26 @@ def test_order(self):
+             mb.request(f)
+             assert f.request.content == b"baz"
+ 
++    def test_backslash_in_replacement(self):
++        mb = modifybody.ModifyBody()
++        with taddons.context(mb) as tctx:
++            tctx.configure(
++                mb,
++                modify_body=[
++                    r"/~q/foo/bar\x00",
++                    r"/~s/foo/bar\n",
++                ],
++            )
++            f = tflow.tflow()
++            f.request.content = b"foo"
++            mb.request(f)
++            assert f.request.content == b"bar\x00"
++
++            f = tflow.tflow(resp=True)
++            f.response.content = b"foo"
++            mb.response(f)
++            assert f.response.content == b"bar\n"
++
+ 
+ class TestModifyBodyFile:
+     def test_simple(self, tmpdir):

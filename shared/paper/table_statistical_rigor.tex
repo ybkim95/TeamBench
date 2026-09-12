@@ -1,0 +1,31 @@
+\begin{table}[h]\centering\small
+\caption{Per-category team uplift with multiplicity correction. $\Delta$ is mean (full $-$ oracle). Bootstrap 95\% CI. Raw and Holm-adjusted $p$-values from paired $t$-test. Significance uses $\alpha=0.05$ on adjusted $p$.}
+\label{tab:stat_rigor}
+\begin{tabular}{lcccccc}\toprule
+Category & $n$ & $\Delta$ & 95\% CI & $p_{\text{raw}}$ & $p_{\text{Holm}}$ & Power \\ \midrule
+adversarial & 3 & +0.000 & [+0.000, +0.000] & nan & 1.000 & nan \\
+code review & 5 & +0.013 & [-0.123, +0.149] & 0.881 & 1.000 & 0.07 \\
+cross system & 3 & -0.200 & [-0.600, +0.000] & 0.423 & 1.000 & 0.01 \\
+crypto & 2 & +0.000 & [+0.000, +0.000] & nan & 1.000 & nan \\
+data & 8 & +0.052 & [-0.072, +0.162] & 0.447 & 1.000 & 0.18 \\
+distributed & 2 & -0.215 & [-0.430, +0.000] & 0.500 & 1.000 & 0.01 \\
+github real & 11 & +0.158 & [+0.049, +0.306] & 0.042 & 0.916 & 0.70 \\
+incident & 10 & -0.064 & [-0.282, +0.094] & 0.558 & 1.000 & 0.01 \\
+integration & 2 & -0.133 & [-0.267, +0.000] & 0.500 & 1.000 & 0.01 \\
+ir & 7 & -0.027 & [-0.124, +0.043] & 0.599 & 1.000 & 0.02 \\
+legalhold & 6 & -0.035 & [-0.273, +0.228] & 0.816 & 1.000 & 0.03 \\
+multi layer & 9 & +0.126 & [+0.048, +0.216] & 0.023 & 0.528 & 0.82 \\
+multilang & 5 & -0.120 & [-0.388, +0.170] & 0.499 & 1.000 & 0.01 \\
+negotiation & 4 & -0.014 & [-0.316, +0.175] & 0.933 & 1.000 & 0.04 \\
+ops & 9 & -0.044 & [-0.238, +0.073] & 0.650 & 1.000 & 0.02 \\
+other & 18 & +0.030 & [-0.009, +0.078] & 0.191 & 1.000 & 0.37 \\
+pipeline & 6 & -0.112 & [-0.250, +0.008] & 0.174 & 1.000 & 0.00 \\
+policy & 7 & +0.097 & [-0.133, +0.373] & 0.515 & 1.000 & 0.15 \\
+scaling & 1 & +0.028 & [+0.028, +0.028] & nan & 1.000 & nan \\
+security & 9 & -0.074 & [-0.223, +0.071] & 0.354 & 1.000 & 0.01 \\
+spec driven & 6 & +0.121 & [-0.076, +0.418] & 0.455 & 1.000 & 0.17 \\
+swe & 5 & +0.042 & [-0.057, +0.185] & 0.580 & 1.000 & 0.13 \\
+testing & 9 & +0.189 & [+0.031, +0.415] & 0.120 & 1.000 & 0.48 \\
+\midrule
+Overall & 147 & +0.017 & [-0.021, +0.059] & 0.407 & -- & -- \\
+\bottomrule\end{tabular}\end{table}

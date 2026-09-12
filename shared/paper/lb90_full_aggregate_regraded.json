@@ -1,0 +1,593 @@
+{
+  "computed_at": "regraded:attestation-promotion",
+  "models": {
+    "gpt-5-4-mini": {
+      "oracle": {
+        "passed": 30,
+        "valid_n": 99,
+        "rate": 0.30303030303030304,
+        "passed_orig": 17,
+        "promoted": 13,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 21,
+        "valid_n": 100,
+        "rate": 0.21,
+        "passed_orig": 21,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 23,
+        "valid_n": 100,
+        "rate": 0.23,
+        "passed_orig": 22,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 22,
+        "valid_n": 100,
+        "rate": 0.22,
+        "passed_orig": 22,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 26,
+        "valid_n": 99,
+        "rate": 0.26262626262626265,
+        "passed_orig": 26,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "gpt-5-4": {
+      "oracle": {
+        "passed": 11,
+        "valid_n": 100,
+        "rate": 0.11,
+        "passed_orig": 11,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 32,
+        "valid_n": 99,
+        "rate": 0.32323232323232326,
+        "passed_orig": 31,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 21,
+        "valid_n": 99,
+        "rate": 0.21212121212121213,
+        "passed_orig": 20,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 31,
+        "valid_n": 100,
+        "rate": 0.31,
+        "passed_orig": 31,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 25,
+        "valid_n": 100,
+        "rate": 0.25,
+        "passed_orig": 25,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "claude-sonnet-4-6": {
+      "oracle": {
+        "passed": 7,
+        "valid_n": 100,
+        "rate": 0.07,
+        "passed_orig": 7,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 25,
+        "valid_n": 100,
+        "rate": 0.25,
+        "passed_orig": 25,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 9,
+        "valid_n": 53,
+        "rate": 0.16981132075471697,
+        "passed_orig": 7,
+        "promoted": 2,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 6,
+        "valid_n": 39,
+        "rate": 0.15384615384615385,
+        "passed_orig": 6,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 25,
+        "valid_n": 95,
+        "rate": 0.2631578947368421,
+        "passed_orig": 23,
+        "promoted": 2,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "claude-opus-4-7": {
+      "oracle": {
+        "passed": 32,
+        "valid_n": 100,
+        "rate": 0.32,
+        "passed_orig": 18,
+        "promoted": 14,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 30,
+        "valid_n": 100,
+        "rate": 0.3,
+        "passed_orig": 29,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 32,
+        "valid_n": 100,
+        "rate": 0.32,
+        "passed_orig": 32,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 30,
+        "valid_n": 100,
+        "rate": 0.3,
+        "passed_orig": 30,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 34,
+        "valid_n": 98,
+        "rate": 0.3469387755102041,
+        "passed_orig": 30,
+        "promoted": 4,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "claude-haiku-4-5": {
+      "oracle": {
+        "passed": 11,
+        "valid_n": 100,
+        "rate": 0.11,
+        "passed_orig": 11,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 28,
+        "valid_n": 100,
+        "rate": 0.28,
+        "passed_orig": 26,
+        "promoted": 2,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 17,
+        "valid_n": 100,
+        "rate": 0.17,
+        "passed_orig": 15,
+        "promoted": 2,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 1,
+        "valid_n": 19,
+        "rate": 0.05263157894736842,
+        "passed_orig": 1,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 26,
+        "valid_n": 100,
+        "rate": 0.26,
+        "passed_orig": 23,
+        "promoted": 3,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "gemini-3-flash-preview": {
+      "oracle": {
+        "passed": 12,
+        "valid_n": 100,
+        "rate": 0.12,
+        "passed_orig": 11,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 17,
+        "valid_n": 100,
+        "rate": 0.17,
+        "passed_orig": 13,
+        "promoted": 4,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 13,
+        "valid_n": 100,
+        "rate": 0.13,
+        "passed_orig": 8,
+        "promoted": 5,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 25,
+        "valid_n": 100,
+        "rate": 0.25,
+        "passed_orig": 25,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 23,
+        "valid_n": 100,
+        "rate": 0.23,
+        "passed_orig": 22,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "gemini-3-1-pro-preview": {
+      "oracle": {
+        "passed": 25,
+        "valid_n": 99,
+        "rate": 0.25252525252525254,
+        "passed_orig": 13,
+        "promoted": 12,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 20,
+        "valid_n": 99,
+        "rate": 0.20202020202020202,
+        "passed_orig": 17,
+        "promoted": 3,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 15,
+        "valid_n": 87,
+        "rate": 0.1724137931034483,
+        "passed_orig": 15,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 23,
+        "valid_n": 98,
+        "rate": 0.23469387755102042,
+        "passed_orig": 23,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 26,
+        "valid_n": 97,
+        "rate": 0.26804123711340205,
+        "passed_orig": 25,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "gemini-3-1-flash-lite-preview": {
+      "oracle": {
+        "passed": 5,
+        "valid_n": 99,
+        "rate": 0.050505050505050504,
+        "passed_orig": 4,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 19,
+        "valid_n": 100,
+        "rate": 0.19,
+        "passed_orig": 13,
+        "promoted": 6,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 8,
+        "valid_n": 100,
+        "rate": 0.08,
+        "passed_orig": 6,
+        "promoted": 2,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 16,
+        "valid_n": 99,
+        "rate": 0.16161616161616163,
+        "passed_orig": 16,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 16,
+        "valid_n": 98,
+        "rate": 0.16326530612244897,
+        "passed_orig": 14,
+        "promoted": 2,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "gemma-4-31b": {
+      "oracle": {
+        "passed": 25,
+        "valid_n": 73,
+        "rate": 0.3424657534246575,
+        "passed_orig": 15,
+        "promoted": 10,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 23,
+        "valid_n": 73,
+        "rate": 0.3150684931506849,
+        "passed_orig": 23,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 22,
+        "valid_n": 62,
+        "rate": 0.3548387096774194,
+        "passed_orig": 21,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 18,
+        "valid_n": 80,
+        "rate": 0.225,
+        "passed_orig": 18,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 20,
+        "valid_n": 56,
+        "rate": 0.35714285714285715,
+        "passed_orig": 20,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "gpt-oss-120b": {
+      "oracle": {
+        "passed": 4,
+        "valid_n": 100,
+        "rate": 0.04,
+        "passed_orig": 2,
+        "promoted": 2,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 4,
+        "valid_n": 100,
+        "rate": 0.04,
+        "passed_orig": 0,
+        "promoted": 4,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 1,
+        "valid_n": 100,
+        "rate": 0.01,
+        "passed_orig": 1,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 9,
+        "valid_n": 100,
+        "rate": 0.09,
+        "passed_orig": 9,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 0,
+        "valid_n": 14,
+        "rate": 0.0,
+        "passed_orig": 0,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "gpt-oss-20b": {
+      "oracle": {
+        "passed": 16,
+        "valid_n": 100,
+        "rate": 0.16,
+        "passed_orig": 6,
+        "promoted": 10,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 16,
+        "valid_n": 100,
+        "rate": 0.16,
+        "passed_orig": 11,
+        "promoted": 5,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 11,
+        "valid_n": 100,
+        "rate": 0.11,
+        "passed_orig": 8,
+        "promoted": 3,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 7,
+        "valid_n": 100,
+        "rate": 0.07,
+        "passed_orig": 7,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 2,
+        "valid_n": 84,
+        "rate": 0.023809523809523808,
+        "passed_orig": 1,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "qwen3-14b": {
+      "oracle": {
+        "passed": 5,
+        "valid_n": 100,
+        "rate": 0.05,
+        "passed_orig": 3,
+        "promoted": 2,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 2,
+        "valid_n": 100,
+        "rate": 0.02,
+        "passed_orig": 2,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 2,
+        "valid_n": 100,
+        "rate": 0.02,
+        "passed_orig": 2,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 1,
+        "valid_n": 100,
+        "rate": 0.01,
+        "passed_orig": 1,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 2,
+        "valid_n": 100,
+        "rate": 0.02,
+        "passed_orig": 2,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "qwen3-32b": {
+      "oracle": {
+        "passed": 5,
+        "valid_n": 100,
+        "rate": 0.05,
+        "passed_orig": 0,
+        "promoted": 5,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 3,
+        "valid_n": 100,
+        "rate": 0.03,
+        "passed_orig": 3,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 0,
+        "valid_n": 92,
+        "rate": 0.0,
+        "passed_orig": 0,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 5,
+        "valid_n": 100,
+        "rate": 0.05,
+        "passed_orig": 5,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 1,
+        "valid_n": 93,
+        "rate": 0.010752688172043012,
+        "passed_orig": 0,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      }
+    },
+    "qwen3-8b": {
+      "oracle": {
+        "passed": 2,
+        "valid_n": 100,
+        "rate": 0.02,
+        "passed_orig": 1,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      },
+      "restricted": {
+        "passed": 5,
+        "valid_n": 99,
+        "rate": 0.050505050505050504,
+        "passed_orig": 4,
+        "promoted": 1,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_plan": {
+        "passed": 1,
+        "valid_n": 100,
+        "rate": 0.01,
+        "passed_orig": 1,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "team_no_verify": {
+        "passed": 3,
+        "valid_n": 100,
+        "rate": 0.03,
+        "passed_orig": 3,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      },
+      "full": {
+        "passed": 0,
+        "valid_n": 99,
+        "rate": 0.0,
+        "passed_orig": 0,
+        "promoted": 0,
+        "source": "regrade:attestation-promote"
+      }
+    }
+  }
+}

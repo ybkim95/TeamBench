@@ -1,0 +1,60 @@
+{
+  "source": "shared/role_ablation/results/per_run.jsonl (dedup latest per config,task,seed; full 27x25x3 grid)",
+  "n_runs_unique": 2025,
+  "n_runs_with_attestation": 1083,
+  "n_runs_missing_attestation": 942,
+  "confusion_matrix": {
+    "true_positive": 285,
+    "false_positive_false_accept": 384,
+    "true_negative": 394,
+    "false_negative_false_reject": 20
+  },
+  "false_accept_rate": 0.493573264781491,
+  "false_accept_ci95": [
+    0.4585594455266029,
+    0.5286502399135169
+  ],
+  "false_reject_rate": 0.06557377049180328,
+  "false_reject_ci95": [
+    0.04284619342298321,
+    0.09910877637383173
+  ],
+  "per_provider": {
+    "Anthropic (Haiku-4.5)": {
+      "total": 675,
+      "missing": 344,
+      "with_attestation": 331,
+      "TP": 98,
+      "FP": 140,
+      "FN": 0,
+      "TN": 93,
+      "false_accept_rate": 0.6008583690987125,
+      "false_reject_rate": 0.0,
+      "accuracy": 0.5770392749244713
+    },
+    "Google (Gemini-3 Flash)": {
+      "total": 675,
+      "missing": 476,
+      "with_attestation": 199,
+      "TP": 70,
+      "FP": 87,
+      "FN": 16,
+      "TN": 26,
+      "false_accept_rate": 0.7699115044247787,
+      "false_reject_rate": 0.18604651162790697,
+      "accuracy": 0.4824120603015075
+    },
+    "OpenAI (GPT-5.4 Mini)": {
+      "total": 675,
+      "missing": 122,
+      "with_attestation": 553,
+      "TP": 117,
+      "FP": 157,
+      "FN": 4,
+      "TN": 275,
+      "false_accept_rate": 0.36342592592592593,
+      "false_reject_rate": 0.03305785123966942,
+      "accuracy": 0.7088607594936709
+    }
+  }
+}

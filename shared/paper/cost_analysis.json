@@ -1,0 +1,328 @@
+{
+  "metadata": {
+    "date_generated": "2026-03-19",
+    "data_source": "phase3_all_consolidated.json (39 tasks, seeds 1-2, 390 runs)",
+    "model": "gemini-3-flash-preview",
+    "pricing_model": "Gemini 3 Flash",
+    "input_price_per_1m_tokens": 0.1,
+    "output_price_per_1m_tokens": 0.4,
+    "input_output_ratio": "70/30",
+    "token_throughput_assumption_per_sec": 150
+  },
+  "methodology": {
+    "score_source": "partial_score from secondary metrics in ablation runs",
+    "token_estimation": "elapsed_sec \u00d7 150 tokens/sec throughput (conservative lower bound)",
+    "cost_calculation": "cost = (input_tokens / 1M) \u00d7 $0.10 + (output_tokens / 1M) \u00d7 $0.40",
+    "efficiency_metrics": {
+      "score_per_dollar": "average partial score divided by cost per run",
+      "score_per_1m_tokens": "average partial score divided by millions of tokens consumed",
+      "note": "Higher values indicate more efficient use of resources"
+    }
+  },
+  "token_estimates": {
+    "oracle": 19400,
+    "restricted": 15510,
+    "team_no_plan": 34560,
+    "team_no_verify": 46185,
+    "full": 91440
+  },
+  "per_condition_analysis": {
+    "oracle": {
+      "score": {
+        "avg": 0.6754,
+        "median": 0.712,
+        "min": 0,
+        "max": 1.0,
+        "std": 0.2304,
+        "count": 78
+      },
+      "tokens": {
+        "estimated_per_run": 19400,
+        "input_tokens": 13580.0,
+        "output_tokens": 5820.0
+      },
+      "cost": {
+        "per_run_usd": 0.003686,
+        "input_cost_usd": 0.001358,
+        "output_cost_usd": 0.002328
+      },
+      "efficiency": {
+        "score_per_dollar": 183.22,
+        "score_per_1m_tokens": 34.8121
+      }
+    },
+    "restricted": {
+      "score": {
+        "avg": 0.6289,
+        "median": 0.69,
+        "min": 0,
+        "max": 1.0,
+        "std": 0.2287,
+        "count": 78
+      },
+      "tokens": {
+        "estimated_per_run": 15510,
+        "input_tokens": 10857.0,
+        "output_tokens": 4653.0
+      },
+      "cost": {
+        "per_run_usd": 0.002947,
+        "input_cost_usd": 0.001086,
+        "output_cost_usd": 0.001861
+      },
+      "efficiency": {
+        "score_per_dollar": 213.43,
+        "score_per_1m_tokens": 40.5509
+      }
+    },
+    "team_no_plan": {
+      "score": {
+        "avg": 0.6694,
+        "median": 0.712,
+        "min": 0,
+        "max": 1.0,
+        "std": 0.2536,
+        "count": 78
+      },
+      "tokens": {
+        "estimated_per_run": 34560,
+        "input_tokens": 24192.0,
+        "output_tokens": 10368.0
+      },
+      "cost": {
+        "per_run_usd": 0.006566,
+        "input_cost_usd": 0.002419,
+        "output_cost_usd": 0.004147
+      },
+      "efficiency": {
+        "score_per_dollar": 101.94,
+        "score_per_1m_tokens": 19.3693
+      }
+    },
+    "team_no_verify": {
+      "score": {
+        "avg": 0.7691,
+        "median": 0.86,
+        "min": 0.071,
+        "max": 1.0,
+        "std": 0.2361,
+        "count": 78
+      },
+      "tokens": {
+        "estimated_per_run": 46185,
+        "input_tokens": 32329.0,
+        "output_tokens": 13856.0
+      },
+      "cost": {
+        "per_run_usd": 0.008775,
+        "input_cost_usd": 0.003233,
+        "output_cost_usd": 0.005542
+      },
+      "efficiency": {
+        "score_per_dollar": 87.64,
+        "score_per_1m_tokens": 16.6522
+      }
+    },
+    "full": {
+      "score": {
+        "avg": 0.8085,
+        "median": 0.86,
+        "min": 0.0,
+        "max": 1.0,
+        "std": 0.2055,
+        "count": 78
+      },
+      "tokens": {
+        "estimated_per_run": 91440,
+        "input_tokens": 64008.0,
+        "output_tokens": 27432.0
+      },
+      "cost": {
+        "per_run_usd": 0.017374,
+        "input_cost_usd": 0.006401,
+        "output_cost_usd": 0.010973
+      },
+      "efficiency": {
+        "score_per_dollar": 46.54,
+        "score_per_1m_tokens": 8.8421
+      }
+    }
+  },
+  "summary_findings": {
+    "key_insight": "Team coordination improves performance but at significant cost; cost-efficiency decreases as team complexity increases",
+    "performance_ranking": {
+      "1_best_score": {
+        "condition": "full",
+        "avg_score": 0.8085,
+        "note": "Full team achieves highest average score (80.85%)"
+      },
+      "2_best_efficiency": {
+        "condition": "restricted",
+        "score_per_dollar": 213.43,
+        "note": "Restricted (single agent, spec-only) is most cost-efficient"
+      },
+      "3_worst_efficiency": {
+        "condition": "full",
+        "score_per_dollar": 46.54,
+        "note": "Full team has lowest cost-efficiency despite highest score"
+      }
+    },
+    "oracle_vs_full_comparison": {
+      "oracle_score": 0.6754,
+      "full_team_score": 0.8085,
+      "score_improvement": 0.1332,
+      "score_improvement_pct": 19.7,
+      "oracle_cost": 0.003686,
+      "full_cost": 0.017374,
+      "cost_multiplier": 4.71,
+      "oracle_score_per_dollar": 183.22,
+      "full_score_per_dollar": 46.54,
+      "efficiency_ratio": 0.25,
+      "interpretation": "Full team costs 4.71x more but delivers only 1.97x the score, resulting in 0.25x cost-efficiency (worse). However, absolute score improvement of +19.7% may justify cost in accuracy-critical applications."
+    },
+    "planning_and_verification_overhead": {
+      "baseline_no_planning": "team_no_plan",
+      "with_planning": "full",
+      "score_with_planning": 0.8085,
+      "score_without_planning": 0.6694,
+      "planning_value": 0.1391,
+      "planning_value_pct": 20.8,
+      "cost_of_planning": 0.008598,
+      "baseline_no_verification": "team_no_verify",
+      "with_verification": "full",
+      "score_with_verification": 0.8085,
+      "score_without_verification": 0.7691,
+      "verification_value": 0.0394,
+      "verification_value_pct": 5.1,
+      "cost_of_verification": 0.010807,
+      "note": "Verification adds +3.93pp score improvement (5.1%) for +0.0081 additional cost"
+    },
+    "condition_efficiency_ranking": [
+      {
+        "rank": 1,
+        "condition": "restricted",
+        "score_per_dollar": 213.43,
+        "reason": "Cheapest with acceptable score"
+      },
+      {
+        "rank": 2,
+        "condition": "oracle",
+        "score_per_dollar": 183.22,
+        "reason": "Good efficiency, spec-access oracle"
+      },
+      {
+        "rank": 3,
+        "condition": "team_no_plan",
+        "score_per_dollar": 101.94,
+        "reason": "Team benefit starts to emerge, cost moderate"
+      },
+      {
+        "rank": 4,
+        "condition": "team_no_verify",
+        "score_per_dollar": 87.64,
+        "reason": "Strong score but cost accumulates"
+      },
+      {
+        "rank": 5,
+        "condition": "full",
+        "score_per_dollar": 46.54,
+        "reason": "Highest score but poorest cost-efficiency"
+      }
+    ]
+  },
+  "visualization": {
+    "performance_vs_cost_scatter": {
+      "description": "Each condition plotted as (avg_score, cost_per_run)",
+      "points": [
+        {
+          "condition": "restricted",
+          "x_score": 0.6289,
+          "y_cost_usd": 0.002947,
+          "efficiency": 213.43,
+          "label": "Best efficiency, low cost"
+        },
+        {
+          "condition": "oracle",
+          "x_score": 0.6754,
+          "y_cost_usd": 0.003686,
+          "efficiency": 183.22,
+          "label": "Strong baseline"
+        },
+        {
+          "condition": "team_no_plan",
+          "x_score": 0.6694,
+          "y_cost_usd": 0.006566,
+          "efficiency": 101.94,
+          "label": "Team without planning"
+        },
+        {
+          "condition": "team_no_verify",
+          "x_score": 0.7691,
+          "y_cost_usd": 0.008775,
+          "efficiency": 87.64,
+          "label": "Team without verification"
+        },
+        {
+          "condition": "full",
+          "x_score": 0.8085,
+          "y_cost_usd": 0.017374,
+          "efficiency": 46.54,
+          "label": "Full team, best score"
+        }
+      ],
+      "interpretation": "Diagonal from lower-left (cheap, low-score) to upper-right (expensive, high-score). Pareto frontier is oracle/restricted. Full team is off the frontier (higher cost than restricted for only modest score gain)."
+    },
+    "efficiency_comparison_chart": {
+      "description": "Score per dollar across all conditions",
+      "data": [
+        {
+          "condition": "restricted",
+          "score_per_dollar": 213.43,
+          "bar_length": "\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588"
+        },
+        {
+          "condition": "oracle",
+          "score_per_dollar": 183.22,
+          "bar_length": "\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588"
+        },
+        {
+          "condition": "team_no_plan",
+          "score_per_dollar": 101.94,
+          "bar_length": "\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588"
+        },
+        {
+          "condition": "team_no_verify",
+          "score_per_dollar": 87.64,
+          "bar_length": "\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588"
+        },
+        {
+          "condition": "full",
+          "score_per_dollar": 46.54,
+          "bar_length": "\u2588\u2588\u2588\u2588\u2588"
+        }
+      ]
+    },
+    "cost_benefit_analysis": {
+      "oracle_to_full_progression": [
+        {
+          "comparison": "oracle \u2192 team_no_verify",
+          "score_gain": 0.0937,
+          "cost_multiplier": 2.38,
+          "interpretation": "Moderate gain for 2.4x cost increase"
+        },
+        {
+          "comparison": "team_no_verify \u2192 full",
+          "score_gain": 0.0394,
+          "cost_multiplier": 1.98,
+          "interpretation": "Diminishing returns: small gain for 2x cost"
+        },
+        {
+          "comparison": "oracle \u2192 full (direct)",
+          "score_gain": 0.1332,
+          "cost_multiplier": 4.71,
+          "interpretation": "20% better score costs 4.7x more; break-even at 4.7x value assessment"
+        }
+      ]
+    }
+  }
+}

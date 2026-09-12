@@ -1,0 +1,451 @@
+{
+  "overall": {
+    "n": 147,
+    "mean_uplift": 0.01707619047619047,
+    "ci95": [
+      -0.020897568027210888,
+      0.0593505272108843
+    ],
+    "p_value": 0.40671492918753527
+  },
+  "by_category": [
+    {
+      "category": "adversarial",
+      "n": 3,
+      "uplift_mean": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "raw_p": NaN,
+      "pass_rate_full": 1.0,
+      "pass_rate_full_wilson_ci95": [
+        0.43849391955098227,
+        1.0
+      ],
+      "post_hoc_power": NaN,
+      "sd_uplift": 0.0,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "code_review",
+      "n": 5,
+      "uplift_mean": 0.012819999999999988,
+      "uplift_ci95": [
+        -0.12346000000000001,
+        0.1491
+      ],
+      "raw_p": 0.8813572281574906,
+      "pass_rate_full": 0.2,
+      "pass_rate_full_wilson_ci95": [
+        0.03622316096978745,
+        0.6244717358814613
+      ],
+      "post_hoc_power": 0.06548266412628789,
+      "sd_uplift": 0.18026611439757612,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "cross_system",
+      "n": 3,
+      "uplift_mean": -0.19999999999999998,
+      "uplift_ci95": [
+        -0.6,
+        0.0
+      ],
+      "raw_p": 0.42264973081037427,
+      "pass_rate_full": 0.0,
+      "pass_rate_full_wilson_ci95": [
+        0.0,
+        0.5615060804490177
+      ],
+      "post_hoc_power": 0.008013887256792307,
+      "sd_uplift": 0.34641016151377546,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "crypto",
+      "n": 2,
+      "uplift_mean": 0.0,
+      "uplift_ci95": [
+        0.0,
+        0.0
+      ],
+      "raw_p": NaN,
+      "pass_rate_full": 0.5,
+      "pass_rate_full_wilson_ci95": [
+        0.09452865480086614,
+        0.9054713451991339
+      ],
+      "post_hoc_power": NaN,
+      "sd_uplift": 0.0,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "data",
+      "n": 8,
+      "uplift_mean": 0.051875,
+      "uplift_ci95": [
+        -0.071875,
+        0.16249999999999998
+      ],
+      "raw_p": 0.44696664089009697,
+      "pass_rate_full": 0.625,
+      "pass_rate_full_wilson_ci95": [
+        0.30573785458380187,
+        0.863158240538479
+      ],
+      "post_hoc_power": 0.18001717272169993,
+      "sd_uplift": 0.18212902608551207,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "distributed",
+      "n": 2,
+      "uplift_mean": -0.21500000000000002,
+      "uplift_ci95": [
+        -0.43000000000000005,
+        0.0
+      ],
+      "raw_p": 0.49999999999999956,
+      "pass_rate_full": 0.0,
+      "pass_rate_full_wilson_ci95": [
+        0.0,
+        0.6576280471103807
+      ],
+      "post_hoc_power": 0.010481002709138432,
+      "sd_uplift": 0.30405591591021547,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "github_real",
+      "n": 11,
+      "uplift_mean": 0.15818181818181817,
+      "uplift_ci95": [
+        0.0490681818181818,
+        0.3063636363636364
+      ],
+      "raw_p": 0.04165214196611542,
+      "pass_rate_full": 0.7272727272727273,
+      "pass_rate_full_wilson_ci95": [
+        0.4343497069897537,
+        0.9025411942607853
+      ],
+      "post_hoc_power": 0.7014792451866187,
+      "sd_uplift": 0.22462493992511973,
+      "holm_adj_p": 0.9163471232545393,
+      "sig_after_correction": false
+    },
+    {
+      "category": "incident",
+      "n": 10,
+      "uplift_mean": -0.06400000000000003,
+      "uplift_ci95": [
+        -0.28168000000000004,
+        0.0936867499999999
+      ],
+      "raw_p": 0.5582939255265974,
+      "pass_rate_full": 0.3,
+      "pass_rate_full_wilson_ci95": [
+        0.10778928748621183,
+        0.6032267800204347
+      ],
+      "post_hoc_power": 0.013564687905879502,
+      "sd_uplift": 0.3329383960367977,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "integration",
+      "n": 2,
+      "uplift_mean": -0.13335,
+      "uplift_ci95": [
+        -0.2667,
+        0.0
+      ],
+      "raw_p": 0.49999999999999956,
+      "pass_rate_full": 0.5,
+      "pass_rate_full_wilson_ci95": [
+        0.09452865480086614,
+        0.9054713451991339
+      ],
+      "post_hoc_power": 0.010481002709138432,
+      "sd_uplift": 0.18858537854245222,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "ir",
+      "n": 7,
+      "uplift_mean": -0.026800000000000015,
+      "uplift_ci95": [
+        -0.12394285714285716,
+        0.04285714285714283
+      ],
+      "raw_p": 0.5985075069566284,
+      "pass_rate_full": 0.2857142857142857,
+      "pass_rate_full_wilson_ci95": [
+        0.0822171657090155,
+        0.6410709098517873
+      ],
+      "post_hoc_power": 0.016046232287646345,
+      "sd_uplift": 0.12759707415663313,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "legalhold",
+      "n": 6,
+      "uplift_mean": -0.035,
+      "uplift_ci95": [
+        -0.27335,
+        0.22834999999999997
+      ],
+      "raw_p": 0.8164375506096029,
+      "pass_rate_full": 0.3333333333333333,
+      "pass_rate_full_wilson_ci95": [
+        0.09676933255921683,
+        0.7000116786584712
+      ],
+      "post_hoc_power": 0.031488471605265134,
+      "sd_uplift": 0.3504025627760162,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "multi_layer",
+      "n": 9,
+      "uplift_mean": 0.12555555555555553,
+      "uplift_ci95": [
+        0.04814444444444445,
+        0.21593333333333334
+      ],
+      "raw_p": 0.022950253798652887,
+      "pass_rate_full": 0.5555555555555556,
+      "pass_rate_full_wilson_ci95": [
+        0.2666473457440297,
+        0.811224570528086
+      ],
+      "post_hoc_power": 0.8196609355615381,
+      "sd_uplift": 0.13419016460895253,
+      "holm_adj_p": 0.5278558373690164,
+      "sig_after_correction": false
+    },
+    {
+      "category": "multilang",
+      "n": 5,
+      "uplift_mean": -0.12,
+      "uplift_ci95": [
+        -0.388,
+        0.16999999999999998
+      ],
+      "raw_p": 0.49879007506629075,
+      "pass_rate_full": 0.4,
+      "pass_rate_full_wilson_ci95": [
+        0.1176182311592533,
+        0.769280067791163
+      ],
+      "post_hoc_power": 0.011304903887292661,
+      "sd_uplift": 0.361178626167164,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "negotiation",
+      "n": 4,
+      "uplift_mean": -0.013625000000000026,
+      "uplift_ci95": [
+        -0.315875,
+        0.17499999999999996
+      ],
+      "raw_p": 0.9328309780199466,
+      "pass_rate_full": 0.75,
+      "pass_rate_full_wilson_ci95": [
+        0.3006360524426366,
+        0.9544139373553637
+      ],
+      "post_hoc_power": 0.04283119910527666,
+      "sd_uplift": 0.29767302391494377,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "ops",
+      "n": 9,
+      "uplift_mean": -0.04355555555555555,
+      "uplift_ci95": [
+        -0.2379111111111111,
+        0.07291166666666661
+      ],
+      "raw_p": 0.650469525304348,
+      "pass_rate_full": 0.1111111111111111,
+      "pass_rate_full_wilson_ci95": [
+        0.019890371327130535,
+        0.4350062147680601
+      ],
+      "post_hoc_power": 0.018850698877266647,
+      "sd_uplift": 0.2776418021079999,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "other",
+      "n": 18,
+      "uplift_mean": 0.030194444444444437,
+      "uplift_ci95": [
+        -0.008829166666666678,
+        0.0784045833333333
+      ],
+      "raw_p": 0.19110454485777253,
+      "pass_rate_full": 0.5,
+      "pass_rate_full_wilson_ci95": [
+        0.2903070395897999,
+        0.7096929604102
+      ],
+      "post_hoc_power": 0.36785631870938373,
+      "sd_uplift": 0.09408502082579805,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "pipeline",
+      "n": 6,
+      "uplift_mean": -0.11221666666666669,
+      "uplift_ci95": [
+        -0.2503,
+        0.008066666666666653
+      ],
+      "raw_p": 0.17435107170205486,
+      "pass_rate_full": 0.5,
+      "pass_rate_full_wilson_ci95": [
+        0.18761280689940868,
+        0.8123871931005913
+      ],
+      "post_hoc_power": 0.0011597266140910278,
+      "sd_uplift": 0.17368072335946402,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "policy",
+      "n": 7,
+      "uplift_mean": 0.09657142857142857,
+      "uplift_ci95": [
+        -0.1332142857142857,
+        0.3725714285714285
+      ],
+      "raw_p": 0.5145044505881815,
+      "pass_rate_full": 0.42857142857142855,
+      "pass_rate_full_wilson_ci95": [
+        0.15821692226262685,
+        0.7495457695909742
+      ],
+      "post_hoc_power": 0.1520227928699055,
+      "sd_uplift": 0.3689469732192135,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "scaling",
+      "n": 1,
+      "uplift_mean": 0.027999999999999983,
+      "uplift_ci95": [
+        0.027999999999999983,
+        0.027999999999999983
+      ],
+      "raw_p": NaN,
+      "pass_rate_full": 0.0,
+      "pass_rate_full_wilson_ci95": [
+        0.0,
+        0.7934567085261071
+      ],
+      "post_hoc_power": NaN,
+      "sd_uplift": 0.0,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "security",
+      "n": 9,
+      "uplift_mean": -0.07383333333333332,
+      "uplift_ci95": [
+        -0.22277777777777777,
+        0.07109777777777772
+      ],
+      "raw_p": 0.3543925732449795,
+      "pass_rate_full": 0.1111111111111111,
+      "pass_rate_full_wilson_ci95": [
+        0.019890371327130535,
+        0.4350062147680601
+      ],
+      "post_hoc_power": 0.00536898622909765,
+      "sd_uplift": 0.22532792214903152,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "spec_driven",
+      "n": 6,
+      "uplift_mean": 0.12080000000000002,
+      "uplift_ci95": [
+        -0.07640000000000001,
+        0.4179099999999998
+      ],
+      "raw_p": 0.4545101806797817,
+      "pass_rate_full": 0.5,
+      "pass_rate_full_wilson_ci95": [
+        0.18761280689940868,
+        0.8123871931005913
+      ],
+      "post_hoc_power": 0.17361515098907865,
+      "sd_uplift": 0.36510320732636686,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "swe",
+      "n": 5,
+      "uplift_mean": 0.04174,
+      "uplift_ci95": [
+        -0.057479999999999996,
+        0.1849
+      ],
+      "raw_p": 0.5804777374082518,
+      "pass_rate_full": 0.0,
+      "pass_rate_full_wilson_ci95": [
+        0.0,
+        0.43449149475208104
+      ],
+      "post_hoc_power": 0.12728510955195016,
+      "sd_uplift": 0.15540009009006397,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    },
+    {
+      "category": "testing",
+      "n": 9,
+      "uplift_mean": 0.18874444444444446,
+      "uplift_ci95": [
+        0.03126555555555556,
+        0.41533527777777773
+      ],
+      "raw_p": 0.12006708097556339,
+      "pass_rate_full": 0.2222222222222222,
+      "pass_rate_full_wilson_ci95": [
+        0.06322376231222723,
+        0.5474166563271946
+      ],
+      "post_hoc_power": 0.47858524292976445,
+      "sd_uplift": 0.3254447269165346,
+      "holm_adj_p": 1.0,
+      "sig_after_correction": false
+    }
+  ],
+  "method": "Holm-Bonferroni across categories, bootstrap=2000, Wilson CIs on rates."
+}

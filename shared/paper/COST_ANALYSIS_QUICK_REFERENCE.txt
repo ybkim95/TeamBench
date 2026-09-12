@@ -1,0 +1,124 @@
+================================================================================
+                   COST-EFFICIENCY QUICK REFERENCE
+================================================================================
+
+Q: Is team coordination cost-efficient?
+A: NO for cost-per-unit, YES for accuracy-critical applications.
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ METRIC COMPARISON: ORACLE vs FULL TEAM                                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Metric              │ Oracle    │ Full Team │ Change         │ Winner       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Average Score       │ 0.6754    │ 0.8085    │ +0.1332 (+19.7%) │ Full Team  │
+│ Cost per Run        │ $0.00369  │ $0.01737  │ ×4.71            │ Oracle     │
+│ Score per $         │ 183.22    │ 46.54     │ ÷3.93 (75% loss) │ Oracle     │
+│ Tokens per Run      │ 19,400    │ 91,440    │ ×4.71            │ Oracle     │
+│ Score per 1M Tokens │ 34.81     │ 8.84      │ ÷3.94 (75% loss) │ Oracle     │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+                      EFFICIENCY RANKING
+================================================================================
+
+🥇 Restricted      213.43 score/$  │ Best for: Ultra cost-sensitive
+🥈 Oracle          183.22 score/$  │ Best for: General purpose (balanced)
+3️⃣  Team (no-plan)  101.94 score/$  │ Best for: Medium complexity tasks
+4️⃣  Team (no-verify) 87.64 score/$  │ Best for: Quality-focused (no verify)
+5️⃣  Full Team       46.54 score/$   │ Best for: Accuracy-critical only
+
+================================================================================
+                      WHEN TO USE EACH
+================================================================================
+
+✓ RESTRICTED (if you need the absolute cheapest)
+  Cost/run: $0.0029  │  Score: 0.6289  │  Use: Batch linting, basic validation
+  
+✓ ORACLE (if you want balance)
+  Cost/run: $0.0037  │  Score: 0.6754  │  Use: Most software engineering tasks
+  
+✓ TEAM NO-PLAN (if you want team but less cost)
+  Cost/run: $0.0066  │  Score: 0.6694  │  Use: Executor + Verifier only
+  
+✓ TEAM NO-VERIFY (if you want planner + executor)
+  Cost/run: $0.0088  │  Score: 0.7691  │  Use: Strong planning signal needed
+  
+✓ FULL TEAM (if accuracy > cost)
+  Cost/run: $0.0174  │  Score: 0.8085  │  Use: Medical, legal, safety-critical
+
+================================================================================
+                      COMPONENT VALUE ANALYSIS
+================================================================================
+
+PLANNING (adds +20.8% score, costs +2.48x)
+  ROI: 12.88 points per extra dollar
+  Verdict: ⭐⭐⭐ STRONG - Highly valuable
+
+VERIFICATION (adds +5.1% score, costs +1.98x)
+  ROI: 4.58 points per extra dollar
+  Verdict: ⭐⭐ DIMINISHING - Useful but secondary
+
+Planning is 3x more valuable than verification.
+
+================================================================================
+                      DEPLOYMENT DECISION TREE
+================================================================================
+
+                         START
+                          │
+                    "What's the task?"
+                          │
+        ┌─────────────────┼─────────────────┐
+        │                 │                 │
+   Medical/Legal    Software Tasks    Batch Processing
+   Safety-Critical  Debugging, Dev     Linting, Checks
+        │                 │                 │
+        ▼                 ▼                 ▼
+    FULL TEAM         ORACLE           RESTRICTED
+   (0.8085 score)   (0.6754 score)   (0.6289 score)
+   4-5x cost OK     Balanced cost     Min cost only
+        │                 │                 │
+   Can pay 4-5x     Reasonable         Single-agent
+   for +19.7%       cost-benefit       only
+   accuracy         ratio
+
+HYBRID STRATEGY:
+  1. Run ORACLE first (fast, cheap baseline)
+  2. If confidence is low OR accuracy critical:
+     → Escalate to FULL TEAM
+  3. Gets best of both: low cost for easy tasks, high accuracy when needed
+
+================================================================================
+                      TOKEN COST BREAKDOWN
+================================================================================
+
+Cost per 1M tokens: ~$0.00019 (constant across all conditions)
+
+Why does Full Team have worse score-per-token?
+  Because team agents produce MORE tokens but with DIMINISHING RETURNS
+  
+  Example:
+    Oracle:     19,400 tokens → 0.6754 score = 34.81 score/1M tokens
+    Full Team:  91,440 tokens → 0.8085 score = 8.84 score/1M tokens
+    
+  The extra tokens in full team (72K more) only add 0.1332 score points.
+  So efficiency drops by 75% even though score improves by 20%.
+
+================================================================================
+                      PAPER INTEGRATION
+================================================================================
+
+Use these files:
+  • cost_analysis.json       → Machine-readable for tables/figures
+  • cost_analysis_report.md  → Supplementary materials
+  • COST_ANALYSIS_SUMMARY.txt → Slides/presentations
+  • This file (QUICK_REFERENCE) → Handout/appendix
+
+Suggested paper elements:
+  Table 5: Cost-efficiency ranking (5 conditions)
+  Figure 6: Cost vs. Score scatter plot
+  Appendix A: Deployment recommendations
+  Appendix B: Component value analysis (planning vs. verification ROI)
+
+================================================================================
+Generated: 2026-03-19 | Data: 390 runs, 39 tasks, Gemini 3 Flash pricing

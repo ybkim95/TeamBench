@@ -1,0 +1,146 @@
+diff --git a/scipy/sparse/_base.py b/scipy/sparse/_base.py
+index da900190642d..bd5882219582 100644
+--- a/scipy/sparse/_base.py
++++ b/scipy/sparse/_base.py
+@@ -1417,6 +1417,13 @@ def sum(self, axis=None, dtype=None, out=None):
+         # Mimic numpy's casting.
+         res_dtype = get_sum_dtype(self.dtype)
+ 
++        if dtype is not None:
++            # Before casting to the requested dtype, canonicalize duplicates and zeros.
++            if hasattr(self, 'sum_duplicates'):
++                self.sum_duplicates()
++            temp = self.astype(dtype, copy=False).sum(axis=axis, dtype=None, out=out)
++            return temp.astype(dtype, copy=False)
++
+         # Note: all valid 1D axis values are canonically `None`.
+         if axis is None:
+             if self.nnz == 0:
+diff --git a/scipy/sparse/_compressed.py b/scipy/sparse/_compressed.py
+index e865f9a05d1e..ade0dc92c0ba 100644
+--- a/scipy/sparse/_compressed.py
++++ b/scipy/sparse/_compressed.py
+@@ -498,16 +498,19 @@ def sum(self, axis=None, dtype=None, out=None):
+         if (self.ndim == 2 and not hasattr(self, 'blocksize') and
+                 axis in self._swap(((1, -1), (0, -2)))[0]):
+             # faster than multiplication for large minor axis in CSC/CSR
+-            res_dtype = get_sum_dtype(self.dtype)
+-            ret = np.zeros(len(self.indptr) - 1, dtype=res_dtype)
+-
+-            major_index, value = self._minor_reduce(np.add)
++            
++            res_dtype = get_sum_dtype(self.dtype) if dtype is None else dtype
++            self_to_reduce = self.astype(res_dtype, copy=False)
++            
++            # Fast path: reduce along minor axis
++            ret = np.zeros(len(self_to_reduce.indptr) - 1, dtype=res_dtype)
++            major_index, value = self_to_reduce._minor_reduce(np.add)
+             ret[major_index] = value
+-            ret = self._ascontainer(ret)
++            ret = self_to_reduce._ascontainer(ret)
+             if axis % 2 == 1:
+                 ret = ret.T
+ 
+-            return ret.sum(axis=(), dtype=dtype, out=out)
++            return ret.sum(axis=(), dtype=res_dtype, out=out)
+         else:
+             return _spbase.sum(self, axis=axis, dtype=dtype, out=out)
+ 
+diff --git a/scipy/sparse/_dia.py b/scipy/sparse/_dia.py
+index aaa381ea9f64..c367092bad3b 100644
+--- a/scipy/sparse/_dia.py
++++ b/scipy/sparse/_dia.py
+@@ -142,13 +142,13 @@ def _getnnz(self, axis=None):
+     def sum(self, axis=None, dtype=None, out=None):
+         axis = validateaxis(axis)
+ 
+-        res_dtype = get_sum_dtype(self.dtype)
++        res_dtype = dtype if dtype is not None else get_sum_dtype(self.dtype)
+         num_rows, num_cols = self.shape
+         ret = None
+ 
+         if axis == (0,):
+             mask = self._data_mask()
+-            x = (self.data * mask).sum(axis=0)
++            x = (self.data * mask).sum(dtype=res_dtype, axis=0)
+             if x.shape[0] == num_cols:
+                 res = x
+             else:
+@@ -160,7 +160,8 @@ def sum(self, axis=None, dtype=None, out=None):
+             row_sums = np.zeros((num_rows, 1), dtype=res_dtype)
+             one = np.ones(num_cols, dtype=res_dtype)
+             dia_matvec(num_rows, num_cols, len(self.offsets),
+-                       self.data.shape[1], self.offsets, self.data, one, row_sums)
++                       self.data.shape[1], self.offsets, 
++                       self.data.astype(res_dtype), one, row_sums)
+ 
+             row_sums = self._ascontainer(row_sums)
+ 
+diff --git a/scipy/sparse/tests/test_base.py b/scipy/sparse/tests/test_base.py
+index 160234c95c49..6771836d1d7b 100644
+--- a/scipy/sparse/tests/test_base.py
++++ b/scipy/sparse/tests/test_base.py
+@@ -1075,6 +1075,63 @@ def check(dtype):
+         for dtype in self.checked_dtypes:
+             check(dtype)
+ 
++    def test_sum_dtype_pair_of_dtypes(self):
++        # Test sum with dtype on data of various input dtypes 
++        # to ensure elements are cast before summing
++        base_dat = array([[0.6, 0.7],
++                          [0.8, 0.9]])
++
++        for input_dtype in self.checked_dtypes:
++            dat = base_dat.astype(input_dtype)
++            datsp = self.spcreator(dat)
++
++            with warnings.catch_warnings():
++                warnings.filterwarnings("ignore", category=PendingDeprecationWarning)
++                if not self.is_array_test:
++                    dat = np.matrix(dat)
++
++            for output_dtype in self.checked_dtypes:
++                # Skip problematic dtype combinations (complex to real, etc.)
++                # by catching exceptions when numpy itself fails
++                try:
++                    with np.errstate(all='raise'):
++                        _ = dat.sum(dtype=output_dtype)
++                except Exception:
++                    # Skip this combination if NumPy can't handle it
++                    continue
++                
++                # Check axis=None
++                with np.errstate(over='ignore'):
++                    dat_sum = dat.sum(dtype=output_dtype)
++                    datsp_sum = datsp.sum(dtype=output_dtype)
++                    assert_allclose(datsp_sum, dat_sum)
++                    assert_equal(datsp_sum.dtype, dat_sum.dtype)
++
++                    # Check axis=0
++                    dat_sum = dat.sum(axis=0, dtype=output_dtype)
++                    datsp_sum = datsp.sum(axis=0, dtype=output_dtype)
++                    assert_allclose(datsp_sum, dat_sum)
++                    assert_equal(datsp_sum.dtype, dat_sum.dtype)
++
++                    # Check axis=1
++                    dat_sum = dat.sum(axis=1, dtype=output_dtype)
++                    datsp_sum = datsp.sum(axis=1, dtype=output_dtype)
++                    assert_allclose(datsp_sum, dat_sum)
++                    assert_equal(datsp_sum.dtype, dat_sum.dtype)
++
++    def test_sum_dtype_fractional_to_int(self):
++        # Test sum with dtype=int on data of float input dtype
++        # to ensure elements are cast before summing
++        datsp = self.spcreator([[0.6, 0.7],
++                          [0.8, 0.9]])
++        
++        correct_res = array([0, 0] if self.is_array_test else [[0, 0]])
++        t_correct_res = array([0, 0] if self.is_array_test else [[0], [0]])
++            
++        assert_equal(datsp.sum(dtype=int), 0) # Check axis=None
++        assert_equal(datsp.sum(axis=0, dtype=int), correct_res) # Check axis=0
++        assert_equal(datsp.sum(axis=1, dtype=int), t_correct_res) # Check axis=1
++
+     def test_sum_out(self):
+         keep = not self.is_array_test
+         dat = array([[0, 1, 2],

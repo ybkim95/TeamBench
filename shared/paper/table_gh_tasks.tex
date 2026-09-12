@@ -1,0 +1,26 @@
+\begin{table}[t]
+\centering
+\caption{Real-world GitHub bug ablation (Gemini 3 Flash). Oracle achieves 0\% pass on all tasks; team coordination enables solving 3/11 bugs (+27.3pp). Partial scores shown; \textbf{bold} = full pass. Planning is critical: NoPlan = 0\% vs Full = 27.3\%.}
+\label{tab:gh_tasks}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Task} & \textbf{Oracle} & \textbf{Restr.} & \textbf{NoPlan} & \textbf{NoVer.} & \textbf{Full} \\
+\midrule
+GH10\_retry\_backoff & 92 & 67 & 67 & \textbf{100} & \textbf{100} \\
+GH11\_middleware\_order & 73 & 73 & 73 & 82 & 73 \\
+GH1\_flask\_session\_ctx & 62 & 62 & 88 & 75 & 88 \\
+GH2\_click\_flag\_value & 90 & 70 & 70 & \textbf{100} & \textbf{100} \\
+GH3\_httpx\_auth\_leak & 62 & 62 & 62 & 69 & 92 \\
+GH4\_requests\_encoding & 64 & 64 & 64 & 73 & 64 \\
+GH5\_pydantic\_circular & 27 & 82 & 82 & \textbf{100} & \textbf{100} \\
+GH6\_queryset\_union & 25 & 25 & 25 & 33 & 25 \\
+GH7\_fixture\_scope\_leak & 90 & 60 & 60 & \textbf{100} & 90 \\
+GH8\_async\_cache\_race & 89 & 67 & 67 & 78 & 89 \\
+GH9\_pool\_exhaustion & 64 & 64 & 64 & 91 & 91 \\
+\midrule
+\textit{Pass rate (\%)} & 0.0 & 0.0 & 0.0 & 36.4 & 27.3 \\
+\textit{Avg partial (\%)} & 67.1 & 63.3 & 65.6 & 81.9 & 82.9 \\
+\bottomrule
+\end{tabular}
+\end{table}

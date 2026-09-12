@@ -1,0 +1,44 @@
+diff --git a/spacy/__init__.py b/spacy/__init__.py
+index 8aa2eccd789..1a18ad0d580 100644
+--- a/spacy/__init__.py
++++ b/spacy/__init__.py
+@@ -13,6 +13,7 @@
+ from . import pipeline  # noqa: F401
+ from . import util
+ from .about import __version__  # noqa: F401
++from .cli.info import info  # noqa: F401
+ from .errors import Errors
+ from .glossary import explain  # noqa: F401
+ from .language import Language
+@@ -76,9 +77,3 @@ def blank(
+     # We should accept both dot notation and nested dict here for consistency
+     config = util.dot_to_dict(config)
+     return LangClass.from_config(config, vocab=vocab, meta=meta)
+-
+-
+-def info(*args, **kwargs):
+-    from .cli.info import info as cli_info
+-
+-    return cli_info(*args, **kwargs)
+diff --git a/spacy/tests/test_cli.py b/spacy/tests/test_cli.py
+index 0d2fe0a9ef3..86451317b2b 100644
+--- a/spacy/tests/test_cli.py
++++ b/spacy/tests/test_cli.py
+@@ -12,7 +12,6 @@
+ 
+ import spacy
+ from spacy import about
+-from spacy import info as spacy_info
+ from spacy.cli import info
+ from spacy.cli._util import parse_config_overrides, string_to_list, walk_directory
+ from spacy.cli.apply import apply
+@@ -193,9 +192,6 @@ def test_cli_info():
+         raw_data = info(tmp_dir, exclude=[""])
+         assert raw_data["lang"] == "nl"
+         assert raw_data["components"] == ["textcat"]
+-        raw_data = spacy_info(tmp_dir, exclude=[""])
+-        assert raw_data["lang"] == "nl"
+-        assert raw_data["components"] == ["textcat"]
+ 
+ 
+ def test_cli_converters_conllu_to_docs():

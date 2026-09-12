@@ -1,0 +1,1582 @@
+{
+  "computed_at": "2026-04-30T19:05:48.149151+00:00",
+  "n": 100,
+  "results": [
+    {
+      "task_id": "TRAP5_security_theater",
+      "checked_at": "2026-04-30T16:43:03.405212+00:00",
+      "kill_rate": 0.5,
+      "n_attempted": 8,
+      "n_killed": 4,
+      "mutants": [
+        {
+          "file": "webapp/auth.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "webapp/auth.py",
+          "mutation": "swap_True_False",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "webapp/auth.py",
+          "mutation": "swap_False_True",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "webapp/auth.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "webapp/auth.py",
+          "mutation": "swap_or_and",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "webapp/auth.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "webapp/crypto_utils.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "webapp/crypto_utils.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 0.0,
+      "n_python_files": 7
+    },
+    {
+      "task_id": "TRAP6_deprecated_api",
+      "checked_at": "2026-04-30T16:48:26.703431+00:00",
+      "kill_rate": 1.0,
+      "n_attempted": 8,
+      "n_killed": 8,
+      "mutants": [
+        {
+          "file": "app/exporter.py",
+          "mutation": "swap_True_False",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/exporter.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/fetcher.py",
+          "mutation": "swap_True_False",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/fetcher.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/notifier.py",
+          "mutation": "swap_True_False",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/notifier.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/parser.py",
+          "mutation": "swap_True_False",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/parser.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 0.0,
+      "n_python_files": 13
+    },
+    {
+      "task_id": "CR4_api_review",
+      "checked_at": "2026-04-30T16:53:05.163315+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "CR6_review_checklist",
+      "checked_at": "2026-04-30T16:53:19.015612+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "CR1_review_respond",
+      "checked_at": "2026-04-30T16:53:19.792087+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "CROSS1_api_contract",
+      "checked_at": "2026-04-30T16:53:20.513942+00:00",
+      "kill_rate": 1.0,
+      "n_attempted": 8,
+      "n_killed": 8,
+      "mutants": [
+        {
+          "file": "client/api.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "client/api.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "client/exceptions.py",
+          "mutation": "swap_eq_neq",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "client/exceptions.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "client/exceptions.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "client/models.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "client/models.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "tests/conftest.py",
+          "mutation": "swap_neq_eq",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 0.0,
+      "n_python_files": 6
+    },
+    {
+      "task_id": "CROSS2_schema_evolution",
+      "checked_at": "2026-04-30T17:05:55.148865+00:00",
+      "kill_rate": 0.625,
+      "n_attempted": 8,
+      "n_killed": 5,
+      "mutants": [
+        {
+          "file": "scripts/backfill.py",
+          "mutation": "swap_eq_neq",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "service_a/app.py",
+          "mutation": "return_none",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "service_a/config.py",
+          "mutation": "swap_False_True",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "service_a/migrations/002_add_columns.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "service_a/models.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "service_b/app.py",
+          "mutation": "return_none",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "service_b/models.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "shared/database.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 0.0,
+      "n_python_files": 16
+    },
+    {
+      "task_id": "CROSS3_protocol_bridge",
+      "checked_at": "2026-04-30T17:17:05.381159+00:00",
+      "kill_rate": 1.0,
+      "n_attempted": 8,
+      "n_killed": 8,
+      "mutants": [
+        {
+          "file": "bridge/error_mapper.py",
+          "mutation": "swap_eq_neq",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "bridge/error_mapper.py",
+          "mutation": "swap_lt_gt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "bridge/error_mapper.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "bridge/error_mapper.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "bridge/publisher.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "bridge/publisher.py",
+          "mutation": "swap_and_or",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "bridge/translator.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "bridge/translator.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 0.0,
+      "n_python_files": 13
+    },
+    {
+      "task_id": "D6_data_reconcile",
+      "checked_at": "2026-04-30T17:34:43.459317+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "D3_schema_migration",
+      "checked_at": "2026-04-30T17:35:03.021577+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "D4_data_pipeline",
+      "checked_at": "2026-04-30T17:36:05.546022+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "D5_query_optimize",
+      "checked_at": "2026-04-30T17:36:38.477019+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "D7_etl_reconciliation",
+      "checked_at": "2026-04-30T17:37:37.412039+00:00",
+      "kill_rate": 0.625,
+      "n_attempted": 8,
+      "n_killed": 5,
+      "mutants": [
+        {
+          "file": "etl/extract.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "etl/extract.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "etl/load.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "etl/load.py",
+          "mutation": "swap_True_False",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "etl/load.py",
+          "mutation": "return_none",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "etl/transform.py",
+          "mutation": "swap_eq_neq",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "etl/transform.py",
+          "mutation": "swap_lt_gt",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "etl/transform.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 0.0,
+      "n_python_files": 4
+    },
+    {
+      "task_id": "DIST1_queue_race",
+      "checked_at": "2026-04-30T17:40:03.586411+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "DIST2_consensus_partition",
+      "checked_at": "2026-04-30T17:42:26.349111+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "SYNTH1_distributed_debug",
+      "checked_at": "2026-04-30T17:45:06.995291+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1000_numpy_19869",
+      "checked_at": "2026-04-30T17:45:47.397792+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1001_numpy_30855",
+      "checked_at": "2026-04-30T17:46:23.067875+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1002_scipy_24753",
+      "checked_at": "2026-04-30T17:47:06.031525+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1003_scipy_24496",
+      "checked_at": "2026-04-30T17:47:55.322365+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1004_dask_11665",
+      "checked_at": "2026-04-30T17:48:43.979300+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1005_ray_60236",
+      "checked_at": "2026-04-30T17:49:44.769062+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1006_spaCy_13068",
+      "checked_at": "2026-04-30T17:50:33.849627+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1007_spaCy_13040",
+      "checked_at": "2026-04-30T17:51:17.358644+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1008_spaCy_12749",
+      "checked_at": "2026-04-30T17:52:04.800341+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1009_spaCy_12486",
+      "checked_at": "2026-04-30T17:52:57.469019+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1010_great_expectati_10406",
+      "checked_at": "2026-04-30T17:53:51.549451+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH1011_great_expectati_8062",
+      "checked_at": "2026-04-30T17:54:54.762960+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "INC6_deadlock",
+      "checked_at": "2026-04-30T17:56:06.623362+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "INC10_rollback_plan",
+      "checked_at": "2026-04-30T17:56:26.418542+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "INC1_cascade_failure",
+      "checked_at": "2026-04-30T17:57:45.177140+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "INC2_data_corruption",
+      "checked_at": "2026-04-30T17:58:42.469806+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "INC3_memory_leak",
+      "checked_at": "2026-04-30T17:59:01.284597+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "INC4_dns_miscfg",
+      "checked_at": "2026-04-30T17:59:17.211006+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no python files in workspace"
+    },
+    {
+      "task_id": "IR2_misinformation_trap",
+      "checked_at": "2026-04-30T17:59:23.209042+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no python files in workspace"
+    },
+    {
+      "task_id": "IR3_multi_source",
+      "checked_at": "2026-04-30T17:59:46.194691+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no python files in workspace"
+    },
+    {
+      "task_id": "IR4_temporal",
+      "checked_at": "2026-04-30T17:59:51.116668+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no python files in workspace"
+    },
+    {
+      "task_id": "INT1_pipeline_repair",
+      "checked_at": "2026-04-30T17:59:53.786584+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "LH2_budgeted_workflow",
+      "checked_at": "2026-04-30T18:01:11.454176+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "LH5_data_migration",
+      "checked_at": "2026-04-30T18:01:59.306457+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "LH4_staged_deploy",
+      "checked_at": "2026-04-30T18:03:04.027485+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "checked_at": "2026-04-30T18:04:06.845252+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "JS2_xss_sanitize",
+      "checked_at": "2026-04-30T18:06:17.613932+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no python files in workspace"
+    },
+    {
+      "task_id": "MULTI2_microservice_debug",
+      "checked_at": "2026-04-30T18:06:40.838853+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "NEG1_tradeoff_config",
+      "checked_at": "2026-04-30T18:07:21.222924+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "LH3_multi_service",
+      "checked_at": "2026-04-30T18:07:50.039569+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "TRAP3_metric_mirage",
+      "checked_at": "2026-04-30T18:08:45.643334+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "CROSS7_config_drift",
+      "checked_at": "2026-04-30T18:10:50.653479+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "MULTI5_deploy_pipeline",
+      "checked_at": "2026-04-30T18:12:56.066454+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "API1_version_compat",
+      "checked_at": "2026-04-30T18:13:38.674316+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "GH14_celery_chain_fail",
+      "checked_at": "2026-04-30T18:15:51.377909+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "INFRA2_cicd_repair",
+      "checked_at": "2026-04-30T18:16:55.166988+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "TS1_type_mismatch",
+      "checked_at": "2026-04-30T18:17:46.475207+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no python files in workspace"
+    },
+    {
+      "task_id": "GH103_redis-py_3998",
+      "checked_at": "2026-04-30T18:17:50.752515+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH112_redis-py_3996",
+      "checked_at": "2026-04-30T18:18:25.881041+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH120_redis-py_3863",
+      "checked_at": "2026-04-30T18:18:47.668340+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH121_quart_302",
+      "checked_at": "2026-04-30T18:19:07.966045+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH128_mitmproxy_8046",
+      "checked_at": "2026-04-30T18:19:28.887273+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH12_click_envvar_flag",
+      "checked_at": "2026-04-30T18:19:47.109197+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH136_mitmproxy_8054",
+      "checked_at": "2026-04-30T18:20:11.683401+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH139_marshmallow_2894",
+      "checked_at": "2026-04-30T18:20:24.990771+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH13_starlette_bg_block",
+      "checked_at": "2026-04-30T18:20:39.827281+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH140_marshmallow_2874",
+      "checked_at": "2026-04-30T18:20:46.463609+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH141_urllib3_3736",
+      "checked_at": "2026-04-30T18:20:54.510858+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH143_mitmproxy_8095",
+      "checked_at": "2026-04-30T18:20:59.354154+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "GH144_psycopg_1247",
+      "checked_at": "2026-04-30T18:21:08.818437+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "PIPE2_data_pipeline",
+      "checked_at": "2026-04-30T18:21:23.581457+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "PIPE3_msg_queue",
+      "checked_at": "2026-04-30T18:21:36.532686+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "PIPE3_stream_processing",
+      "checked_at": "2026-04-30T18:22:48.393846+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "P2_spec_arbitration",
+      "checked_at": "2026-04-30T18:24:53.086397+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "P3_access_control",
+      "checked_at": "2026-04-30T18:25:00.237964+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "P4_data_retention",
+      "checked_at": "2026-04-30T18:25:12.694843+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "RDS10_survey_analysis",
+      "checked_at": "2026-04-30T18:25:19.928750+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "RDS11_survivorship_bias",
+      "checked_at": "2026-04-30T18:25:25.571936+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "RDS12_simpsons_income",
+      "checked_at": "2026-04-30T18:25:30.008605+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "CRYPTO1_nonce_reuse",
+      "checked_at": "2026-04-30T18:25:34.131499+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "CRYPTO3_cert_chain",
+      "checked_at": "2026-04-30T18:27:38.913391+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "CRYPTO4_kdf_migration",
+      "checked_at": "2026-04-30T18:29:52.419286+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "SEC8_dependency_audit",
+      "checked_at": "2026-04-30T18:31:56.468286+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "CRYPTO5_tls_config",
+      "checked_at": "2026-04-30T18:32:03.734773+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "CRYPTO6_token_validation",
+      "checked_at": "2026-04-30T18:34:07.398632+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "GO1_concurrency_fix",
+      "checked_at": "2026-04-30T18:36:13.987735+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no python files in workspace"
+    },
+    {
+      "task_id": "SCALE1_codebase_migration",
+      "checked_at": "2026-04-30T18:36:27.444375+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "GH10_retry_backoff",
+      "checked_at": "2026-04-30T18:37:04.623545+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "GH11_middleware_order",
+      "checked_at": "2026-04-30T18:37:08.211164+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "GH1_flask_session_ctx",
+      "checked_at": "2026-04-30T18:38:21.931595+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "GH2_click_flag_value",
+      "checked_at": "2026-04-30T18:38:24.062214+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "SPEC5_config_system",
+      "checked_at": "2026-04-30T18:38:25.523555+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no passing workspace available"
+    },
+    {
+      "task_id": "SPEC2_api_design",
+      "checked_at": "2026-04-30T18:38:31.511784+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "GH7_fixture_scope_leak",
+      "checked_at": "2026-04-30T18:39:50.911592+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "no python files in workspace"
+    },
+    {
+      "task_id": "TEST2_regression",
+      "checked_at": "2026-04-30T18:39:51.218505+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "TEST3_integration",
+      "checked_at": "2026-04-30T18:41:52.429123+00:00",
+      "kill_rate": 1.0,
+      "n_attempted": 8,
+      "n_killed": 8,
+      "mutants": [
+        {
+          "file": "broken_server.py",
+          "mutation": "swap_eq_neq",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "broken_server.py",
+          "mutation": "swap_neq_eq",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "broken_server.py",
+          "mutation": "swap_lt_gt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "broken_server.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "broken_server.py",
+          "mutation": "swap_True_False",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "broken_server.py",
+          "mutation": "swap_False_True",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "broken_server.py",
+          "mutation": "swap_and_or",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "broken_server.py",
+          "mutation": "swap_or_and",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 1.0,
+      "n_python_files": 3
+    },
+    {
+      "task_id": "TEST4_property",
+      "checked_at": "2026-04-30T19:00:42.632451+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "RDS13_smote_leakage",
+      "checked_at": "2026-04-30T19:03:50.821740+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "RDS14_housing_leakage",
+      "checked_at": "2026-04-30T19:04:10.990453+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "RDS15_taxi_circular",
+      "checked_at": "2026-04-30T19:04:39.596038+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "RDS16_retail_phacking",
+      "checked_at": "2026-04-30T19:04:57.432529+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "RDS17_macro_spurious",
+      "checked_at": "2026-04-30T19:05:24.660125+00:00",
+      "kill_rate": null,
+      "n_attempted": 0,
+      "n_killed": 0,
+      "mutants": [],
+      "notes": "base workspace did not pass grader; skipping mutation test",
+      "base_pass": false,
+      "base_primary": 0.0
+    },
+    {
+      "task_id": "TRAP1_spec_conflict",
+      "checked_at": "2026-04-30T20:06:26.601689+00:00",
+      "kill_rate": 0.4167,
+      "n_attempted": 12,
+      "n_killed": 5,
+      "mutants": [
+        {
+          "file": "app/__init__.py",
+          "mutation": "swap_False_True",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/__init__.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/config.py",
+          "mutation": "swap_False_True",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/routes.py",
+          "mutation": "swap_True_False",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/routes.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/routes.py",
+          "mutation": "swap_or_and",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/routes.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_lt_gt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_True_False",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_or_and",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 0.0,
+      "n_python_files": 8
+    },
+    {
+      "task_id": "O6_perf_tuning",
+      "checked_at": "2026-04-30T20:34:49.400632+00:00",
+      "kill_rate": 0.0833,
+      "n_attempted": 12,
+      "n_killed": 1,
+      "mutants": [
+        {
+          "file": "optimizer.py",
+          "mutation": "swap_lt_gt",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "optimizer.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "optimizer.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "optimizer.py",
+          "mutation": "swap_or_and",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "optimizer.py",
+          "mutation": "return_none",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_eq_neq",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_lt_gt",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_True_False",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_False_True",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_or_and",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 1.0,
+      "n_python_files": 2
+    }
+  ]
+}

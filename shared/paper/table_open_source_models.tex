@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\caption{Cross-model evaluation on 28-task subset (\%). Closed models show consistent team uplift (+3.6 to +32.1pp), while open-source models are severely limited by context overflow from reasoning tokens. Uplift = Full $-$ Oracle.}
+\label{tab:cross_model_full}
+\small
+\begin{tabular}{llrrrrrr}
+\toprule
+\textbf{Model} & \textbf{Type} & \textbf{Oracle} & \textbf{Restr.} & \textbf{NoPlan} & \textbf{NoVer.} & \textbf{Full} & \textbf{Uplift} \\
+\midrule
+\multicolumn{8}{l}{\textit{Closed-source models}} \\
+Claude Sonnet 4.6    & Closed & 21.4 & 17.9 & 35.7 & 35.7 & \textbf{42.9} & +21.4 \\
+GPT-5 Mini           & Closed & 17.9 & 10.7 & 28.6 & 32.1 & 35.7 & +17.9 \\
+Gemini 3 Flash       & Closed & 17.9 & 17.9 & 14.3 & 25.0 & 35.7 & +17.9 \\
+Claude Haiku 4.5     & Closed & 10.7 & 10.7 & 17.9 & 21.4 & \textbf{42.9} & \textbf{+32.1} \\
+Gemini 3.1 Lite      & Closed & 10.7 & 14.3 & 14.3 & 21.4 & 32.1 & +21.4 \\
+GPT-5 Nano           & Closed & 14.3 &  0.0 & 14.3 &  7.1 & 17.9 &  +3.6 \\
+\midrule
+\multicolumn{8}{l}{\textit{Open-source models (vLLM, max\_model\_len=8192)}} \\
+Qwen3.5-27B          & Open   &  3.6 &  0.0 &  0.0 &  3.6 &  3.6 &  0.0 \\
+Qwen3-Coder-30B      & Open   &  3.6 &  0.0 &  3.6 &  3.6 &  0.0 & $-$3.6 \\
+Qwen3-14B            & Open   &  0.0 &  0.0 &  0.0 &  0.0 &  7.1 & +7.1 \\
+Qwen3-8B             & Open   &  0.0 &  0.0 &  0.0 &  0.0 &  3.6 & +3.6 \\
+Qwen3-4B             & Open   &  0.0 &  0.0 &  0.0 &  3.6 &  0.0 &  0.0 \\
+DeepSeek-R1-D-32B    & Open   &  0.0 &  0.0 &  0.0 &  0.0 &  0.0 &  0.0 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}

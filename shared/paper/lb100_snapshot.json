@@ -1,0 +1,393 @@
+{
+  "files": [
+    "shared/ablation_results/lb100_g31lite_3cond_seed0.json",
+    "shared/ablation_results/lb100_g3flash_3cond_seed0.json",
+    "shared/ablation_results/lb100_gemini-3.1-pro-preview_seed0.json",
+    "shared/ablation_results/lb100_gemini31lite_oraclefull_seed0.json",
+    "shared/ablation_results/lb100_gemini3flash_oraclefull_seed0.json",
+    "shared/ablation_results/lb100_gemma4-31b_seed0.json",
+    "shared/ablation_results/lb100_gpt54_3cond_seed0.json",
+    "shared/ablation_results/lb100_gpt54_oraclefull_seed0.json",
+    "shared/ablation_results/lb100_gpt5mini_5cond_seed0.json",
+    "shared/ablation_results/lb100_gpt5nano_3cond_seed0.json",
+    "shared/ablation_results/lb100_gpt5nano_oraclefull_seed0.json",
+    "shared/ablation_results/lb100_haiku45_3cond_seed0.json",
+    "shared/ablation_results/lb100_haiku45_full_resume.json",
+    "shared/ablation_results/lb100_haiku45_oraclefull_seed0.json",
+    "shared/ablation_results/lb100_sonnet46_3cond_seed0.json",
+    "shared/ablation_results/lb100_sonnet46_oraclefull_seed0.json"
+  ],
+  "n_files": 16,
+  "rows": [
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "by_condition": {
+        "restricted": {
+          "n": 100,
+          "passed": 26,
+          "rate": 0.26,
+          "wilson_low": 0.18404578126986462,
+          "wilson_high": 0.35371172631861636
+        },
+        "team_no_plan": {
+          "n": 100,
+          "passed": 15,
+          "rate": 0.15,
+          "wilson_low": 0.09305903191162296,
+          "wilson_high": 0.23283733332157835
+        },
+        "team_no_verify": {
+          "n": 100,
+          "passed": 1,
+          "rate": 0.01,
+          "wilson_low": 0.001767386565547261,
+          "wilson_high": 0.0544875247609346
+        },
+        "full": {
+          "n": 185,
+          "passed": 45,
+          "rate": 0.24324324324324326,
+          "wilson_low": 0.18705036154552585,
+          "wilson_high": 0.3098825176505835
+        },
+        "oracle": {
+          "n": 100,
+          "passed": 11,
+          "rate": 0.11,
+          "wilson_low": 0.06254131955225126,
+          "wilson_high": 0.18631463027903022
+        }
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "by_condition": {
+        "oracle": {
+          "n": 100,
+          "passed": 7,
+          "rate": 0.07,
+          "wilson_low": 0.034318824364064096,
+          "wilson_high": 0.13749671006529757
+        },
+        "full": {
+          "n": 70,
+          "passed": 13,
+          "rate": 0.18571428571428572,
+          "wilson_low": 0.11187194691822096,
+          "wilson_high": 0.29225797442692864
+        }
+      }
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "by_condition": {
+        "team_no_plan": {
+          "n": 100,
+          "passed": 8,
+          "rate": 0.08,
+          "wilson_low": 0.04109296948581092,
+          "wilson_high": 0.1499826687940307
+        },
+        "restricted": {
+          "n": 100,
+          "passed": 14,
+          "rate": 0.14,
+          "wilson_low": 0.08526265754464904,
+          "wilson_high": 0.2213736038380724
+        },
+        "team_no_verify": {
+          "n": 100,
+          "passed": 25,
+          "rate": 0.25,
+          "wilson_low": 0.1754509400372426,
+          "wilson_high": 0.3430464637007583
+        },
+        "oracle": {
+          "n": 100,
+          "passed": 11,
+          "rate": 0.11,
+          "wilson_low": 0.06254131955225126,
+          "wilson_high": 0.18631463027903022
+        },
+        "full": {
+          "n": 100,
+          "passed": 22,
+          "rate": 0.22,
+          "wilson_low": 0.15001174503655804,
+          "wilson_high": 0.3107053471500031
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "by_condition": {
+        "team_no_plan": {
+          "n": 100,
+          "passed": 9,
+          "rate": 0.09,
+          "wilson_low": 0.04807199516388488,
+          "wilson_high": 0.16226374696643667
+        },
+        "restricted": {
+          "n": 100,
+          "passed": 13,
+          "rate": 0.13,
+          "wilson_low": 0.07757093858414264,
+          "wilson_high": 0.20980521894809878
+        },
+        "team_no_verify": {
+          "n": 100,
+          "passed": 16,
+          "rate": 0.16,
+          "wilson_low": 0.10095202349473717,
+          "wilson_high": 0.24420444558894414
+        },
+        "oracle": {
+          "n": 100,
+          "passed": 4,
+          "rate": 0.04,
+          "wilson_low": 0.01566305055184801,
+          "wilson_high": 0.09837217232607375
+        },
+        "full": {
+          "n": 100,
+          "passed": 14,
+          "rate": 0.14,
+          "wilson_low": 0.08526265754464904,
+          "wilson_high": 0.2213736038380724
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "by_condition": {
+        "oracle": {
+          "n": 100,
+          "passed": 13,
+          "rate": 0.13,
+          "wilson_low": 0.07757093858414264,
+          "wilson_high": 0.20980521894809878
+        },
+        "team_no_verify": {
+          "n": 100,
+          "passed": 23,
+          "rate": 0.23,
+          "wilson_low": 0.15843154746876406,
+          "wilson_high": 0.32154564856827694
+        },
+        "team_no_plan": {
+          "n": 100,
+          "passed": 15,
+          "rate": 0.15,
+          "wilson_low": 0.09305903191162296,
+          "wilson_high": 0.23283733332157835
+        },
+        "full": {
+          "n": 100,
+          "passed": 25,
+          "rate": 0.25,
+          "wilson_low": 0.1754509400372426,
+          "wilson_high": 0.3430464637007583
+        },
+        "restricted": {
+          "n": 100,
+          "passed": 18,
+          "rate": 0.18,
+          "wilson_low": 0.11700131654251038,
+          "wilson_high": 0.26667536024213084
+        }
+      }
+    },
+    {
+      "model": "gpt-5-nano",
+      "by_condition": {
+        "oracle": {
+          "n": 102,
+          "passed": 5,
+          "rate": 0.049019607843137254,
+          "wilson_low": 0.021117285132196968,
+          "wilson_high": 0.1096592715336131
+        },
+        "full": {
+          "n": 100,
+          "passed": 6,
+          "rate": 0.06,
+          "wilson_low": 0.02778574526665662,
+          "wilson_high": 0.12476968531222507
+        }
+      }
+    },
+    {
+      "model": "gpt-5.4",
+      "by_condition": {
+        "team_no_plan": {
+          "n": 100,
+          "passed": 20,
+          "rate": 0.2,
+          "wilson_low": 0.1333659225590988,
+          "wilson_high": 0.28883096192650237
+        },
+        "restricted": {
+          "n": 100,
+          "passed": 31,
+          "rate": 0.31,
+          "wilson_low": 0.22779563206132375,
+          "wilson_high": 0.406262394779557
+        },
+        "team_no_verify": {
+          "n": 100,
+          "passed": 31,
+          "rate": 0.31,
+          "wilson_low": 0.22779563206132375,
+          "wilson_high": 0.406262394779557
+        },
+        "oracle": {
+          "n": 100,
+          "passed": 11,
+          "rate": 0.11,
+          "wilson_low": 0.06254131955225126,
+          "wilson_high": 0.18631463027903022
+        },
+        "full": {
+          "n": 100,
+          "passed": 25,
+          "rate": 0.25,
+          "wilson_low": 0.1754509400372426,
+          "wilson_high": 0.3430464637007583
+        }
+      }
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "by_condition": {
+        "oracle": {
+          "n": 100,
+          "passed": 17,
+          "rate": 0.17,
+          "wilson_low": 0.10893476059773155,
+          "wilson_high": 0.25548181233642975
+        },
+        "restricted": {
+          "n": 100,
+          "passed": 21,
+          "rate": 0.21,
+          "wilson_low": 0.14165549531645788,
+          "wilson_high": 0.2998014930196232
+        },
+        "team_no_plan": {
+          "n": 100,
+          "passed": 22,
+          "rate": 0.22,
+          "wilson_low": 0.15001174503655804,
+          "wilson_high": 0.3107053471500031
+        },
+        "team_no_verify": {
+          "n": 100,
+          "passed": 22,
+          "rate": 0.22,
+          "wilson_low": 0.15001174503655804,
+          "wilson_high": 0.3107053471500031
+        },
+        "full": {
+          "n": 100,
+          "passed": 26,
+          "rate": 0.26,
+          "wilson_low": 0.18404578126986462,
+          "wilson_high": 0.35371172631861636
+        }
+      }
+    },
+    {
+      "model": "gpt-5.4-nano",
+      "by_condition": {
+        "team_no_plan": {
+          "n": 100,
+          "passed": 9,
+          "rate": 0.09,
+          "wilson_low": 0.04807199516388488,
+          "wilson_high": 0.16226374696643667
+        },
+        "restricted": {
+          "n": 100,
+          "passed": 16,
+          "rate": 0.16,
+          "wilson_low": 0.10095202349473717,
+          "wilson_high": 0.24420444558894414
+        },
+        "team_no_verify": {
+          "n": 100,
+          "passed": 17,
+          "rate": 0.17,
+          "wilson_low": 0.10893476059773155,
+          "wilson_high": 0.25548181233642975
+        }
+      }
+    },
+    {
+      "model": "openrouter:anthropic/claude-sonnet-4.6",
+      "by_condition": {
+        "restricted": {
+          "n": 100,
+          "passed": 25,
+          "rate": 0.25,
+          "wilson_low": 0.1754509400372426,
+          "wilson_high": 0.3430464637007583
+        },
+        "team_no_plan": {
+          "n": 100,
+          "passed": 7,
+          "rate": 0.07,
+          "wilson_low": 0.034318824364064096,
+          "wilson_high": 0.13749671006529757
+        },
+        "team_no_verify": {
+          "n": 100,
+          "passed": 6,
+          "rate": 0.06,
+          "wilson_low": 0.02778574526665662,
+          "wilson_high": 0.12476968531222507
+        }
+      }
+    },
+    {
+      "model": "vllm:google/gemma-4-31B-it@http://localhost:8006/v1",
+      "by_condition": {
+        "oracle": {
+          "n": 100,
+          "passed": 15,
+          "rate": 0.15,
+          "wilson_low": 0.09305903191162296,
+          "wilson_high": 0.23283733332157835
+        },
+        "restricted": {
+          "n": 100,
+          "passed": 23,
+          "rate": 0.23,
+          "wilson_low": 0.15843154746876406,
+          "wilson_high": 0.32154564856827694
+        },
+        "team_no_verify": {
+          "n": 100,
+          "passed": 18,
+          "rate": 0.18,
+          "wilson_low": 0.11700131654251038,
+          "wilson_high": 0.26667536024213084
+        },
+        "team_no_plan": {
+          "n": 100,
+          "passed": 21,
+          "rate": 0.21,
+          "wilson_low": 0.14165549531645788,
+          "wilson_high": 0.2998014930196232
+        },
+        "full": {
+          "n": 100,
+          "passed": 20,
+          "rate": 0.2,
+          "wilson_low": 0.1333659225590988,
+          "wilson_high": 0.28883096192650237
+        }
+      }
+    }
+  ]
+}

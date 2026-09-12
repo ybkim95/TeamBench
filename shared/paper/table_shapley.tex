@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\caption{Role contribution analysis via Shapley value decomposition. Assembly bonus measures whether full team exceeds best two-role ablation. Positive interaction indicates superadditivity (synergy).}
+\label{tab:shapley}
+\begin{tabular}{lccccccc}
+\toprule
+Model & $n$ & Full & TNP & TNV & $\phi_P$ & $\phi_V$ & Interaction \\
+\midrule
+  claude-sonnet-4.6 & 28 & 42.9% & 35.7% & 35.7% & +0.125 & +0.125 & -0.107 \\
+  gemini-3-flash & 160 & 39.4% & 20.0% & 33.8% & +0.194 & +0.056 & -0.000 \\
+  claude-haiku-4.5 & 28 & 42.9% & 17.9% & 21.4% & +0.179 & +0.143 & +0.143 \\
+  gpt-5.3-chat & 28 & 28.6% & 7.1% & 21.4% & +0.161 & +0.018 & +0.107 \\
+  gpt-5-mini & 70 & 27.1% & 15.7% & 20.0% & +0.129 & +0.086 & -0.029 \\
+  gpt-5.4 & 28 & 46.4% & 35.7% & 21.4% & +0.161 & +0.304 & -0.107 \\
+  qwen3.5-35b-a3b & 23 & 26.1% & 0.0% & 0.0% & +0.065 & +0.065 & +0.391 \\
+  gemini-3.1-pro & 100 & 25.0% & 15.0% & 23.0% & +0.100 & +0.020 & +0.000 \\
+  gemini-3.1-lite & 31 & 32.3% & 12.9% & 22.6% & +0.145 & +0.048 & +0.097 \\
+  qwen3.5-9b & 28 & 17.9% & 10.7% & 7.1% & +0.054 & +0.089 & +0.036 \\
+  gpt-5-nano & 28 & 17.9% & 14.3% & 17.9% & +0.107 & +0.071 & -0.143 \\
+  qwen3-14b & 28 & 7.1% & 0.0% & 0.0% & +0.036 & +0.036 & +0.071 \\
+  qwen3.5-4b & 113 & 4.4% & 2.7% & 1.8% & +0.009 & +0.018 & +0.018 \\
+  qwen3.5-27b & 28 & 3.6% & 0.0% & 3.6% & +0.036 & +0.000 & +0.000 \\
+  qwen3-8b & 28 & 3.6% & 0.0% & 0.0% & +0.018 & +0.018 & +0.036 \\
+  gpt-oss-20b & 116 & 1.7% & 0.9% & 0.9% & +0.004 & +0.004 & +0.009 \\
+  qwen3-coder-30b & 28 & 0.0% & 3.6% & 3.6% & +0.000 & +0.000 & -0.071 \\
+\bottomrule
+\end{tabular}
+\end{table}

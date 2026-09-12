@@ -1,0 +1,14 @@
+\begin{table}[h]\centering\small
+\caption{Task-conditional topology routing. Learned router uses logistic regression over (category, difficulty, adversarial, multi-lang, log spec-words) with leave-one-category-out evaluation. Scores are mean partial on 147 tasks. $\Delta$ vs.\ static full in brackets is 95\% bootstrap CI.
+}
+\label{tab:router}
+\begin{tabular}{lc}\toprule
+Policy & Mean partial \\ \midrule
+oracle ceiling & 0.704 \\
+static full & 0.592 \\
+static team no verify & 0.592 \\
+static oracle & 0.575 \\
+learned router & 0.567 \\
+\midrule
+Learned $-$ static full: -0.025 [-0.053, +0.001] & \\
+\bottomrule\end{tabular}\end{table}

@@ -1,0 +1,805 @@
+[
+  {
+    "repo": "aio-libs/aiohttp",
+    "pr_number": 10151,
+    "pr_url": "https://github.com/aio-libs/aiohttp/pull/10151",
+    "title": "Fix infinite callback loop when time is not moving forward",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 44,
+    "created": "2024-12-10T07:52:31Z",
+    "merged": "2024-12-17T18:16:31Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "123",
+      "10149"
+    ],
+    "body_length": 3453
+  },
+  {
+    "repo": "prisma/prisma",
+    "pr_number": 29009,
+    "pr_url": "https://github.com/prisma/prisma/pull/29009",
+    "title": "test(client): preserve BigInt precision in relationJoins queries",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 103,
+    "created": "2026-01-08T01:53:40Z",
+    "merged": "2026-02-25T10:40:17Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "29010"
+    ],
+    "body_length": 3158
+  },
+  {
+    "repo": "prisma/prisma",
+    "pr_number": 29238,
+    "pr_url": "https://github.com/prisma/prisma/pull/29238",
+    "title": "fix(adapter-mariadb,adapter-planetscale): return strings for text columns with binary collation in raw queries",
+    "comments": 0,
+    "files_changed": 6,
+    "lines_changed": 107,
+    "created": "2026-02-23T09:10:06Z",
+    "merged": "2026-02-26T13:30:45Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "29237"
+    ],
+    "body_length": 2085
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 12748,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/12748",
+    "title": "Support `exclude_if` in computed fields",
+    "comments": 0,
+    "files_changed": 6,
+    "lines_changed": 95,
+    "created": "2026-01-28T01:49:52Z",
+    "merged": "2026-03-17T12:12:52Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "12690",
+      "123"
+    ],
+    "body_length": 1893
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 12758,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/12758",
+    "title": "Try other branches in smart union in case of omit errors",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 39,
+    "created": "2026-01-30T16:56:31Z",
+    "merged": "2026-03-18T10:48:40Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "12750",
+      "12750"
+    ],
+    "body_length": 1886
+  },
+  {
+    "repo": "prisma/prisma",
+    "pr_number": 29317,
+    "pr_url": "https://github.com/prisma/prisma/pull/29317",
+    "title": "refactor: extract 'prisma-client-js' into PRISMA_CLIENT_JS_PROVIDER constant",
+    "comments": 0,
+    "files_changed": 9,
+    "lines_changed": 32,
+    "created": "2026-03-07T22:41:19Z",
+    "merged": "2026-03-17T16:53:34Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "29316"
+    ],
+    "body_length": 1851
+  },
+  {
+    "repo": "python-poetry/poetry",
+    "pr_number": 10721,
+    "pr_url": "https://github.com/python-poetry/poetry/pull/10721",
+    "title": "Validate package names in poetry update command",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 148,
+    "created": "2026-02-08T07:12:11Z",
+    "merged": "2026-02-27T15:32:17Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "10422"
+    ],
+    "body_length": 1610
+  },
+  {
+    "repo": "celery/celery",
+    "pr_number": 10178,
+    "pr_url": "https://github.com/celery/celery/pull/10178",
+    "title": "Fix mock connection interfaces to prevent `TypeError` during exception handling",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 18,
+    "created": "2026-03-06T04:23:25Z",
+    "merged": "2026-03-08T14:01:48Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "10177"
+    ],
+    "body_length": 1606
+  },
+  {
+    "repo": "aio-libs/aiohttp",
+    "pr_number": 12245,
+    "pr_url": "https://github.com/aio-libs/aiohttp/pull/12245",
+    "title": "[PR #12217 backport][3.14] Raise on redirect with consumed non-rewindable request bodies",
+    "comments": 0,
+    "files_changed": 6,
+    "lines_changed": 117,
+    "created": "2026-03-15T20:40:31Z",
+    "merged": "2026-03-15T21:17:44Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "12195"
+    ],
+    "body_length": 1492
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "pr_number": 3078,
+    "pr_url": "https://github.com/pallets/werkzeug/pull/3078",
+    "title": "initialize `_pin` in debugger",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 20,
+    "created": "2025-12-09T10:05:39Z",
+    "merged": "2026-01-02T18:51:17Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "3075"
+    ],
+    "body_length": 1440
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 12907,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/12907",
+    "title": "Add `ascii_only` option to `StringConstraints`",
+    "comments": 0,
+    "files_changed": 9,
+    "lines_changed": 59,
+    "created": "2026-03-10T09:06:12Z",
+    "merged": "2026-03-16T20:45:46Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "12300"
+    ],
+    "body_length": 1397
+  },
+  {
+    "repo": "pallets/jinja",
+    "pr_number": 1852,
+    "pr_url": "https://github.com/pallets/jinja/pull/1852",
+    "title": "fix f-string syntax error in code generation",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 29,
+    "created": "2023-05-26T12:42:49Z",
+    "merged": "2024-12-20T02:10:29Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "1792"
+    ],
+    "body_length": 1336
+  },
+  {
+    "repo": "aio-libs/aiohttp",
+    "pr_number": 12217,
+    "pr_url": "https://github.com/aio-libs/aiohttp/pull/12217",
+    "title": "Raise on redirect with consumed non-rewindable request bodies",
+    "comments": 0,
+    "files_changed": 6,
+    "lines_changed": 117,
+    "created": "2026-03-08T23:50:01Z",
+    "merged": "2026-03-15T16:18:26Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "12195"
+    ],
+    "body_length": 1302
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "pr_number": 3109,
+    "pr_url": "https://github.com/pallets/werkzeug/pull/3109",
+    "title": "consider methods for duplicate rule check",
+    "comments": 0,
+    "files_changed": 5,
+    "lines_changed": 92,
+    "created": "2026-02-12T23:15:19Z",
+    "merged": "2026-02-12T23:19:04Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "3105"
+    ],
+    "body_length": 1250
+  },
+  {
+    "repo": "python-poetry/poetry",
+    "pr_number": 10716,
+    "pr_url": "https://github.com/python-poetry/poetry/pull/10716",
+    "title": "fix(env): support posix-compliant shells in `env activate` on Windows",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 49,
+    "created": "2026-02-06T02:57:41Z",
+    "merged": "2026-03-07T10:30:27Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "10395"
+    ],
+    "body_length": 1102
+  },
+  {
+    "repo": "pallets/jinja",
+    "pr_number": 1664,
+    "pr_url": "https://github.com/pallets/jinja/pull/1664",
+    "title": "Add support for namespaces in tuple parsing",
+    "comments": 0,
+    "files_changed": 5,
+    "lines_changed": 90,
+    "created": "2022-05-02T18:10:05Z",
+    "merged": "2024-12-20T22:52:51Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "1413"
+    ],
+    "body_length": 1009
+  },
+  {
+    "repo": "pallets/jinja",
+    "pr_number": 1663,
+    "pr_url": "https://github.com/pallets/jinja/pull/1663",
+    "title": "`FileSystemLoader` include paths in error",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 27,
+    "created": "2022-05-02T12:47:03Z",
+    "merged": "2024-12-20T03:38:23Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "1661"
+    ],
+    "body_length": 987
+  },
+  {
+    "repo": "tokio-rs/tokio",
+    "pr_number": 7910,
+    "pr_url": "https://github.com/tokio-rs/tokio/pull/7910",
+    "title": "runtime: fix double-increment of num_idle_threads on blocking pool shutdown",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 38,
+    "created": "2026-02-15T10:13:42Z",
+    "merged": "2026-02-17T07:19:51Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "6439"
+    ],
+    "body_length": 986
+  },
+  {
+    "repo": "pallets/jinja",
+    "pr_number": 1665,
+    "pr_url": "https://github.com/pallets/jinja/pull/1665",
+    "title": "Fix bug involving calling set on a template parameter within all branches of an if block",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 30,
+    "created": "2022-05-02T22:06:24Z",
+    "merged": "2024-12-21T17:46:55Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "1253"
+    ],
+    "body_length": 954
+  },
+  {
+    "repo": "prisma/prisma",
+    "pr_number": 29274,
+    "pr_url": "https://github.com/prisma/prisma/pull/29274",
+    "title": "Fix DateTime fields returning Invalid Date with unixepoch-ms",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 96,
+    "created": "2026-02-27T23:37:14Z",
+    "merged": "2026-03-09T09:41:53Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "28890"
+    ],
+    "body_length": 945
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 12816,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/12816",
+    "title": "Ensure `__pydantic_private__` is set in `model_construct()` with user-defined `model_post_init()`",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 17,
+    "created": "2026-02-18T23:12:03Z",
+    "merged": "2026-03-02T14:13:23Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "12813"
+    ],
+    "body_length": 928
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 12905,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/12905",
+    "title": "Patch unset attributes with `MISSING` during model serialization with `exclude_unset`",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 43,
+    "created": "2026-03-09T10:18:11Z",
+    "merged": "2026-03-18T16:49:58Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "12888"
+    ],
+    "body_length": 909
+  },
+  {
+    "repo": "pallets/jinja",
+    "pr_number": 1762,
+    "pr_url": "https://github.com/pallets/jinja/pull/1762",
+    "title": "Pass context to test when using select",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 16,
+    "created": "2022-11-16T20:13:06Z",
+    "merged": "2024-12-20T04:49:09Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "1624"
+    ],
+    "body_length": 896
+  },
+  {
+    "repo": "python-poetry/poetry",
+    "pr_number": 10720,
+    "pr_url": "https://github.com/python-poetry/poetry/pull/10720",
+    "title": "Fix non-deterministic dependency constraint ordering in lock file",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 74,
+    "created": "2026-02-08T07:09:16Z",
+    "merged": "2026-02-15T10:14:58Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "10702"
+    ],
+    "body_length": 894
+  },
+  {
+    "repo": "gofiber/fiber",
+    "pr_number": 4133,
+    "pr_url": "https://github.com/gofiber/fiber/pull/4133",
+    "title": "\ud83d\udc1b fix: prefork children exit immediately in Docker containers",
+    "comments": 0,
+    "files_changed": 1,
+    "lines_changed": 21,
+    "created": "2026-03-07T20:47:17Z",
+    "merged": "2026-03-15T14:07:54Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "4132"
+    ],
+    "body_length": 883
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 12879,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/12879",
+    "title": "Allow dynamic models created with `create_model()` to be used as annotations in the Mypy plugin",
+    "comments": 0,
+    "files_changed": 4,
+    "lines_changed": 60,
+    "created": "2026-03-01T17:38:03Z",
+    "merged": "2026-03-07T10:14:33Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "12031"
+    ],
+    "body_length": 816
+  },
+  {
+    "repo": "celery/celery",
+    "pr_number": 10155,
+    "pr_url": "https://github.com/celery/celery/pull/10155",
+    "title": "Improve on_after_finalize signal documentation",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 15,
+    "created": "2026-03-01T06:30:39Z",
+    "merged": "2026-03-01T09:37:52Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "7280"
+    ],
+    "body_length": 778
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 12705,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/12705",
+    "title": "Handle all schema generation errors in `InstanceOf`",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 42,
+    "created": "2026-01-14T14:50:00Z",
+    "merged": "2026-03-05T11:55:35Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "123"
+    ],
+    "body_length": 775
+  },
+  {
+    "repo": "spf13/cobra",
+    "pr_number": 2316,
+    "pr_url": "https://github.com/spf13/cobra/pull/2316",
+    "title": "Add documentation for repeated flags functionality",
+    "comments": 0,
+    "files_changed": 1,
+    "lines_changed": 67,
+    "created": "2025-10-03T03:19:52Z",
+    "merged": "2025-11-17T14:47:19Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "2298"
+    ],
+    "body_length": 765
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 12951,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/12951",
+    "title": "Do not include annotations that are not part of named tuple fields",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 36,
+    "created": "2026-03-23T00:52:04Z",
+    "merged": "2026-03-23T14:55:14Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "7987"
+    ],
+    "body_length": 721
+  },
+  {
+    "repo": "pallets/jinja",
+    "pr_number": 1706,
+    "pr_url": "https://github.com/pallets/jinja/pull/1706",
+    "title": "Improve the PackageLoader error message",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 25,
+    "created": "2022-08-11T14:25:52Z",
+    "merged": "2024-12-20T04:17:25Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "1705"
+    ],
+    "body_length": 718
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 11089,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/11089",
+    "title": "Simplify test parametrization in `test_types_self.py`",
+    "comments": 0,
+    "files_changed": 1,
+    "lines_changed": 16,
+    "created": "2024-12-11T13:53:34Z",
+    "merged": "2024-12-12T13:18:09Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "123"
+    ],
+    "body_length": 715
+  },
+  {
+    "repo": "go-gorm/gorm",
+    "pr_number": 7717,
+    "pr_url": "https://github.com/go-gorm/gorm/pull/7717",
+    "title": "fix(utils): restore FileWithLineNum caller depth and add regression test",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 35,
+    "created": "2026-02-28T15:25:45Z",
+    "merged": "2026-03-21T11:31:31Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "7715"
+    ],
+    "body_length": 688
+  },
+  {
+    "repo": "labstack/echo",
+    "pr_number": 2825,
+    "pr_url": "https://github.com/labstack/echo/pull/2825",
+    "title": "Improve BasicAuth middleware: use strings.Cut and RFC compliance",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 90,
+    "created": "2025-09-16T03:46:51Z",
+    "merged": "2025-09-26T08:48:13Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "2794"
+    ],
+    "body_length": 663
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "pr_number": 3091,
+    "pr_url": "https://github.com/pallets/werkzeug/pull/3091",
+    "title": "Check event type before pattern matching in watchdog reloader",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 23,
+    "created": "2026-01-22T09:05:13Z",
+    "merged": "2026-02-04T01:29:25Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "3090"
+    ],
+    "body_length": 638
+  },
+  {
+    "repo": "pallets/jinja",
+    "pr_number": 1702,
+    "pr_url": "https://github.com/pallets/jinja/pull/1702",
+    "title": "Use correct concat function for blocks evaluation",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 18,
+    "created": "2022-08-09T08:18:03Z",
+    "merged": "2024-12-19T15:15:37Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "1701"
+    ],
+    "body_length": 630
+  },
+  {
+    "repo": "celery/celery",
+    "pr_number": 10157,
+    "pr_url": "https://github.com/celery/celery/pull/10157",
+    "title": "Add non-commutative example to clarify partial arg ordering in canvas docs",
+    "comments": 0,
+    "files_changed": 1,
+    "lines_changed": 18,
+    "created": "2026-03-01T06:32:49Z",
+    "merged": "2026-03-01T09:47:20Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "6484"
+    ],
+    "body_length": 596
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "pr_number": 12817,
+    "pr_url": "https://github.com/pydantic/pydantic/pull/12817",
+    "title": "Track extra fields set after init in `model_fields_set`",
+    "comments": 0,
+    "files_changed": 2,
+    "lines_changed": 20,
+    "created": "2026-02-19T01:47:43Z",
+    "merged": "2026-03-05T12:37:11Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "11134"
+    ],
+    "body_length": 544
+  },
+  {
+    "repo": "celery/celery",
+    "pr_number": 10154,
+    "pr_url": "https://github.com/celery/celery/pull/10154",
+    "title": "Remove outdated autoreloader section from extending docs",
+    "comments": 0,
+    "files_changed": 1,
+    "lines_changed": 15,
+    "created": "2026-03-01T06:30:07Z",
+    "merged": "2026-03-15T10:35:01Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "7320"
+    ],
+    "body_length": 504
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "pr_number": 3066,
+    "pr_url": "https://github.com/pallets/werkzeug/pull/3066",
+    "title": "handle chunked input that splits `\\r\\n`",
+    "comments": 0,
+    "files_changed": 4,
+    "lines_changed": 47,
+    "created": "2025-11-13T22:19:22Z",
+    "merged": "2025-11-27T02:22:02Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "3065"
+    ],
+    "body_length": 477
+  },
+  {
+    "repo": "sqlalchemy/sqlalchemy",
+    "pr_number": 13155,
+    "pr_url": "https://github.com/sqlalchemy/sqlalchemy/pull/13155",
+    "title": "docs: fix RelationshipProperty comparator cross-references",
+    "comments": 0,
+    "files_changed": 1,
+    "lines_changed": 34,
+    "created": "2026-03-05T16:57:08Z",
+    "merged": "2026-03-06T21:57:04Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "13132"
+    ],
+    "body_length": 414
+  },
+  {
+    "repo": "spf13/cobra",
+    "pr_number": 2238,
+    "pr_url": "https://github.com/spf13/cobra/pull/2238",
+    "title": "The default ShellCompDirective can be customized for a command and its subcommands",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 102,
+    "created": "2025-02-18T11:52:34Z",
+    "merged": "2025-05-31T12:36:04Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "2209"
+    ],
+    "body_length": 384
+  },
+  {
+    "repo": "python-poetry/poetry",
+    "pr_number": 10728,
+    "pr_url": "https://github.com/python-poetry/poetry/pull/10728",
+    "title": "docs: show PEP 735 dependency-groups in README",
+    "comments": 0,
+    "files_changed": 1,
+    "lines_changed": 16,
+    "created": "2026-02-10T15:56:50Z",
+    "merged": "2026-02-14T12:21:08Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "10548"
+    ],
+    "body_length": 376
+  },
+  {
+    "repo": "encode/starlette",
+    "pr_number": 3148,
+    "pr_url": "https://github.com/Kludex/starlette/pull/3148",
+    "title": "Enable `autoescape` by default in `Jinja2Templates`",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 53,
+    "created": "2026-02-15T13:06:59Z",
+    "merged": "2026-02-22T13:27:33Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "3146"
+    ],
+    "body_length": 361
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "pr_number": 3097,
+    "pr_url": "https://github.com/pallets/werkzeug/pull/3097",
+    "title": "rewrite build docstring",
+    "comments": 0,
+    "files_changed": 1,
+    "lines_changed": 103,
+    "created": "2026-02-04T01:20:38Z",
+    "merged": "2026-02-04T01:22:18Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "3094"
+    ],
+    "body_length": 217
+  },
+  {
+    "repo": "gin-gonic/gin",
+    "pr_number": 4491,
+    "pr_url": "https://github.com/gin-gonic/gin/pull/4491",
+    "title": "render: add PDF renderer and tests",
+    "comments": 0,
+    "files_changed": 5,
+    "lines_changed": 76,
+    "created": "2026-01-04T14:08:41Z",
+    "merged": "2026-02-28T13:04:54Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "4456"
+    ],
+    "body_length": 193
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "pr_number": 3102,
+    "pr_url": "https://github.com/pallets/werkzeug/pull/3102",
+    "title": "document rule priority",
+    "comments": 0,
+    "files_changed": 1,
+    "lines_changed": 60,
+    "created": "2026-02-05T21:28:41Z",
+    "merged": "2026-02-05T21:29:41Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "2924"
+    ],
+    "body_length": 191
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "pr_number": 3008,
+    "pr_url": "https://github.com/pallets/werkzeug/pull/3008",
+    "title": "validate `request.trusted_hosts` in `Map.bind_to_environ`",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 40,
+    "created": "2024-11-13T05:10:20Z",
+    "merged": "2026-02-03T21:39:25Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "3007"
+    ],
+    "body_length": 186
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "pr_number": 3110,
+    "pr_url": "https://github.com/pallets/werkzeug/pull/3110",
+    "title": "always set `Accept-Ranges` header",
+    "comments": 0,
+    "files_changed": 3,
+    "lines_changed": 34,
+    "created": "2026-02-13T04:14:22Z",
+    "merged": "2026-02-13T04:15:51Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "3108"
+    ],
+    "body_length": 170
+  },
+  {
+    "repo": "gin-gonic/gin",
+    "pr_number": 4542,
+    "pr_url": "https://github.com/gin-gonic/gin/pull/4542",
+    "title": "test(context): use http.StatusContinue constant instead of magic number 100",
+    "comments": 0,
+    "files_changed": 4,
+    "lines_changed": 59,
+    "created": "2026-02-18T17:36:39Z",
+    "merged": "2026-02-28T02:13:11Z",
+    "has_linked_issue": true,
+    "issue_refs": [
+      "4489"
+    ],
+    "body_length": 161
+  }
+]

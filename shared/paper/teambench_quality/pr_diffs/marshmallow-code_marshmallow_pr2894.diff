@@ -1,0 +1,65 @@
+diff --git a/AUTHORS.rst b/AUTHORS.rst
+index 6ba5a7f45..4f8538fb3 100644
+--- a/AUTHORS.rst
++++ b/AUTHORS.rst
+@@ -183,3 +183,4 @@ Contributors (chronological)
+ - Xiao `@T90REAL <https://github.com/T90REAL>`_
+ - jfo `@jafournier <https://github.com/jafournier>`_
+ - thanhlecongg `@thanhlecongg <https://github.com/thanhlecongg>`_
++- Emmanuel Ferdman  `@emmanuel-ferdman  <https://github.com/emmanuel-ferdman>`_
+diff --git a/CHANGELOG.rst b/CHANGELOG.rst
+index 3288685c0..bc1c5ff54 100644
+--- a/CHANGELOG.rst
++++ b/CHANGELOG.rst
+@@ -1,6 +1,14 @@
+ Changelog
+ =========
+ 
++unreleased
++----------
++
++Bug fixes:
++
++- Fix behavior of ``fields.Contant(None)`` (:issue:`2868`).
++  Thanks :user:`T90REAL` for reporting and `emmanuel-ferdman` for the fix.
++
+ 
+ 4.2.1 (2026-01-23)
+ ------------------
+diff --git a/src/marshmallow/fields.py b/src/marshmallow/fields.py
+index 5d3d64a98..dc961e631 100644
+--- a/src/marshmallow/fields.py
++++ b/src/marshmallow/fields.py
+@@ -2065,10 +2065,10 @@ class Constant(Field[_ContantT]):
+     _CHECK_ATTRIBUTE = False
+ 
+     def __init__(self, constant: _ContantT, **kwargs: Unpack[_BaseFieldKwargs]):
++        kwargs["load_default"] = constant
++        kwargs["dump_default"] = constant
+         super().__init__(**kwargs)
+         self.constant = constant
+-        self.load_default = constant
+-        self.dump_default = constant
+ 
+     def _serialize(self, value, *args, **kwargs) -> _ContantT:
+         return self.constant
+diff --git a/tests/test_deserialization.py b/tests/test_deserialization.py
+index 6d5b465da..7cbe28e48 100644
+--- a/tests/test_deserialization.py
++++ b/tests/test_deserialization.py
+@@ -1413,6 +1413,15 @@ class MySchema(Schema):
+         assert sch.load({})["foo"] == 42
+         assert sch.load({"foo": 24})["foo"] == 42
+ 
++    def test_constant_none_allows_none_value(self):
++        class MySchema(Schema):
++            foo = fields.Constant(None)
++
++        sch = MySchema()
++        assert sch.load({"foo": None})["foo"] is None
++        assert sch.load({})["foo"] is None
++        assert sch.load({"foo": "ignored"})["foo"] is None
++
+     def test_field_deserialization_with_user_validator_function(self):
+         field = fields.String(validate=predicate(lambda s: s.lower() == "valid"))
+         assert field.deserialize("Valid") == "Valid"

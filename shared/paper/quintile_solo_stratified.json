@@ -1,0 +1,51 @@
+{
+  "method": "Equal-size quintile stratification by per-task Solo (oracle) score; mean per-task uplift in percentage points = 100 \u00d7 (full - oracle).",
+  "n_tasks": 155,
+  "quintiles": [
+    {
+      "quintile": 1,
+      "n": 31,
+      "solo_min": 0.0,
+      "solo_max": 0.2233,
+      "mean_uplift_pp": 15.74,
+      "ci95_low_pp": 5.78,
+      "ci95_high_pp": 25.7
+    },
+    {
+      "quintile": 2,
+      "n": 31,
+      "solo_min": 0.2333,
+      "solo_max": 0.43,
+      "mean_uplift_pp": 8.82,
+      "ci95_low_pp": -1.76,
+      "ci95_high_pp": 19.4
+    },
+    {
+      "quintile": 3,
+      "n": 31,
+      "solo_min": 0.43,
+      "solo_max": 0.75,
+      "mean_uplift_pp": -6.83,
+      "ci95_low_pp": -17.01,
+      "ci95_high_pp": 3.34
+    },
+    {
+      "quintile": 4,
+      "n": 31,
+      "solo_min": 0.75,
+      "solo_max": 0.9,
+      "mean_uplift_pp": -10.08,
+      "ci95_low_pp": -21.69,
+      "ci95_high_pp": 1.54
+    },
+    {
+      "quintile": 5,
+      "n": 31,
+      "solo_min": 0.9,
+      "solo_max": 1.0,
+      "mean_uplift_pp": -8.97,
+      "ci95_low_pp": -19.42,
+      "ci95_high_pp": 1.48
+    }
+  ]
+}

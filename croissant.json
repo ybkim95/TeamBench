@@ -1,0 +1,343 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "wd": "https://www.wikidata.org/wiki/",
+    "containedIn": "cr:containedIn",
+    "equivalentProperty": "cr:equivalentProperty",
+    "samplingRate": "cr:samplingRate"
+  },
+  "@type": "sc:Dataset",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "teambench_dataset.json",
+      "name": "teambench_dataset.json",
+      "description": "Canonical 931-entry dataset listing: task_id, title, category, difficulty, has_generator, ablation_scores (oracle/restricted/team/team_no_plan/team_no_verify), tni, classification.",
+      "contentUrl": "https://huggingface.co/datasets/ybkim95/teambench/resolve/main/teambench_dataset.json",
+      "encodingFormat": "application/json",
+      "sha256": "a9dad391b466f93d1855684e0d6afca58ad04b8ceb2d38056256d64325874be3",
+      "contentSize": "197262 B"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The Hugging Face git repository.",
+      "contentUrl": "https://huggingface.co/datasets/ybkim95/teambench/tree/refs%2Fconvert%2Fparquet",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-default",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "default/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "data-full",
+      "name": "full.json",
+      "description": "All 931 seeded evaluation instances exposed as the 'full' split.",
+      "contentUrl": "https://huggingface.co/datasets/ybkim95/teambench/resolve/main/data/full.json",
+      "encodingFormat": "application/json",
+      "sha256": "91d4a3b2e7741bdf70d923794c73c088de32d5af8d1de328c7a0ad73102955c1",
+      "contentSize": "193734 B"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "default_splits/split_name"
+      },
+      "@id": "default_splits",
+      "name": "default_splits",
+      "description": "Splits for the default config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "default_splits/split_name": "train"
+        },
+        {
+          "default_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "default",
+      "description": "ybkim95/teambench - 'default' subset\n\nAdditional information:\n- 2 splits: train, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "default/(?:partial-)?(train|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "default_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/task_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "task_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/title",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/category",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/difficulty",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "difficulty"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/has_generator",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "has_generator"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/ablation_scores",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "ablation_scores"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/tni",
+          "dataType": "cr:Float32",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "tni"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/classification",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "classification"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "name": "teambench",
+  "description": "TeamBench is a multi-agent teamwork benchmark with 851 task templates expanding to 931 seeded evaluation instances across 19 base categories (security, data engineering, software engineering, distributed systems, cryptographic correctness, adversarial specification traps, and more). Each task ships with a deterministic shell-script grader and a parameterized generator that produces byte-identical workspaces from a fixed seed. The benchmark evaluates whether LLM-based Planner/Executor/Verifier teams under OS-enforced role separation outperform single oracle agents, and reports a Teamwork Necessity Index (TNI) that classifies tasks as HIGH-TNI, TEAM-HELPS, NEUTRAL, or TEAM-HURTS based on team uplift relative to the difficulty ceiling. Companion artifacts include role-mixing ablations, a prompt-only vs. structurally-enforced role comparison, and a 40-session human pilot.",
+  "alternateName": [
+    "ybkim95/teambench",
+    "TeamBench"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "Yubin Kim",
+    "url": "https://huggingface.co/ybkim95",
+    "sameAs": "https://orcid.org/0000-0002-6018-7635"
+  },
+  "keywords": [
+    "multi-agent",
+    "benchmark",
+    "software-engineering",
+    "teamwork",
+    "evaluation",
+    "llm-evaluation",
+    "agent-coordination",
+    "role-separation",
+    "verifier-failure",
+    "OS-enforced sandboxing",
+    "Planner-Executor-Verifier",
+    "TNI",
+    "Teamwork Necessity Index"
+  ],
+  "license": "https://choosealicense.com/licenses/mit/",
+  "url": "https://huggingface.co/datasets/ybkim95/teambench",
+  "version": "1.0.0",
+  "datePublished": "2026-05-06",
+  "citeAs": "@article{kim2026teambench, title={TeamBench: Evaluating Agent Coordination under Enforced Role Separation}, author={Kim, Yubin and Park, Chanwoo and Kim, Taehan and Park, Eugene and Schmidgall, Samuel and Rahman, Salman and Park, Chunjong and Breazeal, Cynthia and Liu, Xin and Palangi, Hamid and others}, journal={arXiv preprint arXiv:2605.07073}, year={2026}}",
+  "sameAs": "https://github.com/ybkim95/TeamBench",
+  "rai:dataCollection": "Tasks have four origin classes. (1) 161 originally authored templates were written by the authors and place critical constraints exclusively in the full specification, absent from the brief and the workspace, so a single agent cannot solve the task without the Planner. (2) 650 GitHub bug report templates are adapted from active open-source repositories (Flask, Click, httpx, Requests, Pydantic, Django, pytest, FastAPI, SQLAlchemy, Celery, Werkzeug, NumPy, SciPy, Keras, spaCy and others). For each, the issue text and the user-facing symptom were extracted into the brief; the upstream fix patch was used to construct the deterministic grader. (3) 30 data-science templates use canonical UCI public datasets cited in the paper. (4) 10 incident-response templates adapt public post-mortems. Each template includes a parameterized generator that emits byte-identical workspace files from a fixed integer seed; held-out seeds are reserved for the leaderboard refresh.",
+  "rai:dataCollectionType": [
+    "Crawled / scraped from the web",
+    "Designed / authored by the authors",
+    "Adapted from existing public artifacts (UCI datasets, GitHub issues, post-mortems)"
+  ],
+  "rai:dataCollectionTimeframe": [
+    "2024-09-01",
+    "2026-04-30"
+  ],
+  "rai:dataCollectionRawData": "Original task definitions, generator scripts, and grade.sh files are stored as plain text and shell scripts in the public repository at https://github.com/ybkim95/TeamBench.",
+  "rai:dataAnnotationProtocol": "Difficulty labels (Easy / Medium / Hard / Expert) and category labels are assigned per template by the authors at authoring time. The benchmark also reports an objective difficulty signal computed from the number of grader check invocations in each task's grade.sh (Easy <=5, Medium 6-8, Hard 9-13, Expert >=14). Pass / fail outcomes are produced exclusively by the deterministic shell-script grader, not by human or LLM raters.",
+  "rai:dataAnnotationPlatform": [
+    "None (graders are deterministic shell scripts authored alongside the task)"
+  ],
+  "rai:dataAnnotationAnalysis": [
+    "A four-pillar audit on the leaderboard subset (canonical-solution check, mutation-killing grader, cross-model discrimination, LLM-judge plausibility) is reported in the accompanying paper.",
+    "The TeamBench-Verified subset (57 of 90 leaderboard tasks) qualifies on all applicable pillars."
+  ],
+  "rai:annotationsPerItem": "1 (a single deterministic grader per template)",
+  "rai:annotatorDemographics": [
+    "Tasks are author-designed; all annotators are co-authors of the paper."
+  ],
+  "rai:machineAnnotationTools": [
+    "None"
+  ],
+  "rai:personalSensitiveInformation": [
+    "The benchmark contains no personal or sensitive information. Tasks are synthetic software-engineering / data-analysis cases. GitHub-derived tasks use only public issue text under each project's open-source license; no user identities, email addresses, or private repository content are included."
+  ],
+  "rai:dataBiases": [
+    "English-language tasks only.",
+    "Python-heavy: most tasks involve Python source code, with a smaller number of multi-language tasks (Go, JavaScript, SQL, shell). Cross-language coordination is a separate task category but Python remains the dominant runtime.",
+    "Code-centric domains: 650 of 851 templates are GitHub bug fixes from popular OSS libraries, which biases the pool toward library maintenance scenarios over greenfield development or operations workflows.",
+    "Author-assigned difficulty: the per-template Easy / Medium / Hard / Expert label is set by the task author at authoring time and was not externally validated by independent raters in the initial release.",
+    "GitHub source bias: bug reports are drawn from libraries that maintain public issue trackers in English; the underlying coding patterns and failure modes inherit any bias of those libraries."
+  ],
+  "rai:dataPreprocessingProtocol": [
+    "For GitHub-derived tasks, the upstream issue text was lightly redacted of usernames; the upstream fix patch was used to construct the grader's expected outputs without modification.",
+    "For UCI-derived data-science tasks, the raw CSV is loaded from the original UCI distribution and a parameterized split is applied at workspace generation time.",
+    "No preprocessing is applied that changes ground-truth pass/fail outcomes; all transformations are deterministic functions of the random seed."
+  ],
+  "rai:dataReleaseMaintenancePlan": "MIT-licensed release on Hugging Face (https://huggingface.co/datasets/ybkim95/teambench) and GitHub (https://github.com/ybkim95/TeamBench). Versioning follows semver and issue tracking is on the public GitHub repository. Held-out leaderboard seeds (>=5) are not present in the public release and are reserved for periodic leaderboard refresh. The maintenance plan and governance items are documented in the accompanying paper's appendix.",
+  "rai:dataUseCases": [
+    "Per-role marginal contribution ablations (Solo / Restricted / Team-No-Plan / Team-No-Verify / Full Team).",
+    "Cross-provider role-mixing studies (27 configurations across Anthropic, Google, OpenAI).",
+    "Prompt-only versus structurally-enforced role assignment comparisons.",
+    "Human baseline studies under the same role separation (40-session pilot included).",
+    "Calibration of LLM-judge based coordination metrics against deterministic grader verdicts."
+  ],
+  "rai:dataLimitations": [
+    "The harness uses a single-pass file-based protocol with capped per-role turns and does not test multi-round dialogue, dynamic role assignment, or within-provider model size scaling.",
+    "At the small open-weight tier (<=30B), tool-call reliability dominates over coordination ability.",
+    "The 49 percent LLM-Verifier false-accept rate is a property of the role-mixing distribution as currently sampled rather than a fixed property of any specific Verifier model.",
+    "Adversarial-trap (TRAP) and security-vulnerability (CRYPTO, SEC) tasks contain plausible-but-incorrect security patterns by design (intentional nonce reuse, low PBKDF2 iterations, truncated authentication tags). These are synthetic evaluation cases and must not be deployed; recommended use is in network-isolated containers."
+  ],
+  "rai:dataSocialImpact": "The released traces support empirical study of multi-agent failure modes and are intended to guide the design of more reliable Verifier components. The benchmark surfaces a 49 percent Verifier false-accept rate, a direct safety signal for any production system that delegates correctness adjudication to a current LLM Verifier."
+}

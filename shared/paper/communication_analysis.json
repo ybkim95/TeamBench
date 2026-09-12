@@ -1,0 +1,451 @@
+{
+  "generated": "2026-04-10T18:15:37.072763Z",
+  "description": "TeamBench communication pattern analysis",
+  "data_summary": {
+    "total_runs": 10736,
+    "valid_runs": 10736,
+    "runs_with_dialogue": 3911,
+    "runs_with_turns": 8904
+  },
+  "message_volume": {
+    "by_condition_role": {
+      "full": {
+        "executor": {
+          "n_messages": 2036,
+          "avg_chars": 442.7,
+          "avg_tokens": 110.7,
+          "total_chars": 901300,
+          "total_tokens": 225325
+        },
+        "planner": {
+          "n_messages": 8516,
+          "avg_chars": 4513.7,
+          "avg_tokens": 1128.4,
+          "total_chars": 38438640,
+          "total_tokens": 9609660
+        },
+        "verifier": {
+          "n_messages": 2085,
+          "avg_chars": 526.7,
+          "avg_tokens": 131.7,
+          "total_chars": 1098229,
+          "total_tokens": 274557
+        }
+      },
+      "oracle": {
+        "oracle": {
+          "n_messages": 28,
+          "avg_chars": 112.4,
+          "avg_tokens": 28.1,
+          "total_chars": 3146,
+          "total_tokens": 786
+        }
+      },
+      "oracle_2pass": {
+        "oracle": {
+          "n_messages": 1,
+          "avg_chars": 169.0,
+          "avg_tokens": 42.2,
+          "total_chars": 169,
+          "total_tokens": 42
+        }
+      },
+      "restricted": {
+        "restricted": {
+          "n_messages": 411,
+          "avg_chars": 178.4,
+          "avg_tokens": 44.6,
+          "total_chars": 73342,
+          "total_tokens": 18336
+        }
+      },
+      "team_no_plan": {
+        "executor": {
+          "n_messages": 884,
+          "avg_chars": 387.9,
+          "avg_tokens": 97.0,
+          "total_chars": 342879,
+          "total_tokens": 85720
+        },
+        "verifier": {
+          "n_messages": 1968,
+          "avg_chars": 445.3,
+          "avg_tokens": 111.3,
+          "total_chars": 876363,
+          "total_tokens": 219091
+        }
+      },
+      "team_no_verify": {
+        "executor": {
+          "n_messages": 1400,
+          "avg_chars": 926.0,
+          "avg_tokens": 231.5,
+          "total_chars": 1296442,
+          "total_tokens": 324110
+        },
+        "planner": {
+          "n_messages": 17468,
+          "avg_chars": 3442.4,
+          "avg_tokens": 860.6,
+          "total_chars": 60131787,
+          "total_tokens": 15032947
+        }
+      },
+      "topo_dual_exec": {
+        "executor": {
+          "n_messages": 7,
+          "avg_chars": 788.7,
+          "avg_tokens": 197.2,
+          "total_chars": 5521,
+          "total_tokens": 1380
+        },
+        "planner": {
+          "n_messages": 219,
+          "avg_chars": 763.6,
+          "avg_tokens": 190.9,
+          "total_chars": 167227,
+          "total_tokens": 41807
+        },
+        "verifier": {
+          "n_messages": 45,
+          "avg_chars": 344.0,
+          "avg_tokens": 86.0,
+          "total_chars": 15480,
+          "total_tokens": 3870
+        }
+      },
+      "topo_iterative": {
+        "executor": {
+          "n_messages": 10,
+          "avg_chars": 505.1,
+          "avg_tokens": 126.3,
+          "total_chars": 5051,
+          "total_tokens": 1263
+        },
+        "planner": {
+          "n_messages": 211,
+          "avg_chars": 654.9,
+          "avg_tokens": 163.7,
+          "total_chars": 138181,
+          "total_tokens": 34545
+        }
+      },
+      "topo_verify_first": {
+        "executor": {
+          "n_messages": 5,
+          "avg_chars": 508.4,
+          "avg_tokens": 127.1,
+          "total_chars": 2542,
+          "total_tokens": 636
+        },
+        "planner": {
+          "n_messages": 3,
+          "avg_chars": 2932.3,
+          "avg_tokens": 733.1,
+          "total_chars": 8797,
+          "total_tokens": 2199
+        },
+        "verifier": {
+          "n_messages": 46,
+          "avg_chars": 1193.2,
+          "avg_tokens": 298.3,
+          "total_chars": 54887,
+          "total_tokens": 13722
+        }
+      }
+    },
+    "run_message_count_distribution": {
+      "n_runs_with_dialogue": 3911,
+      "mean": 9.0,
+      "min": 1,
+      "max": 72,
+      "p25": 1,
+      "p50": 5,
+      "p75": 17
+    }
+  },
+  "communication_efficiency": {
+    "planner_length_vs_score": {
+      "pearson": {
+        "r": 0.211,
+        "p": 0.0,
+        "n": 2901
+      },
+      "spearman": {
+        "rho": 0.1091,
+        "p": 0.0,
+        "n": 2901
+      }
+    },
+    "message_count_vs_score": {
+      "pearson": {
+        "r": 0.0861,
+        "p": 0.0,
+        "n": 3911
+      },
+      "spearman": {
+        "rho": 0.0728,
+        "p": 0.0,
+        "n": 3911
+      }
+    },
+    "optimal_length_by_quartile": {
+      "Q1 (short)": {
+        "n": 726,
+        "mean_score": 0.0052,
+        "pass_rate": 0.0041
+      },
+      "Q2": {
+        "n": 725,
+        "mean_score": 0.0011,
+        "pass_rate": 0.0
+      },
+      "Q3": {
+        "n": 725,
+        "mean_score": 0.008,
+        "pass_rate": 0.0055
+      },
+      "Q4 (long)": {
+        "n": 725,
+        "mean_score": 0.029,
+        "pass_rate": 0.011
+      }
+    }
+  },
+  "remediation_loops": {
+    "n_runs_with_dialogue": 3911,
+    "n_runs_with_remediation": 941,
+    "n_runs_without_remediation": 2970,
+    "avg_remediation_rounds": 1.06,
+    "success_rate_with_remediation": {
+      "mean_score": 0.019,
+      "pass_rate": 0.1148,
+      "n": 941
+    },
+    "success_rate_without_remediation": {
+      "mean_score": 0.0095,
+      "pass_rate": 0.1579,
+      "n": 2970
+    }
+  },
+  "failure_taxonomy": {
+    "n_team_runs_with_dialogue": 3714,
+    "silent_planner": {
+      "n": 988,
+      "mean_score": 0.0147,
+      "pass_rate": 0.0445,
+      "description": "Team condition run where planner sends <50 chars total"
+    },
+    "ignored_plan": {
+      "n": 2705,
+      "mean_score": 0.0003,
+      "pass_rate": 0.1494,
+      "description": "Planner sends >500 chars but task scores <0.3"
+    },
+    "false_rejection_proxy": {
+      "n": 900,
+      "mean_score": 0.0013,
+      "pass_rate": 0.1111,
+      "description": "Verifier sends feedback to executor/planner but run scores <0.3"
+    },
+    "effective_relay": {
+      "n": 25,
+      "mean_score": 0.9381,
+      "pass_rate": 0.56,
+      "description": "Planner sends >500 chars and task scores >=0.8"
+    }
+  },
+  "turn_patterns": {
+    "by_condition_role": {
+      "full": {
+        "executor": {
+          "n_runs": 1212,
+          "avg_turns": 11.65,
+          "min_turns": 1,
+          "max_turns": 20
+        },
+        "planner": {
+          "n_runs": 1384,
+          "avg_turns": 11.54,
+          "min_turns": 1,
+          "max_turns": 20
+        }
+      },
+      "oracle": {
+        "oracle": {
+          "n_runs": 2236,
+          "avg_turns": 12.32,
+          "min_turns": 1,
+          "max_turns": 20
+        }
+      },
+      "oracle_2pass": {
+        "oracle_2pass_exec": {
+          "n_runs": 56,
+          "avg_turns": 16.54,
+          "min_turns": 6,
+          "max_turns": 20
+        },
+        "oracle_2pass_plan": {
+          "n_runs": 56,
+          "avg_turns": 11.29,
+          "min_turns": 5,
+          "max_turns": 20
+        }
+      },
+      "oracle_cot": {
+        "oracle_cot": {
+          "n_runs": 67,
+          "avg_turns": 24.34,
+          "min_turns": 8,
+          "max_turns": 40
+        }
+      },
+      "restricted": {
+        "restricted": {
+          "n_runs": 1943,
+          "avg_turns": 12.0,
+          "min_turns": 1,
+          "max_turns": 20
+        }
+      },
+      "team_no_plan": {
+        "executor": {
+          "n_runs": 1470,
+          "avg_turns": 11.42,
+          "min_turns": 1,
+          "max_turns": 20
+        }
+      },
+      "team_no_verify": {
+        "executor": {
+          "n_runs": 1505,
+          "avg_turns": 11.43,
+          "min_turns": 1,
+          "max_turns": 20
+        },
+        "planner": {
+          "n_runs": 1706,
+          "avg_turns": 12.65,
+          "min_turns": 1,
+          "max_turns": 20
+        }
+      },
+      "topo_dual_exec": {
+        "executor_a": {
+          "n_runs": 14,
+          "avg_turns": 9.86,
+          "min_turns": 8,
+          "max_turns": 10
+        },
+        "executor_b": {
+          "n_runs": 14,
+          "avg_turns": 9.79,
+          "min_turns": 8,
+          "max_turns": 10
+        },
+        "planner": {
+          "n_runs": 14,
+          "avg_turns": 20.0,
+          "min_turns": 20,
+          "max_turns": 20
+        },
+        "verifier": {
+          "n_runs": 14,
+          "avg_turns": 17.0,
+          "min_turns": 7,
+          "max_turns": 20
+        },
+        "verifier_b": {
+          "n_runs": 12,
+          "avg_turns": 19.92,
+          "min_turns": 19,
+          "max_turns": 20
+        }
+      },
+      "topo_self_check": {
+        "self_check": {
+          "n_runs": 14,
+          "avg_turns": 23.5,
+          "min_turns": 8,
+          "max_turns": 40
+        }
+      },
+      "topo_verify_first": {
+        "executor": {
+          "n_runs": 14,
+          "avg_turns": 15.57,
+          "min_turns": 6,
+          "max_turns": 20
+        },
+        "verifier_final": {
+          "n_runs": 14,
+          "avg_turns": 16.0,
+          "min_turns": 5,
+          "max_turns": 20
+        },
+        "verifier_gap_analysis": {
+          "n_runs": 14,
+          "avg_turns": 12.57,
+          "min_turns": 2,
+          "max_turns": 20
+        }
+      }
+    },
+    "turn_count_vs_score": {
+      "pearson": {
+        "r": 0.0636,
+        "p": 0.0,
+        "n": 8904
+      },
+      "spearman": {
+        "rho": 0.0785,
+        "p": 0.0,
+        "n": 8904
+      }
+    },
+    "avg_turns_by_role_overall": {
+      "oracle": 12.32,
+      "restricted": 12.0,
+      "executor": 11.5,
+      "planner": 12.19,
+      "oracle_cot": 24.34,
+      "oracle_2pass_plan": 11.29,
+      "oracle_2pass_exec": 16.54,
+      "self_check": 23.5,
+      "verifier_final": 16.0,
+      "verifier_gap_analysis": 12.57,
+      "executor_a": 9.86,
+      "executor_b": 9.79,
+      "verifier": 17.0,
+      "verifier_b": 19.92
+    },
+    "most_turns_role": "oracle_cot"
+  },
+  "paper_stats": {
+    "cei": {
+      "value": 0.0,
+      "description": "Communication Efficiency Index = planning_value / planner_tokens * 1000",
+      "n_pairs": 154
+    },
+    "active_communication_rate": {
+      "rate": 0.7709,
+      "n_team_runs_with_dialogue": 3714,
+      "n_active": 2863
+    },
+    "team_helps_communication": {
+      "n": 10,
+      "n_with_dialogue": 10,
+      "mean_score": 0.884,
+      "avg_planner_chars": 87040.1,
+      "avg_msg_count": 12.1
+    },
+    "team_hurts_communication": {
+      "n": 11,
+      "n_with_dialogue": 11,
+      "mean_score": 0.1955,
+      "avg_planner_chars": 86511.7,
+      "avg_msg_count": 21.0
+    }
+  }
+}

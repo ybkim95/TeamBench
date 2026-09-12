@@ -1,0 +1,87 @@
+# TeamBench-Verified
+
+_Computed 2026-04-30T20:37:42.559469+00:00._
+_Eligibility: canonical solution verified AND mutation_kill_rate ≥ 0.5 AND discrimination_score ≥ 0.1._
+
+**57 of 100 LB100 tasks qualify (TeamBench-Verified).**
+
+## Triage buckets across the full LB100
+
+| Bucket | Count | Meaning |
+|---|---|---|
+| verified | 57 | passes all checks → in TeamBench-Verified |
+| near_miss_very_close | 11 | best historical partial ≥ 0.9; grader has 1-2 over-strict checks |
+| near_miss | 11 | best historical partial 0.7-0.9; solvable but harder |
+| solvable_in_principle | 10 | best historical partial 0.4-0.7; partial credit but not converging |
+| broken_grader_post_pr | 10 | static workspace IS post-PR canonical fix but grader needs runtime deps (compiled numpy/scipy/etc) — recommend remove from LB100 |
+| no_progress | 0 | best partial < 0.3; needs manual review |
+
+## Drop reasons (Verified eligibility)
+
+| Reason | Count |
+|---|---|
+| canonical=canonical_unknown+mutation_kill_rate+discrimination_score | 39 |
+| g1_structural+canonical=canonical_unknown+mutation_kill_rate+discrimination_score | 3 |
+| mutation_kill_rate | 1 |
+
+## Verified task ids
+
+```
+TRAP5_security_theater
+TRAP6_deprecated_api
+CR4_api_review
+CROSS1_api_contract
+CROSS2_schema_evolution
+CROSS3_protocol_bridge
+D6_data_reconcile
+D3_schema_migration
+D4_data_pipeline
+D7_etl_reconciliation
+DIST1_queue_race
+DIST2_consensus_partition
+INC6_deadlock
+INC1_cascade_failure
+INC2_data_corruption
+INC3_memory_leak
+INC4_dns_miscfg
+IR2_misinformation_trap
+IR3_multi_source
+IR4_temporal
+LH2_budgeted_workflow
+LH5_data_migration
+CROSS6_grpc_rest_bridge
+JS2_xss_sanitize
+LH3_multi_service
+O6_perf_tuning
+TRAP3_metric_mirage
+CROSS7_config_drift
+API1_version_compat
+TS1_type_mismatch
+PIPE3_msg_queue
+PIPE3_stream_processing
+P3_access_control
+RDS10_survey_analysis
+RDS11_survivorship_bias
+RDS12_simpsons_income
+CRYPTO1_nonce_reuse
+CRYPTO3_cert_chain
+CRYPTO4_kdf_migration
+CRYPTO5_tls_config
+CRYPTO6_token_validation
+GO1_concurrency_fix
+SCALE1_codebase_migration
+GH10_retry_backoff
+GH11_middleware_order
+GH1_flask_session_ctx
+GH2_click_flag_value
+SPEC2_api_design
+GH7_fixture_scope_leak
+TEST2_regression
+TEST3_integration
+TEST4_property
+RDS13_smote_leakage
+RDS14_housing_leakage
+RDS15_taxi_circular
+RDS16_retail_phacking
+RDS17_macro_spurious
+```

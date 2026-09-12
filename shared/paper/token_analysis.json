@@ -1,0 +1,24 @@
+{
+  "methodology": "Token counts are not persisted in run artifacts (run_meta.json stores only task_id, run_id, seed, condition; no LLM usage data is saved). Estimates are derived from elapsed_sec across 3,096 runs (oracle n=563, restricted n=575, team_no_plan n=605, team_no_verify n=652, full n=701) using a conservative throughput assumption of 150 tokens/sec for Gemini 3 Flash (the reference model). This figure is consistent with Gemini Flash API latency benchmarks at typical task-length outputs. Elapsed time includes tool execution overhead, so true LLM token throughput is higher; estimates are therefore conservative lower bounds.",
+  "throughput_assumption_tokens_per_sec": 150,
+  "model": "gemini-3-flash-preview (reference model for primary ablation)",
+  "elapsed_sec_stats": {
+    "oracle":        {"n": 563, "avg_sec": 129.2, "median_sec": 79.1,  "total_hours": 20.2},
+    "restricted":    {"n": 575, "avg_sec": 103.4, "median_sec": 68.8,  "total_hours": 16.5},
+    "team_no_plan":  {"n": 605, "avg_sec": 230.4, "median_sec": 167.1, "total_hours": 38.7},
+    "team_no_verify":{"n": 652, "avg_sec": 307.9, "median_sec": 169.2, "total_hours": 55.8},
+    "full":          {"n": 701, "avg_sec": 609.6, "median_sec": 450.3, "total_hours": 118.7}
+  },
+  "estimated_tokens_per_oracle_run": 19400,
+  "estimated_tokens_per_team_run": 91400,
+  "cost_ratio_team_vs_oracle": 4.71,
+  "estimated_total_tokens_all_runs": 134900000,
+  "notes": {
+    "oracle_single_agent": "Oracle is a single agent with full spec access; ~129s avg => ~19K tokens/run covering system prompt, task spec, up to 30 turns of tool use.",
+    "team_full_three_agents": "Full team (planner + executor + verifier) runs 3 sequential agents; ~610s avg => ~91K tokens/run, reflecting 3x agent overhead plus inter-agent message context accumulation.",
+    "cost_ratio_interpretation": "Team runs consume ~4.7x more tokens than oracle runs on average, consistent with 3 agents each running ~half the turns of a solo oracle agent.",
+    "total_runs": 3096,
+    "total_compute_hours": 249.9,
+    "caveat": "Estimates assume no tool-execution dead time dominates; for tasks with heavy bash execution (e.g. DIST, CRYPTO), elapsed_sec overestimates LLM time and true token counts may be 30-50% lower."
+  }
+}

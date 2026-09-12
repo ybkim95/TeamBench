@@ -1,0 +1,200 @@
+{
+  "computed_at": "2026-04-30T20:35:11.548346+00:00",
+  "n": 2,
+  "results": [
+    {
+      "task_id": "TRAP1_spec_conflict",
+      "checked_at": "2026-04-30T20:06:26.601689+00:00",
+      "kill_rate": 0.4167,
+      "n_attempted": 12,
+      "n_killed": 5,
+      "mutants": [
+        {
+          "file": "app/__init__.py",
+          "mutation": "swap_False_True",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/__init__.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/config.py",
+          "mutation": "swap_False_True",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/routes.py",
+          "mutation": "swap_True_False",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/routes.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/routes.py",
+          "mutation": "swap_or_and",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/routes.py",
+          "mutation": "return_none",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_lt_gt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_True_False",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        },
+        {
+          "file": "app/validators.py",
+          "mutation": "swap_or_and",
+          "passed_after": true,
+          "primary_after": 0.0,
+          "killed": false
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 0.0,
+      "n_python_files": 8
+    },
+    {
+      "task_id": "O6_perf_tuning",
+      "checked_at": "2026-04-30T20:34:49.400632+00:00",
+      "kill_rate": 0.0833,
+      "n_attempted": 12,
+      "n_killed": 1,
+      "mutants": [
+        {
+          "file": "optimizer.py",
+          "mutation": "swap_lt_gt",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "optimizer.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "optimizer.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "optimizer.py",
+          "mutation": "swap_or_and",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "optimizer.py",
+          "mutation": "return_none",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_eq_neq",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_lt_gt",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_gt_lt",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_True_False",
+          "passed_after": false,
+          "primary_after": 0.0,
+          "killed": true
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_False_True",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_and_or",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        },
+        {
+          "file": "simulator.py",
+          "mutation": "swap_or_and",
+          "passed_after": true,
+          "primary_after": 1.0,
+          "killed": false
+        }
+      ],
+      "notes": "",
+      "base_pass": true,
+      "base_primary": 1.0,
+      "n_python_files": 2
+    }
+  ]
+}

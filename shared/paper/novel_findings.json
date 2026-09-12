@@ -1,0 +1,53 @@
+{
+  "finding_1_equalizer": {
+    "description": "Team coordination benefits inversely correlate with single-agent capability",
+    "correlation_r": -0.348,
+    "p_value": 0.0,
+    "low_oracle_uplift": 0.1496,
+    "high_oracle_uplift": -0.0433
+  },
+  "finding_2_plan_vs_verify": {
+    "description": "Planning helps across most categories; verification helps only on specific task types",
+    "plan_value_mean": 0.0479,
+    "verify_value_mean": 0.0001,
+    "plan_helps_categories": [
+      "github_real",
+      "incident",
+      "ir",
+      "multi_layer",
+      "negotiation",
+      "policy",
+      "pipeline",
+      "spec_driven",
+      "testing",
+      "adversarial"
+    ],
+    "verify_helps_categories": [
+      "multilang",
+      "negotiation",
+      "ops",
+      "spec_driven",
+      "other"
+    ]
+  },
+  "finding_3_verify_conditional": {
+    "description": "Verification helps on 25% of tasks but hurts on 28%; it helps when oracle is mid-range",
+    "verify_helps_n": 40,
+    "verify_hurts_n": 45,
+    "verify_helps_avg_oracle": 0.582,
+    "verify_hurts_avg_oracle": 0.536
+  },
+  "finding_4_categories": {
+    "description": "Testing, GitHub-real, and multi-layer tasks benefit most from teamwork",
+    "top_categories": [
+      "testing",
+      "github_real",
+      "multi_layer"
+    ],
+    "bottom_categories": [
+      "distributed",
+      "cross_system",
+      "pipeline"
+    ]
+  }
+}

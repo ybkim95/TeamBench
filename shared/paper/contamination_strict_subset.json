@@ -1,0 +1,53 @@
+{
+  "n_tasks_evaluated": 49,
+  "min_jaccard": 0.0,
+  "max_jaccard": 0.995,
+  "median_jaccard": 0.714,
+  "p25_jaccard": 0.628,
+  "p75_jaccard": 0.918,
+  "n_strict_subset_jaccard_lt_0p5": 9,
+  "threshold_counts": {
+    "jaccard_below_0.3": 2,
+    "jaccard_below_0.5": 9,
+    "jaccard_below_0.7": 23,
+    "jaccard_below_0.9": 34
+  },
+  "strict_subset_tasks": [
+    [
+      "cr2_style_enforce",
+      0.394
+    ],
+    [
+      "cr3_perf_review",
+      0.472
+    ],
+    [
+      "cr5_test_coverage",
+      0.0
+    ],
+    [
+      "d1_schema_drift",
+      0.191
+    ],
+    [
+      "d2_data_quality",
+      0.472
+    ],
+    [
+      "d4_data_pipeline",
+      0.343
+    ],
+    [
+      "d6_data_reconcile",
+      0.319
+    ],
+    [
+      "d8_csv_cleanup",
+      0.497
+    ],
+    [
+      "db1_migration_conflict",
+      0.305
+    ]
+  ]
+}

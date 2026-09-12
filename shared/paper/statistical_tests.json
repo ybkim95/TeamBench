@@ -1,0 +1,18 @@
+{
+  "method": "Paired bootstrap, 10000 iterations, seed=42",
+  "n_tasks": 147,
+  "aggregate_comparisons": {
+    "full_vs_oracle": {"diff": 0.0171, "ci": [-0.0225, 0.0576], "p": 0.2036, "sig": false},
+    "noverify_vs_oracle": {"diff": 0.0170, "ci": [-0.0291, 0.0625], "p": 0.2303, "sig": false},
+    "full_vs_noplan": {"diff": 0.0479, "ci": [0.0007, 0.0953], "p": 0.0238, "sig": true},
+    "full_vs_noverify": {"diff": 0.0001, "ci": [-0.0374, 0.0380], "p": 0.5035, "sig": false},
+    "oracle_vs_restricted": {"diff": 0.0041, "ci": [-0.0271, 0.0338], "p": 0.3876, "sig": false}
+  },
+  "equalizer_effect": {
+    "q1_hardest": {"diff": 0.1532, "ci": [0.0636, 0.2596], "p": 0.0000, "sig": true},
+    "q5_easiest": {"diff": -0.0702, "ci": [-0.1614, 0.0054], "p": 0.0361, "sig": true},
+    "q1_q5_gap": 0.2234
+  },
+  "significant_positive_categories": ["testing", "github_real", "multi_layer"],
+  "significant_negative_categories": ["pipeline", "cross_system"]
+}

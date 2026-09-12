@@ -1,0 +1,32 @@
+\begin{table}[h]\centering\small
+\caption{Equalizer replication across models (28-task cross-model subset). $r$ is Pearson correlation between oracle partial score and team uplift (\texttt{full $-$ oracle}) across tasks. $r<0$ supports the equalizer hypothesis. CI: 2000-iter bootstrap.}
+\label{tab:equalizer_replicate}
+\begin{tabular}{lccccc}\toprule
+Model & $n$ & $r$ & 95\% CI & $p$ & Equalizer \\ \midrule
+vllm:deepseek-ai/DeepSeek-R1-Distill-Qwen-32B@http://localhost:8007/v1 & 28 & -0.677 & [-0.881, -0.402] & 0.000 & \checkmark \\
+gemini-3.1-flash-lite-preview & 28 & -0.304 & [-0.606, +0.063] & 0.116 & $\cdot$ \\
+gemini-3-flash-preview & 28 & -0.286 & [-0.573, -0.020] & 0.140 & \checkmark \\
+vllm:google/gemma-3-27b-it@http://localhost:8003/v1 & 28 & -1.000 & [-1.000, -1.000] & 0.000 & \checkmark \\
+vllm:THUDM/glm-4-9b-chat@http://localhost:8013/v1 & 28 & -0.215 & [-0.454, -0.151] & 0.271 & \checkmark \\
+gpt-5.3-chat-latest & 28 & -0.337 & [-0.543, -0.025] & 0.079 & \checkmark \\
+gpt-5.4 & 28 & -0.178 & [-0.683, +0.277] & 0.364 & $\cdot$ \\
+gpt-5-mini & 28 & -0.364 & [-0.614, -0.089] & 0.057 & \checkmark \\
+gpt-5-nano & 28 & -0.332 & [-0.574, -0.032] & 0.084 & \checkmark \\
+claude-haiku-4-5-20251001 & 28 & -0.660 & [-0.881, -0.188] & 0.000 & \checkmark \\
+vllm:microsoft/phi-4@http://localhost:8011/v1 & 28 & -0.278 & [-0.547, +0.222] & 0.153 & $\cdot$ \\
+vllm:microsoft/Phi-4-mini-instruct@http://localhost:8010/v1 & 28 & -0.298 & [-0.570, -0.233] & 0.123 & \checkmark \\
+vllm:Qwen/Qwen2.5-Coder-32B-Instruct@http://localhost:8001/v1 & 28 & -0.083 & [-0.300, +0.373] & 0.674 & $\cdot$ \\
+vllm:Qwen/Qwen3.5-0.8B@http://localhost:8010/v1 & 28 & -0.380 & [-0.623, -0.045] & 0.046 & \checkmark \\
+vllm:Qwen/Qwen3.5-27B@http://localhost:8004/v1 & 28 & -0.770 & [-1.000, -0.414] & 0.000 & \checkmark \\
+vllm:Qwen/Qwen3.5-2B@http://localhost:8011/v1 & 28 & -0.493 & [-0.733, -0.177] & 0.008 & \checkmark \\
+vllm:Qwen/Qwen3.5-35B-A3B@http://localhost:8014/v1 & 24 & -0.356 & [-0.615, -0.012] & 0.087 & \checkmark \\
+vllm:Qwen/Qwen3.5-4B@http://localhost:8012/v1 & 28 & -0.453 & [-0.675, -0.144] & 0.016 & \checkmark \\
+vllm:Qwen/Qwen3.5-9B@http://localhost:8013/v1 & 28 & -0.255 & [-0.552, +0.278] & 0.190 & $\cdot$ \\
+vllm:Qwen/Qwen3-14B@http://localhost:8003/v1 & 28 & -0.371 & [-0.602, -0.022] & 0.052 & \checkmark \\
+vllm:Qwen/Qwen3-4B@http://localhost:8001/v1 & 28 & -0.590 & [-0.812, -0.242] & 0.001 & \checkmark \\
+vllm:Qwen/Qwen3-8B@http://localhost:8002/v1 & 28 & -0.530 & [-0.746, -0.249] & 0.004 & \checkmark \\
+vllm:Qwen/Qwen3-Coder-30B-A3B-Instruct@http://localhost:8005/v1 & 28 & -0.921 & [-1.000, -0.714] & 0.000 & \checkmark \\
+claude-sonnet-4-6 & 28 & -0.084 & [-0.421, +0.451] & 0.672 & $\cdot$ \\
+\midrule
+Pooled (Fisher-$z$) & -- & -0.438 & [-0.502, -0.370] & -- & -- \\
+\bottomrule\end{tabular}\end{table}

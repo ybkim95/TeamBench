@@ -1,0 +1,30 @@
+{
+  "n_tasks": 147,
+  "policy_mean_scores": {
+    "oracle_ceiling": 0.7041448979591837,
+    "static_full": 0.5917340136054422,
+    "static_team_no_verify": 0.5916122448979593,
+    "static_oracle": 0.5746578231292517,
+    "learned_router": 0.5665659863945578
+  },
+  "learned_vs_static_full": {
+    "mean_delta": -0.02527681904761905,
+    "ci95": [
+      -0.05255265306122455,
+      0.0010024659863945957
+    ],
+    "sig": false
+  },
+  "router_agreement_with_oracle_policy": 0.3333333333333333,
+  "learned_router_choice_histogram": {
+    "full": 68,
+    "oracle": 72,
+    "team_no_verify": 7
+  },
+  "oracle_policy_choice_histogram": {
+    "team_no_plan": 19,
+    "oracle": 47,
+    "full": 49,
+    "team_no_verify": 32
+  }
+}

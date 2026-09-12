@@ -1,0 +1,545 @@
+{
+  "computed_at": "2026-04-29T21:35:14.380139",
+  "models": {
+    "gemini-3-1-flash-lite-preview": {
+      "oracle": {
+        "mean_partial": 0.4536363636363635,
+        "pass_rate": 0.04040404040404041,
+        "valid_n": 99
+      },
+      "restricted": {
+        "mean_partial": 0.6032666666666665,
+        "pass_rate": 0.13,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.5100496666666667,
+        "pass_rate": 0.09,
+        "valid_n": 100
+      },
+      "team_no_verify": {
+        "mean_partial": 0.5569195286195286,
+        "pass_rate": 0.16161616161616163,
+        "valid_n": 99
+      },
+      "full": {
+        "mean_partial": 0.5473295918367347,
+        "pass_rate": 0.14285714285714285,
+        "valid_n": 98
+      }
+    },
+    "gemini-3-flash-preview": {
+      "oracle": {
+        "mean_partial": 0.5201,
+        "pass_rate": 0.11,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.6104836666666668,
+        "pass_rate": 0.14,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.3964836666666665,
+        "pass_rate": 0.08,
+        "valid_n": 100
+      },
+      "team_no_verify": {
+        "mean_partial": 0.6742166666666667,
+        "pass_rate": 0.25,
+        "valid_n": 100
+      },
+      "full": {
+        "mean_partial": 0.5588166666666664,
+        "pass_rate": 0.22,
+        "valid_n": 100
+      }
+    },
+    "gpt-5-4": {
+      "oracle": {
+        "mean_partial": 0.5828,
+        "pass_rate": 0.11,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.717643097643098,
+        "pass_rate": 0.31313131313131315,
+        "valid_n": 99
+      },
+      "team_no_plan": {
+        "mean_partial": 0.6104050505050502,
+        "pass_rate": 0.20202020202020202,
+        "valid_n": 99
+      },
+      "team_no_verify": {
+        "mean_partial": 0.6689336666666666,
+        "pass_rate": 0.31,
+        "valid_n": 100
+      },
+      "full": {
+        "mean_partial": 0.6260169999999997,
+        "pass_rate": 0.25,
+        "valid_n": 100
+      }
+    },
+    "gpt-5-nano": {
+      "oracle": {
+        "mean_partial": 0.44359999999999994,
+        "pass_rate": 0.05,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "team_no_plan": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "team_no_verify": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "full": {
+        "mean_partial": 0.47250774410774404,
+        "pass_rate": 0.06060606060606061,
+        "valid_n": 99
+      }
+    },
+    "claude-haiku-4-5": {
+      "oracle": {
+        "mean_partial": 0.5439999999999999,
+        "pass_rate": 0.11,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.7125833333333333,
+        "pass_rate": 0.26,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.5800833333333333,
+        "pass_rate": 0.15,
+        "valid_n": 100
+      },
+      "team_no_verify": {
+        "mean_partial": 0.1310526315789474,
+        "pass_rate": 0.05263157894736842,
+        "valid_n": 19
+      },
+      "full": {
+        "mean_partial": 0.6987173333333332,
+        "pass_rate": 0.23,
+        "valid_n": 100
+      }
+    },
+    "gpt-5-4-mini": {
+      "oracle": {
+        "mean_partial": 0.6799500000000002,
+        "pass_rate": 0.17,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.6626503333333335,
+        "pass_rate": 0.21,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.661649666666667,
+        "pass_rate": 0.22,
+        "valid_n": 100
+      },
+      "team_no_verify": {
+        "mean_partial": 0.6721836666666667,
+        "pass_rate": 0.22,
+        "valid_n": 100
+      },
+      "full": {
+        "mean_partial": 0.6860503333333334,
+        "pass_rate": 0.27,
+        "valid_n": 100
+      }
+    },
+    "gpt-5-4-nano": {
+      "oracle": {
+        "mean_partial": 0.4401503333333332,
+        "pass_rate": 0.04,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.6267178451178451,
+        "pass_rate": 0.16161616161616163,
+        "valid_n": 99
+      },
+      "team_no_plan": {
+        "mean_partial": 0.5596361111111111,
+        "pass_rate": 0.09375,
+        "valid_n": 96
+      },
+      "team_no_verify": {
+        "mean_partial": 0.5529131313131314,
+        "pass_rate": 0.1717171717171717,
+        "valid_n": 99
+      },
+      "full": {
+        "mean_partial": 0.5036363636363638,
+        "pass_rate": 0.18181818181818182,
+        "valid_n": 33
+      }
+    },
+    "claude-sonnet-4-6": {
+      "oracle": {
+        "mean_partial": 0.5068999999999998,
+        "pass_rate": 0.07,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.6937000000000002,
+        "pass_rate": 0.25,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.3449679245283019,
+        "pass_rate": 0.1320754716981132,
+        "valid_n": 53
+      },
+      "team_no_verify": {
+        "mean_partial": 0.602265811965812,
+        "pass_rate": 0.15384615384615385,
+        "valid_n": 39
+      },
+      "full": {
+        "mean_partial": 0.5521403508771929,
+        "pass_rate": 0.15789473684210525,
+        "valid_n": 95
+      }
+    },
+    "qwen3-4b": {
+      "oracle": {
+        "mean_partial": 0.33113402061855673,
+        "pass_rate": 0.010309278350515464,
+        "valid_n": 97
+      },
+      "restricted": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "team_no_plan": {
+        "mean_partial": 0.21852006802721094,
+        "pass_rate": 0.01020408163265306,
+        "valid_n": 98
+      },
+      "team_no_verify": {
+        "mean_partial": 0.4420914965986395,
+        "pass_rate": 0.0,
+        "valid_n": 98
+      },
+      "full": {
+        "mean_partial": 0.18214285714285713,
+        "pass_rate": 0.0,
+        "valid_n": 14
+      }
+    },
+    "gemini-2-5-pro": {
+      "oracle": {
+        "mean_partial": 0.50915,
+        "pass_rate": 0.0,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "team_no_plan": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "team_no_verify": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "full": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      }
+    },
+    "qwen3.5-0.8b": {
+      "oracle": {
+        "mean_partial": 0.23367092198581565,
+        "pass_rate": 0.0,
+        "valid_n": 94
+      },
+      "restricted": {
+        "mean_partial": 0.0,
+        "pass_rate": 0.0,
+        "valid_n": 24
+      },
+      "team_no_plan": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "team_no_verify": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "full": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      }
+    },
+    "gemma-4-31b": {
+      "oracle": {
+        "mean_partial": 0.7520771689497715,
+        "pass_rate": 0.2054794520547945,
+        "valid_n": 73
+      },
+      "restricted": {
+        "mean_partial": 0.7474429223744291,
+        "pass_rate": 0.3150684931506849,
+        "valid_n": 73
+      },
+      "team_no_plan": {
+        "mean_partial": 0.7475274193548386,
+        "pass_rate": 0.3387096774193548,
+        "valid_n": 62
+      },
+      "team_no_verify": {
+        "mean_partial": 0.6707079166666667,
+        "pass_rate": 0.225,
+        "valid_n": 80
+      },
+      "full": {
+        "mean_partial": 0.8001184523809524,
+        "pass_rate": 0.35714285714285715,
+        "valid_n": 56
+      }
+    },
+    "gemini-3-1-pro-preview": {
+      "oracle": {
+        "mean_partial": 0.6333835016835015,
+        "pass_rate": 0.13131313131313133,
+        "valid_n": 99
+      },
+      "restricted": {
+        "mean_partial": 0.6461787878787879,
+        "pass_rate": 0.18181818181818182,
+        "valid_n": 99
+      },
+      "team_no_plan": {
+        "mean_partial": 0.6011306513409962,
+        "pass_rate": 0.1724137931034483,
+        "valid_n": 87
+      },
+      "team_no_verify": {
+        "mean_partial": 0.6706976190476188,
+        "pass_rate": 0.23469387755102042,
+        "valid_n": 98
+      },
+      "full": {
+        "mean_partial": 0.6661687285223366,
+        "pass_rate": 0.25773195876288657,
+        "valid_n": 97
+      }
+    },
+    "qwen3-30b-a3b": {
+      "oracle": {
+        "mean_partial": 0.11452830188679246,
+        "pass_rate": 0.03773584905660377,
+        "valid_n": 53
+      },
+      "restricted": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "team_no_plan": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "team_no_verify": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      },
+      "full": {
+        "mean_partial": null,
+        "pass_rate": null,
+        "valid_n": 0
+      }
+    },
+    "qwen3-8b": {
+      "oracle": {
+        "mean_partial": 0.12921666666666662,
+        "pass_rate": 0.01,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.3023166666666667,
+        "pass_rate": 0.04,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.3915996666666667,
+        "pass_rate": 0.01,
+        "valid_n": 100
+      },
+      "team_no_verify": {
+        "mean_partial": 0.45081566666666667,
+        "pass_rate": 0.03,
+        "valid_n": 100
+      },
+      "full": {
+        "mean_partial": 0.21348451178451178,
+        "pass_rate": 0.0,
+        "valid_n": 99
+      }
+    },
+    "qwen3-14b": {
+      "oracle": {
+        "mean_partial": 0.17341666666666672,
+        "pass_rate": 0.03,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.3039166666666668,
+        "pass_rate": 0.02,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.4063166666666666,
+        "pass_rate": 0.02,
+        "valid_n": 100
+      },
+      "team_no_verify": {
+        "mean_partial": 0.4741506666666668,
+        "pass_rate": 0.01,
+        "valid_n": 100
+      },
+      "full": {
+        "mean_partial": 0.26748366666666673,
+        "pass_rate": 0.02,
+        "valid_n": 100
+      }
+    },
+    "qwen3-32b": {
+      "oracle": {
+        "mean_partial": 0.2449506666666667,
+        "pass_rate": 0.0,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.4907166666666666,
+        "pass_rate": 0.03,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.37829966666666665,
+        "pass_rate": 0.01,
+        "valid_n": 100
+      },
+      "team_no_verify": {
+        "mean_partial": 0.4963503333333332,
+        "pass_rate": 0.05,
+        "valid_n": 100
+      },
+      "full": {
+        "mean_partial": 0.16037766323024052,
+        "pass_rate": 0.010309278350515464,
+        "valid_n": 97
+      }
+    },
+    "claude-opus-4-7": {
+      "oracle": {
+        "mean_partial": 0.6869000000000003,
+        "pass_rate": 0.18,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.46748333333333325,
+        "pass_rate": 0.21,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.6446000000000002,
+        "pass_rate": 0.28,
+        "valid_n": 100
+      },
+      "team_no_verify": {
+        "mean_partial": 0.6658333333333333,
+        "pass_rate": 0.3,
+        "valid_n": 100
+      },
+      "full": {
+        "mean_partial": 0.31468750000000006,
+        "pass_rate": 0.171875,
+        "valid_n": 64
+      }
+    },
+    "gpt-oss-120b": {
+      "oracle": {
+        "mean_partial": 0.2977166666666667,
+        "pass_rate": 0.02,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.37921666666666654,
+        "pass_rate": 0.0,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.07471428571428572,
+        "pass_rate": 0.014285714285714285,
+        "valid_n": 70
+      },
+      "team_no_verify": {
+        "mean_partial": 0.5311836666666666,
+        "pass_rate": 0.09,
+        "valid_n": 100
+      },
+      "full": {
+        "mean_partial": 0.06666666666666667,
+        "pass_rate": 0.0,
+        "valid_n": 10
+      }
+    },
+    "gpt-oss-20b": {
+      "oracle": {
+        "mean_partial": 0.5582666666666668,
+        "pass_rate": 0.06,
+        "valid_n": 100
+      },
+      "restricted": {
+        "mean_partial": 0.5773006666666669,
+        "pass_rate": 0.11,
+        "valid_n": 100
+      },
+      "team_no_plan": {
+        "mean_partial": 0.46521700000000005,
+        "pass_rate": 0.08,
+        "valid_n": 100
+      },
+      "team_no_verify": {
+        "mean_partial": 0.44508333333333333,
+        "pass_rate": 0.07,
+        "valid_n": 100
+      },
+      "full": {
+        "mean_partial": 0.1862380952380952,
+        "pass_rate": 0.014285714285714285,
+        "valid_n": 70
+      }
+    }
+  }
+}

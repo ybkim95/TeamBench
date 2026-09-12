@@ -1,0 +1,134 @@
+[
+  {
+    "model": "deepseek_r1_distill_32b",
+    "size_b": 32,
+    "type": "open-source",
+    "pass_rate": 0.0,
+    "oracle_rate": 0.0,
+    "full_rate": 0.0,
+    "team_uplift": 0.0,
+    "ctx_errors": 26,
+    "total_pass": 0
+  },
+  {
+    "model": "g31lite",
+    "size_b": 15,
+    "type": "closed",
+    "pass_rate": 0.18571428571428572,
+    "oracle_rate": 0.10714285714285714,
+    "full_rate": 0.32142857142857145,
+    "team_uplift": 0.2142857142857143,
+    "ctx_errors": 0,
+    "total_pass": 26
+  },
+  {
+    "model": "g3flash",
+    "size_b": 50,
+    "type": "closed",
+    "pass_rate": 0.22142857142857142,
+    "oracle_rate": 0.17857142857142858,
+    "full_rate": 0.35714285714285715,
+    "team_uplift": 0.17857142857142858,
+    "ctx_errors": 0,
+    "total_pass": 31
+  },
+  {
+    "model": "gpt5mini",
+    "size_b": 70,
+    "type": "closed",
+    "pass_rate": 0.25,
+    "oracle_rate": 0.17857142857142858,
+    "full_rate": 0.35714285714285715,
+    "team_uplift": 0.17857142857142858,
+    "ctx_errors": 0,
+    "total_pass": 35
+  },
+  {
+    "model": "gpt5nano",
+    "size_b": 8,
+    "type": "closed",
+    "pass_rate": 0.10714285714285714,
+    "oracle_rate": 0.14285714285714285,
+    "full_rate": 0.17857142857142858,
+    "team_uplift": 0.035714285714285726,
+    "ctx_errors": 0,
+    "total_pass": 15
+  },
+  {
+    "model": "haiku45",
+    "size_b": 20,
+    "type": "closed",
+    "pass_rate": 0.20714285714285716,
+    "oracle_rate": 0.10714285714285714,
+    "full_rate": 0.42857142857142855,
+    "team_uplift": 0.3214285714285714,
+    "ctx_errors": 0,
+    "total_pass": 29
+  },
+  {
+    "model": "qwen3.5_27b",
+    "size_b": 27,
+    "type": "open-source",
+    "pass_rate": 0.02142857142857143,
+    "oracle_rate": 0.03571428571428571,
+    "full_rate": 0.03571428571428571,
+    "team_uplift": 0.0,
+    "ctx_errors": 106,
+    "total_pass": 3
+  },
+  {
+    "model": "qwen3_14b",
+    "size_b": 14,
+    "type": "open-source",
+    "pass_rate": 0.014285714285714285,
+    "oracle_rate": 0.0,
+    "full_rate": 0.07142857142857142,
+    "team_uplift": 0.07142857142857142,
+    "ctx_errors": 26,
+    "total_pass": 2
+  },
+  {
+    "model": "qwen3_4b",
+    "size_b": 4,
+    "type": "open-source",
+    "pass_rate": 0.007142857142857143,
+    "oracle_rate": 0.0,
+    "full_rate": 0.0,
+    "team_uplift": 0.0,
+    "ctx_errors": 45,
+    "total_pass": 1
+  },
+  {
+    "model": "qwen3_8b",
+    "size_b": 8,
+    "type": "open-source",
+    "pass_rate": 0.007142857142857143,
+    "oracle_rate": 0.0,
+    "full_rate": 0.03571428571428571,
+    "team_uplift": 0.03571428571428571,
+    "ctx_errors": 28,
+    "total_pass": 1
+  },
+  {
+    "model": "qwen3_coder_30b",
+    "size_b": 30,
+    "type": "open-source",
+    "pass_rate": 0.02142857142857143,
+    "oracle_rate": 0.03571428571428571,
+    "full_rate": 0.0,
+    "team_uplift": -0.03571428571428571,
+    "ctx_errors": 102,
+    "total_pass": 3
+  },
+  {
+    "model": "sonnet46",
+    "size_b": 175,
+    "type": "closed",
+    "pass_rate": 0.30714285714285716,
+    "oracle_rate": 0.21428571428571427,
+    "full_rate": 0.42857142857142855,
+    "team_uplift": 0.21428571428571427,
+    "ctx_errors": 0,
+    "total_pass": 43
+  }
+]

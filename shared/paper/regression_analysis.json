@@ -1,0 +1,120 @@
+{
+  "n_tasks": 147,
+  "mean_uplift": 0.0171,
+  "median_uplift": 0.0,
+  "positive_pct": 36.7,
+  "negative_pct": 21.8,
+  "predictors": {
+    "oracle_score": {
+      "r": -0.348,
+      "p": 0.0
+    },
+    "difficulty": {
+      "r": -0.111,
+      "p": 0.1777
+    },
+    "spec_words": {
+      "r": 0.001,
+      "p": 0.989
+    },
+    "num_languages": {
+      "r": 0.039,
+      "p": 0.6403
+    }
+  },
+  "categories": {
+    "code_review": {
+      "n": 5,
+      "mean_uplift": 0.0128
+    },
+    "cross_system": {
+      "n": 3,
+      "mean_uplift": -0.2
+    },
+    "crypto": {
+      "n": 2,
+      "mean_uplift": 0.0
+    },
+    "data": {
+      "n": 8,
+      "mean_uplift": 0.0519
+    },
+    "distributed": {
+      "n": 2,
+      "mean_uplift": -0.215
+    },
+    "github_real": {
+      "n": 11,
+      "mean_uplift": 0.1582
+    },
+    "multilang": {
+      "n": 5,
+      "mean_uplift": -0.12
+    },
+    "incident": {
+      "n": 10,
+      "mean_uplift": -0.064
+    },
+    "integration": {
+      "n": 2,
+      "mean_uplift": -0.1333
+    },
+    "ir": {
+      "n": 7,
+      "mean_uplift": -0.0268
+    },
+    "legalhold": {
+      "n": 6,
+      "mean_uplift": -0.035
+    },
+    "multi_layer": {
+      "n": 9,
+      "mean_uplift": 0.1256
+    },
+    "negotiation": {
+      "n": 4,
+      "mean_uplift": -0.0136
+    },
+    "ops": {
+      "n": 9,
+      "mean_uplift": -0.0436
+    },
+    "policy": {
+      "n": 7,
+      "mean_uplift": 0.0966
+    },
+    "pipeline": {
+      "n": 6,
+      "mean_uplift": -0.1122
+    },
+    "swe": {
+      "n": 5,
+      "mean_uplift": 0.0418
+    },
+    "scaling": {
+      "n": 1,
+      "mean_uplift": 0.028
+    },
+    "security": {
+      "n": 9,
+      "mean_uplift": -0.0738
+    },
+    "spec_driven": {
+      "n": 6,
+      "mean_uplift": 0.1208
+    },
+    "other": {
+      "n": 18,
+      "mean_uplift": 0.0302
+    },
+    "testing": {
+      "n": 9,
+      "mean_uplift": 0.1888
+    },
+    "adversarial": {
+      "n": 3,
+      "mean_uplift": 0.0
+    }
+  },
+  "oracle_bins": {}
+}
