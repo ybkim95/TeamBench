@@ -290,19 +290,42 @@ print(len(sel), "tasks ->", "shared/paper/quality/core_tasks.json")
 PY
 ```
 
-### Step 2 — recompute the pristine baseline on the staged corpus
+### Step 2 — DONE. The do-nothing floor on staged tasks
 
 `shared/paper/quality/pristine_checks.json` was computed against the OLD
 fragment workspaces. It is stale for every core task. The discriminative rescore
 depends on it.
 
-```bash
-.venv/bin/python -u scripts/discriminative_rescore.py --baseline
+`scripts/core_pristine_baseline.py` establishes it through the real runtime
+path (`harness.run_all.setup_run` + `grade_run`), so the baseline is what the
+benchmark actually produces rather than a reimplementation. Result, in
+`shared/paper/quality/pristine_checks_core.json`:
+
 ```
+baselined                                    48 / 48
+mean do-nothing partial (raw scale)          0.815
+tasks an empty submission already PASSES     0
+tasks with NO discriminative check           0
+
+checks across the core                       374
+guards (pass on an untouched workspace)      303   (81%)
+discriminative                                71
+discriminative per task            median 1, max 4
+```
+
+81% of every reported partial_score was credit for not vandalising the
+workspace. The guard fraction and the 0.815 floor agree, which is the internal
+consistency check.
 
 A check counts as discriminative for a task iff it fails on that task's pristine
 workspace. That is per (task, check), never per check name: "source modules
 import without error" is a guard on one task and the entire point of another.
+
+Rerun with:
+
+```bash
+.venv/bin/python -u scripts/core_pristine_baseline.py --workers 4
+```
 
 ### Step 3 — the budget curve  (this is the blocked experiment)
 
@@ -324,13 +347,54 @@ with a 7x compute gap.
 Output goes to `shared/ablation_results/budget_sweep/core_tasks/`, namespaced by
 the selection so it can never be silently mixed with an older sweep.
 
-### Step 4 — re-run the admission gate against the core
+### Step 4 — DONE. The admission gate on the core
 
 ```bash
-.venv/bin/python -u scripts/task_admission_gate.py --reference-sample 40
+TASKS=$(.venv/bin/python -c "import json;print(' '.join(json.load(open('shared/paper/quality/core_tasks.json'))['selected_flat']))")
+TEAMBENCH_RUNS_DIR=/tmp/tb_gate .venv/bin/python -u scripts/task_admission_gate.py \
+  --bootstrap --tasks $TASKS --reference-sample 48 --workers 3
 ```
 
-G3 finally has a defined population to be evaluated on.
+`--bootstrap` is required: the gate refuses to run under the repository venv.
+Result, in `shared/paper/quality/admission_core_summary.json`:
+
+```
+G1  48/48      an empty submission scores 0 on the discriminative checks
+G2  48/48      the pristine workspace does not pass
+G3  47/48      the upstream reference scores 1.0
+G4  48/48
+G5  48/48
+G6   1/48      >=50% of checks discriminative   (measured median 0.14)
+G7  48/48
+
+raw floor mean 0.8146   (matches Step 2's independent 0.815)
+G3 failure: GH17_aiohttp_10151
+```
+
+**G6 is left failing on purpose.** Lowering its threshold would admit 46 tasks
+immediately, and satisfying it as written would mean deleting anti-cheat checks
+that legitimately detect deleted tests, wiped files and cheat markers. The
+concern G6 was built for is real (303 of 374 checks are guards) but the remedy
+belongs in scoring, not in the corpus: exclude guards from the score. So the
+gate suite now separates two things it used to conflate.
+
+```
+validity      can the task distinguish submissions?   G1+G2+G3 -> yes, 47/48
+granularity   how finely?                             G6 -> coarsely, median 1 check
+```
+
+That granularity number is itself a finding: with a median of one discriminative
+check per task, TeamBench-Core is effectively pass/fail, and the graded partial
+credit the v1 paper reported was 81% guard mass.
+
+Three defects in the gate had to be fixed before any of this meant anything;
+they are in the commit for `harness/reference_apply.py` and
+`scripts/task_admission_gate.py`. Briefly: `invoke_grader` was a copy of
+`grade_run` that had drifted and graded staged tasks without restoring the
+held-out tests; G3 built its reference workspace from the vendored fragment via
+reparameterisation machinery that has no meaning for an upstream checkout, and
+scored the reference 0.71 where a direct `git apply` scores 1.0; and G1 required
+a raw floor of exactly 0.0, which no task with a guard check can reach.
 
 ---
 

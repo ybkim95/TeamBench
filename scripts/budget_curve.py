@@ -181,7 +181,29 @@ def main() -> int:
             line += "  mean disc delta %+.3f" % statistics.mean(dd)
         print(line)
 
-    json.dump({"rows": rows,
+    # A sign test on the paired outcomes. The question is not whether the team
+    # mean is lower but whether the team ever wins a task the solo agent loses,
+    # at the same budget on the same task.
+    tw = sw = 0
+    for b in data:
+        o, f = data[b].get("oracle") or {}, data[b].get("full") or {}
+        for t in set(o) & set(f):
+            if f[t]["pass"] and not o[t]["pass"]:
+                tw += 1
+            elif o[t]["pass"] and not f[t]["pass"]:
+                sw += 1
+    n = tw + sw
+    if n:
+        # two-sided exact binomial against p=0.5
+        pv = min(1.0, 2 * sum(math.comb(n, k) for k in range(0, min(tw, sw) + 1)) / 2 ** n)
+        print("\ndiscordant task-budget pairs: %d  (team-only %d, solo-only %d)" % (n, tw, sw))
+        print("  exact two-sided sign test p = %.2g" % pv)
+    else:
+        pv = None
+        print("\nno discordant pairs")
+
+    json.dump({"rows": rows, "sign_test": {"team_only": tw, "solo_only": sw,
+                                           "n_discordant": n, "p_two_sided": pv},
                "per_task": {str(b): {c: data[b][c] for c in data[b]} for b in data}},
               open(a.out, "w"), indent=1)
     print("\nwrote %s" % a.out)

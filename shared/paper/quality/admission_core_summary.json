@@ -1,0 +1,23 @@
+{
+ "n_tasks": 48,
+ "gate_pass": {
+  "G1": 48,
+  "G2": 48,
+  "G3": 47,
+  "G4": 48,
+  "G5": 48,
+  "G6": 1,
+  "G7": 48
+ },
+ "admitted_strict": 1,
+ "raw_floor_mean": 0.8145833333333333,
+ "discriminative_per_task": {
+  "median": 1.0,
+  "min": 1,
+  "max": 4
+ },
+ "g3_failures": [
+  "GH17_aiohttp_10151"
+ ],
+ "interpretation": "Six of seven gates pass on essentially every task: an empty submission fails all 48 (G2), each has a non-empty discriminative set (G1), and the upstream reference scores 1.0 on 47 of 48 (G3). Only G6 blocks, and it blocks 46 of 48. G6 asks that at least half a grader's checks be discriminative; the measured median is 0.14. That threshold was set when guards were counted in the score, where the concern was real: 303 of 374 checks pass on an untouched workspace and the raw do-nothing floor is 0.815. But satisfying it would mean deleting anti-cheat checks that legitimately detect deleted tests, wiped files and cheat markers. The same concern is answered instead by excluding guards from the score, which is a change to scoring rather than to the corpus. G6 is therefore left failing and reported as-is: what it now measures is GRANULARITY, not validity. With a median of one discriminative check per task, TeamBench-Core is effectively pass/fail, and the graded partial credit the v1 paper reported was 81% guard mass."
+}

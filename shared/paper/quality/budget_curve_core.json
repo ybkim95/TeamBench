@@ -3,44 +3,86 @@
   {
    "budget": 20,
    "condition": "oracle",
-   "n": 16,
-   "passes": 1,
-   "pass_rate": 0.0625,
+   "n": 48,
+   "passes": 4,
+   "pass_rate": 0.08333333333333333,
    "pass_ci95": [
-    0.01111905730833121,
-    0.2832926836802987
+    0.03288322434995555,
+    0.19553565161066291
    ],
-   "raw_mean": 0.823125,
-   "disc_mean": 0.09375,
-   "inadmissible": 0
+   "raw_mean": 0.8264583333333333,
+   "disc_mean": 0.10416666666666667,
+   "inadmissible": 1
+  },
+  {
+   "budget": 20,
+   "condition": "full",
+   "n": 48,
+   "passes": 0,
+   "pass_rate": 0.0,
+   "pass_ci95": [
+    0.0,
+    0.0741026511527422
+   ],
+   "raw_mean": 0.8027083333333334,
+   "disc_mean": 0.0,
+   "inadmissible": 1
   },
   {
    "budget": 60,
    "condition": "oracle",
-   "n": 7,
-   "passes": 1,
-   "pass_rate": 0.14285714285714285,
+   "n": 48,
+   "passes": 5,
+   "pass_rate": 0.10416666666666667,
    "pass_ci95": [
-    0.02567895594897479,
-    0.51313450331903
+    0.045321050901178245,
+    0.2216768812614093
    ],
-   "raw_mean": 0.8271428571428572,
-   "disc_mean": 0.2857142857142857,
-   "inadmissible": 0
+   "raw_mean": 0.8385416666666666,
+   "disc_mean": 0.14930555555555555,
+   "inadmissible": 2
+  },
+  {
+   "budget": 60,
+   "condition": "full",
+   "n": 48,
+   "passes": 0,
+   "pass_rate": 0.0,
+   "pass_ci95": [
+    0.0,
+    0.0741026511527422
+   ],
+   "raw_mean": 0.793125,
+   "disc_mean": 0.03125,
+   "inadmissible": 4
   },
   {
    "budget": 140,
    "condition": "oracle",
-   "n": 5,
-   "passes": 1,
-   "pass_rate": 0.2,
+   "n": 48,
+   "passes": 10,
+   "pass_rate": 0.20833333333333334,
    "pass_ci95": [
-    0.03622316096978745,
-    0.6244717358814613
+    0.11730147795889813,
+    0.3425917352135348
    ],
-   "raw_mean": 0.85,
-   "disc_mean": 0.4,
-   "inadmissible": 0
+   "raw_mean": 0.84125,
+   "disc_mean": 0.2673611111111111,
+   "inadmissible": 3
+  },
+  {
+   "budget": 140,
+   "condition": "full",
+   "n": 7,
+   "passes": 0,
+   "pass_rate": 0.0,
+   "pass_ci95": [
+    0.0,
+    0.35433884297520657
+   ],
+   "raw_mean": 0.71,
+   "disc_mean": 0.14285714285714285,
+   "inadmissible": 1
   }
  ],
  "per_task": {
@@ -80,6 +122,358 @@
      "admissible": true,
      "disc": 1.0,
      "turns": 263.8
+    },
+    "GH17_aiohttp_10151": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 2212.7
+    },
+    "GH25_aiohttp_12245": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1810.0
+    },
+    "GH28_jinja_1852": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1352.6
+    },
+    "GH29_aiohttp_12217": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 822.8
+    },
+    "GH30_werkzeug_3109": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 1744.9
+    },
+    "GH32_jinja_1664": {
+     "raw": 0.9,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1442.8
+    },
+    "GH33_jinja_1663": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 356.2
+    },
+    "GH35_jinja_1665": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1423.5
+    },
+    "GH363_celery_10040": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 1141.8
+    },
+    "GH371_arrow_1194": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 1213.1
+    },
+    "GH37_pydantic_12816": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 401.1
+    },
+    "GH381_celery_10013": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 896.7
+    },
+    "GH394_arrow_1218": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 197.5
+    },
+    "GH39_jinja_1762": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 270.5
+    },
+    "GH405_narwhals_1515": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1575.8
+    },
+    "GH415_arrow_852": {
+     "raw": 0.5,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 712.5
+    },
+    "GH442_arrow_1172": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 654.0
+    },
+    "GH444_arrow_1184": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 205.4
+    },
+    "GH46_pydantic_12951": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 131.8
+    },
+    "GH47_jinja_1706": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 780.9
+    },
+    "GH516_attrs_1513": {
+     "raw": 0.57,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 644.0
+    },
+    "GH525_arrow_1186": {
+     "raw": 0.78,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.3333333333333333,
+     "turns": 101.6
+    },
+    "GH52_jinja_1702": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 357.7
+    },
+    "GH539_redis-py_3969": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 450.7
+    },
+    "GH540_redis-py_3968": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 251.3
+    },
+    "GH54_pydantic_12817": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 868.6
+    },
+    "GH558_marshmallow_2861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 198.4
+    },
+    "GH566_jinja_1537": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 112.2
+    },
+    "GH569_celery_10023": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 671.9
+    },
+    "GH56_werkzeug_3066": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 832.5
+    },
+    "GH60_starlette_3148": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 64.9
+    },
+    "GH613_celery_10038": {
+     "raw": 0.33,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 574.1
+    },
+    "GH626_werkzeug_3081": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1234.8
+    },
+    "GH642_marshmallow_2854": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1770.3
+    },
+    "GH64_werkzeug_3008": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 645.6
+    },
+    "GH684_starlette_3144": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 272.5
+    },
+    "GH71_starlette_3189": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 43.7
+    },
+    "GH729_werkzeug_3038": {
+     "raw": 0.8,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1015.2
+    },
+    "GH732_arrow_1190": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 231.6
+    },
+    "GH801_aiohttp_11861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 693.5
+    },
+    "GH802_aiohttp_11860": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1922.0
+    },
+    "GH808_jinja_2062": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 245.9
+    },
+    "GH97_arrow_1201": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 622.5
+    }
+   },
+   "full": {
+    "GH103_redis-py_3998": {
+     "raw": 0.27,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.5,
+     "turns": 642.0
+    },
+    "GH1118_mlflow_22053": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 2427.9
+    },
+    "GH112_redis-py_3996": {
+     "raw": 0.71,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 549.8
+    },
+    "GH139_marshmallow_2894": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1342.8
+    },
+    "GH140_marshmallow_2874": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 411.4
+    },
+    "GH17_aiohttp_10151": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 908.7
+    },
+    "GH25_aiohttp_12245": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1695.8
     }
    }
   },
@@ -196,6 +590,568 @@
      "admissible": true,
      "disc": 0.0,
      "turns": 60.2
+    },
+    "GH381_celery_10013": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 82.5
+    },
+    "GH394_arrow_1218": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 117.2
+    },
+    "GH39_jinja_1762": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 65.4
+    },
+    "GH405_narwhals_1515": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 206.4
+    },
+    "GH415_arrow_852": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 48.5
+    },
+    "GH442_arrow_1172": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 59.8
+    },
+    "GH444_arrow_1184": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 100.1
+    },
+    "GH46_pydantic_12951": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 79.0
+    },
+    "GH47_jinja_1706": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 159.7
+    },
+    "GH516_attrs_1513": {
+     "raw": 0.29,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 74.7
+    },
+    "GH525_arrow_1186": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 54.5
+    },
+    "GH52_jinja_1702": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 56.1
+    },
+    "GH539_redis-py_3969": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 68.9
+    },
+    "GH540_redis-py_3968": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 59.2
+    },
+    "GH54_pydantic_12817": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 70.3
+    },
+    "GH558_marshmallow_2861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 32.1
+    },
+    "GH566_jinja_1537": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 169.2
+    },
+    "GH569_celery_10023": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 93.5
+    },
+    "GH56_werkzeug_3066": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 321.0
+    },
+    "GH60_starlette_3148": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 40.1
+    },
+    "GH613_celery_10038": {
+     "raw": 0.78,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 67.5
+    },
+    "GH626_werkzeug_3081": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 426.8
+    },
+    "GH642_marshmallow_2854": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 29.3
+    },
+    "GH64_werkzeug_3008": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 53.0
+    },
+    "GH684_starlette_3144": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 32.1
+    },
+    "GH71_starlette_3189": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 48.3
+    },
+    "GH729_werkzeug_3038": {
+     "raw": 0.8,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 100.0
+    },
+    "GH732_arrow_1190": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 31.0
+    },
+    "GH801_aiohttp_11861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 79.2
+    },
+    "GH802_aiohttp_11860": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 78.4
+    },
+    "GH808_jinja_2062": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 39.5
+    },
+    "GH97_arrow_1201": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 123.6
+    }
+   },
+   "full": {
+    "GH103_redis-py_3998": {
+     "raw": 0.82,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 76.3
+    },
+    "GH1118_mlflow_22053": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 63.1
+    },
+    "GH112_redis-py_3996": {
+     "raw": 0.43,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 40.9
+    },
+    "GH139_marshmallow_2894": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 42.8
+    },
+    "GH140_marshmallow_2874": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 36.1
+    },
+    "GH17_aiohttp_10151": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 119.7
+    },
+    "GH25_aiohttp_12245": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 159.1
+    },
+    "GH28_jinja_1852": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 96.5
+    },
+    "GH29_aiohttp_12217": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 99.5
+    },
+    "GH30_werkzeug_3109": {
+     "raw": 0.9,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 49.7
+    },
+    "GH32_jinja_1664": {
+     "raw": 0.9,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 148.9
+    },
+    "GH33_jinja_1663": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 87.5
+    },
+    "GH35_jinja_1665": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 65.2
+    },
+    "GH363_celery_10040": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 47.6
+    },
+    "GH371_arrow_1194": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 57.9
+    },
+    "GH37_pydantic_12816": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 53.8
+    },
+    "GH381_celery_10013": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 70.3
+    },
+    "GH394_arrow_1218": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 52.1
+    },
+    "GH39_jinja_1762": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 50.5
+    },
+    "GH405_narwhals_1515": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 118.3
+    },
+    "GH415_arrow_852": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 51.4
+    },
+    "GH442_arrow_1172": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 46.5
+    },
+    "GH444_arrow_1184": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 46.7
+    },
+    "GH46_pydantic_12951": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 63.9
+    },
+    "GH47_jinja_1706": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 59.6
+    },
+    "GH516_attrs_1513": {
+     "raw": 0.29,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 49.3
+    },
+    "GH525_arrow_1186": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 57.1
+    },
+    "GH52_jinja_1702": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 109.7
+    },
+    "GH539_redis-py_3969": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 129.6
+    },
+    "GH540_redis-py_3968": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 129.4
+    },
+    "GH54_pydantic_12817": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 82.4
+    },
+    "GH558_marshmallow_2861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 47.3
+    },
+    "GH566_jinja_1537": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 59.4
+    },
+    "GH569_celery_10023": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 47.0
+    },
+    "GH56_werkzeug_3066": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 69.3
+    },
+    "GH60_starlette_3148": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 69.4
+    },
+    "GH613_celery_10038": {
+     "raw": 0.78,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 128.8
+    },
+    "GH626_werkzeug_3081": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 202.7
+    },
+    "GH642_marshmallow_2854": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 39.1
+    },
+    "GH64_werkzeug_3008": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 48.1
+    },
+    "GH684_starlette_3144": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 36.6
+    },
+    "GH71_starlette_3189": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 51.6
+    },
+    "GH729_werkzeug_3038": {
+     "raw": 0.8,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 221.8
+    },
+    "GH732_arrow_1190": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 44.0
+    },
+    "GH801_aiohttp_11861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 159.4
+    },
+    "GH802_aiohttp_11860": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 260.6
+    },
+    "GH808_jinja_2062": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 112.2
+    },
+    "GH97_arrow_1201": {
+     "raw": 0.78,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 270.4
     }
    }
   },
@@ -249,6 +1205,631 @@
      "admissible": true,
      "disc": 0.0,
      "turns": 228.4
+    },
+    "GH28_jinja_1852": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 552.8
+    },
+    "GH29_aiohttp_12217": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 500.5
+    },
+    "GH30_werkzeug_3109": {
+     "raw": 0.9,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 904.6
+    },
+    "GH32_jinja_1664": {
+     "raw": 0.8,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 676.5
+    },
+    "GH33_jinja_1663": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 215.1
+    },
+    "GH35_jinja_1665": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 751.3
+    },
+    "GH363_celery_10040": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 301.8
+    },
+    "GH371_arrow_1194": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 786.8
+    },
+    "GH37_pydantic_12816": {
+     "raw": 0.5,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 181.3
+    },
+    "GH381_celery_10013": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 429.8
+    },
+    "GH394_arrow_1218": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 154.4
+    },
+    "GH39_jinja_1762": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 148.6
+    },
+    "GH405_narwhals_1515": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 453.5
+    },
+    "GH415_arrow_852": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 210.3
+    },
+    "GH442_arrow_1172": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 151.8
+    },
+    "GH444_arrow_1184": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 204.3
+    },
+    "GH46_pydantic_12951": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 198.6
+    },
+    "GH47_jinja_1706": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 303.4
+    },
+    "GH516_attrs_1513": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 143.1
+    },
+    "GH525_arrow_1186": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.6666666666666666,
+     "turns": 251.8
+    },
+    "GH52_jinja_1702": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 193.5
+    },
+    "GH539_redis-py_3969": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 162.1
+    },
+    "GH540_redis-py_3968": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 236.8
+    },
+    "GH54_pydantic_12817": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 116.2
+    },
+    "GH558_marshmallow_2861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 167.7
+    },
+    "GH566_jinja_1537": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 168.9
+    },
+    "GH569_celery_10023": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 462.3
+    },
+    "GH56_werkzeug_3066": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 407.2
+    },
+    "GH60_starlette_3148": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 71.8
+    },
+    "GH613_celery_10038": {
+     "raw": 0.78,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 155.3
+    },
+    "GH626_werkzeug_3081": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 654.6
+    },
+    "GH642_marshmallow_2854": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 219.3
+    },
+    "GH64_werkzeug_3008": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 331.5
+    },
+    "GH684_starlette_3144": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 216.8
+    },
+    "GH71_starlette_3189": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 411.9
+    },
+    "GH729_werkzeug_3038": {
+     "raw": 0.8,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 169.7
+    },
+    "GH732_arrow_1190": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 126.8
+    },
+    "GH801_aiohttp_11861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 310.1
+    },
+    "GH802_aiohttp_11860": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 338.5
+    },
+    "GH808_jinja_2062": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 171.9
+    },
+    "GH97_arrow_1201": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 130.1
+    }
+   },
+   "full": {
+    "GH103_redis-py_3998": {
+     "raw": 0.55,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.5,
+     "turns": 241.6
+    },
+    "GH1118_mlflow_22053": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 808.7
+    },
+    "GH112_redis-py_3996": {
+     "raw": 0.71,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 199.9
+    },
+    "GH139_marshmallow_2894": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 236.0
+    },
+    "GH140_marshmallow_2874": {
+     "raw": 0.57,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 185.6
+    },
+    "GH17_aiohttp_10151": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 299.3
+    },
+    "GH25_aiohttp_12245": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 479.8
+    },
+    "GH28_jinja_1852": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 640.6
+    },
+    "GH29_aiohttp_12217": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 621.3
+    },
+    "GH30_werkzeug_3109": {
+     "raw": 0.9,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 543.8
+    },
+    "GH32_jinja_1664": {
+     "raw": 0.9,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 325.3
+    },
+    "GH33_jinja_1663": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 307.0
+    },
+    "GH35_jinja_1665": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 292.7
+    },
+    "GH363_celery_10040": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 226.5
+    },
+    "GH371_arrow_1194": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 242.1
+    },
+    "GH37_pydantic_12816": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 288.7
+    },
+    "GH381_celery_10013": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 237.2
+    },
+    "GH394_arrow_1218": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 131.7
+    },
+    "GH39_jinja_1762": {
+     "raw": 0.43,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 145.6
+    },
+    "GH405_narwhals_1515": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 205.9
+    },
+    "GH415_arrow_852": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 225.5
+    },
+    "GH442_arrow_1172": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 178.5
+    },
+    "GH444_arrow_1184": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 180.5
+    },
+    "GH46_pydantic_12951": {
+     "raw": 0.43,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 206.2
+    },
+    "GH47_jinja_1706": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 246.9
+    },
+    "GH516_attrs_1513": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 193.5
+    },
+    "GH525_arrow_1186": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 170.6
+    },
+    "GH52_jinja_1702": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 503.1
+    },
+    "GH539_redis-py_3969": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 332.2
+    },
+    "GH540_redis-py_3968": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 614.0
+    },
+    "GH54_pydantic_12817": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 306.2
+    },
+    "GH558_marshmallow_2861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 141.2
+    },
+    "GH566_jinja_1537": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 290.6
+    },
+    "GH569_celery_10023": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 445.9
+    },
+    "GH56_werkzeug_3066": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 769.7
+    },
+    "GH60_starlette_3148": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 292.8
+    },
+    "GH613_celery_10038": {
+     "raw": 0.78,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 380.9
+    },
+    "GH626_werkzeug_3081": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 520.0
+    },
+    "GH642_marshmallow_2854": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 123.1
+    },
+    "GH64_werkzeug_3008": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 142.1
+    },
+    "GH684_starlette_3144": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 133.4
+    },
+    "GH71_starlette_3189": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 210.4
+    },
+    "GH729_werkzeug_3038": {
+     "raw": 0.8,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 214.1
+    },
+    "GH732_arrow_1190": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 173.7
+    },
+    "GH801_aiohttp_11861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 732.0
+    },
+    "GH802_aiohttp_11860": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1212.2
+    },
+    "GH808_jinja_2062": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 789.0
+    },
+    "GH97_arrow_1201": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 399.8
     }
    }
   }
