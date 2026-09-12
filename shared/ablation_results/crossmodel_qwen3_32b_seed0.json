@@ -1,0 +1,41 @@
+{
+  "model": "vllm:Qwen/Qwen3-32B@http://localhost:8006/v1",
+  "tasks": 28,
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-17",
+  "per_condition": {
+    "oracle": {
+      "passes": 1,
+      "total": 28,
+      "success_rate": 0.036
+    },
+    "restricted": {
+      "passes": 0,
+      "total": 28,
+      "success_rate": 0.0
+    },
+    "team_no_verify": {
+      "passes": 0,
+      "total": 28,
+      "success_rate": 0.0
+    },
+    "team_no_plan": {
+      "passes": 0,
+      "total": 28,
+      "success_rate": 0.0
+    },
+    "full": {
+      "passes": 0,
+      "total": 28,
+      "success_rate": 0.0
+    }
+  },
+  "metrics": {
+    "tni": -1.109,
+    "planning_value": -0.039,
+    "verification_value": -0.132
+  },
+  "note": "Reconstructed from log"
+}

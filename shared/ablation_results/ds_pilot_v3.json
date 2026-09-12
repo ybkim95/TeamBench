@@ -1,0 +1,201 @@
+{
+  "model": "gpt-5-mini",
+  "tasks": [
+    "DS1_feature_leakage",
+    "DS2_missing_data_bias",
+    "DS3_class_imbalance",
+    "DS4_timeseries_split",
+    "DS5_outlier_vs_signal"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-25T06:43:39.378191+00:00",
+  "metrics": {
+    "s_oracle": 0.6,
+    "s_restricted": 0.0,
+    "s_full": 0.2,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.96,
+    "p_restricted": 0.0,
+    "p_full": 0.7267,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.96,
+    "tni": 0.7569,
+    "team_uplift": 0.7267,
+    "collab_efficiency": 0.7569,
+    "planning_value": 0.7267,
+    "verification_value": 0.7267,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": 0.0,
+    "interpretation": {
+      "tni": "Teamwork substantially recovers the performance gap.",
+      "team_uplift": "Team adds +72.7% over single agent",
+      "collab_efficiency": "Team reaches 75.7% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +72.7% partial score",
+      "verification_value": "Verification adds +72.7% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 3,
+      "total": 5,
+      "success_rate": 0.6
+    },
+    "full": {
+      "passes": 1,
+      "total": 5,
+      "success_rate": 0.2
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "DS1_feature_leakage",
+      "seed": 0,
+      "run_id": "20260325_044137_3721ae4a",
+      "run_dir": "shared/ablation_results/ablation_runs/DS1_feature_leakage/20260325_044137_3721ae4a",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 160.9,
+      "failure_modes": [
+        "auc_below_threshold"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DS2_missing_data_bias",
+      "seed": 0,
+      "run_id": "20260325_044442_b2453012",
+      "run_dir": "shared/ablation_results/ablation_runs/DS2_missing_data_bias/20260325_044442_b2453012",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 40.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DS3_class_imbalance",
+      "seed": 0,
+      "run_id": "20260325_044525_e7e63700",
+      "run_dir": "shared/ablation_results/ablation_runs/DS3_class_imbalance/20260325_044525_e7e63700",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 27.4,
+      "failure_modes": [
+        "no_features_used"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DS4_timeseries_split",
+      "seed": 0,
+      "run_id": "20260325_044556_815a2a95",
+      "run_dir": "shared/ablation_results/ablation_runs/DS4_timeseries_split/20260325_044556_815a2a95",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 33.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DS5_outlier_vs_signal",
+      "seed": 0,
+      "run_id": "20260325_044633_715945b0",
+      "run_dir": "shared/ablation_results/ablation_runs/DS5_outlier_vs_signal/20260325_044633_715945b0",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 18.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS1_feature_leakage",
+      "seed": 0,
+      "run_id": "20260325_044654_1332ef47",
+      "run_dir": "shared/ablation_results/ablation_runs/DS1_feature_leakage/20260325_044654_1332ef47",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 1921.3,
+      "failure_modes": [
+        "auc_below_threshold"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS2_missing_data_bias",
+      "seed": 0,
+      "run_id": "20260325_051917_9b235afb",
+      "run_dir": "shared/ablation_results/ablation_runs/DS2_missing_data_bias/20260325_051917_9b235afb",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 2240.2,
+      "failure_modes": [
+        "missing_group_stats",
+        "flat_imputation_suspected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS3_class_imbalance",
+      "seed": 0,
+      "run_id": "20260325_055640_672bdf92",
+      "run_dir": "shared/ablation_results/ablation_runs/DS3_class_imbalance/20260325_055640_672bdf92",
+      "pass": false,
+      "partial_score": 0.3333,
+      "elapsed_sec": 1076.8,
+      "failure_modes": [
+        "train_crash",
+        "missing_results_json"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS4_timeseries_split",
+      "seed": 0,
+      "run_id": "20260325_061439_ec1f3de4",
+      "run_dir": "shared/ablation_results/ablation_runs/DS4_timeseries_split/20260325_061439_ec1f3de4",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 802.6,
+      "failure_modes": [
+        "wrong_n_splits",
+        "mean_auc_invalid",
+        "n_splits_mismatch",
+        "std_auc_too_high"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS5_outlier_vs_signal",
+      "seed": 0,
+      "run_id": "20260325_062806_2455eaf0",
+      "run_dir": "shared/ablation_results/ablation_runs/DS5_outlier_vs_signal/20260325_062806_2455eaf0",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 930.7,
+      "failure_modes": [],
+      "error": null
+    }
+  ]
+}

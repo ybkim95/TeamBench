@@ -1,0 +1,25 @@
+decision_uid,task,verdict_human,grader_verdict,grader_score,position_in_session,n_verdicts_in_session,prior_fail_in_session,score_unchanged_since_prior,minutes_since_first_verdict,note,code,code_confidence,coder_notes
+CR2_style_enforce|rwc008qy|1,CR2_style_enforce,pass,fail,0,1,1,False,,,hahahahha,C5,high,not interpretable as a judgement
+CR2_style_enforce|0a4velnb|1,CR2_style_enforce,fail,fail,0.23,1,2,False,,,fail haha.,R3,high,rejection without specifics
+CR2_style_enforce|0a4velnb|2,CR2_style_enforce,pass,fail,0.23,2,2,True,True,0.4,pass this time.,C1,high,"prior fail in session, grader score unchanged"
+CR2_style_enforce|d99t3ydc|1,CR2_style_enforce,fail,fail,0.23,1,2,False,,,"Here's the result of testing your code. \n { \n   ""failure_modes"": [ \n     ""class_names_not_pascal_case"", \n     ""function_names_not_snake_case"", \n     ""variable_names_not_snake_case"", \n     ""wildcard_imports_present"", \n     ""import_order_incorrect"", \n     ""type_hints_missing"", \n     ""line_length_exceeded"", \n     ""docstri",R1,high,quotes grader output
+CR2_style_enforce|d99t3ydc|2,CR2_style_enforce,pass,fail,0.23,2,2,True,True,2.7,Good job :) Thank you for your service.,C1,high,"prior fail in session, grader score unchanged"
+CR4_api_review|1e6goy9x|1,CR4_api_review,fail,fail,0.25,1,2,False,,,Thanks for the update! Took a look — here's where things stand: \n  \n - /api/v1/ prefix: only list_users got it; the other 7 routes are still on /users/... \n - create_user: still GET /users/new — needs to be POST /api/v1/users \n - Search endpoint: /users/createPost and createPost() haven't been renamed yet \n -,R2,high,specific defects with locations
+CR4_api_review|1e6goy9x|2,CR4_api_review,pass,fail,0.25,2,2,True,True,4.9,Thanks!! It looks good!!,C1,high,"prior fail in session, grader score unchanged"
+CR4_api_review|66p0uz9a|1,CR4_api_review,fail,fail,0.81,1,3,False,,,"1) line 55, {""Not found""} should be {""error"":""Not found""} \n 2) 147, Route should be /search, change createPost -> search",R2,high,specific defects with locations
+CR4_api_review|66p0uz9a|2,CR4_api_review,fail,fail,0.81,2,3,True,True,3.0,"let's put some error code in 55, same as other error report",R3,high,rejection without specifics
+CR4_api_review|66p0uz9a|3,CR4_api_review,pass,fail,0.81,3,3,True,True,4.6,"let's put some error code in 55, same as other error report",C1,high,"prior fail in session, grader score unchanged"
+CR4_api_review|db6ro9n8|1,CR4_api_review,fail,fail,0.88,1,3,False,,,Some functions should be camelcase.,R2,high,specific defects with locations
+CR4_api_review|db6ro9n8|2,CR4_api_review,pass,fail,0.88,2,3,True,True,0.8,Good job!!,C1,high,"prior fail in session, grader score unchanged"
+CR4_api_review|db6ro9n8|3,CR4_api_review,pass,fail,0.88,3,3,True,True,0.8,Good job!!,C1,high,"prior fail in session, grader score unchanged"
+D8_csv_cleanup|f06gaw5b|1,D8_csv_cleanup,pass,fail,0.33,1,1,False,,,admin3 (verifier) thinks the case is done.,C3,high,discretionary waiver marker
+LH2_budgeted_workflow|s3nq8383|1,LH2_budgeted_workflow,fail,fail,0.17,1,2,False,,,,R4,high,empty note
+LH2_budgeted_workflow|s3nq8383|2,LH2_budgeted_workflow,fail,fail,0.17,2,2,True,True,4.0,,R4,high,empty note
+O8_dockerfile_fix|f3364r2a|1,O8_dockerfile_fix,fail,fail,0.43,1,2,False,,,"""failure_modes"": [ \n     ""wrong_base_image"", \n     ""wrong_layer_order"", \n     ""wrong_port"", \n     ""cmd_not_exec_form"" \n   ] \n  \n miss step \n 1. **Base image tag** \n 2. **Layer ordering** \n 3. **Port mismatch** \n 5. **CMD format**",R1,high,quotes grader output
+O8_dockerfile_fix|f3364r2a|2,O8_dockerfile_fix,pass,fail,0.43,2,2,True,True,2.6,,C1,high,"prior fail in session, grader score unchanged"
+O8_dockerfile_fix|52atz3e4|1,O8_dockerfile_fix,pass,fail,0.86,1,1,False,,,Good job!! Another Taehan,C4,high,praise with no verification content
+PIPE2_data_pipeline|4uiwseht|1,PIPE2_data_pipeline,fail,fail,0.8,1,2,False,,,8 out of 10 tasks passed and two cases failed. I think the executor just partially editted the code.,R3,high,rejection without specifics
+PIPE2_data_pipeline|4uiwseht|2,PIPE2_data_pipeline,pass,fail,0.8,2,2,True,True,5.0,8 out of 10 tasks passed and two cases failed. I think the executor just partially editted the code.,C1,high,"prior fail in session, grader score unchanged"
+TEST3_integration|nxo9r1mo|1,TEST3_integration,fail,fail,0.83,1,2,False,,,Need to other tests,R3,high,rejection without specifics
+TEST3_integration|nxo9r1mo|2,TEST3_integration,fail,fail,0.83,2,2,True,True,0.7,Need to other tests,R3,high,rejection without specifics
+TEST8_unit_basic|5aidqpix|1,TEST8_unit_basic,pass,fail,0.38,1,1,False,,,"I can't see the new test file that the executor has created, but changes in the mathutils.py file look good. It addresses all three bugs and makes necessary changes.",C2,high,states something was not verified

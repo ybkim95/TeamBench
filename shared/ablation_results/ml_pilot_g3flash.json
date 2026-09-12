@@ -1,0 +1,452 @@
+{
+  "model": "gemini-3-flash-preview",
+  "tasks": [
+    "ML10_evaluation_contamination",
+    "ML11_lr_warmup_decay",
+    "ML12_residual_init",
+    "ML13_amp_clip_order",
+    "ML15_kd_temperature",
+    "ML16_contrastive_false_neg",
+    "ML18_curriculum_invert",
+    "ML19_causal_mask_offbyone",
+    "ML1_gradient_bug",
+    "ML22_norm_placement"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-25T03:54:15.372246+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.4,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.0,
+    "p_restricted": 0.0,
+    "p_full": 0.6022,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.0,
+    "tni": 60.223,
+    "team_uplift": 0.6022,
+    "collab_efficiency": 0.0,
+    "planning_value": 0.6022,
+    "verification_value": 0.6022,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": 0.0,
+    "interpretation": {
+      "tni": "Teamwork fully recovers the performance gap.",
+      "team_uplift": "Team adds +60.2% over single agent",
+      "collab_efficiency": "Team reaches 0.0% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +60.2% partial score",
+      "verification_value": "Verification adds +60.2% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 0,
+      "total": 10,
+      "success_rate": 0.0
+    },
+    "full": {
+      "passes": 4,
+      "total": 10,
+      "success_rate": 0.4
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "ML10_evaluation_contamination",
+      "seed": 0,
+      "run_id": "20260325_021116_0686ea3f",
+      "run_dir": "shared/ablation_results/ablation_runs/ML10_evaluation_contamination/20260325_021116_0686ea3f",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 24.0,
+      "failure_modes": [
+        "eval_results_missing",
+        "test_accuracy_invalid",
+        "contamination_flags_still_true",
+        "fit_before_split",
+        "cv_uses_test_data",
+        "scaler_on_full_data",
+        "threshold_tuned_on_test",
+        "check_evaluation_failed",
+        "contamination_sources_remain"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML11_lr_warmup_decay",
+      "seed": 0,
+      "run_id": "20260325_021141_f4ee67a5",
+      "run_dir": "shared/ablation_results/ablation_runs/ML11_lr_warmup_decay/20260325_021141_f4ee67a5",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 21.7,
+      "failure_modes": [
+        "scheduler_py_missing",
+        "lr_not_starting_low",
+        "lr_warmup_end_wrong",
+        "lr_not_monotone_after_warmup",
+        "lr_not_decaying_to_zero",
+        "scheduler_code_structure_wrong",
+        "training_results_missing",
+        "model_not_converged",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML12_residual_init",
+      "seed": 0,
+      "run_id": "20260325_021225_292c9aa3",
+      "run_dir": "shared/ablation_results/ablation_runs/ML12_residual_init/20260325_021225_292c9aa3",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 28.2,
+      "failure_modes": [
+        "model_py_missing",
+        "fc2_not_zero_initialized",
+        "fc2_bias_not_zero",
+        "fc1_incorrectly_zeroed",
+        "init_variance_too_high",
+        "resblock_non_functional",
+        "training_results_missing",
+        "model_not_converged",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML13_amp_clip_order",
+      "seed": 0,
+      "run_id": "20260325_021300_5289eaa4",
+      "run_dir": "shared/ablation_results/ablation_runs/ML13_amp_clip_order/20260325_021300_5289eaa4",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 37.0,
+      "failure_modes": [
+        "train_py_missing",
+        "unscale_not_present",
+        "unscale_after_clip",
+        "clip_grad_norm_removed",
+        "scaler_step_update_missing",
+        "training_results_missing",
+        "model_not_converged",
+        "nan_in_history",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML15_kd_temperature",
+      "seed": 0,
+      "run_id": "20260325_021337_30d06787",
+      "run_dir": "shared/ablation_results/ablation_runs/ML15_kd_temperature/20260325_021337_30d06787",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 24.5,
+      "failure_modes": [
+        "train_py_missing",
+        "student_logits_missing_temperature",
+        "t2_scaling_missing",
+        "teacher_temp_missing",
+        "kd_gradient_degenerate",
+        "training_results_missing",
+        "student_not_converged",
+        "student_far_below_teacher",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML16_contrastive_false_neg",
+      "seed": 0,
+      "run_id": "20260325_021408_ed59037b",
+      "run_dir": "shared/ablation_results/ablation_runs/ML16_contrastive_false_neg/20260325_021408_ed59037b",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 21.7,
+      "failure_modes": [
+        "nt_xent_loss_py_missing",
+        "neg_mask_missing_pos_exclusion",
+        "loss_inverted",
+        "gradient_wrong_direction",
+        "self_similarity_issue",
+        "training_results_missing",
+        "probe_not_converged",
+        "accuracy_near_random",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML18_curriculum_invert",
+      "seed": 0,
+      "run_id": "20260325_021448_755235ab",
+      "run_dir": "shared/ablation_results/ablation_runs/ML18_curriculum_invert/20260325_021448_755235ab",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 24.0,
+      "failure_modes": [
+        "curriculum_py_missing",
+        "pacing_starts_too_high",
+        "pacing_ends_too_low",
+        "pacing_not_monotone",
+        "pacing_formula_wrong",
+        "difficulty_scores_broken",
+        "training_results_missing",
+        "model_not_converged",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML19_causal_mask_offbyone",
+      "seed": 0,
+      "run_id": "20260325_021518_c8158731",
+      "run_dir": "shared/ablation_results/ablation_runs/ML19_causal_mask_offbyone/20260325_021518_c8158731",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 24.0,
+      "failure_modes": [
+        "model_py_missing",
+        "diagonal_still_masked",
+        "future_positions_not_masked",
+        "past_positions_masked",
+        "code_still_diagonal_0",
+        "model_forward_nan",
+        "training_results_missing",
+        "model_not_converged",
+        "nan_in_training",
+        "check_model_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML1_gradient_bug",
+      "seed": 0,
+      "run_id": "20260325_021550_8a63805b",
+      "run_dir": "shared/ablation_results/ablation_runs/ML1_gradient_bug/20260325_021550_8a63805b",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 20.4,
+      "failure_modes": [
+        "loss_function_not_fixed",
+        "learning_rate_not_fixed",
+        "batchnorm_eval_not_fixed",
+        "training_results_missing",
+        "training_not_converged",
+        "nan_in_training_history",
+        "model_py_modified",
+        "check_convergence_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML22_norm_placement",
+      "seed": 0,
+      "run_id": "20260325_021611_0532176d",
+      "run_dir": "shared/ablation_results/ablation_runs/ML22_norm_placement/20260325_021611_0532176d",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 25.7,
+      "failure_modes": [
+        "transformer_py_missing",
+        "broken_hybrid_still_present",
+        "inconsistent_norm_placement",
+        "block_output_nan_inf",
+        "gradient_flow_abnormal",
+        "classifier_nan",
+        "training_results_missing",
+        "model_not_converged",
+        "nan_in_training",
+        "check_transformer_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML10_evaluation_contamination",
+      "seed": 0,
+      "run_id": "20260325_021655_49f1ee2a",
+      "run_dir": "shared/ablation_results/ablation_runs/ML10_evaluation_contamination/20260325_021655_49f1ee2a",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 801.4,
+      "failure_modes": [
+        "eval_results_missing",
+        "test_accuracy_invalid",
+        "contamination_flags_still_true",
+        "fit_before_split",
+        "cv_uses_test_data",
+        "scaler_on_full_data",
+        "threshold_tuned_on_test",
+        "check_evaluation_failed",
+        "contamination_sources_remain"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML11_lr_warmup_decay",
+      "seed": 0,
+      "run_id": "20260325_023017_b7f0f740",
+      "run_dir": "shared/ablation_results/ablation_runs/ML11_lr_warmup_decay/20260325_023017_b7f0f740",
+      "pass": false,
+      "partial_score": 0.1111,
+      "elapsed_sec": 966.0,
+      "failure_modes": [
+        "lr_not_starting_low",
+        "lr_warmup_end_wrong",
+        "lr_not_monotone_after_warmup",
+        "lr_not_decaying_to_zero",
+        "scheduler_code_structure_wrong",
+        "training_results_missing",
+        "model_not_converged",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML12_residual_init",
+      "seed": 0,
+      "run_id": "20260325_024646_b60b3dea",
+      "run_dir": "shared/ablation_results/ablation_runs/ML12_residual_init/20260325_024646_b60b3dea",
+      "pass": false,
+      "partial_score": 0.5556,
+      "elapsed_sec": 481.4,
+      "failure_modes": [
+        "init_variance_too_high",
+        "training_results_missing",
+        "model_not_converged",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML13_amp_clip_order",
+      "seed": 0,
+      "run_id": "20260325_025515_cf6166dc",
+      "run_dir": "shared/ablation_results/ablation_runs/ML13_amp_clip_order/20260325_025515_cf6166dc",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 825.1,
+      "failure_modes": [
+        "train_py_missing",
+        "unscale_not_present",
+        "unscale_after_clip",
+        "clip_grad_norm_removed",
+        "scaler_step_update_missing",
+        "training_results_missing",
+        "model_not_converged",
+        "nan_in_history",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML15_kd_temperature",
+      "seed": 0,
+      "run_id": "20260325_030901_92410064",
+      "run_dir": "shared/ablation_results/ablation_runs/ML15_kd_temperature/20260325_030901_92410064",
+      "pass": false,
+      "partial_score": 0.5556,
+      "elapsed_sec": 512.5,
+      "failure_modes": [
+        "training_results_missing",
+        "student_not_converged",
+        "student_far_below_teacher",
+        "check_training_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML16_contrastive_false_neg",
+      "seed": 0,
+      "run_id": "20260325_031758_149a55d5",
+      "run_dir": "shared/ablation_results/ablation_runs/ML16_contrastive_false_neg/20260325_031758_149a55d5",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 536.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML18_curriculum_invert",
+      "seed": 0,
+      "run_id": "20260325_032723_129af0fc",
+      "run_dir": "shared/ablation_results/ablation_runs/ML18_curriculum_invert/20260325_032723_129af0fc",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 192.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML19_causal_mask_offbyone",
+      "seed": 0,
+      "run_id": "20260325_033125_247f43fc",
+      "run_dir": "shared/ablation_results/ablation_runs/ML19_causal_mask_offbyone/20260325_033125_247f43fc",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 237.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML1_gradient_bug",
+      "seed": 0,
+      "run_id": "20260325_033558_1bc93260",
+      "run_dir": "shared/ablation_results/ablation_runs/ML1_gradient_bug/20260325_033558_1bc93260",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 429.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML22_norm_placement",
+      "seed": 0,
+      "run_id": "20260325_034308_b78550a7",
+      "run_dir": "shared/ablation_results/ablation_runs/ML22_norm_placement/20260325_034308_b78550a7",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 637.5,
+      "failure_modes": [
+        "broken_hybrid_still_present",
+        "check_transformer_failed"
+      ],
+      "error": null
+    }
+  ]
+}

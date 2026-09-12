@@ -1,0 +1,671 @@
+{
+  "experiment": "hetero_systematic",
+  "seed": 0,
+  "tasks": [
+    "MULTI1_fullstack_fix",
+    "TEST1_spec_to_tests",
+    "O2_incident_rootcause",
+    "PIPE1_etl_fix",
+    "TRAP1_spec_conflict",
+    "TRAP3_metric_mirage",
+    "TRAP5_security_theater",
+    "CROSS1_api_contract",
+    "CROSS3_protocol_bridge",
+    "CRYPTO1_nonce_reuse",
+    "DIST1_queue_race",
+    "SEC1_vuln_patch",
+    "SEC3_crypto_upgrade",
+    "D1_schema_drift",
+    "D8_csv_cleanup",
+    "TEST2_regression",
+    "TEST5_mutation_resistant",
+    "O1_service_health",
+    "O3_log_analysis",
+    "P1_policy_config",
+    "P3_access_control",
+    "SPEC1_feature_impl",
+    "SPEC3_data_model",
+    "INC1_cascade_failure",
+    "INC4_dns_miscfg",
+    "IR1_evidence_qa",
+    "NEG1_tradeoff_config",
+    "CR5_test_coverage"
+  ],
+  "n_permutation_configs": 27,
+  "n_cross_family_configs": 3,
+  "completed": "2026-03-28T03:29:52.371071+00:00",
+  "per_config": {
+    "PwEwVw": {
+      "passes": 6,
+      "total": 28,
+      "success_rate": 0.2143,
+      "avg_partial": 0.6886,
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "estimated_cost_per_task": 0.0003
+    }
+  },
+  "marginal_contributions": {
+    "planner": {
+      "avg_delta_weak_to_mid": null,
+      "avg_delta_mid_to_strong": null,
+      "avg_delta_overall": null
+    },
+    "executor": {
+      "avg_delta_weak_to_mid": null,
+      "avg_delta_mid_to_strong": null,
+      "avg_delta_overall": null
+    },
+    "verifier": {
+      "avg_delta_weak_to_mid": null,
+      "avg_delta_mid_to_strong": null,
+      "avg_delta_overall": null
+    }
+  },
+  "top_role_by_marginal": {
+    "role": "planner",
+    "avg_delta_overall": null
+  },
+  "pareto_frontier": [
+    {
+      "config": "PwEwVw",
+      "score": 0.2143,
+      "cost": 0.0003,
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      }
+    }
+  ],
+  "best_per_cost_tier": {
+    "low": {
+      "config": "PwEwVw",
+      "passes": 6,
+      "total": 28,
+      "success_rate": 0.2143,
+      "avg_partial": 0.6886,
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "estimated_cost_per_task": 0.0003
+    }
+  },
+  "runs": [
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260328_000947_f541ef62",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/MULTI1_fullstack_fix/20260328_000947_f541ef62",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 176.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260328_001249_79d1bab3",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TEST1_spec_to_tests/20260328_001249_79d1bab3",
+      "pass": false,
+      "partial_score": 0.1,
+      "elapsed_sec": 867.6,
+      "failure_modes": [
+        "too_few_tests",
+        "low_coverage",
+        "mutant_01_not_caught",
+        "mutant_02_not_caught",
+        "mutant_03_not_caught",
+        "mutant_04_not_caught",
+        "mutant_05_not_caught",
+        "insufficient_mutation_detection",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260328_003156_9d0aaec5",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/O2_incident_rootcause/20260328_003156_9d0aaec5",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 126.0,
+      "failure_modes": [
+        "endpoint_no_response"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260328_003413_b37df2cb",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/PIPE1_etl_fix/20260328_003413_b37df2cb",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 126.4,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260328_003621_e34eddc5",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TRAP1_spec_conflict/20260328_003621_e34eddc5",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 202.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260328_004033_6dcbc22d",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TRAP3_metric_mirage/20260328_004033_6dcbc22d",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 151.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260328_004407_6801b71e",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TRAP5_security_theater/20260328_004407_6801b71e",
+      "pass": false,
+      "partial_score": 0.71,
+      "elapsed_sec": 329.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260328_005209_c6fcb368",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/CROSS1_api_contract/20260328_005209_c6fcb368",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 190.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260328_005827_c4c709c4",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/CROSS3_protocol_bridge/20260328_005827_c4c709c4",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 329.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260328_010621_c7e7416b",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/CRYPTO1_nonce_reuse/20260328_010621_c7e7416b",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 217.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260328_011228_78e8d4cb",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/DIST1_queue_race/20260328_011228_78e8d4cb",
+      "pass": false,
+      "partial_score": 0.9167,
+      "elapsed_sec": 315.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260328_012020_b9fd524e",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/SEC1_vuln_patch/20260328_012020_b9fd524e",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 202.6,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260328_012343_97dc255f",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/SEC3_crypto_upgrade/20260328_012343_97dc255f",
+      "pass": false,
+      "partial_score": 0.77,
+      "elapsed_sec": 364.6,
+      "failure_modes": [
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260328_012949_51accb8b",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/D1_schema_drift/20260328_012949_51accb8b",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 231.6,
+      "failure_modes": [
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260328_013344_854b8ee9",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/D8_csv_cleanup/20260328_013344_854b8ee9",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 297.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260328_013844_979591dc",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TEST2_regression/20260328_013844_979591dc",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 207.2,
+      "failure_modes": [
+        "some_bugs_not_detected",
+        "bug_BUG_ABS_MISSING_not_detected",
+        "bug_BUG_SQRT_NEGATIVE_not_detected"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260328_014532_b023a72f",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TEST5_mutation_resistant/20260328_014532_b023a72f",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 659.7,
+      "failure_modes": [
+        "tests_fail_on_correct_lib",
+        "mutant_01_not_caught",
+        "mutant_05_not_caught",
+        "mutant_10_not_caught",
+        "mutant_15_not_caught",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260328_020935_b7833a08",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/O1_service_health/20260328_020935_b7833a08",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 264.7,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "missing_service_log"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260328_021416_5b5c996a",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/O3_log_analysis/20260328_021416_5b5c996a",
+      "pass": false,
+      "partial_score": 0.46,
+      "elapsed_sec": 153.0,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260328_021657_ca051d13",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/P1_policy_config/20260328_021657_ca051d13",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 173.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260328_021952_1fb027a9",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/P3_access_control/20260328_021952_1fb027a9",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 191.2,
+      "failure_modes": [
+        "allow_decisions_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260328_022308_4aeb80d8",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/SPEC1_feature_impl/20260328_022308_4aeb80d8",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 285.3,
+      "failure_modes": [
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260328_022838_64af539e",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/SPEC3_data_model/20260328_022838_64af539e",
+      "pass": false,
+      "partial_score": 0.714,
+      "elapsed_sec": 173.2,
+      "failure_modes": [
+        "order_item_columns_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260328_023213_45c71aa0",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/INC1_cascade_failure/20260328_023213_45c71aa0",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 164.8,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260328_023459_4b6dcca4",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/INC4_dns_miscfg/20260328_023459_4b6dcca4",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 133.5,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260328_023714_672503d4",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/IR1_evidence_qa/20260328_023714_672503d4",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 2268.0,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260328_031503_cdaf33bd",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/NEG1_tradeoff_config/20260328_031503_cdaf33bd",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 181.7,
+      "failure_modes": [
+        "perf_test_fail",
+        "reliability_test_fail",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PwEwVw",
+      "model_config": {
+        "planner": "gemini-3.1-flash-lite-preview",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260328_031823_499bddd9",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/CR5_test_coverage/20260328_031823_499bddd9",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 345.6,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    }
+  ]
+}

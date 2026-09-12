@@ -1,0 +1,77 @@
+{
+  "design": {
+    "models": [
+      {
+        "name": "gpt-4o-mini",
+        "capability": 75.8,
+        "cost": 102.6
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "capability": 73.1,
+        "cost": 239.4
+      },
+      {
+        "name": "claude-3-haiku-20240307",
+        "capability": 68.2,
+        "cost": 198.0
+      },
+      {
+        "name": "deepseek-coder-v2-lite-instruct",
+        "capability": 65.9,
+        "cost": 65.52000000000001
+      }
+    ],
+    "design": {
+      "n_tasks": 15,
+      "n_conditions": 3,
+      "total_runs": 180,
+      "total_cost": 605.52,
+      "capability_range": 9.899999999999991,
+      "valid": true,
+      "recommendation": "PROCEED with this design"
+    }
+  },
+  "action_plan": {
+    "actions": [
+      {
+        "task": "Validate model access",
+        "description": "Test API keys for gpt-4o-mini, gemini-1.5-flash, claude-3-haiku, deepseek-coder",
+        "duration": "30 minutes",
+        "cost": "$0"
+      },
+      {
+        "task": "Infrastructure test",
+        "description": "Run 2 models \u00d7 3 tasks \u00d7 3 conditions = 18 experiments",
+        "duration": "2 hours",
+        "cost": "$5-15"
+      },
+      {
+        "task": "Mini-pilot",
+        "description": "Run 4 models \u00d7 5 tasks \u00d7 3 conditions = 60 experiments",
+        "duration": "4-8 hours",
+        "cost": "$50-150"
+      },
+      {
+        "task": "Full budget pilot",
+        "description": "Run 4 models \u00d7 15 tasks \u00d7 3 conditions = 180 experiments",
+        "duration": "12-24 hours",
+        "cost": "$200-600"
+      },
+      {
+        "task": "Analysis and report",
+        "description": "Statistical analysis, scaling law fitting, report generation",
+        "duration": "4-6 hours",
+        "cost": "$0"
+      }
+    ],
+    "timeline": "1-2 days active work + compute time",
+    "budget": "$255-765",
+    "success_criteria": [
+      "Scaling correlation r < -0.4 with p < 0.05",
+      "Team vs Oracle-3x comparison working",
+      "Infrastructure validated for larger studies",
+      "Cost projections for full experiment"
+    ]
+  }
+}

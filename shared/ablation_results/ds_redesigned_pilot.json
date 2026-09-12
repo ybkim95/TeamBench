@@ -1,0 +1,228 @@
+{
+  "model": "gpt-5-mini",
+  "tasks": [
+    "DS1_feature_leakage",
+    "DS2_missing_data_bias",
+    "DS3_class_imbalance",
+    "DS4_timeseries_split",
+    "DS5_outlier_vs_signal"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-25T17:40:26.016688+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.66,
+    "p_restricted": 0.0,
+    "p_full": 0.57,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.66,
+    "tni": 0.8636,
+    "team_uplift": 0.57,
+    "collab_efficiency": 0.8636,
+    "planning_value": 0.57,
+    "verification_value": 0.57,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": 0.0,
+    "interpretation": {
+      "tni": "Teamwork substantially recovers the performance gap.",
+      "team_uplift": "Team adds +57.0% over single agent",
+      "collab_efficiency": "Team reaches 86.4% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +57.0% partial score",
+      "verification_value": "Verification adds +57.0% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    },
+    "full": {
+      "passes": 0,
+      "total": 5,
+      "success_rate": 0.0
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "DS1_feature_leakage",
+      "seed": 0,
+      "run_id": "20260325_151112_a9845c2e",
+      "run_dir": "shared/ablation_results/ablation_runs/DS1_feature_leakage/20260325_151112_a9845c2e",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 351.0,
+      "failure_modes": [
+        "auc_below_threshold",
+        "clean_features_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DS2_missing_data_bias",
+      "seed": 0,
+      "run_id": "20260325_151714_69a995c4",
+      "run_dir": "shared/ablation_results/ablation_runs/DS2_missing_data_bias/20260325_151714_69a995c4",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 122.3,
+      "failure_modes": [
+        "missing_values_remain",
+        "mnar_col_missing",
+        "missing_group_stats",
+        "flat_imputation_suspected",
+        "mar_col_not_imputed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DS3_class_imbalance",
+      "seed": 0,
+      "run_id": "20260325_151919_e2cc7dde",
+      "run_dir": "shared/ablation_results/ablation_runs/DS3_class_imbalance/20260325_151919_e2cc7dde",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 97.3,
+      "failure_modes": [
+        "no_features_used"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DS4_timeseries_split",
+      "seed": 0,
+      "run_id": "20260325_152059_3bf685b9",
+      "run_dir": "shared/ablation_results/ablation_runs/DS4_timeseries_split/20260325_152059_3bf685b9",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 47.5,
+      "failure_modes": [
+        "wrong_n_splits",
+        "mean_auc_invalid",
+        "n_splits_mismatch",
+        "std_auc_too_high"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DS5_outlier_vs_signal",
+      "seed": 0,
+      "run_id": "20260325_152155_c7eec98f",
+      "run_dir": "shared/ablation_results/ablation_runs/DS5_outlier_vs_signal/20260325_152155_c7eec98f",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 189.5,
+      "failure_modes": [
+        "signal_rows_removed",
+        "error_rows_present",
+        "wrong_signal_preserved_count",
+        "wrong_error_removed_count",
+        "normal_rows_removed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS1_feature_leakage",
+      "seed": 0,
+      "run_id": "20260325_152507_b6e88963",
+      "run_dir": "shared/ablation_results/ablation_runs/DS1_feature_leakage/20260325_152507_b6e88963",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 2803.0,
+      "failure_modes": [
+        "auc_below_threshold",
+        "clean_features_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS2_missing_data_bias",
+      "seed": 0,
+      "run_id": "20260325_161314_00fadbbf",
+      "run_dir": "shared/ablation_results/ablation_runs/DS2_missing_data_bias/20260325_161314_00fadbbf",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 736.5,
+      "failure_modes": [
+        "impute_crash",
+        "missing_imputed_csv",
+        "missing_stats_json"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS3_class_imbalance",
+      "seed": 0,
+      "run_id": "20260325_162530_d7d1c2f2",
+      "run_dir": "shared/ablation_results/ablation_runs/DS3_class_imbalance/20260325_162530_d7d1c2f2",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 561.5,
+      "failure_modes": [
+        "no_features_used"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS4_timeseries_split",
+      "seed": 0,
+      "run_id": "20260325_163454_e885557f",
+      "run_dir": "shared/ablation_results/ablation_runs/DS4_timeseries_split/20260325_163454_e885557f",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1491.5,
+      "failure_modes": [
+        "evaluate_crash",
+        "wrong_n_splits",
+        "mean_auc_invalid",
+        "n_splits_mismatch",
+        "std_auc_too_high"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DS5_outlier_vs_signal",
+      "seed": 0,
+      "run_id": "20260325_165947_aa8d418f",
+      "run_dir": "shared/ablation_results/ablation_runs/DS5_outlier_vs_signal/20260325_165947_aa8d418f",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 2435.8,
+      "failure_modes": [
+        "clean_crash",
+        "signal_rows_removed",
+        "error_rows_present",
+        "wrong_signal_preserved_count",
+        "wrong_error_removed_count",
+        "normal_rows_removed"
+      ],
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "n": 631,
+  "outcomes": {
+    "b_grader_rejects_reference": 604,
+    "d_inconclusive_grader_timeout": 16,
+    "c_unappliable": 11
+  },
+  "outcome_wilson": {
+    "b_grader_rejects_reference": [
+      0.9385,
+      0.9704
+    ],
+    "d_inconclusive_grader_timeout": [
+      0.0157,
+      0.0408
+    ],
+    "c_unappliable": [
+      0.0098,
+      0.0309
+    ]
+  },
+  "applied_n": 604,
+  "validated_among_applied": 0,
+  "validated_among_applied_wilson": [
+    0.0,
+    0.0063
+  ],
+  "b_reference_equals_floor": 539,
+  "b_reference_below_floor": 0,
+  "b_reference_above_floor_below_one": 65,
+  "tasks_with_per_check_data": 604,
+  "tasks_with_zero_discriminative_checks": 539,
+  "checks_flipped_distribution": {
+    "0": 539,
+    "1": 48,
+    "2": 16,
+    "3": 1
+  },
+  "dead_checks_total": 1449,
+  "dead_checks_most_common": [
+    [
+      "C1",
+      604
+    ],
+    [
+      "C5",
+      498
+    ],
+    [
+      "C8",
+      134
+    ],
+    [
+      "C9",
+      72
+    ],
+    [
+      "C10",
+      58
+    ],
+    [
+      "C3",
+      44
+    ],
+    [
+      "C2",
+      16
+    ],
+    [
+      "C11",
+      13
+    ],
+    [
+      "C6",
+      6
+    ],
+    [
+      "C7",
+      3
+    ],
+    [
+      "C12",
+      1
+    ]
+  ],
+  "checks_broken_by_reference": [],
+  "hunks": {
+    "total": 3740,
+    "applied": 3669,
+    "already": 52,
+    "failed": 9
+  },
+  "apply_methods": {
+    "reparam": 588,
+    "reparam-static": 30,
+    "null": 11,
+    "direct": 2
+  },
+  "no_effective_change": 2,
+  "grader_timeouts": 16,
+  "by_family": {
+    "GH": {
+      "b_grader_rejects_reference": 604,
+      "d_inconclusive_grader_timeout": 16,
+      "c_unappliable": 11
+    }
+  },
+  "source_meta": {
+    "generated_at": "2026-09-05T05:04:13.363641+00:00",
+    "seed": 0,
+    "workers": 8,
+    "shuffle_seed": 20270925,
+    "grade_timeout": 300,
+    "python_executable": "/tmp/tb_g3_env/bin/python",
+    "python_version": "3.10.12",
+    "workdir": "/tmp/tb_g3_sweep",
+    "wall_seconds": 0.0,
+    "executor": "ProcessPoolExecutor(fork)",
+    "scope_size": 631,
+    "evaluated": 631,
+    "complete": true,
+    "applier": "harness/reference_apply.py:build_reference_workspace",
+    "sys_prefix": "/tmp/tb_g3_env",
+    "grading_path_prefix": "/tmp/tb_g3_env/bin",
+    "pip_shim": {
+      "path": "/tmp/tb_g3_env/bin/pip",
+      "log": "/tmp/tb_g3_env/pip_shim.log",
+      "calls": {
+        "short_circuited": 1318,
+        "delegated": 3
+      }
+    },
+    "staging_fn": "harness.run_all.setup_run",
+    "grading_fn": "scripts/task_admission_gate.py:invoke_grader",
+    "git_commit": "d185aef1",
+    "git_branch": "iclr2027-hardening"
+  }
+}

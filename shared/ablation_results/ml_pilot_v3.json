@@ -1,0 +1,193 @@
+{
+  "model": "gpt-5-mini",
+  "tasks": [
+    "ML1_gradient_bug",
+    "ML2_overfitting_diagnosis",
+    "ML3_tokenizer_mismatch",
+    "ML4_metric_selection",
+    "ML5_data_augmentation_leak"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-25T07:01:56.328780+00:00",
+  "metrics": {
+    "s_oracle": 0.8,
+    "s_restricted": 0.0,
+    "s_full": 0.6,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.975,
+    "p_restricted": 0.0,
+    "p_full": 0.875,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.975,
+    "tni": 0.8974,
+    "team_uplift": 0.875,
+    "collab_efficiency": 0.8974,
+    "planning_value": 0.875,
+    "verification_value": 0.875,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": 0.0,
+    "interpretation": {
+      "tni": "Teamwork substantially recovers the performance gap.",
+      "team_uplift": "Team adds +87.5% over single agent",
+      "collab_efficiency": "Team reaches 89.7% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +87.5% partial score",
+      "verification_value": "Verification adds +87.5% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 4,
+      "total": 5,
+      "success_rate": 0.8
+    },
+    "full": {
+      "passes": 3,
+      "total": 5,
+      "success_rate": 0.6
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "ML1_gradient_bug",
+      "seed": 0,
+      "run_id": "20260325_044137_07259d2f",
+      "run_dir": "shared/ablation_results/ablation_runs/ML1_gradient_bug/20260325_044137_07259d2f",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 31.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML2_overfitting_diagnosis",
+      "seed": 0,
+      "run_id": "20260325_044209_1822a5dc",
+      "run_dir": "shared/ablation_results/ablation_runs/ML2_overfitting_diagnosis/20260325_044209_1822a5dc",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 39.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML3_tokenizer_mismatch",
+      "seed": 0,
+      "run_id": "20260325_044248_12a59c46",
+      "run_dir": "shared/ablation_results/ablation_runs/ML3_tokenizer_mismatch/20260325_044248_12a59c46",
+      "pass": false,
+      "partial_score": 0.875,
+      "elapsed_sec": 66.1,
+      "failure_modes": [
+        "special_tokens_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML4_metric_selection",
+      "seed": 0,
+      "run_id": "20260325_044355_0f230c53",
+      "run_dir": "shared/ablation_results/ablation_runs/ML4_metric_selection/20260325_044355_0f230c53",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 28.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "ML5_data_augmentation_leak",
+      "seed": 0,
+      "run_id": "20260325_044424_4301e0cf",
+      "run_dir": "shared/ablation_results/ablation_runs/ML5_data_augmentation_leak/20260325_044424_4301e0cf",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 34.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML1_gradient_bug",
+      "seed": 0,
+      "run_id": "20260325_044459_8a795f02",
+      "run_dir": "shared/ablation_results/ablation_runs/ML1_gradient_bug/20260325_044459_8a795f02",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 977.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML2_overfitting_diagnosis",
+      "seed": 0,
+      "run_id": "20260325_050116_9d29a282",
+      "run_dir": "shared/ablation_results/ablation_runs/ML2_overfitting_diagnosis/20260325_050116_9d29a282",
+      "pass": false,
+      "partial_score": 0.875,
+      "elapsed_sec": 1830.1,
+      "failure_modes": [
+        "dropout_not_added"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML3_tokenizer_mismatch",
+      "seed": 0,
+      "run_id": "20260325_053147_4de0f76a",
+      "run_dir": "shared/ablation_results/ablation_runs/ML3_tokenizer_mismatch/20260325_053147_4de0f76a",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 2261.3,
+      "failure_modes": [
+        "special_tokens_missing",
+        "cls_sep_not_added",
+        "not_padded_to_max_length",
+        "case_handling_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML4_metric_selection",
+      "seed": 0,
+      "run_id": "20260325_061005_b303f685",
+      "run_dir": "shared/ablation_results/ablation_runs/ML4_metric_selection/20260325_061005_b303f685",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 925.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "ML5_data_augmentation_leak",
+      "seed": 0,
+      "run_id": "20260325_062531_ee476ae2",
+      "run_dir": "shared/ablation_results/ablation_runs/ML5_data_augmentation_leak/20260325_062531_ee476ae2",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 2184.6,
+      "failure_modes": [],
+      "error": null
+    }
+  ]
+}

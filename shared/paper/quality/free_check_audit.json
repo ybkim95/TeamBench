@@ -1,0 +1,1414 @@
+{
+ "graded_tasks": 119,
+ "checks": [
+  {
+   "check": "test suite passes",
+   "n": 110,
+   "free": 0,
+   "free_rate": 0.0,
+   "class": "DISCRIMINATIVE"
+  },
+  {
+   "check": "source files are valid python",
+   "n": 110,
+   "free": 108,
+   "free_rate": 0.9818181818181818,
+   "class": "GATING"
+  },
+  {
+   "check": "source modules import without error",
+   "n": 110,
+   "free": 29,
+   "free_rate": 0.2636363636363636,
+   "class": "MIXED"
+  },
+  {
+   "check": "test files present and intact",
+   "n": 95,
+   "free": 83,
+   "free_rate": 0.8736842105263158,
+   "class": "MIXED"
+  },
+  {
+   "check": "no hardcoded magic / cheating markers in source",
+   "n": 40,
+   "free": 40,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "fix pattern present: fix introduces expected string",
+   "n": 17,
+   "free": 4,
+   "free_rate": 0.23529411764705882,
+   "class": "MIXED"
+  },
+  {
+   "check": "old buggy pattern removed: old pattern removed by fix",
+   "n": 11,
+   "free": 4,
+   "free_rate": 0.36363636363636365,
+   "class": "MIXED"
+  },
+  {
+   "check": "old buggy pattern removed: old is not comparison replaced wi",
+   "n": 3,
+   "free": 1,
+   "free_rate": 0.3333333333333333,
+   "class": "MIXED"
+  },
+  {
+   "check": "key symbols still defined in homeassistant/components/nfandr",
+   "n": 2,
+   "free": 2,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "pydantic/_internal/_generate_schema.py has at least N lines ",
+   "n": 2,
+   "free": 2,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in pydantic/_internal/_generate_sc",
+   "n": 2,
+   "free": 2,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in homeassistant/components/statis",
+   "n": 2,
+   "free": 2,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "arrow/arrow.py has at least N lines (not wiped)",
+   "n": 2,
+   "free": 2,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in arrow/arrow.py",
+   "n": 2,
+   "free": 2,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/nfandroidtv/__init__.py has at leas",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/nfandroidtv/notify.py has at least ",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "pydantic/functional_validators.py has at least N lines (not ",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in pydantic/functional_validators.",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "lib/workload/components/event-workflowrunstatechange-interna",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "lib/workload/stateless/stacks/bssh-icav2-fastq-copy-manager/",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in lib/workload/components/event-w",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in lib/workload/stateless/stacks/b",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/statistics/config_flow.py has at le",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/statistics/sensor.py has at least N",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "simplechestshop/main.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in simplechestshop/main.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/cast/media_player.py has at least N",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "tileops/ops/elementwise.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in tileops/ops/elementwise.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/jinja2/__init__.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/attr/_funcs.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/attr/_funcs.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/poetry/vcs/git/backend.py has at least N lines (not wipe",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/poetry/vcs/git/backend.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/ahttpx/_parsers.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/ahttpx/_server.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/ahttpx/_parsers.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/ahttpx/_server.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/nat/cli/commands/workflow/workflow_commands.py has at le",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/nat/cli/commands/workflow/w",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "django/contrib/humanize/templatetags/humanize.py has at leas",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in django/contrib/humanize/templat",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/werkzeug/sansio/multipart.py has at least N lines (not w",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/werkzeug/sansio/multipart.p",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "psycopg/psycopg/types/uuid.py has at least N lines (not wipe",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in psycopg/psycopg/types/uuid.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/sonos/media_player.py has at least ",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in homeassistant/components/sonos/",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "celery/backends/redis.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in celery/backends/redis.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "psycopg/psycopg/_cursor_base.py has at least N lines (not wi",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in psycopg/psycopg/_cursor_base.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/werkzeug/datastructures/file_storage.py has at least N l",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/werkzeug/utils.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/werkzeug/datastructures/fil",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/werkzeug/utils.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "psycopg/psycopg/_capabilities.py has at least N lines (not w",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "psycopg/psycopg/connection.py has at least N lines (not wipe",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in psycopg/psycopg/_capabilities.p",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in psycopg/psycopg/connection.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "old buggy pattern removed: old >= comparison replaced with >",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/pymovements/gaze/_utils/parsing.py has at least N lines ",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/pymovements/gaze/io.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/pymovements/gaze/_utils/par",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/pymovements/gaze/io.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "starlette/__init__.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 0,
+   "free_rate": 0.0,
+   "class": "DISCRIMINATIVE"
+  },
+  {
+   "check": "mitmproxy/tools/web/app.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/quart/app.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/quart/app.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "celery/fixups/django.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in celery/fixups/django.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "starlette/templating.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in starlette/templating.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/werkzeug/routing/exceptions.py has at least N lines (not",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/werkzeug/routing/matcher.py has at least N lines (not wi",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/werkzeug/routing/exceptions",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/werkzeug/routing/matcher.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/urllib3/response.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/urllib3/response.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/tuya/light.py has at least N lines ",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in homeassistant/components/tuya/l",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/flask/app.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/flask/sansio/app.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/flask/app.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/flask/sansio/app.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/utility_meter/__init__.py has at le",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in homeassistant/components/utilit",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "custom_components/opnsense/pyopnsense/__init__.py has at lea",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in custom_components/opnsense/pyop",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/jinja2/compiler.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/jinja2/compiler.py",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/mqt/bench/benchmark_generation.py has at least N lines (",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/mqt/bench/benchmark_generat",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/pyhf/cli/complete.py has at least N lines (not wiped)",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/yamaha/const.py has at least N line",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "homeassistant/components/yamaha/media_player.py has at least",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in homeassistant/components/yamaha",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "src/pyhf/tensor/numpy_backend.py has at least N lines (not w",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  },
+  {
+   "check": "key symbols still defined in src/pyhf/tensor/numpy_backend.p",
+   "n": 1,
+   "free": 1,
+   "free_rate": 1.0,
+   "class": "GATING"
+  }
+ ],
+ "per_task": [
+  {
+   "task": "GH989_great_expectati_8084",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH215_core_128958",
+   "partial": 0.6,
+   "checks": 10,
+   "free": 6
+  },
+  {
+   "task": "GH44_pydantic_12705",
+   "partial": 0.78,
+   "checks": 9,
+   "free": 7
+  },
+  {
+   "task": "O2_incident_rootcause",
+   "partial": 1.0,
+   "checks": 0,
+   "free": 0
+  },
+  {
+   "task": "GH898_plotly.py_5322",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH1023_pytorch_lightni_21187",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH774_orcabus_350",
+   "partial": 0.78,
+   "checks": 9,
+   "free": 7
+  },
+  {
+   "task": "GH208_core_129066",
+   "partial": 0.8,
+   "checks": 10,
+   "free": 8
+  },
+  {
+   "task": "NEG1_tradeoff_config",
+   "partial": 0.78,
+   "checks": 0,
+   "free": 0
+  },
+  {
+   "task": "GH1046_transformers_43675",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1152_pymc_7575",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1107_plotly.py_5535",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH483_prisma_29243",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH795_SimpleChestShop-Pyspigot_21",
+   "partial": 0.67,
+   "checks": 6,
+   "free": 4
+  },
+  {
+   "task": "GH203_core_160819",
+   "partial": 0.43,
+   "checks": 7,
+   "free": 3
+  },
+  {
+   "task": "GH499_TileOPs_570",
+   "partial": 0.62,
+   "checks": 8,
+   "free": 5
+  },
+  {
+   "task": "GH911_gpytorch_1592",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1097_sktime_7998",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH942_great_expectati_8087",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "SCALE1_codebase_migration",
+   "partial": 0.54,
+   "checks": 0,
+   "free": 0
+  },
+  {
+   "task": "GH1007_spaCy_13040",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1211_wandb_11240",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH577_jinja_2098",
+   "partial": 0.57,
+   "checks": 7,
+   "free": 4
+  },
+  {
+   "task": "GH251_attrs_1463",
+   "partial": 0.62,
+   "checks": 8,
+   "free": 5
+  },
+  {
+   "task": "GH1178_numpy_30801",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH528_poetry_10719",
+   "partial": 0.71,
+   "checks": 7,
+   "free": 5
+  },
+  {
+   "task": "GH1155_matplotlib_30746",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1066_matplotlib_31315",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1133_darts_3015",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH984_dask_10042",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "IR3_multi_source",
+   "partial": 0.6,
+   "checks": 0,
+   "free": 0
+  },
+  {
+   "task": "GH705_httpx_3690",
+   "partial": 0.75,
+   "checks": 8,
+   "free": 6
+  },
+  {
+   "task": "GH1121_wandb_11207",
+   "partial": 0.25,
+   "checks": 4,
+   "free": 1
+  },
+  {
+   "task": "GH1127_FLAML_1522",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "D2_data_quality",
+   "partial": 0.0,
+   "checks": 0,
+   "free": 0
+  },
+  {
+   "task": "GH1205_FLAML_1470",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1210_wandb_11242",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1161_statsmodels_9728",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1162_statsmodels_9413",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH278_arrow_1182",
+   "partial": 0.86,
+   "checks": 7,
+   "free": 6
+  },
+  {
+   "task": "GH339_NeMo-Agent-Toolkit_787",
+   "partial": 0.75,
+   "checks": 8,
+   "free": 6
+  },
+  {
+   "task": "GH1195_keras_22483",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH907_autogluon_4272",
+   "partial": 0.25,
+   "checks": 4,
+   "free": 1
+  },
+  {
+   "task": "GH991_pymc_7690",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1200_statsmodels_9595",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "LH4_staged_deploy",
+   "partial": 0.0,
+   "checks": 0,
+   "free": 0
+  },
+  {
+   "task": "GH1193_pytorch_170884",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH509_django_20028",
+   "partial": 0.62,
+   "checks": 8,
+   "free": 5
+  },
+  {
+   "task": "GH294_sktime_7844",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH1016_scikit_learn_17575",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH455_werkzeug_3089",
+   "partial": 0.67,
+   "checks": 6,
+   "free": 4
+  },
+  {
+   "task": "GH600_psycopg_1269",
+   "partial": 0.67,
+   "checks": 6,
+   "free": 4
+  },
+  {
+   "task": "GH998_pandas_64623",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH1140_keras_21729",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH225_core_152774",
+   "partial": 0.71,
+   "checks": 7,
+   "free": 5
+  },
+  {
+   "task": "GH1059_spaCy_13400",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH381_celery_10013",
+   "partial": 0.71,
+   "checks": 7,
+   "free": 5
+  },
+  {
+   "task": "GH2_click_flag_value",
+   "partial": 0.78,
+   "checks": 0,
+   "free": 0
+  },
+  {
+   "task": "GH970_gpytorch_1312",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH955_pandas_64683",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "D5_query_optimize",
+   "partial": 0.14,
+   "checks": 0,
+   "free": 0
+  },
+  {
+   "task": "GH964_autogluon_2865",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH3_httpx_auth_leak",
+   "partial": 0.67,
+   "checks": 0,
+   "free": 0
+  },
+  {
+   "task": "GH1060_ultralytics_23903",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH331_psycopg_1260",
+   "partial": 0.67,
+   "checks": 6,
+   "free": 4
+  },
+  {
+   "task": "GH441_arrow_1224",
+   "partial": 0.86,
+   "checks": 7,
+   "free": 6
+  },
+  {
+   "task": "GH321_werkzeug_3092",
+   "partial": 0.73,
+   "checks": 11,
+   "free": 8
+  },
+  {
+   "task": "GH839_psycopg_1217",
+   "partial": 0.7,
+   "checks": 10,
+   "free": 7
+  },
+  {
+   "task": "GH340_pymovements_1106",
+   "partial": 0.64,
+   "checks": 11,
+   "free": 7
+  },
+  {
+   "task": "GH1181_mlflow_21864",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH979_numpy_30965",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH800_starlette_3178",
+   "partial": 0.57,
+   "checks": 7,
+   "free": 4
+  },
+  {
+   "task": "GH1172_plotly.py_5000",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1051_scipy_24742",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH216_mitmproxy_8041",
+   "partial": 0.57,
+   "checks": 7,
+   "free": 4
+  },
+  {
+   "task": "GH1017_scikit_learn_21654",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH447_quart_283",
+   "partial": 0.67,
+   "checks": 6,
+   "free": 4
+  },
+  {
+   "task": "GH569_celery_10023",
+   "partial": 0.56,
+   "checks": 9,
+   "free": 5
+  },
+  {
+   "task": "GH1012_autogluon_3480",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH917_transformers_37544",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH60_starlette_3148",
+   "partial": 0.86,
+   "checks": 7,
+   "free": 6
+  },
+  {
+   "task": "GH46_pydantic_12951",
+   "partial": 0.71,
+   "checks": 7,
+   "free": 5
+  },
+  {
+   "task": "GH492_boto3_4734",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH947_pymc_7695",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1003_scipy_24496",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH729_werkzeug_3038",
+   "partial": 0.7,
+   "checks": 10,
+   "free": 7
+  },
+  {
+   "task": "GH1040_darts_2957",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1177_numpy_31079",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH98_urllib3_3769",
+   "partial": 0.71,
+   "checks": 7,
+   "free": 5
+  },
+  {
+   "task": "GH1113_statsmodels_9747",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH202_core_126242",
+   "partial": 0.71,
+   "checks": 7,
+   "free": 5
+  },
+  {
+   "task": "GH75_flask_5899",
+   "partial": 0.6,
+   "checks": 10,
+   "free": 6
+  },
+  {
+   "task": "GH416_pytest_14290",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH880_pymc_7877",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH972_sktime_7922",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH893_ray_23190",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH209_core_119328",
+   "partial": 0.71,
+   "checks": 7,
+   "free": 5
+  },
+  {
+   "task": "GH948_gpytorch_2172",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1102_darts_2895",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH478_hass-opnsense_379",
+   "partial": 0.57,
+   "checks": 7,
+   "free": 4
+  },
+  {
+   "task": "GH28_jinja_1852",
+   "partial": 0.56,
+   "checks": 9,
+   "free": 5
+  },
+  {
+   "task": "GH1031_mlflow_21922",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH667_pytest_14294",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1086_matplotlib_31133",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1204_evaluate_230",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH407_bench_709",
+   "partial": 0.71,
+   "checks": 7,
+   "free": 5
+  },
+  {
+   "task": "GH881_pymc_7858",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH462_pyhf_2639",
+   "partial": 0.86,
+   "checks": 7,
+   "free": 6
+  },
+  {
+   "task": "GH1142_statsmodels_9541",
+   "partial": 0.75,
+   "checks": 4,
+   "free": 3
+  },
+  {
+   "task": "GH934_ray_43928",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH246_core_120764",
+   "partial": 0.7,
+   "checks": 10,
+   "free": 7
+  },
+  {
+   "task": "GH913_sktime_3549",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1087_scikit_learn_30373",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH333_pyhf_2652",
+   "partial": 0.67,
+   "checks": 6,
+   "free": 4
+  },
+  {
+   "task": "GH342_pytest_14275",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH971_sktime_8548",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1173_pytorch_164368",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  },
+  {
+   "task": "GH1073_spaCy_13249",
+   "partial": 0.25,
+   "checks": 4,
+   "free": 1
+  },
+  {
+   "task": "GH1143_dask_9570",
+   "partial": 0.5,
+   "checks": 4,
+   "free": 2
+  }
+ ]
+}

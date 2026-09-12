@@ -1,0 +1,77 @@
+{
+  "design": {
+    "models": [
+      {
+        "name": "gpt-4o",
+        "capability": 85.2,
+        "cost_estimate": 4800.0
+      },
+      {
+        "name": "gpt-4o-mini",
+        "capability": 75.8,
+        "cost_estimate": 171.0
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "capability": 73.1,
+        "cost_estimate": 399.0
+      },
+      {
+        "name": "claude-3-haiku-20240307",
+        "capability": 68.2,
+        "cost_estimate": 330.0
+      },
+      {
+        "name": "deepseek-coder-v2-lite-instruct",
+        "capability": 65.9,
+        "cost_estimate": 109.20000000000002
+      }
+    ],
+    "experiment_design": {
+      "n_tasks": 20,
+      "n_conditions": 3,
+      "total_runs": 300,
+      "total_cost": 5809.2,
+      "budget_tier": "HIGH"
+    }
+  },
+  "execution_plan": {
+    "phase_1": {
+      "goal": "Infrastructure validation",
+      "duration": "1-2 days",
+      "tasks": [
+        "Test adapters with 3 models on 5 tasks",
+        "Validate compute tracking",
+        "Ensure statistical analysis works",
+        "Estimate actual token usage"
+      ]
+    },
+    "phase_2": {
+      "goal": "Mini-pilot",
+      "duration": "1 day",
+      "tasks": [
+        "Run 3 models \u00d7 10 tasks \u00d7 3 conditions = 90 experiments",
+        "Cost: ~$50-100 estimated",
+        "Validate scaling signal detection",
+        "Check variance levels"
+      ]
+    },
+    "phase_3": {
+      "goal": "Full pilot",
+      "duration": "2-3 days",
+      "tasks": [
+        "Run 5 models \u00d7 20 tasks \u00d7 3 conditions = 300 experiments",
+        "Cost: ~$300-800 estimated",
+        "Complete statistical analysis",
+        "Generate scaling law coefficients"
+      ]
+    },
+    "deliverables": [
+      "Scaling law: benefit = \u03b1 \u00d7 capability^\u03b2",
+      "Statistical significance tests",
+      "Confidence intervals",
+      "Infrastructure validation report",
+      "Cost projections for larger studies"
+    ]
+  }
+}

@@ -1,0 +1,2600 @@
+[
+ {
+  "task": "GH103_redis-py_3998",
+  "repo": "redis/redis-py",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.91,
+   "n_checks": 11,
+   "failed": [
+    "C12"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.82,
+   "n_checks": 11,
+   "failed": [
+    "C1",
+    "C12"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 11,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH112_redis-py_3996",
+  "repo": "redis/redis-py",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.43,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C3",
+    "C7",
+    "C8"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.57,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C7",
+    "C8"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH1031_mlflow_21922",
+  "status": "error",
+  "err": "Command '['/u/ybkim95/TeamBench/.cache/core/deps/mlflow_mlflow@2ea54248f0fc/bin/pip', 'install', '-q', 'Deprecated==1.3.1', 'Flask==3.1.3', 'GitPython==3.1.62', 'Jinja2==3.1.6', 'Mako==1.4.1', 'Markup"
+ },
+ {
+  "task": "GH136_mitmproxy_8054",
+  "repo": "mitmproxy/mitmproxy",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.5,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C3",
+    "C5",
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.62,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C5",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.62,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C5",
+    "C9"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH1188_FLAML_1500",
+  "status": "error",
+  "err": "Command '['/u/ybkim95/TeamBench/.cache/core/deps/microsoft_FLAML@c64eeb5e8df5/bin/pip', 'install', '-q', 'GitPython==3.1.62', 'Jinja2==3.1.6', 'Mako==1.4.1', 'MarkupSafe==3.0.3', 'PyMeeus==0.5.12', 'P"
+ },
+ {
+  "task": "GH139_marshmallow_2894",
+  "repo": "marshmallow-code/marshmallow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH140_marshmallow_2874",
+  "repo": "marshmallow-code/marshmallow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH158_attrs_1529",
+  "repo": "python-attrs/attrs",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C9",
+    "C11"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.7,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C9",
+    "C11"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C9",
+    "C11"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH143_mitmproxy_8095",
+  "repo": "mitmproxy/mitmproxy",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.7,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5",
+    "C11"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.7,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5",
+    "C11"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH17_aiohttp_10151",
+  "repo": "aio-libs/aiohttp",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH23_poetry_10721",
+  "repo": "python-poetry/poetry",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH1030_mlflow_21824",
+  "repo": "mlflow/mlflow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 4,
+   "failed": [
+    "C5"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.5,
+   "n_checks": 4,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 4,
+   "failed": [
+    "C5"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH263_astropy_16550",
+  "repo": "astropy/astropy",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.7,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5",
+    "C11"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.7,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5",
+    "C11"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.7,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5",
+    "C11"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH25_aiohttp_12245",
+  "repo": "aio-libs/aiohttp",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH28_jinja_1852",
+  "repo": "pallets/jinja",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.78,
+   "n_checks": 9,
+   "failed": [
+    "C9",
+    "C10"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.67,
+   "n_checks": 9,
+   "failed": [
+    "C1",
+    "C9",
+    "C10"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 9,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH30_werkzeug_3109",
+  "repo": "pallets/werkzeug",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 10,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.9,
+   "n_checks": 10,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 10,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH32_jinja_1664",
+  "repo": "pallets/jinja",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 10,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.9,
+   "n_checks": 10,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 10,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH29_aiohttp_12217",
+  "repo": "aio-libs/aiohttp",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH33_jinja_1663",
+  "repo": "pallets/jinja",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH35_jinja_1665",
+  "repo": "pallets/jinja",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH1118_mlflow_22053",
+  "repo": "mlflow/mlflow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 4,
+   "failed": [
+    "C5"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.5,
+   "n_checks": 4,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 4,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH349_urllib3_3743",
+  "repo": "urllib3/urllib3",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH371_arrow_1194",
+  "repo": "arrow-py/arrow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH363_celery_10040",
+  "repo": "celery/celery",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH37_pydantic_12816",
+  "repo": "pydantic/pydantic",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH394_arrow_1218",
+  "repo": "arrow-py/arrow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.78,
+   "n_checks": 9,
+   "failed": [
+    "C9",
+    "C10"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.67,
+   "n_checks": 9,
+   "failed": [
+    "C1",
+    "C9",
+    "C10"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 9,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH381_celery_10013",
+  "repo": "celery/celery",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH39_jinja_1762",
+  "repo": "pallets/jinja",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH40_poetry_10720",
+  "repo": "python-poetry/poetry",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH414_aiohttp_12249",
+  "repo": "aio-libs/aiohttp",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH405_narwhals_1515",
+  "repo": "narwhals-dev/narwhals",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 9,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.89,
+   "n_checks": 9,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 9,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH442_arrow_1172",
+  "repo": "arrow-py/arrow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH415_arrow_852",
+  "repo": "arrow-py/arrow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH444_arrow_1184",
+  "repo": "arrow-py/arrow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.78,
+   "n_checks": 9,
+   "failed": [
+    "C9",
+    "C10"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.67,
+   "n_checks": 9,
+   "failed": [
+    "C1",
+    "C9",
+    "C10"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 9,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH46_pydantic_12951",
+  "repo": "pydantic/pydantic",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH47_jinja_1706",
+  "repo": "pallets/jinja",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH482_openrag_167",
+  "repo": "linagora/openrag",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.82,
+   "n_checks": 11,
+   "failed": [
+    "C5",
+    "C11"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.73,
+   "n_checks": 11,
+   "failed": [
+    "C1",
+    "C5",
+    "C11"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.91,
+   "n_checks": 11,
+   "failed": [
+    "C5"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH494_poetry_10715",
+  "repo": "python-poetry/poetry",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.7,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5",
+    "C11"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.7,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5",
+    "C11"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.7,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5",
+    "C11"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH462_pyhf_2639",
+  "repo": "scikit-hep/pyhf",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH516_attrs_1513",
+  "repo": "python-attrs/attrs",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH518_narwhals_2280",
+  "repo": "narwhals-dev/narwhals",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.9,
+   "n_checks": 10,
+   "failed": [
+    "C11"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C11"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.9,
+   "n_checks": 10,
+   "failed": [
+    "C11"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH525_arrow_1186",
+  "repo": "arrow-py/arrow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.78,
+   "n_checks": 9,
+   "failed": [
+    "C9",
+    "C10"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.67,
+   "n_checks": 9,
+   "failed": [
+    "C1",
+    "C9",
+    "C10"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 9,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH495_sktime_7762",
+  "repo": "sktime/sktime",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.91,
+   "n_checks": 11,
+   "failed": [
+    "C11"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.82,
+   "n_checks": 11,
+   "failed": [
+    "C1",
+    "C11"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.91,
+   "n_checks": 11,
+   "failed": [
+    "C11"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH528_poetry_10719",
+  "repo": "python-poetry/poetry",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH52_jinja_1702",
+  "repo": "pallets/jinja",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH538_redis-py_3970",
+  "repo": "redis/redis-py",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH539_redis-py_3969",
+  "repo": "redis/redis-py",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH540_redis-py_3968",
+  "repo": "redis/redis-py",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH54_pydantic_12817",
+  "repo": "pydantic/pydantic",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH397_napari_7053",
+  "repo": "napari/napari",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH558_marshmallow_2861",
+  "repo": "marshmallow-code/marshmallow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH566_jinja_1537",
+  "repo": "pallets/jinja",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH556_narwhals_2176",
+  "repo": "narwhals-dev/narwhals",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C11"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C11"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.9,
+   "n_checks": 10,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH56_werkzeug_3066",
+  "repo": "pallets/werkzeug",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH60_starlette_3148",
+  "repo": "Kludex/starlette",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH569_celery_10023",
+  "repo": "celery/celery",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.78,
+   "n_checks": 9,
+   "failed": [
+    "C9",
+    "C10"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.67,
+   "n_checks": 9,
+   "failed": [
+    "C1",
+    "C9",
+    "C10"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 9,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH626_werkzeug_3081",
+  "repo": "pallets/werkzeug",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH613_celery_10038",
+  "repo": "celery/celery",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.78,
+   "n_checks": 9,
+   "failed": [
+    "C1",
+    "C3"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.89,
+   "n_checks": 9,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 9,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH642_marshmallow_2854",
+  "repo": "marshmallow-code/marshmallow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH64_werkzeug_3008",
+  "repo": "pallets/werkzeug",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH65_werkzeug_3110",
+  "repo": "pallets/werkzeug",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C9"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH526_napari_8149",
+  "status": "error",
+  "err": "Command '['/u/ybkim95/TeamBench/.cache/core/deps/napari_napari@0848c20ba910/bin/pip', 'install', '-q', 'HeapDict==1.0.1', 'ImageIO==2.37.4', 'Jinja2==3.1.6', 'MarkupSafe==3.0.3', 'MouseInfo==0.1.3', '"
+ },
+ {
+  "task": "GH684_starlette_3144",
+  "repo": "Kludex/starlette",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH665_narwhals_2363",
+  "repo": "narwhals-dev/narwhals",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.71,
+   "n_checks": 7,
+   "failed": [
+    "C1",
+    "C3"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH729_werkzeug_3038",
+  "repo": "pallets/werkzeug",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.9,
+   "n_checks": 10,
+   "failed": [
+    "C11"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.8,
+   "n_checks": 10,
+   "failed": [
+    "C1",
+    "C11"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 10,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH71_starlette_3189",
+  "repo": "Kludex/starlette",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH732_arrow_1190",
+  "repo": "arrow-py/arrow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 8,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH801_aiohttp_11861",
+  "repo": "aio-libs/aiohttp",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH739_bsb-core_884",
+  "repo": "dbbs-lab/bsb-core",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH808_jinja_2062",
+  "repo": "pallets/jinja",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH802_aiohttp_11860",
+  "repo": "aio-libs/aiohttp",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.86,
+   "n_checks": 7,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 7,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": true
+ },
+ {
+  "task": "GH837_aiohttp_12257",
+  "repo": "aio-libs/aiohttp",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH838_aiohttp_12256",
+  "repo": "aio-libs/aiohttp",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH84_redis-py_3989",
+  "repo": "redis/redis-py",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C9"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.88,
+   "n_checks": 8,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH646_napari_6965",
+  "status": "error",
+  "err": "Command '['/u/ybkim95/TeamBench/.cache/core/deps/napari_napari@f0c02a844cdd/bin/pip', 'install', '-q', 'HeapDict==1.0.1', 'ImageIO==2.37.4', 'Jinja2==3.1.6', 'MarkupSafe==3.0.3', 'MouseInfo==0.1.3', '"
+ },
+ {
+  "task": "GH96_arrow_1179",
+  "repo": "arrow-py/arrow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.5,
+   "n_checks": 4,
+   "failed": [
+    "C1",
+    "C3"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.5,
+   "n_checks": 4,
+   "failed": [
+    "C1",
+    "C3"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.5,
+   "n_checks": 4,
+   "failed": [
+    "C1",
+    "C3"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH97_arrow_1201",
+  "repo": "arrow-py/arrow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.89,
+   "n_checks": 9,
+   "failed": [
+    "C10"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.78,
+   "n_checks": 9,
+   "failed": [
+    "C1",
+    "C10"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": true,
+   "partial": 1.0,
+   "n_checks": 9,
+   "failed": []
+  },
+  "usable": true,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH847_clinica_1519",
+  "repo": "aramis-lab/clinica",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 8,
+   "failed": [
+    "C1",
+    "C5"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH931_mlflow_21721",
+  "repo": "mlflow/mlflow",
+  "status": "ok",
+  "A": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 4,
+   "failed": [
+    "C1"
+   ]
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 4,
+   "failed": [
+    "C1"
+   ]
+  },
+  "C": {
+   "status": "ok",
+   "pass": false,
+   "partial": 0.75,
+   "n_checks": 4,
+   "failed": [
+    "C1"
+   ]
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ },
+ {
+  "task": "GH26_werkzeug_3078",
+  "repo": "pallets/werkzeug",
+  "status": "ok",
+  "A": {
+   "status": "timeout"
+  },
+  "inject_rc": 0,
+  "B": {
+   "status": "timeout"
+  },
+  "C": {
+   "status": "timeout"
+  },
+  "usable": false,
+  "grader_blind_without_injection": false
+ }
+]

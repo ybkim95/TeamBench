@@ -1,0 +1,2110 @@
+{
+  "meta": {
+    "script": "scripts/reanalysis.py",
+    "seed": 20260905,
+    "n_boot": 4000,
+    "n_perm": 5000,
+    "n_tasks_reference_pool": 155,
+    "n_tasks_with_multiseed_replicates": 39,
+    "n_lb90_models": 20,
+    "n_role_mixing_runs": 2145,
+    "sources": {
+      "reference_ablation": "/u/ybkim95/TeamBench/shared/paper/ablation_summary.json",
+      "reference_ablation_raw_crosscheck": {
+        "batch_files_found": 13,
+        "cells_crosschecked": 650,
+        "cells_mismatched": 158,
+        "mismatch_examples": [
+          {
+            "task_id": "CR5_test_coverage",
+            "condition": "restricted",
+            "summary": 0.12666666666666668,
+            "raw_candidates": [
+              0.38
+            ]
+          },
+          {
+            "task_id": "CR5_test_coverage",
+            "condition": "full",
+            "summary": 0.25666666666666665,
+            "raw_candidates": [
+              0.77
+            ]
+          },
+          {
+            "task_id": "CR5_test_coverage",
+            "condition": "team_no_plan",
+            "summary": 0.12666666666666668,
+            "raw_candidates": [
+              0.38
+            ]
+          },
+          {
+            "task_id": "CR5_test_coverage",
+            "condition": "team_no_verify",
+            "summary": 0.15333333333333335,
+            "raw_candidates": [
+              0.46
+            ]
+          },
+          {
+            "task_id": "CR6_review_checklist",
+            "condition": "oracle",
+            "summary": 0.06,
+            "raw_candidates": [
+              0.18
+            ]
+          },
+          {
+            "task_id": "CR6_review_checklist",
+            "condition": "restricted",
+            "summary": 0.06,
+            "raw_candidates": [
+              0.18
+            ]
+          },
+          {
+            "task_id": "CR6_review_checklist",
+            "condition": "full",
+            "summary": 0.30333333333333334,
+            "raw_candidates": [
+              0.91
+            ]
+          },
+          {
+            "task_id": "CR6_review_checklist",
+            "condition": "team_no_plan",
+            "summary": 0.2733333333333333,
+            "raw_candidates": [
+              0.82
+            ]
+          }
+        ],
+        "note": "Cells not covered by the batch files listed here are not cross-checked; a mismatch usually means a retry file superseded the original run and both values are present in the raw pool."
+      },
+      "multiseed_replicates": "/u/ybkim95/TeamBench/shared/ablation_results/phase3_all_consolidated.json",
+      "leaderboard": "/u/ybkim95/TeamBench/shared/paper/lb90_full_aggregate.json",
+      "role_mixing": "/u/ybkim95/TeamBench/shared/role_ablation/results/per_run.jsonl",
+      "published_quintile": "/u/ybkim95/TeamBench/shared/paper/quintile_solo_stratified.json"
+    },
+    "policy": "every derived field is recomputed; no stored TNI, gap, uplift or classification is read"
+  },
+  "A_tni_autopsy": {
+    "denominator_diagnostics": {
+      "n_tasks": 155,
+      "mean": 0.007281290322580648,
+      "sd": 0.19139996155327602,
+      "se": 0.015373614867078644,
+      "t": 0.47362252700716106,
+      "p_two_sided": 0.6364398376721294,
+      "exactly_zero": 87,
+      "negative": 27,
+      "positive": 41,
+      "abs_below_0.05": 94,
+      "below_eps_0.05_signed": 118,
+      "below_eps_0.01_signed": 114,
+      "bootstrap": {
+        "mean": 0.007281290322580648,
+        "ci_lo": -0.022764419354838705,
+        "ci_hi": 0.036628037634408604,
+        "se_boot": 0.015150227378356168,
+        "n": 155
+      },
+      "fraction_where_paper_eps_is_active": 0.7612903225806451
+    },
+    "algebraic_identity": {
+      "claim": "S_team - S_restricted == (S_solo - S_restricted) + (S_team - S_solo)",
+      "max_abs_residual": 2.7755575615628914e-17,
+      "consequence": "TNI = 1 + (S_team - S_solo)/(S_solo - S_restricted)",
+      "interpretation": "Every bit of teamwork signal in TNI lives in the numerator term (S_team - S_solo). TNI takes that quantity, divides it by a denominator whose mean is not distinguishable from zero, and adds 1. On tasks with a positive gap, 'TNI > 1' is algebraically identical to 'S_team > S_solo'. The ratio contributes no information the difference does not already carry, and it contributes unbounded variance."
+    },
+    "implementations_on_one_pool": {
+      "paper_eq1_eps0.05": {
+        "implementation": "paper Eq. (1), eps=0.05, no clamp",
+        "n_defined": 155,
+        "n_undefined": 0,
+        "mean": -0.4191473095714437,
+        "median": 0.0,
+        "min": -20.0,
+        "max": 15.533333333333333
+      },
+      "compute_tni_py": {
+        "implementation": "harness/compute_tni.py, |gap|<0.05 -> NaN, clamp [-2,2]",
+        "n_defined": 61,
+        "n_undefined": 94,
+        "mean": 0.6308846682170475,
+        "median": 1.0,
+        "min": -2.0,
+        "max": 2.0
+      },
+      "ablation_py_eps0.01": {
+        "implementation": "harness/ablation.py, eps=0.01, no clamp",
+        "n_defined": 155,
+        "n_undefined": 0,
+        "mean": -3.691347505074865,
+        "median": 0.0,
+        "min": -100.0,
+        "max": 77.66666666666667
+      },
+      "validate_tni_py": {
+        "implementation": "harness/validate_tni.py, (team-solo)/max(0.01,1-solo) -- different estimand",
+        "n_defined": 155,
+        "n_undefined": 0,
+        "mean": -1.0583113746203598,
+        "median": 0.0,
+        "min": -100.0,
+        "max": 1.0
+      },
+      "unclamped_ratio": {
+        "implementation": "raw relay/gap with no epsilon and no clamp",
+        "n_defined": 68,
+        "n_undefined": 87,
+        "mean": 0.8656037603986612,
+        "median": 1.0,
+        "min": -38.83333333333333,
+        "max": 20.181818181818173
+      }
+    },
+    "same_subset_comparison": {
+      "subset": "tasks where harness/compute_tni.py reports a value (|gap| >= 0.05)",
+      "n": 61,
+      "paper_eq1_mean": -1.0799972620257994,
+      "compute_tni_py_mean": 0.6308846682170475,
+      "ablation_py_mean": -7.515013655468423,
+      "unclamped_mean": 0.9234549619148514,
+      "sign_disagreements_paper_vs_code": 14,
+      "spearman_paper_vs_code": 0.232892185460966
+    },
+    "internal_inconsistency_in_stored_summary": {
+      "issue": "shared/paper/ablation_summary.json applies |gap| >= 0.05 per task but signed gap > 0.05 in its own aggregate block, so the file reports two different TNI means for the same data.",
+      "n_per_task_nonnull_abs_filter": 61,
+      "mean_abs_filter": 0.6308846682170475,
+      "n_aggregate_signed_filter": 37,
+      "mean_signed_filter": 0.7443491749602974
+    },
+    "clamp_census": {
+      "clamp_range": [
+        -2.0,
+        2.0
+      ],
+      "documented_in_paper": false,
+      "n_reported": 61,
+      "n_on_upper_clamp": 9,
+      "n_on_lower_clamp": 3,
+      "fraction_on_a_clamp": 0.19672131147540983,
+      "mean_with_clamp": 0.6308846682170475,
+      "mean_without_clamp": 0.9234549619148514,
+      "max_without_clamp": 10.0,
+      "min_without_clamp": -9.222222222222214,
+      "note": "The clamp is load-bearing: it is what keeps the reported mean finite and moderate. Removing it moves the mean and exposes the heavy tail that the ratio actually has."
+    },
+    "fieller_confidence_set_for_ratio_of_means": {
+      "num_mean": 0.004650752688172044,
+      "den_mean": 0.007281290322580648,
+      "den_se": 0.015373614867078653,
+      "den_t": 0.4736225270071608,
+      "den_p_two_sided": 0.6364398376721295,
+      "point_ratio": 0.6387264457439895,
+      "t_crit": 1.9754880582258318,
+      "a": -0.0008693435568034738,
+      "b": 0.0010289556387627615,
+      "c": -0.0026449534331245647,
+      "discriminant": -8.138743193986591e-06,
+      "n": 155,
+      "form": "whole_real_line",
+      "bounded": false,
+      "confidence_set": "(-inf, +inf)",
+      "reading": "a <= 0 means the denominator's own confidence interval covers zero, so no bounded confidence set for the ratio exists at 95%. The correct report is that the ratio of means is not estimable on this pool."
+    },
+    "heavy_tail_of_mean_per_task_ratio": {
+      "subset_n": 61,
+      "observed_mean_of_per_task_ratios": 0.9234549619148514,
+      "bootstrap_mean_p2.5": 0.20661957720917337,
+      "bootstrap_mean_p97.5": 1.6710647548173252,
+      "bootstrap_mean_min": -0.36772404045228185,
+      "bootstrap_mean_max": 2.1696489960536756,
+      "bootstrap_ci_width": 1.4644451776081517,
+      "note": "The per-task ratio has no finite population mean when the denominator's distribution has mass at zero, so the sample mean reported as 'average TNI' is not consistent for anything."
+    },
+    "simulation_denominator_to_zero": {
+      "design": "Resample the observed 155 paired (numerator, denominator) task vectors with the numerator mean pinned at +0.05 and the denominator mean set to each grid value. The true ratio is then 0.05/mu_d exactly.",
+      "n_replicates": 800,
+      "observed_denominator_mean_for_reference": 0.007281290322580648,
+      "grid": [
+        {
+          "denominator_mean": 0.005,
+          "true_ratio": 10.0,
+          "median_estimate": 2.128516071254422,
+          "iqr": 8.16510329222073,
+          "sd_estimate": 185.6706954040806,
+          "p2.5": -35.92785084836315,
+          "p97.5": 38.27689082554788,
+          "frac_sign_flipped": 0.385,
+          "coverage_naive_percentile_bootstrap": 0.87625,
+          "coverage_fieller": 0.95875,
+          "frac_fieller_unbounded": 0.92875
+        },
+        {
+          "denominator_mean": 0.01,
+          "true_ratio": 5.0,
+          "median_estimate": 2.3416968896578503,
+          "iqr": 4.833993468197566,
+          "sd_estimate": 942.9522249201235,
+          "p2.5": -44.88684017615418,
+          "p97.5": 31.730584647555517,
+          "frac_sign_flipped": 0.25625,
+          "coverage_naive_percentile_bootstrap": 0.9375,
+          "coverage_fieller": 0.94125,
+          "frac_fieller_unbounded": 0.87
+        },
+        {
+          "denominator_mean": 0.02,
+          "true_ratio": 2.5,
+          "median_estimate": 2.1031298030550922,
+          "iqr": 2.365250513238624,
+          "sd_estimate": 81.05884091098893,
+          "p2.5": -10.028699358120289,
+          "p97.5": 21.024840000873798,
+          "frac_sign_flipped": 0.08625,
+          "coverage_naive_percentile_bootstrap": 0.96875,
+          "coverage_fieller": 0.95,
+          "frac_fieller_unbounded": 0.73375
+        },
+        {
+          "denominator_mean": 0.05,
+          "true_ratio": 1.0,
+          "median_estimate": 1.0196532190322,
+          "iqr": 0.7005758215289767,
+          "sd_estimate": 0.7640412990570736,
+          "p2.5": -0.0546152150835544,
+          "p97.5": 2.5793662933238757,
+          "frac_sign_flipped": 0.03625,
+          "coverage_naive_percentile_bootstrap": 0.95375,
+          "coverage_fieller": 0.94,
+          "frac_fieller_unbounded": 0.1225
+        },
+        {
+          "denominator_mean": 0.1,
+          "true_ratio": 0.5,
+          "median_estimate": 0.49510517809399823,
+          "iqr": 0.35678106955076255,
+          "sd_estimate": 0.26650765132848486,
+          "p2.5": -0.02218185567245829,
+          "p97.5": 1.010984703502436,
+          "frac_sign_flipped": 0.03125,
+          "coverage_naive_percentile_bootstrap": 0.92,
+          "coverage_fieller": 0.94,
+          "frac_fieller_unbounded": 0.0
+        },
+        {
+          "denominator_mean": 0.2,
+          "true_ratio": 0.25,
+          "median_estimate": 0.25297768201183624,
+          "iqr": 0.1764889136563935,
+          "sd_estimate": 0.12713100884245448,
+          "p2.5": -0.00010586319415117386,
+          "p97.5": 0.4850317473911888,
+          "frac_sign_flipped": 0.02625,
+          "coverage_naive_percentile_bootstrap": 0.935,
+          "coverage_fieller": 0.9475,
+          "frac_fieller_unbounded": 0.0
+        },
+        {
+          "denominator_mean": 0.4,
+          "true_ratio": 0.125,
+          "median_estimate": 0.12643281393776626,
+          "iqr": 0.08693641878033079,
+          "sd_estimate": 0.06389496560109165,
+          "p2.5": -0.003846389949347148,
+          "p97.5": 0.2411076639075341,
+          "frac_sign_flipped": 0.03375,
+          "coverage_naive_percentile_bootstrap": 0.9325,
+          "coverage_fieller": 0.9525,
+          "frac_fieller_unbounded": 0.0
+        }
+      ],
+      "reading": "Two things happen as the denominator approaches zero, and only one of them is a coverage failure. First, the estimator's dispersion explodes: the standard deviation of the point estimate grows by three orders of magnitude across this grid, so the number reported as 'average TNI' is dominated by which side of zero the denominator's sampling error lands on. Second, the percentile bootstrap's coverage degrades below nominal only in the extreme left of the grid; elsewhere it holds nominal coverage by producing intervals so wide they exclude nothing. Neither regime yields a usable estimate. Fieller is the honest report: it returns an unbounded set precisely when the data cannot pin the ratio down, and the fraction of unbounded sets rises from 0 to over 90 percent as the denominator shrinks."
+    },
+    "denominator_measurement_noise": {
+      "available": true,
+      "n_tasks_with_replicates": 39,
+      "mean_replicates_per_task": 2.4615384615384617,
+      "within_task_variance_sigma2_e": 0.04363155273504274,
+      "between_task_variance_sigma2_theta": 0.0028718289498519227,
+      "reliability_of_a_single_run_gap": 0.06175527124696733,
+      "note": "This is the reliability of the TNI denominator measured on one seed. A ratio whose denominator has this much measurement noise and a population mean near zero cannot be stabilised by any epsilon or clamp."
+    },
+    "reconciliation_with_earlier_internal_figures": {
+      "note": "An earlier internal note recorded the paper formula at -0.745 against the code's +0.651 on the same tasks, and 11 of 61 stored values on the clamp. Recomputing from shared/paper/ablation_summary.json gives -1.080 against +0.631 on the 61-task subset the code admits, and 12 of 61 values on a clamp. The direction and the magnitude of the disagreement are the same; the exact figures differ because the earlier note used a different admission filter. We report the recomputed values."
+    }
+  },
+  "B_replacement_estimand": {
+    "definition": {
+      "name": "Coordination Necessity Contrast (CNC)",
+      "shape": "2-D per task: (g_i, u_i). Never a ratio.",
+      "g_definition": "S_solo,i - S_restricted,i  (partition value: how much score the withheld information is worth to a single agent under the same turn budget)",
+      "u_definition": "S_team,i - S_solo,i  (team advantage over the compute-matched single agent that has everything)",
+      "why_two_dimensions": "g and u answer different questions and are not commensurable. g is a property of the task's information design: if g = 0 the task never had a coordination requirement to detect, regardless of what the team does. u is a property of the multi-agent system. Dividing one by the other destroys both, because the denominator is a design property that is legitimately zero on many tasks.",
+      "admission_rule": "A task is coordination-demanding at (tau_g, tau_u) iff its true theta^g > tau_g AND its true theta^u > tau_u. Benchmark-level admission is P(theta^g > tau_g), estimated hierarchically, not the count of tasks whose single-run estimate clears the threshold.",
+      "estimator": "sample mean of within-task differences",
+      "ci_construction": "percentile bootstrap resampling TASKS (the cluster), conditions carried together so the contrast stays paired",
+      "null_behaviour": "exact within-task sign-flip permutation; the estimator is centred at 0 under the null and its permutation p-value is valid without any distributional assumption"
+    },
+    "pool_level_estimates": {
+      "partition_value_g_solo_minus_restricted": {
+        "mean": 0.007281290322580648,
+        "ci_lo": -0.023830403225806457,
+        "ci_hi": 0.036155505376344085,
+        "se_boot": 0.015402728023031014,
+        "n": 155
+      },
+      "team_advantage_u_full_minus_solo": {
+        "mean": -0.002630537634408596,
+        "ci_lo": -0.051083473118279564,
+        "ci_hi": 0.04524191935483871,
+        "se_boot": 0.02478812175096068,
+        "n": 155
+      },
+      "relay_advantage_full_minus_restricted": {
+        "mean": 0.004650752688172044,
+        "ci_lo": -0.04639147849462366,
+        "ci_hi": 0.05584544086021505,
+        "se_boot": 0.026300348228654447,
+        "n": 155
+      },
+      "planner_value_full_minus_no_plan": {
+        "mean": 0.022930752688172046,
+        "ci_lo": -0.03074737634408602,
+        "ci_hi": 0.08113936021505376,
+        "se_boot": 0.028338301704646934,
+        "n": 155
+      },
+      "verifier_value_full_minus_no_verify": {
+        "mean": -0.054291827956989246,
+        "ci_lo": -0.10038218279569894,
+        "ci_hi": -0.007939698924731172,
+        "se_boot": 0.023920871573293805,
+        "n": 155
+      }
+    },
+    "permutation_p_values": {
+      "partition_value_g": 0.6533366658335417,
+      "team_advantage_u": 0.9160209947513122,
+      "relay_advantage": 0.855036240939765,
+      "planner_value": 0.4158960259935016,
+      "verifier_value": 0.025743564108972758
+    },
+    "win_loss_asymmetry": {
+      "n_tasks": 155,
+      "n_ties": 56,
+      "n_contested": 99,
+      "team_wins": 68,
+      "team_losses": 31,
+      "win_rate_among_contested": 0.6868686868686869,
+      "win_rate_wilson_ci": [
+        0.5899849550666463,
+        0.769792127285535
+      ],
+      "sign_test_p": 0.00025534608649658137,
+      "mean_gain_when_team_wins_pp": 19.88,
+      "mean_loss_when_team_loses_pp": -44.93,
+      "loss_to_gain_magnitude_ratio": 2.26,
+      "mean_contrast_pp": -0.263,
+      "median_contrast_pp": 0.0,
+      "reading": "The team wins more contested tasks than it loses, and the sign test on that count is significant, but the mean contrast is zero because the losses are larger than the wins. This is a variance effect, not an absence of an effect: adding roles changes the distribution of outcomes without moving its centre. Reporting only the mean hides it, and so does reporting only the win count."
+    },
+    "two_dimensional_task_census": {
+      "coordination_demanding_g_pos_u_pos": 4,
+      "partition_matters_but_team_does_not_g_pos_u_neg": 11,
+      "no_partition_but_team_helps_g_null_u_pos": 39,
+      "no_partition_and_team_hurts_g_null_u_neg": 13,
+      "inverted_partition_g_neg": 24,
+      "everything_else_within_band": 64,
+      "thresholds": {
+        "tau_g": 0.05,
+        "tau_u": 0.05
+      }
+    },
+    "hierarchical_admission_partition_value": {
+      "available": true,
+      "quantity": "theta_g",
+      "sigma2_e_from_replicates": 0.04363155273504274,
+      "n_tasks_supplying_sigma2_e": 39,
+      "mean_replicates_per_task": 2.4615384615384617,
+      "var_of_single_run_estimates_full_pool": 0.03663394528259554,
+      "tau2_between_task_full_pool": -0.006997607452447201,
+      "tau2_between_task_replicate_subset": 0.0028718289498519227,
+      "grand_mean_mu": 0.007281290322580648,
+      "grand_mean_ci": [
+        -0.022710892473118274,
+        0.037154112903225796
+      ],
+      "at_variance_boundary": true,
+      "boundary_reading": "The estimated between-task variance in theta_g is not positive: the run-to-run variance measured on the replicate subset (0.0436) is at least as large as the task-to-task variance of the single-run estimates on the full pool (0.0366). Both decompositions agree on the sign. Under the model this means the corpus provides no evidence that any task has more of this quantity than any other, so every task's posterior collapses onto the grand mean, and the grand mean itself is 0.0073 with a 95% interval of [-0.0227, 0.0372] that contains zero. The correct conclusion is not that admission is easy or impossible, but that at one run per task the corpus cannot rank its own tasks by this quantity at all.",
+      "thresholds": {
+        "tau=0.0": {
+          "pi_hierarchical": 1.0,
+          "naive_fraction_of_point_estimates_above_tau": 0.2645161290322581,
+          "inflation_of_naive_over_hierarchical": -0.7354838709677419,
+          "expected_qualifying_tasks_of_155": 155.0
+        },
+        "tau=0.05": {
+          "pi_hierarchical": 0.0,
+          "naive_fraction_of_point_estimates_above_tau": 0.23870967741935484,
+          "inflation_of_naive_over_hierarchical": 0.23870967741935484,
+          "expected_qualifying_tasks_of_155": 0.0
+        },
+        "tau=0.1": {
+          "pi_hierarchical": 0.0,
+          "naive_fraction_of_point_estimates_above_tau": 0.14838709677419354,
+          "inflation_of_naive_over_hierarchical": 0.14838709677419354,
+          "expected_qualifying_tasks_of_155": 0.0
+        },
+        "tau=0.2": {
+          "pi_hierarchical": 0.0,
+          "naive_fraction_of_point_estimates_above_tau": 0.10967741935483871,
+          "inflation_of_naive_over_hierarchical": 0.10967741935483871,
+          "expected_qualifying_tasks_of_155": 0.0
+        }
+      },
+      "sensitivity_to_sigma2_e": {
+        "sigma2_e x 0.25": {
+          "sigma2_e": 0.010907888183760685,
+          "implied_reliability": 0.7022464247403097,
+          "pi_at_tau_0.10": 0.23163278998307066,
+          "pi_at_tau_0.20": 0.08610269785684763
+        },
+        "sigma2_e x 0.5": {
+          "sigma2_e": 0.02181577636752137,
+          "implied_reliability": 0.40449284948061953,
+          "pi_at_tau_0.10": 0.20830368553782655,
+          "pi_at_tau_0.20": 0.05003993742320271
+        },
+        "sigma2_e x 0.75": {
+          "sigma2_e": 0.032723664551282054,
+          "implied_reliability": 0.10673927422092928,
+          "pi_at_tau_0.10": 0.06784187630209648,
+          "pi_at_tau_0.20": 0.0010114440856735755
+        },
+        "sigma2_e x 1.0": {
+          "sigma2_e": 0.04363155273504274,
+          "implied_reliability": 0.0,
+          "pi_at_tau_0.10": 0.0,
+          "pi_at_tau_0.20": 0.0
+        }
+      },
+      "runs_per_cell_needed": {
+        "assumed_tau2": 0.0028718289498519227,
+        "assumption": "uses the larger of the two between-task variance estimates, which is the optimistic case; if the true between-task variance is zero no amount of replication makes the ranking meaningful because there is nothing to rank",
+        "runs": {
+          "reliability_0.5": 16,
+          "reliability_0.7": 36,
+          "reliability_0.8": 61
+        },
+        "current_runs_per_cell": 1
+      },
+      "recommended_operating_threshold": 0.1,
+      "reading": "The tau = 0 row is not informative: asking whether a task's true necessity exceeds zero is asking for the sign of a quantity the corpus cannot measure, and at the variance boundary the estimator correctly returns the sign of the grand mean for every task. The substantive reading is in the sensitivity block, and it is not that the hierarchical number is small. It is that the admitted fraction at a 10-point threshold moves across the whole available range as the assumed measurement variance moves over a four-fold band, and that band is not resolvable from 39 tasks with three seeds. The admitted fraction of this corpus is therefore not identified, and no threshold on a single run per condition can identify it. The naive count is a point on that curve chosen by assuming the measurement variance is zero, which is the one value the replicate data rule out. The fix is replication, not a better threshold. The runs-per-cell block gives the budget: under the optimistic between-task variance estimate, ranking tasks by partition value needs the stated number of runs per cell before a single task's estimate is even half reliable, against the one run per cell the reference ablation currently has."
+    },
+    "hierarchical_admission_team_advantage": {
+      "available": true,
+      "quantity": "theta_u",
+      "sigma2_e_from_replicates": 0.024410826239316244,
+      "n_tasks_supplying_sigma2_e": 39,
+      "mean_replicates_per_task": 2.4615384615384617,
+      "var_of_single_run_estimates_full_pool": 0.09898660199069031,
+      "tau2_between_task_full_pool": 0.07457577575137407,
+      "tau2_between_task_replicate_subset": 0.0039129076582414875,
+      "grand_mean_mu": -0.002630537634408596,
+      "grand_mean_ci": [
+        -0.0523151129032258,
+        0.04670920430107529
+      ],
+      "at_variance_boundary": false,
+      "boundary_reading": null,
+      "thresholds": {
+        "tau=0.0": {
+          "pi_hierarchical": 0.5265884017507889,
+          "naive_fraction_of_point_estimates_above_tau": 0.43870967741935485,
+          "inflation_of_naive_over_hierarchical": -0.08787872433143407,
+          "expected_qualifying_tasks_of_155": 81.62120227137228
+        },
+        "tau=0.05": {
+          "pi_hierarchical": 0.41992076448755544,
+          "naive_fraction_of_point_estimates_above_tau": 0.3741935483870968,
+          "inflation_of_naive_over_hierarchical": -0.045727216100458656,
+          "expected_qualifying_tasks_of_155": 65.0877184955711
+        },
+        "tau=0.1": {
+          "pi_hierarchical": 0.3192021763375275,
+          "naive_fraction_of_point_estimates_above_tau": 0.16129032258064516,
+          "inflation_of_naive_over_hierarchical": -0.15791185375688235,
+          "expected_qualifying_tasks_of_155": 49.47633733231677
+        },
+        "tau=0.2": {
+          "pi_hierarchical": 0.16821151554715266,
+          "naive_fraction_of_point_estimates_above_tau": 0.10967741935483871,
+          "inflation_of_naive_over_hierarchical": -0.05853409619231395,
+          "expected_qualifying_tasks_of_155": 26.072784909808664
+        }
+      },
+      "sensitivity_to_sigma2_e": {
+        "sigma2_e x 0.25": {
+          "sigma2_e": 0.006102706559829061,
+          "implied_reliability": 0.9383481558402922,
+          "pi_at_tau_0.10": 0.27251664639860307,
+          "pi_at_tau_0.20": 0.1288307759010421
+        },
+        "sigma2_e x 0.5": {
+          "sigma2_e": 0.012205413119658122,
+          "implied_reliability": 0.8766963116805845,
+          "pi_at_tau_0.10": 0.3010450583392737,
+          "pi_at_tau_0.20": 0.14724308442593906
+        },
+        "sigma2_e x 0.75": {
+          "sigma2_e": 0.018308119679487183,
+          "implied_reliability": 0.8150444675208766,
+          "pi_at_tau_0.10": 0.31361249643485595,
+          "pi_at_tau_0.20": 0.16030425519302802
+        },
+        "sigma2_e x 1.0": {
+          "sigma2_e": 0.024410826239316244,
+          "implied_reliability": 0.7533926233611689,
+          "pi_at_tau_0.10": 0.3192021763375275,
+          "pi_at_tau_0.20": 0.16821151554715266
+        }
+      },
+      "runs_per_cell_needed": {
+        "assumed_tau2": 0.07457577575137407,
+        "assumption": "uses the larger of the two between-task variance estimates, which is the optimistic case; if the true between-task variance is zero no amount of replication makes the ranking meaningful because there is nothing to rank",
+        "runs": {
+          "reliability_0.5": 1,
+          "reliability_0.7": 1,
+          "reliability_0.8": 2
+        },
+        "current_runs_per_cell": 1
+      },
+      "recommended_operating_threshold": 0.1,
+      "reading": "The tau = 0 row is not informative: asking whether a task's true necessity exceeds zero is asking for the sign of a quantity the corpus cannot measure, and at the variance boundary the estimator correctly returns the sign of the grand mean for every task. The substantive reading is in the sensitivity block, and it is not that the hierarchical number is small. It is that the admitted fraction at a 10-point threshold moves across the whole available range as the assumed measurement variance moves over a four-fold band, and that band is not resolvable from 39 tasks with three seeds. The admitted fraction of this corpus is therefore not identified, and no threshold on a single run per condition can identify it. The naive count is a point on that curve chosen by assuming the measurement variance is zero, which is the one value the replicate data rule out. The fix is replication, not a better threshold. The runs-per-cell block gives the budget: under the optimistic between-task variance estimate, ranking tasks by partition value needs the stated number of runs per cell before a single task's estimate is even half reliable, against the one run per cell the reference ablation currently has."
+    },
+    "admission_statistic_under_the_null": {
+      "available": true,
+      "n_permutations": 2000,
+      "null_levels": {
+        "tau=0.0": {
+          "naive_count_rule_mean": 0.2201322580645161,
+          "naive_count_rule_p95": 0.2645161290322581,
+          "hierarchical_rule_mean": 0.507387538553254,
+          "hierarchical_rule_p95": 1.0
+        },
+        "tau=0.05": {
+          "naive_count_rule_mean": 0.19751290322580645,
+          "naive_count_rule_p95": 0.23870967741935484,
+          "hierarchical_rule_mean": 0.001,
+          "hierarchical_rule_p95": 0.0
+        },
+        "tau=0.1": {
+          "naive_count_rule_mean": 0.12961612903225808,
+          "naive_count_rule_p95": 0.16129032258064516,
+          "hierarchical_rule_mean": 0.0,
+          "hierarchical_rule_p95": 0.0
+        }
+      },
+      "reading": "Under an exact null the naive threshold rule still admits a large fraction of tasks, because half of a symmetric noise distribution sits above zero. The hierarchical rule shrinks toward the grand mean and reports close to nothing, which is the correct answer."
+    },
+    "per_task_intervals_on_replicated_subset": {
+      "available": true,
+      "n_tasks_with_3_seeds": 18,
+      "n_with_partition_value_established_at_2se": 3,
+      "established_task_ids": [
+        "D8_csv_cleanup",
+        "P6_license_check",
+        "trap5_security_theater"
+      ],
+      "note": "With three seeds per task the per-task interval is wide. This is the honest resolution of the corpus at task granularity and it is why per-task TNI values were never estimable, clamp or no clamp.",
+      "rows": [
+        {
+          "task_id": "CR6_review_checklist",
+          "n_seeds": 3,
+          "g_mean": 0.2133333333333333,
+          "g_se": 0.21333333333333332,
+          "u_mean": 0.3033333333333334,
+          "u_se": 0.2133333333333333
+        },
+        {
+          "task_id": "CRYPTO5_tls_config",
+          "n_seeds": 3,
+          "g_mean": 0.20000000000000004,
+          "g_se": 0.10000000000000002,
+          "u_mean": 0.10000000000000002,
+          "u_se": 0.10000000000000002
+        },
+        {
+          "task_id": "D8_csv_cleanup",
+          "n_seeds": 3,
+          "g_mean": 0.10999999999999999,
+          "g_se": 0.0,
+          "u_mean": 0.10999999999999999,
+          "u_se": 0.0
+        },
+        {
+          "task_id": "DIST6_distributed_lock",
+          "n_seeds": 3,
+          "g_mean": 0.3,
+          "g_se": 0.30000000000000004,
+          "u_mean": -0.06666666666666665,
+          "u_se": 0.033333333333333326
+        },
+        {
+          "task_id": "IR5_search_ranking",
+          "n_seeds": 3,
+          "g_mean": 0.26,
+          "g_se": 0.26,
+          "u_mean": 0.10999999999999999,
+          "u_se": 0.0
+        },
+        {
+          "task_id": "MULTI5_deploy_pipeline",
+          "n_seeds": 3,
+          "g_mean": -0.06666666666666665,
+          "g_se": 0.03333333333333333,
+          "u_mean": 0.30000000000000004,
+          "u_se": 0.0
+        },
+        {
+          "task_id": "MULTI8_sdk_mismatch",
+          "n_seeds": 3,
+          "g_mean": 0.0,
+          "g_se": 0.0,
+          "u_mean": 0.13,
+          "u_se": 0.0
+        },
+        {
+          "task_id": "P3_access_control",
+          "n_seeds": 3,
+          "g_mean": -0.029999999999999954,
+          "g_se": 0.07937253933193773,
+          "u_mean": 0.08999999999999997,
+          "u_se": 0.051961524227066305
+        },
+        {
+          "task_id": "P6_license_check",
+          "n_seeds": 3,
+          "g_mean": 0.38333333333333336,
+          "g_se": 0.09333333333333334,
+          "u_mean": 0.14,
+          "u_se": 0.0
+        },
+        {
+          "task_id": "S5_error_handling",
+          "n_seeds": 3,
+          "g_mean": -0.06666666666666671,
+          "g_se": 0.269711780321966,
+          "u_mean": 0.15333333333333338,
+          "u_se": 0.2514181996417744
+        },
+        {
+          "task_id": "S7_env_config",
+          "n_seeds": 3,
+          "g_mean": 0.0,
+          "g_se": 0.0,
+          "u_mean": 0.14333333333333334,
+          "u_se": 0.0033333333333333366
+        },
+        {
+          "task_id": "SCALE1_codebase_migration",
+          "n_seeds": 3,
+          "g_mean": 0.0,
+          "g_se": 0.04041451884327381,
+          "u_mean": 0.16333333333333336,
+          "u_se": 0.023333333333333338
+        },
+        {
+          "task_id": "SEC3_crypto_upgrade",
+          "n_seeds": 3,
+          "g_mean": 0.17999999999999997,
+          "g_se": 0.09291573243177569,
+          "u_mean": 0.0733333333333334,
+          "u_se": 0.08950481054731703
+        },
+        {
+          "task_id": "SYNTH1_distributed_debug",
+          "n_seeds": 3,
+          "g_mean": 9.25185853854297e-18,
+          "g_se": 0.051961524227066326,
+          "u_mean": 0.21333333333333335,
+          "u_se": 0.061734197258173806
+        },
+        {
+          "task_id": "TEST5_mutation_resistant",
+          "n_seeds": 3,
+          "g_mean": 0.0033333333333333734,
+          "g_se": 0.04910306620885413,
+          "u_mean": 0.13666666666666663,
+          "u_se": 0.07310570733153769
+        },
+        {
+          "task_id": "TEST6_property_based",
+          "n_seeds": 3,
+          "g_mean": 0.3666666666666667,
+          "g_se": 0.18559214542766744,
+          "u_mean": 0.26666666666666666,
+          "u_se": 0.16666666666666669
+        },
+        {
+          "task_id": "dist1_queue_race",
+          "n_seeds": 3,
+          "g_mean": 0.08333333333333333,
+          "g_se": 0.04812214782312934,
+          "u_mean": 0.0,
+          "u_se": 0.04809327742349582
+        },
+        {
+          "task_id": "trap5_security_theater",
+          "n_seeds": 3,
+          "g_mean": 0.1266666666666667,
+          "g_se": 0.023333333333333317,
+          "u_mean": -0.023333333333333317,
+          "u_se": 0.046666666666666634
+        }
+      ]
+    }
+  },
+  "C_quintile_redone": {
+    "C1_published_design_reproduced": {
+      "design": "stratify tasks by the SAME single Solo run that appears in the contrast, then report mean(Team - Solo) per bin",
+      "profile_pp": [
+        15.74,
+        8.82,
+        -6.83,
+        -10.08,
+        -8.97
+      ],
+      "q1_minus_q5_pp": 24.71,
+      "bins": [
+        {
+          "bin": 1,
+          "n": 31,
+          "strat_min": 0.0,
+          "strat_max": 0.22333333333333336,
+          "mean_contrast_pp": 15.74193548387097,
+          "ci_lo_pp": 6.956451612903225,
+          "ci_hi_pp": 26.731989247311834
+        },
+        {
+          "bin": 2,
+          "n": 31,
+          "strat_min": 0.2333333333333333,
+          "strat_max": 0.43,
+          "mean_contrast_pp": 8.820967741935485,
+          "ci_lo_pp": -1.4014623655913976,
+          "ci_hi_pp": 19.423094086021507
+        },
+        {
+          "bin": 3,
+          "n": 31,
+          "strat_min": 0.43,
+          "strat_max": 0.75,
+          "mean_contrast_pp": -6.8315053763440865,
+          "ci_lo_pp": -16.89888978494624,
+          "ci_hi_pp": 2.6456102150537655
+        },
+        {
+          "bin": 4,
+          "n": 31,
+          "strat_min": 0.75,
+          "strat_max": 0.9,
+          "mean_contrast_pp": -10.075268817204302,
+          "ci_lo_pp": -22.634677419354844,
+          "ci_hi_pp": 0.5913978494623638
+        },
+        {
+          "bin": 5,
+          "n": 31,
+          "strat_min": 0.9,
+          "strat_max": 1.0,
+          "mean_contrast_pp": -8.971397849462365,
+          "ci_lo_pp": -20.30164516129032,
+          "ci_hi_pp": -0.11819354838709738
+        }
+      ],
+      "published_file": "/u/ybkim95/TeamBench/shared/paper/quintile_solo_stratified.json",
+      "published_profile_pp": [
+        15.74,
+        8.82,
+        -6.83,
+        -10.08,
+        -8.97
+      ],
+      "reproduction_max_abs_diff_pp": 0.0047311827956981745
+    },
+    "C2_exact_null_for_that_design": {
+      "null": "within each task, swap the Solo and Team labels with probability 1/2 (exact permutation null for a paired contrast: no team effect of any kind)",
+      "n_permutations": 5000,
+      "mean_null_profile_pp": [
+        26.43,
+        3.1,
+        -5.39,
+        -11.77,
+        -12.33
+      ],
+      "null_q1_minus_q5_mean_pp": 38.75822817204301,
+      "null_q1_minus_q5_p5_p95_pp": [
+        30.191752688172045,
+        47.46290322580646
+      ],
+      "observed_q1_minus_q5_pp": 24.713333333333335,
+      "p_value_observed_spread_exceeds_null": 0.997000599880024,
+      "p_value_observed_spread_below_null": 0.003199360127974405,
+      "p_value_two_sided": 0.00639872025594881,
+      "arm_variance_check": {
+        "solo_sd": 0.3392045276376665,
+        "team_sd": 0.3795267563686414,
+        "note": "The sign-flip null replaces the stratifier with a random member of each task's (Solo, Team) pair. The two arms have similar spread, so the null's stratifier has close to the same variance as the real one and the null profile is a fair reference for this design."
+      },
+      "verdict": "The published monotone profile is what this design produces when there is no effect at all. The observed spread is not larger than the null spread, so the quintile figure carries no evidence for a capability-conditional team effect.",
+      "second_verdict": "The observed spread is in fact SMALLER than the null spread (p = 0.0032 in the lower tail). The design's artifact overshoots the data: after accounting for regression to the mean, the capability-conditional effect points weakly the other way.",
+      "mechanism": "The stratifier and the minuend of the contrast are the same single run. Selecting the lowest bin selects tasks whose Solo run was unlucky; the Team run does not share that luck, so the difference is positive by construction, and symmetrically negative in the top bin. This is regression to the mean, and its magnitude is set by the run-to-run noise share of the Solo score."
+    },
+    "C3_independent_difficulty_instruments": {
+      "I1_restricted_run": {
+        "instrument": "per-task Restricted score (a different run of a different condition; shares task difficulty with Solo but no run-level noise with either arm of the contrast)",
+        "independent_of_contrast_noise": true,
+        "n_tasks": 155,
+        "profile_pp": [
+          11.17,
+          6.66,
+          -16.94,
+          1.85,
+          -4.06
+        ],
+        "bins": [
+          {
+            "bin": 1,
+            "n": 31,
+            "strat_min": 0.0,
+            "strat_max": 0.17,
+            "mean_contrast_pp": 11.172043010752688,
+            "ci_lo_pp": 3.430107526881722,
+            "ci_hi_pp": 20.053763440860216
+          },
+          {
+            "bin": 2,
+            "n": 31,
+            "strat_min": 0.18000000000000002,
+            "strat_max": 0.4,
+            "mean_contrast_pp": 6.656129032258066,
+            "ci_lo_pp": -5.290381720430107,
+            "ci_hi_pp": 19.323059139784945
+          },
+          {
+            "bin": 3,
+            "n": 31,
+            "strat_min": 0.4167,
+            "strat_max": 0.75,
+            "mean_contrast_pp": -16.93548387096774,
+            "ci_lo_pp": -27.227061827956977,
+            "ci_hi_pp": -7.121932795698924
+          },
+          {
+            "bin": 4,
+            "n": 31,
+            "strat_min": 0.77,
+            "strat_max": 0.9,
+            "mean_contrast_pp": 1.8494623655913958,
+            "ci_lo_pp": -10.043279569892475,
+            "ci_hi_pp": 12.302419354838714
+          },
+          {
+            "bin": 5,
+            "n": 31,
+            "strat_min": 0.91,
+            "strat_max": 1.0,
+            "mean_contrast_pp": -4.05741935483871,
+            "ci_lo_pp": -15.301526881720429,
+            "ci_hi_pp": 5.566596774193549
+          }
+        ],
+        "q1_minus_q5_pp": 15.23,
+        "profile_monotonicity_spearman": -0.7,
+        "null_profile_mean_pp": [
+          -0.04,
+          0.09,
+          -0.03,
+          0.09,
+          -0.02
+        ],
+        "null_q1_minus_q5_mean_pp": -0.012351139784946225,
+        "p_value_two_sided": 0.03059388122375525,
+        "rtm_corrected_spread_pp": 15.24,
+        "continuous_trend_test": {
+          "slope_pp_per_sd_of_rank": -4.912,
+          "permutation_p_two_sided": 0.02579484103179364,
+          "null_slope_mean_pp": 0.01,
+          "interpretation": "negative slope means the team helps more on tasks the instrument rates as harder"
+        }
+      },
+      "I2_mean_of_lesioned_team_arms": {
+        "instrument": "mean of the No-Plan and No-Verify runs (two further independent runs, neither of which appears in the contrast)",
+        "independent_of_contrast_noise": true,
+        "n_tasks": 155,
+        "profile_pp": [
+          -1.54,
+          0.46,
+          -0.44,
+          4.55,
+          -4.34
+        ],
+        "bins": [
+          {
+            "bin": 1,
+            "n": 31,
+            "strat_min": 0.0,
+            "strat_max": 0.25,
+            "mean_contrast_pp": -1.5376344086021505,
+            "ci_lo_pp": -10.752956989247311,
+            "ci_hi_pp": 7.010752688172045
+          },
+          {
+            "bin": 2,
+            "n": 31,
+            "strat_min": 0.25,
+            "strat_max": 0.45,
+            "mean_contrast_pp": 0.4553763440860217,
+            "ci_lo_pp": -5.667623655913978,
+            "ci_hi_pp": 5.949784946236558
+          },
+          {
+            "bin": 3,
+            "n": 31,
+            "strat_min": 0.455,
+            "strat_max": 0.71,
+            "mean_contrast_pp": -0.4408602150537625,
+            "ci_lo_pp": -16.18387096774194,
+            "ci_hi_pp": 14.742741935483872
+          },
+          {
+            "bin": 4,
+            "n": 31,
+            "strat_min": 0.73,
+            "strat_max": 0.9,
+            "mean_contrast_pp": 4.551935483870966,
+            "ci_lo_pp": -6.928655913978496,
+            "ci_hi_pp": 16.24419623655914
+          },
+          {
+            "bin": 5,
+            "n": 31,
+            "strat_min": 0.9,
+            "strat_max": 1.0,
+            "mean_contrast_pp": -4.344086021505378,
+            "ci_lo_pp": -15.882258064516128,
+            "ci_hi_pp": 4.764247311827959
+          }
+        ],
+        "q1_minus_q5_pp": 2.81,
+        "profile_monotonicity_spearman": -0.1,
+        "null_profile_mean_pp": [
+          0.12,
+          0.02,
+          -0.07,
+          0.13,
+          -0.05
+        ],
+        "null_q1_minus_q5_mean_pp": 0.17448602150537634,
+        "p_value_two_sided": 0.6916616676664668,
+        "rtm_corrected_spread_pp": 2.63,
+        "continuous_trend_test": {
+          "slope_pp_per_sd_of_rank": -0.17,
+          "permutation_p_two_sided": 0.9296140771845631,
+          "null_slope_mean_pp": -0.02,
+          "interpretation": "negative slope means the team helps more on tasks the instrument rates as harder"
+        }
+      },
+      "I3_heldout_models_solo": {
+        "instrument": "mean Solo (oracle) score of 20 other models on the LB90 pool, on the 54 tasks shared with the reference ablation (a completely different set of runs and models)",
+        "independent_of_contrast_noise": true,
+        "n_tasks": 54,
+        "profile_pp": [
+          -1.97,
+          2.94,
+          -8.24,
+          0.79,
+          -14.3
+        ],
+        "bins": [
+          {
+            "bin": 1,
+            "n": 11,
+            "strat_min": 0.15649999999999997,
+            "strat_max": 0.4257894736842105,
+            "mean_contrast_pp": -1.9690909090909092,
+            "ci_lo_pp": -19.456818181818182,
+            "ci_hi_pp": 17.78984848484849
+          },
+          {
+            "bin": 2,
+            "n": 11,
+            "strat_min": 0.4294444444444444,
+            "strat_max": 0.5250000000000001,
+            "mean_contrast_pp": 2.9393939393939386,
+            "ci_lo_pp": -18.03484848484849,
+            "ci_hi_pp": 22.243939393939396
+          },
+          {
+            "bin": 3,
+            "n": 11,
+            "strat_min": 0.5263157894736843,
+            "strat_max": 0.6049999999999999,
+            "mean_contrast_pp": -8.242424242424242,
+            "ci_lo_pp": -33.82272727272727,
+            "ci_hi_pp": 13.78787878787879
+          },
+          {
+            "bin": 4,
+            "n": 11,
+            "strat_min": 0.6173684210526316,
+            "strat_max": 0.682,
+            "mean_contrast_pp": 0.787878787878788,
+            "ci_lo_pp": -12.727272727272723,
+            "ci_hi_pp": 11.0
+          },
+          {
+            "bin": 5,
+            "n": 10,
+            "strat_min": 0.6831578947368421,
+            "strat_max": 0.8700000000000001,
+            "mean_contrast_pp": -14.3,
+            "ci_lo_pp": -39.900000000000006,
+            "ci_hi_pp": 4.099999999999998
+          }
+        ],
+        "q1_minus_q5_pp": 12.33,
+        "profile_monotonicity_spearman": -0.5,
+        "null_profile_mean_pp": [
+          0.21,
+          -0.12,
+          0.19,
+          -0.05,
+          0.03
+        ],
+        "null_q1_minus_q5_mean_pp": 0.18147078787878798,
+        "p_value_two_sided": 0.4505098980203959,
+        "rtm_corrected_spread_pp": 12.15,
+        "continuous_trend_test": {
+          "slope_pp_per_sd_of_rank": -3.074,
+          "permutation_p_two_sided": 0.484503099380124,
+          "null_slope_mean_pp": 0.05,
+          "interpretation": "negative slope means the team helps more on tasks the instrument rates as harder"
+        }
+      },
+      "I3_note": "Held-out difficulty is the mean Solo partial score of the LB90 model panel. It shares no run with the reference ablation's contrast, and it is produced by different models, so it cannot induce regression to the mean in mean(Team - Solo). Coverage is limited to the 54 tasks the two pools share."
+    },
+    "C4_rtm_corrected_effect": {
+      "definition": "observed quintile profile minus the mean profile the same design produces under the exact no-effect null",
+      "corrected_profile_pp": [
+        -10.68,
+        5.72,
+        -1.44,
+        1.69,
+        3.36
+      ],
+      "corrected_q1_minus_q5_pp": -14.04,
+      "uncorrected_q1_minus_q5_pp": 24.71,
+      "artifact_share_of_published_spread": 1.5683124428935666,
+      "reading": "A ratio above 1 means the design's own artifact is larger than the published effect, so the published effect is entirely accounted for by regression to the mean."
+    },
+    "C5_verdict": {
+      "instruments_tested": [
+        "I1_restricted_run",
+        "I2_mean_of_lesioned_team_arms",
+        "I3_heldout_models_solo"
+      ],
+      "instrument_precision": {
+        "I1_restricted_run": {
+          "runs_averaged": 1,
+          "same_model": true
+        },
+        "I2_mean_of_lesioned_team_arms": {
+          "runs_averaged": 2,
+          "same_model": true
+        },
+        "I3_heldout_models_solo": {
+          "runs_averaged": "one run each from the LB90 model panel",
+          "same_model": false
+        }
+      },
+      "continuous_trend_slopes_pp": {
+        "I1_restricted_run": -4.912,
+        "I2_mean_of_lesioned_team_arms": -0.17,
+        "I3_heldout_models_solo": -3.074
+      },
+      "quintile_contrast_p_holm_corrected_across_instruments": {
+        "I1_restricted_run": {
+          "p_raw": 0.03059388122375525,
+          "p_holm": 0.09178164367126575,
+          "reject_at_0.05": false
+        },
+        "I3_heldout_models_solo": {
+          "p_raw": 0.4505098980203959,
+          "p_holm": 0.9010197960407919,
+          "reject_at_0.05": false
+        },
+        "I2_mean_of_lesioned_team_arms": {
+          "p_raw": 0.6916616676664668,
+          "p_holm": 0.9010197960407919,
+          "reject_at_0.05": false
+        }
+      },
+      "continuous_trend_p_holm_corrected_across_instruments": {
+        "I1_restricted_run": {
+          "p_raw": 0.02579484103179364,
+          "p_holm": 0.07738452309538092,
+          "reject_at_0.05": false
+        },
+        "I3_heldout_models_solo": {
+          "p_raw": 0.484503099380124,
+          "p_holm": 0.969006198760248,
+          "reject_at_0.05": false
+        },
+        "I2_mean_of_lesioned_team_arms": {
+          "p_raw": 0.9296140771845631,
+          "p_holm": 0.969006198760248,
+          "reject_at_0.05": false
+        }
+      },
+      "profile_monotonicity_by_instrument": {
+        "I1_restricted_run": -0.7,
+        "I2_mean_of_lesioned_team_arms": -0.1,
+        "I3_heldout_models_solo": -0.5
+      },
+      "surviving_after_correction_quintile_contrast": [],
+      "surviving_after_correction_continuous_trend": [],
+      "attenuation_ordering_consistent_with_a_real_gradient": false,
+      "statement": "No capability-conditional team effect survives stratification on an independent difficulty estimate once the three instruments are corrected for multiplicity. The published effect is a property of the estimator, not of the systems it was applied to. The closest call is I1_restricted_run, whose uncorrected p is 0.026 and whose Holm-corrected p across the three instruments is above 0.05. Two further reasons not to promote it: it is the noisiest instrument of the three (a single run), and the least noisy instrument (two runs averaged) gives a slope of -0.17 pp against its -4.91 pp. Independent stratifier noise attenuates a true gradient without biasing it, so a real gradient must show up at least as strongly in the less noisy instrument; the observed ordering is the opposite. Whatever residual signal is there is also an order of magnitude smaller than the published +24.7 pp contrast.",
+      "caution": "The Q1-minus-Q5 contrast is a two-point comparison and can be large on a profile with no monotone trend. The continuous trend test uses every task and does not depend on where the bin edges fall, so it is the primary test; the quintile contrast is reported for comparability with the published figure. Both are corrected across the three instruments by Holm.",
+      "what_would_settle_it": "Three or more seeds per task per condition on the full pool. At one run per cell the difficulty instrument and the contrast are both noise-dominated, and no amount of re-analysis can separate a small real gradient from sampling variation."
+    }
+  },
+  "D_uplift_relabelled": {
+    "the_mislabel": {
+      "location": "harness/compute_tni.py, TaskMetrics.team_uplift",
+      "code": "return self.team_partial - self.restricted_partial",
+      "problem": "The field is named team_uplift and is consumed downstream as the team-versus-Solo effect, but it is the team-versus-Restricted effect. Restricted is a handicapped single agent that never sees the specification, so this comparison flatters the team by the full value of the information partition.",
+      "stored_aggregate_avg_team_uplift": 0.004650752688172043,
+      "recomputed_full_minus_restricted": 0.004650752688172044,
+      "recomputed_full_minus_solo": -0.002630537634408596,
+      "single_sentence_evidence": {
+        "paper_sentence": "paper/v7/neurips_2026.tex, Sec. 5: \"Mean team-vs-Solo uplift on the reference ablation is +0.5 points (p=0.20, paired bootstrap, n=10,000), and the team wins on 68 of 155 tasks.\"",
+        "recomputed_full_minus_solo": {
+          "mean_pp": -0.263,
+          "n_wins": 68
+        },
+        "recomputed_full_minus_restricted": {
+          "mean_pp": 0.465,
+          "n_wins": 75
+        },
+        "finding": "The two halves of that sentence come from different comparisons. The win count of 68 is Full minus Solo. The +0.5 points is Full minus Restricted. Full minus Solo is negative, and Full minus Restricted wins on 75 tasks, not 68. The sentence is internally consistent only if the two quantities are the same comparison, and they are not."
+      }
+    },
+    "full_minus_solo": {
+      "meaning": "team versus the compute-matched single agent with the same information",
+      "mean_pp": -0.263,
+      "ci95_pp": [
+        -5.282,
+        4.626
+      ],
+      "bootstrap": {
+        "mean": -0.002630537634408596,
+        "ci_lo": -0.0528211182795699,
+        "ci_hi": 0.04626125268817208,
+        "se_boot": 0.025324618124661896,
+        "n": 155
+      },
+      "permutation_p": 0.9147713071732066,
+      "n_tasks_team_wins": 68,
+      "n_tasks_team_loses": 31,
+      "n_tasks_tied": 56
+    },
+    "full_minus_restricted": {
+      "meaning": "team versus a single agent that was denied the specification",
+      "mean_pp": 0.465,
+      "ci95_pp": [
+        -4.735,
+        5.411
+      ],
+      "bootstrap": {
+        "mean": 0.004650752688172044,
+        "ci_lo": -0.04735217741935484,
+        "ci_hi": 0.0541059301075269,
+        "se_boot": 0.025943719717272433,
+        "n": 155
+      },
+      "permutation_p": 0.8607848037990502,
+      "n_tasks_team_wins": 75,
+      "n_tasks_team_loses": 28,
+      "n_tasks_tied": 52
+    },
+    "sign_flip_between_the_two": {
+      "full_minus_restricted_pp": 0.465,
+      "full_minus_solo_pp": -0.263,
+      "sign_changes": true
+    },
+    "lb90_paired_replication": {
+      "per_model": {
+        "claude-haiku-4-5": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 90,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 90,
+          "restricted_minus_solo_paired_pp": 13.73,
+          "restricted_minus_solo_paired_p": 0.00024993751562109475,
+          "full_minus_solo_paired_pp": 12.41
+        },
+        "claude-opus-4-7": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 89,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 89,
+          "restricted_minus_solo_paired_pp": -20.71,
+          "restricted_minus_solo_paired_p": 0.00024993751562109475,
+          "full_minus_solo_paired_pp": -37.76
+        },
+        "claude-sonnet-4-6": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 85,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 85,
+          "restricted_minus_solo_paired_pp": 15.79,
+          "restricted_minus_solo_paired_p": 0.00024993751562109475,
+          "full_minus_solo_paired_pp": 15.14
+        },
+        "gemini-2-5-pro": {
+          "n_solo": 90,
+          "n_restricted": 0,
+          "n_full": 0,
+          "n_paired_solo_restricted": 0,
+          "n_paired_solo_full": 0
+        },
+        "gemini-3-1-flash-lite-preview": {
+          "n_solo": 89,
+          "n_restricted": 90,
+          "n_full": 88,
+          "n_paired_solo_restricted": 89,
+          "n_paired_solo_full": 87,
+          "restricted_minus_solo_paired_pp": 11.48,
+          "restricted_minus_solo_paired_p": 0.0004998750312421895,
+          "full_minus_solo_paired_pp": 14.78
+        },
+        "gemini-3-1-pro-preview": {
+          "n_solo": 89,
+          "n_restricted": 89,
+          "n_full": 88,
+          "n_paired_solo_restricted": 88,
+          "n_paired_solo_full": 88,
+          "restricted_minus_solo_paired_pp": 0.42,
+          "restricted_minus_solo_paired_p": 0.8462884278930267,
+          "full_minus_solo_paired_pp": 3.77
+        },
+        "gemini-3-flash-preview": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 90,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 90,
+          "restricted_minus_solo_paired_pp": 4.89,
+          "restricted_minus_solo_paired_p": 0.094976255936016,
+          "full_minus_solo_paired_pp": 9.84
+        },
+        "gemma-4-31b": {
+          "n_solo": 70,
+          "n_restricted": 70,
+          "n_full": 55,
+          "n_paired_solo_restricted": 62,
+          "n_paired_solo_full": 52,
+          "restricted_minus_solo_paired_pp": 1.19,
+          "restricted_minus_solo_paired_p": 0.7195701074731318,
+          "full_minus_solo_paired_pp": 1.87
+        },
+        "gpt-5-4": {
+          "n_solo": 90,
+          "n_restricted": 89,
+          "n_full": 90,
+          "n_paired_solo_restricted": 89,
+          "n_paired_solo_full": 90,
+          "restricted_minus_solo_paired_pp": 9.51,
+          "restricted_minus_solo_paired_p": 0.0032491877030742314,
+          "full_minus_solo_paired_pp": 10.5
+        },
+        "gpt-5-4-mini": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 90,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 90,
+          "restricted_minus_solo_paired_pp": -2.03,
+          "restricted_minus_solo_paired_p": 0.4233941514621345,
+          "full_minus_solo_paired_pp": 1.34
+        },
+        "gpt-5-4-nano": {
+          "n_solo": 90,
+          "n_restricted": 89,
+          "n_full": 24,
+          "n_paired_solo_restricted": 89,
+          "n_paired_solo_full": 24,
+          "restricted_minus_solo_paired_pp": 18.46,
+          "restricted_minus_solo_paired_p": 0.00024993751562109475,
+          "full_minus_solo_paired_pp": 14.35
+        },
+        "gpt-5-nano": {
+          "n_solo": 90,
+          "n_restricted": 0,
+          "n_full": 89,
+          "n_paired_solo_restricted": 0,
+          "n_paired_solo_full": 89,
+          "full_minus_solo_paired_pp": 3.69
+        },
+        "gpt-oss-120b": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 14,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 14,
+          "restricted_minus_solo_paired_pp": 8.28,
+          "restricted_minus_solo_paired_p": 0.08697825543614096,
+          "full_minus_solo_paired_pp": -11.52
+        },
+        "gpt-oss-20b": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 75,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 75,
+          "restricted_minus_solo_paired_pp": 1.23,
+          "restricted_minus_solo_paired_p": 0.6210947263184204,
+          "full_minus_solo_paired_pp": -41.72
+        },
+        "qwen3-14b": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 90,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 90,
+          "restricted_minus_solo_paired_pp": 13.94,
+          "restricted_minus_solo_paired_p": 0.0029992501874531365,
+          "full_minus_solo_paired_pp": 7.34
+        },
+        "qwen3-30b-a3b": {
+          "n_solo": 44,
+          "n_restricted": 0,
+          "n_full": 0,
+          "n_paired_solo_restricted": 0,
+          "n_paired_solo_full": 0
+        },
+        "qwen3-32b": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 89,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 89,
+          "restricted_minus_solo_paired_pp": 22.75,
+          "restricted_minus_solo_paired_p": 0.00024993751562109475,
+          "full_minus_solo_paired_pp": -8.55
+        },
+        "qwen3-4b": {
+          "n_solo": 87,
+          "n_restricted": 0,
+          "n_full": 14,
+          "n_paired_solo_restricted": 0,
+          "n_paired_solo_full": 14,
+          "full_minus_solo_paired_pp": -34.86
+        },
+        "qwen3-8b": {
+          "n_solo": 90,
+          "n_restricted": 90,
+          "n_full": 89,
+          "n_paired_solo_restricted": 90,
+          "n_paired_solo_full": 89,
+          "restricted_minus_solo_paired_pp": 33.42,
+          "restricted_minus_solo_paired_p": 0.00024993751562109475,
+          "full_minus_solo_paired_pp": 6.76
+        },
+        "qwen3.5-0.8b": {
+          "n_solo": 86,
+          "n_restricted": 18,
+          "n_full": 0,
+          "n_paired_solo_restricted": 18,
+          "n_paired_solo_full": 0,
+          "restricted_minus_solo_paired_pp": -44.3,
+          "restricted_minus_solo_paired_p": 0.0004998750312421895
+        }
+      },
+      "n_models_with_paired_solo_and_restricted": 16,
+      "n_models_where_restricted_beats_solo_paired": 13,
+      "pooled_restricted_minus_solo_pp": 8.27,
+      "pooled_full_minus_solo_pp": 0.085,
+      "unequal_task_coverage_between_conditions": [
+        {
+          "model": "claude-opus-4-7",
+          "tasks_only_in_solo": 1,
+          "tasks_only_in_full": 0
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "tasks_only_in_solo": 5,
+          "tasks_only_in_full": 0
+        },
+        {
+          "model": "gemini-3-1-flash-lite-preview",
+          "tasks_only_in_solo": 2,
+          "tasks_only_in_full": 1
+        },
+        {
+          "model": "gemini-3-1-pro-preview",
+          "tasks_only_in_solo": 1,
+          "tasks_only_in_full": 0
+        },
+        {
+          "model": "gemma-4-31b",
+          "tasks_only_in_solo": 18,
+          "tasks_only_in_full": 3
+        },
+        {
+          "model": "gpt-5-4-nano",
+          "tasks_only_in_solo": 66,
+          "tasks_only_in_full": 0
+        },
+        {
+          "model": "gpt-5-nano",
+          "tasks_only_in_solo": 1,
+          "tasks_only_in_full": 0
+        },
+        {
+          "model": "gpt-oss-120b",
+          "tasks_only_in_solo": 76,
+          "tasks_only_in_full": 0
+        },
+        {
+          "model": "gpt-oss-20b",
+          "tasks_only_in_solo": 15,
+          "tasks_only_in_full": 0
+        },
+        {
+          "model": "qwen3-32b",
+          "tasks_only_in_solo": 1,
+          "tasks_only_in_full": 0
+        },
+        {
+          "model": "qwen3-4b",
+          "tasks_only_in_solo": 73,
+          "tasks_only_in_full": 0
+        },
+        {
+          "model": "qwen3-8b",
+          "tasks_only_in_solo": 1,
+          "tasks_only_in_full": 0
+        }
+      ],
+      "warning": "The stored LB90 aggregate reports each condition's rate over whatever tasks completed for that condition, so per-condition denominators differ within a model. Any Solo-vs-Team comparison read off those rates is unpaired and confounded with which tasks happened to finish. The paired numbers here restrict to the task intersection within each model."
+    }
+  },
+  "E_machinery_audit": {
+    "E1_bootstrap_pairing": {
+      "finding": "harness/statistics.py::bootstrap_ci_difference resamples the two arms independently. That is an unpaired bootstrap. The paper describes its bootstrap as paired.",
+      "correlation_between_arms_across_tasks": 0.6218625063002601,
+      "paired_task_clustered": {
+        "mean_pp": -0.263,
+        "ci95_pp": [
+          -5.324,
+          4.514
+        ],
+        "se_pp": 2.514
+      },
+      "unpaired_as_shipped": {
+        "mean_pp": -0.263,
+        "ci95_pp": [
+          -8.361,
+          7.752
+        ],
+        "se_pp": 4.059
+      },
+      "se_ratio_unpaired_over_paired": 1.614,
+      "direction": "With positively correlated arms the unpaired bootstrap over-states the standard error, so it is conservative for a null result and anti-conservative for nothing. The problem is not that it flipped a conclusion here; it is that the reported interval is not the interval the stated method produces."
+    },
+    "E2_clustering_and_design_effect": {
+      "role_mixing_pool": {
+        "source": "/u/ybkim95/TeamBench/shared/role_ablation/results/per_run.jsonl",
+        "n_runs": 2145,
+        "n_task_clusters": 25,
+        "mean_runs_per_task": 85.8,
+        "icc_1_1_on_pass": 0.3845,
+        "design_effect": 33.61,
+        "effective_sample_size": 63.8,
+        "naive_wilson_ci_on_pass_rate": [
+          0.1557,
+          0.1876
+        ],
+        "cluster_adjusted_wilson_ci": [
+          0.0988,
+          0.2821
+        ],
+        "ci_width_inflation": 5.75,
+        "finding": "Rates pooled over this run pool are quoted with Wilson intervals computed on the raw run count. Runs are nested within tasks with substantial intraclass correlation, so the effective sample size is a fraction of the run count and the quoted interval is too narrow by roughly the square root of the design effect.",
+        "what_is_being_measured": "The ICC is computed on the pass outcome of the role-mixing run pool, which is the same pool the paper's Verifier false-accept rate is pooled over. The design effect is a property of the pool's nesting structure, not of which binary outcome is being averaged, so the same correction applies to the false-accept rate quoted with a Wilson interval on n = 1,083 runs. We report it on the pass outcome because that is the outcome recorded for every run in the released file.",
+        "adjustment_method": "Effective sample size n_eff = n / design_effect, with the Wilson interval recomputed at n_eff and the successes scaled by the same factor. This is the standard first-order cluster correction; a cluster bootstrap over tasks would give a similar width."
+      },
+      "reference_ablation_conditions_within_task": {
+        "icc_1_1_on_partial_score": 0.6675,
+        "k_task_clusters": 155,
+        "runs_per_task": 5,
+        "design_effect_if_runs_pooled": 3.67,
+        "note": "Any statistic that pools the 775 reference-ablation runs as if they were independent inflates its sample size by this factor. The per-task paired contrasts used above are immune to this because the task is the unit of analysis."
+      }
+    },
+    "E3_multiplicity": {
+      "finding": "Multiplicity is corrected inside one family of three tests (scripts/statistical_robustness.py applies Holm-Bonferroni there) while the rest of the paper's confirmatory tests -- per-condition contrasts, per-category uplift, per-quintile contrasts, per-model leaderboard comparisons -- are reported uncorrected. Correcting one family and not the others is not a correction.",
+      "family_as_reported_here": {
+        "partition_value_g_nonzero": 0.6393401649587603,
+        "team_advantage_u_nonzero": 0.9145213696575856,
+        "relay_advantage_nonzero": 0.8607848037990502,
+        "planner_value_nonzero": 0.4166458385403649,
+        "verifier_value_nonzero": 0.028742814296425893
+      },
+      "holm": {
+        "verifier_value_nonzero": {
+          "p_raw": 0.028742814296425893,
+          "p_holm": 0.14371407148212947,
+          "reject_at_0.05": false
+        },
+        "planner_value_nonzero": {
+          "p_raw": 0.4166458385403649,
+          "p_holm": 1.0,
+          "reject_at_0.05": false
+        },
+        "partition_value_g_nonzero": {
+          "p_raw": 0.6393401649587603,
+          "p_holm": 1.0,
+          "reject_at_0.05": false
+        },
+        "relay_advantage_nonzero": {
+          "p_raw": 0.8607848037990502,
+          "p_holm": 1.0,
+          "reject_at_0.05": false
+        },
+        "team_advantage_u_nonzero": {
+          "p_raw": 0.9145213696575856,
+          "p_holm": 1.0,
+          "reject_at_0.05": false
+        }
+      },
+      "benjamini_hochberg": {
+        "team_advantage_u_nonzero": {
+          "p_raw": 0.9145213696575856,
+          "p_bh": 0.9145213696575855,
+          "reject_at_0.05": false
+        },
+        "relay_advantage_nonzero": {
+          "p_raw": 0.8607848037990502,
+          "p_bh": 0.9145213696575855,
+          "reject_at_0.05": false
+        },
+        "partition_value_g_nonzero": {
+          "p_raw": 0.6393401649587603,
+          "p_bh": 0.9145213696575855,
+          "reject_at_0.05": false
+        },
+        "planner_value_nonzero": {
+          "p_raw": 0.4166458385403649,
+          "p_bh": 0.9145213696575855,
+          "reject_at_0.05": false
+        },
+        "verifier_value_nonzero": {
+          "p_raw": 0.028742814296425893,
+          "p_bh": 0.14371407148212947,
+          "reject_at_0.05": false
+        }
+      },
+      "recommendation": "Declare one confirmatory family in the protocol (the five condition contrasts), correct it, and label everything else explicitly exploratory. Per-category and per-quintile numbers should carry no stars at all."
+    }
+  },
+  "F_provenance_and_robustness": {
+    "why": "The canonical table mixes models, mixes seeds, and averages binarised scores with continuous ones. Before retiring a metric on the basis of that table, every conclusion has to survive on a pool built without those defects.",
+    "pools": {
+      "published_155": {
+        "n_tasks": 155,
+        "definition": "shared/paper/ablation_summary.json as stored"
+      },
+      "clean_single_model_in_published": {
+        "definition": "gemini-3-flash-preview, seed 0, one run per (task, condition), partial score read from run['partial_score'] or run['secondary']['partial_score'], errored runs dropped, retry files superseding base files, tasks kept only when all five conditions are present and the task appears in the published 155-task table",
+        "source_files": [
+          "crypto_dist_g3flash.json",
+          "trap_cross_team_no_verify_g3flash.json",
+          "trap_cross_g3flash.json",
+          "batch1_swe_data_seed0_g3flash.json",
+          "batch2_sec_policy_neg_seed0_g3flash.json",
+          "batch3_full_retry_g3flash.json",
+          "batch3_inc_ops_seed0_g3flash.json",
+          "batch4_test_spec_cr_seed0_g3flash.json",
+          "batch5_full_retry_g3flash.json",
+          "batch5_lh_pipe_ir_multi_int_seed0_g3flash.json",
+          "batch6_retry_g3flash.json",
+          "batch6_full_503_retry.json",
+          "batch6_trap_cross_crypto_dist_go_js_seed0_g3flash.json",
+          "gh_tasks_ablation_g3flash_seed0.json"
+        ],
+        "n_tasks": 96,
+        "n_errored_runs_dropped": 60
+      },
+      "clean_single_model_all": {
+        "definition": "gemini-3-flash-preview, seed 0, one run per (task, condition), partial score read from run['partial_score'] or run['secondary']['partial_score'], errored runs dropped, retry files superseding base files, tasks kept only when all five conditions are present",
+        "source_files": [
+          "crypto_dist_g3flash.json",
+          "trap_cross_team_no_verify_g3flash.json",
+          "trap_cross_g3flash.json",
+          "batch1_swe_data_seed0_g3flash.json",
+          "batch2_sec_policy_neg_seed0_g3flash.json",
+          "batch3_full_retry_g3flash.json",
+          "batch3_inc_ops_seed0_g3flash.json",
+          "batch4_test_spec_cr_seed0_g3flash.json",
+          "batch5_full_retry_g3flash.json",
+          "batch5_lh_pipe_ir_multi_int_seed0_g3flash.json",
+          "batch6_retry_g3flash.json",
+          "batch6_full_503_retry.json",
+          "batch6_trap_cross_crypto_dist_go_js_seed0_g3flash.json",
+          "gh_tasks_ablation_g3flash_seed0.json"
+        ],
+        "n_tasks": 107,
+        "n_errored_runs_dropped": 60
+      }
+    },
+    "headline_quantities": {
+      "published_155": {
+        "n_tasks": 155,
+        "necessity_gap_mean": 0.007281290322580648,
+        "necessity_gap_t": 0.47362252700716106,
+        "necessity_gap_p": 0.6364398376721294,
+        "necessity_gap_exactly_zero_tasks": 87,
+        "partition_value_g_pp": [
+          0.73,
+          -2.35,
+          3.72
+        ],
+        "team_advantage_u_pp": [
+          -0.26,
+          -5.26,
+          4.68
+        ],
+        "team_advantage_u_perm_p": 0.9147713071732066,
+        "relay_advantage_pp": [
+          0.47,
+          -4.57,
+          5.4
+        ],
+        "quintile_profile_pp": [
+          15.74,
+          8.82,
+          -6.83,
+          -10.08,
+          -8.97
+        ],
+        "quintile_q1_minus_q5_pp": 24.71,
+        "quintile_null_q1_minus_q5_pp": 38.74,
+        "quintile_p_vs_null": 0.9966006798640272,
+        "quintile_p_null_flatter": 0.003599280143971206,
+        "quintile_rtm_corrected_pp": -14.03,
+        "fieller_bounded": false,
+        "fieller_form": "whole_real_line"
+      },
+      "clean_single_model_in_published": {
+        "n_tasks": 96,
+        "necessity_gap_mean": 0.03326354166666667,
+        "necessity_gap_t": 1.4747080627250118,
+        "necessity_gap_p": 0.14359743876400247,
+        "necessity_gap_exactly_zero_tasks": 59,
+        "partition_value_g_pp": [
+          3.33,
+          -0.87,
+          7.84
+        ],
+        "team_advantage_u_pp": [
+          -1.55,
+          -7.23,
+          3.91
+        ],
+        "team_advantage_u_perm_p": 0.5916020994751312,
+        "relay_advantage_pp": [
+          1.78,
+          -4.5,
+          7.99
+        ],
+        "quintile_profile_pp": [
+          6.32,
+          -0.79,
+          -7.37,
+          -1.53,
+          -4.79
+        ],
+        "quintile_q1_minus_q5_pp": 11.11,
+        "quintile_null_q1_minus_q5_pp": 25.54,
+        "quintile_p_vs_null": 0.9774045190961808,
+        "quintile_p_null_flatter": 0.022795440911817635,
+        "quintile_rtm_corrected_pp": -14.44,
+        "fieller_bounded": false,
+        "fieller_form": "whole_real_line"
+      },
+      "clean_single_model_all": {
+        "n_tasks": 107,
+        "necessity_gap_mean": 0.03376915887850467,
+        "necessity_gap_t": 1.582048329635823,
+        "necessity_gap_p": 0.11661783337141565,
+        "necessity_gap_exactly_zero_tasks": 65,
+        "partition_value_g_pp": [
+          3.38,
+          -0.66,
+          7.61
+        ],
+        "team_advantage_u_pp": [
+          0.24,
+          -5.12,
+          5.23
+        ],
+        "team_advantage_u_perm_p": 0.9322669332666833,
+        "relay_advantage_pp": [
+          3.61,
+          -2.1,
+          9.38
+        ],
+        "quintile_profile_pp": [
+          9.06,
+          6.0,
+          -10.19,
+          3.95,
+          -8.33
+        ],
+        "quintile_q1_minus_q5_pp": 17.39,
+        "quintile_null_q1_minus_q5_pp": 26.39,
+        "quintile_p_vs_null": 0.9158168366326734,
+        "quintile_p_null_flatter": 0.08438312337532493,
+        "quintile_rtm_corrected_pp": -8.99,
+        "fieller_bounded": false,
+        "fieller_form": "whole_real_line"
+      }
+    },
+    "conclusion_stability": {
+      "rows": [
+        {
+          "pool": "published_155",
+          "n": 155,
+          "denominator_statistically_zero": true,
+          "team_advantage_ci_covers_zero": true,
+          "quintile_spread_not_above_null": true,
+          "fieller_unbounded": true
+        },
+        {
+          "pool": "clean_single_model_in_published",
+          "n": 96,
+          "denominator_statistically_zero": true,
+          "team_advantage_ci_covers_zero": true,
+          "quintile_spread_not_above_null": true,
+          "fieller_unbounded": true
+        },
+        {
+          "pool": "clean_single_model_all",
+          "n": 107,
+          "denominator_statistically_zero": true,
+          "team_advantage_ci_covers_zero": true,
+          "quintile_spread_not_above_null": true,
+          "fieller_unbounded": true
+        }
+      ],
+      "statement": "Every load-bearing conclusion -- the TNI denominator is statistically zero, a valid interval for the ratio is unbounded, the compute-matched team advantage is not distinguishable from zero, and the quintile profile is not steeper than its own null -- holds on the published pool and on the provenance-controlled pool. The data-integrity defects are a separate finding, not the reason the metric fails."
+    },
+    "provenance_audit": {
+      "merge_reproduced_from_generate_paper_sh": {
+        "n_json_files_globbed": 106,
+        "n_runs_after_dedup": 1820,
+        "cells_reproduced_exactly": 740,
+        "cells_not_reproduced": 35,
+        "note": "Cells that do not reproduce are ones where a file added after the table was generated now wins the first-wins dedup. That is itself the finding: the canonical table is not reproducible from the current contents of the directory it globs.",
+        "examples": [
+          {
+            "task_id": "CROSS1_api_contract",
+            "condition": "oracle",
+            "merge_reproduction": 0.0,
+            "stored": 1.0,
+            "sources": [
+              "crossmodel_codegemma_7b_it_seed0.json"
+            ]
+          },
+          {
+            "task_id": "CROSS1_api_contract",
+            "condition": "restricted",
+            "merge_reproduction": 0.0,
+            "stored": 1.0,
+            "sources": [
+              "crossmodel_codegemma_7b_it_seed0.json"
+            ]
+          },
+          {
+            "task_id": "CROSS1_api_contract",
+            "condition": "full",
+            "merge_reproduction": 0.0,
+            "stored": 1.0,
+            "sources": [
+              "crossmodel_codegemma_7b_it_seed0.json"
+            ]
+          },
+          {
+            "task_id": "CROSS1_api_contract",
+            "condition": "team_no_plan",
+            "merge_reproduction": 0.0,
+            "stored": 0.9,
+            "sources": [
+              "crossmodel_codegemma_7b_it_seed0.json"
+            ]
+          },
+          {
+            "task_id": "CROSS1_api_contract",
+            "condition": "team_no_verify",
+            "merge_reproduction": 0.0,
+            "stored": 0.4,
+            "sources": [
+              "crossmodel_codegemma_7b_it_seed0.json"
+            ]
+          },
+          {
+            "task_id": "CROSS3_protocol_bridge",
+            "condition": "oracle",
+            "merge_reproduction": 0.0,
+            "stored": 1.0,
+            "sources": [
+              "crossmodel_codegemma_7b_it_seed0.json"
+            ]
+          }
+        ]
+      },
+      "silent_binarisation_bug": {
+        "location": "harness/paper_tables.py, runs_to_task_metrics",
+        "code": "partial = run.get(\"partial_score\", 1.0 if run.get(\"pass\") else 0.0)",
+        "problem": "Runs produced by the multi-seed phase-3 campaign store the partial score at run['secondary']['partial_score'] and carry no top-level 'partial_score' key. The default branch fires and the run is scored 1.0/0.0. Those binarised values are then averaged with seed 0's genuine partial score, so the canonical per-task number is a mean of one continuous and up to two dichotomised measurements.",
+        "n_runs_binarised": 380,
+        "n_table_cells_affected": 190,
+        "n_table_cells_total": 775,
+        "worked_example": {
+          "available": true,
+          "task": "CR5_test_coverage",
+          "condition": "restricted",
+          "seed0_partial": 0.38,
+          "seed12_true_partial": [
+            0.54,
+            0.31
+          ],
+          "seed12_as_read_by_paper_tables": [
+            0.0,
+            0.0
+          ],
+          "stored_table_value": 0.12666666666666668,
+          "value_if_partial_scores_were_read": 0.41
+        }
+      },
+      "model_provenance": {
+        "runs_by_declared_model": {
+          "gemini-3-flash-preview": 1190,
+          "gemini-2.5-flash": 90,
+          "vllm:google/codegemma-7b-it@http://localhost:8005/v1": 35
+        },
+        "runs_by_source_file": {
+          "phase3_all_consolidated.json": 380,
+          "batch5_lh_pipe_ir_multi_int_seed0_g3flash.json": 125,
+          "trap_cross_g3flash.json": 125,
+          "crypto_dist_g3flash.json": 120,
+          "batch4_test_spec_cr_seed0_g3flash.json": 95,
+          "batch2_sec_policy_neg_seed0_g3flash.json": 95,
+          "batch1_swe_data_seed0_g3flash.json": 80,
+          "batch3_inc_ops_seed0_g3flash.json": 72,
+          "ablation_10task.json": 50,
+          "batch6_trap_cross_crypto_dist_go_js_seed0_g3flash.json": 44,
+          "crossmodel_codegemma_7b_it_seed0.json": 35,
+          "ablation_preliminary.json": 25,
+          "batch6_retry_g3flash.json": 22,
+          "batch3_full_retry_g3flash.json": 18,
+          "ablation_5task.json": 15,
+          "batch5_full_retry_g3flash.json": 10,
+          "batch6_full_503_retry.json": 4
+        },
+        "cells_from_a_model_other_than_the_two_gemini_families": 35,
+        "problem": "The glob has no model filter. The table captioned as a single ablation draws on gemini-2.5-flash files (the original 20-task pool), gemini-3-flash-preview files (the expansion), and, in the directory's current state, cross-model runs from other models entirely."
+      },
+      "n_reference_tasks": 155
+    }
+  },
+  "G_pass_line_versus_graded_score": {
+    "available": true,
+    "pool": "provenance-controlled gemini-3-flash-preview seed-0 pool",
+    "n_tasks": 107,
+    "contrasts_on_both_scales": {
+      "full_minus_solo": {
+        "graded_partial_score": {
+          "scale": "partial score in [0,1]",
+          "mean_pp": 0.24,
+          "ci95_pp": [
+            -4.88,
+            5.4
+          ],
+          "permutation_p": 0.9250187453136716,
+          "wins": 49,
+          "losses": 18,
+          "ties": 40,
+          "rate_a": 0.7254,
+          "rate_b": 0.723
+        },
+        "binary_pass": {
+          "scale": "grader pass/fail",
+          "mean_pp": 17.76,
+          "ci95_pp": [
+            9.35,
+            27.1
+          ],
+          "permutation_p": 0.00024993751562109475,
+          "wins": 22,
+          "losses": 3,
+          "ties": 82,
+          "rate_a": 0.3271,
+          "rate_b": 0.1495
+        }
+      },
+      "full_minus_restricted": {
+        "graded_partial_score": {
+          "scale": "partial score in [0,1]",
+          "mean_pp": 3.61,
+          "ci95_pp": [
+            -2.27,
+            9.15
+          ],
+          "permutation_p": 0.23194201449637591,
+          "wins": 52,
+          "losses": 14,
+          "ties": 41,
+          "rate_a": 0.7254,
+          "rate_b": 0.6893
+        },
+        "binary_pass": {
+          "scale": "grader pass/fail",
+          "mean_pp": 19.63,
+          "ci95_pp": [
+            11.21,
+            28.04
+          ],
+          "permutation_p": 0.00024993751562109475,
+          "wins": 23,
+          "losses": 2,
+          "ties": 82,
+          "rate_a": 0.3271,
+          "rate_b": 0.1308
+        }
+      },
+      "solo_minus_restricted": {
+        "graded_partial_score": {
+          "scale": "partial score in [0,1]",
+          "mean_pp": 3.38,
+          "ci95_pp": [
+            -0.84,
+            7.65
+          ],
+          "permutation_p": 0.12246938265433642,
+          "wins": 26,
+          "losses": 16,
+          "ties": 65,
+          "rate_a": 0.723,
+          "rate_b": 0.6893
+        },
+        "binary_pass": {
+          "scale": "grader pass/fail",
+          "mean_pp": 1.87,
+          "ci95_pp": [
+            -2.8,
+            7.48
+          ],
+          "permutation_p": 0.7398150462384404,
+          "wins": 5,
+          "losses": 3,
+          "ties": 99,
+          "rate_a": 0.1495,
+          "rate_b": 0.1308
+        }
+      }
+    },
+    "pass_transition_mechanism": {
+      "n_tasks": 107,
+      "team_passes_solo_fails": 22,
+      "solo_passes_team_fails": 3,
+      "both_pass": 13,
+      "neither_passes": 69,
+      "mcnemar_p": 0.00015652179718017578,
+      "mean_partial_contrast_among_neither_passes_pp": -2.84,
+      "mean_partial_contrast_among_both_pass_pp": 0.0,
+      "reading": "The team converts failures into passes more often than the reverse, and simultaneously loses graded credit on the tasks where neither arm reaches the pass line. A benchmark reported only as pass rate sees the first effect; one reported only as graded score sees the second. Reporting both is the finding, not a caveat."
+    },
+    "compute_matching_caveat": {
+      "available": true,
+      "mean_elapsed_sec_by_condition": {
+        "oracle": 92.4,
+        "restricted": 79.9,
+        "full": 409.5,
+        "team_no_plan": 152.1,
+        "team_no_verify": 111.6
+      },
+      "team_over_solo_wall_clock_ratio": 4.43,
+      "corr_pass_gain_with_elapsed_gap": 0.066,
+      "harness_budgets_before_equalisation": "harness/ablation.py::run_ablation_condition documents the pre-equalisation configuration in its own docstring: Solo ran at 20 turns against a Full Team at up to 140. The runs in this pool predate the shared TurnBudget, so they carry that gap.",
+      "caveat": "The pass-scale advantage above is NOT compute-matched. It is measured on runs where the team was allowed several times the single agent's turn allowance, so the correct reading is that the multi-agent gain that this benchmark reports lives on the pass criterion AND is measured under a compute asymmetry. Those are the two confounds to separate, and separating them requires re-running the pool under the shared budget. Nothing here decides how much of the pass-scale gain survives equalisation."
+    },
+    "multiseed_subset_both_scales": {
+      "available": true,
+      "n_tasks": 39,
+      "seeds": "1 and 2 (the seeds that carry a partial score under the correct key)",
+      "graded_partial_score": {
+        "mean_pp": 13.32,
+        "ci95_pp": [
+          9.87,
+          16.89
+        ],
+        "permutation_p": 0.00024993751562109475
+      },
+      "binary_pass": {
+        "mean_pp": 17.95,
+        "ci95_pp": [
+          6.41,
+          30.77
+        ],
+        "permutation_p": 0.010997250687328168
+      },
+      "note": "shared/paper/statistical_robustness.json reports Full minus Solo as +20.5 points on this subset with p = 0.0024. That analysis is on the binary pass scale and pools seeds 0-2 as per-task means. The graded-score contrast on the same runs is the other column."
+    },
+    "subset_disagreement": "The graded-score contrast is null on the full provenance-controlled pool and positive on the 39-task multi-seed subset. Those are different task pools, not different scales: the multi-seed subset was selected for re-running and is a quarter of the size. Read the scale decomposition off the full pool and treat the subset as a separate, smaller estimate rather than a replication of it.",
+    "why_this_matters": "The apparent multi-agent gain is scale-dependent. On the pass criterion the team is ahead; on the graded score it is not. That is a decomposition, not a contradiction, and it explains why different analyses in the same repository disagreed about the sign of the same effect. Any multi-agent benchmark that reports one scale and not the other can report a gain or a loss at will.",
+    "why_the_two_published_numbers_differ": "The binary-pass analysis in shared/paper/statistical_robustness.json is unaffected by the partial-score key bug documented in section F, because it reads run['pass'], which is a top-level key on every run record. Its +20.5 point Full-minus-Solo figure therefore stands as a statement about the pass criterion. The graded-score figure for the same contrast was computed from the contaminated table and is recomputed here from the provenance-controlled pool. The two numbers were never in conflict about the data; they were measuring different functionals, and only one of them was also corrupted."
+  },
+  "what_changes": [
+    "Delete Eq. (1) and every TNI number. Replace with the two-dimensional Coordination Necessity Contrast (g, u), each reported as a paired task-clustered mean with a bootstrap CI.",
+    "Replace 'mean team uplift +0.5 points' with the two separate quantities: Full minus Solo = -0.26 pp [-5.28, +4.63] and Full minus Restricted = +0.47 pp [-4.74, +5.41].",
+    "Replace the quintile figure. The exact no-effect null of the same design produces a STEEPER profile than the published one (null Q1-minus-Q5 +38.76 pp against a published +24.71 pp), so the RTM-corrected contrast is -14.04 pp and the published gradient is fully accounted for by the estimator.",
+    "Add the win/loss asymmetry, which is a real result the mean was hiding: the team wins 68 of 99 contested tasks (sign test p = 2.6e-04) while the mean contrast is -0.26 pp, because losses run 2.26 times larger than wins. Report (win rate, mean effect) as a pair.",
+    "Add the scale decomposition as a headline: on the provenance-controlled pool the same runs give a large positive multi-agent effect on the pass criterion (+17.8 pp) and none on the graded score (+0.2 pp). That reconciles the two contradictory numbers already in the repository and is the mechanism behind the win/loss asymmetry. State in the same breath that those runs predate the shared turn budget, so the pass-scale gain is confounded with compute and the equalised re-run is what decides how much of it is coordination.",
+    "Report the data-provenance repair. The canonical table averages binarised multi-seed scores with continuous seed-0 scores on 190 of 775 cells and draws on more than one model; the provenance-controlled pool is the one to publish.",
+    "Report benchmark admission as a hierarchical probability with a stated threshold, not as a count of tasks whose single-run estimate clears a line.",
+    "State the bootstrap that was actually run. The library function resamples arms independently; the paper calls it paired.",
+    "Quote cluster-adjusted intervals for any rate pooled over runs nested in tasks, and give the design effect alongside.",
+    "Declare a single confirmatory family, correct it, and mark per-category, per-quintile and per-model numbers as exploratory."
+  ],
+  "limitations": [
+    "The reference ablation has one run per (task, condition) at seed 0, so per-task estimates carry run-to-run noise that only the 39-task multi-seed subset can quantify. Every shrinkage and RTM figure above imports its measurement variance from that subset and assumes it transfers to the full pool.",
+    "The held-out-model difficulty instrument covers only the tasks the reference ablation and LB90 share, so its quintiles are coarser than the full-pool ones.",
+    "The permutation nulls test exchangeability of condition labels within a task. They do not test whether the graders measure what the tasks intend, which is a separate validity question handled by the admission gate.",
+    "Nothing here establishes that a coordination-required benchmark is impossible. It establishes that this corpus, as scored, does not currently contain a measurable coordination requirement at the resolution the runs provide.",
+    "The LB90 aggregate's per-condition task coverage is unequal; the paired figures restrict to each model's task intersection, which changes the denominator relative to the published leaderboard rates."
+  ]
+}

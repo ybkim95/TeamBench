@@ -1,0 +1,136 @@
+{
+  "version": "2.0",
+  "description": "Stratified 20-task selection for human evaluation. Proportionally sampled from 100-task leaderboard set across all major categories and difficulty levels.",
+  "selection_method": "stratified_proportional",
+  "selection_date": "2026-04-13",
+  "seed": 42,
+  "n_tasks": 20,
+  "difficulty_distribution": {
+    "expert": 6,
+    "hard": 12,
+    "medium": 2
+  },
+  "category_coverage": "18 of 21 categories (dropped: Integration, Negotiation, Specification — each has only 1-2 tasks)",
+  "tasks": [
+    {
+      "task_id": "TRAP1_spec_conflict",
+      "category": "Adversarial",
+      "difficulty": "hard",
+      "description": "Spec contradicts secondary docs; 4/7 endpoints need validation, 3 intentionally relaxed"
+    },
+    {
+      "task_id": "CR4_api_review",
+      "category": "Code Review",
+      "difficulty": "hard",
+      "description": "API code review with multiple defects across routing, validation, and error handling"
+    },
+    {
+      "task_id": "CROSS1_api_contract",
+      "category": "Cross-System Integration",
+      "difficulty": "hard",
+      "description": "Go server + Python client with 3 API contract mismatches"
+    },
+    {
+      "task_id": "D6_data_reconcile",
+      "category": "Data Engineering",
+      "difficulty": "expert",
+      "description": "Data reconciliation across inconsistent sources"
+    },
+    {
+      "task_id": "DIST1_queue_race",
+      "category": "Distributed Systems",
+      "difficulty": "expert",
+      "description": "3 race conditions in distributed queue (TOCTOU, missing ack, type-unsafe compare)"
+    },
+    {
+      "task_id": "GH1002_scipy_24753",
+      "category": "GitHub Issues (Real-World)",
+      "difficulty": "medium",
+      "description": "Real scipy issue #24753 — real-world open-source bug fix"
+    },
+    {
+      "task_id": "INC1_cascade_failure",
+      "category": "Incident Response",
+      "difficulty": "hard",
+      "description": "Diagnose and fix cascading service failure"
+    },
+    {
+      "task_id": "IR2_misinformation_trap",
+      "category": "Information Retrieval",
+      "difficulty": "hard",
+      "description": "Information retrieval with planted misinformation across sources"
+    },
+    {
+      "task_id": "LH2_budgeted_workflow",
+      "category": "Long-Horizon",
+      "difficulty": "expert",
+      "description": "Multi-step budgeted workflow requiring long-horizon planning"
+    },
+    {
+      "task_id": "JS2_xss_sanitize",
+      "category": "Multi-language",
+      "difficulty": "hard",
+      "description": "Cross-language XSS sanitization fix"
+    },
+    {
+      "task_id": "O6_perf_tuning",
+      "category": "Operations",
+      "difficulty": "expert",
+      "description": "Performance tuning across multiple system components"
+    },
+    {
+      "task_id": "API1_version_compat",
+      "category": "Other (Misc)",
+      "difficulty": "hard",
+      "description": "API version compatibility fix"
+    },
+    {
+      "task_id": "GH103_redis-py_3998",
+      "category": "Other (Misc)",
+      "difficulty": "medium",
+      "description": "Real redis-py issue #3998 — real-world library bug"
+    },
+    {
+      "task_id": "PIPE2_data_pipeline",
+      "category": "Pipeline",
+      "difficulty": "hard",
+      "description": "Data pipeline debugging and repair"
+    },
+    {
+      "task_id": "P3_access_control",
+      "category": "Policy",
+      "difficulty": "hard",
+      "description": "Access control policy implementation with edge cases"
+    },
+    {
+      "task_id": "RDS10_survey_analysis",
+      "category": "Real Data Science",
+      "difficulty": "hard",
+      "description": "Stack Overflow survey analysis with confounding control"
+    },
+    {
+      "task_id": "RDS13_smote_leakage",
+      "category": "Real Data Science",
+      "difficulty": "hard",
+      "description": "Detect and fix SMOTE data leakage in ML pipeline"
+    },
+    {
+      "task_id": "CRYPTO1_nonce_reuse",
+      "category": "Security",
+      "difficulty": "expert",
+      "description": "AES-GCM nonce reuse, weak PBKDF2, short authentication tag"
+    },
+    {
+      "task_id": "GO1_concurrency_fix",
+      "category": "Software Eng.",
+      "difficulty": "expert",
+      "description": "Go concurrency bug fix requiring deep language expertise"
+    },
+    {
+      "task_id": "TEST3_integration",
+      "category": "Testing",
+      "difficulty": "hard",
+      "description": "Integration test design and implementation"
+    }
+  ]
+}

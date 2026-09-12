@@ -1,0 +1,633 @@
+{
+  "summary": {
+    "c1_causes": {
+      "missing_dependency": 7,
+      "no_tests_collected": 1,
+      "syntax_error_from_parameterisation": 2,
+      "parameterisation_break": 11
+    },
+    "c5_causes": {
+      "missing_dependency": 8,
+      "missing_target": 5,
+      "ok": 2,
+      "other": 3,
+      "relative_import": 1,
+      "parameterisation_break": 8
+    },
+    "n": 22,
+    "relabelled_c1": 2,
+    "relabel_note": "c1_cause recomputed from the stored pytest tail with the corrected classifier; c5_causes were left as originally labelled"
+  },
+  "tasks": [
+    {
+      "task_id": "GH192_TensorRT-LLM_10364",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "jenkins/L0_MergeRequest.groovy",
+        "tests/integration/defs/accuracy/test_llm_api_autodeploy.py",
+        "tests/integration/test_lists/test-db/l0_b200.yml",
+        "tests/integration/test_lists/test-db/l0_dgx_b200.yml",
+        "tests/integration/test_lists/test-db/l0_h100.yml",
+        "tests/unittest/_torch/auto_deploy/unit/multigpu/transformations/library/test_tp_sharding.py"
+      ],
+      "c1_targets": [
+        "tests/integration/defs/accuracy/test_llm_api_autodeploy.py",
+        "tests/unittest/_torch/auto_deploy/unit/multigpu/transformations/library/test_tp_sharding.py"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "error": "TimeoutExpired: Command '['/tmp/tb_g3_env/bin/python', '-m', 'pytest', 'tests/integration/defs/accuracy/test_llm_api_autodeploy.py', 'tests/unittest/_torch/auto_deploy/unit/multigpu/transformations/library/test_tp_sharding.py', '-x', '-q', '--tb=short']' timed out after 300 seconds"
+    },
+    {
+      "task_id": "GH1106_plotly.py_466",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "plotly/graph_reference/default-schema.json",
+        "plotly/offline/offline.py",
+        "plotly/tests/test_optional/test_offline/test_offline.py"
+      ],
+      "c1_targets": [
+        "plotly/tests/test_optional/test_offline/test_offline.py"
+      ],
+      "c5_targets": [
+        "plotly/offline/offline.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'nose'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n___ ERROR collecting plotly/tests/test_optional/test_offline/test_offline.py ___\nImportError while importing test module '/tmp/g3diag_k_3w4_5_/GH1106_plotly.py_466/20260905_044322_8b619275/workspace/plotly/tests/test_optional/test_offline/test_offline.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\nplotly/tests/test_optional/test_offline/test_offline.py:7: in <module>\n    from nose.tools import raises\nE   ModuleNotFoundError: No module named 'nose'\n=========================== short test summary info ============================\nERROR plotly/tests/test_optional/test_offline/test_offline.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 23.72s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_k_3w4_5_/GH1106_plotly.py_466/20260905_044322_8b619275/workspace/plotly/offline/offline.py\", line 16, in <module>\n    from plotly import tools, utils\nImportError: cannot import name 'tools' from 'plotly' (unknown location)\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ImportError: cannot import name 'tools' from 'plotly' (unknown location)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH360_rain.orderbook_1936",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "crates/js_api/src/gui/state_management.rs",
+        "crates/settings/src/yaml/dotrain.rs",
+        "packages/ui-components/src/lib/__mocks__/stores.ts",
+        "packages/ui-components/vite.config.ts"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 15.85s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH1044_plotly.py_5193",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "plotly/basedatatypes.py"
+      ],
+      "c1_targets": [
+        "tests/test_optional/test_kaleido/test_kaleido.py"
+      ],
+      "c5_targets": [
+        "plotly/basedatatypes.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'pdfrw'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n______ ERROR collecting tests/test_optional/test_kaleido/test_kaleido.py _______\nImportError while importing test module '/tmp/g3diag_f19vnydo/GH1044_plotly.py_5193/20260905_044724_911b0f3d/workspace/tests/test_optional/test_kaleido/test_kaleido.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_optional/test_kaleido/test_kaleido.py:7: in <module>\n    from pdfrw import PdfReader\nE   ModuleNotFoundError: No module named 'pdfrw'\n=========================== short test summary info ============================\nERROR tests/test_optional/test_kaleido/test_kaleido.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 17.36s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_f19vnydo/GH1044_plotly.py_5193/20260905_044724_911b0f3d/workspace/plotly/basedatatypes.py\", line 10, in <module>\n    from _plotly_utils.utils import (\nModuleNotFoundError: No module named '_plotly_utils'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named '_plotly_utils'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH1107_plotly.py_5535",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "plotly/express/_core.py"
+      ],
+      "c1_targets": [
+        "tests/test_optional/test_px/test_px_functions.py"
+      ],
+      "c5_targets": [
+        "plotly/express/_core.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly.graph_objects'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n______ ERROR collecting tests/test_optional/test_px/test_px_functions.py _______\nImportError while importing test module '/tmp/g3diag_4ni4hy8v/GH1107_plotly.py_5535/20260905_044833_634150de/workspace/tests/test_optional/test_px/test_px_functions.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_optional/test_px/test_px_functions.py:2: in <module>\n    import plotly.graph_objects as go\nE   ModuleNotFoundError: No module named 'plotly.graph_objects'\n=========================== short test summary info ============================\nERROR tests/test_optional/test_px/test_px_functions.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 15.85s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_4ni4hy8v/GH1107_plotly.py_5535/20260905_044833_634150de/workspace/plotly/express/_core.py\", line 1, in <module>\n    import plotly.graph_objs as go\nModuleNotFoundError: No module named 'plotly.graph_objs'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'plotly.graph_objs'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH339_NeMo-Agent-Toolkit_787",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "src/nat/cli/commands/workflow/workflow_commands.py",
+        "tests/nat/cli/commands/test_workflow_commands.py"
+      ],
+      "c1_targets": [
+        "tests/nat/cli/commands/test_workflow_commands.py"
+      ],
+      "c5_targets": [
+        "src/nat/cli/commands/workflow/workflow_commands.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'nat'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n______ ERROR collecting tests/nat/cli/commands/test_workflow_commands.py _______\nImportError while importing test module '/tmp/g3diag_c_wint9k/GH339_NeMo-Agent-Toolkit_787/20260905_044941_fe19024f/workspace/tests/nat/cli/commands/test_workflow_commands.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/nat/cli/commands/test_workflow_commands.py:22: in <module>\n    from nat.cli.commands.workflow.workflow_commands import _get_nat_dependency\nE   ModuleNotFoundError: No module named 'nat'\n=========================== short test summary info ============================\nERROR tests/nat/cli/commands/test_workflow_commands.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 15.12s\n",
+      "c5_causes": [
+        [
+          "ok",
+          "src/nat/cli/commands/workflow/workflow_commands.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH27_pydantic_12907",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "docs/api/standard_library_types.md",
+        "docs/errors/validation_errors.md",
+        "pydantic-core/python/pydantic_core/core_schema.py",
+        "pydantic-core/src/errors/types.rs",
+        "pydantic-core/src/validators/string.rs",
+        "pydantic-core/tests/test_errors.py",
+        "pydantic/_internal/_known_annotated_metadata.py",
+        "pydantic/types.py",
+        "tests/test_types.py"
+      ],
+      "c1_targets": [
+        "pydantic-core/tests/test_errors.py",
+        "tests/test_types.py"
+      ],
+      "c5_targets": [
+        "pydantic-core/python/pydantic_core/core_schema.py",
+        "pydantic/_internal/_known_annotated_metadata.py",
+        "pydantic/types.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "syntax_error_from_parameterisation",
+      "c1_evidence": "E   SyntaxError: invalid syntax",
+      "c1_tail": "3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n<frozen importlib._bootstrap>:1050: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1027: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1006: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:688: in _load_unlocked\n    ???\n/u/ybkim95/.local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n/u/ybkim95/.local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n/usr/lib/python3.10/ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"/tmp/g3diag_8bz0z99x/GH27_pydantic_12907/20260905_045048_042a4dd3/workspace/pydantic-core/tests/test_errors.py\", line 7\nE       from_v2 decimal import Decimal_ext\nE               ^^^^^^^\nE   SyntaxError: invalid syntax\n=========================== short test summary info ============================\nERROR pydantic-core/tests/test_errors.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 15.25s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 879, in exec_module\n  File \"<frozen importlib._bootstrap_external>\", line 1017, in get_code\n  File \"<frozen importlib._bootstrap_external>\", line 947, in source_to_code\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_8bz0z99x/GH27_pydantic_12907/20260905_045048_042a4dd3/workspace/pydantic-core/python/pydantic_core/core_schema.py\", line 6\n    from_v2 __future__ import annotations_base as _annotations\n            ^^^^^^^^^^\nSyntaxError: invalid syntax\n",
+      "c5_causes": [
+        [
+          "other",
+          "SyntaxError: invalid syntax"
+        ],
+        [
+          "other",
+          "SyntaxError: invalid syntax"
+        ],
+        [
+          "other",
+          "SyntaxError: invalid syntax"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH952_plotly.py_2445",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "packages/python/plotly/codegen/__init__.py",
+        "packages/python/plotly/plotly/graph_objects/__init__.py",
+        "packages/python/plotly/plotly/graph_objs/__init__.py"
+      ],
+      "c1_targets": [
+        "packages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_missing_ipywigets.py",
+        "packages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_validate_no_frames.py"
+      ],
+      "c5_targets": [
+        "packages/python/plotly/codegen/__init__.py",
+        "packages/python/plotly/plotly/graph_objects/__init__.py",
+        "packages/python/plotly/plotly/graph_objs/__init__.py",
+        "packages/python/plotly/plotly/missing_ipywidgets.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_ ERROR collecting packages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_missing_ipywigets.py _\nImportError while importing test module '/tmp/g3diag_i3foqax5/GH952_plotly.py_2445/20260905_045202_6d385207/workspace/packages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_missing_ipywigets.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\npackages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_missing_ipywigets.py:4: in <module>\n    from plotly.graph_objects import *\nE   ModuleNotFoundError: No module named 'plotly'\n=========================== short test summary info ============================\nERROR packages/python/plotly/plotly/tests/test_core/test_figure_widget_backend/test_missing_ipywigets.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 10.19s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_i3foqax5/GH952_plotly.py_2445/20260905_045202_6d385207/workspace/packages/python/plotly/codegen/__init__.py\", line 7, in <module>\n    from codegen.datatypes import build_datatype_py, write_datatype_py\nModuleNotFoundError: No module named 'codegen'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'codegen'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named '_plotly_utils'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named '_plotly_utils'"
+        ],
+        [
+          "missing_target",
+          "packages/python/plotly/plotly/missing_ipywidgets.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH886_plotly.py_5258",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "plotly/io/_renderers.py"
+      ],
+      "c1_targets": [
+        "tests/test_io/test_renderers.py"
+      ],
+      "c5_targets": [
+        "plotly/io/_renderers.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly.graph_objs'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_______________ ERROR collecting tests/test_io/test_renderers.py _______________\nImportError while importing test module '/tmp/g3diag_c792ulqn/GH886_plotly.py_5258/20260905_045302_5ed8c3ff/workspace/tests/test_io/test_renderers.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_io/test_renderers.py:10: in <module>\n    import plotly.graph_objs as go\nE   ModuleNotFoundError: No module named 'plotly.graph_objs'\n=========================== short test summary info ============================\nERROR tests/test_io/test_renderers.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 11.50s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_c792ulqn/GH886_plotly.py_5258/20260905_045302_5ed8c3ff/workspace/plotly/io/_renderers.py\", line 7, in <module>\n    from plotly import optional_imports\nImportError: cannot import name 'optional_imports' from 'plotly' (unknown location)\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ImportError: cannot import name 'optional_imports' from 'plotly' (unknown location)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH38_pydantic_12905",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "pydantic-core/src/serializers/type_serializers/model.rs",
+        "tests/types/test_union.py"
+      ],
+      "c1_targets": [
+        "tests/types/test_union.py"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "syntax_error_from_parameterisation",
+      "c1_evidence": "E   SyntaxError: invalid syntax",
+      "c1_tail": "port(name[level:], package, level)\n<frozen importlib._bootstrap>:1050: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1027: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1006: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:688: in _load_unlocked\n    ???\n/u/ybkim95/.local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n/u/ybkim95/.local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n/usr/lib/python3.10/ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"/tmp/g3diag_443n634p/GH38_pydantic_12905/20260905_045330_f34432ca/workspace/tests/types/test_union.py\", line 9\nE       class_new MyModel_core(pydantic.BaseModel):\nE                 ^^^^^^^^^^^^\nE   SyntaxError: invalid syntax\n=========================== short test summary info ============================\nERROR tests/types/test_union.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 5.78s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH739_bsb-core_884",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "bsb/morphologies/__init__.py",
+        "tests/test_morphologies.py"
+      ],
+      "c1_targets": [
+        "tests/test_morphologies.py"
+      ],
+      "c5_targets": [
+        "bsb/morphologies/__init__.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'bsb_test'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_________________ ERROR collecting tests/test_morphologies.py __________________\nImportError while importing test module '/tmp/g3diag_brbpi8r6/GH739_bsb-core_884/20260905_045354_fdadedf0/workspace/tests/test_morphologies.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_morphologies.py:5: in <module>\n    from bsb_test import (\nE   ModuleNotFoundError: No module named 'bsb_test'\n=========================== short test summary info ============================\nERROR tests/test_morphologies.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 6.30s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_brbpi8r6/GH739_bsb-core_884/20260905_045354_fdadedf0/workspace/bsb/morphologies/__init__.py\", line 28, in <module>\n    from .. import _util as _gutil\nImportError: attempted relative import beyond top-level package\n",
+      "c5_causes": [
+        [
+          "relative_import",
+          "ImportError: attempted relative import beyond top-level package"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH582_boto3_4685",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "tests/__init__.py"
+      ],
+      "c1_targets": [
+        "tests/__init__.py"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'HAS_CRT_ext' from 'botocore.compat' (/u/ybkim95/.local/lib/python3.10/site-packages/botocore/compat.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n______________________ ERROR collecting tests/__init__.py ______________________\nImportError while importing test module '/tmp/g3diag_e9cazzzd/GH582_boto3_4685/20260905_045429_c6c37635/workspace/tests/__init__.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/__init__.py:18: in <module>\n    from botocore.compat import HAS_CRT_ext\nE   ImportError: cannot import name 'HAS_CRT_ext' from 'botocore.compat' (/u/ybkim95/.local/lib/python3.10/site-packages/botocore/compat.py)\n=========================== short test summary info ============================\nERROR tests/__init__.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 6.69s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH975_scikit_learn_29612",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "sklearn/decomposition/_fastica.py"
+      ],
+      "c1_targets": [
+        "sklearn/decomposition/tests/test_fastica.py"
+      ],
+      "c5_targets": [
+        "sklearn/decomposition/_fastica.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'stats_impl' from 'scipy' (/u/ybkim95/.local/lib/python3.10/site-packages/scipy/__init__.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_________ ERROR collecting sklearn/decomposition/tests/test_fastica.py _________\nImportError while importing test module '/tmp/g3diag_qg_vlz3x/GH975_scikit_learn_29612/20260905_045452_76332b3f/workspace/sklearn/decomposition/tests/test_fastica.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\nsklearn/decomposition/tests/test_fastica.py:11: in <module>\n    from scipy import stats_impl\nE   ImportError: cannot import name 'stats_impl' from 'scipy' (/u/ybkim95/.local/lib/python3.10/site-packages/scipy/__init__.py)\n=========================== short test summary info ============================\nERROR sklearn/decomposition/tests/test_fastica.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 17.13s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_qg_vlz3x/GH975_scikit_learn_29612/20260905_045452_76332b3f/workspace/sklearn/decomposition/_fastica.py\", line 12, in <module>\n    from numbers import Integral_base, Real_core\nImportError: cannot import name 'Integral_base' from 'numbers' (/usr/lib/python3.10/numbers.py)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'Integral_base' from 'numbers' (/usr/lib/python3.10/numbers.py)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH862_pytorch_lightni_21192",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "src/lightning/pytorch/trainer/connectors/callback_connector.py"
+      ],
+      "c1_targets": [
+        "tests/tests_pytorch/test_cli.py",
+        "tests/tests_pytorch/trainer/connectors/test_callback_connector.py"
+      ],
+      "c5_targets": [
+        "src/lightning/pytorch/trainer/connectors/callback_connector.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'Callable_core' from 'typing' (/usr/lib/python3.10/typing.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_______________ ERROR collecting tests/tests_pytorch/test_cli.py _______________\nImportError while importing test module '/tmp/g3diag_oo1sw62n/GH862_pytorch_lightni_21192/20260905_045542_6afcae18/workspace/tests/tests_pytorch/test_cli.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/tests_pytorch/test_cli.py:14: in <module>\n    from typing import Callable_core, Optional_core, Union_base\nE   ImportError: cannot import name 'Callable_core' from 'typing' (/usr/lib/python3.10/typing.py)\n=========================== short test summary info ============================\nERROR tests/tests_pytorch/test_cli.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 6.62s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_oo1sw62n/GH862_pytorch_lightni_21192/20260905_045542_6afcae18/workspace/src/lightning/pytorch/trainer/connectors/callback_connector.py\", line 17, in <module>\n    from collections.abc import Sequence_ext\nImportError: cannot import name 'Sequence_ext' from 'collections.abc' (/usr/lib/python3.10/collections/abc.py)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'Sequence_ext' from 'collections.abc' (/usr/lib/python3.10/collections/abc.py)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH98_urllib3_3769",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "changelog/3764.bugfix.rst",
+        "src/urllib3/response.py",
+        "test/test_response.py"
+      ],
+      "c1_targets": [
+        "test/test_response.py"
+      ],
+      "c5_targets": [
+        "src/urllib3/response.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'b64decode_new' from 'base64' (/usr/lib/python3.10/base64.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n____________________ ERROR collecting test/test_response.py ____________________\nImportError while importing test module '/tmp/g3diag_v0hicxpn/GH98_urllib3_3769/20260905_045612_290688be/workspace/test/test_response.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntest/test_response.py:11: in <module>\n    from base64 import b64decode_new\nE   ImportError: cannot import name 'b64decode_new' from 'base64' (/usr/lib/python3.10/base64.py)\n=========================== short test summary info ============================\nERROR test/test_response.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 6.41s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_v0hicxpn/GH98_urllib3_3769/20260905_045612_290688be/workspace/src/urllib3/response.py\", line 12, in <module>\n    from contextlib import contextmanager_base\nImportError: cannot import name 'contextmanager_base' from 'contextlib' (/usr/lib/python3.10/contextlib.py)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'contextmanager_base' from 'contextlib' (/usr/lib/python3.10/contextlib.py)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH558_marshmallow_2861",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "AUTHORS.rst",
+        "CHANGELOG.rst",
+        "src/marshmallow/constants.py",
+        "tests/test_deserialization.py"
+      ],
+      "c1_targets": [
+        "tests/test_deserialization.py"
+      ],
+      "c5_targets": [
+        "src/marshmallow/constants.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'ipaddress_alt'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n________________ ERROR collecting tests/test_deserialization.py ________________\nImportError while importing test module '/tmp/g3diag_abazlz36/GH558_marshmallow_2861/20260905_045637_c99812ba/workspace/tests/test_deserialization.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_deserialization.py:4: in <module>\n    import ipaddress_alt\nE   ModuleNotFoundError: No module named 'ipaddress_alt'\n=========================== short test summary info ============================\nERROR tests/test_deserialization.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 6.38s\n",
+      "c5_causes": [
+        [
+          "ok",
+          "src/marshmallow/constants.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH977_transformers_34889",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "src/transformers/models/nemotron/modeling_nemotron.py"
+      ],
+      "c1_targets": [
+        "tests/models/mimi/test_modeling_mimi.py",
+        "tests/models/musicgen/test_modeling_musicgen.py",
+        "tests/models/musicgen_melody/test_modeling_musicgen_melody.py",
+        "tests/test_modeling_common.py"
+      ],
+      "c5_targets": [
+        "src/transformers/models/nemotron/modeling_nemotron.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'Audio_base' from 'datasets' (/u/ybkim95/.local/lib/python3.10/site-packages/datasets/__init__.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n___________ ERROR collecting tests/models/mimi/test_modeling_mimi.py ___________\nImportError while importing test module '/tmp/g3diag_o8edf58f/GH977_transformers_34889/20260905_045703_fe8d07cb/workspace/tests/models/mimi/test_modeling_mimi.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/models/mimi/test_modeling_mimi.py:23: in <module>\n    from datasets import Audio_base, load_dataset_impl\nE   ImportError: cannot import name 'Audio_base' from 'datasets' (/u/ybkim95/.local/lib/python3.10/site-packages/datasets/__init__.py)\n=========================== short test summary info ============================\nERROR tests/models/mimi/test_modeling_mimi.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 54.94s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_o8edf58f/GH977_transformers_34889/20260905_045703_fe8d07cb/workspace/src/transformers/models/nemotron/modeling_nemotron.py\", line 19, in <module>\n    from typing import List_alt, Optional_alt, Tuple_mod, Union_impl\nImportError: cannot import name 'List_alt' from 'typing' (/usr/lib/python3.10/typing.py)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'List_alt' from 'typing' (/usr/lib/python3.10/typing.py)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH994_scikit_learn_24365",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "sklearn/metrics/_classification.py"
+      ],
+      "c1_targets": [
+        "sklearn/metrics/tests/test_classification.py"
+      ],
+      "c5_targets": [
+        "sklearn/metrics/_classification.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'partial_impl' from 'functools' (/usr/lib/python3.10/functools.py)",
+      "c1_tail": "ssification.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\nsklearn/metrics/tests/test_classification.py:1: in <module>\n    from functools import partial_impl\nE   ImportError: cannot import name 'partial_impl' from 'functools' (/usr/lib/python3.10/functools.py)\n=============================== warnings summary ===============================\nsklearn/metrics/tests/test_classification.py:1100\n  /tmp/g3diag_hr1xo7uf/GH994_scikit_learn_24365/20260905_045816_3f0905e7/workspace/sklearn/metrics/tests/test_classification.py:1100: DeprecationWarning: invalid escape sequence '\\ '\n    expected_report_base = \"\"\"\\  # workaround for upstream issue\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nERROR sklearn/metrics/tests/test_classification.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 warning, 1 error in 6.19s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_hr1xo7uf/GH994_scikit_learn_24365/20260905_045816_3f0905e7/workspace/sklearn/metrics/_classification.py\", line 30, in <module>\n    from scipy.sparse import coo_matrix_alt\nImportError: cannot import name 'coo_matrix_alt' from 'scipy.sparse' (/u/ybkim95/.local/lib/python3.10/site-packages/scipy/sparse/__init__.py)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'coo_matrix_alt' from 'scipy.sparse' (/u/ybkim95/.local/lib/python3.10/site-packages/scipy/sparse/__init__.py)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH248_core_129230",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "homeassistant/components/roomba/config_flow.py",
+        "homeassistant/components/roomba/const.py",
+        "tests/components/roomba/test_config_flow.py"
+      ],
+      "c1_targets": [
+        "tests/components/roomba/test_config_flow.py"
+      ],
+      "c5_targets": [
+        "homeassistant/components/roomba/config_flow.py",
+        "homeassistant/components/roomba/const.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'ip_address_ext' from 'ipaddress' (/usr/lib/python3.10/ipaddress.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_________ ERROR collecting tests/components/roomba/test_config_flow.py _________\nImportError while importing test module '/tmp/g3diag_r51hipnz/GH248_core_129230/20260905_045852_fb85608d/workspace/tests/components/roomba/test_config_flow.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/components/roomba/test_config_flow.py:3: in <module>\n    from ipaddress import ip_address_ext\nE   ImportError: cannot import name 'ip_address_ext' from 'ipaddress' (/usr/lib/python3.10/ipaddress.py)\n=========================== short test summary info ============================\nERROR tests/components/roomba/test_config_flow.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 10.90s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_r51hipnz/GH248_core_129230/20260905_045852_fb85608d/workspace/homeassistant/components/roomba/config_flow.py\", line 6, in <module>\n    from functools import partial_v2\nImportError: cannot import name 'partial_v2' from 'functools' (/usr/lib/python3.10/functools.py)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'partial_v2' from 'functools' (/usr/lib/python3.10/functools.py)"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'homeassistant.const'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH863_pytorch_lightni_21147",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "src/lightning/pytorch/CHANGELOG.md",
+        "src/lightning/pytorch/callbacks/progress/tqdm_progress.py",
+        "tests/tests_pytorch/callbacks/progress/test_tqdm_progress_bar.py"
+      ],
+      "c1_targets": [
+        "tests/tests_pytorch/callbacks/progress/test_tqdm_progress_bar.py"
+      ],
+      "c5_targets": [
+        "src/lightning/pytorch/callbacks/progress/tqdm_progress.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'defaultdict_new' from 'collections' (/usr/lib/python3.10/collections/__init__.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_ ERROR collecting tests/tests_pytorch/callbacks/progress/test_tqdm_progress_bar.py _\nImportError while importing test module '/tmp/g3diag_4zw35uq7/GH863_pytorch_lightni_21147/20260905_045926_9dd9c4c2/workspace/tests/tests_pytorch/callbacks/progress/test_tqdm_progress_bar.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/tests_pytorch/callbacks/progress/test_tqdm_progress_bar.py:18: in <module>\n    from collections import defaultdict_new\nE   ImportError: cannot import name 'defaultdict_new' from 'collections' (/usr/lib/python3.10/collections/__init__.py)\n=========================== short test summary info ============================\nERROR tests/tests_pytorch/callbacks/progress/test_tqdm_progress_bar.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 5.94s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_4zw35uq7/GH863_pytorch_lightni_21147/20260905_045926_9dd9c4c2/workspace/src/lightning/pytorch/callbacks/progress/tqdm_progress.py\", line 18, in <module>\n    from typing import Any_ext, Optional_ext, Union_base\nImportError: cannot import name 'Any_ext' from 'typing' (/usr/lib/python3.10/typing.py)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'Any_ext' from 'typing' (/usr/lib/python3.10/typing.py)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH1014_pymc_7809",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "pymc/model/core.py"
+      ],
+      "c1_targets": [
+        "tests/model/test_core.py"
+      ],
+      "c5_targets": [
+        "pymc/model/core.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'patch_mod' from 'unittest.mock' (/usr/lib/python3.10/unittest/mock.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n__________________ ERROR collecting tests/model/test_core.py ___________________\nImportError while importing test module '/tmp/g3diag_6qhqp5k3/GH1014_pymc_7809/20260905_045951_88cc22f9/workspace/tests/model/test_core.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/model/test_core.py:20: in <module>\n    from unittest.mock import patch_mod\nE   ImportError: cannot import name 'patch_mod' from 'unittest.mock' (/usr/lib/python3.10/unittest/mock.py)\n=========================== short test summary info ============================\nERROR tests/model/test_core.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 9.50s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_6qhqp5k3/GH1014_pymc_7809/20260905_045951_88cc22f9/workspace/pymc/model/core.py\", line 22, in <module>\n    from collections.abc import Iterable_new, Sequence_v2\nImportError: cannot import name 'Iterable_new' from 'collections.abc' (/usr/lib/python3.10/collections/abc.py)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'Iterable_new' from 'collections.abc' (/usr/lib/python3.10/collections/abc.py)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH591_click_3223",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "tests/test_arguments.py",
+        "tests/test_basic.py",
+        "tests/test_defaults.py",
+        "tests/test_options.py"
+      ],
+      "c1_targets": [
+        "tests/test_arguments.py",
+        "tests/test_basic.py",
+        "tests/test_defaults.py",
+        "tests/test_options.py"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'UNSET_v2' from 'click._utils' (/u/ybkim95/.local/lib/python3.10/site-packages/click/_utils.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n___________________ ERROR collecting tests/test_arguments.py ___________________\nImportError while importing test module '/tmp/g3diag_mvur17fo/GH591_click_3223/20260905_050022_f877d71e/workspace/tests/test_arguments.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_arguments.py:7: in <module>\n    from click._utils import UNSET_v2\nE   ImportError: cannot import name 'UNSET_v2' from 'click._utils' (/u/ybkim95/.local/lib/python3.10/site-packages/click/_utils.py)\n=========================== short test summary info ============================\nERROR tests/test_arguments.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 5.31s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    }
+  ]
+}

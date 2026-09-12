@@ -1,0 +1,3746 @@
+[
+ {
+  "task": "GH121_quart_302",
+  "status": "no_test_target",
+  "repo": "pallets/quart"
+ },
+ {
+  "task": "GH112_redis-py_3996",
+  "repo": "redis/redis-py",
+  "sha": "a72e3f00f0b47b7916f96e27c6c3ec7c31b31393",
+  "target": "tests/test_observability/test_public_api.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": " option: timeout\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n2 warnings in 7.14s\nERROR: file or directory not found: tests/test_observability/test_public_api.py"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 8,
+   "failed": false,
+   "collected": true,
+   "tail": "/_pytest/config/__init__.py:1434: PytestConfigWarning: Unknown config option: timeout\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n8 passed, 2 warnings in 10.06s"
+  },
+  "fail_to_pass": {
+   "added": 8,
+   "fails_without_fix": null,
+   "why": "test-only apply failed"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH140_marshmallow_2874",
+  "repo": "marshmallow-code/marshmallow",
+  "sha": "880d87f6acc389aa80c223dae4013f7eed05ab13",
+  "target": "tests/test_validate.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 190,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 37%]\n........................................................................ [ 75%]\n..............................................                           [100%]\n190 passed in 8.85s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 191,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 37%]\n........................................................................ [ 75%]\n...............................................                          [100%]\n191 passed in 8.80s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_validate.py::test_url_custom_scheme_case_insensitive"
+   ],
+   "fails_without_fix": true,
+   "tail": "09: ValidationError\n=========================== short test summary info ============================\nFAILED tests/test_validate.py::test_url_custom_scheme_case_insensitive - mars...\n1 failed in 10.04s"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH139_marshmallow_2894",
+  "repo": "marshmallow-code/marshmallow",
+  "sha": "ba8b512b24ebf4789099f1afafe9256b1bda950e",
+  "target": "tests/test_deserialization.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 379,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 75%]\n........................................................................ [ 94%]\n...................                                                      [100%]\n379 passed in 8.95s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 380,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 75%]\n........................................................................ [ 94%]\n....................                                                     [100%]\n380 passed in 9.13s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_deserialization.py::test_constant_none_allows_none_value"
+   ],
+   "fails_without_fix": true,
+   "tail": "no tests ran in 10.04s\nERROR: not found: /tmp/core_GH139_marshmal_rs8n8e89/r/tests/test_deserialization.py::test_constant_none_allows_none_value\n(no match in any of [<Module test_deserialization.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH148_psycopg_1231",
+  "status": "no_test_target",
+  "repo": "psycopg/psycopg"
+ },
+ {
+  "task": "GH103_redis-py_3998",
+  "repo": "redis/redis-py",
+  "sha": "18b53522d67ded549bd4d6e2977ab8d8b67e879b",
+  "target": "tests/test_asyncio/test_connection_pool.py tests/test_connection_pool.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 167,
+   "failed": false,
+   "collected": true,
+   "tail": ")\n  \n  Object allocated at:\n    File \"/tmp/core_GH103_redis-py_vqpx7jds/r/redis/asyncio/client.py\", line 497\n      return Pipeline(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n167 passed, 1 skipped, 20 xpassed, 6 warnings in 14.17s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 169,
+   "failed": false,
+   "collected": true,
+   "tail": "ated at:\n    File \"/tmp/core_GH103_redis-py_vqpx7jds/r/redis/utils.py\", line 180\n      filterable_args = dict(zip(arg_names, args))\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n169 passed, 1 skipped, 20 xpassed, 6 warnings in 12.72s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_asyncio/test_connection_pool.py::test_repr_redacts_sensitive_information",
+    "tests/test_connection_pool.py::test_repr_redacts_sensitive_information"
+   ],
+   "fails_without_fix": true,
+   "tail": "nection_pool.py>])\n\nERROR: not found: /tmp/core_GH103_redis-py_vqpx7jds/r/tests/test_connection_pool.py::test_repr_redacts_sensitive_information\n(no match in any of [<Module test_connection_pool.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH144_psycopg_1247",
+  "repo": "psycopg/psycopg",
+  "sha": "38b2a5bdbb313bb5a0a2b064f5879413b132aefb",
+  "target": "tests/test_connection.py tests/test_connection_async.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH144_psycopg__18ahr_mc/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH144_psycopg__18ahr_mc/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_connection.py::test_multi_attempt_pgconn"
+   ],
+   "fails_without_fix": true,
+   "tail": "psycopg__18ahr_mc/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH141_urllib3_3736",
+  "repo": "urllib3/urllib3",
+  "sha": "bfe8e198a13800e3ee8ef8124a8928acb170c843",
+  "target": "test/test_response.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "test/test_response.py::test_read_chunked_with_all_data_already_in_decompressor"
+   ],
+   "fails_without_fix": true,
+   "tail": "E   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH153_urllib3_3711",
+  "repo": "urllib3/urllib3",
+  "sha": "1f6abac3e6d426c3939b8a17cf4afa099e691ab2",
+  "target": "test/test_response.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "test/test_response.py::test_memory_usage_splitting_chunk"
+   ],
+   "fails_without_fix": true,
+   "tail": "E   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH158_attrs_1529",
+  "repo": "python-attrs/attrs",
+  "sha": "3a68d4913221abc6f8ad3be50937f7ae49300a98",
+  "target": "tests/test_make.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH158_attrs_15_o0_dj08j/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH158_attrs_15_o0_dj08j/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_make.py::test_handler_non_attrs_instance"
+   ],
+   "fails_without_fix": true,
+   "tail": "nftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH20_pydantic_12748",
+  "repo": "pydantic/pydantic",
+  "sha": "61a06734ed07f00c018acf41809913e0857c728a",
+  "target": "tests/test_computed_fields.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_computed_fields.py::test_computed_fields_serialization_exclude_if",
+    "tests/test_computed_fields.py::test_computed_fields_serialization_exclude_if_from_annotated"
+   ],
+   "fails_without_fix": true,
+   "tail": "talled pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH21_pydantic_12758",
+  "repo": "pydantic/pydantic",
+  "sha": "4f818e02fa95b854bc2ca295e04c10422d16cd44",
+  "target": "tests/types/test_union.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "fail_to_pass": {
+   "added": 3,
+   "nodes": [
+    "tests/types/test_union.py::test_list_union_omit",
+    "tests/types/test_union.py::test_list_union_omit_one_member",
+    "tests/types/test_union.py::test_typed_dict_union_omit"
+   ],
+   "fails_without_fix": true,
+   "tail": "talled pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH17_aiohttp_10151",
+  "repo": "aio-libs/aiohttp",
+  "sha": "7f8e2d35ad4d0d5fed82721060bafd1bafa264b8",
+  "target": "tests/test_web_functional.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 122,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 123,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH260_attrs_1496",
+  "status": "no_test_target",
+  "repo": "python-attrs/attrs"
+ },
+ {
+  "task": "GH24_celery_10178",
+  "repo": "celery/celery",
+  "sha": "df57d9ab919945fee49403c640f5a8c0a7c69cb3",
+  "target": "t/unit/worker/test_bootsteps.py t/unit/worker/test_consumer.py t/unit/worker/test_worker.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "st_WorkerApp::test_safe_say_writes_to_std_out\nERROR t/unit/worker/test_worker.py::test_WorkerApp::test_safe_say_uses_original_os_write\nERROR t/unit/worker/test_worker.py::test_WorkerApp::test_safe_say_works_with_patched_os_write\n1 skipped, 192 errors in 15.28s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "est_WorkerApp::test_safe_say_writes_to_std_out\nERROR t/unit/worker/test_worker.py::test_WorkerApp::test_safe_say_uses_original_os_write\nERROR t/unit/worker/test_worker.py::test_WorkerApp::test_safe_say_works_with_patched_os_write\n1 skipped, 192 errors in 9.27s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH251_attrs_1463",
+  "repo": "python-attrs/attrs",
+  "sha": "57f0d5441c9deaac44aebbbf45e38e477651e4f2",
+  "target": "tests/test_funcs.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH251_attrs_14_aweib_p3/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH251_attrs_14_aweib_p3/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_funcs.py::test_non_atomic_types"
+   ],
+   "fails_without_fix": true,
+   "tail": "nftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH26_werkzeug_3078",
+  "repo": "pallets/werkzeug",
+  "sha": "f637275bfa68ebd80bec1da9173211ce2dc4fa33",
+  "target": "tests/test_debug.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH26_werkzeug__m_h8d7_j/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH26_werkzeug__m_h8d7_j/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_debug.py::test_debugged_application_pin_security_false"
+   ],
+   "fails_without_fix": true,
+   "tail": " conftest '/tmp/core_GH26_werkzeug__m_h8d7_j/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH274_attrs_1469",
+  "repo": "python-attrs/attrs",
+  "sha": "6ef8d73dd728cdebf939b3a2cd694af57d1f6b5d",
+  "target": "tests/test_funcs.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH274_attrs_14_fryihz_0/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH274_attrs_14_fryihz_0/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_funcs.py::test_non_atomic_types"
+   ],
+   "fails_without_fix": true,
+   "tail": "nftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH278_arrow_1182",
+  "repo": "arrow-py/arrow",
+  "sha": "7225592f8e1d85ecc49ff0ad4b4291386520802f",
+  "target": "tests/test_arrow.py tests/test_factory.py tests/test_formatter.py tests/test_parser.py tests/test_util.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 1613,
+   "failed": false,
+   "collected": true,
+   "tail": "...................................... [ 93%]\n........................................................................ [ 98%]\n................................                                         [100%]\n1613 passed, 1 skipped, 1 xfailed, 1 xpassed in 22.86s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 1613,
+   "failed": false,
+   "collected": true,
+   "tail": "...................................... [ 93%]\n........................................................................ [ 98%]\n................................                                         [100%]\n1613 passed, 1 skipped, 1 xfailed, 1 xpassed in 11.63s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH25_aiohttp_12245",
+  "repo": "aio-libs/aiohttp",
+  "sha": "52426413e67ab03df04c7796ce6bb186a2510ddc",
+  "target": "tests/test_client_functional.py tests/test_client_ws_functional.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 360,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 79%]\n........................................................................ [ 99%]\n..                                                                       [100%]\n360 passed, 1 skipped, 1 xfailed in 34.45s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 362,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 79%]\n........................................................................ [ 98%]\n....                                                                     [100%]\n362 passed, 1 skipped, 1 xfailed in 28.97s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH290_attrs_1471",
+  "status": "no_test_target",
+  "repo": "python-attrs/attrs"
+ },
+ {
+  "task": "GH27_pydantic_12907",
+  "repo": "pydantic/pydantic",
+  "sha": "4b92ae335692f16189dcaa38fb748ce54150838f",
+  "target": "pydantic-core/tests/test_errors.py tests/test_types.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "test '/tmp/core_GH27_pydantic__gvzbn4ht/r/tests/conftest.py'.\n_pytest.pathlib.ImportPathMismatchError: ('tests.conftest', '/tmp/core_GH27_pydantic__gvzbn4ht/r/pydantic-core/tests/conftest.py', PosixPath('/tmp/core_GH27_pydantic__gvzbn4ht/r/tests/conftest.py'))"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "test '/tmp/core_GH27_pydantic__gvzbn4ht/r/tests/conftest.py'.\n_pytest.pathlib.ImportPathMismatchError: ('tests.conftest', '/tmp/core_GH27_pydantic__gvzbn4ht/r/pydantic-core/tests/conftest.py', PosixPath('/tmp/core_GH27_pydantic__gvzbn4ht/r/tests/conftest.py'))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_types.py::test_string_constraints_ascii_only"
+   ],
+   "fails_without_fix": true,
+   "tail": "talled pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH283_attrs_1530",
+  "repo": "python-attrs/attrs",
+  "sha": "48b8611c27779811d161200e17de8da24aae7feb",
+  "target": "tests/test_validators.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH283_attrs_15_mwpdmrwa/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH283_attrs_15_mwpdmrwa/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH28_jinja_1852",
+  "repo": "pallets/jinja",
+  "sha": "48b0687e05a5466a91cd5812d604fa37ad0943b4",
+  "target": "tests/test_compile.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 5,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 6,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_compile.py::test_undefined_import_curly_name"
+   ],
+   "fails_without_fix": true,
+   "tail": "void unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH30_werkzeug_3109",
+  "repo": "pallets/werkzeug",
+  "sha": "bf7529e62685e0b87350481703ddae5b6351072d",
+  "target": "tests/test_routing.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH30_werkzeug__vqr41gjx/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH30_werkzeug__vqr41gjx/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 3,
+   "nodes": [
+    "tests/test_routing.py::test_duplicate_method_overlap",
+    "tests/test_routing.py::test_no_duplicate_head_options",
+    "tests/test_routing.py::test_duplicate_options_exact"
+   ],
+   "fails_without_fix": true,
+   "tail": " conftest '/tmp/core_GH30_werkzeug__vqr41gjx/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH298_celery_10171",
+  "repo": "celery/celery",
+  "sha": "5c21d4a4ea7b06b48a5c78742d62b41df4e8343c",
+  "target": "t/integration/test_canvas.py t/unit/tasks/test_canvas.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "-d25-expected_result5]\nERROR t/unit/tasks/test_canvas.py::test_merge_dictionaries::test_none_values[d16-d26-expected_result6]\nERROR t/unit/tasks/test_canvas.py::test_merge_dictionaries::test_none_values[d17-d27-expected_result7]\n6 xfailed, 370 errors in 10.34s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "-d25-expected_result5]\nERROR t/unit/tasks/test_canvas.py::test_merge_dictionaries::test_none_values[d16-d26-expected_result6]\nERROR t/unit/tasks/test_canvas.py::test_merge_dictionaries::test_none_values[d17-d27-expected_result7]\n6 xfailed, 375 errors in 11.13s"
+  },
+  "fail_to_pass": {
+   "added": 5,
+   "nodes": [
+    "t/integration/test_canvas.py::test_chain_of_explicit_chords",
+    "t/integration/test_canvas.py::test_chain_of_nine_chords",
+    "t/unit/tasks/test_canvas.py::test_chain_of_chords_stays_flat",
+    "t/unit/tasks/test_canvas.py::test_chain_of_chords_serialized_size_constant",
+    "t/unit/tasks/test_canvas.py::test_chord_or_task_still_nests"
+   ],
+   "fails_without_fix": true,
+   "tail": "h in any of [<Module test_canvas.py>])\n\nERROR: not found: /tmp/core_GH298_celery_1_1hktjj8u/r/t/unit/tasks/test_canvas.py::test_chord_or_task_still_nests\n(no match in any of [<Module test_canvas.py>])"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH331_psycopg_1260",
+  "status": "no_test_target",
+  "repo": "psycopg/psycopg"
+ },
+ {
+  "task": "GH321_werkzeug_3092",
+  "repo": "pallets/werkzeug",
+  "sha": "06f33b24182ad4e03ec35eb55b3daf358d12b11e",
+  "target": "src/werkzeug/test.py tests/test_test.py tests/test_utils.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH321_werkzeug_3kvvnaso/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH321_werkzeug_3kvvnaso/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH29_aiohttp_12217",
+  "repo": "aio-libs/aiohttp",
+  "sha": "61a661d965c4611ac4ada4602541843df0874349",
+  "target": "tests/test_client_functional.py tests/test_client_ws_functional.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 362,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 79%]\n........................................................................ [ 98%]\n....                                                                     [100%]\n362 passed, 1 skipped, 1 xfailed in 33.49s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 364,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 78%]\n........................................................................ [ 98%]\n......                                                                   [100%]\n364 passed, 1 skipped, 1 xfailed in 30.65s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH32_jinja_1664",
+  "repo": "pallets/jinja",
+  "sha": "1d55cddbb28e433779511f28f13a2d8c4ec45826",
+  "target": "tests/test_core_tags.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 62,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 63,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_core_tags.py::test_namespace_set_tuple"
+   ],
+   "fails_without_fix": true,
+   "tail": "ionWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\nERROR: not found: /tmp/core_GH32_jinja_166_wb4yagk_/r/tests/test_core_tags.py::test_namespace_set_tuple\n(no match in any of [<Module test_core_tags.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH349_urllib3_3743",
+  "repo": "urllib3/urllib3",
+  "sha": "83f8643ffb5b7f197457379148e2fa118ab0fcdc",
+  "target": "test/test_retry.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "test/test_retry.py::test_configurable_retry_after_max"
+   ],
+   "fails_without_fix": true,
+   "tail": "E   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH33_jinja_1663",
+  "repo": "pallets/jinja",
+  "sha": "b4b28ec01c60b8753ab53fe60b10d7dbaa55842b",
+  "target": "tests/test_loader.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 41,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 42,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_loader.py::test_error_includes_paths"
+   ],
+   "fails_without_fix": true,
+   "tail": "recationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\nERROR: not found: /tmp/core_GH33_jinja_166_prpj_zet/r/tests/test_loader.py::test_error_includes_paths\n(no match in any of [<Module test_loader.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH35_jinja_1665",
+  "repo": "pallets/jinja",
+  "sha": "fbc3a696c729d177340cc089531de7e2e5b6f065",
+  "target": "tests/test_regression.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 53,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 54,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_regression.py::test_load_parameter_when_set_in_all_if_branches"
+   ],
+   "fails_without_fix": true,
+   "tail": "void unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH363_celery_10040",
+  "repo": "celery/celery",
+  "sha": "e8d85279b035c6f658adf673585ab69bec3c7b4d",
+  "target": "t/unit/backends/test_redis.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "ents\n=========================== short test summary info ============================\nERROR t/unit/backends/test_redis.py - TypeError: NoneType takes no arguments\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 9.30s"
+  },
+  "after": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "ents\n=========================== short test summary info ============================\nERROR t/unit/backends/test_redis.py - TypeError: NoneType takes no arguments\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 7.10s"
+  },
+  "fail_to_pass": {
+   "added": 4,
+   "nodes": [
+    "t/unit/backends/test_redis.py::test_driver_info_with_driverinfo_class",
+    "t/unit/backends/test_redis.py::test_driver_info_fallback_to_lib_name",
+    "t/unit/backends/test_redis.py::test_driver_info_fallback_with_attribute_error",
+    "t/unit/backends/test_redis.py::test_driver_info_fallback_redis_version_unknown"
+   ],
+   "fails_without_fix": true,
+   "tail": "is.py::test_driver_info_fallback_with_attribute_error\n\nERROR: found no collectors for /tmp/core_GH363_celery_1_nbpkgxqe/r/t/unit/backends/test_redis.py::test_driver_info_fallback_redis_version_unknown"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH368_aiohttp_12242",
+  "repo": "aio-libs/aiohttp",
+  "sha": "0341d64536cbd3110793b90467aaea6a6fbf9b28",
+  "target": "tests/test_http_parser.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 311,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 311 passed, 2 skipped, 1 xfailed in 14.59s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 322,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 322 passed, 2 skipped, 1 xfailed in 16.82s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_http_parser.py::test_duplicate_singleton_header_rejected",
+    "tests/test_http_parser.py::test_duplicate_host_header_rejected"
+   ],
+   "fails_without_fix": false,
+   "tail": "...........                                                              [100%]\n11 passed in 4.67s"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH371_arrow_1194",
+  "repo": "arrow-py/arrow",
+  "sha": "6321d81485566cfe5878834e01b5e17cbe4a815b",
+  "target": "tests/test_arrow.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 214,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 33%]\n........................................................................ [ 66%]\n....................x.X................................................. [100%]\n214 passed, 1 xfailed, 1 xpassed in 26.93s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 216,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 66%]\n......................x.X............................................... [ 99%]\n..                                                                       [100%]\n216 passed, 1 xfailed, 1 xpassed in 32.06s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_arrow.py::test_shift_with_imaginary_check",
+    "tests/test_arrow.py::test_shift_without_imaginary_check"
+   ],
+   "fails_without_fix": true,
+   "tail": "o match in any of [<Module test_arrow.py>])\n\nERROR: not found: /tmp/core_GH371_arrow_11_hrk9_acl/r/tests/test_arrow.py::test_shift_without_imaginary_check\n(no match in any of [<Module test_arrow.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH367_aiohttp_12241",
+  "repo": "aio-libs/aiohttp",
+  "sha": "9370b9714a7a56003cacd31a9b4ae16eab109ba4",
+  "target": "tests/test_http_parser.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 311,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 311 passed, 2 skipped, 1 xfailed in 19.96s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 322,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 322 passed, 2 skipped, 1 xfailed in 11.67s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_http_parser.py::test_duplicate_singleton_header_rejected",
+    "tests/test_http_parser.py::test_duplicate_host_header_rejected"
+   ],
+   "fails_without_fix": false,
+   "tail": "...........                                                              [100%]\n11 passed in 4.98s"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH37_pydantic_12816",
+  "repo": "pydantic/pydantic",
+  "sha": "9bd9d488808d801b051757c7dbb9d024e228d8e7",
+  "target": "tests/test_main.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_main.py::test_model_construct_with_model_post_init_has_pydantic_private"
+   ],
+   "fails_without_fix": true,
+   "tail": "talled pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH382_redis-py_3988",
+  "repo": "redis/redis-py",
+  "sha": "11043df86ed5f892cde1f34f08f3450f13bb6339",
+  "target": "tests/test_scenario/conftest.py tests/test_scenario/test_maint_notifications.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "e>\n    from redis.multidb.client import MultiDBClient\nredis/multidb/client.py:12: in <module>\n    from redis.multidb.circuit import CircuitBreaker\nredis/multidb/circuit.py:5: in <module>\n    import pybreaker\nE   ModuleNotFoundError: No module named 'pybreaker'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "e>\n    from redis.multidb.client import MultiDBClient\nredis/multidb/client.py:12: in <module>\n    from redis.multidb.circuit import CircuitBreaker\nredis/multidb/circuit.py:5: in <module>\n    import pybreaker\nE   ModuleNotFoundError: No module named 'pybreaker'"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_scenario/test_maint_notifications.py::test_new_connections_receive_last_smigrating_smigrated_notification"
+   ],
+   "fails_without_fix": true,
+   "tail": "multidb/client.py:12: in <module>\n    from redis.multidb.circuit import CircuitBreaker\nredis/multidb/circuit.py:5: in <module>\n    import pybreaker\nE   ModuleNotFoundError: No module named 'pybreaker'"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH379_aiohttp_12240",
+  "repo": "aio-libs/aiohttp",
+  "sha": "d9f920760634a62234af5dcc12db10ae62ba9704",
+  "target": "tests/test_http_parser.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 312,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 312 passed, 2 skipped, 1 xfailed in 11.64s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 323,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 323 passed, 2 skipped, 1 xfailed in 15.24s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_http_parser.py::test_duplicate_singleton_header_rejected",
+    "tests/test_http_parser.py::test_duplicate_host_header_rejected"
+   ],
+   "fails_without_fix": false,
+   "tail": "...........                                                              [100%]\n11 passed in 5.01s"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH381_celery_10013",
+  "repo": "celery/celery",
+  "sha": "cca11164860a1bee6ad8626c27a683b482f741eb",
+  "target": "t/unit/backends/test_redis.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "ents\n=========================== short test summary info ============================\nERROR t/unit/backends/test_redis.py - TypeError: NoneType takes no arguments\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 2.93s"
+  },
+  "after": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "ents\n=========================== short test summary info ============================\nERROR t/unit/backends/test_redis.py - TypeError: NoneType takes no arguments\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 4.90s"
+  },
+  "fail_to_pass": {
+   "added": 3,
+   "nodes": [
+    "t/unit/backends/test_redis.py::test_url_with_acl_credentials",
+    "t/unit/backends/test_redis.py::test_get_pool_with_acl_credentials",
+    "t/unit/backends/test_redis.py::test_get_pool_with_password_only"
+   ],
+   "fails_without_fix": true,
+   "tail": "/r/t/unit/backends/test_redis.py::test_get_pool_with_acl_credentials\n\nERROR: found no collectors for /tmp/core_GH381_celery_1_b03ynfmn/r/t/unit/backends/test_redis.py::test_get_pool_with_password_only"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH38_pydantic_12905",
+  "repo": "pydantic/pydantic",
+  "sha": "6178953d163d31004ac8834131cfcd6c2a84f7a8",
+  "target": "tests/types/test_union.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/types/test_union.py::test_exclude_unset_in_nested_union"
+   ],
+   "fails_without_fix": true,
+   "tail": "talled pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH394_arrow_1218",
+  "repo": "arrow-py/arrow",
+  "sha": "0fe5f065718e5af3ab47903d1bec82d87d202a63",
+  "target": "tests/test_locales.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 232,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 62%]\n........................................................................ [ 93%]\n................                                                         [100%]\n232 passed in 6.33s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 235,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 61%]\n........................................................................ [ 91%]\n...................                                                      [100%]\n235 passed in 5.42s"
+  },
+  "fail_to_pass": {
+   "added": 3,
+   "nodes": [
+    "tests/test_locales.py::test_format_timeframe",
+    "tests/test_locales.py::test_weekday",
+    "tests/test_locales.py::test_ordinal_number"
+   ],
+   "fails_without_fix": true,
+   "tail": "eekday\n(no match in any of [<Module test_locales.py>])\n\nERROR: not found: /tmp/core_GH394_arrow_12_9yni4luw/r/tests/test_locales.py::test_ordinal_number\n(no match in any of [<Module test_locales.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH39_jinja_1762",
+  "repo": "pallets/jinja",
+  "sha": "7a41ddb915a540c7a35c6cf823a8b50a2553e46b",
+  "target": "tests/test_regression.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 52,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 53,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_regression.py::test_pass_context_with_select"
+   ],
+   "fails_without_fix": true,
+   "tail": "ing(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\nERROR: not found: /tmp/core_GH39_jinja_176_syayevcv/r/tests/test_regression.py::test_pass_context_with_select\n(no match in any of [<Module test_regression.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH415_arrow_852",
+  "repo": "arrow-py/arrow",
+  "sha": "e22c53108c606859fc6fd44c398e35d47e7eff5a",
+  "target": "tests/test_parser.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 716,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 80%]\n........................................................................ [ 90%]\n....................................................................     [100%]\n716 passed in 14.85s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 718,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 80%]\n........................................................................ [ 90%]\n......................................................................   [100%]\n718 passed in 20.34s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_parser.py::test_parse_ddd_and_dddd_ignore_case",
+    "tests/test_parser.py::test_parse_ddd_and_dddd_then_format"
+   ],
+   "fails_without_fix": true,
+   "tail": "tch in any of [<Module test_parser.py>])\n\nERROR: not found: /tmp/core_GH415_arrow_85_6_kcwwjm/r/tests/test_parser.py::test_parse_ddd_and_dddd_then_format\n(no match in any of [<Module test_parser.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH414_aiohttp_12249",
+  "repo": "aio-libs/aiohttp",
+  "sha": "6f059db8c0d9b6f445b180bdf47eb78fdc27774c",
+  "target": "tests/test_http_parser.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 323,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 323 passed, 2 skipped, 1 xfailed in 12.83s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 328,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 328 passed, 2 skipped, 1 xfailed in 15.47s"
+  },
+  "fail_to_pass": {
+   "added": 5,
+   "nodes": [
+    "tests/test_http_parser.py::test_conn_close_comma_list",
+    "tests/test_http_parser.py::test_conn_close_multiple_headers",
+    "tests/test_http_parser.py::test_conn_upgrade_comma_list",
+    "tests/test_http_parser.py::test_conn_upgrade_multiple_headers",
+    "tests/test_http_parser.py::test_http_request_message_after_close_comma_list"
+   ],
+   "fails_without_fix": true,
+   "tail": "D tests/test_http_parser.py::test_conn_upgrade_multiple_headers[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_request_message_after_close_comma_list[py-parser-pyloop]\n5 failed in 8.66s"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH437_flask_5844",
+  "status": "no_test_target",
+  "repo": "pallets/flask"
+ },
+ {
+  "task": "GH43_celery_10155",
+  "status": "no_test_target",
+  "repo": "celery/celery"
+ },
+ {
+  "task": "GH440_arrow_1228",
+  "status": "no_test_target",
+  "repo": "arrow-py/arrow"
+ },
+ {
+  "task": "GH42_pydantic_12879",
+  "repo": "pydantic/pydantic",
+  "sha": "0b7b855b5ef468c2d0f7928df7fe37f732ff18e7",
+  "target": "tests/mypy/modules/create_model_var.py tests/mypy/outputs/mypy-plugin_ini/create_model_var.py tests/mypy/test_mypy.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH418_celery_10165",
+  "repo": "celery/celery",
+  "sha": "6b20dcd2d16b360bb4c4c7bf01a2c0c72b204517",
+  "target": "t/unit/app/test_app.py t/unit/utils/test_functional.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "OR t/unit/utils/test_functional.py::test_is_numeric_value[5-False] - Attri...\nERROR t/unit/utils/test_functional.py::test_is_numeric_value[5.0-False] - Att...\nERROR t/unit/utils/test_functional.py::test_is_numeric_value[None-False] - At...\n192 errors in 13.01s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "utils/test_functional.py::test_is_numeric_value[5-False] - Attri...\nERROR t/unit/utils/test_functional.py::test_is_numeric_value[5.0-False] - Att...\nERROR t/unit/utils/test_functional.py::test_is_numeric_value[None-False] - At...\n2 skipped, 192 errors in 8.23s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "t/unit/app/test_app.py::test_task_with_type_checking_annotation",
+    "t/unit/utils/test_functional.py::test_type_checking_annotation"
+   ],
+   "fails_without_fix": true,
+   "tail": " any of [<Module test_app.py>])\n\nERROR: not found: /tmp/core_GH418_celery_1_j2c9_dll/r/t/unit/utils/test_functional.py::test_type_checking_annotation\n(no match in any of [<Module test_functional.py>])"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH441_arrow_1224",
+  "repo": "arrow-py/arrow",
+  "sha": "ea756ea779468b0c6a9f45439dc05cfd5e71ee1e",
+  "target": "tests/test_arrow.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 218,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 65%]\n........................x.X............................................. [ 98%]\n....                                                                     [100%]\n218 passed, 1 xfailed, 1 xpassed in 21.09s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 219,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 65%]\n........................................................................ [ 98%]\n...                                                                      [100%]\n219 passed in 34.76s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH447_quart_283",
+  "status": "no_test_target",
+  "repo": "pallets/quart"
+ },
+ {
+  "task": "GH442_arrow_1172",
+  "repo": "arrow-py/arrow",
+  "sha": "540182adf57ed43e527c50ce1ea906b9a66a15ac",
+  "target": "tests/test_locales.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 225,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 64%]\n........................................................................ [ 96%]\n.........                                                                [100%]\n225 passed in 8.34s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 226,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 63%]\n........................................................................ [ 95%]\n..........                                                               [100%]\n226 passed in 9.41s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_locales.py::test_weekday"
+   ],
+   "fails_without_fix": true,
+   "tail": "no tests ran in 9.83s\nERROR: not found: /tmp/core_GH442_arrow_11_b08vbq9o/r/tests/test_locales.py::test_weekday\n(no match in any of [<Module test_locales.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH455_werkzeug_3089",
+  "status": "no_test_target",
+  "repo": "pallets/werkzeug"
+ },
+ {
+  "task": "GH430_celery_10015",
+  "repo": "celery/celery",
+  "sha": "a4f9beb41008085fa790b18b97aa9daf476beb8a",
+  "target": "t/unit/fixups/test_django.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "error\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_close_cache\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_validate_models\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_django_setup\n28 errors in 8.70s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "error\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_close_cache\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_validate_models\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_django_setup\n28 errors in 2.81s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH479_redis-py_3972",
+  "status": "no_test_target",
+  "repo": "redis/redis-py"
+ },
+ {
+  "task": "GH444_arrow_1184",
+  "repo": "arrow-py/arrow",
+  "sha": "587af5fbe949e18d60387b0b7cb1e14855e85401",
+  "target": "tests/test_locales.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 221,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 65%]\n........................................................................ [ 97%]\n.....                                                                    [100%]\n221 passed in 4.10s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 223,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 64%]\n........................................................................ [ 96%]\n.......                                                                  [100%]\n223 passed in 4.49s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_locales.py::test_format_relative_future",
+    "tests/test_locales.py::test_month_abbreviation"
+   ],
+   "fails_without_fix": true,
+   "tail": "re\n(no match in any of [<Module test_locales.py>])\n\nERROR: not found: /tmp/core_GH444_arrow_11_s0vphvb5/r/tests/test_locales.py::test_month_abbreviation\n(no match in any of [<Module test_locales.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH484_jinja_1880",
+  "status": "no_test_target",
+  "repo": "pallets/jinja"
+ },
+ {
+  "task": "GH486_starlette_3145",
+  "status": "no_test_target",
+  "repo": "Kludex/starlette"
+ },
+ {
+  "task": "GH44_pydantic_12705",
+  "repo": "pydantic/pydantic",
+  "sha": "de141b5d883cc3f8eac3f61292593eb6b1f8c34e",
+  "target": "tests/test_types.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.41.5. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.41.5. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH46_pydantic_12951",
+  "repo": "pydantic/pydantic",
+  "sha": "d4d370897ca71c344cdbd7b2f5a6e687a6518b92",
+  "target": "tests/test_types_namedtuple.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_types_namedtuple.py::test_namedtuple_inheritance_with_annotations"
+   ],
+   "fails_without_fix": true,
+   "tail": "talled pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH47_jinja_1706",
+  "repo": "pallets/jinja",
+  "sha": "58a358f0928df381c003be244b930367c68dbb85",
+  "target": "tests/test_loader.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 42,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 43,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_loader.py::test_package_loader_no_dir"
+   ],
+   "fails_without_fix": true,
+   "tail": "void unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH48_pydantic_11089",
+  "repo": "pydantic/pydantic",
+  "sha": "6fa92d139a297a26725dec0a7f9b0cce912d6a7f",
+  "target": "tests/test_types_self.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "_core_utils.py:8: in <module>\n    from pydantic_core import validate_core_schema as _validate_core_schema\nE   ImportError: cannot import name 'validate_core_schema' from 'pydantic_core' (/u/ybkim95/.local/lib/python3.10/site-packages/pydantic_core/__init__.py)"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "_core_utils.py:8: in <module>\n    from pydantic_core import validate_core_schema as _validate_core_schema\nE   ImportError: cannot import name 'validate_core_schema' from 'pydantic_core' (/u/ybkim95/.local/lib/python3.10/site-packages/pydantic_core/__init__.py)"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH51_werkzeug_3091",
+  "repo": "pallets/werkzeug",
+  "sha": "c3e4a23fe5c38a5aa48b03ef4a256ed9e439ccb6",
+  "target": "tests/test_serving.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH51_werkzeug__24ex67m9/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH51_werkzeug__24ex67m9/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH516_attrs_1513",
+  "repo": "python-attrs/attrs",
+  "sha": "ab7f8b2f4c0f747d5b1575247ce35e5adaad182e",
+  "target": "tests/test_validators.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH516_attrs_15_f58xzkd3/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "/core_GH516_attrs_15_f58xzkd3/r/tests/conftest.py'.\ntests/conftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_validators.py::test_disabled_ctx_nested"
+   ],
+   "fails_without_fix": true,
+   "tail": "nftest.py:9: in <module>\n    from attr._compat import PY_3_10_PLUS, PY_3_14_PLUS\nE   ImportError: cannot import name 'PY_3_10_PLUS' from 'attr._compat' (/usr/lib/python3/dist-packages/attr/_compat.py)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH525_arrow_1186",
+  "repo": "arrow-py/arrow",
+  "sha": "02e3b1b4c56b905a13f7ae3f552728a5a17fc5bd",
+  "target": "tests/test_locales.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 223,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 64%]\n........................................................................ [ 96%]\n.......                                                                  [100%]\n223 passed in 5.23s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 224,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 64%]\n........................................................................ [ 96%]\n........                                                                 [100%]\n224 passed in 5.88s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_locales.py::test_format_timeframe"
+   ],
+   "fails_without_fix": true,
+   "tail": "no tests ran in 8.46s\nERROR: not found: /tmp/core_GH525_arrow_11_fgatgyzz/r/tests/test_locales.py::test_format_timeframe\n(no match in any of [<Module test_locales.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH52_jinja_1702",
+  "repo": "pallets/jinja",
+  "sha": "791dd3b0415b99faac229d42a81db1d7096b003c",
+  "target": "tests/test_nativetypes.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 26,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 27,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_nativetypes.py::test_block"
+   ],
+   "fails_without_fix": true,
+   "tail": "void unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH540_redis-py_3968",
+  "repo": "redis/redis-py",
+  "sha": "d784922f8fa300ce18a1bd10574bce97d14130ad",
+  "target": "tests/test_asyncio/test_connection_pool.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 86,
+   "failed": false,
+   "collected": true,
+   "tail": "self)\n  \n  Object allocated at:\n    File \"/tmp/core_GH540_redis-py_mh6dciz0/r/redis/event.py\", line 427\n      self._connection = None\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n86 passed, 3 xfailed, 17 xpassed, 4 warnings in 5.95s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 89,
+   "failed": false,
+   "collected": true,
+   "tail": " Object allocated at:\n    File \"/tmp/core_GH540_redis-py_mh6dciz0/r/redis/utils.py\", line 180\n      filterable_args = dict(zip(arg_names, args))\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n89 passed, 20 xpassed, 4 warnings in 6.10s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH538_redis-py_3970",
+  "repo": "redis/redis-py",
+  "sha": "0d57f5de2aba4060563cc53505eba5b5a4288b64",
+  "target": "tests/test_asyncio/test_commands.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 555,
+   "failed": true,
+   "collected": true,
+   "tail": "y::TestRedisCommands::test_acl_setuser_add_passwords_and_nopass_fails[single]\nERROR tests/test_asyncio/test_commands.py::TestRedisCommands::test_acl_setuser_add_passwords_and_nopass_fails[pool]\n9 failed, 555 passed, 206 skipped, 2 warnings, 12 errors in 37.29s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 562,
+   "failed": true,
+   "collected": true,
+   "tail": "y::TestRedisCommands::test_acl_setuser_add_passwords_and_nopass_fails[single]\nERROR tests/test_asyncio/test_commands.py::TestRedisCommands::test_acl_setuser_add_passwords_and_nopass_fails[pool]\n8 failed, 562 passed, 206 skipped, 2 warnings, 12 errors in 37.84s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH539_redis-py_3969",
+  "repo": "redis/redis-py",
+  "sha": "fb968516dac6fedbe5b9b59e5d51a7e54cf1379f",
+  "target": "tests/test_asyncio/test_pubsub.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 111,
+   "failed": true,
+   "collected": true,
+   "tail": "gle]\nFAILED tests/test_asyncio/test_pubsub.py::TestPubSubMessages::test_channel_async_message_handler[pool]\nFAILED tests/test_asyncio/test_pubsub.py::TestPubSubMessages::test_channel_sync_async_message_handler[single]\n3 failed, 111 passed, 2 warnings in 27.48s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 118,
+   "failed": false,
+   "collected": true,
+   "tail": "pytest/config/__init__.py:1434: PytestConfigWarning: Unknown config option: timeout\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n118 passed, 2 warnings in 35.17s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH54_pydantic_12817",
+  "repo": "pydantic/pydantic",
+  "sha": "fc68422064fefb4414eb6c391b78595dddd67ac2",
+  "target": "tests/test_edge_cases.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "core_version\n    raise SystemError(\nE   SystemError: The installed pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_edge_cases.py::test_model_fields_set_includes_extra_after_assignment"
+   ],
+   "fails_without_fix": true,
+   "tail": "talled pydantic-core version (2.46.0) is incompatible with the current pydantic version, which requires 2.42.0. If you encounter this error, make sure that you haven't upgraded pydantic-core manually."
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH550_werkzeug_3128",
+  "repo": "pallets/werkzeug",
+  "sha": "b8045e82bbdab8c9c846b6c28ac710ba560c0539",
+  "target": "tests/test_http.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH550_werkzeug_dzjkix_y/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH550_werkzeug_dzjkix_y/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH558_marshmallow_2861",
+  "repo": "marshmallow-code/marshmallow",
+  "sha": "fc8726244820b9f08fb7d02e007ed8d378a46c7b",
+  "target": "tests/test_deserialization.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 378,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 76%]\n........................................................................ [ 95%]\n..................                                                       [100%]\n378 passed in 8.50s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 379,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 75%]\n........................................................................ [ 94%]\n...................                                                      [100%]\n379 passed in 6.46s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_deserialization.py::test_function_field_deserialization_missing_with_length_validator"
+   ],
+   "fails_without_fix": true,
+   "tail": " not found: /tmp/core_GH558_marshmal_evc0y39_/r/tests/test_deserialization.py::test_function_field_deserialization_missing_with_length_validator\n(no match in any of [<Module test_deserialization.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH537_redis-py_3976",
+  "repo": "redis/redis-py",
+  "sha": "ecec46deb61831dd674cad9d8d6290d24e685ea8",
+  "target": "tests/test_asyncio/test_cluster.py tests/test_asyncio/test_observability/test_recorder.py tests/test_asyncio/test_pipeline.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 232,
+   "failed": true,
+   "collected": true,
+   "tail": "sts/test_asyncio/test_cluster.py::TestSSL::test_validating_self_signed_certificate\nERROR tests/test_asyncio/test_cluster.py::TestSSL::test_validating_self_signed_string_certificate\n202 failed, 232 passed, 39 skipped, 63 warnings, 17 errors in 115.91s (0:01:55)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 237,
+   "failed": true,
+   "collected": true,
+   "tail": "sts/test_asyncio/test_cluster.py::TestSSL::test_validating_self_signed_certificate\nERROR tests/test_asyncio/test_cluster.py::TestSSL::test_validating_self_signed_string_certificate\n194 failed, 237 passed, 39 skipped, 61 warnings, 17 errors in 109.30s (0:01:49)"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH563_starlette_3143",
+  "repo": "Kludex/starlette",
+  "sha": "90b805fda70db2316d79aa577f4c3eb670f9a8a1",
+  "target": "tests/test_responses.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 62,
+   "failed": false,
+   "collected": true,
+   "tail": "..............................................................           [100%]\n62 passed in 5.11s"
+  },
+  "after": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "leNotFoundError: No module named 'python_multipart'\n=========================== short test summary info ============================\nERROR tests/test_responses.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 7.27s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH566_jinja_1537",
+  "repo": "pallets/jinja",
+  "sha": "a4e2532489f804996be36ae32c25a69298bd1106",
+  "target": "tests/test_nativetypes.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "on/rewrite.py\", line 170, in exec_module\n    exec(co, module.__dict__)\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/anyio/pytest_plugin.py\", line 15, in <module>\n    from _pytest.scope import Scope\nModuleNotFoundError: No module named '_pytest.scope'"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "on/rewrite.py\", line 170, in exec_module\n    exec(co, module.__dict__)\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/anyio/pytest_plugin.py\", line 15, in <module>\n    from _pytest.scope import Scope\nModuleNotFoundError: No module named '_pytest.scope'"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_nativetypes.py::test_leading_spaces"
+   ],
+   "fails_without_fix": true,
+   "tail": ".__dict__)\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/anyio/pytest_plugin.py\", line 15, in <module>\n    from _pytest.scope import Scope\nModuleNotFoundError: No module named '_pytest.scope'"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH574_werkzeug_3114",
+  "status": "no_test_target",
+  "repo": "pallets/werkzeug"
+ },
+ {
+  "task": "GH577_jinja_2098",
+  "status": "no_test_target",
+  "repo": "pallets/jinja"
+ },
+ {
+  "task": "GH56_werkzeug_3066",
+  "repo": "pallets/werkzeug",
+  "sha": "5dceab4c2a39c0a84320ac01a79c005456a0d601",
+  "target": "tests/sansio/test_multipart.py tests/test_formparser.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH56_werkzeug__wo0l65o3/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH56_werkzeug__wo0l65o3/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_formparser.py::test_chunk_split_on_line_break_before_epilogue"
+   ],
+   "fails_without_fix": true,
+   "tail": " conftest '/tmp/core_GH56_werkzeug__wo0l65o3/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH570_urllib3_3755",
+  "repo": "urllib3/urllib3",
+  "sha": "41f249abe1ef3e20768588969c4035aba060a359",
+  "target": "test/test_http2_connection.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH600_psycopg_1269",
+  "status": "no_test_target",
+  "repo": "psycopg/psycopg"
+ },
+ {
+  "task": "GH569_celery_10023",
+  "repo": "celery/celery",
+  "sha": "cc3350ef9867a34b1f3563222bd015d123ef1ad7",
+  "target": "t/unit/fixups/test_django.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "error\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_close_cache\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_validate_models\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_django_setup\n28 errors in 4.50s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "error\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_close_cache\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_validate_models\nERROR t/unit/fixups/test_django.py::test_DjangoWorkerFixup::test_django_setup\n30 errors in 3.58s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "t/unit/fixups/test_django.py::test_on_worker_init_warns_without_sender",
+    "t/unit/fixups/test_django.py::test_close_database_conn_pool_thread_pool"
+   ],
+   "fails_without_fix": true,
+   "tail": "[<Module test_django.py>])\n\nERROR: not found: /tmp/core_GH569_celery_1_2hn63s2s/r/t/unit/fixups/test_django.py::test_close_database_conn_pool_thread_pool\n(no match in any of [<Module test_django.py>])"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH605_psycopg_1280",
+  "repo": "psycopg/psycopg",
+  "sha": "e61b15ab1015d012d6f124ce2f2955bbf15a187f",
+  "target": "tests/test_connection.py tests/test_connection_async.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH605_psycopg__7r8gxbdw/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH605_psycopg__7r8gxbdw/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_connection.py::test_connect_timeout_large_monotonic"
+   ],
+   "fails_without_fix": true,
+   "tail": "psycopg__7r8gxbdw/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH591_click_3223",
+  "repo": "pallets/click",
+  "sha": "dacca25f9964d0e776b5481291e68c8ae90b5944",
+  "target": "tests/test_arguments.py tests/test_basic.py tests/test_defaults.py tests/test_options.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 722,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 89%]\n........................................................................ [ 99%]\n..                                                                       [100%]\n722 passed in 6.12s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 727,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 89%]\n........................................................................ [ 99%]\n.......                                                                  [100%]\n727 passed in 6.17s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_defaults.py::test_basic_defaults"
+   ],
+   "fails_without_fix": false,
+   "tail": "......                                                                   [100%]\n6 passed in 2.35s"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH590_aiohttp_11757",
+  "repo": "aio-libs/aiohttp",
+  "sha": "66c72051d6179b4789f2588e5ac9a9154b41e2c8",
+  "target": "tests/test_http_parser.py tests/test_imports.py tests/test_pytest_plugin.py tests/test_test_utils.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 1,
+   "failed": true,
+   "collected": true,
+   "tail": " AttributeError: 'Applicati...\nERROR tests/test_test_utils.py::test_base_test_server_socket_factory[TestServer]\nERROR tests/test_test_utils.py::test_base_test_server_socket_factory[RawTestServer]\n13 failed, 350 passed, 2 skipped, 2 xfailed, 23 errors in 49.10s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 1,
+   "failed": true,
+   "collected": true,
+   "tail": " AttributeError: 'Applicati...\nERROR tests/test_test_utils.py::test_base_test_server_socket_factory[TestServer]\nERROR tests/test_test_utils.py::test_base_test_server_socket_factory[RawTestServer]\n13 failed, 350 passed, 2 skipped, 2 xfailed, 23 errors in 36.57s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH61_werkzeug_3097",
+  "status": "no_test_target",
+  "repo": "pallets/werkzeug"
+ },
+ {
+  "task": "GH609_urllib3_3752",
+  "repo": "urllib3/urllib3",
+  "sha": "8c480bf87bcefd321b3a1ae47f04e908b6b2ed7b",
+  "target": "test/contrib/emscripten/test_emscripten.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH60_starlette_3148",
+  "repo": "Kludex/starlette",
+  "sha": "41dfca28131c28020ceb78f2b9eb036627a022cd",
+  "target": "tests/test_templates.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 8,
+   "failed": false,
+   "collected": true,
+   "tail": "........                                                                 [100%]\n8 passed in 3.49s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 9,
+   "failed": false,
+   "collected": true,
+   "tail": ".........                                                                [100%]\n9 passed in 4.73s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_templates.py::test_templates_autoescape"
+   ],
+   "fails_without_fix": true,
+   "tail": "y:43: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_templates.py::test_templates_autoescape - assert \"Hello, <s...\n1 failed in 3.64s"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH626_werkzeug_3081",
+  "repo": "pallets/werkzeug",
+  "sha": "b48878cf16dfca3c89ac58aca47ab1ecfcb71354",
+  "target": "tests/sansio/test_multipart.py tests/test_formparser.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH626_werkzeug_gxtlhdi1/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH626_werkzeug_gxtlhdi1/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_formparser.py::test_parse_form_post_data_trailing_CR"
+   ],
+   "fails_without_fix": true,
+   "tail": " conftest '/tmp/core_GH626_werkzeug_gxtlhdi1/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH629_psycopg_1215",
+  "repo": "psycopg/psycopg",
+  "sha": "47b4dec61a8fc0df5559d9037463f945af042796",
+  "target": "tests/pool/test_pool_common.py tests/pool/test_pool_common_async.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH629_psycopg__x4bet4z1/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH629_psycopg__x4bet4z1/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/pool/test_pool_common.py::test_drain"
+   ],
+   "fails_without_fix": true,
+   "tail": "psycopg__x4bet4z1/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH613_celery_10038",
+  "repo": "celery/celery",
+  "sha": "b0fdb91ccf992348448345163e53ea6d0686453e",
+  "target": "t/unit/test_generics.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": false,
+   "tail": "no tests ran in 2.29s\nERROR: file or directory not found: t/unit/test_generics.py"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "t_generics.py::test_Generics::test__LocalStack__class_getitem__\nERROR t/unit/test_generics.py::test_Generics::test__FastLocalStack__class_getitem__\nERROR t/unit/test_generics.py::test_Generics::test_FallbackContext__class_getitem__\n1 skipped, 7 errors in 3.11s"
+  },
+  "fail_to_pass": {
+   "added": 8,
+   "fails_without_fix": null,
+   "why": "test-only apply failed"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH642_marshmallow_2854",
+  "repo": "marshmallow-code/marshmallow",
+  "sha": "c860f56d7b7232037c1e1636e499b0d15cb671cc",
+  "target": "tests/test_schema.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 201,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 35%]\n........................................................................ [ 71%]\n.........................................................                [100%]\n201 passed in 3.60s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 203,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 35%]\n........................................................................ [ 70%]\n...........................................................              [100%]\n203 passed in 7.64s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_schema.py::test_nested_many_should_override_schema_many_case1",
+    "tests/test_schema.py::test_nested_many_should_override_schema_many_case2"
+   ],
+   "fails_without_fix": true,
+   "tail": "======================\nFAILED tests/test_schema.py::test_nested_many_should_override_schema_many_case1\nFAILED tests/test_schema.py::test_nested_many_should_override_schema_many_case2\n2 failed in 5.14s"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH674_psycopg_1158",
+  "repo": "psycopg/psycopg",
+  "sha": "7314c689fd5adf6c5f14a9e5e79acc7737d7b943",
+  "target": "tests/test_copy.py tests/test_copy_async.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH674_psycopg__jx434yk3/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH674_psycopg__jx434yk3/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_copy.py::test_set_types",
+    "tests/test_copy.py::test_rowlen_mismatch"
+   ],
+   "fails_without_fix": true,
+   "tail": "psycopg__jx434yk3/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH678_starlette_3179",
+  "status": "no_test_target",
+  "repo": "Kludex/starlette"
+ },
+ {
+  "task": "GH65_werkzeug_3110",
+  "repo": "pallets/werkzeug",
+  "sha": "0af402f2e92b11d36f60fa9c6c4d38128a8a9547",
+  "target": "tests/test_wrappers.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH65_werkzeug__4q3dp4f0/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH65_werkzeug__4q3dp4f0/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_wrappers.py::test_advertise_accept_ranges"
+   ],
+   "fails_without_fix": true,
+   "tail": " conftest '/tmp/core_GH65_werkzeug__4q3dp4f0/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH64_werkzeug_3008",
+  "repo": "pallets/werkzeug",
+  "sha": "2f86acb6de57c87f10ab69b5548e687ff6e71304",
+  "target": "tests/test_routing.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH64_werkzeug__jhiqo29t/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH64_werkzeug__jhiqo29t/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_routing.py::test_bind_trusted_host",
+    "tests/test_routing.py::test_bind_untrusted_host"
+   ],
+   "fails_without_fix": true,
+   "tail": " conftest '/tmp/core_GH64_werkzeug__jhiqo29t/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH692_flask_5903",
+  "status": "no_test_target",
+  "repo": "pallets/flask"
+ },
+ {
+  "task": "GH697_jinja_2099",
+  "status": "no_test_target",
+  "repo": "pallets/jinja"
+ },
+ {
+  "task": "GH699_quart_369",
+  "status": "no_test_target",
+  "repo": "pallets/quart"
+ },
+ {
+  "task": "GH705_httpx_3690",
+  "status": "no_test_target",
+  "repo": "encode/httpx"
+ },
+ {
+  "task": "GH676_starlette_3142",
+  "repo": "Kludex/starlette",
+  "sha": "c011d1fcb27ab8b4759288479208315695ef3ca3",
+  "target": "tests/test_responses.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 62,
+   "failed": false,
+   "collected": true,
+   "tail": "..............................................................           [100%]\n62 passed in 8.78s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 62,
+   "failed": false,
+   "collected": true,
+   "tail": "..............................................................           [100%]\n62 passed in 4.49s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH706_httpx_3672",
+  "repo": "encode/httpx",
+  "sha": "4acf5c2c37714cc63b5cf71b3e284fca83c90311",
+  "target": "tests/test_parsers.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": ":\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/respx/handlers.py\", line 7, in TransportHandler\n    def __init__(self, transport: httpx.BaseTransport) -> None:\nAttributeError: module 'httpx' has no attribute 'BaseTransport'. Did you mean: 'Transport'?"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": ":\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/respx/handlers.py\", line 7, in TransportHandler\n    def __init__(self, transport: httpx.BaseTransport) -> None:\nAttributeError: module 'httpx' has no attribute 'BaseTransport'. Did you mean: 'Transport'?"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH702_urllib3_3799",
+  "repo": "urllib3/urllib3",
+  "sha": "6dc3f7d5a45e11a05180a5371d7b5acb98ca6aff",
+  "target": "test/with_dummyserver/test_chunked_transfer.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH684_starlette_3144",
+  "repo": "Kludex/starlette",
+  "sha": "9c74ef4c7cb1b79909aebf38be0e155064c27601",
+  "target": "tests/test_responses.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "leNotFoundError: No module named 'python_multipart'\n=========================== short test summary info ============================\nERROR tests/test_responses.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 9.52s"
+  },
+  "after": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "leNotFoundError: No module named 'python_multipart'\n=========================== short test summary info ============================\nERROR tests/test_responses.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 3.43s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_responses.py::test_file_response_multiple_calls"
+   ],
+   "fails_without_fix": true,
+   "tail": "===========================\nERROR tests/test_responses.py\n1 error in 6.82s\nERROR: found no collectors for /tmp/core_GH684_starlett_tl1utv18/r/tests/test_responses.py::test_file_response_multiple_calls"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH707_psycopg_1150",
+  "repo": "psycopg/psycopg",
+  "sha": "53cbbd1ba2d7d885dfbf6825911f6cb937b77707",
+  "target": "tests/test_copy.py tests/test_copy_async.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH707_psycopg__ihjnfir9/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH707_psycopg__ihjnfir9/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_copy.py::test_clean_buffer_on_error"
+   ],
+   "fails_without_fix": true,
+   "tail": "psycopg__ihjnfir9/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH720_pydantic_12953",
+  "status": "no_test_target",
+  "repo": "pydantic/pydantic"
+ },
+ {
+  "task": "GH71_starlette_3189",
+  "repo": "Kludex/starlette",
+  "sha": "a0bcc26612c9c344737cd59fb4ef847326adf37a",
+  "target": "tests/test_responses.py tests/test_websockets.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "leNotFoundError: No module named 'python_multipart'\n=========================== short test summary info ============================\nERROR tests/test_responses.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 6.29s"
+  },
+  "after": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "leNotFoundError: No module named 'python_multipart'\n=========================== short test summary info ============================\nERROR tests/test_responses.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 3.28s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "tests/test_websockets.py::test_send_denial_response_with_streaming_response",
+    "tests/test_websockets.py::test_send_denial_response_with_file_response"
+   ],
+   "fails_without_fix": true,
+   "tail": "===\nFAILED tests/test_websockets.py::test_send_denial_response_with_streaming_response[asyncio]\nFAILED tests/test_websockets.py::test_send_denial_response_with_file_response[asyncio]\n2 failed in 5.19s"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH729_werkzeug_3038",
+  "repo": "pallets/werkzeug",
+  "sha": "b43ad6ec8679d20a778e93b1a9e852c1e2937f2a",
+  "target": "tests/test_routing.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH729_werkzeug_hyn7gsti/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ImportError while loading conftest '/tmp/core_GH729_werkzeug_hyn7gsti/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "fail_to_pass": {
+   "added": 6,
+   "nodes": [
+    "tests/test_routing.py::test_no_duplicates",
+    "tests/test_routing.py::test_no_duplicates_host",
+    "tests/test_routing.py::test_duplicate_domain_disabled",
+    "tests/test_routing.py::test_duplicate_rule",
+    "tests/test_routing.py::test_duplicate_converter",
+    "tests/test_routing.py::test_no_duplicate_different_converters"
+   ],
+   "fails_without_fix": true,
+   "tail": " conftest '/tmp/core_GH729_werkzeug_hyn7gsti/r/tests/conftest.py'.\ntests/conftest.py:18: in <module>\n    import ephemeral_port_reserve\nE   ModuleNotFoundError: No module named 'ephemeral_port_reserve'"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH712_celery_10033",
+  "repo": "celery/celery",
+  "sha": "21675299bc2d10c648448ec5221136e07c1eec1a",
+  "target": "t/unit/worker/test_native_delayed_delivery.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "ilure\nERROR t/unit/worker/test_native_delayed_delivery.py::test_DelayedDelivery::test_bind_queues_raises_exceptions_on_failures\nERROR t/unit/worker/test_native_delayed_delivery.py::test_DelayedDelivery::test_bind_retries_on_retried_exception\n27 errors in 6.41s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "ilure\nERROR t/unit/worker/test_native_delayed_delivery.py::test_DelayedDelivery::test_bind_queues_raises_exceptions_on_failures\nERROR t/unit/worker/test_native_delayed_delivery.py::test_DelayedDelivery::test_bind_retries_on_retried_exception\n27 errors in 7.95s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH711_celery_10187",
+  "repo": "celery/celery",
+  "sha": "8eec5af31b191c113a0622326a9dbf916a5f3538",
+  "target": "t/unit/utils/test_functional.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "/utils/test_functional.py::test_is_numeric_value[5-False] - Attri...\nERROR t/unit/utils/test_functional.py::test_is_numeric_value[5.0-False] - Att...\nERROR t/unit/utils/test_functional.py::test_is_numeric_value[None-False] - At...\n1 skipped, 62 errors in 7.92s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": true,
+   "collected": true,
+   "tail": "/utils/test_functional.py::test_is_numeric_value[5-False] - Attri...\nERROR t/unit/utils/test_functional.py::test_is_numeric_value[5.0-False] - Att...\nERROR t/unit/utils/test_functional.py::test_is_numeric_value[None-False] - At...\n2 skipped, 62 errors in 8.15s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "t/unit/utils/test_functional.py::test_type_checking_annotation"
+   ],
+   "fails_without_fix": true,
+   "tail": "no tests ran in 6.79s\nERROR: not found: /tmp/core_GH711_celery_1_2upi32y4/r/t/unit/utils/test_functional.py::test_type_checking_annotation\n(no match in any of [<Module test_functional.py>])"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH747_werkzeug_3115",
+  "status": "no_test_target",
+  "repo": "pallets/werkzeug"
+ },
+ {
+  "task": "GH74_flask_5898",
+  "status": "no_test_target",
+  "repo": "pallets/flask"
+ },
+ {
+  "task": "GH75_flask_5899",
+  "status": "no_test_target",
+  "repo": "pallets/flask"
+ },
+ {
+  "task": "GH730_httpx_3670",
+  "repo": "encode/httpx",
+  "sha": "f9d5e1204978c0c66666fa169edada1bf719f8ba",
+  "target": "tests/test_streams.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": ":\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/respx/handlers.py\", line 7, in TransportHandler\n    def __init__(self, transport: httpx.BaseTransport) -> None:\nAttributeError: module 'httpx' has no attribute 'BaseTransport'. Did you mean: 'Transport'?"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": ":\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/respx/handlers.py\", line 7, in TransportHandler\n    def __init__(self, transport: httpx.BaseTransport) -> None:\nAttributeError: module 'httpx' has no attribute 'BaseTransport'. Did you mean: 'Transport'?"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH732_arrow_1190",
+  "repo": "arrow-py/arrow",
+  "sha": "d5bd7db75d2337c6af59cde44e5e7b8d5065da9b",
+  "target": "tests/test_locales.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 224,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 64%]\n........................................................................ [ 96%]\n........                                                                 [100%]\n224 passed in 9.39s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 225,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 64%]\n........................................................................ [ 96%]\n.........                                                                [100%]\n225 passed in 15.73s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_locales.py::test_timeframes"
+   ],
+   "fails_without_fix": true,
+   "tail": "no tests ran in 6.39s\nERROR: not found: /tmp/core_GH732_arrow_11_gsqc33ka/r/tests/test_locales.py::test_timeframes\n(no match in any of [<Module test_locales.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH775_werkzeug_3134",
+  "status": "no_test_target",
+  "repo": "pallets/werkzeug"
+ },
+ {
+  "task": "GH740_psycopg_1207",
+  "repo": "psycopg/psycopg",
+  "sha": "13c1d7048d330892f2e65f7d99c3bf72cb445a6a",
+  "target": "tests/test_connection.py tests/test_connection_async.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH740_psycopg__ghuvk_oa/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH740_psycopg__ghuvk_oa/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_connection.py::test_resolve_error_host"
+   ],
+   "fails_without_fix": true,
+   "tail": "psycopg__ghuvk_oa/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH765_starlette_2813",
+  "repo": "Kludex/starlette",
+  "sha": "e16bacbc4fd061b336b2ca0b9286c06249abbd2f",
+  "target": "starlette/testclient.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 5,
+   "passed": 0,
+   "failed": false,
+   "collected": false,
+   "tail": "no tests ran in 2.35s"
+  },
+  "after": {
+   "rc": 5,
+   "passed": 0,
+   "failed": false,
+   "collected": false,
+   "tail": "no tests ran in 2.71s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH800_starlette_3178",
+  "status": "no_test_target",
+  "repo": "Kludex/starlette"
+ },
+ {
+  "task": "GH771_httpx_3673",
+  "status": "patch_failed",
+  "repo": "encode/httpx",
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": ":\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/respx/handlers.py\", line 7, in TransportHandler\n    def __init__(self, transport: httpx.BaseTransport) -> None:\nAttributeError: module 'httpx' has no attribute 'BaseTransport'. Did you mean: 'Transport'?"
+  },
+  "err": " to perform 3-way merge.\nFalling back to direct application...\nerror: patch failed: tests/test_parsers.py:67\nerror: tests/test_parsers.py: patch does not apply\n"
+ },
+ {
+  "task": "GH796_starlette_3147",
+  "repo": "Kludex/starlette",
+  "sha": "3bddf51c71e0940d1e9bfbae9d952df8389cb80b",
+  "target": "tests/test_responses.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "leNotFoundError: No module named 'python_multipart'\n=========================== short test summary info ============================\nERROR tests/test_responses.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 4.80s"
+  },
+  "after": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "leNotFoundError: No module named 'python_multipart'\n=========================== short test summary info ============================\nERROR tests/test_responses.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 4.42s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH804_quart_432",
+  "status": "no_test_target",
+  "repo": "pallets/quart"
+ },
+ {
+  "task": "GH785_jinja_2061",
+  "repo": "pallets/jinja",
+  "sha": "767b23617628419ae3709ccfb02f9602ae9fe51f",
+  "target": "tests/test_api.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 33,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 34,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_api.py::test_overlay_enable_async"
+   ],
+   "fails_without_fix": false,
+   "tail": "void unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH813_quart_436",
+  "status": "no_test_target",
+  "repo": "pallets/quart"
+ },
+ {
+  "task": "GH801_aiohttp_11861",
+  "repo": "aio-libs/aiohttp",
+  "sha": "36649001bf3b479ce2e377a08d8708b35ac6c385",
+  "target": "tests/test_connector.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 172,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 39%]\n.......s.s.......s...s.................................................. [ 79%]\nsss...........s......................                                    [100%]\n172 passed, 8 skipped, 1 xfailed in 13.43s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 176,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 38%]\n.......s.s.......s...s.................................................. [ 77%]\n....sss...........s......................                                [100%]\n176 passed, 8 skipped, 1 xfailed in 11.43s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH802_aiohttp_11860",
+  "repo": "aio-libs/aiohttp",
+  "sha": "7c6ae23fa01f398f4e202c658b76a5be710138bc",
+  "target": "tests/test_connector.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 0,
+   "passed": 172,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 39%]\n.......s.s.......s...s.................................................. [ 79%]\nsss...........s......................                                    [100%]\n172 passed, 8 skipped, 1 xfailed in 11.42s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 176,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 38%]\n.......s.s.......s...s.................................................. [ 77%]\n....sss...........s......................                                [100%]\n176 passed, 8 skipped, 1 xfailed in 12.48s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH808_jinja_2062",
+  "repo": "pallets/jinja",
+  "sha": "106d61cba58e3ca0ecd176712f187c6685d6d76d",
+  "target": "tests/test_utils.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 27,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 28,
+   "failed": false,
+   "collected": true,
+   "tail": " Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_utils.py::test_urlize_mail_mastodon"
+   ],
+   "fails_without_fix": true,
+   "tail": "eprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\nERROR: not found: /tmp/core_GH808_jinja_20_xwxqn3_3/r/tests/test_utils.py::test_urlize_mail_mastodon\n(no match in any of [<Module test_utils.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH839_psycopg_1217",
+  "status": "no_test_target",
+  "repo": "psycopg/psycopg"
+ },
+ {
+  "task": "GH829_attrs_1489",
+  "repo": "python-attrs/attrs",
+  "sha": "c0111e6aad3a70080b7191aa9c7eda459a25f3dc",
+  "target": "bench/test_benchmarks.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "s\nE   ModuleNotFoundError: No module named 'attrs'\n=========================== short test summary info ============================\nERROR bench/test_benchmarks.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 1.58s"
+  },
+  "after": {
+   "rc": 2,
+   "passed": 0,
+   "failed": true,
+   "collected": false,
+   "tail": "s\nE   ModuleNotFoundError: No module named 'attrs'\n=========================== short test summary info ============================\nERROR bench/test_benchmarks.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 1.86s"
+  },
+  "fail_to_pass": {
+   "added": 2,
+   "nodes": [
+    "bench/test_benchmarks.py::test_first_access",
+    "bench/test_benchmarks.py::test_repeated_access"
+   ],
+   "fails_without_fix": true,
+   "tail": "s for /tmp/core_GH829_attrs_14_q00icume/r/bench/test_benchmarks.py::test_first_access\n\nERROR: found no collectors for /tmp/core_GH829_attrs_14_q00icume/r/bench/test_benchmarks.py::test_repeated_access"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH844_psycopg_1177",
+  "repo": "psycopg/psycopg",
+  "sha": "fdc18acf393f5e18c59ad47f47d56c148488910d",
+  "target": "tests/test_cursor_common.py tests/test_cursor_common_async.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH844_psycopg__iugbf9es/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH844_psycopg__iugbf9es/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_cursor_common.py::test_set_results"
+   ],
+   "fails_without_fix": true,
+   "tail": "psycopg__iugbf9es/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH848_urllib3_3732",
+  "repo": "urllib3/urllib3",
+  "sha": "720f484b605f18887a48eef448d0084e2b76902d",
+  "target": "test/test_response.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "test/test_response.py::test_getheaders"
+   ],
+   "fails_without_fix": true,
+   "tail": "E   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH837_aiohttp_12257",
+  "repo": "aio-libs/aiohttp",
+  "sha": "2b256cfe7d92b392683e341abd07a4729f705d04",
+  "target": "tests/test_http_parser.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 322,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 322 passed, 2 skipped, 1 xfailed in 11.37s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 327,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 327 passed, 2 skipped, 1 xfailed in 13.73s"
+  },
+  "fail_to_pass": {
+   "added": 5,
+   "nodes": [
+    "tests/test_http_parser.py::test_conn_close_comma_list",
+    "tests/test_http_parser.py::test_conn_close_multiple_headers",
+    "tests/test_http_parser.py::test_conn_upgrade_comma_list",
+    "tests/test_http_parser.py::test_conn_upgrade_multiple_headers",
+    "tests/test_http_parser.py::test_http_request_message_after_close_comma_list"
+   ],
+   "fails_without_fix": true,
+   "tail": "D tests/test_http_parser.py::test_conn_upgrade_multiple_headers[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_request_message_after_close_comma_list[py-parser-pyloop]\n5 failed in 5.03s"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH838_aiohttp_12256",
+  "repo": "aio-libs/aiohttp",
+  "sha": "e00ca3cca92c465c7913c4beb763a72da9ed8349",
+  "target": "tests/test_http_parser.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 322,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 322 passed, 2 skipped, 1 xfailed in 14.14s"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 327,
+   "failed": true,
+   "collected": true,
+   "tail": "- NameError:...\nFAILED tests/test_http_parser.py::test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_response_parser_bad_chunked_strict_py[pyloop]\n5 failed, 327 passed, 2 skipped, 1 xfailed in 11.78s"
+  },
+  "fail_to_pass": {
+   "added": 5,
+   "nodes": [
+    "tests/test_http_parser.py::test_conn_close_comma_list",
+    "tests/test_http_parser.py::test_conn_close_multiple_headers",
+    "tests/test_http_parser.py::test_conn_upgrade_comma_list",
+    "tests/test_http_parser.py::test_conn_upgrade_multiple_headers",
+    "tests/test_http_parser.py::test_http_request_message_after_close_comma_list"
+   ],
+   "fails_without_fix": true,
+   "tail": "D tests/test_http_parser.py::test_conn_upgrade_multiple_headers[py-parser-pyloop]\nFAILED tests/test_http_parser.py::test_http_request_message_after_close_comma_list[py-parser-pyloop]\n5 failed in 4.97s"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH849_marshmallow_293",
+  "repo": "marshmallow-code/marshmallow",
+  "sha": "39bed8d628e2d08da5026df2df5ec6b9e9bbadf3",
+  "target": "tests/test_deserialization.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "__init__.py:4: in <module>\n    from marshmallow.schema import (\nmarshmallow/schema.py:5: in <module>\n    from collections import defaultdict, Mapping\nE   ImportError: cannot import name 'Mapping' from 'collections' (/usr/lib/python3.10/collections/__init__.py)"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "__init__.py:4: in <module>\n    from marshmallow.schema import (\nmarshmallow/schema.py:5: in <module>\n    from collections import defaultdict, Mapping\nE   ImportError: cannot import name 'Mapping' from 'collections' (/usr/lib/python3.10/collections/__init__.py)"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_deserialization.py::test_partial_deserialization"
+   ],
+   "fails_without_fix": true,
+   "tail": "t (\nmarshmallow/schema.py:5: in <module>\n    from collections import defaultdict, Mapping\nE   ImportError: cannot import name 'Mapping' from 'collections' (/usr/lib/python3.10/collections/__init__.py)"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH855_psycopg_1227",
+  "repo": "psycopg/psycopg",
+  "sha": "380ccceb57ef44452a4c3e851e5e6dee09eb9eaf",
+  "target": "tests/test_cursor_server.py tests/test_cursor_server_async.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH855_psycopg__a4kdowo8/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH855_psycopg__a4kdowo8/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH95_arrow_1242",
+  "status": "no_test_target",
+  "repo": "arrow-py/arrow"
+ },
+ {
+  "task": "GH854_psycopg_1277",
+  "repo": "psycopg/psycopg",
+  "sha": "717e984b3fd894f2fbbfd8ab029dbe11166e22c5",
+  "target": "tests/pool/test_pool_async.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH854_psycopg__k6y144d7/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "odule\n    exec(co, module.__dict__)\n  File \"/tmp/core_GH854_psycopg__k6y144d7/r/tests/fix_db.py\", line 13, in <module>\n    from psycopg import pq, sql\nImportError: Error importing plugin \"tests.fix_db\": cannot import name 'pq' from 'psycopg' (unknown location)"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH857_marshmallow_2892",
+  "repo": "marshmallow-code/marshmallow",
+  "sha": "d07bf5e3d218cd5ffa1fcd1dce411f7a5c88e256",
+  "target": "tests/test_validate.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 191,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 37%]\n........................................................................ [ 75%]\n...............................................                          [100%]\n191 passed in 2.42s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 199,
+   "failed": false,
+   "collected": true,
+   "tail": "........................................................................ [ 36%]\n........................................................................ [ 72%]\n.......................................................                  [100%]\n199 passed in 3.18s"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": true,
+  "verified": false
+ },
+ {
+  "task": "GH97_arrow_1201",
+  "repo": "arrow-py/arrow",
+  "sha": "1d70d0091980ea489a64fa95a48e99b45f29f0e7",
+  "target": "tests/test_formatter.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 624,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 80%]\n........................................................................ [ 92%]\n................................................                         [100%]\n624 passed in 3.27s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 625,
+   "failed": false,
+   "collected": true,
+   "tail": "\n........................................................................ [ 80%]\n........................................................................ [ 92%]\n.................................................                        [100%]\n625 passed in 2.68s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_formatter.py::test_rfc3339_strict"
+   ],
+   "fails_without_fix": true,
+   "tail": "summary info ============================\nERROR tests/test_formatter.py\n1 error in 2.38s\nERROR: found no collectors for /tmp/core_GH97_arrow_120_wz_fpzmi/r/tests/test_formatter.py::test_rfc3339_strict"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH99_psycopg_1256",
+  "status": "no_test_target",
+  "repo": "psycopg/psycopg"
+ },
+ {
+  "task": "GH98_urllib3_3769",
+  "repo": "urllib3/urllib3",
+  "sha": "10ae8a9c1a88e4c1581d291395b2902e9c9fab36",
+  "target": "test/test_response.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "after": {
+   "rc": 4,
+   "passed": 0,
+   "failed": false,
+   "collected": true,
+   "tail": "ib3/contrib/pyopenssl.py:82: in <module>\n    warnings.warn(\nE   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "test/test_response.py::test_readinto_with_memoryview"
+   ],
+   "fails_without_fix": true,
+   "tail": "E   DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680"
+  },
+  "G_fail": true,
+  "G_pass": false,
+  "verified": false
+ },
+ {
+  "task": "GH96_arrow_1179",
+  "repo": "arrow-py/arrow",
+  "sha": "d05ca1dbd215515d4a346010ea329d7b3a472f5a",
+  "target": "tests/test_arrow.py tests/test_formatter.py tests/utils.py",
+  "status": "ok",
+  "install_rc": 0,
+  "before": {
+   "rc": 0,
+   "passed": 839,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 85%]\n........................................................................ [ 94%]\n.................................................                        [100%]\n839 passed, 1 xfailed, 1 xpassed in 13.28s"
+  },
+  "after": {
+   "rc": 0,
+   "passed": 841,
+   "failed": false,
+   "collected": true,
+   "tail": ".................................................. [ 85%]\n........................................................................ [ 93%]\n...................................................                      [100%]\n841 passed, 1 xfailed, 1 xpassed in 11.84s"
+  },
+  "fail_to_pass": {
+   "added": 1,
+   "nodes": [
+    "tests/test_arrow.py::test_init_zoneinfo_timezone"
+   ],
+   "fails_without_fix": true,
+   "tail": "no tests ran in 3.54s\nERROR: not found: /tmp/core_GH96_arrow_117_hgvt7_19/r/tests/test_arrow.py::test_init_zoneinfo_timezone\n(no match in any of [<Module test_arrow.py>])"
+  },
+  "G_fail": true,
+  "G_pass": true,
+  "verified": true
+ },
+ {
+  "task": "GH84_redis-py_3989",
+  "repo": "redis/redis-py",
+  "sha": "abf5bcb2ded3f393cd3d74803b058df325e3755c",
+  "target": "tests/test_asyncio/test_cluster.py tests/test_asyncio/test_pipeline.py",
+  "status": "ok",
+  "install_rc": 1,
+  "before": {
+   "rc": 1,
+   "passed": 219,
+   "failed": true,
+   "collected": true,
+   "tail": "ests/test_asyncio/test_cluster.py::TestSSL::test_validating_self_signed_certificate\nERROR tests/test_asyncio/test_cluster.py::TestSSL::test_validating_self_signed_string_certificate\n180 failed, 219 passed, 39 skipped, 39 warnings, 17 errors in 98.59s (0:01:38)"
+  },
+  "after": {
+   "rc": 1,
+   "passed": 223,
+   "failed": true,
+   "collected": true,
+   "tail": "ests/test_asyncio/test_cluster.py::TestSSL::test_validating_self_signed_certificate\nERROR tests/test_asyncio/test_cluster.py::TestSSL::test_validating_self_signed_string_certificate\n180 failed, 223 passed, 39 skipped, 47 warnings, 17 errors in 97.29s (0:01:37)"
+  },
+  "fail_to_pass": {
+   "added": 0,
+   "fails_without_fix": null,
+   "why": "patch adds no test"
+  },
+  "G_fail": false,
+  "G_pass": false,
+  "verified": false
+ }
+]

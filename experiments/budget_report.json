@@ -1,0 +1,62 @@
+{
+  "total_cost": 147846.0,
+  "tier": "PROHIBITIVE",
+  "recommendation": "Must reduce scope significantly",
+  "breakdown": {
+    "claude-3-opus-20240229": {
+      "runs": 250,
+      "input_cost": 31500.0,
+      "output_cost": 67500.0,
+      "total": 99000.0,
+      "capability": 88.9
+    },
+    "gpt-4o": {
+      "runs": 250,
+      "input_cost": 10500.0,
+      "output_cost": 13500.000000000002,
+      "total": 24000.0,
+      "capability": 85.2
+    },
+    "gpt-4o-mini": {
+      "runs": 250,
+      "input_cost": 315.0,
+      "output_cost": 540.0,
+      "total": 855.0,
+      "capability": 75.8
+    },
+    "claude-3-sonnet-20240229": {
+      "runs": 250,
+      "input_cost": 6300.0,
+      "output_cost": 13500.000000000002,
+      "total": 19800.0,
+      "capability": 79.3
+    },
+    "gemini-1.5-flash": {
+      "runs": 250,
+      "input_cost": 735.0,
+      "output_cost": 1260.0000000000002,
+      "total": 1995.0000000000002,
+      "capability": 73.1
+    },
+    "claude-3-haiku-20240307": {
+      "runs": 250,
+      "input_cost": 525.0,
+      "output_cost": 1125.0000000000002,
+      "total": 1650.0000000000002,
+      "capability": 68.2
+    },
+    "deepseek-coder-v2-lite-instruct": {
+      "runs": 250,
+      "input_cost": 294.00000000000006,
+      "output_cost": 252.00000000000006,
+      "total": 546.0000000000001,
+      "capability": 65.9
+    }
+  },
+  "experiment_params": {
+    "models": 7,
+    "tasks": 50,
+    "conditions": 5,
+    "total_runs": 1750
+  }
+}

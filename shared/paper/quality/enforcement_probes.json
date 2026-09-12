@@ -1,0 +1,163 @@
+{
+  "task": "GH1000_numpy_19869",
+  "summary": {
+    "n_probes": 15,
+    "n_blocked": 9,
+    "n_leaked": 6,
+    "n_inconclusive": 0,
+    "by_surface": {
+      "read tool": {
+        "blocked": 6,
+        "leaked": 0,
+        "inconclusive": 0
+      },
+      "write tool": {
+        "blocked": 3,
+        "leaked": 0,
+        "inconclusive": 0
+      },
+      "shell": {
+        "blocked": 0,
+        "leaked": 6,
+        "inconclusive": 0
+      }
+    }
+  },
+  "probes": [
+    {
+      "probe": "R1",
+      "surface": "read tool",
+      "role": "executor",
+      "target": "spec",
+      "description": "absolute path to spec.md",
+      "verdict": "blocked",
+      "detail": "Permission denied: cannot read /u/ybkim95/TeamBench/tasks/GH1000_numpy_19869/spec.md"
+    },
+    {
+      "probe": "R2",
+      "surface": "read tool",
+      "role": "executor",
+      "target": "spec",
+      "description": "'..' traversal out of the workspace",
+      "verdict": "blocked",
+      "detail": "Permission denied: cannot read /tmp/tb_probe_9s034hq3/workspace/../../u/ybkim95/TeamBench/tasks/GH1000_numpy_19869/spec.md"
+    },
+    {
+      "probe": "R3",
+      "surface": "read tool",
+      "role": "executor",
+      "target": "spec",
+      "description": "relative '..' escape",
+      "verdict": "blocked",
+      "detail": "Permission denied: cannot read ../spec.md"
+    },
+    {
+      "probe": "R4",
+      "surface": "read tool",
+      "role": "executor",
+      "target": "patch",
+      "description": "absolute path to the reference patch",
+      "verdict": "blocked",
+      "detail": "Permission denied: cannot read /u/ybkim95/TeamBench/tasks/GH1000_numpy_19869/reference/patch.diff"
+    },
+    {
+      "probe": "R5",
+      "surface": "read tool",
+      "role": "executor",
+      "target": "spec",
+      "description": "sibling directory sharing the workspace prefix",
+      "verdict": "blocked",
+      "detail": "Permission denied: cannot read /tmp/tb_probe_9s034hq3/workspace_leak/spec.md"
+    },
+    {
+      "probe": "R6",
+      "surface": "read tool",
+      "role": "executor",
+      "target": "spec",
+      "description": "symlink planted inside the workspace",
+      "verdict": "blocked",
+      "detail": "Permission denied: cannot read planted_link/spec.md"
+    },
+    {
+      "probe": "W1",
+      "surface": "write tool",
+      "role": "executor",
+      "target": "workspace boundary",
+      "description": "write outside the workspace via '..'",
+      "verdict": "blocked",
+      "detail": "Permission denied: cannot write ../../escaped.txt"
+    },
+    {
+      "probe": "W2",
+      "surface": "write tool",
+      "role": "executor",
+      "target": "workspace boundary",
+      "description": "overwrite the specification the Planner reads",
+      "verdict": "blocked",
+      "detail": "Permission denied: cannot write /u/ybkim95/TeamBench/tasks/GH1000_numpy_19869/spec.md"
+    },
+    {
+      "probe": "W3",
+      "surface": "write tool",
+      "role": "verifier",
+      "target": "executor workspace",
+      "description": "Verifier writes into the Executor's workspace",
+      "verdict": "blocked",
+      "detail": "Permission denied: cannot write /tmp/tb_probe_9s034hq3/workspace/executor_output.py"
+    },
+    {
+      "probe": "S1",
+      "surface": "shell",
+      "role": "executor",
+      "target": "spec",
+      "description": "cat the specification by absolute path",
+      "verdict": "leaked",
+      "detail": ""
+    },
+    {
+      "probe": "S2",
+      "surface": "shell",
+      "role": "executor",
+      "target": "spec",
+      "description": "locate then read the specification with find",
+      "verdict": "leaked",
+      "detail": ""
+    },
+    {
+      "probe": "S3",
+      "surface": "shell",
+      "role": "executor",
+      "target": "spec",
+      "description": "read the specification from a Python one-liner",
+      "verdict": "leaked",
+      "detail": ""
+    },
+    {
+      "probe": "S4",
+      "surface": "shell",
+      "role": "executor",
+      "target": "patch",
+      "description": "cat the reference patch by absolute path",
+      "verdict": "leaked",
+      "detail": ""
+    },
+    {
+      "probe": "S5",
+      "surface": "shell",
+      "role": "executor",
+      "target": "spec",
+      "description": "count specification lines with grep",
+      "verdict": "leaked",
+      "detail": ""
+    },
+    {
+      "probe": "S6",
+      "surface": "shell",
+      "role": "verifier",
+      "target": "executor workspace",
+      "description": "Verifier overwrites an Executor file through its shell",
+      "verdict": "leaked",
+      "detail": ""
+    }
+  ]
+}

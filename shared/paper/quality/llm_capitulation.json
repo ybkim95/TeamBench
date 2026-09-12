@@ -1,0 +1,3123 @@
+[
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/CR4_api_review/20260226_182212_ef285f58",
+  "task": "CR4_api_review",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   null,
+   "pass"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=6,mutating_cmds=1,turns=24)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 4
+   },
+   {
+    "attempt": 2,
+    "verdict": "pass",
+    "turns": 20
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/INT1_pipeline_repair/20260226_183328_e5261715",
+  "task": "INT1_pipeline_repair",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   "fail",
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=8,mutating_cmds=0,turns=40)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 4
+   },
+   {
+    "attempt": 1,
+    "verdict": "fail",
+    "turns": 11
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 5
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/IR1_evidence_qa/20260226_162721_e832a951",
+  "task": "IR1_evidence_qa",
+  "n_attempts": 2,
+  "verdicts": [
+   "fail",
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "remediation_tool_log(writes=0,mutating_cmds=0,turns=15)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 15
+   },
+   {
+    "attempt": 1,
+    "verdict": "fail",
+    "turns": 15
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/LH1_long_horizon/20260226_065438_7bac7ddf",
+  "task": "LH1_long_horizon",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   "fail",
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=10,mutating_cmds=5,turns=40)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 20
+   },
+   {
+    "attempt": 1,
+    "verdict": "fail",
+    "turns": 20
+   },
+   {
+    "attempt": 2,
+    "verdict": "fail",
+    "turns": 3
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/LH2_budgeted_workflow/20260226_163250_e28e3d10",
+  "task": "LH2_budgeted_workflow",
+  "n_attempts": 2,
+  "verdicts": [
+   "fail",
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "remediation_tool_log(writes=0,mutating_cmds=0,turns=15)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 4
+   },
+   {
+    "attempt": 1,
+    "verdict": "fail",
+    "turns": 14
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/NEG1_tradeoff_config/20260226_190550_6eb17524",
+  "task": "NEG1_tradeoff_config",
+  "n_attempts": 2,
+  "verdicts": [
+   "fail",
+   "pass"
+  ],
+  "fail_then_pass": true,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=6,mutating_cmds=1,turns=20)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": "pass",
+    "turns": 20
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/O2_incident_rootcause/20260226_181119_7437ddfe",
+  "task": "O2_incident_rootcause",
+  "n_attempts": 2,
+  "verdicts": [
+   "fail",
+   "pass"
+  ],
+  "fail_then_pass": true,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=5,mutating_cmds=0,turns=9)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 20
+   },
+   {
+    "attempt": 1,
+    "verdict": "pass",
+    "turns": 20
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/P1_policy_config/20260226_062548_b00c5fb6",
+  "task": "P1_policy_config",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   "fail",
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "remediation_tool_log(writes=0,mutating_cmds=0,turns=6)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 20
+   },
+   {
+    "attempt": 1,
+    "verdict": "fail",
+    "turns": 20
+   },
+   {
+    "attempt": 2,
+    "verdict": "fail",
+    "turns": 20
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/P1_policy_config/20260226_153934_089b3ecd",
+  "task": "P1_policy_config",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=9,mutating_cmds=5,turns=18)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 15
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 15
+   },
+   {
+    "attempt": 2,
+    "verdict": "fail",
+    "turns": 15
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/S1_hidden_spec/20260226_064711_c0af0708",
+  "task": "S1_hidden_spec",
+  "n_attempts": 2,
+  "verdicts": [
+   "fail",
+   "pass"
+  ],
+  "fail_then_pass": true,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=1,mutating_cmds=0,turns=5)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 20
+   },
+   {
+    "attempt": 1,
+    "verdict": "pass",
+    "turns": 20
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/SEC1_vuln_patch/20260226_063256_a73e56bc",
+  "task": "SEC1_vuln_patch",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   "fail",
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=2,mutating_cmds=0,turns=27)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 20
+   },
+   {
+    "attempt": 1,
+    "verdict": "fail",
+    "turns": 9
+   },
+   {
+    "attempt": 2,
+    "verdict": "fail",
+    "turns": 20
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/SEC1_vuln_patch/20260226_161658_63e728fc",
+  "task": "SEC1_vuln_patch",
+  "n_attempts": 2,
+  "verdicts": [
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=1,mutating_cmds=0,turns=15)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 15
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 15
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/SPEC1_feature_impl/20260226_190208_147b1d77",
+  "task": "SPEC1_feature_impl",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   "fail",
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "remediation_tool_log(writes=0,mutating_cmds=0,turns=7)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 2
+   },
+   {
+    "attempt": 1,
+    "verdict": "fail",
+    "turns": 2
+   },
+   {
+    "attempt": 2,
+    "verdict": "fail",
+    "turns": 2
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/ablation_runs/TEST1_spec_to_tests/20260226_184649_3162a482",
+  "task": "TEST1_spec_to_tests",
+  "n_attempts": 2,
+  "verdicts": [
+   "fail",
+   "pass"
+  ],
+  "fail_then_pass": true,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "remediation_tool_log(writes=14,mutating_cmds=0,turns=20)",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 3
+   },
+   {
+    "attempt": 1,
+    "verdict": "pass",
+    "turns": 5
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/API1_version_compat/20260404_165044_c5b95986",
+  "task": "API1_version_compat",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   null,
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 7
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": "fail",
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/CROSS1_api_contract/20260404_180126_c9987e10",
+  "task": "CROSS1_api_contract",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/CRYPTO1_nonce_reuse/20260404_182514_198fc27a",
+  "task": "CRYPTO1_nonce_reuse",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   null,
+   "pass"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 2,
+    "verdict": "pass",
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/D7_etl_reconciliation/20260404_185417_08beb775",
+  "task": "D7_etl_reconciliation",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/DEVOPS2_cicd_pipeline/20260404_193257_4bd9e380",
+  "task": "DEVOPS2_cicd_pipeline",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   "pass"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": "pass",
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/DIST2_consensus_partition/20260404_194208_8649ac1c",
+  "task": "DIST2_consensus_partition",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/EA4_code_quality/20260404_211815_69166f17",
+  "task": "EA4_code_quality",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1006_spaCy_13068/20260404_222720_ed44a601",
+  "task": "GH1006_spaCy_13068",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1033_ray_23187/20260404_232713_73d5b7c4",
+  "task": "GH1033_ray_23187",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 8
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1044_plotly.py_5193/20260405_005632_ae4267e9",
+  "task": "GH1044_plotly.py_5193",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1047_transformers_16669/20260405_013524_fb2774c9",
+  "task": "GH1047_transformers_16669",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 6
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1059_spaCy_13400/20260405_023745_48912988",
+  "task": "GH1059_spaCy_13400",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1072_spaCy_13321/20260405_040211_33adc025",
+  "task": "GH1072_spaCy_13321",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1076_spaCy_13053/20260405_044751_85f41357",
+  "task": "GH1076_spaCy_13053",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1081_FLAML_1406/20260405_055422_29539407",
+  "task": "GH1081_FLAML_1406",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 8
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1085_matplotlib_31313/20260405_081420_5ce56511",
+  "task": "GH1085_matplotlib_31313",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 7
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1094_spaCy_12575/20260405_085408_500cb553",
+  "task": "GH1094_spaCy_12575",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1100_darts_2984/20260405_095219_af4f0c87",
+  "task": "GH1100_darts_2984",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1104_matplotlib_31128/20260405_101735_e29317f7",
+  "task": "GH1104_matplotlib_31128",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1111_keras_20774/20260405_105235_2109dd03",
+  "task": "GH1111_keras_20774",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 7
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1130_sktime_6713/20260405_122539_e311c7d0",
+  "task": "GH1130_sktime_6713",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1159_pytorch_166984/20260405_125500_af3535be",
+  "task": "GH1159_pytorch_166984",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1163_mlflow_21808/20260405_132852_32828603",
+  "task": "GH1163_mlflow_21808",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1178_numpy_30801/20260405_150527_24e20c16",
+  "task": "GH1178_numpy_30801",
+  "n_attempts": 2,
+  "verdicts": [
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1178_numpy_30801/20260405_183051_a34cba0f",
+  "task": "GH1178_numpy_30801",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1181_mlflow_21864/20260405_192557_b1e6ea5b",
+  "task": "GH1181_mlflow_21864",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 7
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1189_darts_2958/20260405_202939_53290fcb",
+  "task": "GH1189_darts_2958",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1202_wandb_11491/20260405_214245_608c5fbd",
+  "task": "GH1202_wandb_11491",
+  "n_attempts": 2,
+  "verdicts": [
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1205_FLAML_1470/20260405_222312_618ea9fa",
+  "task": "GH1205_FLAML_1470",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 4
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 8
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH1221_plotly.py_5361/20260405_230313_66829143",
+  "task": "GH1221_plotly.py_5361",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH143_mitmproxy_8095/20260405_231851_8839689d",
+  "task": "GH143_mitmproxy_8095",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH14_celery_chain_fail/20260405_232648_a83a35d5",
+  "task": "GH14_celery_chain_fail",
+  "n_attempts": 2,
+  "verdicts": [
+   null,
+   "pass"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 1,
+    "verdict": "pass",
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH158_attrs_1529/20260406_000539_724cb5cc",
+  "task": "GH158_attrs_1529",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH206_core_138209/20260406_010736_383e3208",
+  "task": "GH206_core_138209",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH209_core_119328/20260406_012004_c3ea5758",
+  "task": "GH209_core_119328",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH217_core_153674/20260406_013239_586bba66",
+  "task": "GH217_core_153674",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH223_core_134719/20260406_023917_ce66d73f",
+  "task": "GH223_core_134719",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH245_core_139431/20260406_042114_fd7f74f4",
+  "task": "GH245_core_139431",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH253_core_158012/20260406_054324_cfd0547e",
+  "task": "GH253_core_158012",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH271_core_165288/20260406_064011_7eb9828e",
+  "task": "GH271_core_165288",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 6
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH27_pydantic_12907/20260406_073312_4533dbfb",
+  "task": "GH27_pydantic_12907",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 6
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH294_sktime_7844/20260406_080110_c9467d56",
+  "task": "GH294_sktime_7844",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH324_django_20718/20260406_085123_d8696318",
+  "task": "GH324_django_20718",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH325_core_157208/20260406_093422_886e94a7",
+  "task": "GH325_core_157208",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 7
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH342_pytest_14275/20260406_110115_519cbf15",
+  "task": "GH342_pytest_14275",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH344_bun_28426/20260406_120350_414b3760",
+  "task": "GH344_bun_28426",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH441_arrow_1224/20260406_130539_91e88186",
+  "task": "GH441_arrow_1224",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH463_napari_8772/20260406_144218_18724860",
+  "task": "GH463_napari_8772",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 7
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH474_server_2565/20260406_163608_8ba53782",
+  "task": "GH474_server_2565",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 5
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH482_openrag_167/20260406_182823_de83a810",
+  "task": "GH482_openrag_167",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 6
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH506_pytest_14222/20260406_192731_b2f92c76",
+  "task": "GH506_pytest_14222",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 6
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH538_redis-py_3970/20260406_204835_092e25e8",
+  "task": "GH538_redis-py_3970",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH54_pydantic_12817/20260406_212347_a701bdd7",
+  "task": "GH54_pydantic_12817",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH567_poetry_10766/20260406_222027_88b26230",
+  "task": "GH567_poetry_10766",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH570_urllib3_3755/20260406_225527_b049b62f",
+  "task": "GH570_urllib3_3755",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH577_jinja_2098/20260406_231519_6a1a0567",
+  "task": "GH577_jinja_2098",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH605_psycopg_1280/20260407_002354_d51f1ac9",
+  "task": "GH605_psycopg_1280",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 5
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 7
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH61_werkzeug_3097/20260407_013413_0c88a130",
+  "task": "GH61_werkzeug_3097",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH665_narwhals_2363/20260407_021008_d9b847da",
+  "task": "GH665_narwhals_2363",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 6
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH674_psycopg_1158/20260407_033509_80105c18",
+  "task": "GH674_psycopg_1158",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH696_boto3_4585/20260407_044055_63c57ccb",
+  "task": "GH696_boto3_4585",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH771_httpx_3673/20260407_055627_a39d0590",
+  "task": "GH771_httpx_3673",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH775_werkzeug_3134/20260407_065858_2fbebf51",
+  "task": "GH775_werkzeug_3134",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH861_pytorch_lightni_21224/20260407_075656_8b2d3b49",
+  "task": "GH861_pytorch_lightni_21224",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH871_pandas_64755/20260407_091333_65e2dc32",
+  "task": "GH871_pandas_64755",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 8
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH891_statsmodels_9487/20260407_101631_78db07eb",
+  "task": "GH891_statsmodels_9487",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH929_mlflow_9690/20260407_120251_9e80771d",
+  "task": "GH929_mlflow_9690",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH942_great_expectati_8087/20260407_135652_892fda1e",
+  "task": "GH942_great_expectati_8087",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH944_autogluon_2986/20260407_141640_859ecf35",
+  "task": "GH944_autogluon_2986",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 6
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH962_ray_22048/20260407_152702_ebeac5f7",
+  "task": "GH962_ray_22048",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH965_pymc_8201/20260407_155323_83ebebce",
+  "task": "GH965_pymc_8201",
+  "n_attempts": 2,
+  "verdicts": [
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH977_transformers_34889/20260407_165207_49db54f2",
+  "task": "GH977_transformers_34889",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   "fail",
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": "fail",
+    "turns": 9
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 8
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH98_urllib3_3769/20260407_183550_4d67e9cb",
+  "task": "GH98_urllib3_3769",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": "fail",
+    "turns": 7
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/GH994_scikit_learn_24365/20260407_185311_d3f0e927",
+  "task": "GH994_scikit_learn_24365",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/INT3_db_migration/20260407_191509_b77907b6",
+  "task": "INT3_db_migration",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/IR6_search_index/20260407_203252_d20cb4e9",
+  "task": "IR6_search_index",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/MULTI4_monorepo_fix/20260407_210339_bc2b4912",
+  "task": "MULTI4_monorepo_fix",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS15_taxi_circular_seed1/20260407_233209_e330ad02",
+  "task": "RDS15_taxi_circular_seed1",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 7
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS15_taxi_circular_seed2/20260408_004351_8585031a",
+  "task": "RDS15_taxi_circular_seed2",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS20_taxi_quality_seed1/20260408_013124_325f4389",
+  "task": "RDS20_taxi_quality_seed1",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS21_health_missing_seed0/20260408_021958_a927c348",
+  "task": "RDS21_health_missing_seed0",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS21_health_missing_seed2/20260408_023003_f798e128",
+  "task": "RDS21_health_missing_seed2",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS26_fraud_ring_seed2/20260408_033507_6f9fc7d4",
+  "task": "RDS26_fraud_ring_seed2",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   "fail",
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": "fail",
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 8
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS29_macro_shock_seed2/20260408_041119_cac377ea",
+  "task": "RDS29_macro_shock_seed2",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": false,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS5_retail_clv_seed0/20260408_044116_5b142735",
+  "task": "RDS5_retail_clv_seed0",
+  "n_attempts": 3,
+  "verdicts": [
+   "fail",
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": "fail",
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS6_macro_granger_seed0/20260408_051039_d87f48bc",
+  "task": "RDS6_macro_granger_seed0",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 8
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 9
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/RDS8_churn_survival_seed0/20260408_060211_5e24b179",
+  "task": "RDS8_churn_survival_seed0",
+  "n_attempts": 2,
+  "verdicts": [
+   null,
+   "pass"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": "pass",
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/TRAP3_metric_mirage/20260408_072201_cb9aa692",
+  "task": "TRAP3_metric_mirage",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   "fail"
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 6
+   },
+   {
+    "attempt": 2,
+    "verdict": "fail",
+    "turns": 10
+   }
+  ]
+ },
+ {
+  "run_dir": "/u/ybkim95/TeamBench/shared/gemma4_26b_api_campaign/runs/TRAP5_security_theater/20260408_082716_d2076829",
+  "task": "TRAP5_security_theater",
+  "n_attempts": 3,
+  "verdicts": [
+   null,
+   null,
+   null
+  ],
+  "fail_then_pass": false,
+  "workspace_changed_after_last_fail": true,
+  "change_evidence": "workspace_snapshot",
+  "capitulation": false,
+  "sequence": [
+   {
+    "attempt": 0,
+    "verdict": null,
+    "turns": 9
+   },
+   {
+    "attempt": 1,
+    "verdict": null,
+    "turns": 10
+   },
+   {
+    "attempt": 2,
+    "verdict": null,
+    "turns": 10
+   }
+  ]
+ }
+]

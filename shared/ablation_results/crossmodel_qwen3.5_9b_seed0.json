@@ -1,0 +1,2276 @@
+{
+  "model": "vllm:Qwen/Qwen3.5-9B@http://localhost:8013/v1",
+  "tasks": [
+    "MULTI1_fullstack_fix",
+    "TEST1_spec_to_tests",
+    "O2_incident_rootcause",
+    "PIPE1_etl_fix",
+    "TRAP1_spec_conflict",
+    "TRAP3_metric_mirage",
+    "TRAP5_security_theater",
+    "CROSS1_api_contract",
+    "CROSS3_protocol_bridge",
+    "CRYPTO1_nonce_reuse",
+    "DIST1_queue_race",
+    "SEC1_vuln_patch",
+    "SEC3_crypto_upgrade",
+    "D1_schema_drift",
+    "D8_csv_cleanup",
+    "TEST2_regression",
+    "TEST5_mutation_resistant",
+    "O1_service_health",
+    "O3_log_analysis",
+    "P1_policy_config",
+    "P3_access_control",
+    "SPEC1_feature_impl",
+    "SPEC3_data_model",
+    "INC1_cascade_failure",
+    "INC4_dns_miscfg",
+    "IR1_evidence_qa",
+    "NEG1_tradeoff_config",
+    "CR5_test_coverage"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-04-02T01:35:43.861897+00:00",
+  "metrics": {
+    "s_oracle": 0.0714,
+    "s_restricted": 0.0357,
+    "s_full": 0.1786,
+    "s_no_verify": 0.0714,
+    "s_no_plan": 0.1071,
+    "p_oracle": 0.6284,
+    "p_restricted": 0.5689,
+    "p_full": 0.5002,
+    "p_no_verify": 0.5744,
+    "p_no_plan": 0.5889,
+    "necessity_gap": 0.0594,
+    "tni": -1.1566,
+    "team_uplift": -0.0687,
+    "collab_efficiency": -0.1094,
+    "planning_value": -0.0887,
+    "verification_value": -0.0742,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": -56.8939,
+    "interpretation": {
+      "tni": "Teamwork is harmful (negative collaboration gain).",
+      "team_uplift": "Team adds -6.9% over single agent",
+      "collab_efficiency": "Team reaches -10.9% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds -8.9% partial score",
+      "verification_value": "Verification adds -7.4% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 2,
+      "total": 28,
+      "success_rate": 0.0714
+    },
+    "restricted": {
+      "passes": 1,
+      "total": 28,
+      "success_rate": 0.0357
+    },
+    "team_no_verify": {
+      "passes": 2,
+      "total": 28,
+      "success_rate": 0.0714
+    },
+    "team_no_plan": {
+      "passes": 3,
+      "total": 28,
+      "success_rate": 0.1071
+    },
+    "full": {
+      "passes": 5,
+      "total": 28,
+      "success_rate": 0.1786
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260331_234439_ca33eddd",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260331_234439_ca33eddd",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 244.8,
+      "failure_modes": [
+        "test_create_fail",
+        "test_get_fail",
+        "test_sorted_fail",
+        "test_delete_fail",
+        "deploy_flask_app_wrong",
+        "frontend_content_type_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260331_234852_88872379",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260331_234852_88872379",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 554.3,
+      "failure_modes": [
+        "tests_fail_on_correct_engine",
+        "mutant_01_not_caught",
+        "mutant_03_not_caught",
+        "mutant_05_not_caught",
+        "insufficient_mutation_detection",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260401_000152_acf6cb60",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260401_000152_acf6cb60",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 175.0,
+      "failure_modes": [
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260401_000455_fed66c44",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260401_000455_fed66c44",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 82.1,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260401_000618_f75b1324",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260401_000618_f75b1324",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 380.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260401_001342_a26847ba",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260401_001342_a26847ba",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 143.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260401_001711_1e9748c9",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260401_001711_1e9748c9",
+      "pass": false,
+      "partial_score": 0.79,
+      "elapsed_sec": 606.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260401_002936_57dedfe4",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260401_002936_57dedfe4",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 222.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260401_003554_a4f6cd85",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260401_003554_a4f6cd85",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 109.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260401_004020_da7abbcb",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260401_004020_da7abbcb",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 125.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260401_004605_5543bba4",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260401_004605_5543bba4",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 395.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260401_005617_f2cd9b10",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260401_005617_f2cd9b10",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 150.5,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260401_005850_c3023cc6",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260401_005850_c3023cc6",
+      "pass": false,
+      "partial_score": 0.85,
+      "elapsed_sec": 458.9,
+      "failure_modes": [
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260401_010631_873a8341",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260401_010631_873a8341",
+      "pass": false,
+      "partial_score": 0.81,
+      "elapsed_sec": 302.7,
+      "failure_modes": [
+        "etl_crash",
+        "missing_category_fill_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260401_011135_ccd40baf",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260401_011135_ccd40baf",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 357.8,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260401_011735_1964e879",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260401_011735_1964e879",
+      "pass": false,
+      "partial_score": 0.27,
+      "elapsed_sec": 445.6,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit",
+        "some_bugs_not_detected",
+        "bug_BUG_ABS_MISSING_not_detected",
+        "bug_BUG_DIV_FLOOR_not_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260401_012852_0bf2e168",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260401_012852_0bf2e168",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 201.5,
+      "failure_modes": [
+        "too_few_tests",
+        "tests_fail_on_correct_lib",
+        "insufficient_error_tests",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260401_014749_cf6c7b6a",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260401_014749_cf6c7b6a",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 196.5,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260401_015123_c95db583",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260401_015123_c95db583",
+      "pass": false,
+      "partial_score": 0.46,
+      "elapsed_sec": 296.8,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260401_015628_e5ae498c",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260401_015628_e5ae498c",
+      "pass": false,
+      "partial_score": 0.93,
+      "elapsed_sec": 131.8,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260401_015841_c92812f2",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260401_015841_c92812f2",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 117.9,
+      "failure_modes": [
+        "allow_decisions_wrong",
+        "flask_allowed_returns_403",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260401_020046_3e0afc12",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260401_020046_3e0afc12",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 93.2,
+      "failure_modes": [
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260401_020315_14242bd7",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260401_020315_14242bd7",
+      "pass": false,
+      "partial_score": 0.714,
+      "elapsed_sec": 131.6,
+      "failure_modes": [
+        "basic_tests_fail",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260401_020622_03295f8d",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260401_020622_03295f8d",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 230.8,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260401_021015_4901d22c",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260401_021015_4901d22c",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 89.0,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260401_021146_1abf9245",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260401_021146_1abf9245",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 302.3,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260401_021649_bc522ddf",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260401_021649_bc522ddf",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 229.0,
+      "failure_modes": [
+        "perf_test_fail",
+        "reliability_test_fail",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260401_022042_c30f038f",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260401_022042_c30f038f",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 73.5,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260401_022624_ff66a9a0",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260401_022624_ff66a9a0",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 419.7,
+      "failure_modes": [
+        "test_sorted_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260401_023338_a9d8e939",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260401_023338_a9d8e939",
+      "pass": false,
+      "partial_score": 0.1,
+      "elapsed_sec": 216.5,
+      "failure_modes": [
+        "tests_fail_on_correct_engine",
+        "low_coverage",
+        "mutant_01_not_caught",
+        "mutant_02_not_caught",
+        "mutant_03_not_caught",
+        "mutant_04_not_caught",
+        "mutant_05_not_caught",
+        "insufficient_mutation_detection",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260401_024127_21b5973c",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260401_024127_21b5973c",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 158.4,
+      "failure_modes": [
+        "security_policy_violation",
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260401_024414_55f6e5d0",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260401_024414_55f6e5d0",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 109.5,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "nested_fields_not_flattened",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260401_024605_76ea65aa",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260401_024605_76ea65aa",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 53.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260401_024844_2464af87",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260401_024844_2464af87",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 277.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260401_025452_6cd94d00",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260401_025452_6cd94d00",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 121.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260401_030220_d986b2c6",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260401_030220_d986b2c6",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 503.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260401_031547_6ce6acaa",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260401_031547_6ce6acaa",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 850.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260401_033453_163b44f1",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260401_033453_163b44f1",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 609.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260401_034915_eb092497",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260401_034915_eb092497",
+      "pass": false,
+      "partial_score": 0.8333,
+      "elapsed_sec": 486.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260401_040258_232cfaa3",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260401_040258_232cfaa3",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 84.1,
+      "failure_modes": [
+        "hardcoded_secret_present",
+        "insecure_session",
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260401_040424_ad50daad",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260401_040424_ad50daad",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 330.8,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260401_040958_45b42dc1",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260401_040958_45b42dc1",
+      "pass": false,
+      "partial_score": 0.81,
+      "elapsed_sec": 576.3,
+      "failure_modes": [
+        "missing_category_fill_fail",
+        "sort_order_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260401_041937_7152ffc4",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260401_041937_7152ffc4",
+      "pass": false,
+      "partial_score": 0.11,
+      "elapsed_sec": 452.8,
+      "failure_modes": [
+        "clean_crash",
+        "duplicate_ids",
+        "wrong_row_count",
+        "empty_column_kept",
+        "date_format_wrong",
+        "whitespace_remaining",
+        "sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260401_042713_02108b79",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260401_042713_02108b79",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 5.6,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit",
+        "some_bugs_not_detected",
+        "bug_BUG_ABS_MISSING_not_detected",
+        "bug_BUG_DIV_FLOOR_not_detected",
+        "bug_BUG_POWER_SWAP_not_detected",
+        "bug_BUG_SQRT_NEGATIVE_not_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260401_043221_5a2f73f4",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260401_043221_5a2f73f4",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 69.0,
+      "failure_modes": [
+        "too_few_tests",
+        "tests_fail_on_correct_lib",
+        "insufficient_error_tests",
+        "insufficient_mutation_detection",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260401_043927_17654f9a",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260401_043927_17654f9a",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 208.6,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260401_044314_14a2eb66",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260401_044314_14a2eb66",
+      "pass": false,
+      "partial_score": 0.46,
+      "elapsed_sec": 131.3,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260401_044535_dd2eb584",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260401_044535_dd2eb584",
+      "pass": false,
+      "partial_score": 0.93,
+      "elapsed_sec": 281.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260401_045017_23d9f978",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260401_045017_23d9f978",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 320.5,
+      "failure_modes": [
+        "allow_decisions_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260401_045548_20916c6c",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260401_045548_20916c6c",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 10.4,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260401_045812_f4262391",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260401_045812_f4262391",
+      "pass": false,
+      "partial_score": 0.857,
+      "elapsed_sec": 276.6,
+      "failure_modes": [
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260401_050429_bd53aff1",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260401_050429_bd53aff1",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 24.6,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260401_050456_0859da2e",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260401_050456_0859da2e",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 181.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260401_050800_d3897aef",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260401_050800_d3897aef",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 325.3,
+      "failure_modes": [
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260401_051326_f547ba7d",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260401_051326_f547ba7d",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 792.4,
+      "failure_modes": [
+        "reliability_test_fail",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260401_052643_34def01c",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260401_052643_34def01c",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 96.8,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260401_053334_8d900ba8",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260401_053334_8d900ba8",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 917.4,
+      "failure_modes": [
+        "import_error",
+        "test_create_fail",
+        "test_get_fail",
+        "test_sorted_fail",
+        "test_delete_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260401_054854_45b89f36",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260401_054854_45b89f36",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 901.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260401_060355_7296b4cc",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260401_060355_7296b4cc",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 591.6,
+      "failure_modes": [
+        "endpoint_no_response"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260401_061354_8a479027",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260401_061354_8a479027",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 135.9,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260401_061612_9518a3b7",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260401_061612_9518a3b7",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 576.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260401_062702_f82a01d2",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260401_062702_f82a01d2",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 754.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260401_064127_32cf1efd",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260401_064127_32cf1efd",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 192.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260401_064754_cb81fd35",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260401_064754_cb81fd35",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 827.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260401_070600_4a56d6bc",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260401_070600_4a56d6bc",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1085.2,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260401_072405_ae52662c",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260401_072405_ae52662c",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 1296.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260401_075002_53a94573",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260401_075002_53a94573",
+      "pass": false,
+      "partial_score": 0.8333,
+      "elapsed_sec": 928.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260401_081018_dbeba0bb",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260401_081018_dbeba0bb",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 854.8,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260401_082435_91dd9fd3",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260401_082435_91dd9fd3",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 435.2,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260401_083153_b34c0b3f",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260401_083153_b34c0b3f",
+      "pass": false,
+      "partial_score": 0.81,
+      "elapsed_sec": 915.6,
+      "failure_modes": [
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260401_084710_998e970a",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260401_084710_998e970a",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 824.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260401_090056_671250ba",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260401_090056_671250ba",
+      "pass": false,
+      "partial_score": 0.18,
+      "elapsed_sec": 76.7,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit",
+        "some_bugs_not_detected",
+        "bug_BUG_ABS_MISSING_not_detected",
+        "bug_BUG_DIV_FLOOR_not_detected",
+        "bug_BUG_POWER_SWAP_not_detected",
+        "bug_BUG_SQRT_NEGATIVE_not_detected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260401_090635_404779e0",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260401_090635_404779e0",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1256.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260401_092732_c2525d1a",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260401_092732_c2525d1a",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 805.7,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "missing_service_log"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260401_094115_f6813ebe",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260401_094115_f6813ebe",
+      "pass": false,
+      "partial_score": 0.46,
+      "elapsed_sec": 356.9,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260401_094720_1f7e9937",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260401_094720_1f7e9937",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 171.0,
+      "failure_modes": [
+        "wrong_keys",
+        "policy_rules_fail",
+        "rule_timeout_sec",
+        "rule_cors_origins",
+        "rule_session_timeout_min",
+        "rule_min_password_length"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260401_095014_34e0bb47",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260401_095014_34e0bb47",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 1009.9,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260401_100713_d6a7b2f9",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260401_100713_d6a7b2f9",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 287.6,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260401_101333_012b9e40",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260401_101333_012b9e40",
+      "pass": false,
+      "partial_score": 0.929,
+      "elapsed_sec": 272.2,
+      "failure_modes": [
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260401_101923_f70cd63b",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260401_101923_f70cd63b",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 120.4,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260401_102125_7eef32b0",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260401_102125_7eef32b0",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 154.3,
+      "failure_modes": [
+        "service_configs_wrong",
+        "connectivity_tests_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260401_102401_909ab5d3",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260401_102401_909ab5d3",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 966.9,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260401_104009_74b901fb",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260401_104009_74b901fb",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 1106.1,
+      "failure_modes": [
+        "perf_test_fail",
+        "hardcoded_credentials"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260401_105839_b608b5b0",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260401_105839_b608b5b0",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 658.6,
+      "failure_modes": [
+        "tests_fail_on_correct_code",
+        "pytest_nonzero_exit",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260401_111430_0d5301c9",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260401_111430_0d5301c9",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 386.1,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260401_112106_b1692246",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260401_112106_b1692246",
+      "pass": false,
+      "partial_score": 0.1,
+      "elapsed_sec": 1339.3,
+      "failure_modes": [
+        "too_few_tests",
+        "low_coverage",
+        "mutant_01_not_caught",
+        "mutant_02_not_caught",
+        "mutant_03_not_caught",
+        "mutant_04_not_caught",
+        "mutant_05_not_caught",
+        "insufficient_mutation_detection",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260401_115026_8ce9892d",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260401_115026_8ce9892d",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 366.6,
+      "failure_modes": [
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260401_115643_7870d16f",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260401_115643_7870d16f",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 521.5,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260401_120529_cc77a2a7",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260401_120529_cc77a2a7",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 783.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260401_122245_2fdb770d",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260401_122245_2fdb770d",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 590.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260401_123703_48d01df2",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260401_123703_48d01df2",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1857.9,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260401_130801_76b77520",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260401_130801_76b77520",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 777.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260401_132455_c8969711",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260401_132455_c8969711",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 466.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260401_133624_e84c1c0a",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260401_133624_e84c1c0a",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 704.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260401_135244_892d44a9",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260401_135244_892d44a9",
+      "pass": false,
+      "partial_score": 0.8333,
+      "elapsed_sec": 430.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260401_140509_74b4c0e7",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260401_140509_74b4c0e7",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 468.6,
+      "failure_modes": [
+        "hardcoded_secret_present",
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260401_141259_5c3a8d47",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260401_141259_5c3a8d47",
+      "pass": false,
+      "partial_score": 0.85,
+      "elapsed_sec": 686.2,
+      "failure_modes": [
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260401_142427_048946ac",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260401_142427_048946ac",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 758.5,
+      "failure_modes": [
+        "wrong_row_count",
+        "missing_category_fill_fail",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260401_143708_b6136e71",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260401_143708_b6136e71",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 585.7,
+      "failure_modes": [
+        "wrong_row_count",
+        "date_format_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260401_144655_5061c11f",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260401_144655_5061c11f",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 464.0,
+      "failure_modes": [
+        "some_bugs_not_detected",
+        "bug_BUG_ABS_MISSING_not_detected",
+        "bug_BUG_DIV_FLOOR_not_detected",
+        "bug_BUG_POWER_SWAP_not_detected",
+        "bug_BUG_SQRT_NEGATIVE_not_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260401_145837_5dfea205",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260401_145837_5dfea205",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 181.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260401_150138_cf271c95",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260401_150138_cf271c95",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 696.2,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260401_151331_33eba1a0",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260401_151331_33eba1a0",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 469.9,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260401_152130_ee1c59b3",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260401_152130_ee1c59b3",
+      "pass": false,
+      "partial_score": 0.93,
+      "elapsed_sec": 716.3,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260401_153328_9c02b9b2",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260401_153328_9c02b9b2",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 262.4,
+      "failure_modes": [
+        "allow_decisions_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260401_153757_81545adc",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260401_153757_81545adc",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1151.3,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260401_155839_8ece5b81",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260401_155839_8ece5b81",
+      "pass": false,
+      "partial_score": 0.786,
+      "elapsed_sec": 506.3,
+      "failure_modes": [
+        "order_item_columns_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260401_160832_5f702e50",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260401_160832_5f702e50",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 420.7,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260401_161535_a3785653",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260401_161535_a3785653",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 177.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260401_161833_1852fc27",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260401_161833_1852fc27",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 610.3,
+      "failure_modes": [
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260401_162845_f978b572",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260401_162845_f978b572",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 633.0,
+      "failure_modes": [
+        "perf_test_fail",
+        "reliability_test_fail",
+        "no_retry_logic",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260401_163925_6b999033",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260401_163925_6b999033",
+      "pass": false,
+      "partial_score": 0.46,
+      "elapsed_sec": 1168.6,
+      "failure_modes": [
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260401_170334_d11aaad1",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260401_170334_d11aaad1",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 502.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260401_171206_7361c0d9",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260401_171206_7361c0d9",
+      "pass": false,
+      "partial_score": 0.1,
+      "elapsed_sec": 1078.6,
+      "failure_modes": [
+        "tests_fail_on_correct_engine",
+        "low_coverage",
+        "mutant_01_not_caught",
+        "mutant_02_not_caught",
+        "mutant_03_not_caught",
+        "mutant_04_not_caught",
+        "mutant_05_not_caught",
+        "insufficient_mutation_detection",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260401_173429_0e924fe4",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260401_173429_0e924fe4",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 2017.4,
+      "failure_modes": [
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260401_180814_f7184887",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260401_180814_f7184887",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 541.9,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260401_181717_2bc6271a",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260401_181717_2bc6271a",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 673.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260401_182940_a9f1ee22",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260401_182940_a9f1ee22",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 968.4,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260401_184549_b3f550c5",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260401_184549_b3f550c5",
+      "pass": false,
+      "partial_score": 0.71,
+      "elapsed_sec": 1751.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260401_191825_7d79a371",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260401_191825_7d79a371",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 2502.3,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260401_200007_489eb705",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260401_200007_489eb705",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 988.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260401_201635_e7bf9b64",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260401_201635_e7bf9b64",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 436.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260401_202757_4a537580",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260401_202757_4a537580",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 841.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260401_204158_6ffee3c2",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260401_204158_6ffee3c2",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 428.5,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260401_204908_f21c7fa8",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260401_204908_f21c7fa8",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 599.9,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260401_205910_9fbc098a",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260401_205910_9fbc098a",
+      "pass": false,
+      "partial_score": 0.81,
+      "elapsed_sec": 685.6,
+      "failure_modes": [
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260401_211037_63cb8bc8",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260401_211037_63cb8bc8",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 909.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260401_212548_e7924c1d",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260401_212548_e7924c1d",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 1503.0,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "pytest_nonzero_exit",
+        "some_bugs_not_detected",
+        "bug_BUG_ABS_MISSING_not_detected",
+        "bug_BUG_DIV_FLOOR_not_detected",
+        "bug_BUG_POWER_SWAP_not_detected",
+        "bug_BUG_SQRT_NEGATIVE_not_detected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260401_215502_21217718",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260401_215502_21217718",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 553.9,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260401_220416_0002ee5b",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260401_220416_0002ee5b",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1234.4,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "missing_service_log",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260401_222507_fe426195",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260401_222507_fe426195",
+      "pass": false,
+      "partial_score": 0.46,
+      "elapsed_sec": 1189.7,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260401_224505_f68c321a",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260401_224505_f68c321a",
+      "pass": false,
+      "partial_score": 0.79,
+      "elapsed_sec": 1510.4,
+      "failure_modes": [
+        "policy_rules_fail",
+        "rule_max_connections",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260401_231018_6135fd04",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260401_231018_6135fd04",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 532.7,
+      "failure_modes": [
+        "rbac_py_syntax_error",
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "deny_decisions_wrong",
+        "flask_allowed_returns_403",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "hardcoded_bypass_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260401_231913_26db92ea",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260401_231913_26db92ea",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 772.0,
+      "failure_modes": [
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260401_233344_cb964c2a",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260401_233344_cb964c2a",
+      "pass": false,
+      "partial_score": 0.786,
+      "elapsed_sec": 622.9,
+      "failure_modes": [
+        "order_item_columns_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260401_234520_564e2253",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260401_234520_564e2253",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 1554.0,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260402_001116_42be2f67",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260402_001116_42be2f67",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 374.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260402_001732_42df1bf3",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260402_001732_42df1bf3",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 1490.3,
+      "failure_modes": [
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260402_004223_42f0dbd8",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260402_004223_42f0dbd8",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1575.8,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 24577 input tokens and requested 8192 output tokens. However, the model's context length is only 32768 tokens, resulting in a maximum input length of 24576 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=24577)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260402_010839_d7bc824c",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260402_010839_d7bc824c",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1624.6,
+      "failure_modes": [],
+      "error": "'utf-8' codec can't decode byte 0xf1 in position 117: invalid continuation byte"
+    }
+  ]
+}

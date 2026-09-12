@@ -1,0 +1,31 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "_comment_1": "Default deny. Before 2026-09-03 this database had no rules file and no auth in the client, so an unauthenticated GET on /teambench_new.json returned HTTP 200 with the full participant tree: names, institutional emails, chat transcripts and submitted code for the COUHES 7676 study.",
+
+    "_comment_2": "The study frontend (human_eval/_backend_clone/src/firebase.ts) performs no authentication at all. Deploying these rules WILL break it until the client calls signInAnonymously() and the backend uses a service account. Deploy anyway: an open participant database is the more serious problem, and the study is not currently collecting.",
+
+    "teambench_new": {
+      "participants": {
+        "$session": {
+          ".read": "auth != null && (auth.uid === data.child('ownerUid').val() || root.child('staff').child(auth.uid).exists())",
+          ".write": "auth != null && (!data.exists() || auth.uid === data.child('ownerUid').val())",
+          "ownerUid": {
+            ".validate": "newData.val() === auth.uid && (!data.exists() || data.val() === newData.val())"
+          }
+        }
+      },
+      "tasks": {
+        ".read": "auth != null",
+        ".write": "auth != null && root.child('staff').child(auth.uid).exists()"
+      }
+    },
+
+    "staff": {
+      ".read": false,
+      ".write": false
+    }
+  }
+}

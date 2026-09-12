@@ -1,0 +1,817 @@
+{
+  "summary": {
+    "c1_causes": {
+      "missing_dependency": 11,
+      "other": 2,
+      "no_tests_collected": 12,
+      "relative_import": 1,
+      "parameterisation_break": 1
+    },
+    "c5_causes": {
+      "missing_dependency": 27,
+      "ok": 4,
+      "missing_target": 7,
+      "relative_import": 2
+    },
+    "n": 27,
+    "relabelled_c1": 1,
+    "relabel_note": "c1_cause recomputed from the stored pytest tail with the corrected classifier; c5_causes were left as originally labelled"
+  },
+  "tasks": [
+    {
+      "task_id": "GH1043_plotly.py_5415",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "_plotly_utils/basevalidators.py"
+      ],
+      "c1_targets": [
+        "tests/test_optional/test_graph_objs/test_numpy.py"
+      ],
+      "c5_targets": [
+        "_plotly_utils/basevalidators.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n______ ERROR collecting tests/test_optional/test_graph_objs/test_numpy.py ______\nImportError while importing test module '/tmp/g3diag_cgkh7bdv/GH1043_plotly.py_5415/20260905_050447_51321a2d/workspace/tests/test_optional/test_graph_objs/test_numpy.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_optional/test_graph_objs/test_numpy.py:5: in <module>\n    import plotly.graph_objs as go\nE   ModuleNotFoundError: No module named 'plotly'\n=========================== short test summary info ============================\nERROR tests/test_optional/test_graph_objs/test_numpy.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 2.37s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_cgkh7bdv/GH1043_plotly.py_5415/20260905_050447_51321a2d/workspace/_plotly_utils/basevalidators.py\", line 12, in <module>\n    from _plotly_utils.optional_imports import get_module\nModuleNotFoundError: No module named '_plotly_utils.optional_imports'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named '_plotly_utils.optional_imports'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH112_redis-py_3996",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "redis/observability/__init__.py"
+      ],
+      "c1_targets": [
+        "tests/test_observability/test_public_api.py"
+      ],
+      "c5_targets": [
+        "redis/observability/__init__.py"
+      ],
+      "c1_rc": 0,
+      "c1_cause": "other",
+      "c1_evidence": "8 passed in 1.15s",
+      "c1_tail": "........                                                                 [100%]\n8 passed in 1.15s\n",
+      "c5_causes": [
+        [
+          "ok",
+          "redis/observability/__init__.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH1172_plotly.py_5000",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "packages/python/plotly/plotly/express/_core.py"
+      ],
+      "c1_targets": [
+        "packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py"
+      ],
+      "c5_targets": [
+        "packages/python/plotly/plotly/express/_core.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_ ERROR collecting packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py _\nImportError while importing test module '/tmp/g3diag_cm8gur6n/GH1172_plotly.py_5000/20260905_050501_5180b8fa/workspace/packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\npackages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py:1: in <module>\n    import plotly.express as px\nE   ModuleNotFoundError: No module named 'plotly'\n=========================== short test summary info ============================\nERROR packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 1.40s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_cm8gur6n/GH1172_plotly.py_5000/20260905_050501_5180b8fa/workspace/packages/python/plotly/plotly/express/_core.py\", line 1, in <module>\n    import plotly.graph_objs as go\nModuleNotFoundError: No module named 'plotly'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'plotly'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH1221_plotly.py_5361",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "plotly/matplotlylib/mplexporter/tests/test_utils.py",
+        "plotly/matplotlylib/tests/test_renderer.py"
+      ],
+      "c1_targets": [
+        "plotly/matplotlylib/mplexporter/tests/test_utils.py",
+        "plotly/matplotlylib/tests/test_renderer.py"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "other",
+      "c1_evidence": "18 warnings, 1 error in 2.92s",
+      "c1_tail": "hon3.10/dist-packages/matplotlib/_fontconfig_pattern.py:134\n../../../../../usr/local/lib/python3.10/dist-packages/matplotlib/_fontconfig_pattern.py:134\n../../../../../usr/local/lib/python3.10/dist-packages/matplotlib/_fontconfig_pattern.py:134\n../../../../../usr/local/lib/python3.10/dist-packages/matplotlib/_fontconfig_pattern.py:134\n../../../../../usr/local/lib/python3.10/dist-packages/matplotlib/_fontconfig_pattern.py:134\n  /usr/local/lib/python3.10/dist-packages/matplotlib/_fontconfig_pattern.py:134: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n    self._parser.resetCache()\n\n../../../../../usr/local/lib/python3.10/dist-packages/matplotlib/_mathtext.py:29\n  /usr/local/lib/python3.10/dist-packages/matplotlib/_mathtext.py:29: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'\n    ParserElement.enablePackrat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nERROR plotly/matplotlylib/mplexporter/tests/test_utils.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n18 warnings, 1 error in 2.92s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH288_osparc-simcore_6935",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "services/storage/src/simcore_service_storage/db_file_meta_data.py",
+        "services/storage/src/simcore_service_storage/simcore_s3_dsm.py",
+        "services/storage/src/simcore_service_storage/simcore_s3_dsm_utils.py",
+        "services/storage/tests/unit/test_db_file_meta_data.py",
+        "services/storage/tests/unit/test_handlers_files.py"
+      ],
+      "c1_targets": [
+        "services/storage/tests/unit/test_db_file_meta_data.py",
+        "services/storage/tests/unit/test_handlers_files.py",
+        "services/storage/tests/unit/test_simcore_s3_dsm_utils.py"
+      ],
+      "c5_targets": [
+        "services/storage/src/simcore_service_storage/db_file_meta_data.py",
+        "services/storage/src/simcore_service_storage/simcore_s3_dsm.py",
+        "services/storage/src/simcore_service_storage/simcore_s3_dsm_utils.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'faker'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n____ ERROR collecting services/storage/tests/unit/test_db_file_meta_data.py ____\nImportError while importing test module '/tmp/g3diag_yre9vhof/GH288_osparc-simcore_6935/20260905_050516_a7e83ced/workspace/services/storage/tests/unit/test_db_file_meta_data.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\nservices/storage/tests/unit/test_db_file_meta_data.py:9: in <module>\n    from faker import Faker\nE   ModuleNotFoundError: No module named 'faker'\n=========================== short test summary info ============================\nERROR services/storage/tests/unit/test_db_file_meta_data.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 1.12s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_yre9vhof/GH288_osparc-simcore_6935/20260905_050516_a7e83ced/workspace/services/storage/src/simcore_service_storage/db_file_meta_data.py\", line 5, in <module>\n    from aiopg.sa.connection import SAConnection\nModuleNotFoundError: No module named 'aiopg'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'aiopg'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'aiopg'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'aiopg'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH344_bun_28426",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "src/bun.js/api/bun/socket/Handlers.zig",
+        "test/js/bun/net/socket.test.ts"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.13s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH351_prisma_29307",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "packages/adapter-pg/src/__tests__/errors.test.ts",
+        "packages/adapter-pg/src/errors.ts"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.20s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH382_redis-py_3988",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "redis/client.py",
+        "redis/cluster.py",
+        "redis/connection.py",
+        "redis/maint_notifications.py",
+        "tests/test_scenario/conftest.py",
+        "tests/test_scenario/test_maint_notifications.py"
+      ],
+      "c1_targets": [
+        "tests/test_scenario/conftest.py",
+        "tests/test_scenario/test_maint_notifications.py"
+      ],
+      "c5_targets": [
+        "redis/client.py",
+        "redis/cluster.py",
+        "redis/connection.py",
+        "redis/maint_notifications.py"
+      ],
+      "c1_rc": 4,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ImportError: cannot import name 'RedisCluster' from 'redis' (unknown location)",
+      "c1_tail": "ImportError while loading conftest '/tmp/g3diag_5k53fxmq/GH382_redis-py_3988/20260905_050533_d188a577/workspace/tests/test_scenario/conftest.py'.\ntests/test_scenario/conftest.py:9: in <module>\n    from redis import RedisCluster\nE   ImportError: cannot import name 'RedisCluster' from 'redis' (unknown location)\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_5k53fxmq/GH382_redis-py_3988/20260905_050533_d188a577/workspace/redis/client.py\", line 20, in <module>\n    from redis._parsers.encoders import Encoder\nModuleNotFoundError: No module named 'redis._parsers'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'redis._parsers'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'redis._parsers'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'redis.cache'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'redis.observability'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH440_arrow_1228",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "CHANGELOG.rst",
+        "arrow/_version.py"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "arrow/_version.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.51s\n",
+      "c5_causes": [
+        [
+          "ok",
+          "arrow/_version.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH478_hass-opnsense_379",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "custom_components/opnsense/pyopnsense/__init__.py"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "custom_components/opnsense/pyopnsense/__init__.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 2.00s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_ey36ubq7/GH478_hass-opnsense_379/20260905_050543_7a28ea45/workspace/custom_components/opnsense/pyopnsense/__init__.py\", line 21, in <module>\n    import awesomeversion\nModuleNotFoundError: No module named 'awesomeversion'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'awesomeversion'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH479_redis-py_3972",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "redis/_parsers/resp3.py"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "redis/_parsers/resp3.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.27s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_4jko5glr/GH479_redis-py_3972/20260905_050549_f9fb7807/workspace/redis/_parsers/resp3.py\", line 4, in <module>\n    from ..exceptions import ConnectionError, InvalidResponse, ResponseError\nImportError: attempted relative import with no known parent package\n",
+      "c5_causes": [
+        [
+          "relative_import",
+          "ImportError: attempted relative import with no known parent package"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH483_prisma_29243",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        ".github/workflows/build-engine-branch.yml",
+        "packages/client-engine-runtime/src/interpreter/render-query.test.ts",
+        "packages/client-engine-runtime/src/interpreter/render-query.ts",
+        "packages/client-engine-runtime/src/query-plan.ts"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.05s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH485_bootrun-backend_111",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "alembic/versions/a3a28d52a24f_add_unique_watched_seconds_to_progress.py",
+        "app/models/progress.py",
+        "app/services/enrollment_service.py"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "alembic/versions/a3a28d52a24f_add_unique_watched_seconds_to_progress.py",
+        "app/models/progress.py",
+        "app/services/enrollment_service.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.12s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_5mnqklke/GH485_bootrun-backend_111/20260905_050603_3d485b3a/workspace/alembic/versions/a3a28d52a24f_add_unique_watched_seconds_to_progress.py\", line 10, in <module>\n    from alembic import op\nImportError: cannot import name 'op' from 'alembic' (unknown location)\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ImportError: cannot import name 'op' from 'alembic' (unknown location)"
+        ],
+        [
+          "relative_import",
+          "ImportError: attempted relative import with no known parent package"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'app.models.base'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH486_starlette_3145",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "docs/release-notes.md",
+        "starlette/__init__.py"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "starlette/__init__.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.25s\n",
+      "c5_causes": [
+        [
+          "ok",
+          "starlette/__init__.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH537_redis-py_3976",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "redis/asyncio/client.py",
+        "redis/asyncio/cluster.py",
+        "redis/asyncio/observability/recorder.py",
+        "redis/commands/core.py",
+        "tests/test_asyncio/test_cluster.py",
+        "tests/test_asyncio/test_observability/test_recorder.py",
+        "tests/test_asyncio/test_pipeline.py"
+      ],
+      "c1_targets": [
+        "tests/test_asyncio/test_cluster.py",
+        "tests/test_asyncio/test_observability/test_recorder.py",
+        "tests/test_asyncio/test_pipeline.py"
+      ],
+      "c5_targets": [
+        "redis/asyncio/client.py",
+        "redis/asyncio/cluster.py",
+        "redis/asyncio/observability/recorder.py",
+        "redis/commands/core.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'redis._parsers'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_____________ ERROR collecting tests/test_asyncio/test_cluster.py ______________\nImportError while importing test module '/tmp/g3diag_vrns8i8h/GH537_redis-py_3976/20260905_050618_1800c181/workspace/tests/test_asyncio/test_cluster.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_asyncio/test_cluster.py:13: in <module>\n    from redis._parsers import AsyncCommandsParser\nE   ModuleNotFoundError: No module named 'redis._parsers'\n=========================== short test summary info ============================\nERROR tests/test_asyncio/test_cluster.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 1.53s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_vrns8i8h/GH537_redis-py_3976/20260905_050618_1800c181/workspace/redis/asyncio/client.py\", line 29, in <module>\n    from redis._parsers.helpers import (\nModuleNotFoundError: No module named 'redis._parsers'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'redis._parsers'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'redis._parsers'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'redis.observability'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'redis.observability'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH577_jinja_2098",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "CHANGES.rst",
+        "pyproject.toml",
+        "src/jinja2/__init__.py",
+        "uv.lock"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "src/jinja2/__init__.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 1,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "No files were found in testpaths",
+      "c1_tail": "on\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/pluggy/_callers.py\", line 139, in _multicall\n    teardown.throw(exception)\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/_pytest/helpconfig.py\", line 124, in pytest_cmdline_parse\n    config = yield\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/pluggy/_callers.py\", line 121, in _multicall\n    res = hook_impl.function(*args)\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/_pytest/config/__init__.py\", line 1192, in pytest_cmdline_parse\n    self.parse(args)\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/_pytest/config/__init__.py\", line 1581, in parse\n    self.args, self.args_source = self._decide_args(\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/_pytest/config/__init__.py\", line 1394, in _decide_args\n    self.issue_config_time_warning(\n  File \"/u/ybkim95/.local/lib/python3.10/site-packages/_pytest/config/__init__.py\", line 1611, in issue_config_time_warning\n    warnings.warn(warning, stacklevel=stacklevel)\npytest.PytestConfigWarning: No files were found in testpaths; consider removing or adjusting your testpaths configuration. Searching recursively from the current directory instead.\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_120mrjt0/GH577_jinja_2098/20260905_050624_e3465fbb/workspace/src/jinja2/__init__.py\", line 10, in <module>\n    from .bccache import BytecodeCache as BytecodeCache\nModuleNotFoundError: No module named 'mod'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'mod'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH589_prisma_29278",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "packages/get-platform/package.json",
+        "packages/get-platform/src/__tests__/getPlatform.test.ts",
+        "packages/get-platform/src/__tests__/getSSLVersion.test.ts",
+        "packages/get-platform/src/__tests__/parseDistro.test.ts",
+        "packages/get-platform/src/__tests__/parseOpenSSLVersion.test.ts",
+        "pnpm-lock.yaml"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.14s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH813_quart_436",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "docs/_static/quart-horizontal-dark.svg",
+        "docs/_static/quart-horizontal.svg",
+        "docs/_static/quart-icon.svg",
+        "docs/conf.py",
+        "docs/index.rst"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "docs/conf.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.07s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_o48fdpiy/GH813_quart_436/20260905_050633_310b738c/workspace/docs/conf.py\", line 4, in <module>\n    from sphinx.ext import apidoc_v2\nModuleNotFoundError: No module named 'sphinx'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'sphinx'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH84_redis-py_3989",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "redis/asyncio/cluster.py",
+        "tests/test_asyncio/test_cluster.py",
+        "tests/test_asyncio/test_pipeline.py"
+      ],
+      "c1_targets": [
+        "tests/test_asyncio/test_cluster.py",
+        "tests/test_asyncio/test_pipeline.py"
+      ],
+      "c5_targets": [
+        "redis/asyncio/cluster.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'redis._parsers'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_____________ ERROR collecting tests/test_asyncio/test_cluster.py ______________\nImportError while importing test module '/tmp/g3diag_9p6xookb/GH84_redis-py_3989/20260905_050638_d6cb24ae/workspace/tests/test_asyncio/test_cluster.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_asyncio/test_cluster.py:13: in <module>\n    from redis._parsers import AsyncCommandsParser\nE   ModuleNotFoundError: No module named 'redis._parsers'\n=========================== short test summary info ============================\nERROR tests/test_asyncio/test_cluster.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 1.62s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_9p6xookb/GH84_redis-py_3989/20260905_050638_d6cb24ae/workspace/redis/asyncio/cluster.py\", line 28, in <module>\n    from redis._parsers import AsyncCommandsParser, Encoder\nModuleNotFoundError: No module named 'redis._parsers'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'redis._parsers'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH858_ansys-sphinx-theme_541",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "doc/changelog.d/541.documentation.md",
+        "doc/source/conf.py",
+        "doc/source/user-guide/options.rst",
+        "src/ansys_sphinx_theme/__init__.py",
+        "src/ansys_sphinx_theme/search/__init__.py",
+        "src/ansys_sphinx_theme/search/fuse_search.py"
+      ],
+      "c1_targets": [
+        "<whole workspace: grader passes no target>"
+      ],
+      "c5_targets": [
+        "doc/source/conf.py",
+        "src/ansys_sphinx_theme/__init__.py",
+        "src/ansys_sphinx_theme/search/__init__.py",
+        "src/ansys_sphinx_theme/search/fuse_search.py"
+      ],
+      "c1_no_target": true,
+      "c1_rc": 5,
+      "c1_cause": "no_tests_collected",
+      "c1_evidence": "no tests ran",
+      "c1_tail": "\nno tests ran in 1.12s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_hw5_i3xd/GH858_ansys-sphinx-theme_541/20260905_050644_0eaaf087/workspace/doc/source/conf.py\", line 8, in <module>\n    from github import Github\nModuleNotFoundError: No module named 'github'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'github'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'sphinx'"
+        ],
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'sphinx'"
+        ],
+        [
+          "ok",
+          "src/ansys_sphinx_theme/search/fuse_search.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH887_plotly.py_5040",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "plotly/io/_json.py"
+      ],
+      "c1_targets": [
+        "tests/test_io/test_to_from_plotly_json.py"
+      ],
+      "c5_targets": [
+        "plotly/io/_json.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly.io.json'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n__________ ERROR collecting tests/test_io/test_to_from_plotly_json.py __________\nImportError while importing test module '/tmp/g3diag_1kqlpql8/GH887_plotly.py_5040/20260905_050650_0bb79b35/workspace/tests/test_io/test_to_from_plotly_json.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_io/test_to_from_plotly_json.py:2: in <module>\n    import plotly.io.json as pio\nE   ModuleNotFoundError: No module named 'plotly.io.json'\n=========================== short test summary info ============================\nERROR tests/test_io/test_to_from_plotly_json.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 1.67s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_1kqlpql8/GH887_plotly.py_5040/20260905_050650_0bb79b35/workspace/plotly/io/_json.py\", line 7, in <module>\n    from plotly.io._utils import validate_coerce_fig_to_dict, validate_coerce_output_type\nModuleNotFoundError: No module named 'plotly.io._utils'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'plotly.io._utils'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH898_plotly.py_5322",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "plotly/matplotlylib/mplexporter/tests/test_utils.py"
+      ],
+      "c1_targets": [
+        "plotly/matplotlylib/mplexporter/tests/test_utils.py"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "relative_import",
+      "c1_evidence": "E   ImportError: attempted relative import with no known parent package",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_____ ERROR collecting plotly/matplotlylib/mplexporter/tests/test_utils.py _____\nImportError while importing test module '/tmp/g3diag_0pb9609v/GH898_plotly.py_5322/20260905_050656_0164caff/workspace/plotly/matplotlylib/mplexporter/tests/test_utils.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\nplotly/matplotlylib/mplexporter/tests/test_utils.py:2: in <module>\n    from .. import utils\nE   ImportError: attempted relative import with no known parent package\n=========================== short test summary info ============================\nERROR plotly/matplotlylib/mplexporter/tests/test_utils.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 3.05s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH915_plotly.py_4926",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "packages/python/plotly/_plotly_utils/basevalidators.py"
+      ],
+      "c1_targets": [
+        "packages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py"
+      ],
+      "c5_targets": [
+        "packages/python/plotly/_plotly_utils/basevalidators.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_ ERROR collecting packages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py _\nImportError while importing test module '/tmp/g3diag_wq_7e2j5/GH915_plotly.py_4926/20260905_050704_2c9aec23/workspace/packages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\npackages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py:3: in <module>\n    import plotly.express as px\nE   ModuleNotFoundError: No module named 'plotly'\n=========================== short test summary info ============================\nERROR packages/python/plotly/_plotly_utils/tests/validators/test_fig_deepcopy.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 1.75s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_wq_7e2j5/GH915_plotly.py_4926/20260905_050704_2c9aec23/workspace/packages/python/plotly/_plotly_utils/basevalidators.py\", line 13, in <module>\n    from _plotly_utils.optional_imports import get_module\nModuleNotFoundError: No module named '_plotly_utils'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named '_plotly_utils'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH958_scipy_24816",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "scipy/sparse/csgraph/_tools.pyx",
+        "scipy/sparse/csgraph/tests/test_conversions.py"
+      ],
+      "c1_targets": [
+        "scipy/sparse/csgraph/tests/test_conversions.py"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'assert_array_almost_equal_base' from 'numpy.testing' (/u/ybkim95/.local/lib/python3.10/site-packages/numpy/testing/__init__.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_______ ERROR collecting scipy/sparse/csgraph/tests/test_conversions.py ________\nImportError while importing test module '/tmp/g3diag_pm3_j56x/GH958_scipy_24816/20260905_050711_2e15a4e7/workspace/scipy/sparse/csgraph/tests/test_conversions.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\nscipy/sparse/csgraph/tests/test_conversions.py:3: in <module>\n    from numpy.testing import assert_array_almost_equal_base\nE   ImportError: cannot import name 'assert_array_almost_equal_base' from 'numpy.testing' (/u/ybkim95/.local/lib/python3.10/site-packages/numpy/testing/__init__.py)\n=========================== short test summary info ============================\nERROR scipy/sparse/csgraph/tests/test_conversions.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 2.16s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH974_plotly.py_4922",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "packages/python/plotly/_plotly_utils/utils.py"
+      ],
+      "c1_targets": [
+        "packages/python/plotly/plotly/tests/test_io/test_to_from_json.py",
+        "packages/python/plotly/plotly/tests/test_optional/test_px/test_px.py"
+      ],
+      "c5_targets": [
+        "packages/python/plotly/_plotly_utils/utils.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_ ERROR collecting packages/python/plotly/plotly/tests/test_io/test_to_from_json.py _\nImportError while importing test module '/tmp/g3diag_k33p0td6/GH974_plotly.py_4922/20260905_050717_f57ded32/workspace/packages/python/plotly/plotly/tests/test_io/test_to_from_json.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\npackages/python/plotly/plotly/tests/test_io/test_to_from_json.py:1: in <module>\n    import plotly.graph_objs as go\nE   ModuleNotFoundError: No module named 'plotly'\n=========================== short test summary info ============================\nERROR packages/python/plotly/plotly/tests/test_io/test_to_from_json.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 1.04s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_k33p0td6/GH974_plotly.py_4922/20260905_050717_f57ded32/workspace/packages/python/plotly/_plotly_utils/utils.py\", line 8, in <module>\n    from _plotly_utils.optional_imports import get_module\nModuleNotFoundError: No module named '_plotly_utils'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named '_plotly_utils'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH992_plotly.py_5102",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "plotly/basewidget.py"
+      ],
+      "c1_targets": [
+        "tests/test_core/test_figure_widget_backend/test_validate_initialization.py"
+      ],
+      "c5_targets": [
+        "plotly/basewidget.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly.graph_objs'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_ ERROR collecting tests/test_core/test_figure_widget_backend/test_validate_initialization.py _\nImportError while importing test module '/tmp/g3diag_gxs9yg2z/GH992_plotly.py_5102/20260905_050722_ded9ed86/workspace/tests/test_core/test_figure_widget_backend/test_validate_initialization.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_core/test_figure_widget_backend/test_validate_initialization.py:2: in <module>\n    import plotly.graph_objs as go\nE   ModuleNotFoundError: No module named 'plotly.graph_objs'\n=========================== short test summary info ============================\nERROR tests/test_core/test_figure_widget_backend/test_validate_initialization.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 1.41s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_gxs9yg2z/GH992_plotly.py_5102/20260905_050722_ded9ed86/workspace/plotly/basewidget.py\", line 4, in <module>\n    from plotly.io._renderers import display_jupyter_version_warnings\nModuleNotFoundError: No module named 'plotly.io'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'plotly.io'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH993_plotly.py_4914",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "packages/python/plotly/plotly/express/_core.py"
+      ],
+      "c1_targets": [
+        "packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py"
+      ],
+      "c5_targets": [
+        "packages/python/plotly/plotly/express/_core.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'plotly'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n_ ERROR collecting packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py _\nImportError while importing test module '/tmp/g3diag_3pnfo4mx/GH993_plotly.py_4914/20260905_050728_1fef84f5/workspace/packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\npackages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py:1: in <module>\n    import plotly.express as px\nE   ModuleNotFoundError: No module named 'plotly'\n=========================== short test summary info ============================\nERROR packages/python/plotly/plotly/tests/test_optional/test_px/test_px_functions.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 1.15s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_3pnfo4mx/GH993_plotly.py_4914/20260905_050728_1fef84f5/workspace/packages/python/plotly/plotly/express/_core.py\", line 1, in <module>\n    import plotly.graph_objs as go\nModuleNotFoundError: No module named 'plotly'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named 'plotly'"
+        ]
+      ]
+    }
+  ]
+}

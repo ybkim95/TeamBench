@@ -1,0 +1,962 @@
+{
+  "model": "gemini-3-flash-preview",
+  "tasks": [
+    "GH1_flask_session_ctx",
+    "GH2_click_flag_value",
+    "GH3_httpx_auth_leak",
+    "GH4_requests_encoding",
+    "GH5_pydantic_circular",
+    "GH6_queryset_union",
+    "GH7_fixture_scope_leak",
+    "GH8_async_cache_race",
+    "GH9_pool_exhaustion",
+    "GH10_retry_backoff",
+    "GH11_middleware_order"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-16T04:55:23.154222+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.2727,
+    "s_no_verify": 0.3636,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.6709,
+    "p_restricted": 0.6327,
+    "p_full": 0.8291,
+    "p_no_verify": 0.8191,
+    "p_no_plan": 0.6564,
+    "necessity_gap": 0.0382,
+    "tni": 5.1429,
+    "team_uplift": 0.1964,
+    "collab_efficiency": 0.2927,
+    "planning_value": 0.1727,
+    "verification_value": 0.01,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": -63.2727,
+    "interpretation": {
+      "tni": "Teamwork fully recovers the performance gap.",
+      "team_uplift": "Team adds +19.6% over single agent",
+      "collab_efficiency": "Team reaches 29.3% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +17.3% partial score",
+      "verification_value": "Verification adds +1.0% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 0,
+      "total": 11,
+      "success_rate": 0.0
+    },
+    "restricted": {
+      "passes": 0,
+      "total": 11,
+      "success_rate": 0.0
+    },
+    "team_no_verify": {
+      "passes": 4,
+      "total": 11,
+      "success_rate": 0.3636
+    },
+    "team_no_plan": {
+      "passes": 0,
+      "total": 11,
+      "success_rate": 0.0
+    },
+    "full": {
+      "passes": 3,
+      "total": 11,
+      "success_rate": 0.2727
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260316_013959_3cf49f32",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260316_013959_3cf49f32",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 31.2,
+      "failure_modes": [
+        "session_lost_on_redirect",
+        "session_lost_on_multi_redirect",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260316_014031_41d66dd2",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260316_014031_41d66dd2",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 73.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260316_014145_51034cd6",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260316_014145_51034cd6",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 30.7,
+      "failure_modes": [
+        "auth_header_leaked",
+        "cookies_leaked",
+        "non_sensitive_headers_stripped",
+        "multi_hop_auth_leaked",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260316_014217_8d39246f",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260316_014217_8d39246f",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 40.1,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260316_014302_11a8d5cc",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260316_014302_11a8d5cc",
+      "pass": false,
+      "partial_score": 0.27,
+      "elapsed_sec": 64.5,
+      "failure_modes": [
+        "syntax_error",
+        "simple_model_broken",
+        "nested_model_broken",
+        "primitive_validation_broken",
+        "depth_1_broken",
+        "depth_3_data_lost",
+        "wide_recursive_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260316_014408_e8d146a9",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260316_014408_e8d146a9",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 36.2,
+      "failure_modes": [
+        "test_basic_filter_failed",
+        "test_basic_exclude_failed",
+        "test_union_works_failed",
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed",
+        "test_union_without_filter_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260316_014742_98c4eed8",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260316_014742_98c4eed8",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 54.3,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260316_014837_d6e7f118",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260316_014837_d6e7f118",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 55.9,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260316_014933_b55ac12e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260316_014933_b55ac12e",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 79.1,
+      "failure_modes": [
+        "test_pool_exhaustion_on_errors_failed",
+        "test_pool_status_after_errors_failed",
+        "test_concurrent_after_errors_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260316_015054_8c9123fe",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260316_015054_8c9123fe",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 41.0,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260316_015136_7221a396",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260316_015136_7221a396",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 30.5,
+      "failure_modes": [
+        "test_error_handler_catches_downstream_failed",
+        "test_multiple_error_handlers_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260316_015212_0f0558c5",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260316_015212_0f0558c5",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 54.4,
+      "failure_modes": [
+        "session_lost_on_redirect",
+        "session_lost_on_multi_redirect",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260316_015307_e2e64304",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260316_015307_e2e64304",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 29.1,
+      "failure_modes": [
+        "flag_value_not_used",
+        "positional_consumed_by_flag",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260316_015337_ee2f840a",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260316_015337_ee2f840a",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 94.0,
+      "failure_modes": [
+        "auth_header_leaked",
+        "cookies_leaked",
+        "non_sensitive_headers_stripped",
+        "multi_hop_auth_leaked",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260316_015512_4060e5b3",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260316_015512_4060e5b3",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 31.8,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260316_015549_1db6ef3e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260316_015549_1db6ef3e",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 63.4,
+      "failure_modes": [
+        "depth_3_data_lost",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260316_015653_0aea4e9b",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260316_015653_0aea4e9b",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 188.0,
+      "failure_modes": [
+        "test_basic_filter_failed",
+        "test_basic_exclude_failed",
+        "test_union_works_failed",
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed",
+        "test_union_without_filter_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260316_020246_c97de281",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260316_020246_c97de281",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 167.1,
+      "failure_modes": [
+        "test_session_scope_leak_failed",
+        "test_session_scope_dict_leak_failed",
+        "test_runner_integration_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260316_020534_58e2b1d5",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260316_020534_58e2b1d5",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 28.5,
+      "failure_modes": [
+        "test_concurrent_race_failed",
+        "test_many_concurrent_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260316_020603_cec032fc",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260316_020603_cec032fc",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 26.6,
+      "failure_modes": [
+        "test_pool_exhaustion_on_errors_failed",
+        "test_pool_status_after_errors_failed",
+        "test_concurrent_after_errors_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260316_020632_63ff4ab1",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260316_020632_63ff4ab1",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 111.9,
+      "failure_modes": [
+        "test_basic_retry_failed",
+        "test_max_retries_respected_failed",
+        "test_task_state_machine_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260316_020825_b989f359",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260316_020825_b989f359",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 30.8,
+      "failure_modes": [
+        "test_error_handler_catches_downstream_failed",
+        "test_multiple_error_handlers_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260316_020900_4b68d9ad",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260316_020900_4b68d9ad",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 84.6,
+      "failure_modes": [
+        "session_lost_on_redirect",
+        "session_lost_on_multi_redirect"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260316_021025_bafc2004",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260316_021025_bafc2004",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 87.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260316_021154_4521b66b",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260316_021154_4521b66b",
+      "pass": false,
+      "partial_score": 0.69,
+      "elapsed_sec": 124.0,
+      "failure_modes": [
+        "auth_header_leaked",
+        "cookies_leaked",
+        "non_sensitive_headers_stripped",
+        "multi_hop_auth_leaked"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260316_021359_6aa717b5",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260316_021359_6aa717b5",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 270.8,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260316_021833_728eb093",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260316_021833_728eb093",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 144.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260316_022058_e9dd4742",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260316_022058_e9dd4742",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 87.6,
+      "failure_modes": [
+        "test_basic_filter_failed",
+        "test_basic_exclude_failed",
+        "test_union_works_failed",
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed",
+        "test_union_without_filter_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260316_022505_23f00d36",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260316_022505_23f00d36",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 112.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260316_022658_7a814fe5",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260316_022658_7a814fe5",
+      "pass": false,
+      "partial_score": 0.78,
+      "elapsed_sec": 100.4,
+      "failure_modes": [
+        "test_concurrent_race_failed",
+        "test_many_concurrent_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260316_022840_c760b80c",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260316_022840_c760b80c",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 138.9,
+      "failure_modes": [
+        "test_pool_status_after_errors_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260316_023059_772d3f61",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260316_023059_772d3f61",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 105.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260316_023246_ef411c54",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260316_023246_ef411c54",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 127.8,
+      "failure_modes": [
+        "test_error_handler_catches_downstream_failed",
+        "test_multiple_error_handlers_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260316_023500_d235faf5",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260316_023500_d235faf5",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 95.4,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260316_023636_73b5513f",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260316_023636_73b5513f",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 201.1,
+      "failure_modes": [
+        "flag_value_not_used",
+        "positional_consumed_by_flag",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260316_023958_8bf83893",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260316_023958_8bf83893",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 66.7,
+      "failure_modes": [
+        "auth_header_leaked",
+        "cookies_leaked",
+        "non_sensitive_headers_stripped",
+        "multi_hop_auth_leaked",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260316_024107_485869cf",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260316_024107_485869cf",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 75.6,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260316_024227_e1fa8860",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260316_024227_e1fa8860",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 81.5,
+      "failure_modes": [
+        "depth_3_data_lost",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260316_024350_70f96ccc",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260316_024350_70f96ccc",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 112.4,
+      "failure_modes": [
+        "test_basic_filter_failed",
+        "test_basic_exclude_failed",
+        "test_union_works_failed",
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed",
+        "test_union_without_filter_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260316_024809_e4e188a1",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260316_024809_e4e188a1",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 327.1,
+      "failure_modes": [
+        "test_session_scope_leak_failed",
+        "test_session_scope_dict_leak_failed",
+        "test_runner_integration_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260316_025337_59c1a2ad",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260316_025337_59c1a2ad",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 110.2,
+      "failure_modes": [
+        "test_concurrent_race_failed",
+        "test_many_concurrent_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260316_025528_093436f4",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260316_025528_093436f4",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 82.4,
+      "failure_modes": [
+        "test_pool_exhaustion_on_errors_failed",
+        "test_pool_status_after_errors_failed",
+        "test_concurrent_after_errors_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260316_025653_e51e0293",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260316_025653_e51e0293",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 193.1,
+      "failure_modes": [
+        "test_basic_retry_failed",
+        "test_max_retries_respected_failed",
+        "test_task_state_machine_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260316_030007_050baa00",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260316_030007_050baa00",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 79.5,
+      "failure_modes": [
+        "test_error_handler_catches_downstream_failed",
+        "test_multiple_error_handlers_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260316_030130_e5372d62",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260316_030130_e5372d62",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 567.5,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260316_031058_55340b8e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260316_031058_55340b8e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 691.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260316_032230_d2509d3f",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260316_032230_d2509d3f",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 502.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260316_033053_1040f4c9",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260316_033053_1040f4c9",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 648.5,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260316_034145_f771502d",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260316_034145_f771502d",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 578.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260316_035124_b4f6b29f",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260316_035124_b4f6b29f",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 422.1,
+      "failure_modes": [
+        "test_basic_filter_failed",
+        "test_basic_exclude_failed",
+        "test_union_works_failed",
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed",
+        "test_union_without_filter_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260316_040107_06633f84",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260316_040107_06633f84",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 469.1,
+      "failure_modes": [
+        "test_runner_integration_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260316_040857_24e20ab0",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260316_040857_24e20ab0",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 547.4,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260316_041805_a40fd4f9",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260316_041805_a40fd4f9",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 554.8,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260316_042721_4ada7654",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260316_042721_4ada7654",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1265.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260316_044827_7adead49",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260316_044827_7adead49",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 411.4,
+      "failure_modes": [
+        "test_error_handler_catches_downstream_failed",
+        "test_multiple_error_handlers_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    }
+  ]
+}

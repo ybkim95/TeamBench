@@ -1,0 +1,168 @@
+{
+  "model": "gemini-3-flash-preview",
+  "tasks": [
+    "CRYPTO1_nonce_reuse",
+    "DIST1_queue_race",
+    "SEC1_vuln_patch",
+    "D1_schema_drift",
+    "INC1_cascade_failure",
+    "SPEC1_feature_impl",
+    "NEG1_tradeoff_config"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-16T13:15:41.862824+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.0,
+    "p_restricted": 0.0,
+    "p_full": 0.0,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.0,
+    "tni": 0.0,
+    "team_uplift": 0.0,
+    "collab_efficiency": 0.0,
+    "planning_value": 0.0,
+    "verification_value": 0.0,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": 0.0,
+    "interpretation": {
+      "tni": "Teamwork provides minimal improvement.",
+      "team_uplift": "Team adds +0.0% over single agent",
+      "collab_efficiency": "Team reaches 0.0% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +0.0% partial score",
+      "verification_value": "Verification adds +0.0% partial score"
+    }
+  },
+  "per_condition": {
+    "topo_self_check": {
+      "passes": 0,
+      "total": 7,
+      "success_rate": 0.0
+    }
+  },
+  "runs": [
+    {
+      "condition": "topo_self_check",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260316_124058_3930e94d",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260316_124058_3930e94d",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 160.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "topo_self_check",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260316_124534_dc26bc88",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260316_124534_dc26bc88",
+      "pass": false,
+      "partial_score": 0.3333,
+      "elapsed_sec": 413.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "topo_self_check",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260316_125439_6a58e0fd",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260316_125439_6a58e0fd",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 259.7,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "topo_self_check",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260316_125900_5ff5a70e",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260316_125900_5ff5a70e",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 343.4,
+      "failure_modes": [
+        "missing_category_fill_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "topo_self_check",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260316_130444_4e09385d",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260316_130444_4e09385d",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 136.5,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "topo_self_check",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260316_130702_16f41ae4",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260316_130702_16f41ae4",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 222.6,
+      "failure_modes": [
+        "tests_fail",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "topo_self_check",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260316_131127_178b3d18",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260316_131127_178b3d18",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 249.4,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    }
+  ]
+}

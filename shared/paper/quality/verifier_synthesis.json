@@ -1,0 +1,136 @@
+{
+ "generated_from": {
+  "human_decisions": 64,
+  "llm_runs_with_verdict": 1044
+ },
+ "leniency": {
+  "human_false_accept": {
+   "k": 12,
+   "n": 24,
+   "rate": 0.5,
+   "ci95": [
+    0.31427131627763083,
+    0.6857286837223692
+   ]
+  },
+  "llm_false_accept": {
+   "k": 384,
+   "n": 755,
+   "rate": 0.5086092715231788,
+   "ci95": [
+    0.47299547601480185,
+    0.5441358989651677
+   ]
+  },
+  "human_approved_score": {
+   "n": 12,
+   "median": 0.405,
+   "frac_below_0.5": 0.5833333333333334,
+   "frac_below_0.3": 0.3333333333333333
+  },
+  "llm_approved_score": {
+   "n": 384,
+   "median": 0.8,
+   "frac_below_0.5": 0.14583333333333334,
+   "frac_below_0.3": 0.018229166666666668
+  },
+  "prompt_arms": {
+   "lenient": {
+    "n_runs": 60,
+    "with_verdict": 34,
+    "natural_verdict_rate": 0.5,
+    "grader_fail": 20,
+    "false_accept": 19,
+    "rate": 0.95,
+    "ci95": [
+     0.7638641064874331,
+     0.9911187805671268
+    ]
+   },
+   "neutral": {
+    "n_runs": 60,
+    "with_verdict": 28,
+    "natural_verdict_rate": 0.45,
+    "grader_fail": 16,
+    "false_accept": 14,
+    "rate": 0.875,
+    "ci95": [
+     0.6397666856325173,
+     0.9650232506629428
+    ]
+   },
+   "strict": {
+    "n_runs": 60,
+    "with_verdict": 30,
+    "natural_verdict_rate": 0.4666666666666667,
+    "grader_fail": 19,
+    "false_accept": 17,
+    "rate": 0.8947368421052632,
+    "ci95": [
+     0.686054495051583,
+     0.9706420586049034
+    ]
+   }
+  }
+ },
+ "capitulation": {
+  "llm": {
+   "runs_multi_attempt": 103,
+   "fail_then_pass": 4,
+   "resolvable": 4,
+   "capitulated": 0,
+   "ci95": [
+    0.0,
+    0.48990002040399916
+   ]
+  },
+  "human": {
+   "false_accepts": 12,
+   "capitulated": 8,
+   "ci95": [
+    0.3906175873976139,
+    0.8618821601026385
+   ]
+  }
+ },
+ "abstention": {
+  "outcome_counts": {
+   "VERDICT": 1232,
+   "QUIT_EARLY": 132,
+   "ABSTAINED": 862,
+   "MALFORMED": 43,
+   "MISPLACED": 16
+  },
+  "n": 2285,
+  "no_usable_verdict_rate": 0.4538293216630197,
+  "false_accept_under_treatment": {
+   "excluded": {
+    "k": 402,
+    "n": 788,
+    "ci95": [
+     0.47528390914734375,
+     0.5449221522669594
+    ]
+   },
+   "as_accept": {
+    "k": 1158,
+    "n": 1544,
+    "ci95": [
+     0.7277984506448554,
+     0.770960595500435
+    ]
+   },
+   "as_reject": {
+    "k": 402,
+    "n": 1544,
+    "ci95": [
+     0.23908727737977983,
+     0.2828276265742165
+    ]
+   }
+  }
+ },
+ "notes": [
+  "prompt sensitivity read at 180/180 rows; rerun after completion for final values"
+ ]
+}

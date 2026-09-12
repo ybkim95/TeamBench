@@ -1,0 +1,2352 @@
+{
+  "model": "vllm:Qwen/Qwen3-8B@http://localhost:8002/v1",
+  "tasks": [
+    "MULTI1_fullstack_fix",
+    "TEST1_spec_to_tests",
+    "O2_incident_rootcause",
+    "PIPE1_etl_fix",
+    "TRAP1_spec_conflict",
+    "TRAP3_metric_mirage",
+    "TRAP5_security_theater",
+    "CROSS1_api_contract",
+    "CROSS3_protocol_bridge",
+    "CRYPTO1_nonce_reuse",
+    "DIST1_queue_race",
+    "SEC1_vuln_patch",
+    "SEC3_crypto_upgrade",
+    "D1_schema_drift",
+    "D8_csv_cleanup",
+    "TEST2_regression",
+    "TEST5_mutation_resistant",
+    "O1_service_health",
+    "O3_log_analysis",
+    "P1_policy_config",
+    "P3_access_control",
+    "SPEC1_feature_impl",
+    "SPEC3_data_model",
+    "INC1_cascade_failure",
+    "INC4_dns_miscfg",
+    "IR1_evidence_qa",
+    "NEG1_tradeoff_config",
+    "CR5_test_coverage"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-13T04:19:38.712318+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0357,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.3197,
+    "p_restricted": 0.2927,
+    "p_full": 0.2954,
+    "p_no_verify": 0.3534,
+    "p_no_plan": 0.3216,
+    "necessity_gap": 0.027,
+    "tni": 0.1014,
+    "team_uplift": 0.0027,
+    "collab_efficiency": 0.0086,
+    "planning_value": -0.0262,
+    "verification_value": -0.058,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": -29.2654,
+    "interpretation": {
+      "tni": "Teamwork provides modest improvement.",
+      "team_uplift": "Team adds +0.3% over single agent",
+      "collab_efficiency": "Team reaches 0.9% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds -2.6% partial score",
+      "verification_value": "Verification adds -5.8% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 0,
+      "total": 28,
+      "success_rate": 0.0
+    },
+    "restricted": {
+      "passes": 0,
+      "total": 28,
+      "success_rate": 0.0
+    },
+    "team_no_verify": {
+      "passes": 0,
+      "total": 28,
+      "success_rate": 0.0
+    },
+    "team_no_plan": {
+      "passes": 0,
+      "total": 28,
+      "success_rate": 0.0
+    },
+    "full": {
+      "passes": 1,
+      "total": 28,
+      "success_rate": 0.0357
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260312_200007_9956a652",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260312_200007_9956a652",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 111.6,
+      "failure_modes": [
+        "import_error",
+        "test_create_fail",
+        "test_get_fail",
+        "test_sorted_fail",
+        "test_delete_fail",
+        "deploy_flask_app_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260312_200159_9d6af846",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260312_200159_9d6af846",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 103.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260312_200342_fccf87d9",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260312_200342_fccf87d9",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 304.6,
+      "failure_modes": [
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260312_200854_f73163df",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260312_200854_f73163df",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 16.8,
+      "failure_modes": [
+        "wrong_field_names",
+        "field_renames_wrong",
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "data_loss_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260312_200913_467a7149",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260312_200913_467a7149",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 109.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260312_201107_a2a32890",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260312_201107_a2a32890",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 123.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260312_201316_20f6f6bc",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260312_201316_20f6f6bc",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 129.2,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260312_201525_7a9d2216",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260312_201525_7a9d2216",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 249.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260312_201948_121f9100",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260312_201948_121f9100",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 151.2,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260312_202220_ea416de4",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260312_202220_ea416de4",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 37.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260312_202305_79e1a95f",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260312_202305_79e1a95f",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 102.1,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260312_202447_9cd9d288",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260312_202447_9cd9d288",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 65.7,
+      "failure_modes": [
+        "sql_injection_present",
+        "insecure_session",
+        "routes_missing",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260312_202554_51ab5df9",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260312_202554_51ab5df9",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 16.4,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260312_202612_4e17fa3b",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260312_202612_4e17fa3b",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 102.3,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260312_202754_6455df51",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260312_202754_6455df51",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 102.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260312_202936_22356732",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260312_202936_22356732",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 12.9,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260312_202958_1b4a22e2",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260312_202958_1b4a22e2",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 68.5,
+      "failure_modes": [
+        "tests_fail_on_correct_lib",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260312_203131_248e2f17",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260312_203131_248e2f17",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 109.6,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "missing_service_log",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260312_203336_58c41200",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260312_203336_58c41200",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 86.4,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260312_203502_a3805a55",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260312_203502_a3805a55",
+      "pass": false,
+      "partial_score": 0.93,
+      "elapsed_sec": 75.4,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260312_203619_3db248ba",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260312_203619_3db248ba",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 18.8,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260312_203644_41014731",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260312_203644_41014731",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 15.3,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260312_203704_2423d94e",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260312_203704_2423d94e",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 12.7,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260312_203720_da9ccac7",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260312_203720_da9ccac7",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 15.4,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260312_203736_aa740931",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260312_203736_aa740931",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 37.7,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260312_203816_6d441c73",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260312_203816_6d441c73",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 151.7,
+      "failure_modes": [
+        "wrong_answer",
+        "invalid_evidence_content"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260312_204048_f1e062a5",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260312_204048_f1e062a5",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 57.4,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260312_204148_bded85ef",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260312_204148_bded85ef",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 17.3,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260312_204220_081e9de6",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260312_204220_081e9de6",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 158.5,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260312_204459_98bbd9a3",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260312_204459_98bbd9a3",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 71.9,
+      "failure_modes": [
+        "too_few_tests",
+        "tests_fail_on_correct_engine",
+        "low_coverage",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260312_204628_d1f2ee47",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260312_204628_d1f2ee47",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 53.3,
+      "failure_modes": [
+        "security_policy_violation",
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260312_204729_943f5a20",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260312_204729_943f5a20",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 9.9,
+      "failure_modes": [
+        "wrong_field_names",
+        "field_renames_wrong",
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "data_loss_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260312_204740_75bc945d",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260312_204740_75bc945d",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 14.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260312_204759_df464a0f",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260312_204759_df464a0f",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 29.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260312_204833_465b7dad",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260312_204833_465b7dad",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 354.2,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260312_205427_be2ff158",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260312_205427_be2ff158",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 44.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260312_205531_6a499b47",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260312_205531_6a499b47",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 12.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260312_205554_983409b9",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260312_205554_983409b9",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 40.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260312_205642_c38ccc32",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260312_205642_c38ccc32",
+      "pass": false,
+      "partial_score": 0.0833,
+      "elapsed_sec": 439.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260312_210407_270bd491",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260312_210407_270bd491",
+      "pass": false,
+      "partial_score": 0.42,
+      "elapsed_sec": 41.6,
+      "failure_modes": [
+        "sql_injection_present",
+        "hardcoded_secret_present",
+        "path_traversal_present",
+        "insecure_session",
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260312_210450_92856f3d",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260312_210450_92856f3d",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 11.5,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260312_210504_6736be64",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260312_210504_6736be64",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 317.9,
+      "failure_modes": [
+        "etl_crash",
+        "wrong_columns",
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "extra_columns_not_dropped",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260312_211023_b1397842",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260312_211023_b1397842",
+      "pass": false,
+      "partial_score": 0.22,
+      "elapsed_sec": 20.5,
+      "failure_modes": [
+        "duplicate_ids",
+        "wrong_row_count",
+        "empty_column_kept",
+        "date_format_wrong",
+        "whitespace_remaining",
+        "sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260312_211045_65e53b2f",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260312_211045_65e53b2f",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 43.9,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260312_211138_83a5f779",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260312_211138_83a5f779",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 83.3,
+      "failure_modes": [
+        "tests_fail_on_correct_lib",
+        "insufficient_error_tests",
+        "low_stats_coverage",
+        "low_combo_coverage",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260312_211329_4e5c470f",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260312_211329_4e5c470f",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 100.0,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260312_211525_01c87a05",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260312_211525_01c87a05",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 51.4,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260312_211625_13e24b3c",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260312_211625_13e24b3c",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 62.3,
+      "failure_modes": [
+        "missing_config_json",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260312_211728_3f03186e",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260312_211728_3f03186e",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 9.2,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260312_211742_5fe0b42f",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260312_211742_5fe0b42f",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 12.9,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260312_211803_df27cd47",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260312_211803_df27cd47",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 10.8,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260312_211817_d809ee93",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260312_211817_d809ee93",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 19.2,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260312_211837_15bc9be4",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260312_211837_15bc9be4",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 16.6,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260312_211854_cb5a0aee",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260312_211854_cb5a0aee",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 51.3,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260312_211946_3239033a",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260312_211946_3239033a",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 33.5,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260312_212022_ec219443",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260312_212022_ec219443",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 15.5,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260312_212053_dea5ddfe",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260312_212053_dea5ddfe",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 343.7,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260312_212636_c81261af",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260312_212636_c81261af",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 137.0,
+      "failure_modes": [
+        "tests_fail_on_correct_engine",
+        "low_coverage"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260312_212912_5af275ba",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260312_212912_5af275ba",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 530.9,
+      "failure_modes": [
+        "endpoint_no_response"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260312_213811_d6ee189a",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260312_213811_d6ee189a",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 109.9,
+      "failure_modes": [
+        "wrong_field_names",
+        "field_renames_wrong",
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "data_loss_detected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260312_214002_50988da8",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260312_214002_50988da8",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 197.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260312_214323_cbfff3a2",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260312_214323_cbfff3a2",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 98.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260312_214506_e266a90d",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260312_214506_e266a90d",
+      "pass": false,
+      "partial_score": 0.29,
+      "elapsed_sec": 260.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260312_214936_9ecaca5e",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260312_214936_9ecaca5e",
+      "pass": false,
+      "partial_score": 0.1,
+      "elapsed_sec": 488.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260312_215754_dfd30364",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260312_215754_dfd30364",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 607.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260312_220808_496ee60e",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260312_220808_496ee60e",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 401.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260312_221505_dfba163d",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260312_221505_dfba163d",
+      "pass": false,
+      "partial_score": 0.0833,
+      "elapsed_sec": 587.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260312_222459_a4140e69",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260312_222459_a4140e69",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 156.0,
+      "failure_modes": [
+        "sql_injection_present",
+        "routes_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260312_222736_34ff6895",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260312_222736_34ff6895",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 337.4,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260312_223315_ba87bbb6",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260312_223315_ba87bbb6",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 180.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260312_223615_5cd2034e",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260312_223615_5cd2034e",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 101.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260312_223756_cdb10d93",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260312_223756_cdb10d93",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 243.7,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260312_224210_76bc4165",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260312_224210_76bc4165",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 552.2,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260312_225122_12634678",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260312_225122_12634678",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 413.5,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260312_225816_3ff9dc52",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260312_225816_3ff9dc52",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 133.1,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260312_230038_6a3109af",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260312_230038_6a3109af",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 322.1,
+      "failure_modes": [
+        "wrong_keys",
+        "policy_rules_fail",
+        "rule_timeout_sec",
+        "rule_cors_origins",
+        "rule_session_timeout_min",
+        "rule_min_password_length"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260312_230601_9e02f111",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260312_230601_9e02f111",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 70.6,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260312_230715_227fe51b",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260312_230715_227fe51b",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 59.1,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260312_230818_73ffe02c",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260312_230818_73ffe02c",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 51.8,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260312_230913_6d1f1340",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260312_230913_6d1f1340",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 127.0,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260312_231122_2aea9d99",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260312_231122_2aea9d99",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 59.2,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260312_231224_ce988985",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260312_231224_ce988985",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 389.2,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260312_231854_ca5d1625",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260312_231854_ca5d1625",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 167.5,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260312_232144_ae0c458d",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260312_232144_ae0c458d",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 307.8,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260312_232652_235d414f",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260312_232652_235d414f",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 664.9,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260312_233757_79b640ad",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260312_233757_79b640ad",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 98.2,
+      "failure_modes": [
+        "too_few_tests",
+        "tests_fail_on_correct_engine",
+        "low_coverage"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260312_233955_aec0cc4b",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260312_233955_aec0cc4b",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 459.9,
+      "failure_modes": [
+        "security_policy_violation",
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260312_234743_263f88e9",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260312_234743_263f88e9",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 59.2,
+      "failure_modes": [
+        "wrong_field_names",
+        "field_renames_wrong",
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "data_loss_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260312_234844_1968dc74",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260312_234844_1968dc74",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 178.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260312_235147_006511ff",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260312_235147_006511ff",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 361.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260312_235753_25f91065",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260312_235753_25f91065",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 93.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260312_235936_2cadfafd",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260312_235936_2cadfafd",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 77.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260313_000114_6f47e721",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260313_000114_6f47e721",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 159.3,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260313_000353_feebfb60",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260313_000353_feebfb60",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 209.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260313_000730_d19c9a5f",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260313_000730_d19c9a5f",
+      "pass": false,
+      "partial_score": 0.0833,
+      "elapsed_sec": 112.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260313_000927_e7911f68",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260313_000927_e7911f68",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 175.7,
+      "failure_modes": [
+        "sql_injection_present",
+        "hardcoded_secret_present",
+        "path_traversal_present",
+        "insecure_session",
+        "csrf_protection_broken",
+        "routes_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260313_001224_ed9ef455",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260313_001224_ed9ef455",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 92.3,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260313_001358_fcd1fd9f",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260313_001358_fcd1fd9f",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 338.3,
+      "failure_modes": [
+        "wrong_columns",
+        "wrong_row_count",
+        "duplicate_ids",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "extra_columns_not_dropped",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260313_001938_ac481ec0",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260313_001938_ac481ec0",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 116.2,
+      "failure_modes": [
+        "duplicate_ids",
+        "wrong_row_count",
+        "empty_column_kept",
+        "date_format_wrong",
+        "whitespace_remaining",
+        "sort_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260313_002136_92326bec",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260313_002136_92326bec",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 156.3,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260313_002422_274b9377",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260313_002422_274b9377",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 180.6,
+      "failure_modes": [
+        "tests_fail_on_correct_lib",
+        "insufficient_error_tests",
+        "low_stats_coverage",
+        "low_combo_coverage"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260313_002748_87bb715a",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260313_002748_87bb715a",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 170.0,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260313_003054_478284fd",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260313_003054_478284fd",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 255.7,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260313_003509_db916682",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260313_003509_db916682",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 49.0,
+      "failure_modes": [
+        "missing_config_json",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260313_003559_4cf5c4dd",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260313_003559_4cf5c4dd",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 55.5,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260313_003657_b4621549",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260313_003657_b4621549",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 84.4,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260313_003825_80abe846",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260313_003825_80abe846",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 33.6,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260313_003902_5620b9fa",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260313_003902_5620b9fa",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 112.1,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260313_004055_e0d94f9c",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260313_004055_e0d94f9c",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 30.8,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260313_004126_ad477a23",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260313_004126_ad477a23",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 118.5,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260313_004326_6e0038e3",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260313_004326_6e0038e3",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 65.0,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260313_004433_8e42d8f3",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260313_004433_8e42d8f3",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 140.8,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260313_004707_3363e096",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260313_004707_3363e096",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 335.7,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260313_005243_b499a620",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260313_005243_b499a620",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 2213.4,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260313_012937_897469f1",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260313_012937_897469f1",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 502.8,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260313_013759_462b6961",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260313_013759_462b6961",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 479.9,
+      "failure_modes": [
+        "wrong_field_names",
+        "field_renames_wrong",
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "data_loss_detected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260313_014600_7e3a2260",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260313_014600_7e3a2260",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 264.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260313_015029_fa9b6e40",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260313_015029_fa9b6e40",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 150.1,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260313_015259_adaa412c",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260313_015259_adaa412c",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 380.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260313_015928_0a6164bc",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260313_015928_0a6164bc",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 379.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260313_020604_f4914adb",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260313_020604_f4914adb",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 227.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260313_020958_d402fae8",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260313_020958_d402fae8",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 439.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260313_021725_81f8bb06",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260313_021725_81f8bb06",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 653.1,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260313_022818_49d81a8e",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260313_022818_49d81a8e",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 293.2,
+      "failure_modes": [
+        "sql_injection_present",
+        "hardcoded_secret_present",
+        "path_traversal_present",
+        "insecure_session",
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260313_023313_1bb90580",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260313_023313_1bb90580",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 436.1,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260313_024030_8a6a53b4",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260313_024030_8a6a53b4",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 101.9,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260313_024212_1fa77e8b",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260313_024212_1fa77e8b",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 667.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260313_025320_1e53d9c8",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260313_025320_1e53d9c8",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 57.9,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260313_025429_a16916d9",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260313_025429_a16916d9",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 315.2,
+      "failure_modes": [
+        "too_few_tests",
+        "tests_fail_on_correct_lib"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260313_030008_c6d10e85",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260313_030008_c6d10e85",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 190.1,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260313_030318_4b251d1c",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260313_030318_4b251d1c",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 486.8,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260313_031134_58735697",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260313_031134_58735697",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 731.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260313_032346_8452f63d",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260313_032346_8452f63d",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 118.6,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260313_032548_d2a2edd5",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260313_032548_d2a2edd5",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 612.2,
+      "failure_modes": [
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260313_033604_8cd25c96",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260313_033604_8cd25c96",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 484.4,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260313_034411_041eba56",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260313_034411_041eba56",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 253.9,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260313_034825_c1e2f7d6",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260313_034825_c1e2f7d6",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 322.2,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "firewall_overly_permissive",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260313_035348_c5815072",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260313_035348_c5815072",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 433.5,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"You passed 4097 input tokens and requested 4096 output tokens. However, the model's context length is only 8192 tokens, resulting in a maximum input length of 4096 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=4097)\", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260313_040102_a8ce68a9",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260313_040102_a8ce68a9",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 884.5,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260313_041553_7f95b855",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260313_041553_7f95b855",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 211.7,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    }
+  ]
+}

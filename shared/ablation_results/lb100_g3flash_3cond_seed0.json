@@ -1,0 +1,4530 @@
+{
+  "model": "gemini-3-flash-preview",
+  "tasks": [
+    "TRAP1_spec_conflict",
+    "TRAP5_security_theater",
+    "TRAP6_deprecated_api",
+    "CR4_api_review",
+    "CR6_review_checklist",
+    "CR1_review_respond",
+    "CROSS1_api_contract",
+    "CROSS2_schema_evolution",
+    "CROSS3_protocol_bridge",
+    "D6_data_reconcile",
+    "D3_schema_migration",
+    "D4_data_pipeline",
+    "D5_query_optimize",
+    "D7_etl_reconciliation",
+    "DIST1_queue_race",
+    "DIST2_consensus_partition",
+    "SYNTH1_distributed_debug",
+    "GH1000_numpy_19869",
+    "GH1001_numpy_30855",
+    "GH1002_scipy_24753",
+    "GH1003_scipy_24496",
+    "GH1004_dask_11665",
+    "GH1005_ray_60236",
+    "GH1006_spaCy_13068",
+    "GH1007_spaCy_13040",
+    "GH1008_spaCy_12749",
+    "GH1009_spaCy_12486",
+    "GH1010_great_expectati_10406",
+    "GH1011_great_expectati_8062",
+    "INC6_deadlock",
+    "INC10_rollback_plan",
+    "INC1_cascade_failure",
+    "INC2_data_corruption",
+    "INC3_memory_leak",
+    "INC4_dns_miscfg",
+    "IR2_misinformation_trap",
+    "IR3_multi_source",
+    "IR4_temporal",
+    "INT1_pipeline_repair",
+    "LH2_budgeted_workflow",
+    "LH5_data_migration",
+    "LH4_staged_deploy",
+    "CROSS6_grpc_rest_bridge",
+    "JS2_xss_sanitize",
+    "MULTI2_microservice_debug",
+    "NEG1_tradeoff_config",
+    "LH3_multi_service",
+    "O6_perf_tuning",
+    "TRAP3_metric_mirage",
+    "CROSS7_config_drift",
+    "MULTI5_deploy_pipeline",
+    "API1_version_compat",
+    "GH14_celery_chain_fail",
+    "INFRA2_cicd_repair",
+    "TS1_type_mismatch",
+    "GH103_redis-py_3998",
+    "GH112_redis-py_3996",
+    "GH120_redis-py_3863",
+    "GH121_quart_302",
+    "GH128_mitmproxy_8046",
+    "GH12_click_envvar_flag",
+    "GH136_mitmproxy_8054",
+    "GH139_marshmallow_2894",
+    "GH13_starlette_bg_block",
+    "GH140_marshmallow_2874",
+    "GH141_urllib3_3736",
+    "GH143_mitmproxy_8095",
+    "GH144_psycopg_1247",
+    "PIPE2_data_pipeline",
+    "PIPE3_msg_queue",
+    "PIPE3_stream_processing",
+    "P2_spec_arbitration",
+    "P3_access_control",
+    "P4_data_retention",
+    "RDS10_survey_analysis",
+    "RDS11_survivorship_bias",
+    "RDS12_simpsons_income",
+    "CRYPTO1_nonce_reuse",
+    "CRYPTO3_cert_chain",
+    "CRYPTO4_kdf_migration",
+    "SEC8_dependency_audit",
+    "CRYPTO5_tls_config",
+    "CRYPTO6_token_validation",
+    "GO1_concurrency_fix",
+    "SCALE1_codebase_migration",
+    "GH10_retry_backoff",
+    "GH11_middleware_order",
+    "GH1_flask_session_ctx",
+    "GH2_click_flag_value",
+    "SPEC5_config_system",
+    "SPEC2_api_design",
+    "GH7_fixture_scope_leak",
+    "TEST2_regression",
+    "TEST3_integration",
+    "TEST4_property",
+    "RDS13_smote_leakage",
+    "RDS14_housing_leakage",
+    "RDS15_taxi_circular",
+    "RDS16_retail_phacking",
+    "RDS17_macro_spurious"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-04-23T21:39:10.531426+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.25,
+    "s_no_plan": 0.08,
+    "p_oracle": 0.0,
+    "p_restricted": 0.0,
+    "p_full": 0.0,
+    "p_no_verify": 0.6742,
+    "p_no_plan": 0.3965,
+    "necessity_gap": 0.0,
+    "tni": 0.0,
+    "team_uplift": 0.0,
+    "collab_efficiency": 0.0,
+    "planning_value": -0.3965,
+    "verification_value": -0.6742,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": 0.0,
+    "interpretation": {
+      "tni": "Teamwork provides minimal improvement.",
+      "team_uplift": "Team adds +0.0% over single agent",
+      "collab_efficiency": "Team reaches 0.0% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds -39.6% partial score",
+      "verification_value": "Verification adds -67.4% partial score"
+    }
+  },
+  "per_condition": {
+    "team_no_verify": {
+      "passes": 25,
+      "total": 100,
+      "success_rate": 0.25
+    },
+    "team_no_plan": {
+      "passes": 8,
+      "total": 100,
+      "success_rate": 0.08
+    }
+  },
+  "runs": [
+    {
+      "condition": "team_no_plan",
+      "task_id": "API1_version_compat",
+      "seed": 0,
+      "run_id": "20260419_080754_90375852",
+      "run_dir": "shared/ablation_results/ablation_runs/API1_version_compat/20260419_080754_90375852",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 2201.6,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:40:36.800514+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR1_review_respond",
+      "seed": 0,
+      "run_id": "20260419_085457_aa5862c1",
+      "run_dir": "shared/ablation_results/ablation_runs/CR1_review_respond/20260419_085457_aa5862c1",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 2838.5,
+      "failure_modes": [
+        "sql_injection_not_fixed",
+        "n_plus_one_not_fixed",
+        "function_not_renamed",
+        "bare_except_not_fixed",
+        "tests_failing",
+        "bad_attestation"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:40:41.037247+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR4_api_review",
+      "seed": 0,
+      "run_id": "20260419_095241_be88429c",
+      "run_dir": "shared/ablation_results/ablation_runs/CR4_api_review/20260419_095241_be88429c",
+      "pass": false,
+      "partial_score": 0.19,
+      "elapsed_sec": 2806.6,
+      "failure_modes": [
+        "tests_failing",
+        "missing_api_v1_prefix",
+        "wrong_http_method_not_fixed",
+        "get_used_for_create",
+        "camelcase_route_not_fixed",
+        "camelcase_function_not_fixed",
+        "pagination_not_implemented",
+        "pagination_envelope_missing",
+        "create_not_returning_201",
+        "notfound_not_returning_404",
+        "bare_string_errors_remain",
+        "error_schema_missing_fields",
+        "bad_attestation"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:40:46.193626+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR6_review_checklist",
+      "seed": 0,
+      "run_id": "20260419_104956_92952c42",
+      "run_dir": "shared/ablation_results/ablation_runs/CR6_review_checklist/20260419_104956_92952c42",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 2070.6,
+      "failure_modes": [
+        "missing_or_insufficient_findings",
+        "bad_attestation"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:40:47.040967+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260419_113505_498ac580",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260419_113505_498ac580",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 2660.3,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:41:01.993202+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS2_schema_evolution",
+      "seed": 0,
+      "run_id": "20260419_122947_8c4c1a46",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS2_schema_evolution/20260419_122947_8c4c1a46",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 2398.8,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:41:53.902349+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260419_132000_84704619",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260419_132000_84704619",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 2459.2,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:42:25.786110+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "seed": 0,
+      "run_id": "20260419_141114_d78a505a",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS6_grpc_rest_bridge/20260419_141114_d78a505a",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 1963.3,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:42:39.136144+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS7_config_drift",
+      "seed": 0,
+      "run_id": "20260419_145410_157d13f1",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS7_config_drift/20260419_145410_157d13f1",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 1570.8,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:42:56.686396+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260419_153029_b3b43ee7",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260419_153029_b3b43ee7",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 2044.1,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:43:32.487703+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO3_cert_chain",
+      "seed": 0,
+      "run_id": "20260419_161441_a2e97297",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO3_cert_chain/20260419_161441_a2e97297",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1474.3,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:44:28.390606+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO4_kdf_migration",
+      "seed": 0,
+      "run_id": "20260419_164922_4ad90d56",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO4_kdf_migration/20260419_164922_4ad90d56",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1538.8,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:44:57.691520+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO5_tls_config",
+      "seed": 0,
+      "run_id": "20260419_172511_65a1e7cc",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO5_tls_config/20260419_172511_65a1e7cc",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 1226.3,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:45:22.752473+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO6_token_validation",
+      "seed": 0,
+      "run_id": "20260419_175553_b98c7676",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO6_token_validation/20260419_175553_b98c7676",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 1562.9,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:45:39.707993+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D3_schema_migration",
+      "seed": 0,
+      "run_id": "20260419_183211_800b9364",
+      "run_dir": "shared/ablation_results/ablation_runs/D3_schema_migration/20260419_183211_800b9364",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 1530.7,
+      "failure_modes": [
+        "wrong_columns",
+        "data_not_preserved",
+        "renames_not_applied",
+        "new_columns_wrong",
+        "schema_v2_mismatch",
+        "no_unique_index",
+        "bad_attestation"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:45:41.370096+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D4_data_pipeline",
+      "seed": 0,
+      "run_id": "20260419_190754_971c6ec8",
+      "run_dir": "shared/ablation_results/ablation_runs/D4_data_pipeline/20260419_190754_971c6ec8",
+      "pass": false,
+      "partial_score": 0.59,
+      "elapsed_sec": 757.4,
+      "failure_modes": [
+        "wrong_row_count",
+        "null_check_fail",
+        "range_validation_fail",
+        "dedup_winner_fail",
+        "false_positives_in_valid",
+        "missing_from_invalid_csv",
+        "bad_attestation"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:45:43.115626+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D5_query_optimize",
+      "seed": 0,
+      "run_id": "20260419_193043_4fb2cdb6",
+      "run_dir": "shared/ablation_results/ablation_runs/D5_query_optimize/20260419_193043_4fb2cdb6",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 1860.4,
+      "failure_modes": [
+        "n_plus_1_pattern_present",
+        "required_indexes_missing",
+        "no_create_index_in_database_py",
+        "performance_target_missed"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:46:34.556644+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D6_data_reconcile",
+      "seed": 0,
+      "run_id": "20260419_201157_f662b6f5",
+      "run_dir": "shared/ablation_results/ablation_runs/D6_data_reconcile/20260419_201157_f662b6f5",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 1603.2,
+      "failure_modes": [
+        "manual_override_wrong",
+        "per_record_values_wrong",
+        "bad_attestation"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:46:36.346063+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D7_etl_reconciliation",
+      "seed": 0,
+      "run_id": "20260419_204855_2d97bf1c",
+      "run_dir": "shared/ablation_results/ablation_runs/D7_etl_reconciliation/20260419_204855_2d97bf1c",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 2035.1,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:46:37.110316+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260419_213302_2125ed2a",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260419_213302_2125ed2a",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 2028.6,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:47:10.261975+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260419_232834_5e27d153",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260419_232834_5e27d153",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 117.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260419_233041_f73ce5ac",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260419_233041_f73ce5ac",
+      "pass": true,
+      "partial_score": 0.86,
+      "elapsed_sec": 297.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP6_deprecated_api",
+      "seed": 0,
+      "run_id": "20260419_233620_9702cdd0",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP6_deprecated_api/20260419_233620_9702cdd0",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 55.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR4_api_review",
+      "seed": 0,
+      "run_id": "20260419_233734_5d0edb7d",
+      "run_dir": "shared/ablation_results/ablation_runs/CR4_api_review/20260419_233734_5d0edb7d",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 79.4,
+      "failure_modes": [
+        "import_error",
+        "tests_failing",
+        "missing_api_v1_prefix",
+        "wrong_http_method_not_fixed",
+        "get_used_for_create",
+        "camelcase_route_not_fixed",
+        "camelcase_function_not_fixed",
+        "pagination_not_implemented",
+        "pagination_envelope_missing",
+        "create_not_returning_201",
+        "notfound_not_returning_404",
+        "bare_string_errors_remain",
+        "error_schema_missing_fields",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR6_review_checklist",
+      "seed": 0,
+      "run_id": "20260419_233902_24ab5126",
+      "run_dir": "shared/ablation_results/ablation_runs/CR6_review_checklist/20260419_233902_24ab5126",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 462.8,
+      "failure_modes": [
+        "missing_or_insufficient_findings",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR1_review_respond",
+      "seed": 0,
+      "run_id": "20260419_234646_12f346a6",
+      "run_dir": "shared/ablation_results/ablation_runs/CR1_review_respond/20260419_234646_12f346a6",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 299.8,
+      "failure_modes": [
+        "n_plus_one_not_fixed",
+        "bare_except_not_fixed",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260419_235150_332eab75",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260419_235150_332eab75",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 112.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS2_schema_evolution",
+      "seed": 0,
+      "run_id": "20260419_235401_76bbc8dd",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS2_schema_evolution/20260419_235401_76bbc8dd",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 43.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260419_235505_70afa4ff",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260419_235505_70afa4ff",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 67.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D6_data_reconcile",
+      "seed": 0,
+      "run_id": "20260419_235631_295c900a",
+      "run_dir": "shared/ablation_results/ablation_runs/D6_data_reconcile/20260419_235631_295c900a",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 107.0,
+      "failure_modes": [
+        "manual_override_wrong",
+        "per_record_values_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D3_schema_migration",
+      "seed": 0,
+      "run_id": "20260419_235819_e1c671e3",
+      "run_dir": "shared/ablation_results/ablation_runs/D3_schema_migration/20260419_235819_e1c671e3",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 59.9,
+      "failure_modes": [
+        "migration_crash",
+        "data_not_preserved"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D4_data_pipeline",
+      "seed": 0,
+      "run_id": "20260419_235921_e35f4ecb",
+      "run_dir": "shared/ablation_results/ablation_runs/D4_data_pipeline/20260419_235921_e35f4ecb",
+      "pass": false,
+      "partial_score": 0.59,
+      "elapsed_sec": 63.4,
+      "failure_modes": [
+        "wrong_row_count",
+        "null_check_fail",
+        "range_validation_fail",
+        "dedup_winner_fail",
+        "false_positives_in_valid",
+        "missing_from_invalid_csv",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D5_query_optimize",
+      "seed": 0,
+      "run_id": "20260420_000027_1f7fb5f0",
+      "run_dir": "shared/ablation_results/ablation_runs/D5_query_optimize/20260420_000027_1f7fb5f0",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 176.3,
+      "failure_modes": [
+        "n_plus_1_pattern_present",
+        "n_plus_1_in_query_source",
+        "performance_target_missed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D7_etl_reconciliation",
+      "seed": 0,
+      "run_id": "20260420_000335_f295dd7c",
+      "run_dir": "shared/ablation_results/ablation_runs/D7_etl_reconciliation/20260420_000335_f295dd7c",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 438.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260420_001055_9636eb1e",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260420_001055_9636eb1e",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 196.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST2_consensus_partition",
+      "seed": 0,
+      "run_id": "20260420_001432_c5253bb9",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST2_consensus_partition/20260420_001432_c5253bb9",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 143.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SYNTH1_distributed_debug",
+      "seed": 0,
+      "run_id": "20260420_001735_5a44f986",
+      "run_dir": "shared/ablation_results/ablation_runs/SYNTH1_distributed_debug/20260420_001735_5a44f986",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 205.9,
+      "failure_modes": [
+        "email_update_broken",
+        "cache_not_invalidated",
+        "regression_detected",
+        "excessive_changes",
+        "wrong_field_name",
+        "cache_fix_not_applied",
+        "no_timezone_handling"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1000_numpy_19869",
+      "seed": 0,
+      "run_id": "20260420_002118_60f785d9",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1000_numpy_19869/20260420_002118_60f785d9",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 51.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1001_numpy_30855",
+      "seed": 0,
+      "run_id": "20260420_002249_3f314a34",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1001_numpy_30855/20260420_002249_3f314a34",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 59.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1002_scipy_24753",
+      "seed": 0,
+      "run_id": "20260420_002423_3756a387",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1002_scipy_24753/20260420_002423_3756a387",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 67.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1003_scipy_24496",
+      "seed": 0,
+      "run_id": "20260420_002555_0007436a",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1003_scipy_24496/20260420_002555_0007436a",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 48.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1004_dask_11665",
+      "seed": 0,
+      "run_id": "20260420_002707_b550ab1f",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1004_dask_11665/20260420_002707_b550ab1f",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 158.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1005_ray_60236",
+      "seed": 0,
+      "run_id": "20260420_003016_b831be57",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1005_ray_60236/20260420_003016_b831be57",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 76.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1006_spaCy_13068",
+      "seed": 0,
+      "run_id": "20260420_003203_939351d8",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1006_spaCy_13068/20260420_003203_939351d8",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 157.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1007_spaCy_13040",
+      "seed": 0,
+      "run_id": "20260420_003515_cb1e7357",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1007_spaCy_13040/20260420_003515_cb1e7357",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 323.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1008_spaCy_12749",
+      "seed": 0,
+      "run_id": "20260420_004119_2c9f1743",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1008_spaCy_12749/20260420_004119_2c9f1743",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 72.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1009_spaCy_12486",
+      "seed": 0,
+      "run_id": "20260420_004310_058dbdea",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1009_spaCy_12486/20260420_004310_058dbdea",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 256.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1010_great_expectati_10406",
+      "seed": 0,
+      "run_id": "20260420_004823_0c2d59a7",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1010_great_expectati_10406/20260420_004823_0c2d59a7",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 71.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1011_great_expectati_8062",
+      "seed": 0,
+      "run_id": "20260420_005004_6d3a9243",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1011_great_expectati_8062/20260420_005004_6d3a9243",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 70.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC6_deadlock",
+      "seed": 0,
+      "run_id": "20260420_005148_ff3cbdad",
+      "run_dir": "shared/ablation_results/ablation_runs/INC6_deadlock/20260420_005148_ff3cbdad",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 101.2,
+      "failure_modes": [
+        "lock_ordering_not_fixed",
+        "check_fix_fails",
+        "lock_hierarchy_inconsistent",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC10_rollback_plan",
+      "seed": 0,
+      "run_id": "20260420_005333_eae37013",
+      "run_dir": "shared/ablation_results/ablation_runs/INC10_rollback_plan/20260420_005333_eae37013",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 120.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260420_005536_e3f44754",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260420_005536_e3f44754",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 58.4,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC2_data_corruption",
+      "seed": 0,
+      "run_id": "20260420_005639_254bd90a",
+      "run_dir": "shared/ablation_results/ablation_runs/INC2_data_corruption/20260420_005639_254bd90a",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 176.6,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC3_memory_leak",
+      "seed": 0,
+      "run_id": "20260420_005940_65e73289",
+      "run_dir": "shared/ablation_results/ablation_runs/INC3_memory_leak/20260420_005940_65e73289",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 109.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260420_010132_d78ef689",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260420_010132_d78ef689",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 48.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "IR2_misinformation_trap",
+      "seed": 0,
+      "run_id": "20260420_010223_032933b4",
+      "run_dir": "shared/ablation_results/ablation_runs/IR2_misinformation_trap/20260420_010223_032933b4",
+      "pass": false,
+      "partial_score": 0.29,
+      "elapsed_sec": 173.5,
+      "failure_modes": [
+        "invalid_answer_structure",
+        "invalid_evidence_format",
+        "wrong_answer",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "IR3_multi_source",
+      "seed": 0,
+      "run_id": "20260420_010518_0c4cb502",
+      "run_dir": "shared/ablation_results/ablation_runs/IR3_multi_source/20260420_010518_0c4cb502",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 145.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "IR4_temporal",
+      "seed": 0,
+      "run_id": "20260420_010746_f30abb5d",
+      "run_dir": "shared/ablation_results/ablation_runs/IR4_temporal/20260420_010746_f30abb5d",
+      "pass": false,
+      "partial_score": 0.93,
+      "elapsed_sec": 35.8,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INT1_pipeline_repair",
+      "seed": 0,
+      "run_id": "20260420_010824_a78a3c28",
+      "run_dir": "shared/ablation_results/ablation_runs/INT1_pipeline_repair/20260420_010824_a78a3c28",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 63.4,
+      "failure_modes": [
+        "plus_emails_rejected",
+        "report_broken"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "LH2_budgeted_workflow",
+      "seed": 0,
+      "run_id": "20260420_010951_39b7ce2b",
+      "run_dir": "shared/ablation_results/ablation_runs/LH2_budgeted_workflow/20260420_010951_39b7ce2b",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 190.8,
+      "failure_modes": [
+        "budget_exceeded",
+        "budget_log_exceeded"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "LH5_data_migration",
+      "seed": 0,
+      "run_id": "20260420_011304_fb7168ae",
+      "run_dir": "shared/ablation_results/ablation_runs/LH5_data_migration/20260420_011304_fb7168ae",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 55.6,
+      "failure_modes": [
+        "validate_fail",
+        "missing_migration_report",
+        "missing_migration_log",
+        "steps_out_of_order",
+        "backup_missing",
+        "row_count_mismatch",
+        "checksums_invalid",
+        "verification_report_invalid",
+        "orphaned_references",
+        "invalid_jsonl_output",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "LH4_staged_deploy",
+      "seed": 0,
+      "run_id": "20260420_011402_3baa1a7e",
+      "run_dir": "shared/ablation_results/ablation_runs/LH4_staged_deploy/20260420_011402_3baa1a7e",
+      "pass": false,
+      "partial_score": 0.14,
+      "elapsed_sec": 121.6,
+      "failure_modes": [
+        "deploy_crash",
+        "missing_deploy_log",
+        "incomplete_stages",
+        "wrong_stage_order",
+        "migration_not_applied",
+        "config_update_not_applied",
+        "canary_gate_fail",
+        "validation_gate_fail",
+        "rollout_incomplete",
+        "post_deploy_incomplete",
+        "monitoring_config_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "seed": 0,
+      "run_id": "20260420_011608_4e1d3c02",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS6_grpc_rest_bridge/20260420_011608_4e1d3c02",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 88.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "JS2_xss_sanitize",
+      "seed": 0,
+      "run_id": "20260420_011854_ad0dc63b",
+      "run_dir": "shared/ablation_results/ablation_runs/JS2_xss_sanitize/20260420_011854_ad0dc63b",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 326.6,
+      "failure_modes": [
+        "raw_user_vars_in_templates",
+        "security_headers_fn_missing",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "MULTI2_microservice_debug",
+      "seed": 0,
+      "run_id": "20260420_012426_c471607d",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI2_microservice_debug/20260420_012426_c471607d",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 118.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260420_012649_d21a1794",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260420_012649_d21a1794",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 333.9,
+      "failure_modes": [
+        "perf_test_fail",
+        "no_retry_logic",
+        "hardcoded_credentials",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "LH3_multi_service",
+      "seed": 0,
+      "run_id": "20260420_013229_246cf0b9",
+      "run_dir": "shared/ablation_results/ablation_runs/LH3_multi_service/20260420_013229_246cf0b9",
+      "pass": false,
+      "partial_score": 0.85,
+      "elapsed_sec": 168.5,
+      "failure_modes": [
+        "wrong_endpoint_urls_remain",
+        "wrong_response_fields_remain",
+        "missing_error_handling_not_fixed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O6_perf_tuning",
+      "seed": 0,
+      "run_id": "20260420_013526_3b439d35",
+      "run_dir": "shared/ablation_results/ablation_runs/O6_perf_tuning/20260420_013526_3b439d35",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 105.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260420_013714_147c1392",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260420_013714_147c1392",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 198.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS7_config_drift",
+      "seed": 0,
+      "run_id": "20260420_014110_f5bfd06d",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS7_config_drift/20260420_014110_f5bfd06d",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 46.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "MULTI5_deploy_pipeline",
+      "seed": 0,
+      "run_id": "20260420_014254_2eddef00",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI5_deploy_pipeline/20260420_014254_2eddef00",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 313.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "API1_version_compat",
+      "seed": 0,
+      "run_id": "20260420_014926_6bebe9b4",
+      "run_dir": "shared/ablation_results/ablation_runs/API1_version_compat/20260420_014926_6bebe9b4",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 218.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH14_celery_chain_fail",
+      "seed": 0,
+      "run_id": "20260420_015620_fce63ead",
+      "run_dir": "shared/ablation_results/ablation_runs/GH14_celery_chain_fail/20260420_015620_fce63ead",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 204.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INFRA2_cicd_repair",
+      "seed": 0,
+      "run_id": "20260420_020124_2e2e3b6b",
+      "run_dir": "shared/ablation_results/ablation_runs/INFRA2_cicd_repair/20260420_020124_2e2e3b6b",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 137.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TS1_type_mismatch",
+      "seed": 0,
+      "run_id": "20260420_020345_566660f3",
+      "run_dir": "shared/ablation_results/ablation_runs/TS1_type_mismatch/20260420_020345_566660f3",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 694.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH103_redis-py_3998",
+      "seed": 0,
+      "run_id": "20260420_021729_fa060e42",
+      "run_dir": "shared/ablation_results/ablation_runs/GH103_redis-py_3998/20260420_021729_fa060e42",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 490.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH112_redis-py_3996",
+      "seed": 0,
+      "run_id": "20260420_022824_29a9745e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH112_redis-py_3996/20260420_022824_29a9745e",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 546.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH120_redis-py_3863",
+      "seed": 0,
+      "run_id": "20260420_024330_c8c7a20f",
+      "run_dir": "shared/ablation_results/ablation_runs/GH120_redis-py_3863/20260420_024330_c8c7a20f",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 717.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH121_quart_302",
+      "seed": 0,
+      "run_id": "20260420_030106_af7ad8cd",
+      "run_dir": "shared/ablation_results/ablation_runs/GH121_quart_302/20260420_030106_af7ad8cd",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 741.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH128_mitmproxy_8046",
+      "seed": 0,
+      "run_id": "20260420_031906_2a74e530",
+      "run_dir": "shared/ablation_results/ablation_runs/GH128_mitmproxy_8046/20260420_031906_2a74e530",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1378.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH12_click_envvar_flag",
+      "seed": 0,
+      "run_id": "20260420_034811_7e0526b4",
+      "run_dir": "shared/ablation_results/ablation_runs/GH12_click_envvar_flag/20260420_034811_7e0526b4",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 423.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH136_mitmproxy_8054",
+      "seed": 0,
+      "run_id": "20260420_035723_dfce1050",
+      "run_dir": "shared/ablation_results/ablation_runs/GH136_mitmproxy_8054/20260420_035723_dfce1050",
+      "pass": false,
+      "partial_score": 0.44,
+      "elapsed_sec": 102.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH139_marshmallow_2894",
+      "seed": 0,
+      "run_id": "20260420_040145_19819eb8",
+      "run_dir": "shared/ablation_results/ablation_runs/GH139_marshmallow_2894/20260420_040145_19819eb8",
+      "pass": false,
+      "partial_score": 0.56,
+      "elapsed_sec": 335.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH13_starlette_bg_block",
+      "seed": 0,
+      "run_id": "20260420_041042_d92e9801",
+      "run_dir": "shared/ablation_results/ablation_runs/GH13_starlette_bg_block/20260420_041042_d92e9801",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 219.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH140_marshmallow_2874",
+      "seed": 0,
+      "run_id": "20260420_041719_74e0a1a0",
+      "run_dir": "shared/ablation_results/ablation_runs/GH140_marshmallow_2874/20260420_041719_74e0a1a0",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1293.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH141_urllib3_3736",
+      "seed": 0,
+      "run_id": "20260420_044549_e1341972",
+      "run_dir": "shared/ablation_results/ablation_runs/GH141_urllib3_3736/20260420_044549_e1341972",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1122.9,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:47:26.208078+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH143_mitmproxy_8095",
+      "seed": 0,
+      "run_id": "20260420_051434_c6d6d1fc",
+      "run_dir": "shared/ablation_results/ablation_runs/GH143_mitmproxy_8095/20260420_051434_c6d6d1fc",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 1494.6,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:47:55.294589+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH144_psycopg_1247",
+      "seed": 0,
+      "run_id": "20260420_054932_4745a315",
+      "run_dir": "shared/ablation_results/ablation_runs/GH144_psycopg_1247/20260420_054932_4745a315",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1119.8,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:48:14.061572+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "PIPE2_data_pipeline",
+      "seed": 0,
+      "run_id": "20260420_061815_71785741",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE2_data_pipeline/20260420_061815_71785741",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 326.1,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:48:35.717527+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "PIPE3_msg_queue",
+      "seed": 0,
+      "run_id": "20260420_063344_42b39e86",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE3_msg_queue/20260420_063344_42b39e86",
+      "pass": false,
+      "partial_score": 0.85,
+      "elapsed_sec": 697.0,
+      "failure_modes": [
+        "pytest_tests_failed",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "PIPE3_stream_processing",
+      "seed": 0,
+      "run_id": "20260420_065200_5ffd1150",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE3_stream_processing/20260420_065200_5ffd1150",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1061.4,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:48:54.771477+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P2_spec_arbitration",
+      "seed": 0,
+      "run_id": "20260420_071945_29b12bb4",
+      "run_dir": "shared/ablation_results/ablation_runs/P2_spec_arbitration/20260420_071945_29b12bb4",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 623.7,
+      "failure_modes": [
+        "resolved_config_wrong",
+        "exception_key_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260420_073020_2cf689d7",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260420_073020_2cf689d7",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 255.2,
+      "failure_modes": [
+        "allow_decisions_wrong"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:49:03.404742+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P4_data_retention",
+      "seed": 0,
+      "run_id": "20260420_074438_90f463d6",
+      "run_dir": "shared/ablation_results/ablation_runs/P4_data_retention/20260420_074438_90f463d6",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 250.8,
+      "failure_modes": [
+        "run_retention_bad_return",
+        "audit_log_not_written",
+        "legal_hold_not_respected",
+        "exempt_records_not_skipped",
+        "pii_not_anonymized",
+        "fresh_records_deleted",
+        "audit_entries_malformed",
+        "delete_count_incorrect",
+        "bad_attestation"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:49:33.121970+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "RDS10_survey_analysis",
+      "seed": 0,
+      "run_id": "20260420_075852_d5ddcf79",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS10_survey_analysis/20260420_075852_d5ddcf79",
+      "pass": false,
+      "partial_score": 0.125,
+      "elapsed_sec": 251.3,
+      "failure_modes": [
+        "analysis.py runs without error",
+        "Regression or comparison analysis implemented in analysis.py",
+        "Key metric (remote_effect_on_satisfaction) present in results.json",
+        "Key columns (JobSat, ConvertedCompYearly) referenced in analysis.py",
+        "At least one confounder (ConvertedCompYearly, EdLevel, YearsCodePro) controlled for in analysis.py",
+        "Limitations (survey bias, self-selection) discussed in report.md",
+        "results.json is valid JSON with required fields"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "RDS11_survivorship_bias",
+      "seed": 0,
+      "run_id": "20260420_080320_64d77581",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS11_survivorship_bias/20260420_080320_64d77581",
+      "pass": false,
+      "partial_score": 0.3333333333333333,
+      "elapsed_sec": 830.7,
+      "failure_modes": [
+        "Full dataset used: n_rows >= 29304 (90% of original 32561)",
+        "results.json exists and contains 'model_results' key",
+        "report.md explains survivorship bias (mentions bias/survivor/filter/removed)",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "RDS12_simpsons_income",
+      "seed": 0,
+      "run_id": "20260420_081738_6eca3bdb",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS12_simpsons_income/20260420_081738_6eca3bdb",
+      "pass": false,
+      "partial_score": 0.3333333333333333,
+      "elapsed_sec": 511.1,
+      "failure_modes": [
+        "results.json contains 'stratified_results' key",
+        "results.json exists and has 'aggregate_results' key",
+        "report.md mentions Simpson's paradox or stratification",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260420_082633_42b5f51b",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260420_082633_42b5f51b",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 1155.8,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:50:11.636462+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO3_cert_chain",
+      "seed": 0,
+      "run_id": "20260420_085555_fc49443e",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO3_cert_chain/20260420_085555_fc49443e",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 566.7,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:50:58.405677+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO4_kdf_migration",
+      "seed": 0,
+      "run_id": "20260420_091527_cc655a46",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO4_kdf_migration/20260420_091527_cc655a46",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1408.2,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:51:18.502649+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC8_dependency_audit",
+      "seed": 0,
+      "run_id": "20260420_094902_a21a9ae3",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC8_dependency_audit/20260420_094902_a21a9ae3",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 1717.7,
+      "failure_modes": [
+        "vulnerable_pin_remains",
+        "requirements_syntax_error",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO5_tls_config",
+      "seed": 0,
+      "run_id": "20260420_102019_07a4b339",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO5_tls_config/20260420_102019_07a4b339",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 1191.2,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:51:44.631786+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO6_token_validation",
+      "seed": 0,
+      "run_id": "20260420_105017_9102090d",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO6_token_validation/20260420_105017_9102090d",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 442.2,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:51:54.635885+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260420_110745_8d63924f",
+      "run_dir": "shared/ablation_results/ablation_runs/GO1_concurrency_fix/20260420_110745_8d63924f",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 447.5,
+      "failure_modes": [
+        "build_failed",
+        "vet_failed",
+        "race_or_test_failed",
+        "run_output_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SCALE1_codebase_migration",
+      "seed": 0,
+      "run_id": "20260420_111620_0f58666a",
+      "run_dir": "shared/ablation_results/ablation_runs/SCALE1_codebase_migration/20260420_111620_0f58666a",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1754.2,
+      "failure_modes": [
+        "requests_import_found",
+        "client_not_migrated",
+        "auth_not_migrated",
+        "retry_not_migrated",
+        "conftest_not_migrated",
+        "tests_not_migrated",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260420_115216_da865d68",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260420_115216_da865d68",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 1029.3,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260420_121114_60c055e0",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260420_121114_60c055e0",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 1484.2,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:52:02.732872+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260420_124603_91fe32fd",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260420_124603_91fe32fd",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 583.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260420_125658_b5b98748",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260420_125658_b5b98748",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 425.9,
+      "failure_modes": [
+        "flag_value_not_used",
+        "positional_consumed_by_flag",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC5_config_system",
+      "seed": 0,
+      "run_id": "20260420_130707_e6e5f05e",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC5_config_system/20260420_130707_e6e5f05e",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 663.8,
+      "failure_modes": [
+        "config_system_missing",
+        "import_error",
+        "missing_keys",
+        "defaults_wrong",
+        "env_override_fail",
+        "cli_priority_fail",
+        "file_load_fail",
+        "int_range_validation_fail",
+        "int_boundary_fail",
+        "enum_validation_fail",
+        "bool_coercion_fail",
+        "bool_env_fail",
+        "bool_invalid_fail",
+        "int_coercion_fail",
+        "file_not_found_fail",
+        "int_parse_error_fail",
+        "schema_structure_fail",
+        "cli_file_priority_fail",
+        "unknown_keys_error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC2_api_design",
+      "seed": 0,
+      "run_id": "20260420_131935_745a8763",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC2_api_design/20260420_131935_745a8763",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 1107.8,
+      "failure_modes": [
+        "duplicate_title_not_409",
+        "duplicate_title_case_sensitive",
+        "invalid_priority_not_400",
+        "bad_attestation"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:52:21.207263+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260420_134810_9ab44389",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260420_134810_9ab44389",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 596.2,
+      "failure_modes": [
+        "test_session_scope_leak_failed",
+        "test_session_scope_dict_leak_failed",
+        "test_runner_integration_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260420_140003_04c6f3f4",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260420_140003_04c6f3f4",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1306.7,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:53:11.925593+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST3_integration",
+      "seed": 0,
+      "run_id": "20260420_143155_de9f4658",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST3_integration/20260420_143155_de9f4658",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 3039.7,
+      "failure_modes": [
+        "tests_fail_on_working_server",
+        "mutation_not_detected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST4_property",
+      "seed": 0,
+      "run_id": "20260420_152704_9c0753a4",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST4_property/20260420_152704_9c0753a4",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 1634.0,
+      "failure_modes": [
+        "tests_fail_on_correct_module"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:53:14.369679+00:00"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "RDS13_smote_leakage",
+      "seed": 0,
+      "run_id": "20260420_160423_a0969635",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS13_smote_leakage/20260420_160423_a0969635",
+      "pass": false,
+      "partial_score": 0.16666666666666666,
+      "elapsed_sec": 1013.6,
+      "failure_modes": [
+        "results.json exists with 'auc' key",
+        "AUC in results.json <= 0.97 (leakage removed, realistic result)",
+        "results.json contains 'n_train' and 'n_test' keys",
+        "report.md mentions leakage/contamination/oversampling order",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "RDS14_housing_leakage",
+      "seed": 0,
+      "run_id": "20260420_162145_946f6f2a",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS14_housing_leakage/20260420_162145_946f6f2a",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 900.8,
+      "failure_modes": [
+        "Post-event features ['SaleCondition', 'MoSold', 'YrSold'] absent from feature list in analysis.py",
+        "results.json exists with 'r2' key",
+        "R\u00b2 in results.json <= 0.9 (leakage removed)",
+        "results.json contains 'n_features' key",
+        "report.md mentions leakage or post-event features",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "RDS15_taxi_circular",
+      "seed": 0,
+      "run_id": "20260420_163714_39555a50",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS15_taxi_circular/20260420_163714_39555a50",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 988.3,
+      "failure_modes": [
+        "tip_pct formula uses fare_amount (not total_amount) as denominator",
+        "results.json exists with 'mean_tip_pct' key",
+        "mean_tip_pct in results.json >= 0.16 (corrected value higher than circular ~0.14)",
+        "results.json contains 'n_rows' key",
+        "report.md mentions circular formula / denominator / fare_amount",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "RDS16_retail_phacking",
+      "seed": 0,
+      "run_id": "20260420_165410_91c30d30",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS16_retail_phacking/20260420_165410_91c30d30",
+      "pass": false,
+      "partial_score": 0.16666666666666666,
+      "elapsed_sec": 729.1,
+      "failure_modes": [
+        "results.json exists with 'significant_segments' key",
+        "n_significant in results.json <= 3 after correction (vs uncorrected 3+)",
+        "results.json contains 'n_tests' key with value 15",
+        "report.md mentions multiple comparison correction or false positives",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "RDS17_macro_spurious",
+      "seed": 0,
+      "run_id": "20260420_170646_20d21794",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS17_macro_spurious/20260420_170646_20d21794",
+      "pass": false,
+      "partial_score": 0.16666666666666666,
+      "elapsed_sec": 735.6,
+      "failure_modes": [
+        "results.json exists with 'r2' key",
+        "R\u00b2 in results.json <= 0.5 (spurious regression corrected)",
+        "results.json contains 'method' key indicating differencing",
+        "report.md mentions spurious regression or non-stationarity",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260420_171932_f256f507",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260420_171932_f256f507",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1701.6,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:53:23.895037+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260420_175758_f0878ba7",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260420_175758_f0878ba7",
+      "pass": false,
+      "partial_score": 0.79,
+      "elapsed_sec": 1653.8,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:53:48.264672+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP6_deprecated_api",
+      "seed": 0,
+      "run_id": "20260420_183536_eb93f1a9",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP6_deprecated_api/20260420_183536_eb93f1a9",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 1575.1,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:54:04.596238+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST2_consensus_partition",
+      "seed": 0,
+      "run_id": "20260420_191155_17497928",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST2_consensus_partition/20260420_191155_17497928",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 920.4,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:54:19.582718+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SYNTH1_distributed_debug",
+      "seed": 0,
+      "run_id": "20260420_193721_45ac946b",
+      "run_dir": "shared/ablation_results/ablation_runs/SYNTH1_distributed_debug/20260420_193721_45ac946b",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 2124.8,
+      "failure_modes": [
+        "tests_not_all_passing",
+        "email_update_broken",
+        "discount_calculation_wrong",
+        "cache_not_invalidated",
+        "regression_detected",
+        "excessive_changes",
+        "wrong_field_name",
+        "cache_fix_not_applied",
+        "no_timezone_handling",
+        "bad_attestation"
+      ],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:54:24.794491+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1000_numpy_19869",
+      "seed": 0,
+      "run_id": "20260420_202251_ac9010a8",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1000_numpy_19869/20260420_202251_ac9010a8",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 524.1,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:54:42.557873+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1001_numpy_30855",
+      "seed": 0,
+      "run_id": "20260420_204140_27990158",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1001_numpy_30855/20260420_204140_27990158",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 412.7,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:54:54.004243+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1002_scipy_24753",
+      "seed": 0,
+      "run_id": "20260420_205838_862d7240",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1002_scipy_24753/20260420_205838_862d7240",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 403.0,
+      "failure_modes": [],
+      "error": null,
+      "regraded": true,
+      "regraded_at": "2026-04-20T23:55:04.697211+00:00"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1003_scipy_24496",
+      "seed": 0,
+      "run_id": "20260422_034755_d688ad1a",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1003_scipy_24496/20260422_034755_d688ad1a",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 111.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1004_dask_11665",
+      "seed": 0,
+      "run_id": "20260422_035011_ecf3e908",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1004_dask_11665/20260422_035011_ecf3e908",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 141.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1005_ray_60236",
+      "seed": 0,
+      "run_id": "20260422_035248_3fa83294",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1005_ray_60236/20260422_035248_3fa83294",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 82.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1006_spaCy_13068",
+      "seed": 0,
+      "run_id": "20260422_035437_cfaf386a",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1006_spaCy_13068/20260422_035437_cfaf386a",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 192.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1007_spaCy_13040",
+      "seed": 0,
+      "run_id": "20260422_035952_cbf17b82",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1007_spaCy_13040/20260422_035952_cbf17b82",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 356.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1008_spaCy_12749",
+      "seed": 0,
+      "run_id": "20260422_040644_32f07b5f",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1008_spaCy_12749/20260422_040644_32f07b5f",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 142.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1009_spaCy_12486",
+      "seed": 0,
+      "run_id": "20260422_040935_981b0148",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1009_spaCy_12486/20260422_040935_981b0148",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 223.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1010_great_expectati_10406",
+      "seed": 0,
+      "run_id": "20260422_041358_37440b5c",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1010_great_expectati_10406/20260422_041358_37440b5c",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 118.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1011_great_expectati_8062",
+      "seed": 0,
+      "run_id": "20260422_041615_7e038877",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1011_great_expectati_8062/20260422_041615_7e038877",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 112.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC6_deadlock",
+      "seed": 0,
+      "run_id": "20260422_041836_a23e86ef",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/INC6_deadlock/20260422_041836_a23e86ef",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 128.9,
+      "failure_modes": [
+        "lock_ordering_not_fixed",
+        "check_fix_fails",
+        "lock_hierarchy_inconsistent",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC10_rollback_plan",
+      "seed": 0,
+      "run_id": "20260422_042049_59c89089",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/INC10_rollback_plan/20260422_042049_59c89089",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 127.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260422_042259_bd4abc5b",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/INC1_cascade_failure/20260422_042259_bd4abc5b",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 156.2,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC2_data_corruption",
+      "seed": 0,
+      "run_id": "20260422_042538_a92c06e7",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/INC2_data_corruption/20260422_042538_a92c06e7",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 140.7,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC3_memory_leak",
+      "seed": 0,
+      "run_id": "20260422_042801_7fa2108d",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/INC3_memory_leak/20260422_042801_7fa2108d",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 147.9,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260422_043032_02c7a61f",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260422_043032_02c7a61f",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 90.1,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "IR2_misinformation_trap",
+      "seed": 0,
+      "run_id": "20260422_043203_72c70dd1",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/IR2_misinformation_trap/20260422_043203_72c70dd1",
+      "pass": false,
+      "partial_score": 0.29,
+      "elapsed_sec": 60.4,
+      "failure_modes": [
+        "invalid_answer_structure",
+        "invalid_evidence_format",
+        "wrong_answer",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "IR3_multi_source",
+      "seed": 0,
+      "run_id": "20260422_043306_a5f286eb",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/IR3_multi_source/20260422_043306_a5f286eb",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 48.1,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "IR4_temporal",
+      "seed": 0,
+      "run_id": "20260422_043357_e956c6d8",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/IR4_temporal/20260422_043357_e956c6d8",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 55.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INT1_pipeline_repair",
+      "seed": 0,
+      "run_id": "20260422_043456_acebdabe",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/INT1_pipeline_repair/20260422_043456_acebdabe",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 122.7,
+      "failure_modes": [
+        "plus_emails_rejected",
+        "report_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "LH2_budgeted_workflow",
+      "seed": 0,
+      "run_id": "20260422_043716_68890434",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/LH2_budgeted_workflow/20260422_043716_68890434",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 640.7,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "LH5_data_migration",
+      "seed": 0,
+      "run_id": "20260422_044758_d8f9841c",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/LH5_data_migration/20260422_044758_d8f9841c",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 81.8,
+      "failure_modes": [
+        "validate_fail",
+        "missing_migration_report",
+        "steps_out_of_order",
+        "backup_missing",
+        "row_count_mismatch",
+        "checksums_invalid",
+        "verification_report_invalid",
+        "orphaned_references",
+        "invalid_jsonl_output",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "LH4_staged_deploy",
+      "seed": 0,
+      "run_id": "20260422_044921_01df61d3",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/LH4_staged_deploy/20260422_044921_01df61d3",
+      "pass": false,
+      "partial_score": 0.14,
+      "elapsed_sec": 142.8,
+      "failure_modes": [
+        "deploy_crash",
+        "missing_deploy_log",
+        "incomplete_stages",
+        "wrong_stage_order",
+        "migration_not_applied",
+        "config_update_not_applied",
+        "canary_gate_fail",
+        "validation_gate_fail",
+        "rollout_incomplete",
+        "post_deploy_incomplete",
+        "monitoring_config_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "JS2_xss_sanitize",
+      "seed": 0,
+      "run_id": "20260422_045147_9f537cc2",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/JS2_xss_sanitize/20260422_045147_9f537cc2",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 350.8,
+      "failure_modes": [
+        "raw_user_vars_in_templates",
+        "security_headers_fn_missing",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "MULTI2_microservice_debug",
+      "seed": 0,
+      "run_id": "20260422_045804_aa420543",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/MULTI2_microservice_debug/20260422_045804_aa420543",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 251.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260422_050526_3f84d6d9",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260422_050526_3f84d6d9",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 268.2,
+      "failure_modes": [
+        "perf_test_fail",
+        "reliability_test_fail",
+        "no_retry_logic",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "LH3_multi_service",
+      "seed": 0,
+      "run_id": "20260422_051018_2fbd574c",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/LH3_multi_service/20260422_051018_2fbd574c",
+      "pass": false,
+      "partial_score": 0.85,
+      "elapsed_sec": 445.1,
+      "failure_modes": [
+        "wrong_endpoint_urls_remain",
+        "wrong_response_fields_remain",
+        "missing_error_handling_not_fixed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O6_perf_tuning",
+      "seed": 0,
+      "run_id": "20260422_051950_0505b523",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/O6_perf_tuning/20260422_051950_0505b523",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 158.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260422_052317_dbaf7eff",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260422_052317_dbaf7eff",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 820.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "MULTI5_deploy_pipeline",
+      "seed": 0,
+      "run_id": "20260422_054513_38501af8",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/MULTI5_deploy_pipeline/20260422_054513_38501af8",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1640.2,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH14_celery_chain_fail",
+      "seed": 0,
+      "run_id": "20260422_062234_098fec35",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH14_celery_chain_fail/20260422_062234_098fec35",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1148.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INFRA2_cicd_repair",
+      "seed": 0,
+      "run_id": "20260422_065145_a60e760d",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/INFRA2_cicd_repair/20260422_065145_a60e760d",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 569.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TS1_type_mismatch",
+      "seed": 0,
+      "run_id": "20260422_071043_a63c5b55",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/TS1_type_mismatch/20260422_071043_a63c5b55",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1454.9,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH103_redis-py_3998",
+      "seed": 0,
+      "run_id": "20260422_074506_aa670e99",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH103_redis-py_3998/20260422_074506_aa670e99",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1886.3,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH112_redis-py_3996",
+      "seed": 0,
+      "run_id": "20260422_082640_18115c62",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH112_redis-py_3996/20260422_082640_18115c62",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 559.0,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH120_redis-py_3863",
+      "seed": 0,
+      "run_id": "20260422_084607_0dcd4582",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH120_redis-py_3863/20260422_084607_0dcd4582",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1404.0,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH121_quart_302",
+      "seed": 0,
+      "run_id": "20260422_091941_ca1800d9",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH121_quart_302/20260422_091941_ca1800d9",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1459.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH128_mitmproxy_8046",
+      "seed": 0,
+      "run_id": "20260422_095412_590a1320",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH128_mitmproxy_8046/20260422_095412_590a1320",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1763.7,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH12_click_envvar_flag",
+      "seed": 0,
+      "run_id": "20260422_103345_3d9d250a",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH12_click_envvar_flag/20260422_103345_3d9d250a",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 2394.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH136_mitmproxy_8054",
+      "seed": 0,
+      "run_id": "20260422_112351_c721529e",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH136_mitmproxy_8054/20260422_112351_c721529e",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 385.3,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH139_marshmallow_2894",
+      "seed": 0,
+      "run_id": "20260422_114025_c1f77f02",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH139_marshmallow_2894/20260422_114025_c1f77f02",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1372.8,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH13_starlette_bg_block",
+      "seed": 0,
+      "run_id": "20260422_121322_fdb6acfe",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH13_starlette_bg_block/20260422_121322_fdb6acfe",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1930.2,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH140_marshmallow_2874",
+      "seed": 0,
+      "run_id": "20260422_125538_bcb01308",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH140_marshmallow_2874/20260422_125538_bcb01308",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 565.1,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH141_urllib3_3736",
+      "seed": 0,
+      "run_id": "20260422_131508_38615040",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH141_urllib3_3736/20260422_131508_38615040",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 999.2,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH143_mitmproxy_8095",
+      "seed": 0,
+      "run_id": "20260422_134152_4c7b42bb",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH143_mitmproxy_8095/20260422_134152_4c7b42bb",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1640.4,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH144_psycopg_1247",
+      "seed": 0,
+      "run_id": "20260422_141919_0f546c3d",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH144_psycopg_1247/20260422_141919_0f546c3d",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1358.9,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "PIPE2_data_pipeline",
+      "seed": 0,
+      "run_id": "20260422_145204_a8d59e04",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/PIPE2_data_pipeline/20260422_145204_a8d59e04",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1359.8,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "PIPE3_msg_queue",
+      "seed": 0,
+      "run_id": "20260422_152448_010f27f8",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/PIPE3_msg_queue/20260422_152448_010f27f8",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 889.6,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "PIPE3_stream_processing",
+      "seed": 0,
+      "run_id": "20260422_154942_aa616576",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/PIPE3_stream_processing/20260422_154942_aa616576",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1655.9,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P2_spec_arbitration",
+      "seed": 0,
+      "run_id": "20260422_162723_35f61059",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/P2_spec_arbitration/20260422_162723_35f61059",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1040.1,
+      "failure_modes": [
+        "resolved_config_wrong",
+        "exception_key_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260422_164639_1b54a204",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/P3_access_control/20260422_164639_1b54a204",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1274.8,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P4_data_retention",
+      "seed": 0,
+      "run_id": "20260422_171801_b979be51",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/P4_data_retention/20260422_171801_b979be51",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 878.4,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "RDS10_survey_analysis",
+      "seed": 0,
+      "run_id": "20260422_174249_83df785e",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/RDS10_survey_analysis/20260422_174249_83df785e",
+      "pass": false,
+      "partial_score": 0.125,
+      "elapsed_sec": 1134.0,
+      "failure_modes": [
+        "analysis.py runs without error",
+        "Regression or comparison analysis implemented in analysis.py",
+        "Key metric (remote_effect_on_satisfaction) present in results.json",
+        "Key columns (JobSat, ConvertedCompYearly) referenced in analysis.py",
+        "At least one confounder (ConvertedCompYearly, EdLevel, YearsCodePro) controlled for in analysis.py",
+        "Limitations (survey bias, self-selection) discussed in report.md",
+        "results.json is valid JSON with required fields"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "RDS11_survivorship_bias",
+      "seed": 0,
+      "run_id": "20260422_180501_d8f44781",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/RDS11_survivorship_bias/20260422_180501_d8f44781",
+      "pass": false,
+      "partial_score": 0.3333333333333333,
+      "elapsed_sec": 1076.8,
+      "failure_modes": [
+        "Full dataset used: n_rows >= 29304 (90% of original 32561)",
+        "results.json exists and contains 'model_results' key",
+        "report.md explains survivorship bias (mentions bias/survivor/filter/removed)",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "RDS12_simpsons_income",
+      "seed": 0,
+      "run_id": "20260422_182736_c81c426a",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/RDS12_simpsons_income/20260422_182736_c81c426a",
+      "pass": false,
+      "partial_score": 0.3333333333333333,
+      "elapsed_sec": 1184.6,
+      "failure_modes": [
+        "results.json contains 'stratified_results' key",
+        "results.json exists and has 'aggregate_results' key",
+        "report.md mentions Simpson's paradox or stratification",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC8_dependency_audit",
+      "seed": 0,
+      "run_id": "20260422_185208_5dc17f2c",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/SEC8_dependency_audit/20260422_185208_5dc17f2c",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 2520.0,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260422_194430_8e6a170b",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GO1_concurrency_fix/20260422_194430_8e6a170b",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 3050.2,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SCALE1_codebase_migration",
+      "seed": 0,
+      "run_id": "20260422_204548_b0998502",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/SCALE1_codebase_migration/20260422_204548_b0998502",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 2929.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260422_214456_c8257fd1",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH10_retry_backoff/20260422_214456_c8257fd1",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1873.3,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260422_222629_05859433",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH11_middleware_order/20260422_222629_05859433",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1839.5,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260422_230725_ae8b0bd9",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260422_230725_ae8b0bd9",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1336.1,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260422_233958_2974297a",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/GH2_click_flag_value/20260422_233958_2974297a",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1353.8,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC5_config_system",
+      "seed": 0,
+      "run_id": "20260423_001245_58eb7193",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/SPEC5_config_system/20260423_001245_58eb7193",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 730.6,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC2_api_design",
+      "seed": 0,
+      "run_id": "20260423_003504_565a7de4",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/ablation_runs/SPEC2_api_design/20260423_003504_565a7de4",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1250.4,
+      "failure_modes": [
+        "grader_no_score"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260423_142522_9959d6c0",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260423_142522_9959d6c0",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 125.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260423_142740_0535ec88",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260423_142740_0535ec88",
+      "pass": true,
+      "partial_score": 0.86,
+      "elapsed_sec": 230.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP6_deprecated_api",
+      "seed": 0,
+      "run_id": "20260423_143208_bff0ff59",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP6_deprecated_api/20260423_143208_bff0ff59",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 107.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR4_api_review",
+      "seed": 0,
+      "run_id": "20260423_143424_6e7028ec",
+      "run_dir": "shared/ablation_results/ablation_runs/CR4_api_review/20260423_143424_6e7028ec",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 150.4,
+      "failure_modes": [
+        "tests_failing",
+        "missing_api_v1_prefix",
+        "wrong_http_method_not_fixed",
+        "get_used_for_create",
+        "camelcase_route_not_fixed",
+        "camelcase_function_not_fixed",
+        "pagination_not_implemented",
+        "pagination_envelope_missing",
+        "create_not_returning_201",
+        "notfound_not_returning_404",
+        "bare_string_errors_remain",
+        "error_schema_missing_fields"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR6_review_checklist",
+      "seed": 0,
+      "run_id": "20260423_143704_02df11a1",
+      "run_dir": "shared/ablation_results/ablation_runs/CR6_review_checklist/20260423_143704_02df11a1",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 145.7,
+      "failure_modes": [
+        "missing_or_insufficient_findings"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR1_review_respond",
+      "seed": 0,
+      "run_id": "20260423_143932_aa4af43a",
+      "run_dir": "shared/ablation_results/ablation_runs/CR1_review_respond/20260423_143932_aa4af43a",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 162.8,
+      "failure_modes": [
+        "sql_injection_not_fixed",
+        "n_plus_one_not_fixed",
+        "function_not_renamed",
+        "bare_except_not_fixed",
+        "tests_failing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260423_144223_e3649ce1",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260423_144223_e3649ce1",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 149.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS2_schema_evolution",
+      "seed": 0,
+      "run_id": "20260423_144516_e9a7b6e4",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS2_schema_evolution/20260423_144516_e9a7b6e4",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 214.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260423_144914_fcf8cb0e",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260423_144914_fcf8cb0e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 123.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D6_data_reconcile",
+      "seed": 0,
+      "run_id": "20260423_145147_c40178b3",
+      "run_dir": "shared/ablation_results/ablation_runs/D6_data_reconcile/20260423_145147_c40178b3",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 130.5,
+      "failure_modes": [
+        "manual_override_wrong",
+        "per_record_values_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D3_schema_migration",
+      "seed": 0,
+      "run_id": "20260423_145359_74bdc67d",
+      "run_dir": "shared/ablation_results/ablation_runs/D3_schema_migration/20260423_145359_74bdc67d",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 177.7,
+      "failure_modes": [
+        "data_not_preserved"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D4_data_pipeline",
+      "seed": 0,
+      "run_id": "20260423_145659_e7c6c864",
+      "run_dir": "shared/ablation_results/ablation_runs/D4_data_pipeline/20260423_145659_e7c6c864",
+      "pass": false,
+      "partial_score": 0.65,
+      "elapsed_sec": 190.7,
+      "failure_modes": [
+        "wrong_row_count",
+        "null_check_fail",
+        "range_validation_fail",
+        "dedup_winner_fail",
+        "false_positives_in_valid",
+        "missing_from_invalid_csv"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D5_query_optimize",
+      "seed": 0,
+      "run_id": "20260423_150041_3035010f",
+      "run_dir": "shared/ablation_results/ablation_runs/D5_query_optimize/20260423_150041_3035010f",
+      "pass": false,
+      "partial_score": 0.87,
+      "elapsed_sec": 432.2,
+      "failure_modes": [
+        "required_indexes_missing",
+        "no_create_index_in_database_py"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D7_etl_reconciliation",
+      "seed": 0,
+      "run_id": "20260423_150803_aa142bed",
+      "run_dir": "shared/ablation_results/ablation_runs/D7_etl_reconciliation/20260423_150803_aa142bed",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 204.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260423_151129_2b561545",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260423_151129_2b561545",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 164.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST2_consensus_partition",
+      "seed": 0,
+      "run_id": "20260423_151435_e54559a6",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST2_consensus_partition/20260423_151435_e54559a6",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 265.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SYNTH1_distributed_debug",
+      "seed": 0,
+      "run_id": "20260423_151930_84805583",
+      "run_dir": "shared/ablation_results/ablation_runs/SYNTH1_distributed_debug/20260423_151930_84805583",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 128.3,
+      "failure_modes": [
+        "email_update_broken",
+        "cache_not_invalidated",
+        "regression_detected",
+        "excessive_changes",
+        "wrong_field_name",
+        "cache_fix_not_applied",
+        "no_timezone_handling"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1000_numpy_19869",
+      "seed": 0,
+      "run_id": "20260423_152146_6f162675",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1000_numpy_19869/20260423_152146_6f162675",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 231.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1001_numpy_30855",
+      "seed": 0,
+      "run_id": "20260423_152554_065eaefe",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1001_numpy_30855/20260423_152554_065eaefe",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 117.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1002_scipy_24753",
+      "seed": 0,
+      "run_id": "20260423_152808_2aec871e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1002_scipy_24753/20260423_152808_2aec871e",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 145.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1003_scipy_24496",
+      "seed": 0,
+      "run_id": "20260423_153050_05f9288c",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1003_scipy_24496/20260423_153050_05f9288c",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 223.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1004_dask_11665",
+      "seed": 0,
+      "run_id": "20260423_153455_1e654f89",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1004_dask_11665/20260423_153455_1e654f89",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 176.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1005_ray_60236",
+      "seed": 0,
+      "run_id": "20260423_153807_e2386b36",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1005_ray_60236/20260423_153807_e2386b36",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 325.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1006_spaCy_13068",
+      "seed": 0,
+      "run_id": "20260423_154350_d89c6570",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1006_spaCy_13068/20260423_154350_d89c6570",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 113.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1007_spaCy_13040",
+      "seed": 0,
+      "run_id": "20260423_154613_b662aa52",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1007_spaCy_13040/20260423_154613_b662aa52",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 232.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1008_spaCy_12749",
+      "seed": 0,
+      "run_id": "20260423_155028_9ec94e80",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1008_spaCy_12749/20260423_155028_9ec94e80",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 226.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1009_spaCy_12486",
+      "seed": 0,
+      "run_id": "20260423_155431_2095b15f",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1009_spaCy_12486/20260423_155431_2095b15f",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 221.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1010_great_expectati_10406",
+      "seed": 0,
+      "run_id": "20260423_155833_ab89793e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1010_great_expectati_10406/20260423_155833_ab89793e",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 195.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1011_great_expectati_8062",
+      "seed": 0,
+      "run_id": "20260423_160206_6a809128",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1011_great_expectati_8062/20260423_160206_6a809128",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 272.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC6_deadlock",
+      "seed": 0,
+      "run_id": "20260423_160656_33e835b3",
+      "run_dir": "shared/ablation_results/ablation_runs/INC6_deadlock/20260423_160656_33e835b3",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 80.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC10_rollback_plan",
+      "seed": 0,
+      "run_id": "20260423_160821_b63b5d92",
+      "run_dir": "shared/ablation_results/ablation_runs/INC10_rollback_plan/20260423_160821_b63b5d92",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 229.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260423_161211_bcfbe954",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260423_161211_bcfbe954",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 184.1,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC2_data_corruption",
+      "seed": 0,
+      "run_id": "20260423_161517_6f99773e",
+      "run_dir": "shared/ablation_results/ablation_runs/INC2_data_corruption/20260423_161517_6f99773e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 103.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC3_memory_leak",
+      "seed": 0,
+      "run_id": "20260423_161702_0039b6f8",
+      "run_dir": "shared/ablation_results/ablation_runs/INC3_memory_leak/20260423_161702_0039b6f8",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 86.4,
+      "failure_modes": [
+        "leak_fn_not_fixed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260423_161830_55e3b3c3",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260423_161830_55e3b3c3",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 99.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "IR2_misinformation_trap",
+      "seed": 0,
+      "run_id": "20260423_162011_f76bfcd3",
+      "run_dir": "shared/ablation_results/ablation_runs/IR2_misinformation_trap/20260423_162011_f76bfcd3",
+      "pass": false,
+      "partial_score": 0.43,
+      "elapsed_sec": 290.0,
+      "failure_modes": [
+        "invalid_answer_structure",
+        "invalid_evidence_format",
+        "wrong_answer",
+        "invalid_evidence_content"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "IR3_multi_source",
+      "seed": 0,
+      "run_id": "20260423_162503_000ec7bc",
+      "run_dir": "shared/ablation_results/ablation_runs/IR3_multi_source/20260423_162503_000ec7bc",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 141.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "IR4_temporal",
+      "seed": 0,
+      "run_id": "20260423_162726_1ab72c73",
+      "run_dir": "shared/ablation_results/ablation_runs/IR4_temporal/20260423_162726_1ab72c73",
+      "pass": false,
+      "partial_score": 0.87,
+      "elapsed_sec": 233.6,
+      "failure_modes": [
+        "invalid_structure",
+        "missing_question_ids"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INT1_pipeline_repair",
+      "seed": 0,
+      "run_id": "20260423_163122_fc3f5069",
+      "run_dir": "shared/ablation_results/ablation_runs/INT1_pipeline_repair/20260423_163122_fc3f5069",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 119.0,
+      "failure_modes": [
+        "plus_emails_rejected",
+        "report_broken"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "LH2_budgeted_workflow",
+      "seed": 0,
+      "run_id": "20260423_163326_29d8f5ac",
+      "run_dir": "shared/ablation_results/ablation_runs/LH2_budgeted_workflow/20260423_163326_29d8f5ac",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 202.2,
+      "failure_modes": [
+        "budget_exceeded",
+        "budget_log_exceeded"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "LH5_data_migration",
+      "seed": 0,
+      "run_id": "20260423_163650_48db6eeb",
+      "run_dir": "shared/ablation_results/ablation_runs/LH5_data_migration/20260423_163650_48db6eeb",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 130.7,
+      "failure_modes": [
+        "validate_fail",
+        "missing_migration_report",
+        "missing_migration_log",
+        "steps_out_of_order",
+        "backup_missing",
+        "row_count_mismatch",
+        "checksums_invalid",
+        "verification_report_invalid",
+        "orphaned_references",
+        "invalid_jsonl_output"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "LH4_staged_deploy",
+      "seed": 0,
+      "run_id": "20260423_163903_748737cc",
+      "run_dir": "shared/ablation_results/ablation_runs/LH4_staged_deploy/20260423_163903_748737cc",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 157.2,
+      "failure_modes": [
+        "missing_deploy_log",
+        "incomplete_stages",
+        "wrong_stage_order",
+        "canary_gate_fail",
+        "rollout_incomplete",
+        "post_deploy_incomplete",
+        "monitoring_config_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "seed": 0,
+      "run_id": "20260423_164143_50fb8457",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS6_grpc_rest_bridge/20260423_164143_50fb8457",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 99.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "JS2_xss_sanitize",
+      "seed": 0,
+      "run_id": "20260423_164338_96e3509f",
+      "run_dir": "shared/ablation_results/ablation_runs/JS2_xss_sanitize/20260423_164338_96e3509f",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 173.0,
+      "failure_modes": [
+        "raw_user_vars_in_templates",
+        "security_headers_fn_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "MULTI2_microservice_debug",
+      "seed": 0,
+      "run_id": "20260423_164658_bb9b2ef8",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI2_microservice_debug/20260423_164658_bb9b2ef8",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 127.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260423_164913_49a103d5",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260423_164913_49a103d5",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 289.3,
+      "failure_modes": [
+        "reliability_test_fail",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "LH3_multi_service",
+      "seed": 0,
+      "run_id": "20260423_165405_d29553be",
+      "run_dir": "shared/ablation_results/ablation_runs/LH3_multi_service/20260423_165405_d29553be",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 213.9,
+      "failure_modes": [
+        "wrong_response_fields_remain",
+        "missing_error_handling_not_fixed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O6_perf_tuning",
+      "seed": 0,
+      "run_id": "20260423_165746_94e850d3",
+      "run_dir": "shared/ablation_results/ablation_runs/O6_perf_tuning/20260423_165746_94e850d3",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 92.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260423_165919_fb2dc2a9",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260423_165919_fb2dc2a9",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 164.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS7_config_drift",
+      "seed": 0,
+      "run_id": "20260423_170217_19c13b7c",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS7_config_drift/20260423_170217_19c13b7c",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 180.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "MULTI5_deploy_pipeline",
+      "seed": 0,
+      "run_id": "20260423_170532_7fbff2e0",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI5_deploy_pipeline/20260423_170532_7fbff2e0",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 171.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "API1_version_compat",
+      "seed": 0,
+      "run_id": "20260423_170836_e729f0b9",
+      "run_dir": "shared/ablation_results/ablation_runs/API1_version_compat/20260423_170836_e729f0b9",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 105.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH14_celery_chain_fail",
+      "seed": 0,
+      "run_id": "20260423_171043_d9662bdb",
+      "run_dir": "shared/ablation_results/ablation_runs/GH14_celery_chain_fail/20260423_171043_d9662bdb",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 92.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INFRA2_cicd_repair",
+      "seed": 0,
+      "run_id": "20260423_171226_4610b35b",
+      "run_dir": "shared/ablation_results/ablation_runs/INFRA2_cicd_repair/20260423_171226_4610b35b",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 173.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TS1_type_mismatch",
+      "seed": 0,
+      "run_id": "20260423_171522_ec13007e",
+      "run_dir": "shared/ablation_results/ablation_runs/TS1_type_mismatch/20260423_171522_ec13007e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 186.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH103_redis-py_3998",
+      "seed": 0,
+      "run_id": "20260423_171844_44290ed1",
+      "run_dir": "shared/ablation_results/ablation_runs/GH103_redis-py_3998/20260423_171844_44290ed1",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 118.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH112_redis-py_3996",
+      "seed": 0,
+      "run_id": "20260423_172133_e168982c",
+      "run_dir": "shared/ablation_results/ablation_runs/GH112_redis-py_3996/20260423_172133_e168982c",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 169.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH120_redis-py_3863",
+      "seed": 0,
+      "run_id": "20260423_172440_0080a4e7",
+      "run_dir": "shared/ablation_results/ablation_runs/GH120_redis-py_3863/20260423_172440_0080a4e7",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 156.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH121_quart_302",
+      "seed": 0,
+      "run_id": "20260423_172744_806f429c",
+      "run_dir": "shared/ablation_results/ablation_runs/GH121_quart_302/20260423_172744_806f429c",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 186.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH128_mitmproxy_8046",
+      "seed": 0,
+      "run_id": "20260423_173113_4b4eda78",
+      "run_dir": "shared/ablation_results/ablation_runs/GH128_mitmproxy_8046/20260423_173113_4b4eda78",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 227.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH12_click_envvar_flag",
+      "seed": 0,
+      "run_id": "20260423_173519_87f8afd9",
+      "run_dir": "shared/ablation_results/ablation_runs/GH12_click_envvar_flag/20260423_173519_87f8afd9",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 69.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH136_mitmproxy_8054",
+      "seed": 0,
+      "run_id": "20260423_173639_5bf6d6e9",
+      "run_dir": "shared/ablation_results/ablation_runs/GH136_mitmproxy_8054/20260423_173639_5bf6d6e9",
+      "pass": false,
+      "partial_score": 0.44,
+      "elapsed_sec": 115.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH139_marshmallow_2894",
+      "seed": 0,
+      "run_id": "20260423_173856_9db89e75",
+      "run_dir": "shared/ablation_results/ablation_runs/GH139_marshmallow_2894/20260423_173856_9db89e75",
+      "pass": false,
+      "partial_score": 0.56,
+      "elapsed_sec": 192.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH13_starlette_bg_block",
+      "seed": 0,
+      "run_id": "20260423_174228_4b1afcae",
+      "run_dir": "shared/ablation_results/ablation_runs/GH13_starlette_bg_block/20260423_174228_4b1afcae",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 162.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH140_marshmallow_2874",
+      "seed": 0,
+      "run_id": "20260423_174527_92f709fa",
+      "run_dir": "shared/ablation_results/ablation_runs/GH140_marshmallow_2874/20260423_174527_92f709fa",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 113.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH141_urllib3_3736",
+      "seed": 0,
+      "run_id": "20260423_174741_95788318",
+      "run_dir": "shared/ablation_results/ablation_runs/GH141_urllib3_3736/20260423_174741_95788318",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 152.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH143_mitmproxy_8095",
+      "seed": 0,
+      "run_id": "20260423_175031_ed317501",
+      "run_dir": "shared/ablation_results/ablation_runs/GH143_mitmproxy_8095/20260423_175031_ed317501",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 175.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH144_psycopg_1247",
+      "seed": 0,
+      "run_id": "20260423_175355_e4ac300a",
+      "run_dir": "shared/ablation_results/ablation_runs/GH144_psycopg_1247/20260423_175355_e4ac300a",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 110.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "PIPE2_data_pipeline",
+      "seed": 0,
+      "run_id": "20260423_175606_6301b085",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE2_data_pipeline/20260423_175606_6301b085",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 104.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "PIPE3_msg_queue",
+      "seed": 0,
+      "run_id": "20260423_175813_a6c48aa0",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE3_msg_queue/20260423_175813_a6c48aa0",
+      "pass": false,
+      "partial_score": 0.85,
+      "elapsed_sec": 147.4,
+      "failure_modes": [
+        "wrong_field_names_not_fixed",
+        "pytest_tests_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "PIPE3_stream_processing",
+      "seed": 0,
+      "run_id": "20260423_180050_9641c28d",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE3_stream_processing/20260423_180050_9641c28d",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 100.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P2_spec_arbitration",
+      "seed": 0,
+      "run_id": "20260423_180252_28291be4",
+      "run_dir": "shared/ablation_results/ablation_runs/P2_spec_arbitration/20260423_180252_28291be4",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 211.5,
+      "failure_modes": [
+        "missing_resolved_config"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260423_180624_dd7a673b",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260423_180624_dd7a673b",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 129.5,
+      "failure_modes": [
+        "allow_decisions_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P4_data_retention",
+      "seed": 0,
+      "run_id": "20260423_180838_30c8eb24",
+      "run_dir": "shared/ablation_results/ablation_runs/P4_data_retention/20260423_180838_30c8eb24",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 325.5,
+      "failure_modes": [
+        "audit_log_not_written",
+        "exempt_records_not_skipped",
+        "pii_not_anonymized",
+        "audit_entries_malformed",
+        "delete_count_incorrect"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "RDS10_survey_analysis",
+      "seed": 0,
+      "run_id": "20260423_181445_a9cf9a37",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS10_survey_analysis/20260423_181445_a9cf9a37",
+      "pass": false,
+      "partial_score": 0.125,
+      "elapsed_sec": 91.3,
+      "failure_modes": [
+        "analysis.py runs without error",
+        "Regression or comparison analysis implemented in analysis.py",
+        "Key metric (remote_effect_on_satisfaction) present in results.json",
+        "Key columns (JobSat, ConvertedCompYearly) referenced in analysis.py",
+        "At least one confounder (ConvertedCompYearly, EdLevel, YearsCodePro) controlled for in analysis.py",
+        "Limitations (survey bias, self-selection) discussed in report.md",
+        "results.json is valid JSON with required fields"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "RDS11_survivorship_bias",
+      "seed": 0,
+      "run_id": "20260423_181616_d5634a65",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS11_survivorship_bias/20260423_181616_d5634a65",
+      "pass": false,
+      "partial_score": 0.3333333333333333,
+      "elapsed_sec": 426.9,
+      "failure_modes": [
+        "Full dataset used: n_rows >= 29304 (90% of original 32561)",
+        "results.json exists and contains 'model_results' key",
+        "report.md explains survivorship bias (mentions bias/survivor/filter/removed)",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "RDS12_simpsons_income",
+      "seed": 0,
+      "run_id": "20260423_182341_78687f8b",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS12_simpsons_income/20260423_182341_78687f8b",
+      "pass": false,
+      "partial_score": 0.3333333333333333,
+      "elapsed_sec": 411.6,
+      "failure_modes": [
+        "results.json contains 'stratified_results' key",
+        "results.json exists and has 'aggregate_results' key",
+        "report.md mentions Simpson's paradox or stratification",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260423_183044_bc910f9d",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260423_183044_bc910f9d",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 133.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO3_cert_chain",
+      "seed": 0,
+      "run_id": "20260423_183438_dfdcdbc7",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO3_cert_chain/20260423_183438_dfdcdbc7",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 182.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO4_kdf_migration",
+      "seed": 0,
+      "run_id": "20260423_184017_1d1f6272",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO4_kdf_migration/20260423_184017_1d1f6272",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 124.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC8_dependency_audit",
+      "seed": 0,
+      "run_id": "20260423_184347_f071cc2f",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC8_dependency_audit/20260423_184347_f071cc2f",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 232.5,
+      "failure_modes": [
+        "pkg_a_still_vulnerable",
+        "pkg_a_version_wrong",
+        "pkg_b_still_vulnerable",
+        "trap_pkg_still_vulnerable"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO5_tls_config",
+      "seed": 0,
+      "run_id": "20260423_184759_81cbd496",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO5_tls_config/20260423_184759_81cbd496",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 109.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO6_token_validation",
+      "seed": 0,
+      "run_id": "20260423_185109_17a4dece",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO6_token_validation/20260423_185109_17a4dece",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 165.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260423_185505_e210e009",
+      "run_dir": "shared/ablation_results/ablation_runs/GO1_concurrency_fix/20260423_185505_e210e009",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 244.0,
+      "failure_modes": [
+        "build_failed",
+        "vet_failed",
+        "race_or_test_failed",
+        "run_output_wrong",
+        "results_channel_unbuffered"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SCALE1_codebase_migration",
+      "seed": 0,
+      "run_id": "20260423_185913_d3a702a6",
+      "run_dir": "shared/ablation_results/ablation_runs/SCALE1_codebase_migration/20260423_185913_d3a702a6",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 273.7,
+      "failure_modes": [
+        "requests_import_found",
+        "client_not_migrated",
+        "auth_not_migrated",
+        "retry_not_migrated",
+        "conftest_not_migrated",
+        "tests_not_migrated"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260423_190400_4ca85819",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260423_190400_4ca85819",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 248.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260423_190812_a44c4568",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260423_190812_a44c4568",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 255.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260423_191248_b0ba96b0",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260423_191248_b0ba96b0",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 107.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260423_191442_c48a462e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260423_191442_c48a462e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 140.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC5_config_system",
+      "seed": 0,
+      "run_id": "20260423_191712_a97cff68",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC5_config_system/20260423_191712_a97cff68",
+      "pass": false,
+      "partial_score": 0.37,
+      "elapsed_sec": 149.1,
+      "failure_modes": [
+        "missing_keys",
+        "defaults_wrong",
+        "env_override_fail",
+        "cli_priority_fail",
+        "file_load_fail",
+        "bool_coercion_fail",
+        "bool_env_fail",
+        "bool_invalid_fail",
+        "int_coercion_fail",
+        "schema_structure_fail",
+        "cli_file_priority_fail",
+        "unknown_keys_error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC2_api_design",
+      "seed": 0,
+      "run_id": "20260423_191954_5d9d5c45",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC2_api_design/20260423_191954_5d9d5c45",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 217.9,
+      "failure_modes": [
+        "duplicate_title_not_409",
+        "duplicate_title_case_sensitive",
+        "invalid_priority_not_400"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260423_192529_d263dd2a",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260423_192529_d263dd2a",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 141.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260423_192801_304b0071",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260423_192801_304b0071",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 184.5,
+      "failure_modes": [
+        "some_bugs_not_detected",
+        "bug_BUG_ABS_MISSING_not_detected",
+        "bug_BUG_DIV_FLOOR_not_detected",
+        "bug_BUG_POWER_SWAP_not_detected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST3_integration",
+      "seed": 0,
+      "run_id": "20260423_193452_a6acf42a",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST3_integration/20260423_193452_a6acf42a",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 259.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST4_property",
+      "seed": 0,
+      "run_id": "20260423_194008_e84447f1",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST4_property/20260423_194008_e84447f1",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 186.6,
+      "failure_modes": [
+        "tests_fail_on_correct_module"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "RDS13_smote_leakage",
+      "seed": 0,
+      "run_id": "20260423_194346_bbb75ce2",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS13_smote_leakage/20260423_194346_bbb75ce2",
+      "pass": false,
+      "partial_score": 0.16666666666666666,
+      "elapsed_sec": 216.5,
+      "failure_modes": [
+        "results.json exists with 'auc' key",
+        "AUC in results.json <= 0.97 (leakage removed, realistic result)",
+        "results.json contains 'n_train' and 'n_test' keys",
+        "report.md mentions leakage/contamination/oversampling order",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "RDS14_housing_leakage",
+      "seed": 0,
+      "run_id": "20260423_194842_dc8971cd",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS14_housing_leakage/20260423_194842_dc8971cd",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 503.9,
+      "failure_modes": [
+        "Post-event features ['SaleCondition', 'MoSold', 'YrSold'] absent from feature list in analysis.py",
+        "results.json exists with 'r2' key",
+        "R\u00b2 in results.json <= 0.9 (leakage removed)",
+        "results.json contains 'n_features' key",
+        "report.md mentions leakage or post-event features",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "RDS15_taxi_circular",
+      "seed": 0,
+      "run_id": "20260423_195750_df4c80d4",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS15_taxi_circular/20260423_195750_df4c80d4",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 208.2,
+      "failure_modes": [
+        "tip_pct formula uses fare_amount (not total_amount) as denominator",
+        "results.json exists with 'mean_tip_pct' key",
+        "mean_tip_pct in results.json >= 0.16 (corrected value higher than circular ~0.14)",
+        "results.json contains 'n_rows' key",
+        "report.md mentions circular formula / denominator / fare_amount",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "RDS16_retail_phacking",
+      "seed": 0,
+      "run_id": "20260423_200133_ed3fedcb",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS16_retail_phacking/20260423_200133_ed3fedcb",
+      "pass": false,
+      "partial_score": 0.16666666666666666,
+      "elapsed_sec": 136.8,
+      "failure_modes": [
+        "results.json exists with 'significant_segments' key",
+        "n_significant in results.json <= 3 after correction (vs uncorrected 3+)",
+        "results.json contains 'n_tests' key with value 15",
+        "report.md mentions multiple comparison correction or false positives",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "RDS17_macro_spurious",
+      "seed": 0,
+      "run_id": "20260423_200425_99c59643",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS17_macro_spurious/20260423_200425_99c59643",
+      "pass": false,
+      "partial_score": 0.16666666666666666,
+      "elapsed_sec": 109.2,
+      "failure_modes": [
+        "results.json exists with 'r2' key",
+        "R\u00b2 in results.json <= 0.5 (spurious regression corrected)",
+        "results.json contains 'method' key indicating differencing",
+        "report.md mentions spurious regression or non-stationarity",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260423_200705_e913d5f6",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260423_200705_e913d5f6",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 148.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260423_200943_80e56bb6",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260423_200943_80e56bb6",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 496.3,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "pytest_nonzero_exit",
+        "some_bugs_not_detected",
+        "bug_BUG_ABS_MISSING_not_detected",
+        "bug_BUG_DIV_FLOOR_not_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST3_integration",
+      "seed": 0,
+      "run_id": "20260423_202155_f8e5940c",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST3_integration/20260423_202155_f8e5940c",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 200.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST4_property",
+      "seed": 0,
+      "run_id": "20260423_202627_fb5bce75",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST4_property/20260423_202627_fb5bce75",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 359.6,
+      "failure_modes": [
+        "tests_fail_on_correct_module"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "RDS13_smote_leakage",
+      "seed": 0,
+      "run_id": "20260423_203337_1692483a",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS13_smote_leakage/20260423_203337_1692483a",
+      "pass": false,
+      "partial_score": 0.16666666666666666,
+      "elapsed_sec": 830.7,
+      "failure_modes": [
+        "results.json exists with 'auc' key",
+        "AUC in results.json <= 0.97 (leakage removed, realistic result)",
+        "results.json contains 'n_train' and 'n_test' keys",
+        "report.md mentions leakage/contamination/oversampling order",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "RDS14_housing_leakage",
+      "seed": 0,
+      "run_id": "20260423_204832_b591eaeb",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS14_housing_leakage/20260423_204832_b591eaeb",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1005.2,
+      "failure_modes": [
+        "Post-event features ['SaleCondition', 'MoSold', 'YrSold'] absent from feature list in analysis.py",
+        "results.json exists with 'r2' key",
+        "R\u00b2 in results.json <= 0.9 (leakage removed)",
+        "results.json contains 'n_features' key",
+        "report.md mentions leakage or post-event features",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "RDS15_taxi_circular",
+      "seed": 0,
+      "run_id": "20260423_210626_8639b2fc",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS15_taxi_circular/20260423_210626_8639b2fc",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 562.2,
+      "failure_modes": [
+        "tip_pct formula uses fare_amount (not total_amount) as denominator",
+        "results.json exists with 'mean_tip_pct' key",
+        "mean_tip_pct in results.json >= 0.16 (corrected value higher than circular ~0.14)",
+        "results.json contains 'n_rows' key",
+        "report.md mentions circular formula / denominator / fare_amount",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "RDS16_retail_phacking",
+      "seed": 0,
+      "run_id": "20260423_211617_18ac687c",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS16_retail_phacking/20260423_211617_18ac687c",
+      "pass": false,
+      "partial_score": 0.16666666666666666,
+      "elapsed_sec": 695.7,
+      "failure_modes": [
+        "results.json exists with 'significant_segments' key",
+        "n_significant in results.json <= 3 after correction (vs uncorrected 3+)",
+        "results.json contains 'n_tests' key with value 15",
+        "report.md mentions multiple comparison correction or false positives",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "RDS17_macro_spurious",
+      "seed": 0,
+      "run_id": "20260423_212824_d1e3da8d",
+      "run_dir": "shared/ablation_results/ablation_runs/RDS17_macro_spurious/20260423_212824_d1e3da8d",
+      "pass": false,
+      "partial_score": 0.16666666666666666,
+      "elapsed_sec": 593.9,
+      "failure_modes": [
+        "results.json exists with 'r2' key",
+        "R\u00b2 in results.json <= 0.5 (spurious regression corrected)",
+        "results.json contains 'method' key indicating differencing",
+        "report.md mentions spurious regression or non-stationarity",
+        "analysis.py runs without error"
+      ],
+      "error": null
+    }
+  ]
+}

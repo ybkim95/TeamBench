@@ -1,0 +1,274 @@
+{
+  "experiment": "hetero_ablation",
+  "seed": 0,
+  "tasks": [
+    "O3_log_analysis",
+    "P1_policy_config",
+    "P3_access_control",
+    "SPEC1_feature_impl",
+    "SPEC3_data_model",
+    "INC1_cascade_failure",
+    "INC4_dns_miscfg",
+    "IR1_evidence_qa",
+    "NEG1_tradeoff_config",
+    "CR5_test_coverage"
+  ],
+  "configs": {
+    "plan_up": {
+      "planner": "gpt-5-mini",
+      "executor": "gemini-3.1-flash-lite-preview",
+      "verifier": "gemini-3.1-flash-lite-preview"
+    }
+  },
+  "completed": "2026-03-18T23:35:02.884379+00:00",
+  "per_config": {
+    "plan_up": {
+      "passes": 1,
+      "total": 10,
+      "success_rate": 0.1,
+      "avg_partial": 0.4991,
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      }
+    }
+  },
+  "runs": [
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260318_212508_10be55b4",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/O3_log_analysis/20260318_212508_10be55b4",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 122.9,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260318_212720_aecdd15d",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/P1_policy_config/20260318_212720_aecdd15d",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 531.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260318_213612_84dd3181",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/P3_access_control/20260318_213612_84dd3181",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 764.2,
+      "failure_modes": [
+        "allow_decisions_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260318_214859_45aae0ea",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/SPEC1_feature_impl/20260318_214859_45aae0ea",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 774.4,
+      "failure_modes": [
+        "tests_fail",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260318_220231_090ebde1",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/SPEC3_data_model/20260318_220231_090ebde1",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 664.5,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260318_221357_06c04631",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/INC1_cascade_failure/20260318_221357_06c04631",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 692.7,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260318_222531_e86154a1",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/INC4_dns_miscfg/20260318_222531_e86154a1",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 879.4,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260318_224011_25671c19",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/IR1_evidence_qa/20260318_224011_25671c19",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 596.8,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260318_225009_f545d968",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/NEG1_tradeoff_config/20260318_225009_f545d968",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 1314.6,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "plan_up",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260318_231207_c22622bb",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_runs/CR5_test_coverage/20260318_231207_c22622bb",
+      "pass": false,
+      "partial_score": 0.69,
+      "elapsed_sec": 1124.0,
+      "failure_modes": [
+        "tests_fail_on_correct_code",
+        "pytest_nonzero_exit",
+        "too_few_tests",
+        "bad_attestation"
+      ],
+      "error": null
+    }
+  ]
+}

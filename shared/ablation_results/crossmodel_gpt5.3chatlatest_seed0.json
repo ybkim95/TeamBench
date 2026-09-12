@@ -1,0 +1,2382 @@
+{
+  "model": "gpt-5.3-chat-latest",
+  "tasks": [
+    "MULTI1_fullstack_fix",
+    "TEST1_spec_to_tests",
+    "O2_incident_rootcause",
+    "PIPE1_etl_fix",
+    "TRAP1_spec_conflict",
+    "TRAP3_metric_mirage",
+    "TRAP5_security_theater",
+    "CROSS1_api_contract",
+    "CROSS3_protocol_bridge",
+    "CRYPTO1_nonce_reuse",
+    "DIST1_queue_race",
+    "SEC1_vuln_patch",
+    "SEC3_crypto_upgrade",
+    "D1_schema_drift",
+    "D8_csv_cleanup",
+    "TEST2_regression",
+    "TEST5_mutation_resistant",
+    "O1_service_health",
+    "O3_log_analysis",
+    "P1_policy_config",
+    "P3_access_control",
+    "SPEC1_feature_impl",
+    "SPEC3_data_model",
+    "INC1_cascade_failure",
+    "INC4_dns_miscfg",
+    "IR1_evidence_qa",
+    "NEG1_tradeoff_config",
+    "CR5_test_coverage"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-23T04:39:41.140380+00:00",
+  "metrics": {
+    "s_oracle": 0.1429,
+    "s_restricted": 0.1071,
+    "s_full": 0.2857,
+    "s_no_verify": 0.2143,
+    "s_no_plan": 0.0714,
+    "p_oracle": 0.6112,
+    "p_restricted": 0.5028,
+    "p_full": 0.6667,
+    "p_no_verify": 0.6863,
+    "p_no_plan": 0.5038,
+    "necessity_gap": 0.1084,
+    "tni": 1.5116,
+    "team_uplift": 0.1639,
+    "collab_efficiency": 0.2682,
+    "planning_value": 0.1629,
+    "verification_value": -0.0196,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": -50.2775,
+    "interpretation": {
+      "tni": "Teamwork fully recovers the performance gap.",
+      "team_uplift": "Team adds +16.4% over single agent",
+      "collab_efficiency": "Team reaches 26.8% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +16.3% partial score",
+      "verification_value": "Verification adds -2.0% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 4,
+      "total": 28,
+      "success_rate": 0.1429
+    },
+    "restricted": {
+      "passes": 3,
+      "total": 28,
+      "success_rate": 0.1071
+    },
+    "team_no_verify": {
+      "passes": 6,
+      "total": 28,
+      "success_rate": 0.2143
+    },
+    "team_no_plan": {
+      "passes": 2,
+      "total": 28,
+      "success_rate": 0.0714
+    },
+    "full": {
+      "passes": 8,
+      "total": 28,
+      "success_rate": 0.2857
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260323_013658_ae00a122",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260323_013658_ae00a122",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 17.5,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260323_013733_5680f680",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260323_013733_5680f680",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 9.3,
+      "failure_modes": [
+        "tests_fail_on_correct_engine",
+        "low_coverage",
+        "mutant_02_not_caught",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260323_013844_da64215d",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260323_013844_da64215d",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 70.2,
+      "failure_modes": [
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260323_014006_beb33e45",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260323_014006_beb33e45",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 1.9,
+      "failure_modes": [
+        "wrong_field_names",
+        "field_renames_wrong",
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "data_loss_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260323_014009_bcd45bf3",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260323_014009_bcd45bf3",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 16.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260323_014035_4d868f8e",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260323_014035_4d868f8e",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 15.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260323_014059_3d136574",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260323_014059_3d136574",
+      "pass": false,
+      "partial_score": 0.71,
+      "elapsed_sec": 18.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260323_014131_ed9f127d",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260323_014131_ed9f127d",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 19.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260323_014214_b832257e",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260323_014214_b832257e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 15.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260323_014246_40cee004",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260323_014246_40cee004",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 27.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260323_014332_21d8921f",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260323_014332_21d8921f",
+      "pass": false,
+      "partial_score": 0.3333,
+      "elapsed_sec": 24.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260323_014413_52cd35ee",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260323_014413_52cd35ee",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 23.2,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260323_014438_09747ae5",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260323_014438_09747ae5",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 2.1,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260323_014442_d9eda4a1",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260323_014442_d9eda4a1",
+      "pass": false,
+      "partial_score": 0.56,
+      "elapsed_sec": 47.8,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260323_014532_5436c7c3",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260323_014532_5436c7c3",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 15.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260323_014549_1d69a326",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260323_014549_1d69a326",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 1.9,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260323_014615_4a6693c8",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260323_014615_4a6693c8",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 11.6,
+      "failure_modes": [
+        "too_few_tests",
+        "mutant_05_not_caught",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260323_014727_aa6b271d",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260323_014727_aa6b271d",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 20.8,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260323_014812_2e010354",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260323_014812_2e010354",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 10.1,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260323_014834_67bb20eb",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260323_014834_67bb20eb",
+      "pass": false,
+      "partial_score": 0.93,
+      "elapsed_sec": 5.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260323_014842_6b40331b",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260323_014842_6b40331b",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 2.0,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260323_014847_569593cc",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260323_014847_569593cc",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 2.4,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260323_014859_a8df8552",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260323_014859_a8df8552",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 2.0,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260323_014907_572e1d35",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260323_014907_572e1d35",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 2.6,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260323_014912_e8b7d49c",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260323_014912_e8b7d49c",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 28.0,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260323_014942_0af139b8",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260323_014942_0af139b8",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 11.6,
+      "failure_modes": [
+        "invalid_evidence_content"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260323_014954_c234d750",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260323_014954_c234d750",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 19.2,
+      "failure_modes": [
+        "perf_test_fail",
+        "reliability_test_fail",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260323_015018_351d44af",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260323_015018_351d44af",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 2.7,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260323_015056_2d21922b",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260323_015056_2d21922b",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 61.7,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260323_015204_46c8bcdb",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260323_015204_46c8bcdb",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 12.2,
+      "failure_modes": [
+        "tests_fail_on_correct_engine",
+        "low_coverage",
+        "mutant_02_not_caught",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260323_015253_a9d30524",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260323_015253_a9d30524",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 6.0,
+      "failure_modes": [
+        "security_policy_violation",
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260323_015310_afb2386a",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260323_015310_afb2386a",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 2.4,
+      "failure_modes": [
+        "wrong_field_names",
+        "field_renames_wrong",
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "data_loss_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260323_015314_4a004bf7",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260323_015314_4a004bf7",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 3.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260323_015328_75d52355",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260323_015328_75d52355",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 15.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260323_015351_092e4778",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260323_015351_092e4778",
+      "pass": true,
+      "partial_score": 0.86,
+      "elapsed_sec": 43.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260323_015448_8b0fb950",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260323_015448_8b0fb950",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 12.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260323_015523_21389447",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260323_015523_21389447",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 30.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260323_015606_c8da9a5e",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260323_015606_c8da9a5e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 38.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260323_015702_4891d5e0",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260323_015702_4891d5e0",
+      "pass": false,
+      "partial_score": 0.1667,
+      "elapsed_sec": 17.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260323_015735_3ff6f797",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260323_015735_3ff6f797",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 23.6,
+      "failure_modes": [
+        "hardcoded_secret_present",
+        "insecure_session",
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260323_015800_33984412",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260323_015800_33984412",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 2.2,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260323_015804_c3317ef8",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260323_015804_c3317ef8",
+      "pass": false,
+      "partial_score": 0.44,
+      "elapsed_sec": 21.6,
+      "failure_modes": [
+        "wrong_row_count",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260323_015827_da4fea6f",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260323_015827_da4fea6f",
+      "pass": false,
+      "partial_score": 0.22,
+      "elapsed_sec": 8.3,
+      "failure_modes": [
+        "duplicate_ids",
+        "wrong_row_count",
+        "empty_column_kept",
+        "date_format_wrong",
+        "whitespace_remaining",
+        "sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260323_015837_c0f7b035",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260323_015837_c0f7b035",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 1.9,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260323_015901_8224583a",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260323_015901_8224583a",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 13.2,
+      "failure_modes": [
+        "tests_fail_on_correct_lib",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260323_020008_cfd1c47a",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260323_020008_cfd1c47a",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 15.7,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260323_020046_f2f5fa6b",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260323_020046_f2f5fa6b",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 9.0,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260323_020106_016ac169",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260323_020106_016ac169",
+      "pass": false,
+      "partial_score": 0.93,
+      "elapsed_sec": 49.6,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260323_020157_dc09d78d",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260323_020157_dc09d78d",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 1.9,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260323_020202_77aa109a",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260323_020202_77aa109a",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 2.3,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260323_020212_5d5d3ad5",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260323_020212_5d5d3ad5",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 2.2,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260323_020219_31593a87",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260323_020219_31593a87",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 2.4,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260323_020223_878b58a7",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260323_020223_878b58a7",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 2.0,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260323_020227_876617d8",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260323_020227_876617d8",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 14.0,
+      "failure_modes": [
+        "wrong_answer",
+        "wrong_evidence_count",
+        "evidence_not_from_different_docs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260323_020242_674c16fa",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260323_020242_674c16fa",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 36.9,
+      "failure_modes": [
+        "perf_test_fail",
+        "reliability_test_fail",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260323_020322_4bbd8e23",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260323_020322_4bbd8e23",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 2.1,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260323_020356_7e2bd3e5",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260323_020356_7e2bd3e5",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 188.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260323_020711_31bff766",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260323_020711_31bff766",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 260.6,
+      "failure_modes": [
+        "low_coverage",
+        "mutant_05_not_caught"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260323_021208_9d60ec2c",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260323_021208_9d60ec2c",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 141.7,
+      "failure_modes": [
+        "endpoint_no_response"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260323_021440_4500af6d",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260323_021440_4500af6d",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 19.3,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "nested_fields_not_flattened"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260323_021502_eaf3a57b",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260323_021502_eaf3a57b",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 213.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260323_021845_7563be9b",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260323_021845_7563be9b",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 205.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260323_022219_c49f6b3f",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260323_022219_c49f6b3f",
+      "pass": false,
+      "partial_score": 0.71,
+      "elapsed_sec": 210.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260323_022604_be20c78d",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260323_022604_be20c78d",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 220.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260323_023009_a9c6653c",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260323_023009_a9c6653c",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 197.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260323_023341_82ed8438",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260323_023341_82ed8438",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 134.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260323_023613_66912301",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260323_023613_66912301",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 49.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260323_023718_10c45f1f",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260323_023718_10c45f1f",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 169.0,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260323_024009_c183431b",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260323_024009_c183431b",
+      "pass": false,
+      "partial_score": 0.77,
+      "elapsed_sec": 175.5,
+      "failure_modes": [
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260323_024306_ebcf0490",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260323_024306_ebcf0490",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 184.4,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260323_024612_6df29cbb",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260323_024612_6df29cbb",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 179.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260323_024913_e1a257e6",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260323_024913_e1a257e6",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 86.8,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260323_025102_01f63af5",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260323_025102_01f63af5",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 233.7,
+      "failure_modes": [
+        "mutant_05_not_caught"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260323_025552_4271fb67",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260323_025552_4271fb67",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 149.1,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "missing_service_log"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260323_025842_f5dd0ea9",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260323_025842_f5dd0ea9",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 133.6,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260323_030107_d01ee48b",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260323_030107_d01ee48b",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 122.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260323_030311_2b8ec4a6",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260323_030311_2b8ec4a6",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 35.5,
+      "failure_modes": [
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260323_030349_cb550a5a",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260323_030349_cb550a5a",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 25.5,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260323_030422_37f2f735",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260323_030422_37f2f735",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 23.3,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260323_030451_4d37c4f5",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260323_030451_4d37c4f5",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 122.3,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260323_030656_8bd81a65",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260323_030656_8bd81a65",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 147.4,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260323_030925_3befb06e",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260323_030925_3befb06e",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 129.1,
+      "failure_modes": [
+        "invalid_evidence_content"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260323_031135_c56771c1",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260323_031135_c56771c1",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 189.8,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260323_031450_6b7758ba",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260323_031450_6b7758ba",
+      "pass": false,
+      "partial_score": 0.46,
+      "elapsed_sec": 38.9,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260323_031602_57a1e9df",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260323_031602_57a1e9df",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 66.4,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260323_031714_91c3b056",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260323_031714_91c3b056",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 30.0,
+      "failure_modes": [
+        "too_few_tests",
+        "low_coverage",
+        "mutant_02_not_caught",
+        "mutant_05_not_caught",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260323_031822_3083edf5",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260323_031822_3083edf5",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 18.4,
+      "failure_modes": [
+        "security_policy_violation",
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260323_031852_d856c6b0",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260323_031852_d856c6b0",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 9.5,
+      "failure_modes": [
+        "wrong_field_names",
+        "field_renames_wrong",
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened",
+        "data_loss_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260323_031903_cca4cd62",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260323_031903_cca4cd62",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 19.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260323_031932_ae5ca40a",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260323_031932_ae5ca40a",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 23.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260323_032004_98017b97",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260323_032004_98017b97",
+      "pass": false,
+      "partial_score": 0.71,
+      "elapsed_sec": 41.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260323_032100_3128f700",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260323_032100_3128f700",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 39.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260323_032201_55b67589",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260323_032201_55b67589",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 35.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260323_032253_b3c1457f",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260323_032253_b3c1457f",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 150.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260323_032540_ad7ca8be",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260323_032540_ad7ca8be",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 55.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260323_032649_75d534b1",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260323_032649_75d534b1",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 97.9,
+      "failure_modes": [
+        "sql_injection_present",
+        "path_traversal_present",
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260323_032829_fc8433c3",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260323_032829_fc8433c3",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 15.4,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260323_032846_9edcd2f9",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260323_032846_9edcd2f9",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 31.1,
+      "failure_modes": [
+        "wrong_columns",
+        "wrong_row_count",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260323_032919_ede8e72d",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260323_032919_ede8e72d",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 27.7,
+      "failure_modes": [
+        "date_format_wrong",
+        "sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260323_032948_8c765988",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260323_032948_8c765988",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 46.3,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260323_033057_00a77301",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260323_033057_00a77301",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 26.3,
+      "failure_modes": [
+        "mutant_05_not_caught",
+        "insufficient_mutation_detection",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260323_033220_4d54aca6",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260323_033220_4d54aca6",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 23.6,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260323_033305_eb9e5b73",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260323_033305_eb9e5b73",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 16.2,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260323_033334_65130686",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260323_033334_65130686",
+      "pass": false,
+      "partial_score": 0.07,
+      "elapsed_sec": 9.2,
+      "failure_modes": [
+        "wrong_keys",
+        "policy_rules_fail",
+        "rule_max_connections",
+        "rule_timeout_sec",
+        "rule_ssl_enabled",
+        "rule_log_level",
+        "rule_retry_count",
+        "rule_cors_origins",
+        "rule_rate_limit_rpm",
+        "rule_auth_method",
+        "rule_session_timeout_min",
+        "rule_min_password_length",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260323_033345_0dfb91f7",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260323_033345_0dfb91f7",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 10.5,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260323_033358_42f0042d",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260323_033358_42f0042d",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 45.3,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260323_033450_2e38412d",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260323_033450_2e38412d",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 49.3,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260323_033546_438a6142",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260323_033546_438a6142",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 8.7,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260323_033556_5cc5740f",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260323_033556_5cc5740f",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 44.4,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260323_033642_9e868d0b",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260323_033642_9e868d0b",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 52.5,
+      "failure_modes": [
+        "wrong_answer",
+        "wrong_evidence_count",
+        "evidence_not_from_different_docs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260323_033736_2d75fb42",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260323_033736_2d75fb42",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 35.6,
+      "failure_modes": [
+        "perf_test_fail",
+        "reliability_test_fail",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260323_033815_214014fd",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260323_033815_214014fd",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 49.8,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260323_033937_9c2d03fe",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260323_033937_9c2d03fe",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 261.7,
+      "failure_modes": [
+        "test_create_fail",
+        "test_get_fail",
+        "test_sorted_fail",
+        "test_delete_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260323_034406_5f71ae82",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260323_034406_5f71ae82",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 56.1,
+      "failure_modes": [
+        "mutant_02_not_caught",
+        "mutant_05_not_caught"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260323_034541_72e38d8f",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260323_034541_72e38d8f",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 212.9,
+      "failure_modes": [
+        "endpoint_no_response"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260323_034925_99880098",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260323_034925_99880098",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 232.4,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "nested_fields_not_flattened",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260323_035319_ce129477",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260323_035319_ce129477",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 213.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260323_035703_a9a0422f",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260323_035703_a9a0422f",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 28.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260323_035740_a835e85d",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260323_035740_a835e85d",
+      "pass": true,
+      "partial_score": 0.86,
+      "elapsed_sec": 281.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260323_040237_6be7e956",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260323_040237_6be7e956",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 133.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260323_040514_39913074",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260323_040514_39913074",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 39.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260323_040609_850908fa",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260323_040609_850908fa",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 77.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260323_040746_0ba04d05",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260323_040746_0ba04d05",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 60.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260323_040903_22911b53",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260323_040903_22911b53",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 38.4,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260323_040942_137a1d09",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260323_040942_137a1d09",
+      "pass": false,
+      "partial_score": 0.85,
+      "elapsed_sec": 77.7,
+      "failure_modes": [
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260323_041102_dfcc32f3",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260323_041102_dfcc32f3",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 32.4,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260323_041137_5cf04a3b",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260323_041137_5cf04a3b",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 30.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260323_041209_e1381320",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260323_041209_e1381320",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 104.9,
+      "failure_modes": [
+        "tests_fail_on_fixed_code",
+        "too_few_tests",
+        "no_assertions",
+        "pytest_nonzero_exit"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260323_041417_51dfbb18",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260323_041417_51dfbb18",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 122.6,
+      "failure_modes": [
+        "tests_fail_on_correct_lib",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260323_041716_fab76364",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260323_041716_fab76364",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 32.2,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "missing_service_log"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260323_041810_f76dc1f9",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260323_041810_f76dc1f9",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 170.8,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260323_042113_65e05125",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260323_042113_65e05125",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 200.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260323_042436_eeef8441",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260323_042436_eeef8441",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 66.7,
+      "failure_modes": [
+        "flask_allowed_returns_403"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260323_042544_c8ca8297",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260323_042544_c8ca8297",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 132.4,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260323_042805_cd7039f1",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260323_042805_cd7039f1",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 156.8,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260323_043049_84ad2c28",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260323_043049_84ad2c28",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 59.1,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260323_043150_4131c0e1",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260323_043150_4131c0e1",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 42.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260323_043235_4d8184fe",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260323_043235_4d8184fe",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 104.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260323_043420_ba94e1b7",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260323_043420_ba94e1b7",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 167.8,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260323_043713_1e2f4e08",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260323_043713_1e2f4e08",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 112.9,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,3782 @@
+{
+  "model": "gpt-5-mini",
+  "tasks": [
+    "CR1_review_respond",
+    "CR2_style_enforce",
+    "CR3_perf_review",
+    "CR4_api_review",
+    "CR5_test_coverage",
+    "CR6_review_checklist",
+    "CROSS1_api_contract",
+    "CROSS2_schema_evolution",
+    "CROSS3_protocol_bridge",
+    "CROSS4_auth_federation",
+    "CROSS5_event_schema",
+    "CROSS6_grpc_rest_bridge",
+    "CROSS7_config_drift",
+    "CRYPTO1_nonce_reuse",
+    "CRYPTO2_timing_safe",
+    "CRYPTO3_cert_chain",
+    "CRYPTO4_kdf_migration",
+    "CRYPTO5_tls_config",
+    "CRYPTO6_token_validation",
+    "D1_schema_drift",
+    "D2_data_quality",
+    "D3_schema_migration",
+    "D4_data_pipeline",
+    "D5_query_optimize",
+    "D6_data_reconcile",
+    "D7_etl_reconciliation",
+    "D8_csv_cleanup",
+    "D9_schema_validation",
+    "DIST1_queue_race",
+    "DIST2_consensus_partition",
+    "DIST3_idempotency",
+    "DIST4_clock_skew",
+    "DIST5_leader_election",
+    "DIST6_distributed_lock",
+    "GH10_retry_backoff",
+    "GH11_middleware_order",
+    "GH1_flask_session_ctx",
+    "GH2_click_flag_value",
+    "GH3_httpx_auth_leak",
+    "GH4_requests_encoding",
+    "GH5_pydantic_circular",
+    "GH6_queryset_union",
+    "GH7_fixture_scope_leak",
+    "GH8_async_cache_race",
+    "GH9_pool_exhaustion",
+    "GO1_concurrency_fix",
+    "GO2_race_condition",
+    "INC10_rollback_plan",
+    "INC1_cascade_failure",
+    "INC2_data_corruption"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-22T11:33:01.325141+00:00",
+  "metrics": {
+    "s_oracle": 0.02,
+    "s_restricted": 0.02,
+    "s_full": 0.2,
+    "s_no_verify": 0.12,
+    "s_no_plan": 0.08,
+    "p_oracle": 0.6745,
+    "p_restricted": 0.5399,
+    "p_full": 0.7194,
+    "p_no_verify": 0.6303,
+    "p_no_plan": 0.6177,
+    "necessity_gap": 0.1346,
+    "tni": 1.3338,
+    "team_uplift": 0.1795,
+    "collab_efficiency": 0.2662,
+    "planning_value": 0.1017,
+    "verification_value": 0.0891,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": -53.9868,
+    "interpretation": {
+      "tni": "Teamwork fully recovers the performance gap.",
+      "team_uplift": "Team adds +18.0% over single agent",
+      "collab_efficiency": "Team reaches 26.6% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +10.2% partial score",
+      "verification_value": "Verification adds +8.9% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 1,
+      "total": 50,
+      "success_rate": 0.02
+    },
+    "restricted": {
+      "passes": 1,
+      "total": 50,
+      "success_rate": 0.02
+    },
+    "team_no_verify": {
+      "passes": 6,
+      "total": 50,
+      "success_rate": 0.12
+    },
+    "team_no_plan": {
+      "passes": 4,
+      "total": 50,
+      "success_rate": 0.08
+    },
+    "full": {
+      "passes": 10,
+      "total": 50,
+      "success_rate": 0.2
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "CR1_review_respond",
+      "seed": 0,
+      "run_id": "20260321_000609_35ee92af",
+      "run_dir": "shared/ablation_results/ablation_runs/CR1_review_respond/20260321_000609_35ee92af",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 96.9,
+      "failure_modes": [
+        "n_plus_one_not_fixed",
+        "function_not_renamed",
+        "tests_failing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CR2_style_enforce",
+      "seed": 0,
+      "run_id": "20260321_000805_7f0d4388",
+      "run_dir": "shared/ablation_results/ablation_runs/CR2_style_enforce/20260321_000805_7f0d4388",
+      "pass": false,
+      "partial_score": 0.77,
+      "elapsed_sec": 47.6,
+      "failure_modes": [
+        "import_order_incorrect",
+        "tests_failing",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CR3_perf_review",
+      "seed": 0,
+      "run_id": "20260321_000911_88646f32",
+      "run_dir": "shared/ablation_results/ablation_runs/CR3_perf_review/20260321_000911_88646f32",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 78.3,
+      "failure_modes": [
+        "tests_failing",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CR4_api_review",
+      "seed": 0,
+      "run_id": "20260321_001046_7b47c23f",
+      "run_dir": "shared/ablation_results/ablation_runs/CR4_api_review/20260321_001046_7b47c23f",
+      "pass": false,
+      "partial_score": 0.69,
+      "elapsed_sec": 120.9,
+      "failure_modes": [
+        "tests_failing",
+        "pagination_not_implemented",
+        "create_not_returning_201",
+        "notfound_not_returning_404",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260321_001308_1ee7178c",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260321_001308_1ee7178c",
+      "pass": false,
+      "partial_score": 0.69,
+      "elapsed_sec": 65.7,
+      "failure_modes": [
+        "tests_fail_on_correct_code",
+        "pytest_nonzero_exit",
+        "too_few_tests",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CR6_review_checklist",
+      "seed": 0,
+      "run_id": "20260321_001831_61edf460",
+      "run_dir": "shared/ablation_results/ablation_runs/CR6_review_checklist/20260321_001831_61edf460",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 146.1,
+      "failure_modes": [
+        "missing_or_insufficient_findings",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260321_002058_8a90e8d1",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260321_002058_8a90e8d1",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 61.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS2_schema_evolution",
+      "seed": 0,
+      "run_id": "20260321_002329_b6f88b42",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS2_schema_evolution/20260321_002329_b6f88b42",
+      "pass": false,
+      "partial_score": 0.8333,
+      "elapsed_sec": 89.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260321_002548_ed618e49",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260321_002548_ed618e49",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 54.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS4_auth_federation",
+      "seed": 0,
+      "run_id": "20260321_002758_408725d5",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS4_auth_federation/20260321_002758_408725d5",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 170.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS5_event_schema",
+      "seed": 0,
+      "run_id": "20260321_003259_7a6f083b",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS5_event_schema/20260321_003259_7a6f083b",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 123.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "seed": 0,
+      "run_id": "20260321_003513_5e86fd2e",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS6_grpc_rest_bridge/20260321_003513_5e86fd2e",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 76.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS7_config_drift",
+      "seed": 0,
+      "run_id": "20260321_003715_30bd55e4",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS7_config_drift/20260321_003715_30bd55e4",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 51.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260321_003852_19f8dd5d",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260321_003852_19f8dd5d",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 114.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO2_timing_safe",
+      "seed": 0,
+      "run_id": "20260321_004227_8b0dd913",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO2_timing_safe/20260321_004227_8b0dd913",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 58.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO3_cert_chain",
+      "seed": 0,
+      "run_id": "20260321_004528_80bd3645",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO3_cert_chain/20260321_004528_80bd3645",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 51.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO4_kdf_migration",
+      "seed": 0,
+      "run_id": "20260321_004834_592b45a6",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO4_kdf_migration/20260321_004834_592b45a6",
+      "pass": false,
+      "partial_score": 0.9167,
+      "elapsed_sec": 85.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO5_tls_config",
+      "seed": 0,
+      "run_id": "20260321_005046_e9ad1c7e",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO5_tls_config/20260321_005046_e9ad1c7e",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 110.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO6_token_validation",
+      "seed": 0,
+      "run_id": "20260321_005344_c42d3408",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO6_token_validation/20260321_005344_c42d3408",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 108.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260321_005600_75646d95",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260321_005600_75646d95",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 60.3,
+      "failure_modes": [
+        "wrong_row_count",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D2_data_quality",
+      "seed": 0,
+      "run_id": "20260321_005702_c8a24124",
+      "run_dir": "shared/ablation_results/ablation_runs/D2_data_quality/20260321_005702_c8a24124",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 60.6,
+      "failure_modes": [
+        "wrong_columns",
+        "range_check_fail",
+        "missing_values_not_replaced",
+        "dedup_higher_score_fail",
+        "sort_order_wrong",
+        "department_correction_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D3_schema_migration",
+      "seed": 0,
+      "run_id": "20260321_005804_6cf54745",
+      "run_dir": "shared/ablation_results/ablation_runs/D3_schema_migration/20260321_005804_6cf54745",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 42.2,
+      "failure_modes": [
+        "data_not_preserved",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D4_data_pipeline",
+      "seed": 0,
+      "run_id": "20260321_005847_b5b7827e",
+      "run_dir": "shared/ablation_results/ablation_runs/D4_data_pipeline/20260321_005847_b5b7827e",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 78.6,
+      "failure_modes": [
+        "sort_order_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D5_query_optimize",
+      "seed": 0,
+      "run_id": "20260321_010006_6f2c4918",
+      "run_dir": "shared/ablation_results/ablation_runs/D5_query_optimize/20260321_010006_6f2c4918",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 70.4,
+      "failure_modes": [
+        "n_plus_1_pattern_present",
+        "required_indexes_missing",
+        "no_create_index_in_database_py",
+        "performance_target_missed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D6_data_reconcile",
+      "seed": 0,
+      "run_id": "20260321_010150_aa7a362e",
+      "run_dir": "shared/ablation_results/ablation_runs/D6_data_reconcile/20260321_010150_aa7a362e",
+      "pass": false,
+      "partial_score": 0.94,
+      "elapsed_sec": 37.1,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D7_etl_reconciliation",
+      "seed": 0,
+      "run_id": "20260321_010228_df7b8e07",
+      "run_dir": "shared/ablation_results/ablation_runs/D7_etl_reconciliation/20260321_010228_df7b8e07",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 43.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260321_010312_5e0a73ef",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260321_010312_5e0a73ef",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 141.3,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D9_schema_validation",
+      "seed": 0,
+      "run_id": "20260321_010533_53660c3b",
+      "run_dir": "shared/ablation_results/ablation_runs/D9_schema_validation/20260321_010533_53660c3b",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 87.2,
+      "failure_modes": [
+        "missing_email_accepted",
+        "status_not_normalized",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260321_010701_d2d0cfaa",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260321_010701_d2d0cfaa",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 121.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST2_consensus_partition",
+      "seed": 0,
+      "run_id": "20260321_011054_715f90e5",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST2_consensus_partition/20260321_011054_715f90e5",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 46.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST3_idempotency",
+      "seed": 0,
+      "run_id": "20260321_011331_c7b2e076",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST3_idempotency/20260321_011331_c7b2e076",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 73.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST4_clock_skew",
+      "seed": 0,
+      "run_id": "20260321_011710_c46bc5d8",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST4_clock_skew/20260321_011710_c46bc5d8",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 59.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST5_leader_election",
+      "seed": 0,
+      "run_id": "20260321_012006_78ba2568",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST5_leader_election/20260321_012006_78ba2568",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 58.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST6_distributed_lock",
+      "seed": 0,
+      "run_id": "20260321_012258_45751679",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST6_distributed_lock/20260321_012258_45751679",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 123.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260321_012532_e3d7ac99",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260321_012532_e3d7ac99",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 89.8,
+      "failure_modes": [
+        "test_max_delay_cap_failed",
+        "test_delay_never_negative_failed",
+        "test_exponential_growth_failed",
+        "test_jitter_bounded_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260321_012703_1978cd23",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260321_012703_1978cd23",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 126.2,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260321_012913_6d9da975",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260321_012913_6d9da975",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 63.4,
+      "failure_modes": [
+        "session_lost_on_redirect",
+        "session_lost_on_multi_redirect",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260321_013017_355072f1",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260321_013017_355072f1",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 72.1,
+      "failure_modes": [
+        "flag_value_not_used",
+        "positional_consumed_by_flag",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260321_013130_c56ff641",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260321_013130_c56ff641",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 52.0,
+      "failure_modes": [
+        "auth_header_leaked",
+        "cookies_leaked",
+        "non_sensitive_headers_stripped",
+        "multi_hop_auth_leaked",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260321_013223_db0a8396",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260321_013223_db0a8396",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 39.4,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260321_013306_8010262e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260321_013306_8010262e",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 38.8,
+      "failure_modes": [
+        "depth_3_data_lost",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260321_013346_7bd171d9",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260321_013346_7bd171d9",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 45.0,
+      "failure_modes": [
+        "test_basic_filter_failed",
+        "test_basic_exclude_failed",
+        "test_union_works_failed",
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed",
+        "test_union_without_filter_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260321_013653_af354514",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260321_013653_af354514",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 49.0,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260321_013743_c64789f2",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260321_013743_c64789f2",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 124.6,
+      "failure_modes": [
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260321_013948_2d15517c",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260321_013948_2d15517c",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 71.5,
+      "failure_modes": [
+        "test_pool_status_after_errors_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260321_014100_6c3ee1d1",
+      "run_dir": "shared/ablation_results/ablation_runs/GO1_concurrency_fix/20260321_014100_6c3ee1d1",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 44.1,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GO2_race_condition",
+      "seed": 0,
+      "run_id": "20260321_014148_77a7c99a",
+      "run_dir": "shared/ablation_results/ablation_runs/GO2_race_condition/20260321_014148_77a7c99a",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 57.5,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC10_rollback_plan",
+      "seed": 0,
+      "run_id": "20260321_014250_cc147d2a",
+      "run_dir": "shared/ablation_results/ablation_runs/INC10_rollback_plan/20260321_014250_cc147d2a",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 25.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260321_014316_e94dd318",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260321_014316_e94dd318",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 50.5,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC2_data_corruption",
+      "seed": 0,
+      "run_id": "20260321_014408_3a713ea0",
+      "run_dir": "shared/ablation_results/ablation_runs/INC2_data_corruption/20260321_014408_3a713ea0",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 31.3,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR1_review_respond",
+      "seed": 0,
+      "run_id": "20260321_014440_74d4b0bf",
+      "run_dir": "shared/ablation_results/ablation_runs/CR1_review_respond/20260321_014440_74d4b0bf",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 9.3,
+      "failure_modes": [
+        "sql_injection_not_fixed",
+        "n_plus_one_not_fixed",
+        "function_not_renamed",
+        "bare_except_not_fixed",
+        "tests_failing",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR2_style_enforce",
+      "seed": 0,
+      "run_id": "20260321_014511_1cac2c6f",
+      "run_dir": "shared/ablation_results/ablation_runs/CR2_style_enforce/20260321_014511_1cac2c6f",
+      "pass": false,
+      "partial_score": 0.15,
+      "elapsed_sec": 4.1,
+      "failure_modes": [
+        "class_names_not_pascal_case",
+        "function_names_not_snake_case",
+        "variable_names_not_snake_case",
+        "wildcard_imports_present",
+        "import_order_incorrect",
+        "type_hints_missing",
+        "line_length_exceeded",
+        "docstrings_missing_or_bad",
+        "trailing_commas_missing",
+        "tests_failing",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR3_perf_review",
+      "seed": 0,
+      "run_id": "20260321_014534_7e323236",
+      "run_dir": "shared/ablation_results/ablation_runs/CR3_perf_review/20260321_014534_7e323236",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 4.6,
+      "failure_modes": [
+        "tests_failing",
+        "hotspot1_not_optimized",
+        "hotspot1_no_set_dict",
+        "hotspot2_not_cached",
+        "hotspot3_not_generator",
+        "n2_patterns_remain",
+        "perf_over_budget",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR4_api_review",
+      "seed": 0,
+      "run_id": "20260321_014559_7645f3b2",
+      "run_dir": "shared/ablation_results/ablation_runs/CR4_api_review/20260321_014559_7645f3b2",
+      "pass": false,
+      "partial_score": 0.19,
+      "elapsed_sec": 31.5,
+      "failure_modes": [
+        "tests_failing",
+        "missing_api_v1_prefix",
+        "wrong_http_method_not_fixed",
+        "get_used_for_create",
+        "camelcase_route_not_fixed",
+        "camelcase_function_not_fixed",
+        "pagination_not_implemented",
+        "pagination_envelope_missing",
+        "create_not_returning_201",
+        "notfound_not_returning_404",
+        "bare_string_errors_remain",
+        "error_schema_missing_fields",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260321_014653_ec551c62",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260321_014653_ec551c62",
+      "pass": false,
+      "partial_score": 0.69,
+      "elapsed_sec": 4.9,
+      "failure_modes": [
+        "tests_fail_on_correct_code",
+        "pytest_nonzero_exit",
+        "too_few_tests",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR6_review_checklist",
+      "seed": 0,
+      "run_id": "20260321_015125_4529654e",
+      "run_dir": "shared/ablation_results/ablation_runs/CR6_review_checklist/20260321_015125_4529654e",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 56.3,
+      "failure_modes": [
+        "invalid_or_missing_report",
+        "missing_or_insufficient_findings",
+        "critical_issues_missed",
+        "major_issues_missed",
+        "minor_issues_missed",
+        "false_positives_not_handled",
+        "no_severity_differentiation",
+        "missing_summary",
+        "wrong_verdict",
+        "too_many_false_findings",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260321_015223_6dc2d041",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260321_015223_6dc2d041",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 116.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS2_schema_evolution",
+      "seed": 0,
+      "run_id": "20260321_015546_8b19d76c",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS2_schema_evolution/20260321_015546_8b19d76c",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 68.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260321_015740_3bfad6e2",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260321_015740_3bfad6e2",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 199.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS4_auth_federation",
+      "seed": 0,
+      "run_id": "20260321_020222_9e02f66e",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS4_auth_federation/20260321_020222_9e02f66e",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 203.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS5_event_schema",
+      "seed": 0,
+      "run_id": "20260321_020754_7c8a8780",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS5_event_schema/20260321_020754_7c8a8780",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 94.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "seed": 0,
+      "run_id": "20260321_020938_127cb922",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS6_grpc_rest_bridge/20260321_020938_127cb922",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 173.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS7_config_drift",
+      "seed": 0,
+      "run_id": "20260321_021318_f12636d3",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS7_config_drift/20260321_021318_f12636d3",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 73.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260321_021518_668a03fc",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260321_021518_668a03fc",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 166.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO2_timing_safe",
+      "seed": 0,
+      "run_id": "20260321_021942_4c6d8b31",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO2_timing_safe/20260321_021942_4c6d8b31",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 174.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO3_cert_chain",
+      "seed": 0,
+      "run_id": "20260321_022409_c0958bd9",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO3_cert_chain/20260321_022409_c0958bd9",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 139.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO4_kdf_migration",
+      "seed": 0,
+      "run_id": "20260321_022835_55296ff3",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO4_kdf_migration/20260321_022835_55296ff3",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 120.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO5_tls_config",
+      "seed": 0,
+      "run_id": "20260321_023120_38a7b5c0",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO5_tls_config/20260321_023120_38a7b5c0",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 5.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO6_token_validation",
+      "seed": 0,
+      "run_id": "20260321_023226_cf996343",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO6_token_validation/20260321_023226_cf996343",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 130.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260321_023504_cb2cdd0e",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260321_023504_cb2cdd0e",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 36.9,
+      "failure_modes": [
+        "etl_crash",
+        "wrong_columns",
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "extra_columns_not_dropped",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D2_data_quality",
+      "seed": 0,
+      "run_id": "20260321_023544_fc1b38e6",
+      "run_dir": "shared/ablation_results/ablation_runs/D2_data_quality/20260321_023544_fc1b38e6",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 51.3,
+      "failure_modes": [
+        "missing_values_not_replaced",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D3_schema_migration",
+      "seed": 0,
+      "run_id": "20260321_023636_a9626e91",
+      "run_dir": "shared/ablation_results/ablation_runs/D3_schema_migration/20260321_023636_a9626e91",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 74.6,
+      "failure_modes": [
+        "migration_crash",
+        "data_not_preserved",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D4_data_pipeline",
+      "seed": 0,
+      "run_id": "20260321_023751_10fd1c04",
+      "run_dir": "shared/ablation_results/ablation_runs/D4_data_pipeline/20260321_023751_10fd1c04",
+      "pass": false,
+      "partial_score": 0.59,
+      "elapsed_sec": 12.1,
+      "failure_modes": [
+        "wrong_row_count",
+        "null_check_fail",
+        "range_validation_fail",
+        "dedup_winner_fail",
+        "false_positives_in_valid",
+        "missing_from_invalid_csv",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D5_query_optimize",
+      "seed": 0,
+      "run_id": "20260321_023805_d4e40d04",
+      "run_dir": "shared/ablation_results/ablation_runs/D5_query_optimize/20260321_023805_d4e40d04",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 3.9,
+      "failure_modes": [
+        "n_plus_1_pattern_present",
+        "required_indexes_missing",
+        "no_create_index_in_database_py",
+        "performance_target_missed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D6_data_reconcile",
+      "seed": 0,
+      "run_id": "20260321_023848_17843666",
+      "run_dir": "shared/ablation_results/ablation_runs/D6_data_reconcile/20260321_023848_17843666",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 8.2,
+      "failure_modes": [
+        "missing_output_fields",
+        "manual_override_wrong",
+        "field_ownership_wrong",
+        "agree_records_wrong",
+        "per_record_values_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D7_etl_reconciliation",
+      "seed": 0,
+      "run_id": "20260321_023858_88375886",
+      "run_dir": "shared/ablation_results/ablation_runs/D7_etl_reconciliation/20260321_023858_88375886",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 44.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260321_023943_530c5949",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260321_023943_530c5949",
+      "pass": false,
+      "partial_score": 0.78,
+      "elapsed_sec": 73.4,
+      "failure_modes": [
+        "sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D9_schema_validation",
+      "seed": 0,
+      "run_id": "20260321_024057_0d2ece43",
+      "run_dir": "shared/ablation_results/ablation_runs/D9_schema_validation/20260321_024057_0d2ece43",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 97.6,
+      "failure_modes": [
+        "missing_email_accepted",
+        "status_not_normalized",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260321_024235_8c33423e",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260321_024235_8c33423e",
+      "pass": false,
+      "partial_score": 0.0833,
+      "elapsed_sec": 186.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST2_consensus_partition",
+      "seed": 0,
+      "run_id": "20260321_024746_35dc50d7",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST2_consensus_partition/20260321_024746_35dc50d7",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 96.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST3_idempotency",
+      "seed": 0,
+      "run_id": "20260321_025132_6d04afc4",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST3_idempotency/20260321_025132_6d04afc4",
+      "pass": false,
+      "partial_score": 0.1667,
+      "elapsed_sec": 149.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST4_clock_skew",
+      "seed": 0,
+      "run_id": "20260321_025625_e98db81e",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST4_clock_skew/20260321_025625_e98db81e",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 149.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST5_leader_election",
+      "seed": 0,
+      "run_id": "20260321_030052_7dfa44f5",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST5_leader_election/20260321_030052_7dfa44f5",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 79.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST6_distributed_lock",
+      "seed": 0,
+      "run_id": "20260321_030358_b02db9f3",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST6_distributed_lock/20260321_030358_b02db9f3",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 529.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260321_031319_c6b32497",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260321_031319_c6b32497",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 72.4,
+      "failure_modes": [
+        "test_max_delay_cap_failed",
+        "test_delay_never_negative_failed",
+        "test_exponential_growth_failed",
+        "test_jitter_bounded_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260321_031433_4c68970d",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260321_031433_4c68970d",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 54.1,
+      "failure_modes": [
+        "test_error_handler_catches_downstream_failed",
+        "test_multiple_error_handlers_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260321_031531_07fc531d",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260321_031531_07fc531d",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 55.8,
+      "failure_modes": [
+        "session_lost_on_redirect",
+        "session_lost_on_multi_redirect",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260321_031628_addbf175",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260321_031628_addbf175",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 51.3,
+      "failure_modes": [
+        "flag_value_not_used",
+        "positional_consumed_by_flag",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260321_031720_99247051",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260321_031720_99247051",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 49.8,
+      "failure_modes": [
+        "auth_header_leaked",
+        "cookies_leaked",
+        "non_sensitive_headers_stripped",
+        "multi_hop_auth_leaked",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260321_031811_92abe08f",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260321_031811_92abe08f",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 67.0,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260321_031921_e4f01d9e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260321_031921_e4f01d9e",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 76.9,
+      "failure_modes": [
+        "depth_3_data_lost",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260321_032039_0539bf34",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260321_032039_0539bf34",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 42.3,
+      "failure_modes": [
+        "test_basic_filter_failed",
+        "test_basic_exclude_failed",
+        "test_union_works_failed",
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed",
+        "test_union_without_filter_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260321_032342_c09ac6df",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260321_032342_c09ac6df",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 94.4,
+      "failure_modes": [
+        "test_session_scope_leak_failed",
+        "test_session_scope_dict_leak_failed",
+        "test_runner_integration_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260321_032517_a0b6254e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260321_032517_a0b6254e",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 35.4,
+      "failure_modes": [
+        "test_concurrent_race_failed",
+        "test_many_concurrent_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260321_032554_3efeb13e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260321_032554_3efeb13e",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 52.5,
+      "failure_modes": [
+        "test_pool_exhaustion_on_errors_failed",
+        "test_pool_status_after_errors_failed",
+        "test_concurrent_after_errors_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260321_032648_7422edd2",
+      "run_dir": "shared/ablation_results/ablation_runs/GO1_concurrency_fix/20260321_032648_7422edd2",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 186.4,
+      "failure_modes": [
+        "run_output_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "GO2_race_condition",
+      "seed": 0,
+      "run_id": "20260321_032958_c5b4a244",
+      "run_dir": "shared/ablation_results/ablation_runs/GO2_race_condition/20260321_032958_c5b4a244",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 48.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC10_rollback_plan",
+      "seed": 0,
+      "run_id": "20260321_033050_6500703d",
+      "run_dir": "shared/ablation_results/ablation_runs/INC10_rollback_plan/20260321_033050_6500703d",
+      "pass": false,
+      "partial_score": 0.1,
+      "elapsed_sec": 63.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260321_033155_f12337c6",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260321_033155_f12337c6",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 8.2,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC2_data_corruption",
+      "seed": 0,
+      "run_id": "20260321_033204_5f54afcc",
+      "run_dir": "shared/ablation_results/ablation_runs/INC2_data_corruption/20260321_033204_5f54afcc",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 33.9,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR1_review_respond",
+      "seed": 0,
+      "run_id": "20260321_033239_ac71b119",
+      "run_dir": "shared/ablation_results/ablation_runs/CR1_review_respond/20260321_033239_ac71b119",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 566.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"We could not parse the JSON body of your request. (HINT: This likely means you aren't using your HTTP library correctly. The OpenAI API expects a JSON payload, but what was sent was not valid JSON. If you have trouble figuring out how to fix this, please contact us through our help center at help.openai.com.)\", 'type': 'invalid_request_error', 'param': None, 'code': None}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR2_style_enforce",
+      "seed": 0,
+      "run_id": "20260321_034205_c52786a5",
+      "run_dir": "shared/ablation_results/ablation_runs/CR2_style_enforce/20260321_034205_c52786a5",
+      "pass": false,
+      "partial_score": 0.23,
+      "elapsed_sec": 799.1,
+      "failure_modes": [
+        "class_names_not_pascal_case",
+        "function_names_not_snake_case",
+        "variable_names_not_snake_case",
+        "wildcard_imports_present",
+        "import_order_incorrect",
+        "type_hints_missing",
+        "line_length_exceeded",
+        "docstrings_missing_or_bad",
+        "trailing_commas_missing",
+        "tests_failing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR3_perf_review",
+      "seed": 0,
+      "run_id": "20260321_035546_085421a2",
+      "run_dir": "shared/ablation_results/ablation_runs/CR3_perf_review/20260321_035546_085421a2",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 600.0,
+      "failure_modes": [
+        "tests_failing",
+        "hotspot1_not_optimized",
+        "hotspot1_no_set_dict",
+        "hotspot2_not_cached",
+        "hotspot3_not_generator",
+        "n2_patterns_remain",
+        "perf_over_budget"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR4_api_review",
+      "seed": 0,
+      "run_id": "20260321_040608_5020b0a9",
+      "run_dir": "shared/ablation_results/ablation_runs/CR4_api_review/20260321_040608_5020b0a9",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 723.3,
+      "failure_modes": [
+        "tests_failing",
+        "missing_api_v1_prefix",
+        "wrong_http_method_not_fixed",
+        "get_used_for_create",
+        "camelcase_route_not_fixed",
+        "camelcase_function_not_fixed",
+        "pagination_not_implemented",
+        "pagination_envelope_missing",
+        "create_not_returning_201",
+        "notfound_not_returning_404",
+        "bare_string_errors_remain",
+        "error_schema_missing_fields"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260321_041834_6e35c248",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260321_041834_6e35c248",
+      "pass": false,
+      "partial_score": 0.77,
+      "elapsed_sec": 812.4,
+      "failure_modes": [
+        "tests_fail_on_correct_code",
+        "pytest_nonzero_exit",
+        "too_few_tests"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR6_review_checklist",
+      "seed": 0,
+      "run_id": "20260321_043632_ae7c983c",
+      "run_dir": "shared/ablation_results/ablation_runs/CR6_review_checklist/20260321_043632_ae7c983c",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 484.1,
+      "failure_modes": [
+        "missing_or_insufficient_findings"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260321_044437_6db7b589",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260321_044437_6db7b589",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 496.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS2_schema_evolution",
+      "seed": 0,
+      "run_id": "20260321_045415_bd83928a",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS2_schema_evolution/20260321_045415_bd83928a",
+      "pass": false,
+      "partial_score": 0.8333,
+      "elapsed_sec": 593.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260321_050459_78c88688",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260321_050459_78c88688",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 960.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS4_auth_federation",
+      "seed": 0,
+      "run_id": "20260321_052227_a75f7bb1",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS4_auth_federation/20260321_052227_a75f7bb1",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 830.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS5_event_schema",
+      "seed": 0,
+      "run_id": "20260321_053839_1bca398f",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS5_event_schema/20260321_053839_1bca398f",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 572.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "seed": 0,
+      "run_id": "20260321_054822_aab30e72",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS6_grpc_rest_bridge/20260321_054822_aab30e72",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 124.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS7_config_drift",
+      "seed": 0,
+      "run_id": "20260321_055117_c9d4cf97",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS7_config_drift/20260321_055117_c9d4cf97",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 959.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260321_060813_610de48a",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260321_060813_610de48a",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 801.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO2_timing_safe",
+      "seed": 0,
+      "run_id": "20260321_062356_520496ee",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO2_timing_safe/20260321_062356_520496ee",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 559.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO3_cert_chain",
+      "seed": 0,
+      "run_id": "20260321_063529_393a30cf",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO3_cert_chain/20260321_063529_393a30cf",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 1019.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO4_kdf_migration",
+      "seed": 0,
+      "run_id": "20260321_065515_5fd0041a",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO4_kdf_migration/20260321_065515_5fd0041a",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 705.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO5_tls_config",
+      "seed": 0,
+      "run_id": "20260321_070802_b9768b0d",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO5_tls_config/20260321_070802_b9768b0d",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 789.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO6_token_validation",
+      "seed": 0,
+      "run_id": "20260321_072232_c5da2558",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO6_token_validation/20260321_072232_c5da2558",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 949.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260321_073856_452535e4",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260321_073856_452535e4",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 175.1,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D2_data_quality",
+      "seed": 0,
+      "run_id": "20260321_074152_a7107e89",
+      "run_dir": "shared/ablation_results/ablation_runs/D2_data_quality/20260321_074152_a7107e89",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 877.0,
+      "failure_modes": [
+        "wrong_columns",
+        "wrong_row_count",
+        "range_check_fail",
+        "missing_values_not_replaced",
+        "dedup_higher_score_fail",
+        "sort_order_wrong",
+        "department_correction_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D3_schema_migration",
+      "seed": 0,
+      "run_id": "20260321_075631_1a4a38ca",
+      "run_dir": "shared/ablation_results/ablation_runs/D3_schema_migration/20260321_075631_1a4a38ca",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 586.4,
+      "failure_modes": [
+        "data_not_preserved"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D4_data_pipeline",
+      "seed": 0,
+      "run_id": "20260321_080618_f306bea6",
+      "run_dir": "shared/ablation_results/ablation_runs/D4_data_pipeline/20260321_080618_f306bea6",
+      "pass": false,
+      "partial_score": 0.65,
+      "elapsed_sec": 502.9,
+      "failure_modes": [
+        "wrong_row_count",
+        "null_check_fail",
+        "range_validation_fail",
+        "dedup_winner_fail",
+        "false_positives_in_valid",
+        "missing_from_invalid_csv"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D5_query_optimize",
+      "seed": 0,
+      "run_id": "20260321_081442_0bd7d1d0",
+      "run_dir": "shared/ablation_results/ablation_runs/D5_query_optimize/20260321_081442_0bd7d1d0",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 571.2,
+      "failure_modes": [
+        "n_plus_1_pattern_present",
+        "required_indexes_missing",
+        "no_create_index_in_database_py",
+        "performance_target_missed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D6_data_reconcile",
+      "seed": 0,
+      "run_id": "20260321_082506_030a4be4",
+      "run_dir": "shared/ablation_results/ablation_runs/D6_data_reconcile/20260321_082506_030a4be4",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 656.6,
+      "failure_modes": [
+        "invalid_reconcile_source",
+        "manual_override_wrong",
+        "per_record_values_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D7_etl_reconciliation",
+      "seed": 0,
+      "run_id": "20260321_083604_850d51d9",
+      "run_dir": "shared/ablation_results/ablation_runs/D7_etl_reconciliation/20260321_083604_850d51d9",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 968.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260321_085213_8c8ef7ca",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260321_085213_8c8ef7ca",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 560.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D9_schema_validation",
+      "seed": 0,
+      "run_id": "20260321_090134_afa9bb28",
+      "run_dir": "shared/ablation_results/ablation_runs/D9_schema_validation/20260321_090134_afa9bb28",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 526.2,
+      "failure_modes": [
+        "missing_email_accepted"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260321_091021_a0913b03",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260321_091021_a0913b03",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 132.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST2_consensus_partition",
+      "seed": 0,
+      "run_id": "20260321_091510_f8244977",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST2_consensus_partition/20260321_091510_f8244977",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 569.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST3_idempotency",
+      "seed": 0,
+      "run_id": "20260321_092708_c07cd4c5",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST3_idempotency/20260321_092708_c07cd4c5",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 901.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST4_clock_skew",
+      "seed": 0,
+      "run_id": "20260321_094522_0716bd0f",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST4_clock_skew/20260321_094522_0716bd0f",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 582.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST5_leader_election",
+      "seed": 0,
+      "run_id": "20260321_095732_257335fb",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST5_leader_election/20260321_095732_257335fb",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 730.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST6_distributed_lock",
+      "seed": 0,
+      "run_id": "20260321_101211_58e65dc3",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST6_distributed_lock/20260321_101211_58e65dc3",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 876.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260321_102721_fe742839",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260321_102721_fe742839",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 530.3,
+      "failure_modes": [
+        "test_basic_retry_failed",
+        "test_max_delay_cap_failed",
+        "test_delay_never_negative_failed",
+        "test_exponential_growth_failed",
+        "test_jitter_bounded_failed",
+        "test_no_jitter_failed",
+        "test_max_retries_respected_failed",
+        "retry_policy_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260321_103613_fb7cb125",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260321_103613_fb7cb125",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 527.9,
+      "failure_modes": [
+        "test_error_handler_catches_downstream_failed",
+        "test_multiple_error_handlers_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260321_104506_c84831ab",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260321_104506_c84831ab",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 920.7,
+      "failure_modes": [
+        "session_lost_on_redirect",
+        "session_lost_on_multi_redirect"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260321_110027_b49d4990",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260321_110027_b49d4990",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 158.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260321_110307_4e6051bb",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260321_110307_4e6051bb",
+      "pass": false,
+      "partial_score": 0.69,
+      "elapsed_sec": 781.0,
+      "failure_modes": [
+        "auth_header_leaked",
+        "cookies_leaked",
+        "non_sensitive_headers_stripped",
+        "multi_hop_auth_leaked"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260321_111609_47b2818e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260321_111609_47b2818e",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 343.3,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260321_112156_40f3bb4a",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260321_112156_40f3bb4a",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 572.4,
+      "failure_modes": [
+        "depth_3_data_lost"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260321_113129_64b4a003",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260321_113129_64b4a003",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 741.2,
+      "failure_modes": [
+        "test_basic_filter_failed",
+        "test_basic_exclude_failed",
+        "test_union_works_failed",
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed",
+        "test_union_without_filter_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260321_114706_bb80afd9",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260321_114706_bb80afd9",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 509.0,
+      "failure_modes": [
+        "test_function_scope_isolation_failed",
+        "test_session_scope_leak_failed",
+        "test_session_scope_dict_leak_failed",
+        "test_session_immutable_cached_failed",
+        "test_runner_integration_failed",
+        "test_module_scope_works_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260321_115536_23f50d25",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260321_115536_23f50d25",
+      "pass": false,
+      "partial_score": 0.78,
+      "elapsed_sec": 532.5,
+      "failure_modes": [
+        "test_concurrent_race_failed",
+        "test_many_concurrent_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260321_120430_f4f616c6",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260321_120430_f4f616c6",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 440.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260321_121150_c8f01bc6",
+      "run_dir": "shared/ablation_results/ablation_runs/GO1_concurrency_fix/20260321_121150_c8f01bc6",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 616.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "GO2_race_condition",
+      "seed": 0,
+      "run_id": "20260321_122212_0f87b588",
+      "run_dir": "shared/ablation_results/ablation_runs/GO2_race_condition/20260321_122212_0f87b588",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 562.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC10_rollback_plan",
+      "seed": 0,
+      "run_id": "20260321_123139_e1a463b5",
+      "run_dir": "shared/ablation_results/ablation_runs/INC10_rollback_plan/20260321_123139_e1a463b5",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 793.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260321_124453_8f0a2676",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260321_124453_8f0a2676",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 1068.6,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC2_data_corruption",
+      "seed": 0,
+      "run_id": "20260321_130243_e5afc335",
+      "run_dir": "shared/ablation_results/ablation_runs/INC2_data_corruption/20260321_130243_e5afc335",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 566.5,
+      "failure_modes": [
+        "recover_py_crashes",
+        "corrupted_records_not_recovered",
+        "required_fields_null",
+        "validate_py_fails",
+        "recover_not_idempotent"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR1_review_respond",
+      "seed": 0,
+      "run_id": "20260321_131211_1038f518",
+      "run_dir": "shared/ablation_results/ablation_runs/CR1_review_respond/20260321_131211_1038f518",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 443.0,
+      "failure_modes": [
+        "n_plus_one_not_fixed",
+        "function_not_renamed",
+        "tests_failing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR2_style_enforce",
+      "seed": 0,
+      "run_id": "20260321_132001_ccec70ab",
+      "run_dir": "shared/ablation_results/ablation_runs/CR2_style_enforce/20260321_132001_ccec70ab",
+      "pass": false,
+      "partial_score": 0.77,
+      "elapsed_sec": 383.8,
+      "failure_modes": [
+        "import_order_incorrect",
+        "line_length_exceeded",
+        "tests_failing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR3_perf_review",
+      "seed": 0,
+      "run_id": "20260321_132652_810cbada",
+      "run_dir": "shared/ablation_results/ablation_runs/CR3_perf_review/20260321_132652_810cbada",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 543.3,
+      "failure_modes": [
+        "tests_failing",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR4_api_review",
+      "seed": 0,
+      "run_id": "20260321_133622_6908ed6a",
+      "run_dir": "shared/ablation_results/ablation_runs/CR4_api_review/20260321_133622_6908ed6a",
+      "pass": false,
+      "partial_score": 0.19,
+      "elapsed_sec": 463.5,
+      "failure_modes": [
+        "tests_failing",
+        "missing_api_v1_prefix",
+        "wrong_http_method_not_fixed",
+        "get_used_for_create",
+        "camelcase_route_not_fixed",
+        "camelcase_function_not_fixed",
+        "pagination_not_implemented",
+        "pagination_envelope_missing",
+        "create_not_returning_201",
+        "notfound_not_returning_404",
+        "bare_string_errors_remain",
+        "error_schema_missing_fields",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260321_134434_22c8d384",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260321_134434_22c8d384",
+      "pass": false,
+      "partial_score": 0.69,
+      "elapsed_sec": 422.8,
+      "failure_modes": [
+        "tests_fail_on_correct_code",
+        "pytest_nonzero_exit",
+        "too_few_tests",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR6_review_checklist",
+      "seed": 0,
+      "run_id": "20260321_135702_3293d119",
+      "run_dir": "shared/ablation_results/ablation_runs/CR6_review_checklist/20260321_135702_3293d119",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 126.9,
+      "failure_modes": [
+        "missing_or_insufficient_findings",
+        "false_positives_not_handled",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260321_135910_4f8eaf34",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260321_135910_4f8eaf34",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 344.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS2_schema_evolution",
+      "seed": 0,
+      "run_id": "20260321_140649_d26f199f",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS2_schema_evolution/20260321_140649_d26f199f",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 347.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260321_141347_64346d06",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260321_141347_64346d06",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 608.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS4_auth_federation",
+      "seed": 0,
+      "run_id": "20260321_142534_fce9c94e",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS4_auth_federation/20260321_142534_fce9c94e",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 400.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS5_event_schema",
+      "seed": 0,
+      "run_id": "20260321_143456_c32aae11",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS5_event_schema/20260321_143456_c32aae11",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 378.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "seed": 0,
+      "run_id": "20260321_144127_f14f2901",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS6_grpc_rest_bridge/20260321_144127_f14f2901",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 267.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS7_config_drift",
+      "seed": 0,
+      "run_id": "20260321_144653_aced28f8",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS7_config_drift/20260321_144653_aced28f8",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 947.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260321_150337_e86fa89e",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260321_150337_e86fa89e",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 590.2,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': \"We could not parse the JSON body of your request. (HINT: This likely means you aren't using your HTTP library correctly. The OpenAI API expects a JSON payload, but what was sent was not valid JSON. If you have trouble figuring out how to fix this, please contact us through our help center at help.openai.com.)\", 'type': 'invalid_request_error', 'param': None, 'code': None}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO2_timing_safe",
+      "seed": 0,
+      "run_id": "20260321_151328_e520a1bb",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO2_timing_safe/20260321_151328_e520a1bb",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 399.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO3_cert_chain",
+      "seed": 0,
+      "run_id": "20260321_152206_800f72c7",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO3_cert_chain/20260321_152206_800f72c7",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 770.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO4_kdf_migration",
+      "seed": 0,
+      "run_id": "20260321_153739_c9dfeb63",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO4_kdf_migration/20260321_153739_c9dfeb63",
+      "pass": false,
+      "partial_score": 0.9167,
+      "elapsed_sec": 759.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO5_tls_config",
+      "seed": 0,
+      "run_id": "20260321_155131_e4d0578b",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO5_tls_config/20260321_155131_e4d0578b",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 589.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO6_token_validation",
+      "seed": 0,
+      "run_id": "20260321_160248_e0293f96",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO6_token_validation/20260321_160248_e0293f96",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 785.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260321_161629_5f1ec6b0",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260321_161629_5f1ec6b0",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 383.6,
+      "failure_modes": [
+        "etl_crash",
+        "wrong_columns",
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "extra_columns_not_dropped",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D2_data_quality",
+      "seed": 0,
+      "run_id": "20260321_162254_22912cba",
+      "run_dir": "shared/ablation_results/ablation_runs/D2_data_quality/20260321_162254_22912cba",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 1014.4,
+      "failure_modes": [
+        "missing_values_not_replaced",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D3_schema_migration",
+      "seed": 0,
+      "run_id": "20260321_163950_673bd8a5",
+      "run_dir": "shared/ablation_results/ablation_runs/D3_schema_migration/20260321_163950_673bd8a5",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 382.7,
+      "failure_modes": [
+        "data_not_preserved",
+        "new_columns_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D4_data_pipeline",
+      "seed": 0,
+      "run_id": "20260321_164614_8db7f5fe",
+      "run_dir": "shared/ablation_results/ablation_runs/D4_data_pipeline/20260321_164614_8db7f5fe",
+      "pass": false,
+      "partial_score": 0.59,
+      "elapsed_sec": 257.2,
+      "failure_modes": [
+        "wrong_row_count",
+        "null_check_fail",
+        "range_validation_fail",
+        "dedup_winner_fail",
+        "false_positives_in_valid",
+        "missing_from_invalid_csv",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D5_query_optimize",
+      "seed": 0,
+      "run_id": "20260321_165033_41856184",
+      "run_dir": "shared/ablation_results/ablation_runs/D5_query_optimize/20260321_165033_41856184",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 275.8,
+      "failure_modes": [
+        "n_plus_1_pattern_present",
+        "required_indexes_missing",
+        "no_create_index_in_database_py",
+        "performance_target_missed",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D6_data_reconcile",
+      "seed": 0,
+      "run_id": "20260321_165553_e6d4fd0e",
+      "run_dir": "shared/ablation_results/ablation_runs/D6_data_reconcile/20260321_165553_e6d4fd0e",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 350.6,
+      "failure_modes": [
+        "manual_override_wrong",
+        "per_record_values_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D7_etl_reconciliation",
+      "seed": 0,
+      "run_id": "20260321_170145_6a0918c4",
+      "run_dir": "shared/ablation_results/ablation_runs/D7_etl_reconciliation/20260321_170145_6a0918c4",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 167.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260321_170433_f45ee2ad",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260321_170433_f45ee2ad",
+      "pass": false,
+      "partial_score": 0.78,
+      "elapsed_sec": 510.4,
+      "failure_modes": [
+        "sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D9_schema_validation",
+      "seed": 0,
+      "run_id": "20260321_171304_662da3a7",
+      "run_dir": "shared/ablation_results/ablation_runs/D9_schema_validation/20260321_171304_662da3a7",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 414.9,
+      "failure_modes": [
+        "missing_email_accepted",
+        "status_not_normalized"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260321_172000_bfe8b2cd",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260321_172000_bfe8b2cd",
+      "pass": false,
+      "partial_score": 0.1667,
+      "elapsed_sec": 407.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST2_consensus_partition",
+      "seed": 0,
+      "run_id": "20260321_172912_c3fcc38e",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST2_consensus_partition/20260321_172912_c3fcc38e",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 160.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST3_idempotency",
+      "seed": 0,
+      "run_id": "20260321_173412_8a48dcd2",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST3_idempotency/20260321_173412_8a48dcd2",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 326.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST4_clock_skew",
+      "seed": 0,
+      "run_id": "20260321_174232_c1e1fbc6",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST4_clock_skew/20260321_174232_c1e1fbc6",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 443.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST5_leader_election",
+      "seed": 0,
+      "run_id": "20260321_175211_6b7476b1",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST5_leader_election/20260321_175211_6b7476b1",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 135.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST6_distributed_lock",
+      "seed": 0,
+      "run_id": "20260321_175645_d55d0d97",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST6_distributed_lock/20260321_175645_d55d0d97",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 960.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260321_181335_d79f7e7a",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260321_181335_d79f7e7a",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 187.1,
+      "failure_modes": [
+        "test_max_delay_cap_failed",
+        "test_delay_never_negative_failed",
+        "test_exponential_growth_failed",
+        "test_jitter_bounded_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260321_181644_529f3c02",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260321_181644_529f3c02",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 218.0,
+      "failure_modes": [
+        "test_error_handler_catches_downstream_failed",
+        "test_multiple_error_handlers_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260321_182027_19e315b3",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260321_182027_19e315b3",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 87.8,
+      "failure_modes": [
+        "session_lost_on_redirect",
+        "session_lost_on_multi_redirect",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260321_182156_c4653098",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260321_182156_c4653098",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 62.6,
+      "failure_modes": [
+        "flag_value_not_used",
+        "positional_consumed_by_flag",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260321_182300_6f6b6e48",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260321_182300_6f6b6e48",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 196.6,
+      "failure_modes": [
+        "auth_header_leaked",
+        "cookies_leaked",
+        "non_sensitive_headers_stripped",
+        "multi_hop_auth_leaked",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260321_182617_388e08a2",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260321_182617_388e08a2",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 82.0,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260321_182743_b9040952",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260321_182743_b9040952",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 130.2,
+      "failure_modes": [
+        "depth_3_data_lost",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260321_182954_843302ce",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260321_182954_843302ce",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 142.8,
+      "failure_modes": [
+        "test_basic_filter_failed",
+        "test_basic_exclude_failed",
+        "test_union_works_failed",
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed",
+        "test_union_without_filter_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260321_183635_b504a01a",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260321_183635_b504a01a",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 252.2,
+      "failure_modes": [
+        "test_session_scope_leak_failed",
+        "test_session_scope_dict_leak_failed",
+        "test_runner_integration_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260321_184049_cb740a58",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260321_184049_cb740a58",
+      "pass": false,
+      "partial_score": 0.78,
+      "elapsed_sec": 278.3,
+      "failure_modes": [
+        "test_concurrent_race_failed",
+        "test_many_concurrent_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260321_184528_0ea7864b",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260321_184528_0ea7864b",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 124.1,
+      "failure_modes": [
+        "test_pool_exhaustion_on_errors_failed",
+        "test_pool_status_after_errors_failed",
+        "test_concurrent_after_errors_failed",
+        "attestation_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260321_184734_4b3f46d5",
+      "run_dir": "shared/ablation_results/ablation_runs/GO1_concurrency_fix/20260321_184734_4b3f46d5",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 856.7,
+      "failure_modes": [
+        "run_output_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "GO2_race_condition",
+      "seed": 0,
+      "run_id": "20260321_190157_8ef74c12",
+      "run_dir": "shared/ablation_results/ablation_runs/GO2_race_condition/20260321_190157_8ef74c12",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 361.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC10_rollback_plan",
+      "seed": 0,
+      "run_id": "20260321_190803_f33dd75a",
+      "run_dir": "shared/ablation_results/ablation_runs/INC10_rollback_plan/20260321_190803_f33dd75a",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 498.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260321_191623_dfba4a27",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260321_191623_dfba4a27",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 427.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC2_data_corruption",
+      "seed": 0,
+      "run_id": "20260321_192331_e589ea05",
+      "run_dir": "shared/ablation_results/ablation_runs/INC2_data_corruption/20260321_192331_e589ea05",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 87.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CR1_review_respond",
+      "seed": 0,
+      "run_id": "20260321_192500_364e1029",
+      "run_dir": "shared/ablation_results/ablation_runs/CR1_review_respond/20260321_192500_364e1029",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 1035.8,
+      "failure_modes": [
+        "n_plus_one_not_fixed",
+        "tests_failing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CR2_style_enforce",
+      "seed": 0,
+      "run_id": "20260321_194238_a3fe98a9",
+      "run_dir": "shared/ablation_results/ablation_runs/CR2_style_enforce/20260321_194238_a3fe98a9",
+      "pass": false,
+      "partial_score": 0.23,
+      "elapsed_sec": 1467.7,
+      "failure_modes": [
+        "class_names_not_pascal_case",
+        "function_names_not_snake_case",
+        "variable_names_not_snake_case",
+        "wildcard_imports_present",
+        "import_order_incorrect",
+        "type_hints_missing",
+        "line_length_exceeded",
+        "docstrings_missing_or_bad",
+        "trailing_commas_missing",
+        "tests_failing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CR3_perf_review",
+      "seed": 0,
+      "run_id": "20260321_200730_64c51b00",
+      "run_dir": "shared/ablation_results/ablation_runs/CR3_perf_review/20260321_200730_64c51b00",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 1339.8,
+      "failure_modes": [
+        "tests_failing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CR4_api_review",
+      "seed": 0,
+      "run_id": "20260321_203330_544afefd",
+      "run_dir": "shared/ablation_results/ablation_runs/CR4_api_review/20260321_203330_544afefd",
+      "pass": false,
+      "partial_score": 0.69,
+      "elapsed_sec": 1664.3,
+      "failure_modes": [
+        "tests_failing",
+        "pagination_not_implemented",
+        "pagination_envelope_missing",
+        "create_not_returning_201",
+        "notfound_not_returning_404"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260321_210149_a7273f81",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260321_210149_a7273f81",
+      "pass": false,
+      "partial_score": 0.77,
+      "elapsed_sec": 1469.3,
+      "failure_modes": [
+        "tests_fail_on_correct_code",
+        "pytest_nonzero_exit",
+        "too_few_tests"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CR6_review_checklist",
+      "seed": 0,
+      "run_id": "20260321_213121_538b1212",
+      "run_dir": "shared/ablation_results/ablation_runs/CR6_review_checklist/20260321_213121_538b1212",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 908.8,
+      "failure_modes": [
+        "missing_or_insufficient_findings",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260321_214631_1a545fe4",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260321_214631_1a545fe4",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 1065.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS2_schema_evolution",
+      "seed": 0,
+      "run_id": "20260321_220556_0811196e",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS2_schema_evolution/20260321_220556_0811196e",
+      "pass": false,
+      "partial_score": 0.8333,
+      "elapsed_sec": 885.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260321_222205_9fae3de0",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260321_222205_9fae3de0",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 1022.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS4_auth_federation",
+      "seed": 0,
+      "run_id": "20260321_224130_cf7030d5",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS4_auth_federation/20260321_224130_cf7030d5",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1458.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS5_event_schema",
+      "seed": 0,
+      "run_id": "20260321_230832_7e7363b0",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS5_event_schema/20260321_230832_7e7363b0",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1107.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS6_grpc_rest_bridge",
+      "seed": 0,
+      "run_id": "20260321_232716_26440607",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS6_grpc_rest_bridge/20260321_232716_26440607",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 891.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS7_config_drift",
+      "seed": 0,
+      "run_id": "20260321_234333_34c100da",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS7_config_drift/20260321_234333_34c100da",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 1617.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260322_001119_bc6aa25a",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260322_001119_bc6aa25a",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 1033.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO2_timing_safe",
+      "seed": 0,
+      "run_id": "20260322_003023_adf196c1",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO2_timing_safe/20260322_003023_adf196c1",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 864.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO3_cert_chain",
+      "seed": 0,
+      "run_id": "20260322_004629_16e1164e",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO3_cert_chain/20260322_004629_16e1164e",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 744.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO4_kdf_migration",
+      "seed": 0,
+      "run_id": "20260322_010123_baa54ee2",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO4_kdf_migration/20260322_010123_baa54ee2",
+      "pass": false,
+      "partial_score": 0.9167,
+      "elapsed_sec": 1487.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO5_tls_config",
+      "seed": 0,
+      "run_id": "20260322_012703_c9d6427b",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO5_tls_config/20260322_012703_c9d6427b",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 1442.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO6_token_validation",
+      "seed": 0,
+      "run_id": "20260322_015212_f1d1fed3",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO6_token_validation/20260322_015212_f1d1fed3",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 1501.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260322_021753_a8ffcec3",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260322_021753_a8ffcec3",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1769.8,
+      "failure_modes": [
+        "etl_crash",
+        "missing_output",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D2_data_quality",
+      "seed": 0,
+      "run_id": "20260322_024724_e5136e96",
+      "run_dir": "shared/ablation_results/ablation_runs/D2_data_quality/20260322_024724_e5136e96",
+      "pass": false,
+      "partial_score": 0.36,
+      "elapsed_sec": 206.3,
+      "failure_modes": [
+        "wrong_columns",
+        "wrong_row_count",
+        "range_check_fail",
+        "missing_values_not_replaced",
+        "dedup_higher_score_fail",
+        "sort_order_wrong",
+        "department_correction_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D3_schema_migration",
+      "seed": 0,
+      "run_id": "20260322_025052_0224350d",
+      "run_dir": "shared/ablation_results/ablation_runs/D3_schema_migration/20260322_025052_0224350d",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 1381.1,
+      "failure_modes": [
+        "data_not_preserved"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D4_data_pipeline",
+      "seed": 0,
+      "run_id": "20260322_031354_ee88432d",
+      "run_dir": "shared/ablation_results/ablation_runs/D4_data_pipeline/20260322_031354_ee88432d",
+      "pass": false,
+      "partial_score": 0.65,
+      "elapsed_sec": 1434.1,
+      "failure_modes": [
+        "wrong_row_count",
+        "null_check_fail",
+        "range_validation_fail",
+        "dedup_winner_fail",
+        "false_positives_in_valid",
+        "missing_from_invalid_csv"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D5_query_optimize",
+      "seed": 0,
+      "run_id": "20260322_033750_f978fe17",
+      "run_dir": "shared/ablation_results/ablation_runs/D5_query_optimize/20260322_033750_f978fe17",
+      "pass": false,
+      "partial_score": 0.87,
+      "elapsed_sec": 1982.9,
+      "failure_modes": [
+        "n_plus_1_pattern_present",
+        "performance_target_missed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D6_data_reconcile",
+      "seed": 0,
+      "run_id": "20260322_041134_dd967c98",
+      "run_dir": "shared/ablation_results/ablation_runs/D6_data_reconcile/20260322_041134_dd967c98",
+      "pass": false,
+      "partial_score": 0.39,
+      "elapsed_sec": 1333.2,
+      "failure_modes": [
+        "invalid_json_or_not_array",
+        "wrong_record_count",
+        "data_loss_or_extra_records",
+        "manual_override_wrong",
+        "field_ownership_wrong",
+        "timestamp_conflict_wrong",
+        "only_a_records_wrong",
+        "only_b_records_wrong",
+        "agree_records_wrong",
+        "per_record_values_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D7_etl_reconciliation",
+      "seed": 0,
+      "run_id": "20260322_043349_bf5e3cac",
+      "run_dir": "shared/ablation_results/ablation_runs/D7_etl_reconciliation/20260322_043349_bf5e3cac",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1689.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260322_050159_d1630aa0",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260322_050159_d1630aa0",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 707.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D9_schema_validation",
+      "seed": 0,
+      "run_id": "20260322_051347_552a7cc9",
+      "run_dir": "shared/ablation_results/ablation_runs/D9_schema_validation/20260322_051347_552a7cc9",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 939.4,
+      "failure_modes": [
+        "missing_email_accepted"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260322_052927_801bf5dc",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260322_052927_801bf5dc",
+      "pass": false,
+      "partial_score": 0.9167,
+      "elapsed_sec": 2125.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST2_consensus_partition",
+      "seed": 0,
+      "run_id": "20260322_061056_aadf7dd3",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST2_consensus_partition/20260322_061056_aadf7dd3",
+      "pass": false,
+      "partial_score": 0.6667,
+      "elapsed_sec": 1103.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST3_idempotency",
+      "seed": 0,
+      "run_id": "20260322_063111_989c0848",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST3_idempotency/20260322_063111_989c0848",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1737.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST4_clock_skew",
+      "seed": 0,
+      "run_id": "20260322_070207_71e0f844",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST4_clock_skew/20260322_070207_71e0f844",
+      "pass": false,
+      "partial_score": 0.9167,
+      "elapsed_sec": 706.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST5_leader_election",
+      "seed": 0,
+      "run_id": "20260322_071523_931e492e",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST5_leader_election/20260322_071523_931e492e",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 2002.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST6_distributed_lock",
+      "seed": 0,
+      "run_id": "20260322_075054_d401dafa",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST6_distributed_lock/20260322_075054_d401dafa",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 248.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH10_retry_backoff",
+      "seed": 0,
+      "run_id": "20260322_075527_d4137059",
+      "run_dir": "shared/ablation_results/ablation_runs/GH10_retry_backoff/20260322_075527_d4137059",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 532.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH11_middleware_order",
+      "seed": 0,
+      "run_id": "20260322_080420_477af6e5",
+      "run_dir": "shared/ablation_results/ablation_runs/GH11_middleware_order/20260322_080420_477af6e5",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 704.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH1_flask_session_ctx",
+      "seed": 0,
+      "run_id": "20260322_081608_573a4fc8",
+      "run_dir": "shared/ablation_results/ablation_runs/GH1_flask_session_ctx/20260322_081608_573a4fc8",
+      "pass": false,
+      "partial_score": 0.62,
+      "elapsed_sec": 564.7,
+      "failure_modes": [
+        "session_lost_on_redirect",
+        "session_lost_on_multi_redirect",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH2_click_flag_value",
+      "seed": 0,
+      "run_id": "20260322_082533_25b9c688",
+      "run_dir": "shared/ablation_results/ablation_runs/GH2_click_flag_value/20260322_082533_25b9c688",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 1133.6,
+      "failure_modes": [
+        "flag_value_not_used",
+        "positional_consumed_by_flag",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH3_httpx_auth_leak",
+      "seed": 0,
+      "run_id": "20260322_084428_2498c342",
+      "run_dir": "shared/ablation_results/ablation_runs/GH3_httpx_auth_leak/20260322_084428_2498c342",
+      "pass": false,
+      "partial_score": 0.69,
+      "elapsed_sec": 1053.7,
+      "failure_modes": [
+        "auth_header_leaked",
+        "cookies_leaked",
+        "non_sensitive_headers_stripped",
+        "multi_hop_auth_leaked"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH4_requests_encoding",
+      "seed": 0,
+      "run_id": "20260322_090202_4b17bd12",
+      "run_dir": "shared/ablation_results/ablation_runs/GH4_requests_encoding/20260322_090202_4b17bd12",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 245.0,
+      "failure_modes": [
+        "json_utf8_default_fails",
+        "json_chinese_fails",
+        "json_method_broken",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH5_pydantic_circular",
+      "seed": 0,
+      "run_id": "20260322_090611_68e49bd0",
+      "run_dir": "shared/ablation_results/ablation_runs/GH5_pydantic_circular/20260322_090611_68e49bd0",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 210.1,
+      "failure_modes": [
+        "depth_3_data_lost",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH6_queryset_union",
+      "seed": 0,
+      "run_id": "20260322_090942_666d7e33",
+      "run_dir": "shared/ablation_results/ablation_runs/GH6_queryset_union/20260322_090942_666d7e33",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 502.7,
+      "failure_modes": [
+        "test_exclude_after_union_failed",
+        "test_filter_after_union_failed",
+        "test_chained_operations_failed",
+        "test_exclude_after_intersection_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH7_fixture_scope_leak",
+      "seed": 0,
+      "run_id": "20260322_092047_f7009e2f",
+      "run_dir": "shared/ablation_results/ablation_runs/GH7_fixture_scope_leak/20260322_092047_f7009e2f",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 1032.1,
+      "failure_modes": [
+        "test_function_scope_isolation_failed",
+        "test_session_scope_leak_failed",
+        "test_session_scope_dict_leak_failed",
+        "test_session_immutable_cached_failed",
+        "test_runner_integration_failed",
+        "test_module_scope_works_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH8_async_cache_race",
+      "seed": 0,
+      "run_id": "20260322_093801_006190f9",
+      "run_dir": "shared/ablation_results/ablation_runs/GH8_async_cache_race/20260322_093801_006190f9",
+      "pass": false,
+      "partial_score": 0.44,
+      "elapsed_sec": 1645.7,
+      "failure_modes": [
+        "test_single_request_failed",
+        "test_concurrent_race_failed",
+        "test_no_cache_works_failed",
+        "test_dependency_chain_failed",
+        "test_many_concurrent_failed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GH9_pool_exhaustion",
+      "seed": 0,
+      "run_id": "20260322_100528_48c5705e",
+      "run_dir": "shared/ablation_results/ablation_runs/GH9_pool_exhaustion/20260322_100528_48c5705e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 358.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260322_101127_b20f402d",
+      "run_dir": "shared/ablation_results/ablation_runs/GO1_concurrency_fix/20260322_101127_b20f402d",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 319.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GO2_race_condition",
+      "seed": 0,
+      "run_id": "20260322_101652_e7c591f0",
+      "run_dir": "shared/ablation_results/ablation_runs/GO2_race_condition/20260322_101652_e7c591f0",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 919.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC10_rollback_plan",
+      "seed": 0,
+      "run_id": "20260322_103217_35476766",
+      "run_dir": "shared/ablation_results/ablation_runs/INC10_rollback_plan/20260322_103217_35476766",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 253.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260322_103631_5b15af3d",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260322_103631_5b15af3d",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 1471.6,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC2_data_corruption",
+      "seed": 0,
+      "run_id": "20260322_110104_f7f0a674",
+      "run_dir": "shared/ablation_results/ablation_runs/INC2_data_corruption/20260322_110104_f7f0a674",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1915.7,
+      "failure_modes": [],
+      "error": null
+    }
+  ]
+}

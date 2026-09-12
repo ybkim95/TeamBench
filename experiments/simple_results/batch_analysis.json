@@ -1,0 +1,65 @@
+{
+  "summary": {
+    "total_experiments": 27,
+    "overall_success_rate": 0.0,
+    "total_duration": 20.721256256103516
+  },
+  "by_model": {
+    "mock-gpt-4o": {
+      "count": 9,
+      "success_rate": 0.0,
+      "avg_score": 0.0,
+      "avg_tokens": 150.0,
+      "avg_duration": 0.8791424433390299,
+      "errors": 0
+    },
+    "mock-claude": {
+      "count": 9,
+      "success_rate": 0.0,
+      "avg_score": 0.0,
+      "avg_tokens": 150.0,
+      "avg_duration": 0.7078682316674126,
+      "errors": 0
+    },
+    "mock-gemini": {
+      "count": 9,
+      "success_rate": 0.0,
+      "avg_score": 0.0,
+      "avg_tokens": 150.0,
+      "avg_duration": 0.7153511312272813,
+      "errors": 0
+    }
+  },
+  "by_condition": {
+    "oracle-1x": {
+      "count": 9,
+      "success_rate": 0.0,
+      "avg_score": 0.0,
+      "avg_tokens": 150.0,
+      "avg_duration": 0.8813789155748155,
+      "errors": 0
+    },
+    "oracle-2x": {
+      "count": 9,
+      "success_rate": 0.0,
+      "avg_score": 0.0,
+      "avg_tokens": 150.0,
+      "avg_duration": 0.7092640399932861,
+      "errors": 0
+    },
+    "mock-team": {
+      "count": 9,
+      "success_rate": 0.0,
+      "avg_score": 0.0,
+      "avg_tokens": 150.0,
+      "avg_duration": 0.7117188506656222,
+      "errors": 0
+    }
+  },
+  "infrastructure_test": {
+    "all_models_tested": true,
+    "all_conditions_tested": true,
+    "no_critical_errors": true,
+    "reasonable_performance": false
+  }
+}

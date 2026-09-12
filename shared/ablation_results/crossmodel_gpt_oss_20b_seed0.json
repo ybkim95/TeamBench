@@ -1,0 +1,2201 @@
+{
+  "model": "vllm:openai/gpt-oss-20b@http://localhost:8004/v1",
+  "tasks": [
+    "MULTI1_fullstack_fix",
+    "TEST1_spec_to_tests",
+    "O2_incident_rootcause",
+    "PIPE1_etl_fix",
+    "TRAP1_spec_conflict",
+    "TRAP3_metric_mirage",
+    "TRAP5_security_theater",
+    "CROSS1_api_contract",
+    "CROSS3_protocol_bridge",
+    "CRYPTO1_nonce_reuse",
+    "DIST1_queue_race",
+    "SEC1_vuln_patch",
+    "SEC3_crypto_upgrade",
+    "D1_schema_drift",
+    "D8_csv_cleanup",
+    "TEST2_regression",
+    "TEST5_mutation_resistant",
+    "O1_service_health",
+    "O3_log_analysis",
+    "P1_policy_config",
+    "P3_access_control",
+    "SPEC1_feature_impl",
+    "SPEC3_data_model",
+    "INC1_cascade_failure",
+    "INC4_dns_miscfg",
+    "IR1_evidence_qa",
+    "NEG1_tradeoff_config",
+    "CR5_test_coverage"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-27T21:50:35.002499+00:00",
+  "metrics": {
+    "s_oracle": 0.0714,
+    "s_restricted": 0.0357,
+    "s_full": 0.0714,
+    "s_no_verify": 0.0357,
+    "s_no_plan": 0.0357,
+    "p_oracle": 0.4482,
+    "p_restricted": 0.3694,
+    "p_full": 0.3035,
+    "p_no_verify": 0.4179,
+    "p_no_plan": 0.3851,
+    "necessity_gap": 0.0788,
+    "tni": -0.8372,
+    "team_uplift": -0.066,
+    "collab_efficiency": -0.1471,
+    "planning_value": -0.0816,
+    "verification_value": -0.1144,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": -36.9439,
+    "interpretation": {
+      "tni": "Teamwork is harmful (negative collaboration gain).",
+      "team_uplift": "Team adds -6.6% over single agent",
+      "collab_efficiency": "Team reaches -14.7% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds -8.2% partial score",
+      "verification_value": "Verification adds -11.4% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 2,
+      "total": 28,
+      "success_rate": 0.0714
+    },
+    "restricted": {
+      "passes": 1,
+      "total": 28,
+      "success_rate": 0.0357
+    },
+    "team_no_verify": {
+      "passes": 1,
+      "total": 28,
+      "success_rate": 0.0357
+    },
+    "team_no_plan": {
+      "passes": 1,
+      "total": 28,
+      "success_rate": 0.0357
+    },
+    "full": {
+      "passes": 2,
+      "total": 28,
+      "success_rate": 0.0714
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260327_010005_3f0509fb",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260327_010005_3f0509fb",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 94.8,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -731. (parameter=max_tokens, value=-731)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260327_010140_283f4279",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260327_010140_283f4279",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 45.9,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -722. (parameter=max_tokens, value=-722)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260327_010226_48065f42",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260327_010226_48065f42",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 141.9,
+      "failure_modes": [
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260327_010455_68dd62ac",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260327_010455_68dd62ac",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 276.1,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "nested_fields_not_flattened",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260327_010932_9090b8d6",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260327_010932_9090b8d6",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 464.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260327_011723_72df04dc",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260327_011723_72df04dc",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 259.3,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -242. (parameter=max_tokens, value=-242)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260327_012142_58d33241",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260327_012142_58d33241",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 161.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260327_012431_861a746d",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260327_012431_861a746d",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 243.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260327_012901_13844fc7",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260327_012901_13844fc7",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 344.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260327_013452_2eac86fc",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260327_013452_2eac86fc",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 237.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260327_013859_3b0eed31",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260327_013859_3b0eed31",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 600.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260327_014904_43ef9bf8",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260327_014904_43ef9bf8",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 608.0,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260327_015913_77036600",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260327_015913_77036600",
+      "pass": false,
+      "partial_score": 0.85,
+      "elapsed_sec": 830.8,
+      "failure_modes": [
+        "md5_still_used",
+        "new_vulnerability_introduced"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260327_021305_63cb9008",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260327_021305_63cb9008",
+      "pass": false,
+      "partial_score": 0.56,
+      "elapsed_sec": 752.3,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260327_022539_d70e3e81",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260327_022539_d70e3e81",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 276.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260327_023015_a6a0035f",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260327_023015_a6a0035f",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 62.3,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260327_023128_e28fd558",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260327_023128_e28fd558",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 19.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -331. (parameter=max_tokens, value=-331)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260327_023148_73ef4504",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260327_023148_73ef4504",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1213.1,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260327_025217_ca1da35c",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260327_025217_ca1da35c",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 35.5,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -988. (parameter=max_tokens, value=-988)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260327_025252_9bc3dd72",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260327_025252_9bc3dd72",
+      "pass": false,
+      "partial_score": 0.93,
+      "elapsed_sec": 116.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260327_025449_2707219f",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260327_025449_2707219f",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 57.7,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260327_025550_28e1253c",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260327_025550_28e1253c",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 175.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -272. (parameter=max_tokens, value=-272)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260327_025845_e4ec0ede",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260327_025845_e4ec0ede",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 172.5,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -79. (parameter=max_tokens, value=-79)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260327_030138_53cf89dd",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260327_030138_53cf89dd",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 402.3,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260327_030821_3c2f2da5",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260327_030821_3c2f2da5",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 347.0,
+      "failure_modes": [
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260327_031409_d03355c0",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260327_031409_d03355c0",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 61.6,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260327_031511_c75a986a",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260327_031511_c75a986a",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 645.9,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "oracle",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260327_032559_ed837bbb",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260327_032559_ed837bbb",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 99.5,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260327_032755_8fbd832b",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260327_032755_8fbd832b",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 130.8,
+      "failure_modes": [
+        "import_error",
+        "test_create_fail",
+        "test_get_fail",
+        "test_sorted_fail",
+        "test_delete_fail",
+        "deploy_flask_app_wrong",
+        "frontend_content_type_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260327_033007_f7280ae9",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260327_033007_f7280ae9",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 83.3,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -338. (parameter=max_tokens, value=-338)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260327_033131_81e59efc",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260327_033131_81e59efc",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 131.9,
+      "failure_modes": [
+        "security_policy_violation",
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260327_033350_4bd6afa4",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260327_033350_4bd6afa4",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 143.3,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "nested_fields_not_flattened",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260327_033614_7f123d93",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260327_033614_7f123d93",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 185.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260327_033923_929cf0e4",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260327_033923_929cf0e4",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 388.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260327_034557_bc6a6853",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260327_034557_bc6a6853",
+      "pass": false,
+      "partial_score": 0.71,
+      "elapsed_sec": 946.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260327_040150_ac022de1",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260327_040150_ac022de1",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 298.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260327_040705_3397aaef",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260327_040705_3397aaef",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 236.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260327_041108_134af8fe",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260327_041108_134af8fe",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 253.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260327_041532_9a9ba389",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260327_041532_9a9ba389",
+      "pass": false,
+      "partial_score": 0.0833,
+      "elapsed_sec": 190.8,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260327_041848_669e764e",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260327_041848_669e764e",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 450.9,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260327_042620_62f7accc",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260327_042620_62f7accc",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 194.6,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260327_042936_cd3ca868",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260327_042936_cd3ca868",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 50.6,
+      "failure_modes": [
+        "etl_crash",
+        "wrong_columns",
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "extra_columns_not_dropped",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260327_043029_30cbe492",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260327_043029_30cbe492",
+      "pass": false,
+      "partial_score": 0.22,
+      "elapsed_sec": 31.1,
+      "failure_modes": [
+        "duplicate_ids",
+        "wrong_row_count",
+        "empty_column_kept",
+        "date_format_wrong",
+        "whitespace_remaining",
+        "sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260327_043101_abb119ee",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260327_043101_abb119ee",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 59.1,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260327_043211_802af275",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260327_043211_802af275",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 59.8,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -769. (parameter=max_tokens, value=-769)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260327_043310_fd7b5b0e",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260327_043310_fd7b5b0e",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 399.8,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260327_044006_1ed823e8",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260327_044006_1ed823e8",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 28.7,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -79. (parameter=max_tokens, value=-79)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260327_044035_2e730efa",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260327_044035_2e730efa",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 100.3,
+      "failure_modes": [
+        "missing_config_json",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260327_044215_fd45e35e",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260327_044215_fd45e35e",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 502.3,
+      "failure_modes": [
+        "allow_decisions_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260327_045040_f073ec1f",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260327_045040_f073ec1f",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 24.0,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260327_045108_ff008d4e",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260327_045108_ff008d4e",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 68.0,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260327_045220_5655d92b",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260327_045220_5655d92b",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 571.3,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260327_050153_04c34013",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260327_050153_04c34013",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 57.6,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260327_050251_1f21f262",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260327_050251_1f21f262",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 65.6,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260327_050358_9823c326",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260327_050358_9823c326",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 269.7,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "restricted",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260327_050830_ae7ec541",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260327_050830_ae7ec541",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 18.8,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260327_050908_e32d6f56",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260327_050908_e32d6f56",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 650.7,
+      "failure_modes": [
+        "import_error",
+        "test_create_fail",
+        "test_get_fail",
+        "test_sorted_fail",
+        "test_delete_fail",
+        "deploy_flask_app_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260327_052000_db3bffb6",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260327_052000_db3bffb6",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 430.5,
+      "failure_modes": [
+        "tests_fail_on_correct_engine"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260327_052732_70766cd1",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260327_052732_70766cd1",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 335.1,
+      "failure_modes": [
+        "endpoint_no_response"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260327_053314_71ba71f9",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260327_053314_71ba71f9",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 553.9,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -595. (parameter=max_tokens, value=-595)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260327_054228_72d44086",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260327_054228_72d44086",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 124.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260327_054439_0158a3f7",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260327_054439_0158a3f7",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 308.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260327_054952_81ad7409",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260327_054952_81ad7409",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 129.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260327_055210_cc13397e",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260327_055210_cc13397e",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 158.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260327_055507_e0e08a9c",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260327_055507_e0e08a9c",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 423.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260327_060219_9fad1834",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260327_060219_9fad1834",
+      "pass": false,
+      "partial_score": 0.7,
+      "elapsed_sec": 275.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260327_060705_8c2342a3",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260327_060705_8c2342a3",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 275.2,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -424. (parameter=max_tokens, value=-424)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260327_061140_a1f375b1",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260327_061140_a1f375b1",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 396.8,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260327_061818_7dab0de7",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260327_061818_7dab0de7",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 104.0,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260327_062003_ce4efef6",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260327_062003_ce4efef6",
+      "pass": false,
+      "partial_score": 0.44,
+      "elapsed_sec": 1321.6,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260327_064207_f4d5ba9a",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260327_064207_f4d5ba9a",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 300.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260327_064708_5e2c91d6",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260327_064708_5e2c91d6",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 755.1,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -162. (parameter=max_tokens, value=-162)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260327_065943_38746428",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260327_065943_38746428",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1252.9,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -4057. (parameter=max_tokens, value=-4057)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260327_072036_fd4df954",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260327_072036_fd4df954",
+      "pass": false,
+      "partial_score": 0.25,
+      "elapsed_sec": 88.0,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260327_072220_1d3eaa65",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260327_072220_1d3eaa65",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 568.8,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260327_073157_a5e7b693",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260327_073157_a5e7b693",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 278.6,
+      "failure_modes": [
+        "wrong_keys",
+        "policy_rules_fail",
+        "rule_timeout_sec",
+        "rule_cors_origins",
+        "rule_session_timeout_min",
+        "rule_min_password_length"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260327_073637_e805e6c4",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260327_073637_e805e6c4",
+      "pass": false,
+      "partial_score": 0.55,
+      "elapsed_sec": 161.8,
+      "failure_modes": [
+        "permissions_dict_empty",
+        "missing_roles_in_permissions",
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260327_073922_4397afff",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260327_073922_4397afff",
+      "pass": false,
+      "partial_score": 0.09,
+      "elapsed_sec": 464.2,
+      "failure_modes": [
+        "tests_fail",
+        "todos_not_implemented",
+        "task_not_found_wrong_code",
+        "invalid_priority_wrong_code",
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "invalid_date_format_not_raised",
+        "delete_task_fail",
+        "whitespace_title_not_rejected"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260327_074711_f95f15c9",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260327_074711_f95f15c9",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 539.2,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260327_075614_971b1057",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260327_075614_971b1057",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 502.4,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260327_080438_38372871",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260327_080438_38372871",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 705.2,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260327_081624_38571673",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260327_081624_38571673",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 169.9,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260327_081914_a57042a1",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260327_081914_a57042a1",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 812.4,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_verify",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260327_083249_3f24c46b",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260327_083249_3f24c46b",
+      "pass": false,
+      "partial_score": 0.46,
+      "elapsed_sec": 259.1,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260327_083724_e65b5378",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260327_083724_e65b5378",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 520.2,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -302. (parameter=max_tokens, value=-302)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260327_084604_fd339d87",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260327_084604_fd339d87",
+      "pass": false,
+      "partial_score": 0.6,
+      "elapsed_sec": 169.5,
+      "failure_modes": [
+        "too_few_tests",
+        "tests_fail_on_correct_engine",
+        "low_coverage",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260327_084912_3ba7733e",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260327_084912_3ba7733e",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 373.9,
+      "failure_modes": [
+        "security_policy_violation",
+        "endpoint_no_response",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260327_085534_9bf85e24",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260327_085534_9bf85e24",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 307.8,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "nested_fields_not_flattened"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260327_090042_b1383ef3",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260327_090042_b1383ef3",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 861.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260327_091509_a6d05e4f",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260327_091509_a6d05e4f",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 846.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260327_092919_988f655b",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260327_092919_988f655b",
+      "pass": false,
+      "partial_score": 0.71,
+      "elapsed_sec": 1401.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260327_095248_609b48ec",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260327_095248_609b48ec",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 1070.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260327_101055_38e7e04a",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260327_101055_38e7e04a",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 258.5,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260327_101521_462ca727",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260327_101521_462ca727",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 618.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260327_102548_b68be98a",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260327_102548_b68be98a",
+      "pass": false,
+      "partial_score": 0.3333,
+      "elapsed_sec": 380.0,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260327_103214_6a8c8f24",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260327_103214_6a8c8f24",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 786.7,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -304. (parameter=max_tokens, value=-304)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260327_104521_1bf232af",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260327_104521_1bf232af",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 222.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -388. (parameter=max_tokens, value=-388)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260327_104904_6bb35df1",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260327_104904_6bb35df1",
+      "pass": false,
+      "partial_score": 0.12,
+      "elapsed_sec": 674.3,
+      "failure_modes": [
+        "etl_crash",
+        "wrong_columns",
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "missing_category_fill_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "nonnumeric_value_not_replaced",
+        "negative_value_not_replaced",
+        "sort_order_wrong",
+        "extra_columns_not_dropped",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260327_110020_b8ad438e",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260327_110020_b8ad438e",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 584.0,
+      "failure_modes": [
+        "wrong_row_count",
+        "date_format_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260327_111005_6990741d",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260327_111005_6990741d",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 139.5,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260327_111235_d76efed5",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260327_111235_d76efed5",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 57.4,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -61. (parameter=max_tokens, value=-61)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260327_111333_26037f83",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260327_111333_26037f83",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 747.5,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "stacktrace_in_logs",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260327_112616_72f76d6f",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260327_112616_72f76d6f",
+      "pass": false,
+      "partial_score": 0.31,
+      "elapsed_sec": 159.2,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "primary_endpoint_not_200",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260327_112905_036e1aa1",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260327_112905_036e1aa1",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 160.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260327_113145_9bf24ff7",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260327_113145_9bf24ff7",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 306.0,
+      "failure_modes": [
+        "allow_decisions_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260327_113654_6f1d2613",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260327_113654_6f1d2613",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 354.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -698. (parameter=max_tokens, value=-698)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260327_114248_2cd468c1",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260327_114248_2cd468c1",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 719.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -179. (parameter=max_tokens, value=-179)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260327_115447_5e68e6f4",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260327_115447_5e68e6f4",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 818.5,
+      "failure_modes": [
+        "wrong_fix_order",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260327_120827_8a07459d",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260327_120827_8a07459d",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 242.6,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260327_121231_5403a412",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260327_121231_5403a412",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 149.7,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260327_121501_4f5ddc34",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260327_121501_4f5ddc34",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 814.8,
+      "failure_modes": [
+        "perf_test_fail",
+        "reliability_test_fail",
+        "no_retry_logic",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "team_no_plan",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260327_122838_bfd0826a",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260327_122838_bfd0826a",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 203.2,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260327_123217_059b5301",
+      "run_dir": "shared/ablation_results/ablation_runs/MULTI1_fullstack_fix/20260327_123217_059b5301",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 646.3,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -129. (parameter=max_tokens, value=-129)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260327_124304_f50ef83c",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST1_spec_to_tests/20260327_124304_f50ef83c",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 2371.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -16674. (parameter=max_tokens, value=-16674)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260327_132235_655f08b2",
+      "run_dir": "shared/ablation_results/ablation_runs/O2_incident_rootcause/20260327_132235_655f08b2",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 775.6,
+      "failure_modes": [
+        "endpoint_no_response"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260327_133537_4f531656",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE1_etl_fix/20260327_133537_4f531656",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 1599.3,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "nested_fields_not_flattened",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260327_140218_5f58ebca",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP1_spec_conflict/20260327_140218_5f58ebca",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 985.4,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -375. (parameter=max_tokens, value=-375)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260327_141843_4eb94ac8",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP3_metric_mirage/20260327_141843_4eb94ac8",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 526.5,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -211. (parameter=max_tokens, value=-211)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260327_142729_ccb09521",
+      "run_dir": "shared/ablation_results/ablation_runs/TRAP5_security_theater/20260327_142729_ccb09521",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1743.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -71. (parameter=max_tokens, value=-71)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260327_145633_d729b7d0",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS1_api_contract/20260327_145633_d729b7d0",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 632.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -782. (parameter=max_tokens, value=-782)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260327_150706_db8090bc",
+      "run_dir": "shared/ablation_results/ablation_runs/CROSS3_protocol_bridge/20260327_150706_db8090bc",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 815.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260327_152048_4fbee401",
+      "run_dir": "shared/ablation_results/ablation_runs/CRYPTO1_nonce_reuse/20260327_152048_4fbee401",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1107.8,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -10217. (parameter=max_tokens, value=-10217)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260327_153916_b07785f8",
+      "run_dir": "shared/ablation_results/ablation_runs/DIST1_queue_race/20260327_153916_b07785f8",
+      "pass": false,
+      "partial_score": 0.4167,
+      "elapsed_sec": 1941.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260327_161143_2b2c390b",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC1_vuln_patch/20260327_161143_2b2c390b",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1526.4,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -14969. (parameter=max_tokens, value=-14969)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260327_163710_fce35290",
+      "run_dir": "shared/ablation_results/ablation_runs/SEC3_crypto_upgrade/20260327_163710_fce35290",
+      "pass": false,
+      "partial_score": 0.85,
+      "elapsed_sec": 1797.8,
+      "failure_modes": [
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260327_170708_34336db0",
+      "run_dir": "shared/ablation_results/ablation_runs/D1_schema_drift/20260327_170708_34336db0",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1860.2,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -6979. (parameter=max_tokens, value=-6979)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260327_173809_9ccfa8ba",
+      "run_dir": "shared/ablation_results/ablation_runs/D8_csv_cleanup/20260327_173809_9ccfa8ba",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 562.7,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -13. (parameter=max_tokens, value=-13)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260327_174731_ed1c63d9",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST2_regression/20260327_174731_ed1c63d9",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 1166.2,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260327_180708_3b93982d",
+      "run_dir": "shared/ablation_results/ablation_runs/TEST5_mutation_resistant/20260327_180708_3b93982d",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 660.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -694. (parameter=max_tokens, value=-694)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260327_181809_27988e1b",
+      "run_dir": "shared/ablation_results/ablation_runs/O1_service_health/20260327_181809_27988e1b",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1816.6,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -9049. (parameter=max_tokens, value=-9049)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260327_184826_968df04d",
+      "run_dir": "shared/ablation_results/ablation_runs/O3_log_analysis/20260327_184826_968df04d",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1471.0,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -156. (parameter=max_tokens, value=-156)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260327_191257_7552a1d1",
+      "run_dir": "shared/ablation_results/ablation_runs/P1_policy_config/20260327_191257_7552a1d1",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1832.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260327_194330_a3810d9e",
+      "run_dir": "shared/ablation_results/ablation_runs/P3_access_control/20260327_194330_a3810d9e",
+      "pass": false,
+      "partial_score": 0.91,
+      "elapsed_sec": 2093.2,
+      "failure_modes": [
+        "allow_decisions_wrong"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260327_201826_234c2383",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC1_feature_impl/20260327_201826_234c2383",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 447.4,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -645. (parameter=max_tokens, value=-645)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260327_202554_8725b128",
+      "run_dir": "shared/ablation_results/ablation_runs/SPEC3_data_model/20260327_202554_8725b128",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 665.0,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260327_203702_2115bb14",
+      "run_dir": "shared/ablation_results/ablation_runs/INC1_cascade_failure/20260327_203702_2115bb14",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 792.4,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260327_205015_3a6f7d3b",
+      "run_dir": "shared/ablation_results/ablation_runs/INC4_dns_miscfg/20260327_205015_3a6f7d3b",
+      "pass": false,
+      "partial_score": 0.58,
+      "elapsed_sec": 787.0,
+      "failure_modes": [
+        "dns_ports_wrong",
+        "dns_protocols_wrong",
+        "service_configs_wrong",
+        "connectivity_tests_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260327_210323_5eaf9b69",
+      "run_dir": "shared/ablation_results/ablation_runs/IR1_evidence_qa/20260327_210323_5eaf9b69",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 1079.6,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260327_212124_df021126",
+      "run_dir": "shared/ablation_results/ablation_runs/NEG1_tradeoff_config/20260327_212124_df021126",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1235.3,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -9657. (parameter=max_tokens, value=-9657)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    },
+    {
+      "condition": "full",
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260327_214159_b9a85bc4",
+      "run_dir": "shared/ablation_results/ablation_runs/CR5_test_coverage/20260327_214159_b9a85bc4",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 515.7,
+      "failure_modes": [],
+      "error": "Error code: 400 - {'error': {'message': 'max_tokens must be at least 1, got -545. (parameter=max_tokens, value=-545)', 'type': 'BadRequestError', 'param': 'max_tokens', 'code': 400}}"
+    }
+  ]
+}

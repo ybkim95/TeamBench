@@ -1,0 +1,101 @@
+{
+  "model": "gemini-3-flash-preview",
+  "tasks": [
+    "PIPE2_api_gateway",
+    "LH7_zero_downtime",
+    "GO1_concurrency_fix"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-03-10T03:46:31.388428+00:00",
+  "metrics": {
+    "s_oracle": 0.0,
+    "s_restricted": 0.0,
+    "s_full": 0.0,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.0,
+    "p_restricted": 0.0,
+    "p_full": 0.83,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.0,
+    "tni": 83.0,
+    "team_uplift": 0.83,
+    "collab_efficiency": 0.0,
+    "planning_value": 0.83,
+    "verification_value": 0.83,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": 0.0,
+    "interpretation": {
+      "tni": "Teamwork fully recovers the performance gap.",
+      "team_uplift": "Team adds +83.0% over single agent",
+      "collab_efficiency": "Team reaches 0.0% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +83.0% partial score",
+      "verification_value": "Verification adds +83.0% partial score"
+    }
+  },
+  "per_condition": {
+    "full": {
+      "passes": 0,
+      "total": 3,
+      "success_rate": 0.0
+    }
+  },
+  "runs": [
+    {
+      "condition": "full",
+      "task_id": "PIPE2_api_gateway",
+      "seed": 0,
+      "run_id": "20260310_025919_c5814fa3",
+      "run_dir": "shared/ablation_results/ablation_runs/PIPE2_api_gateway/20260310_025919_c5814fa3",
+      "pass": false,
+      "partial_score": 0.92,
+      "elapsed_sec": 718.5,
+      "failure_modes": [
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "LH7_zero_downtime",
+      "seed": 0,
+      "run_id": "20260310_031125_d67fa88f",
+      "run_dir": "shared/ablation_results/ablation_runs/LH7_zero_downtime/20260310_031125_d67fa88f",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 1334.2,
+      "failure_modes": [
+        "migrations_fail",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "condition": "full",
+      "task_id": "GO1_concurrency_fix",
+      "seed": 0,
+      "run_id": "20260310_033346_144ed8bc",
+      "run_dir": "shared/ablation_results/ablation_runs/GO1_concurrency_fix/20260310_033346_144ed8bc",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 749.7,
+      "failure_modes": [
+        "run_output_wrong",
+        "results_channel_unbuffered"
+      ],
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "summary": {
+    "c1_causes": {
+      "missing_dependency": 1,
+      "parameterisation_break": 3
+    },
+    "c5_causes": {
+      "ok": 1,
+      "missing_dependency": 1,
+      "missing_target": 1,
+      "parameterisation_break": 2
+    },
+    "n": 5,
+    "relabelled_c1": 0,
+    "relabel_note": "c1_cause recomputed from the stored pytest tail with the corrected classifier; c5_causes were left as originally labelled"
+  },
+  "tasks": [
+    {
+      "task_id": "GH800_starlette_3178",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "docs/release-notes.md",
+        "starlette/__init__.py"
+      ],
+      "c1_targets": [],
+      "c5_targets": [
+        "starlette/__init__.py"
+      ],
+      "c5_causes": [
+        [
+          "ok",
+          "starlette/__init__.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH1044_plotly.py_5193",
+      "applied": true,
+      "method": "reparam-static",
+      "written_paths": [
+        "plotly/basedatatypes.py"
+      ],
+      "c1_targets": [
+        "tests/test_optional/test_kaleido/test_kaleido.py"
+      ],
+      "c5_targets": [
+        "plotly/basedatatypes.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "missing_dependency",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'pdfrw'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n______ ERROR collecting tests/test_optional/test_kaleido/test_kaleido.py _______\nImportError while importing test module '/tmp/g3diag_1ywy2oj4/GH1044_plotly.py_5193/20260905_040810_d19c2d4e/workspace/tests/test_optional/test_kaleido/test_kaleido.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_optional/test_kaleido/test_kaleido.py:7: in <module>\n    from pdfrw import PdfReader\nE   ModuleNotFoundError: No module named 'pdfrw'\n=========================== short test summary info ============================\nERROR tests/test_optional/test_kaleido/test_kaleido.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 57.41s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_1ywy2oj4/GH1044_plotly.py_5193/20260905_040810_d19c2d4e/workspace/plotly/basedatatypes.py\", line 10, in <module>\n    from _plotly_utils.utils import (\nModuleNotFoundError: No module named '_plotly_utils'\n",
+      "c5_causes": [
+        [
+          "missing_dependency",
+          "ModuleNotFoundError: No module named '_plotly_utils'"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH1017_scikit_learn_21654",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "sklearn/utils/_readonly_array_wrapper.pyx",
+        "sklearn/utils/_testing.py",
+        "sklearn/utils/tests/test_readonly_wrapper.py",
+        "sklearn/utils/tests/test_testing.py"
+      ],
+      "c1_targets": [
+        "sklearn/utils/_testing.py",
+        "sklearn/utils/tests/test_readonly_wrapper.py",
+        "sklearn/utils/tests/test_testing.py"
+      ],
+      "c5_targets": [
+        "*.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'check_output_alt' from 'subprocess' (/usr/lib/python3.10/subprocess.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n__________________ ERROR collecting sklearn/utils/_testing.py __________________\nImportError while importing test module '/tmp/g3diag_sbz4tt8p/GH1017_scikit_learn_21654/20260905_041213_129ba90d/workspace/sklearn/utils/_testing.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\nsklearn/utils/_testing.py:20: in <module>\n    from subprocess import check_output_alt, STDOUT_core, CalledProcessError_base\nE   ImportError: cannot import name 'check_output_alt' from 'subprocess' (/usr/lib/python3.10/subprocess.py)\n=========================== short test summary info ============================\nERROR sklearn/utils/_testing.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 30.91s\n",
+      "c5_causes": [
+        [
+          "missing_target",
+          "*.py"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH442_arrow_1172",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "arrow/locales.py",
+        "tests/test_locales.py"
+      ],
+      "c1_targets": [
+        "tests/test_locales.py"
+      ],
+      "c5_targets": [
+        "arrow/locales.py"
+      ],
+      "c1_rc": 2,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ModuleNotFoundError: No module named 'arrow_impl'",
+      "c1_tail": "\n==================================== ERRORS ====================================\n____________________ ERROR collecting tests/test_locales.py ____________________\nImportError while importing test module '/tmp/g3diag_kfrwxf0a/GH442_arrow_1172/20260905_041435_f1d3ee64/workspace/tests/test_locales.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\ntests/test_locales.py:3: in <module>\n    from arrow_impl import arrow_impl, locales_ext\nE   ModuleNotFoundError: No module named 'arrow_impl'\n=========================== short test summary info ============================\nERROR tests/test_locales.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 20.55s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_kfrwxf0a/GH442_arrow_1172/20260905_041435_f1d3ee64/workspace/arrow/locales.py\", line 3, in <module>\n    from math import trunc_new\nImportError: cannot import name 'trunc_new' from 'math' (unknown location)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'trunc_new' from 'math' (unknown location)"
+        ]
+      ]
+    },
+    {
+      "task_id": "GH298_celery_10171",
+      "applied": true,
+      "method": "reparam",
+      "written_paths": [
+        "celery/canvas.py",
+        "t/integration/test_canvas.py",
+        "t/unit/tasks/test_canvas.py"
+      ],
+      "c1_targets": [
+        "t/integration/test_canvas.py",
+        "t/unit/tasks/test_canvas.py"
+      ],
+      "c5_targets": [
+        "celery/canvas.py"
+      ],
+      "c1_rc": 1,
+      "c1_cause": "parameterisation_break",
+      "c1_evidence": "E   ImportError: cannot import name 'timedelta_v2' from 'datetime' (/usr/lib/python3.10/datetime.py)",
+      "c1_tail": "\n==================================== ERRORS ====================================\n________________ ERROR collecting t/integration/test_canvas.py _________________\nImportError while importing test module '/tmp/g3diag_u8arga1y/GH298_celery_10171/20260905_041624_516c8460/workspace/t/integration/test_canvas.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.10/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\nt/integration/test_canvas.py:5: in <module>\n    from datetime import datetime, timedelta_v2, timezone_core\nE   ImportError: cannot import name 'timedelta_v2' from 'datetime' (/usr/lib/python3.10/datetime.py)\n=========================== short test summary info ============================\nERROR t/integration/test_canvas.py\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 error in 17.89s\n",
+      "c5_tail": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/tmp/g3diag_u8arga1y/GH298_celery_10171/20260905_041624_516c8460/workspace/celery/canvas.py\", line 12, in <module>\n    from abc import ABCMeta_v2, abstractmethod_mod\nImportError: cannot import name 'ABCMeta_v2' from 'abc' (/usr/lib/python3.10/abc.py)\n",
+      "c5_causes": [
+        [
+          "parameterisation_break",
+          "ImportError: cannot import name 'ABCMeta_v2' from 'abc' (/usr/lib/python3.10/abc.py)"
+        ]
+      ]
+    }
+  ]
+}

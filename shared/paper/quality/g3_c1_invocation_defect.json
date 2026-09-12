@@ -1,0 +1,14 @@
+{
+  "tasks_c1_passes_under_python_m_pytest": [
+    "GH112_redis-py_3996"
+  ],
+  "n_diagnosed": 53,
+  "c1_causes": {
+    "missing_dependency": 18,
+    "no_tests_collected": 13,
+    "syntax_error_from_parameterisation": 2,
+    "parameterisation_break": 15,
+    "other": 2,
+    "relative_import": 1
+  }
+}

@@ -1,0 +1,687 @@
+{
+  "experiment": "hetero_systematic",
+  "seed": 0,
+  "tasks": [
+    "MULTI1_fullstack_fix",
+    "TEST1_spec_to_tests",
+    "O2_incident_rootcause",
+    "PIPE1_etl_fix",
+    "TRAP1_spec_conflict",
+    "TRAP3_metric_mirage",
+    "TRAP5_security_theater",
+    "CROSS1_api_contract",
+    "CROSS3_protocol_bridge",
+    "CRYPTO1_nonce_reuse",
+    "DIST1_queue_race",
+    "SEC1_vuln_patch",
+    "SEC3_crypto_upgrade",
+    "D1_schema_drift",
+    "D8_csv_cleanup",
+    "TEST2_regression",
+    "TEST5_mutation_resistant",
+    "O1_service_health",
+    "O3_log_analysis",
+    "P1_policy_config",
+    "P3_access_control",
+    "SPEC1_feature_impl",
+    "SPEC3_data_model",
+    "INC1_cascade_failure",
+    "INC4_dns_miscfg",
+    "IR1_evidence_qa",
+    "NEG1_tradeoff_config",
+    "CR5_test_coverage"
+  ],
+  "n_permutation_configs": 27,
+  "n_cross_family_configs": 3,
+  "completed": "2026-03-29T20:20:50.214463+00:00",
+  "per_config": {
+    "PsEwVw": {
+      "passes": 5,
+      "total": 28,
+      "success_rate": 0.1786,
+      "avg_partial": 0.5443,
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "estimated_cost_per_task": 0.0022
+    }
+  },
+  "marginal_contributions": {
+    "planner": {
+      "avg_delta_weak_to_mid": null,
+      "avg_delta_mid_to_strong": null,
+      "avg_delta_overall": null
+    },
+    "executor": {
+      "avg_delta_weak_to_mid": null,
+      "avg_delta_mid_to_strong": null,
+      "avg_delta_overall": null
+    },
+    "verifier": {
+      "avg_delta_weak_to_mid": null,
+      "avg_delta_mid_to_strong": null,
+      "avg_delta_overall": null
+    }
+  },
+  "top_role_by_marginal": {
+    "role": "planner",
+    "avg_delta_overall": null
+  },
+  "pareto_frontier": [
+    {
+      "config": "PsEwVw",
+      "score": 0.1786,
+      "cost": 0.0022,
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      }
+    }
+  ],
+  "best_per_cost_tier": {
+    "low": {
+      "config": "PsEwVw",
+      "passes": 5,
+      "total": 28,
+      "success_rate": 0.1786,
+      "avg_partial": 0.5443,
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "estimated_cost_per_task": 0.0022
+    }
+  },
+  "runs": [
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "MULTI1_fullstack_fix",
+      "seed": 0,
+      "run_id": "20260329_031648_7d79b6cb",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/MULTI1_fullstack_fix/20260329_031648_7d79b6cb",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 568.2,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TEST1_spec_to_tests",
+      "seed": 0,
+      "run_id": "20260329_032625_ebea29c1",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TEST1_spec_to_tests/20260329_032625_ebea29c1",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 309.7,
+      "failure_modes": [
+        "low_coverage",
+        "mutant_01_not_caught",
+        "mutant_02_not_caught",
+        "mutant_03_not_caught",
+        "mutant_04_not_caught",
+        "mutant_05_not_caught",
+        "insufficient_mutation_detection",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "O2_incident_rootcause",
+      "seed": 0,
+      "run_id": "20260329_033553_ab8a9bab",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/O2_incident_rootcause/20260329_033553_ab8a9bab",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 413.9,
+      "failure_modes": [
+        "endpoint_no_response"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "PIPE1_etl_fix",
+      "seed": 0,
+      "run_id": "20260329_034255_78c4e700",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/PIPE1_etl_fix/20260329_034255_78c4e700",
+      "pass": false,
+      "partial_score": 0.73,
+      "elapsed_sec": 512.8,
+      "failure_modes": [
+        "type_conversions_wrong",
+        "null_handling_wrong",
+        "nested_fields_not_flattened"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TRAP1_spec_conflict",
+      "seed": 0,
+      "run_id": "20260329_035130_8b03f72f",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TRAP1_spec_conflict/20260329_035130_8b03f72f",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1513.3,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TRAP3_metric_mirage",
+      "seed": 0,
+      "run_id": "20260329_041817_d2161022",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TRAP3_metric_mirage/20260329_041817_d2161022",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 802.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TRAP5_security_theater",
+      "seed": 0,
+      "run_id": "20260329_043329_f23f4713",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TRAP5_security_theater/20260329_043329_f23f4713",
+      "pass": false,
+      "partial_score": 0.57,
+      "elapsed_sec": 2532.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "CROSS1_api_contract",
+      "seed": 0,
+      "run_id": "20260329_052929_a1c07f3e",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/CROSS1_api_contract/20260329_052929_a1c07f3e",
+      "pass": false,
+      "partial_score": 0.2,
+      "elapsed_sec": 1888.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "CROSS3_protocol_bridge",
+      "seed": 0,
+      "run_id": "20260329_061919_860db772",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/CROSS3_protocol_bridge/20260329_061919_860db772",
+      "pass": false,
+      "partial_score": 0.4,
+      "elapsed_sec": 2819.9,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "CRYPTO1_nonce_reuse",
+      "seed": 0,
+      "run_id": "20260329_073923_9842fb3c",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/CRYPTO1_nonce_reuse/20260329_073923_9842fb3c",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 1906.6,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "DIST1_queue_race",
+      "seed": 0,
+      "run_id": "20260329_083801_1745fc17",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/DIST1_queue_race/20260329_083801_1745fc17",
+      "pass": false,
+      "partial_score": 0.5,
+      "elapsed_sec": 2802.4,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SEC1_vuln_patch",
+      "seed": 0,
+      "run_id": "20260329_095539_96f2827c",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/SEC1_vuln_patch/20260329_095539_96f2827c",
+      "pass": false,
+      "partial_score": 0.83,
+      "elapsed_sec": 1036.0,
+      "failure_modes": [
+        "routes_missing",
+        "excessive_changes"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SEC3_crypto_upgrade",
+      "seed": 0,
+      "run_id": "20260329_101259_ef7fde97",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/SEC3_crypto_upgrade/20260329_101259_ef7fde97",
+      "pass": false,
+      "partial_score": 0.54,
+      "elapsed_sec": 829.4,
+      "failure_modes": [
+        "md5_still_used",
+        "des_rc4_ecb_still_used",
+        "no_modern_algo",
+        "key_derivation_raw_hash",
+        "new_vulnerability_introduced",
+        "migrate_still_stubbed"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "D1_schema_drift",
+      "seed": 0,
+      "run_id": "20260329_102658_817fe1fa",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/D1_schema_drift/20260329_102658_817fe1fa",
+      "pass": false,
+      "partial_score": 0.56,
+      "elapsed_sec": 284.8,
+      "failure_modes": [
+        "wrong_row_count",
+        "name_mapping_fail",
+        "id_mapping_fail",
+        "value_mapping_fail",
+        "dedup_higher_value_fail",
+        "dedup_category_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "D8_csv_cleanup",
+      "seed": 0,
+      "run_id": "20260329_103158_5af9017c",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/D8_csv_cleanup/20260329_103158_5af9017c",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 560.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TEST2_regression",
+      "seed": 0,
+      "run_id": "20260329_104122_ac4fb019",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TEST2_regression/20260329_104122_ac4fb019",
+      "pass": false,
+      "partial_score": 0.45,
+      "elapsed_sec": 2302.0,
+      "failure_modes": [
+        "some_bugs_not_detected",
+        "bug_BUG_ABS_MISSING_not_detected",
+        "bug_BUG_DIV_FLOOR_not_detected",
+        "bug_BUG_POWER_SWAP_not_detected",
+        "bug_BUG_SQRT_NEGATIVE_not_detected",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "TEST5_mutation_resistant",
+      "seed": 0,
+      "run_id": "20260329_114613_62e296f0",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/TEST5_mutation_resistant/20260329_114613_62e296f0",
+      "pass": false,
+      "partial_score": 0.42,
+      "elapsed_sec": 3345.1,
+      "failure_modes": [
+        "too_few_tests",
+        "mutant_01_not_caught",
+        "mutant_05_not_caught",
+        "mutant_10_not_caught",
+        "mutant_15_not_caught",
+        "insufficient_mutation_detection",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "O1_service_health",
+      "seed": 0,
+      "run_id": "20260329_135413_352863cd",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/O1_service_health/20260329_135413_352863cd",
+      "pass": false,
+      "partial_score": 0.0,
+      "elapsed_sec": 1210.1,
+      "failure_modes": [
+        "healthcheck_body_mismatch_or_timeout",
+        "service_died_early",
+        "missing_service_log",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "O3_log_analysis",
+      "seed": 0,
+      "run_id": "20260329_141525_46ac5dcf",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/O3_log_analysis/20260329_141525_46ac5dcf",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 353.4,
+      "failure_modes": [
+        "missing_root_cause_file",
+        "root_cause_missing_signal_a",
+        "root_cause_missing_signal_b",
+        "root_cause_missing_subsystem",
+        "root_cause_missing_fix_file",
+        "fix_not_applied",
+        "code_fix_not_applied",
+        "service_crashed_after_start"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "P1_policy_config",
+      "seed": 0,
+      "run_id": "20260329_142215_baeff41e",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/P1_policy_config/20260329_142215_baeff41e",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 724.1,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "P3_access_control",
+      "seed": 0,
+      "run_id": "20260329_143504_5209aab9",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/P3_access_control/20260329_143504_5209aab9",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 1524.8,
+      "failure_modes": [
+        "allow_decisions_wrong",
+        "flask_denied_returns_200",
+        "audit_trail_missing_or_incomplete",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SPEC1_feature_impl",
+      "seed": 0,
+      "run_id": "20260329_150901_e548c283",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/SPEC1_feature_impl/20260329_150901_e548c283",
+      "pass": false,
+      "partial_score": 0.64,
+      "elapsed_sec": 2413.7,
+      "failure_modes": [
+        "title_too_long_wrong_code",
+        "forbidden_transition_wrong_code",
+        "list_tasks_sort_wrong",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "SPEC3_data_model",
+      "seed": 0,
+      "run_id": "20260329_170446_330fb688",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/SPEC3_data_model/20260329_170446_330fb688",
+      "pass": false,
+      "partial_score": 0.071,
+      "elapsed_sec": 1090.9,
+      "failure_modes": [
+        "basic_tests_fail",
+        "entities_not_importable",
+        "tables_not_created",
+        "user_columns_missing",
+        "product_columns_missing",
+        "order_item_columns_missing",
+        "review_columns_missing",
+        "order_user_fk_missing",
+        "order_item_order_fk_missing",
+        "review_fk_missing",
+        "user_unique_constraint_missing",
+        "review_unique_constraint_missing",
+        "order_item_cascade_delete_missing"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "INC1_cascade_failure",
+      "seed": 0,
+      "run_id": "20260329_173144_f2bbf98d",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/INC1_cascade_failure/20260329_173144_f2bbf98d",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 716.4,
+      "failure_modes": [
+        "wrong_fix_order"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "INC4_dns_miscfg",
+      "seed": 0,
+      "run_id": "20260329_174348_c71832f3",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/INC4_dns_miscfg/20260329_174348_c71832f3",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 972.7,
+      "failure_modes": [],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "IR1_evidence_qa",
+      "seed": 0,
+      "run_id": "20260329_180021_612431f0",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/IR1_evidence_qa/20260329_180021_612431f0",
+      "pass": false,
+      "partial_score": 0.33,
+      "elapsed_sec": 2592.1,
+      "failure_modes": [
+        "wrong_answer",
+        "evidence_not_from_different_docs",
+        "invalid_evidence_content",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "NEG1_tradeoff_config",
+      "seed": 0,
+      "run_id": "20260329_184341_a8e52c35",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/NEG1_tradeoff_config/20260329_184341_a8e52c35",
+      "pass": false,
+      "partial_score": 0.3,
+      "elapsed_sec": 994.3,
+      "failure_modes": [
+        "perf_test_fail",
+        "security_scan_fail",
+        "reliability_test_fail",
+        "tls_not_enabled",
+        "hardcoded_credentials",
+        "benchmarks_not_simultaneous",
+        "bad_attestation"
+      ],
+      "error": null
+    },
+    {
+      "config": "PsEwVw",
+      "model_config": {
+        "planner": "gpt-5-mini",
+        "executor": "gemini-3.1-flash-lite-preview",
+        "verifier": "gemini-3.1-flash-lite-preview"
+      },
+      "task_id": "CR5_test_coverage",
+      "seed": 0,
+      "run_id": "20260329_190029_e7aabbaf",
+      "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/hetero_systematic_runs/CR5_test_coverage/20260329_190029_e7aabbaf",
+      "pass": false,
+      "partial_score": 0.38,
+      "elapsed_sec": 2938.9,
+      "failure_modes": [
+        "too_few_tests",
+        "some_paths_not_tested",
+        "path_invalid_bool_not_tested",
+        "path_invalid_int_not_tested",
+        "path_invalid_log_level_not_tested",
+        "path_merge_does_not_mutate_not_tested",
+        "path_timeout_too_high_not_tested",
+        "bad_attestation"
+      ],
+      "error": null
+    }
+  ]
+}
