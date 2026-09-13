@@ -93,6 +93,34 @@ def rescore(checks: list, base: dict):
     return guard_ok, (passed / n if n else None)
 
 
+def infrastructure_error(run: dict) -> str | None:
+    """Name the infrastructure failure that makes a run uninformative, else None.
+
+    A run that died because the credential was rejected or the provider refused
+    service did not measure the agent. It carries partial_score 0.0 and no
+    checks, which is indistinguishable from a genuine total failure once the
+    aggregate is taken. Averaging those rows silently invents results: a
+    claude-sonnet-5 sweep whose key was revoked mid-run reported Full Team
+    "raw mean 0.019, disc mean 0.500" at budget 140, where in truth 47 of 48
+    runs never reached the model and the 0.500 was one surviving task.
+
+    So these rows are excluded from every statistic and counted separately. The
+    exclusion is deliberately narrow: it names transport and credential
+    failures only, never a task the agent genuinely failed.
+    """
+    e = run.get("error")
+    if not e:
+        return None
+    t = str(e)
+    if "authentication_error" in t or "Error code: 401" in t:
+        return "auth"
+    if "Error code: 429" in t or "rate_limit" in t:
+        return "ratelimit"
+    if "Error code: 5" in t or "overloaded" in t or "InternalServerError" in t:
+        return "provider5xx"
+    return "other"
+
+
 def wilson(k: int, n: int):
     if not n:
         return (0.0, 0.0)
@@ -126,11 +154,12 @@ def main() -> int:
             t, cond = r.get("task_id"), r.get("condition")
             if not t or not cond or t not in base:
                 continue
+            ierr = infrastructure_error(r)
             adm, disc = rescore(checks_for(r), base[t])
             data[b][cond][t] = {
                 "raw": r.get("partial_score"), "pass": bool(r.get("pass")),
                 "admissible": adm, "disc": disc,
-                "turns": r.get("elapsed_sec"),
+                "turns": r.get("elapsed_sec"), "ierr": ierr,
             }
 
     if not data:
@@ -144,8 +173,17 @@ def main() -> int:
     rows = []
     for b in sorted(data):
         for cond in ("oracle", "full"):
-            d = data[b].get(cond) or {}
+            allruns = data[b].get(cond) or {}
+            if not allruns:
+                continue
+            d = {t: v for t, v in allruns.items() if not v["ierr"]}
+            dead = collections.Counter(v["ierr"] for v in allruns.values() if v["ierr"])
             if not d:
+                print("%6d  %-10s  ALL %d RUNS DEAD %s -- no statistic reported" % (
+                    b, "Solo" if cond == "oracle" else "Full Team",
+                    len(allruns), dict(dead)))
+                rows.append({"budget": b, "condition": cond, "n": 0,
+                             "dead": dict(dead), "usable": False})
                 continue
             n = len(d)
             k = sum(1 for v in d.values() if v["pass"])
@@ -153,22 +191,30 @@ def main() -> int:
             disc = [v["disc"] for v in d.values() if isinstance(v["disc"], (int, float))]
             inad = sum(1 for v in d.values() if not v["admissible"])
             lo, hi = wilson(k, n)
-            print("%6d  %-10s %3d  %2d/%-2d %4.0f%%  %8.3f   %8.3f   %d" % (
+            ndead = sum(dead.values())
+            print("%6d  %-10s %3d  %2d/%-2d %4.0f%%  %8.3f   %8.3f   %d%s" % (
                 b, "Solo" if cond == "oracle" else "Full Team", n, k, n,
                 100 * k / n, statistics.mean(raw) if raw else float("nan"),
-                statistics.mean(disc) if disc else float("nan"), inad))
+                statistics.mean(disc) if disc else float("nan"), inad,
+                "   EXCLUDED %d %s" % (ndead, dict(dead)) if ndead else ""))
             rows.append({"budget": b, "condition": cond, "n": n, "passes": k,
                          "pass_rate": k / n, "pass_ci95": [lo, hi],
                          "raw_mean": statistics.mean(raw) if raw else None,
                          "disc_mean": statistics.mean(disc) if disc else None,
-                         "inadmissible": inad})
+                         "inadmissible": inad, "dead": dict(dead),
+                         "usable": ndead == 0,
+                         "n_attempted": len(allruns)})
 
     # paired within-task comparison at each budget, which is the actual question
     print("\npaired Solo vs Full Team, same task, same budget:")
     for b in sorted(data):
-        o, f = data[b].get("oracle") or {}, data[b].get("full") or {}
+        o = {t: v for t, v in (data[b].get("oracle") or {}).items() if not v["ierr"]}
+        f = {t: v for t, v in (data[b].get("full") or {}).items() if not v["ierr"]}
         common = sorted(set(o) & set(f))
+        att = len(set(data[b].get("oracle") or {}) & set(data[b].get("full") or {}))
         if not common:
+            print("  budget %3d  no task sound in both conditions "
+                  "(%d attempted) -- not comparable" % (b, att))
             continue
         both = [(o[t], f[t]) for t in common]
         dd = [y["disc"] - x["disc"] for x, y in both
@@ -177,6 +223,9 @@ def main() -> int:
         solo_only = sum(1 for x, y in both if x["pass"] and not y["pass"])
         line = "  budget %3d  n=%2d  team-only wins %d, solo-only wins %d" % (
             b, len(common), team_only, solo_only)
+        if len(common) < att:
+            line += "  [%d of %d pairs dropped as dead]" % (
+                att - len(common), att)
         if dd:
             line += "  mean disc delta %+.3f" % statistics.mean(dd)
         print(line)
@@ -186,7 +235,8 @@ def main() -> int:
     # at the same budget on the same task.
     tw = sw = 0
     for b in data:
-        o, f = data[b].get("oracle") or {}, data[b].get("full") or {}
+        o = {t: v for t, v in (data[b].get("oracle") or {}).items() if not v["ierr"]}
+        f = {t: v for t, v in (data[b].get("full") or {}).items() if not v["ierr"]}
         for t in set(o) & set(f):
             if f[t]["pass"] and not o[t]["pass"]:
                 tw += 1

@@ -47,6 +47,11 @@ def load_curve(tag: str):
             t, c = r.get("task_id"), r.get("condition")
             if not t or not c or t not in base:
                 continue
+            # A run that died on a rejected credential or a refused request
+            # measured nothing; its recorded zero is not a result. Plotting it
+            # would put a fabricated point in the paper's first figure.
+            if bc.infrastructure_error(r):
+                continue
             _adm, disc = bc.rescore(bc.checks_for(r), base[t])
             out[b][c][t] = {"raw": r.get("partial_score"), "disc": disc}
     return out

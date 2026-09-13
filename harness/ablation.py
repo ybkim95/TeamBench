@@ -96,6 +96,25 @@ class AblationRun:
         return bool(self.score.get("pass", False))
 
 
+class CredentialFailure(RuntimeError):
+    """The provider rejected our credential, so no further run can measure anything."""
+
+
+def _is_credential_failure(exc: BaseException) -> bool:
+    """True for an authentication rejection, which is terminal for a sweep.
+
+    Deliberately narrow. A 429 or a 5xx is transient and the adapter already
+    retries those; only a rejected key is treated as fatal, because it cannot
+    recover without a human and every subsequent run would be recorded as a
+    zero that looks like a real failure.
+    """
+    t = str(exc)
+    return ("authentication_error" in t
+            or "Error code: 401" in t
+            or "invalid x-api-key" in t
+            or "API key is invalid" in t)
+
+
 def _make_oracle_config(
     spec_path: str,
     workspace_dir: str,
@@ -1475,6 +1494,29 @@ def run_full_ablation(
                     condition_scores[condition].append(False)
                     condition_partial[condition].append(0.0)
                     print(f"  ERROR: {e}")
+                    # A rejected credential never heals inside a sweep. Left to
+                    # continue, the loop records every remaining task as a
+                    # zero-score run that is indistinguishable from a genuine
+                    # failure once aggregated, and the final JSON then makes the
+                    # cell look complete so a rerun skips it. That happened: a
+                    # revoked key turned 68 of 144 claude-sonnet-5 runs into
+                    # fake zeros. Stop at the first one instead.
+                    if _is_credential_failure(e):
+                        with open(checkpoint_path, "a") as cpf:
+                            cpf.write(json.dumps({
+                                "condition": condition.value,
+                                "task_id": task_name, "seed": seed,
+                                "pass": False, "partial_score": 0.0,
+                                "error": str(e), "checks": [],
+                                "aborted_sweep": True,
+                            }) + "\n")
+                        raise CredentialFailure(
+                            "provider rejected the credential on %s x %s; "
+                            "aborting so the remaining runs are not recorded "
+                            "as fake zeros. Fix the key, delete any partially "
+                            "written output JSON for this cell, and rerun.\n"
+                            "  underlying error: %s"
+                            % (condition.value, task_name, e)) from e
 
                 partial_score = run_record.score.get("secondary", {}).get(
                     "partial_score", 1.0 if run_record.passed else 0.0

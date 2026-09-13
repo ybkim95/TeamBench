@@ -71,6 +71,44 @@ def load_tasks(selection_path: str | None = None) -> list[str]:
     return out
 
 
+def credential_dead_runs(path: str) -> int:
+    """How many runs in a finished cell died because the credential was rejected.
+
+    Checked against both the summary JSON and its checkpoint, because the
+    checkpoint is the file that survives when the run aborts.
+    """
+    n = 0
+    for p in (path, path + ".checkpoint.jsonl"):
+        if not os.path.isfile(p):
+            continue
+        try:
+            txt = open(p).read()
+        except OSError:
+            continue
+        if p.endswith(".jsonl"):
+            rows = []
+            for line in txt.splitlines():
+                try:
+                    rows.append(json.loads(line))
+                except Exception:
+                    pass
+        else:
+            try:
+                doc = json.loads(txt)
+            except Exception:
+                continue
+            rows = doc.get("runs") or doc.get("all_runs") or []
+        for r in rows:
+            if not isinstance(r, dict):
+                continue
+            e = str(r.get("error") or "")
+            if "authentication_error" in e or "Error code: 401" in e:
+                n += 1
+        if n:
+            return n
+    return n
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="gemini-3-flash-preview")
@@ -107,6 +145,17 @@ def main() -> int:
     for b in a.budgets:
         out = os.path.join(out_dir, f"budget{b}_{tag}.json")
         if os.path.isfile(out):
+            # "The file exists" is not the same as "the cell is measured". A
+            # sweep whose credential was revoked mid-run still writes a
+            # complete-looking JSON, every remaining run recorded as a zero.
+            # Skipping on existence alone then makes the damage permanent:
+            # the key gets fixed and the poisoned cell is never rerun.
+            dead = credential_dead_runs(out)
+            if dead:
+                print(f"[sweep] budget={b} output exists but {dead} run(s) "
+                      f"died on a rejected credential; NOT skipping. Move "
+                      f"{out} aside to rerun this cell.", flush=True)
+                return 2
             print(f"[sweep] budget={b} already done, skipping ({out})", flush=True)
             continue
         print(f"\n[sweep] ===== total_turns={b} =====", flush=True)

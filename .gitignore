@@ -177,6 +177,12 @@ shared/ablation_results/**/logs/
 /shared/ablation_results/budget_sweep/*/*
 !/shared/ablation_results/budget_sweep/*/*.json
 !/shared/ablation_results/budget_sweep/*/*.jsonl
+# Track the provenance note for quarantined cells, but never the quarantined
+# data itself: those runs died on a rejected credential and must not be read as
+# results. The directory has to be un-ignored before the file in it can be.
+!/shared/ablation_results/budget_sweep/*/quarantine_credential_failure/
+/shared/ablation_results/budget_sweep/*/quarantine_credential_failure/*
+!/shared/ablation_results/budget_sweep/*/quarantine_credential_failure/README.md
 !/shared/ea_results/
 /shared/ea_results/*
 !/shared/ea_results/*.json
