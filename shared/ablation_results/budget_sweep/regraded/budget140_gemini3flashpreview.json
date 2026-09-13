@@ -1,0 +1,1731 @@
+{
+ "model": "gemini-3-flash-preview",
+ "tasks": [
+  "P6_license_check",
+  "TRAP1_spec_conflict",
+  "P1_policy_config",
+  "DIST1_queue_race",
+  "TRAP5_security_theater",
+  "TEST5_mutation_resistant",
+  "D8_csv_cleanup",
+  "CROSS3_protocol_bridge",
+  "SEC1_vuln_patch",
+  "CRYPTO1_nonce_reuse",
+  "SPEC7_config_schema",
+  "O7_capacity_planning",
+  "O9_logging_config",
+  "INC9_log_forensics",
+  "NEG5_sla_tradeoff",
+  "INC5_cert_expiry",
+  "SYNTH1_distributed_debug",
+  "TEST8_unit_basic",
+  "INC8_memory_leak",
+  "INT3_db_migration",
+  "SEC4_input_validation",
+  "NEG1_tradeoff_config",
+  "CR1_review_respond",
+  "O8_dockerfile_fix",
+  "TRAP7_test_pollution"
+ ],
+ "seeds": [
+  0
+ ],
+ "completed": "2026-09-06T04:13:59.514687+00:00",
+ "metrics": {
+  "s_oracle": 0.52,
+  "s_restricted": 0.0,
+  "s_full": 0.52,
+  "s_no_verify": 0.0,
+  "s_no_plan": 0.0,
+  "p_oracle": 0.8364,
+  "p_restricted": 0.0,
+  "p_full": 0.8328,
+  "p_no_verify": 0.0,
+  "p_no_plan": 0.0,
+  "necessity_gap": 0.8364,
+  "tni": 0.9957,
+  "team_uplift": 0.8328,
+  "collab_efficiency": 0.9957,
+  "planning_value": 0.8328,
+  "verification_value": 0.8328,
+  "s_expertise_full": 0.0,
+  "s_expertise_no_analysis": 0.0,
+  "s_expertise_no_test": 0.0,
+  "s_expertise_oracle": 0.0,
+  "p_expertise_full": 0.0,
+  "p_expertise_no_analysis": 0.0,
+  "p_expertise_no_test": 0.0,
+  "p_expertise_oracle": 0.0,
+  "analysis_value": 0.0,
+  "testing_value": 0.0,
+  "expertise_tni": 0.0,
+  "interpretation": {
+   "tni": "Teamwork fully recovers the performance gap.",
+   "team_uplift": "Team adds +83.3% over single agent",
+   "collab_efficiency": "Team reaches 99.6% of oracle ceiling via collaboration",
+   "planning_value": "Planning adds +83.3% partial score",
+   "verification_value": "Verification adds +83.3% partial score"
+  }
+ },
+ "per_condition": {
+  "oracle": {
+   "passes": 13,
+   "total": 25,
+   "success_rate": 0.52
+  },
+  "full": {
+   "passes": 13,
+   "total": 25,
+   "success_rate": 0.52
+  }
+ },
+ "runs": [
+  {
+   "condition": "oracle",
+   "task_id": "P1_policy_config",
+   "seed": 0,
+   "run_id": "20260905_220256_37ff1f69",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/P1_policy_config/20260905_220256_37ff1f69",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 21.3,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "D8_csv_cleanup",
+   "seed": 0,
+   "run_id": "20260905_224427_2345272a",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/D8_csv_cleanup/20260905_224427_2345272a",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 85.2,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "P6_license_check",
+   "seed": 0,
+   "run_id": "20260905_220054_09981d8c",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/P6_license_check/20260905_220054_09981d8c",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 59.9,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.33,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "SEC1_vuln_patch",
+   "seed": 0,
+   "run_id": "20260905_224733_319996f5",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/SEC1_vuln_patch/20260905_224733_319996f5",
+   "pass": false,
+   "partial_score": 0.73,
+   "elapsed_sec": 575.3,
+   "failure_modes": [
+    "path_traversal_present",
+    "routes_missing",
+    "excessive_changes"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.73,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "O7_capacity_planning",
+   "seed": 0,
+   "run_id": "20260905_230038_e882938a",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/O7_capacity_planning/20260905_230038_e882938a",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 138.3,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "service_a.py is valid Python"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "service_a.py no longer has N+1 query in loop"
+     },
+     {
+      "id": "C3",
+      "ok": true,
+      "note": "service_a.py uses batch/bulk query"
+     },
+     {
+      "id": "C4",
+      "ok": true,
+      "note": "service_b.py is valid Python"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "service_b.py cache is bounded"
+     },
+     {
+      "id": "C6",
+      "ok": true,
+      "note": "service_b.py implements eviction"
+     },
+     {
+      "id": "C7",
+      "ok": true,
+      "note": "service_c.py is valid Python"
+     },
+     {
+      "id": "C8",
+      "ok": true,
+      "note": "service_c.py uses async/non-blocking pattern"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "Benchmark passes SLA constraints"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "All service functions preserved"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "O9_logging_config",
+   "seed": 0,
+   "run_id": "20260905_230257_41f2a0f8",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/O9_logging_config/20260905_230257_41f2a0f8",
+   "pass": false,
+   "partial_score": 0.56,
+   "elapsed_sec": 53.2,
+   "failure_modes": [
+    "root_level_wrong",
+    "missing_structured_fields",
+    "pii_email_leaked",
+    "pii_password_leaked"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.44,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "INC9_log_forensics",
+   "seed": 0,
+   "run_id": "20260905_230352_7f89a2bd",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/INC9_log_forensics/20260905_230352_7f89a2bd",
+   "pass": false,
+   "partial_score": 0.3,
+   "elapsed_sec": 29.7,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.3,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "root_cause_report.json exists"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "report has required fields"
+     },
+     {
+      "id": "C3",
+      "ok": false,
+      "note": "correct root cause service identified"
+     },
+     {
+      "id": "C4",
+      "ok": false,
+      "note": "root cause type correctly identified"
+     },
+     {
+      "id": "C5",
+      "ok": false,
+      "note": "all affected services listed"
+     },
+     {
+      "id": "C6",
+      "ok": false,
+      "note": "batch job red herring not blamed as root cause"
+     },
+     {
+      "id": "C7",
+      "ok": false,
+      "note": "clock skew anomaly acknowledged"
+     },
+     {
+      "id": "C8",
+      "ok": false,
+      "note": "timeline with event sequence present"
+     },
+     {
+      "id": "C9",
+      "ok": false,
+      "note": "root cause time approximately correct"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "report includes remediation recommendations"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "SPEC7_config_schema",
+   "seed": 0,
+   "run_id": "20260905_225839_b37909a1",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/SPEC7_config_schema/20260905_225839_b37909a1",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 105.2,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "validator.py is valid Python"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "validate_config function importable"
+     },
+     {
+      "id": "C3",
+      "ok": true,
+      "note": "Valid config returns no errors"
+     },
+     {
+      "id": "C4",
+      "ok": true,
+      "note": "Invalid config returns errors"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "Type validation catches wrong types"
+     },
+     {
+      "id": "C6",
+      "ok": true,
+      "note": "Range validation catches out-of-bounds values"
+     },
+     {
+      "id": "C7",
+      "ok": true,
+      "note": "Enum validation catches invalid values"
+     },
+     {
+      "id": "C8",
+      "ok": true,
+      "note": "Cross-field: cluster mode requires replicas >= 3"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "Cross-field: ssl requires cert_path"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "Missing required field detected"
+     },
+     {
+      "id": "C11",
+      "ok": true,
+      "note": "pytest tests pass"
+     },
+     {
+      "id": "C12",
+      "ok": true,
+      "note": "config_schema.json not modified"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "INC5_cert_expiry",
+   "seed": 0,
+   "run_id": "20260905_230504_32689f51",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/INC5_cert_expiry/20260905_230504_32689f51",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 57.7,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.6,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "NEG5_sla_tradeoff",
+   "seed": 0,
+   "run_id": "20260905_230423_637cef47",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/NEG5_sla_tradeoff/20260905_230423_637cef47",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 31.2,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "TRAP1_spec_conflict",
+   "seed": 0,
+   "run_id": "20260905_220155_7cbbb8e6",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TRAP1_spec_conflict/20260905_220155_7cbbb8e6",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 45.6,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "pytest tests/ passes"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "POST /users rejects invalid email (422)"
+     },
+     {
+      "id": "C3",
+      "ok": true,
+      "note": "POST /users accepts valid user (2xx)"
+     },
+     {
+      "id": "C4",
+      "ok": true,
+      "note": "POST /items rejects missing price (422)"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "POST /items rejects negative price (422)"
+     },
+     {
+      "id": "C6",
+      "ok": true,
+      "note": "POST /orders rejects missing quantity (422)"
+     },
+     {
+      "id": "C7",
+      "ok": true,
+      "note": "POST /reports rejects unknown report_type (422)"
+     },
+     {
+      "id": "C8",
+      "ok": true,
+      "note": "POST /batch-import accepts partial CSV (not 422)"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "GET /search accepts wildcard * query (not 422)"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "POST /webhooks accepts arbitrary JSON (not 422)"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "TRAP5_security_theater",
+   "seed": 0,
+   "run_id": "20260905_220520_a69da20d",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TRAP5_security_theater/20260905_220520_a69da20d",
+   "pass": true,
+   "partial_score": 0.86,
+   "elapsed_sec": 195.2,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "DIST1_queue_race",
+   "seed": 0,
+   "run_id": "20260905_220319_50b15654",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/DIST1_queue_race/20260905_220319_50b15654",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 75.3,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "CROSS3_protocol_bridge",
+   "seed": 0,
+   "run_id": "20260905_224554_f17153dc",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/CROSS3_protocol_bridge/20260905_224554_f17153dc",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 63.6,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "TEST5_mutation_resistant",
+   "seed": 0,
+   "run_id": "20260905_220908_71e6fb51",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TEST5_mutation_resistant/20260905_220908_71e6fb51",
+   "pass": false,
+   "partial_score": 0.91,
+   "elapsed_sec": 1955.2,
+   "failure_modes": [
+    "mutant_05_not_caught"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "CRYPTO1_nonce_reuse",
+   "seed": 0,
+   "run_id": "20260905_225710_c5f8e637",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/CRYPTO1_nonce_reuse/20260905_225710_c5f8e637",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 44.7,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "O8_dockerfile_fix",
+   "seed": 0,
+   "run_id": "20260905_234023_126658a1",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/O8_dockerfile_fix/20260905_234023_126658a1",
+   "pass": false,
+   "partial_score": 0.83,
+   "elapsed_sec": 26.1,
+   "failure_modes": [
+    "wrong_port"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "NEG1_tradeoff_config",
+   "seed": 0,
+   "run_id": "20260905_233109_c1761aa8",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/NEG1_tradeoff_config/20260905_233109_c1761aa8",
+   "pass": false,
+   "partial_score": 0.78,
+   "elapsed_sec": 418.8,
+   "failure_modes": [
+    "no_retry_logic",
+    "hardcoded_credentials"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.67,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "P6_license_check",
+   "seed": 0,
+   "run_id": "20260905_234241_d054b577",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/P6_license_check/20260905_234241_d054b577",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 1203.2,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.33,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "TEST8_unit_basic",
+   "seed": 0,
+   "run_id": "20260905_231150_f35092ee",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TEST8_unit_basic/20260905_231150_f35092ee",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 112.7,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.57,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "P1_policy_config",
+   "seed": 0,
+   "run_id": "20260906_000750_36d6b657",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/P1_policy_config/20260906_000750_36d6b657",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 220.6,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "INC8_memory_leak",
+   "seed": 0,
+   "run_id": "20260905_231351_3473ada5",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/INC8_memory_leak/20260905_231351_3473ada5",
+   "pass": false,
+   "partial_score": 0.9,
+   "elapsed_sec": 66.1,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.9,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "event_processor.py is valid Python"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "event_processor.py uses bounded data structure"
+     },
+     {
+      "id": "C3",
+      "ok": true,
+      "note": "event_processor.py no unbounded list initialization"
+     },
+     {
+      "id": "C4",
+      "ok": true,
+      "note": "cache_manager.py not modified (correct \u2014 expected growth)"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "test_helper.py not modified (correct \u2014 test-only artifact)"
+     },
+     {
+      "id": "C6",
+      "ok": true,
+      "note": "INCIDENT_REPORT.md created"
+     },
+     {
+      "id": "C7",
+      "ok": true,
+      "note": "Report identifies event_processor as real leak"
+     },
+     {
+      "id": "C8",
+      "ok": false,
+      "note": "Report does not classify cache_manager correctly"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "Report classifies test_helper as test-only artifact"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "All tests pass"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "CR1_review_respond",
+   "seed": 0,
+   "run_id": "20260905_233816_e4e263c5",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/CR1_review_respond/20260905_233816_e4e263c5",
+   "pass": false,
+   "partial_score": 0.57,
+   "elapsed_sec": 118.8,
+   "failure_modes": [
+    "n_plus_one_not_fixed",
+    "bare_except_not_fixed",
+    "excessive_changes"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.43,
+    "checks": []
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "INT3_db_migration",
+   "seed": 0,
+   "run_id": "20260905_231505_99d0b8d7",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/INT3_db_migration/20260905_231505_99d0b8d7",
+   "pass": false,
+   "partial_score": 0.6,
+   "elapsed_sec": 897.8,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.5,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "All migration files are valid Python"
+     },
+     {
+      "id": "C2",
+      "ok": false,
+      "note": "migrate.py up fails"
+     },
+     {
+      "id": "C3",
+      "ok": false,
+      "note": "migrate.py down fails"
+     },
+     {
+      "id": "C4",
+      "ok": true,
+      "note": "FK constraint ordering is correct"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "NOT NULL columns have DEFAULT values"
+     },
+     {
+      "id": "C6",
+      "ok": false,
+      "note": "Index name collision detected"
+     },
+     {
+      "id": "C7",
+      "ok": false,
+      "note": "Rollback drops wrong column"
+     },
+     {
+      "id": "C8",
+      "ok": false,
+      "note": "Full migration round-trip fails"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "Migration tests pass"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "migrate.py not modified"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "SYNTH1_distributed_debug",
+   "seed": 0,
+   "run_id": "20260905_230603_bf68e9fd",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/SYNTH1_distributed_debug/20260905_230603_bf68e9fd",
+   "pass": false,
+   "partial_score": 0.4,
+   "elapsed_sec": 333.8,
+   "failure_modes": [
+    "email_update_broken",
+    "cache_not_invalidated",
+    "regression_detected",
+    "excessive_changes",
+    "wrong_field_name",
+    "cache_fix_not_applied"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "SEC4_input_validation",
+   "seed": 0,
+   "run_id": "20260905_233012_5a61e2d1",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/SEC4_input_validation/20260905_233012_5a61e2d1",
+   "pass": false,
+   "partial_score": 0.67,
+   "elapsed_sec": 39.1,
+   "failure_modes": [
+    "sql_injection_string_interpolation",
+    "xss_no_html_encoding",
+    "path_traversal_not_prevented",
+    "sql_injection_chars_not_rejected"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "oracle",
+   "task_id": "TRAP7_test_pollution",
+   "seed": 0,
+   "run_id": "20260905_234050_ad563723",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TRAP7_test_pollution/20260905_234050_ad563723",
+   "pass": false,
+   "partial_score": 0.8,
+   "elapsed_sec": 79.0,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "SEC1_vuln_patch",
+   "seed": 0,
+   "run_id": "20260906_013422_4f8c2011",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/SEC1_vuln_patch/20260906_013422_4f8c2011",
+   "pass": false,
+   "partial_score": 0.73,
+   "elapsed_sec": 1263.1,
+   "failure_modes": [
+    "path_traversal_present",
+    "routes_missing",
+    "excessive_changes"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": false,
+    "pass": false,
+    "partial_score": 0.73,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "TRAP1_spec_conflict",
+   "seed": 0,
+   "run_id": "20260906_000246_935786cc",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TRAP1_spec_conflict/20260906_000246_935786cc",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 287.0,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "pytest tests/ passes"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "POST /users rejects invalid email (422)"
+     },
+     {
+      "id": "C3",
+      "ok": true,
+      "note": "POST /users accepts valid user (2xx)"
+     },
+     {
+      "id": "C4",
+      "ok": true,
+      "note": "POST /items rejects missing price (422)"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "POST /items rejects negative price (422)"
+     },
+     {
+      "id": "C6",
+      "ok": true,
+      "note": "POST /orders rejects missing quantity (422)"
+     },
+     {
+      "id": "C7",
+      "ok": true,
+      "note": "POST /reports rejects unknown report_type (422)"
+     },
+     {
+      "id": "C8",
+      "ok": true,
+      "note": "POST /batch-import accepts partial CSV (not 422)"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "GET /search accepts wildcard * query (not 422)"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "POST /webhooks accepts arbitrary JSON (not 422)"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "O7_capacity_planning",
+   "seed": 0,
+   "run_id": "20260906_020601_8d6ec8a7",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/O7_capacity_planning/20260906_020601_8d6ec8a7",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 327.7,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "service_a.py is valid Python"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "service_a.py no longer has N+1 query in loop"
+     },
+     {
+      "id": "C3",
+      "ok": true,
+      "note": "service_a.py uses batch/bulk query"
+     },
+     {
+      "id": "C4",
+      "ok": true,
+      "note": "service_b.py is valid Python"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "service_b.py cache is bounded"
+     },
+     {
+      "id": "C6",
+      "ok": true,
+      "note": "service_b.py implements eviction"
+     },
+     {
+      "id": "C7",
+      "ok": true,
+      "note": "service_c.py is valid Python"
+     },
+     {
+      "id": "C8",
+      "ok": true,
+      "note": "service_c.py uses async/non-blocking pattern"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "Benchmark passes SLA constraints"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "All service functions preserved"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "O9_logging_config",
+   "seed": 0,
+   "run_id": "20260906_021131_2e2d4994",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/O9_logging_config/20260906_021131_2e2d4994",
+   "pass": false,
+   "partial_score": 0.56,
+   "elapsed_sec": 280.9,
+   "failure_modes": [
+    "root_level_wrong",
+    "missing_structured_fields",
+    "pii_email_leaked",
+    "pii_password_leaked"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.44,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "INC9_log_forensics",
+   "seed": 0,
+   "run_id": "20260906_021613_0cf8b671",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/INC9_log_forensics/20260906_021613_0cf8b671",
+   "pass": false,
+   "partial_score": 0.3,
+   "elapsed_sec": 478.0,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.3,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "root_cause_report.json exists"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "report has required fields"
+     },
+     {
+      "id": "C3",
+      "ok": false,
+      "note": "correct root cause service identified"
+     },
+     {
+      "id": "C4",
+      "ok": false,
+      "note": "root cause type correctly identified"
+     },
+     {
+      "id": "C5",
+      "ok": false,
+      "note": "all affected services listed"
+     },
+     {
+      "id": "C6",
+      "ok": false,
+      "note": "batch job red herring not blamed as root cause"
+     },
+     {
+      "id": "C7",
+      "ok": false,
+      "note": "clock skew anomaly acknowledged"
+     },
+     {
+      "id": "C8",
+      "ok": false,
+      "note": "timeline with event sequence present"
+     },
+     {
+      "id": "C9",
+      "ok": false,
+      "note": "root cause time approximately correct"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "report includes remediation recommendations"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "D8_csv_cleanup",
+   "seed": 0,
+   "run_id": "20260906_005747_93cba6fd",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/D8_csv_cleanup/20260906_005747_93cba6fd",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 860.2,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "INC5_cert_expiry",
+   "seed": 0,
+   "run_id": "20260906_022836_3496a60f",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/INC5_cert_expiry/20260906_022836_3496a60f",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 345.5,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.6,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "DIST1_queue_race",
+   "seed": 0,
+   "run_id": "20260906_001133_1adab16b",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/DIST1_queue_race/20260906_001133_1adab16b",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 410.4,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "TRAP5_security_theater",
+   "seed": 0,
+   "run_id": "20260906_001909_789f5c15",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TRAP5_security_theater/20260906_001909_789f5c15",
+   "pass": true,
+   "partial_score": 0.86,
+   "elapsed_sec": 1147.3,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "TEST5_mutation_resistant",
+   "seed": 0,
+   "run_id": "20260906_003853_ab943517",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TEST5_mutation_resistant/20260906_003853_ab943517",
+   "pass": false,
+   "partial_score": 0.82,
+   "elapsed_sec": 964.3,
+   "failure_modes": [
+    "tests_fail_on_correct_lib",
+    "mutant_05_not_caught"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "CROSS3_protocol_bridge",
+   "seed": 0,
+   "run_id": "20260906_011211_55a0d8f6",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/CROSS3_protocol_bridge/20260906_011211_55a0d8f6",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 1297.2,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "SPEC7_config_schema",
+   "seed": 0,
+   "run_id": "20260906_020103_4e8b0120",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/SPEC7_config_schema/20260906_020103_4e8b0120",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 282.5,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "validator.py is valid Python"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "validate_config function importable"
+     },
+     {
+      "id": "C3",
+      "ok": true,
+      "note": "Valid config returns no errors"
+     },
+     {
+      "id": "C4",
+      "ok": true,
+      "note": "Invalid config returns errors"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "Type validation catches wrong types"
+     },
+     {
+      "id": "C6",
+      "ok": true,
+      "note": "Range validation catches out-of-bounds values"
+     },
+     {
+      "id": "C7",
+      "ok": true,
+      "note": "Enum validation catches invalid values"
+     },
+     {
+      "id": "C8",
+      "ok": true,
+      "note": "Cross-field: cluster mode requires replicas >= 3"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "Cross-field: ssl requires cert_path"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "Missing required field detected"
+     },
+     {
+      "id": "C11",
+      "ok": true,
+      "note": "pytest tests pass"
+     },
+     {
+      "id": "C12",
+      "ok": true,
+      "note": "config_schema.json not modified"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "NEG5_sla_tradeoff",
+   "seed": 0,
+   "run_id": "20260906_022412_51d10757",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/NEG5_sla_tradeoff/20260906_022412_51d10757",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 252.2,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "NEG1_tradeoff_config",
+   "seed": 0,
+   "run_id": "20260906_033056_dc6eec65",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/NEG1_tradeoff_config/20260906_033056_dc6eec65",
+   "pass": false,
+   "partial_score": 0.78,
+   "elapsed_sec": 1194.2,
+   "failure_modes": [
+    "perf_test_fail",
+    "hardcoded_credentials"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.78,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "SYNTH1_distributed_debug",
+   "seed": 0,
+   "run_id": "20260906_023423_3e49971a",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/SYNTH1_distributed_debug/20260906_023423_3e49971a",
+   "pass": false,
+   "partial_score": 0.4,
+   "elapsed_sec": 985.1,
+   "failure_modes": [
+    "email_update_broken",
+    "cache_not_invalidated",
+    "regression_detected",
+    "excessive_changes",
+    "wrong_field_name",
+    "cache_fix_not_applied"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": false,
+    "pass": false,
+    "partial_score": 0.4,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "CRYPTO1_nonce_reuse",
+   "seed": 0,
+   "run_id": "20260906_015527_342bbfed",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/CRYPTO1_nonce_reuse/20260906_015527_342bbfed",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 291.1,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "timeout"
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "O8_dockerfile_fix",
+   "seed": 0,
+   "run_id": "20260906_040523_f89cad85",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/O8_dockerfile_fix/20260906_040523_f89cad85",
+   "pass": false,
+   "partial_score": 0.83,
+   "elapsed_sec": 199.0,
+   "failure_modes": [
+    "wrong_port"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "TEST8_unit_basic",
+   "seed": 0,
+   "run_id": "20260906_025056_669d0246",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TEST8_unit_basic/20260906_025056_669d0246",
+   "pass": false,
+   "partial_score": 0.86,
+   "elapsed_sec": 813.7,
+   "failure_modes": [
+    "too_few_tests"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.43,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "INC8_memory_leak",
+   "seed": 0,
+   "run_id": "20260906_030436_c7149c5a",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/INC8_memory_leak/20260906_030436_c7149c5a",
+   "pass": true,
+   "partial_score": 1.0,
+   "elapsed_sec": 354.4,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": true,
+    "partial_score": 1.0,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "event_processor.py is valid Python"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "event_processor.py uses bounded data structure"
+     },
+     {
+      "id": "C3",
+      "ok": true,
+      "note": "event_processor.py no unbounded list initialization"
+     },
+     {
+      "id": "C4",
+      "ok": true,
+      "note": "cache_manager.py not modified (correct \u2014 expected growth)"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "test_helper.py not modified (correct \u2014 test-only artifact)"
+     },
+     {
+      "id": "C6",
+      "ok": true,
+      "note": "INCIDENT_REPORT.md created"
+     },
+     {
+      "id": "C7",
+      "ok": true,
+      "note": "Report identifies event_processor as real leak"
+     },
+     {
+      "id": "C8",
+      "ok": true,
+      "note": "Report classifies cache_manager as expected behavior"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "Report classifies test_helper as test-only artifact"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "All tests pass"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "INT3_db_migration",
+   "seed": 0,
+   "run_id": "20260906_031040_0d894a6d",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/INT3_db_migration/20260906_031040_0d894a6d",
+   "pass": false,
+   "partial_score": 0.5,
+   "elapsed_sec": 535.2,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.4,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "All migration files are valid Python"
+     },
+     {
+      "id": "C2",
+      "ok": false,
+      "note": "migrate.py up fails"
+     },
+     {
+      "id": "C3",
+      "ok": false,
+      "note": "migrate.py down fails"
+     },
+     {
+      "id": "C4",
+      "ok": false,
+      "note": "FK constraint ordering still broken"
+     },
+     {
+      "id": "C5",
+      "ok": false,
+      "note": "NOT NULL column without DEFAULT"
+     },
+     {
+      "id": "C6",
+      "ok": true,
+      "note": "No index name collisions"
+     },
+     {
+      "id": "C7",
+      "ok": false,
+      "note": "Rollback drops wrong column"
+     },
+     {
+      "id": "C8",
+      "ok": false,
+      "note": "Full migration round-trip fails"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "Migration tests pass"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "migrate.py not modified"
+     }
+    ]
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "CR1_review_respond",
+   "seed": 0,
+   "run_id": "20260906_035059_19a14a79",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/CR1_review_respond/20260906_035059_19a14a79",
+   "pass": false,
+   "partial_score": 0.71,
+   "elapsed_sec": 854.3,
+   "failure_modes": [
+    "bare_except_not_fixed",
+    "excessive_changes"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": false,
+    "pass": false,
+    "partial_score": 0.57,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "SEC4_input_validation",
+   "seed": 0,
+   "run_id": "20260906_031946_da1c500c",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/SEC4_input_validation/20260906_031946_da1c500c",
+   "pass": false,
+   "partial_score": 0.67,
+   "elapsed_sec": 654.7,
+   "failure_modes": [
+    "sql_injection_string_interpolation",
+    "xss_no_html_encoding",
+    "path_traversal_not_prevented",
+    "sql_injection_chars_not_rejected"
+   ],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.67,
+    "checks": []
+   }
+  },
+  {
+   "condition": "full",
+   "task_id": "TRAP7_test_pollution",
+   "seed": 0,
+   "run_id": "20260906_040843_a4081f50",
+   "run_dir": "/u/ybkim95/TeamBench/shared/ablation_results/budget_sweep/ablation_runs/TRAP7_test_pollution/20260906_040843_a4081f50",
+   "pass": false,
+   "partial_score": 0.8,
+   "elapsed_sec": 283.6,
+   "failure_modes": [],
+   "error": null,
+   "regrade": {
+    "status": "ok",
+    "used_own_attestation": true,
+    "pass": false,
+    "partial_score": 0.8,
+    "checks": [
+     {
+      "id": "C1",
+      "ok": true,
+      "note": "All Python files have valid syntax"
+     },
+     {
+      "id": "C2",
+      "ok": true,
+      "note": "All pytest tests pass"
+     },
+     {
+      "id": "C3",
+      "ok": true,
+      "note": "All 5 real bugs fixed in application code"
+     },
+     {
+      "id": "C4",
+      "ok": false,
+      "note": "At least 3 of 5 real bugs fixed"
+     },
+     {
+      "id": "C5",
+      "ok": true,
+      "note": "All 3 test pollution issues fixed in test infrastructure"
+     },
+     {
+      "id": "C6",
+      "ok": false,
+      "note": "At least 2 of 3 test pollution issues fixed"
+     },
+     {
+      "id": "C7",
+      "ok": true,
+      "note": "Tests pass on repeated runs (no residual pollution)"
+     },
+     {
+      "id": "C8",
+      "ok": true,
+      "note": "Tests pass regardless of execution order"
+     },
+     {
+      "id": "C9",
+      "ok": true,
+      "note": "Test assertions not weakened (still check correct values)"
+     },
+     {
+      "id": "C10",
+      "ok": true,
+      "note": "App modules preserved (not deleted or emptied)"
+     }
+    ]
+   }
+  }
+ ]
+}

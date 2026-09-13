@@ -327,7 +327,7 @@ Rerun with:
 .venv/bin/python -u scripts/core_pristine_baseline.py --workers 4
 ```
 
-### Step 3 — the budget curve  (this is the blocked experiment)
+### Step 3 — DONE. The compute-matched budget curve
 
 This is what the whole diagnosis chain was unblocking. The previous attempt
 returned binary pass 0 of 100, which defects 11, 12 and 13 fully explain.
@@ -346,6 +346,59 @@ with a 7x compute gap.
 
 Output goes to `shared/ablation_results/budget_sweep/core_tasks/`, namespaced by
 the selection so it can never be silently mixed with an older sweep.
+
+Read it with `scripts/budget_curve.py`. Result over 288 runs, 48 tasks, one
+model (gemini-3-flash-preview), seed 0:
+
+```
+budget  condition    n   pass         raw mean  disc mean  guard violations
+  20    Solo        48   4/48    8%     0.826     0.104          1
+  20    Full Team   48   0/48    0%     0.803     0.000          1
+  60    Solo        48   5/48   10%     0.839     0.149          2
+  60    Full Team   48   0/48    0%     0.793     0.031          4
+ 140    Solo        48  10/48   21%     0.841     0.267          3
+ 140    Full Team   48   2/48    4%     0.779     0.080          8
+```
+
+Paired, same task and same budget:
+
+```
+budget  20   team-only wins 0,  solo-only 4    mean disc delta -0.104
+budget  60   team-only wins 0,  solo-only 5    mean disc delta -0.118
+budget 140   team-only wins 1,  solo-only 9    mean disc delta -0.188
+
+19 discordant pairs (team 1, solo 18); exact two-sided sign test p = 7.6e-05
+```
+
+Three things this says that the v1 setup could not have said.
+
+1. **At equal compute the team does not win.** Across 144 paired comparisons the
+   team solved exactly one task the solo agent failed, GH35_jinja_1665 at 140
+   turns.
+2. **The gap widens with budget** (-0.104, -0.118, -0.188), so "the team needs
+   more compute" is not the explanation. More compute makes it relatively worse.
+3. **The team breaks things more often, increasingly so.** Guard violations, a
+   submission that deleted tests or wiped a file, go 1/48 -> 4/48 -> 8/48 for the
+   team against 1 -> 2 -> 3 for solo. At 140 turns 17% of team runs damaged the
+   workspace against 6% of solo runs.
+
+And the scale decides whether any of this is visible at all:
+
+```
+             budget 20   budget 60   budget 140
+raw   Solo      0.826       0.839       0.841     +1.5 points
+raw   Team      0.803       0.793       0.779     -2.4 points
+disc  Solo      0.104       0.149       0.267     2.6x
+disc  Team      0.000       0.031       0.080
+```
+
+On the raw scale a 7x compute increase moves nothing and the conditions sit on
+top of each other, because 81% of the checks are guards and everything is
+compressed against the ceiling. That is the scale the v1 numbers were on.
+
+Caveat that a reviewer will raise first: **one model, one seed.** The sign test
+is over task-to-task variation, not over model or seed variation. A second model
+is the largest remaining gap.
 
 ### Step 4 — DONE. The admission gate on the core
 

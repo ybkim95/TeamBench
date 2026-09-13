@@ -73,18 +73,24 @@
   {
    "budget": 140,
    "condition": "full",
-   "n": 7,
-   "passes": 0,
-   "pass_rate": 0.0,
+   "n": 48,
+   "passes": 2,
+   "pass_rate": 0.041666666666666664,
    "pass_ci95": [
-    0.0,
-    0.35433884297520657
+    0.011501652078965613,
+    0.13975911147771472
    ],
-   "raw_mean": 0.71,
-   "disc_mean": 0.14285714285714285,
-   "inadmissible": 1
+   "raw_mean": 0.7789583333333333,
+   "disc_mean": 0.0798611111111111,
+   "inadmissible": 8
   }
  ],
+ "sign_test": {
+  "team_only": 1,
+  "solo_only": 18,
+  "n_discordant": 19,
+  "p_two_sided": 7.62939453125e-05
+ },
  "per_task": {
   "140": {
    "oracle": {
@@ -474,6 +480,293 @@
      "admissible": true,
      "disc": 0.0,
      "turns": 1695.8
+    },
+    "GH28_jinja_1852": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1109.3
+    },
+    "GH29_aiohttp_12217": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1111.4
+    },
+    "GH30_werkzeug_3109": {
+     "raw": 0.8,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 659.6
+    },
+    "GH32_jinja_1664": {
+     "raw": 0.9,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1042.8
+    },
+    "GH33_jinja_1663": {
+     "raw": 0.62,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 675.4
+    },
+    "GH35_jinja_1665": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 1767.7
+    },
+    "GH363_celery_10040": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 701.4
+    },
+    "GH371_arrow_1194": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 523.7
+    },
+    "GH37_pydantic_12816": {
+     "raw": 0.5,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 873.1
+    },
+    "GH381_celery_10013": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 568.3
+    },
+    "GH394_arrow_1218": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 327.8
+    },
+    "GH39_jinja_1762": {
+     "raw": 1.0,
+     "pass": true,
+     "admissible": true,
+     "disc": 1.0,
+     "turns": 610.6
+    },
+    "GH405_narwhals_1515": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 792.7
+    },
+    "GH415_arrow_852": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 546.4
+    },
+    "GH442_arrow_1172": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 453.5
+    },
+    "GH444_arrow_1184": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 507.4
+    },
+    "GH46_pydantic_12951": {
+     "raw": 0.43,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 621.6
+    },
+    "GH47_jinja_1706": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 625.3
+    },
+    "GH516_attrs_1513": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 518.7
+    },
+    "GH525_arrow_1186": {
+     "raw": 0.67,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 486.8
+    },
+    "GH52_jinja_1702": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1662.5
+    },
+    "GH539_redis-py_3969": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 864.3
+    },
+    "GH540_redis-py_3968": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1170.7
+    },
+    "GH54_pydantic_12817": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 683.6
+    },
+    "GH558_marshmallow_2861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 451.9
+    },
+    "GH566_jinja_1537": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1204.3
+    },
+    "GH569_celery_10023": {
+     "raw": 0.78,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.3333333333333333,
+     "turns": 1090.9
+    },
+    "GH56_werkzeug_3066": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1757.2
+    },
+    "GH60_starlette_3148": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 868.1
+    },
+    "GH613_celery_10038": {
+     "raw": 0.44,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 968.1
+    },
+    "GH626_werkzeug_3081": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 2214.1
+    },
+    "GH642_marshmallow_2854": {
+     "raw": 0.43,
+     "pass": false,
+     "admissible": false,
+     "disc": 0.0,
+     "turns": 687.6
+    },
+    "GH64_werkzeug_3008": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 649.3
+    },
+    "GH684_starlette_3144": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 870.0
+    },
+    "GH71_starlette_3189": {
+     "raw": 0.88,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 963.3
+    },
+    "GH729_werkzeug_3038": {
+     "raw": 0.8,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 375.2
+    },
+    "GH732_arrow_1190": {
+     "raw": 0.75,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 426.3
+    },
+    "GH801_aiohttp_11861": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1190.1
+    },
+    "GH802_aiohttp_11860": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 1270.2
+    },
+    "GH808_jinja_2062": {
+     "raw": 0.86,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.0,
+     "turns": 404.5
+    },
+    "GH97_arrow_1201": {
+     "raw": 0.89,
+     "pass": false,
+     "admissible": true,
+     "disc": 0.5,
+     "turns": 740.1
     }
    }
   },
