@@ -120,6 +120,58 @@ loginctl show-user "$USER" | grep Linger=yes || sudo loginctl enable-linger "$US
 
 ---
 
+
+## BLOCKER: the Anthropic credential is invalid (found 2026-09-13)
+
+`ANTHROPIC_API_KEY` in `.env` returns HTTP 401 `authentication_error`. It was
+valid earlier the same day and died mid-sweep. There is no second Anthropic
+credential on the machine. Everything claude-sonnet-5 is blocked until a fresh
+key is in `.env`.
+
+Confirm a key before launching anything that costs hours:
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' https://api.anthropic.com/v1/messages \
+  -H "x-api-key: $ANTHROPIC_API_KEY" -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -d '{"model":"claude-sonnet-5","max_tokens":8,"messages":[{"role":"user","content":"hi"}]}'
+```
+
+### What this cost, and what now prevents it
+
+The sweep did not stop when the key was rejected. It recorded 68 runs as
+zero-score failures and wrote complete-looking output JSONs. Averaged, that
+produced a Full Team "raw mean 0.019, disc mean 0.500" at budget 140 from 47
+runs that never reached the model plus one that did.
+
+Fixed in three places, all verified:
+
+| Layer | File | Behaviour now |
+|---|---|---|
+| analysis | `scripts/budget_curve.py`, `scripts/make_figure1.py` | `infrastructure_error()` drops credential/429/5xx rows from every aggregate and both paired tests; prints what it dropped; a fully dead cell reports no statistic |
+| collection | `harness/ablation.py` | `_is_credential_failure()` aborts the sweep at the first 401; 429 and 5xx stay transient and keep retrying |
+| caching | `scripts/run_budget_sweep.py` | `credential_dead_runs()` refuses to skip a cell whose output contains 401s, so fixing the key actually reruns it |
+
+Regression check: gemini-3-flash output is byte-identical after the change.
+
+### Sonnet sweep status
+
+| Budget | Solo | Full Team | Usable |
+|---|---|---|---|
+| 20 | 48/48 | 48/48 | yes, the only sound cell |
+| 60 | 48/48 | 27/48 | no, 21 dead, contiguous suffix |
+| 140 | 48/48 | 1/48 | no, 47 dead |
+
+Budgets 60 and 140 are in
+`shared/ablation_results/budget_sweep/core_tasks/quarantine_credential_failure/`
+with a README. They are absent from the parent directory so a rerun regenerates
+them. Do not read them as results.
+
+At budget 20 Sonnet shows **no team deficit**: Solo and Full Team each solve
+4 of 48, paired discriminative delta $+0.000$, discordant pairs 2 each way.
+Gemini at the same budget has Full Team at 0/48.
+
+
 ## 2. Where the state lives
 
 | Path | In git | What it is |
