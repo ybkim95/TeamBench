@@ -225,3 +225,8 @@ tasks/*/reports_tmp/
 # with no .gitmodules entry, so a fresh clone gets an empty directory and
 # `git submodule update` fails.
 /tasks/GH120_redis-py_3863_clone/
+
+# Cached copies of third-party evaluation corpora, pulled by
+# scripts/audit_external_benchmark.py. 65 MB, regenerable by rerunning the
+# audit, and not ours to redistribute. The audit's own verdicts ARE tracked.
+shared/paper/quality/cache_*.json
