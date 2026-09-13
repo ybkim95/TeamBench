@@ -65,6 +65,12 @@ class AnthropicAdapter(ToolCallAdapter):
 
         self.model = model
         self.temperature = temperature
+        # Some models reject `temperature` outright:
+        #   400 invalid_request_error: `temperature` is deprecated for this model
+        # Rather than keep a list of which models accept it, which goes stale on
+        # every release, the first such rejection sets this flag and the request
+        # is retried without the field. Every later call omits it too.
+        self._omit_temperature = False
         self.max_tokens = max_tokens
         self._total_input_tokens = 0
         self._total_output_tokens = 0
@@ -95,9 +101,10 @@ class AnthropicAdapter(ToolCallAdapter):
         kwargs: dict[str, Any] = {
             "model": self.model,
             "max_tokens": self.max_tokens,
-            "temperature": self.temperature,
             "messages": anthropic_messages,
         }
+        if not self._omit_temperature:
+            kwargs["temperature"] = self.temperature
         if system_prompt:
             kwargs["system"] = system_prompt
         if anthropic_tools:
@@ -131,9 +138,10 @@ class AnthropicAdapter(ToolCallAdapter):
         kwargs: dict[str, Any] = {
             "model": self.model,
             "max_tokens": self.max_tokens,
-            "temperature": self.temperature,
             "messages": anthropic_messages,
         }
+        if not self._omit_temperature:
+            kwargs["temperature"] = self.temperature
         if system_prompt:
             kwargs["system"] = system_prompt
 
@@ -162,6 +170,22 @@ class AnthropicAdapter(ToolCallAdapter):
                     attempt + 1, max_retries, exc, wait,
                 )
                 time.sleep(wait)
+            except anthropic.BadRequestError as exc:
+                # Placed AFTER the transient-error handlers so it cannot shadow
+                # them. A 400 is not transient, so the backoff loop above would
+                # otherwise retry the identical request until it gave up.
+                #
+                # The one 400 worth recovering from: `temperature` is deprecated
+                # for this model. Drop the field, retry, and remember for the
+                # rest of the run. Keeping a list of which models still accept
+                # temperature would go stale on every release.
+                if ("temperature" in str(exc) and "deprecated" in str(exc)
+                        and "temperature" in kwargs):
+                    self._omit_temperature = True
+                    kwargs.pop("temperature", None)
+                    logger.warning("model rejects `temperature`; retrying without it")
+                    continue
+                raise
         raise RuntimeError("Unreachable")
 
     def _build_messages(self, messages: list[dict]) -> list[dict]:

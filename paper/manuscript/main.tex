@@ -1,0 +1,318 @@
+% TeamBench v2. Venue-neutral preamble on purpose: no style file names a venue.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{natbib}
+
+\newcommand{\tb}{\textsc{TeamBench}}
+\newcommand{\core}{\textsc{TeamBench-Core}}
+\newcommand{\todo}[1]{\textcolor{red}{[#1]}}
+\newcommand{\cn}{\todo{CITATION NEEDED}}
+
+\title{What a Multi-Agent Coding Benchmark Measures When It Measures Nothing}
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We show that a multi-agent coding benchmark can report a complete set of
+results while being unable to distinguish any two submissions, and we give a
+protocol that detects this before any model is run. Applying it to our own
+prior benchmark, 31 of 76 graders could not separate a correct submission from
+an empty one, because the test that defines each bug is the one the upstream
+pull request adds and the task ships the repository state from before it;
+another 40 tasks shipped that test inside the workspace, handing the agent the
+acceptance criterion. Two grader checks could not be satisfied by any
+submission at all, including the maintainers' own merged fix. Across the
+corpus, 303 of 374 checks pass on an untouched workspace, so 81\% of every
+reported partial score was credit for not damaging the repository. We rebuild
+the corpus by checking each task out from upstream at its recorded base commit
+and injecting the held-out tests at grade time, admit only tasks that fail
+without the reference fix and pass with it, and verify the result against seven
+admission gates. On the 48 tasks that survive, we then re-run the comparison the
+original paper could not settle: at matched compute a Planner/Executor/Verifier
+team solved one task in 144 paired comparisons that a single agent failed, the
+deficit widens as compute grows ($-0.104 \to -0.188$), and team runs damage the
+workspace three times as often. On the scale the original paper used, none of
+this is visible: a sevenfold compute increase moves the reported score by 1.5
+points.
+\end{abstract}
+
+\section{Introduction}
+
+A benchmark reports numbers whether or not it can measure anything. A grader
+that awards the same score to every submission still produces a leaderboard, a
+pass rate, and an ablation table. Nothing in the usual reporting pipeline
+distinguishes a task that is hard from a task that is inert.
+
+This paper is a report on finding that condition in our own work, the protocol
+that now detects it, and what the central experiment looks like once the corpus
+is repaired. We take the position that a benchmark paper owes the reader
+evidence that its tasks can discriminate, on the same footing as evidence about
+the systems it evaluates.
+
+\paragraph{The failure.} The GitHub-derived half of \tb{} was built by copying,
+for each merged bug-fix pull request, the files that pull request touched, at
+the commit before it. Two consequences follow, and they hide each other.
+
+First, the copied workspace is a fragment of a repository. Its test suite cannot
+be collected: \texttt{conftest.py} is absent on 541 of the 553 tasks that ship a
+test file, packages are present only in the pieces the diff touched, and
+test-only dependencies are missing. The grader's central check fails for reasons
+unrelated to any submission.
+
+Second, and underneath it, the test that \emph{defines} the bug is the test the
+pull request adds, and the commit before it does not have that test. Of the 229
+tasks whose reference patch adds a test, 189 ship the test file without the
+added test, so the grader cannot separate any two submissions; the other 40 ship
+the added test inside the workspace, so the agent can read the acceptance
+criterion. The only tasks that could discriminate were the ones leaking the
+answer.
+
+\paragraph{Contributions.}
+\begin{itemize}
+\item \textbf{A validity protocol for agentic benchmarks.} Stage the task,
+      grade an empty submission, grade the reference fix, and require that the
+      first fails and the second passes. We run it on every task and report the
+      count that survives, not the count that exists.
+\item \textbf{Evidence that graders can be inert, quantified.} 31 of 76 graders
+      were blind to the bug; two check families could not be satisfied by any
+      submission, including the reference fix; 81\% of the checks are guards
+      that pass on an untouched workspace.
+\item \textbf{\core{}, 48 tasks that provably discriminate,} rebuilt by
+      checking out upstream at the recorded base commit and holding the tests
+      out until grade time, and validated against seven admission gates.
+\item \textbf{The compute-matched comparison, re-run.} At equal turn budget a
+      three-role team is not better than a single agent, the gap widens with
+      compute, and the team damages the workspace more often. We also show that
+      the scale used in the prior work hides the effect entirely.
+\end{itemize}
+
+\section{How a grader becomes inert}
+\label{sec:inert}
+
+\todo{FIGURE 1: the three workspace states. (a) upstream at base\_sha, no added
+test: the grader cannot see the bug. (b) the vendored fragment for 40 tasks,
+added test present: the agent can read the criterion. (c) ours: base\_sha
+workspace, test injected at grade time.}
+
+\paragraph{Setting.} Each task derives from a merged pull request that fixes a
+bug. The task's workspace is the repository at the parent commit; the reference
+solution is the merged diff. A grader runs a checklist and reports a pass flag
+and a partial score.
+
+\paragraph{The held-out test.} A bug-fix pull request usually adds the test that
+demonstrates the bug. At the parent commit that test does not exist. A workspace
+built from the parent commit therefore contains a test suite that passes, and
+will keep passing whatever the agent does, unless the agent happens to reproduce
+the maintainers' test. Measured on our corpus: applying the maintainers' own
+merged fix changed the reported score on 3 of 153 tasks.
+
+The repair is the one SWE-bench uses \cn: hold the tests out of the workspace
+and inject them when grading. We precompute the post-patch content of each test
+file at stage time and copy it over the workspace before the grader runs, rather
+than applying a patch. Copying is deterministic and overwrites whatever the
+agent wrote there, so weakening a test cannot raise a score.
+
+\paragraph{Checks no submission can satisfy.} Two check families failed with the
+reference fix in place.
+
+The import check loaded a package-internal module as a detached top-level
+module:
+\begin{quote}\small
+\texttt{spec = spec\_from\_file\_location('mod', src\_path); exec\_module(...)}
+\end{quote}
+Every relative import inside such a file raises
+\texttt{attempted relative import with no known parent package}. It failed with
+the reference fix applied on 37 of 59 staged tasks. Because the grader's overall
+pass requires every check, those tasks were unsolvable by construction.
+
+The second is subtler. Graders invoked \texttt{pytest} on a single file and
+inherited the repository's own \texttt{addopts}. For a project with a coverage
+gate this is fatal: with the fix applied and the held-out tests injected,
+\texttt{arrow} reports \texttt{223 passed} and then
+\texttt{FAIL Required test coverage of 99\% not reached}. Every test passes and
+the grader records a failure.
+
+\paragraph{Guards in the score.} 303 of the 374 checks across the admitted
+corpus pass on an untouched workspace. They are not defective; they are guards
+that detect deleted tests, wiped files and hardcoded shortcuts. The defect is
+that they sat in the score. An empty submission earned a mean partial score of
+0.815. We move guards out of the score rather than removing them: a submission
+that trips one is reported inadmissible, and the score is computed over the
+checks that fail on that task's pristine workspace. Discriminative status is a
+property of a (task, check) pair and never of a check's name: ``source modules
+import without error'' is a guard on one task and the entire point of another.
+
+\section{\core{}}
+\label{sec:core}
+
+\paragraph{Construction.} For each task we check the upstream repository out at
+its recorded base commit, install it in an isolated environment, and ask two
+questions, following SWE-bench's fail-to-pass criterion \cn:
+\begin{align*}
+G_{\text{fail}} &: \text{the tests the patch adds fail without the source fix} \\
+G_{\text{pass}} &: \text{the same tests pass with it}
+\end{align*}
+Both must hold. We record the resolved dependency set so staging never
+re-resolves against whatever the package index serves later.
+
+\paragraph{The ceiling is the honest denominator.} Of 631 tasks carrying a
+repository and base commit, 229 (36\%) have a reference patch that adds a test.
+The remaining 402 cannot be verified by a test signal, because the upstream pull
+request never added one. Reporting the admitted count against 631 rather than
+against 229 would make a sound corpus look broken.
+
+\paragraph{Validation.} Each candidate is graded three ways: pristine, pristine
+with the held-out tests injected, and with the full reference fix. A task is
+admitted iff the second fails and the third passes.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+ & usable & graded \\
+\midrule
+before the import-check repair          & 10 & 59 \\
+after it                                & 33 & 66 \\
+after the coverage-gate repair          & \textbf{48} & \textbf{76} \\
+\bottomrule
+\end{tabular}
+\caption{Tasks that provably discriminate, over the same candidate set. The
+first two numbers were set by defects in the grader, not by the corpus. In the
+final round, 31 of the 76 graders could not see the bug at all until the
+held-out tests were injected.}
+\label{tab:validation}
+\end{table}
+
+\core{} is the 48 admitted tasks, drawn from 12 upstream repositories. Six of
+seven admission gates pass on essentially every one of them: an empty submission
+fails all 48, each has a non-empty discriminative set, and the upstream
+reference scores 1.0 on 47 of 48.
+
+The seventh gate fails, and we report it as a failure. It asks that at least
+half of a grader's checks be discriminative; the measured median is 0.14.
+Satisfying it would mean deleting anti-cheat checks, so we do not adjust it.
+What it now measures is granularity rather than validity, and the number is
+itself a result: with a median of one discriminative check per task, \core{} is
+effectively pass/fail. The graded partial credit reported in the prior version
+of this work was 81\% guard mass.
+
+\section{Compute-matched coordination}
+\label{sec:budget}
+
+\paragraph{The confound.} Every comparison in the prior version ran the
+conditions at different compute: a single agent at 20 model turns, a three-role
+team at up to 140. Any difference so measured is confounded with a sevenfold
+budget gap. We give every condition one shared turn allowance, consumed by
+whichever role is acting.
+
+\paragraph{Setup.} 48 tasks $\times$ 2 conditions $\times$ 3 budgets, one model,
+seed 0. Solo receives the full specification; Full Team is
+Planner/Executor/Verifier with enforced information partition.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+budget & condition & pass & raw mean & disc.\ mean & guard violations \\
+\midrule
+20  & Solo      & 4/48 \ (8\%)  & 0.826 & 0.104 & 1 \\
+20  & Full Team & 0/48 \ (0\%)  & 0.803 & 0.000 & 1 \\
+60  & Solo      & 5/48 \ (10\%) & 0.839 & 0.149 & 2 \\
+60  & Full Team & 0/48 \ (0\%)  & 0.793 & 0.031 & 4 \\
+140 & Solo      & 10/48 (21\%)  & 0.841 & 0.267 & 3 \\
+140 & Full Team & 2/48 \ (4\%)  & 0.779 & 0.080 & 8 \\
+\bottomrule
+\end{tabular}
+\caption{288 runs at matched compute. ``raw'' is the score as the grader emits
+it, guards included; ``disc.'' is over the checks that fail on an untouched
+workspace. A guard violation is a submission that deleted tests or wiped a file.}
+\label{tab:budget}
+\end{table}
+
+\paragraph{At equal compute the team does not win.} Paired within task and
+budget, the team solved one task the single agent failed, across 144
+comparisons. Of 19 discordant pairs, 18 favour the single agent (exact
+two-sided sign test, $p = 7.6\times10^{-5}$).
+
+\paragraph{More compute makes it relatively worse.} The mean discriminative
+deficit is $-0.104$, $-0.118$ and $-0.188$ at 20, 60 and 140 turns. ``The team
+needs more compute'' is therefore not available as an explanation.
+
+\paragraph{Teams damage the workspace more.} Guard violations rise
+$1 \to 4 \to 8$ of 48 for the team against $1 \to 2 \to 3$ for the single agent.
+At 140 turns 17\% of team runs deleted a test or wiped a file, against 6\% of
+solo runs. Three roles means three hands editing a repository without seeing
+what the others did. \todo{This is a mechanism claim; support it with the
+failure taxonomy or soften it.}
+
+\paragraph{The scale decides what is visible.}
+\begin{center}\small
+\begin{tabular}{llrrr}
+\toprule
+scale & condition & 20 & 60 & 140 \\
+\midrule
+raw  & Solo & 0.826 & 0.839 & 0.841 \\
+raw  & Team & 0.803 & 0.793 & 0.779 \\
+disc.& Solo & 0.104 & 0.149 & 0.267 \\
+disc.& Team & 0.000 & 0.031 & 0.080 \\
+\bottomrule
+\end{tabular}
+\end{center}
+On the raw scale a sevenfold compute increase moves the single agent by 1.5
+points and the conditions sit on top of each other, because 81\% of the checks
+are guards and everything is compressed against the ceiling. That is the scale
+the prior version reported on, which is why that comparison could not have
+settled the question either way.
+
+\section{Related work}
+\todo{TO BE WRITTEN. Every citation below must be fetched programmatically
+before use; none are written from memory.}
+\begin{itemize}
+\item SWE-bench and the fail-to-pass criterion. \cn
+\item Agentic coding benchmarks and their construction. \cn
+\item Multi-agent LLM systems and role decomposition. \cn
+\item \textbf{Must cite early:} Gu \& Kim, Nature Machine Intelligence, same
+      first author, currently uncited. \cn
+\item CooperBench, Silo-Bench, Protocol Validity, The Verifier Tax. \cn
+\item Benchmark validity and construct validity in ML evaluation. \cn
+\end{itemize}
+
+\section{Limitations}
+
+\paragraph{One model, one seed.} The budget curve uses a single model at seed 0.
+The sign test is over task-to-task variation, not over model or seed variation.
+\todo{A second model is running; fold in when complete.}
+
+\paragraph{\core{} is small and narrow.} 48 tasks from 12 repositories, all
+Python. The ceiling of 229 is itself limited by how often upstream maintainers
+add a test with their fix. Repositories that build their own compiled
+extensions (165 tasks, ceiling 53) and those whose installation pulls a deep
+learning framework (94 tasks, ceiling 23) are excluded and would require
+per-task container images.
+
+\paragraph{Effectively pass/fail.} With a median of one discriminative check per
+task, \core{} does not support graded partial credit. We report the
+discriminative mean, but it is close to a pass rate.
+
+\paragraph{A residual leak.} Task identifiers end in the upstream pull request
+number. Renaming would invalidate every recorded result and run path, so we
+record it instead. It is weaker than a URL: the model must resolve the reference
+unaided. We removed 1061 explicit links to the fix pull request from the
+documents the agents read.
+
+\paragraph{Our own protocol found our own defects.} Every count in
+Section~\ref{sec:inert} describes a benchmark we built and published. We do not
+know how many of these conditions are present in benchmarks we did not build.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
