@@ -157,10 +157,24 @@ sit on top of each other.
 \section{How a grader becomes inert}
 \label{sec:inert}
 
-\todo{FIGURE 1: the three workspace states. (a) upstream at base\_sha, no added
-test: the grader cannot see the bug. (b) the vendored fragment for 40 tasks,
-added test present: the agent can read the criterion. (c) ours: base\_sha
-workspace, test injected at grade time.}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig1_scale.pdf}
+\caption{The reporting scale determines whether the effect is visible at all.
+Mean score against a shared turn budget, over the 48 tasks of \core{}, for a
+single agent and a Planner/Executor/Verifier team given identical compute
+(gemini-3-flash-preview, seed 0, 288 runs). \textbf{Left:} the score as the
+grader reports it. \textbf{Right:} the same runs scored only over checks that
+fail on an untouched workspace. Both panels use the same full-range axis, which
+is the point: the left panel is flat not because compute does not matter but
+because 303 of the 374 checks are guards that pass whatever is submitted, so
+every condition is pinned near the ceiling and a sevenfold budget increase moves
+the reported score by 1.5 points. On the right the same runs show a clear budget
+response for the single agent and a team that stays below it and falls further
+behind as the budget grows. The prior version of this work reported on the left
+scale.}
+\label{fig:scale}
+\end{figure}
 
 \paragraph{Setting.} Each task derives from a merged pull request that fixes a
 bug. The task's workspace is the repository at the parent commit; the reference
@@ -313,7 +327,7 @@ solo runs. Three roles means three hands editing a repository without seeing
 what the others did. \todo{This is a mechanism claim; support it with the
 failure taxonomy or soften it.}
 
-\paragraph{The scale decides what is visible.}
+\paragraph{The scale decides what is visible} (Figure~\ref{fig:scale}).
 \begin{center}\small
 \begin{tabular}{llrrr}
 \toprule
@@ -416,9 +430,19 @@ experiment in this paper rather than following it.
 
 \section{Limitations}
 
-\paragraph{One model, one seed.} The budget curve uses a single model at seed 0.
-The sign test is over task-to-task variation, not over model or seed variation.
-\todo{A second model is running; fold in when complete.}
+\paragraph{One model, and the second one does not yet agree.} The budget curve
+above uses a single model at seed 0, so the sign test is over task-to-task
+variation rather than over model or seed variation. A second model,
+claude-sonnet-5, is being run on the identical protocol. At the one budget that
+has completed for both conditions, 20 turns, it shows \emph{no} team deficit:
+Solo and Full Team each solve 4 of 48, the paired discriminative difference is
+$+0.000$, and the discordant pairs split two each way. We report this before the
+remaining budgets finish because it bears directly on how far the result
+generalises. The compute-matched comparison is sound for the model we have
+completed; whether the deficit itself is model-independent is open, and the
+honest reading at present is that the measurement instrument generalises while
+the size and even the sign of the coordination effect may not.
+\todo{Fold in the 60 and 140 budget cells for the second model when complete.}
 
 \paragraph{\core{} is small and narrow.} 48 tasks from 12 repositories, all
 Python. The ceiling of 229 is itself limited by how often upstream maintainers
