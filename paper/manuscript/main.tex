@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
-\usepackage{natbib}
+\usepackage[numbers,sort&compress]{natbib}
 
 \newcommand{\tb}{\textsc{TeamBench}}
 \newcommand{\core}{\textsc{TeamBench-Core}}
@@ -49,49 +49,109 @@ points.
 A benchmark reports numbers whether or not it can measure anything. A grader
 that awards the same score to every submission still produces a leaderboard, a
 pass rate, and an ablation table. Nothing in the usual reporting pipeline
-distinguishes a task that is hard from a task that is inert.
+separates a task that is hard from a task that is inert.
 
-This paper is a report on finding that condition in our own work, the protocol
-that now detects it, and what the central experiment looks like once the corpus
-is repaired. We take the position that a benchmark paper owes the reader
-evidence that its tasks can discriminate, on the same footing as evidence about
-the systems it evaluates.
+This matters most where the expected effect is small. Whether decomposing a
+software task across specialised agents helps at all is exactly such a question,
+and the team performance literature has a long-standing answer to it.
+\citet{steiner1972group} classifies group tasks by how individual contributions
+combine, and predicts that on \emph{disjunctive} tasks, where one competent
+member suffices, a group adds little over its strongest member. Coordination
+gains instead require members to hold mutual knowledge of who knows what, a
+transactive memory system \citep{wegner1987transactive,lewis2003measuring}, and
+in software teams specifically that construct is among the more robust
+correlates of performance \citep{faraj2000coordinating}. A benefit is expected
+when members hold genuinely different information and must pool it
+\citep{stasser1985pooling}.
 
-\paragraph{The failure.} The GitHub-derived half of \tb{} was built by copying,
-for each merged bug-fix pull request, the files that pull request touched, at
-the commit before it. Two consequences follow, and they hide each other.
+So the prediction is available in advance: on tasks a single competent agent can
+carry, a Planner/Executor/Verifier split should not help, and it should help
+least when the roles cannot build mutual knowledge of each other. Recent work
+reaches compatible conclusions empirically \citep{cemri2025why}. What has been
+missing is an instrument sharp enough to test the prediction, because a null
+result from a benchmark that cannot discriminate is not evidence of anything.
 
-First, the copied workspace is a fragment of a repository. Its test suite cannot
-be collected: \texttt{conftest.py} is absent on 541 of the 553 tasks that ship a
-test file, packages are present only in the pieces the diff touched, and
+\paragraph{The instrument was broken, and specifically so.} We audited the
+GitHub-derived half of our own prior benchmark. It was built by copying, for
+each merged bug-fix pull request, the files that pull request touched, at the
+commit before it. Two consequences follow, and they conceal each other.
+
+First, the copied workspace is a fragment of a repository, so its test suite
+cannot be collected: \texttt{conftest.py} is absent on 541 of the 553 tasks that
+ship a test file, packages appear only in the pieces the diff touched, and
 test-only dependencies are missing. The grader's central check fails for reasons
 unrelated to any submission.
 
 Second, and underneath it, the test that \emph{defines} the bug is the test the
-pull request adds, and the commit before it does not have that test. Of the 229
-tasks whose reference patch adds a test, 189 ship the test file without the
-added test, so the grader cannot separate any two submissions; the other 40 ship
-the added test inside the workspace, so the agent can read the acceptance
-criterion. The only tasks that could discriminate were the ones leaking the
-answer.
+pull request adds, and the commit before it does not contain that test. Of the
+229 tasks whose reference patch adds a test, 189 ship the test file without the
+added test, so the grader cannot separate any two submissions, and the remaining
+40 ship the added test inside the workspace, so the agent can read the
+acceptance criterion. The only tasks that could discriminate were the ones
+leaking the answer. Applying the maintainers' own merged fix changed the reported
+score on 3 of 153 tasks.
+
+Two further grader checks could not be satisfied by any submission at all,
+including the reference fix, and 303 of 374 checks pass on an untouched
+workspace, so 81\% of every reported partial score was credit for not damaging
+the repository.
+
+\paragraph{An audit, not an assertion.} The obvious reading of the previous
+paragraph is that we fixed our own bug. We answer that with a reusable
+instrument. Five criteria, fixed in source before any external data was
+downloaded, run unchanged over four corpora: three externally built and 1{,}800
+instances between them clear every criterion, while our own corpus clears none
+of 631. We report the scope of that result plainly in
+Section~\ref{sec:related}: the three that pass share a construction in which the
+discriminating test is held out by design, and corpora built outside that
+lineage, including ours, do not inherit the property.
+
+Calibrating the audit against benchmarks with no known defect was not a
+formality. Before calibration it reported a 61\% false-positive rate, across
+five distinct conventions for naming a test, and every one of those would have
+been a public accusation against a sound benchmark. An audit that reports false
+defects is worse than no audit, so ``undecidable'' is a first-class verdict here
+rather than a rounding of ``failed''.
+
+\paragraph{What the repaired instrument shows.} We rebuild the corpus by
+checking each task out from upstream at its recorded base commit and injecting
+the held-out tests at grade time, admit only tasks that fail without the
+reference fix and pass with it, and verify the survivors against seven admission
+gates. On the 48 tasks that remain we then run the comparison the original
+version could not settle. Solo and a three-role team receive one shared turn
+allowance, so the conditions are matched on compute rather than differing by a
+factor of seven.
+
+At equal compute the team solved one task in 144 paired comparisons that the
+single agent failed. The deficit widens as the budget grows, from $-0.104$ to
+$-0.188$, which closes off ``the team needs more compute'' as an explanation.
+Team runs damage the workspace three times as often, rising with budget. And the
+mechanism the theory points to is directly measurable: of 2{,}778 inter-role
+messages, 99.0\% flow from Planner to Executor, and the Executor sent 2 messages
+back to the Planner across 144 runs despite being instructed to report status.
+The protocol is nominally bidirectional and empirically one-directional, so no
+mutual knowledge of the kind \citet{faraj2000coordinating} identify can form.
+
+None of this is visible on the scale the prior version reported: there a
+sevenfold compute increase moves the score by 1.5 points and the two conditions
+sit on top of each other.
 
 \paragraph{Contributions.}
 \begin{itemize}
-\item \textbf{A validity protocol for agentic benchmarks.} Stage the task,
-      grade an empty submission, grade the reference fix, and require that the
-      first fails and the second passes. We run it on every task and report the
-      count that survives, not the count that exists.
+\item \textbf{A validity audit for agentic benchmarks, calibrated against
+      corpora that pass it.} Five criteria decidable from task metadata, a
+      three-valued verdict, and a measured false-positive rate before and after
+      calibration.
 \item \textbf{Evidence that graders can be inert, quantified.} 31 of 76 graders
-      were blind to the bug; two check families could not be satisfied by any
-      submission, including the reference fix; 81\% of the checks are guards
-      that pass on an untouched workspace.
-\item \textbf{\core{}, 48 tasks that provably discriminate,} rebuilt by
-      checking out upstream at the recorded base commit and holding the tests
-      out until grade time, and validated against seven admission gates.
-\item \textbf{The compute-matched comparison, re-run.} At equal turn budget a
-      three-role team is not better than a single agent, the gap widens with
-      compute, and the team damages the workspace more often. We also show that
-      the scale used in the prior work hides the effect entirely.
+      could not see the bug until the held-out tests were injected; two check
+      families could not be satisfied by the reference fix; 81\% of checks are
+      guards that pass on an untouched workspace; 45 tasks have a reference
+      patch that touches no source file.
+\item \textbf{\core{}: 48 tasks that provably discriminate}, rebuilt from
+      upstream with held-out tests and validated against seven gates.
+\item \textbf{A compute-matched test of a decades-old prediction}, with a
+      measured mechanism: the back-channel that mutual knowledge would require
+      exists, is advertised in the prompt, and goes unused.
 \end{itemize}
 
 \section{How a grader becomes inert}
@@ -273,17 +333,86 @@ the prior version reported on, which is why that comparison could not have
 settled the question either way.
 
 \section{Related work}
-\todo{TO BE WRITTEN. Every citation below must be fetched programmatically
-before use; none are written from memory.}
-\begin{itemize}
-\item SWE-bench and the fail-to-pass criterion. \cn
-\item Agentic coding benchmarks and their construction. \cn
-\item Multi-agent LLM systems and role decomposition. \cn
-\item \textbf{Must cite early:} Gu \& Kim, Nature Machine Intelligence, same
-      first author, currently uncited. \cn
-\item CooperBench, Silo-Bench, Protocol Validity, The Verifier Tax. \cn
-\item Benchmark validity and construct validity in ML evaluation. \cn
-\end{itemize}
+\label{sec:related}
+
+\paragraph{When a team should help, and when it should not.} The question of
+whether dividing a task across agents improves the outcome is not new, and the
+group performance literature answers it conditionally rather than affirmatively.
+\citet{steiner1972group} organises group tasks by how individual contributions
+combine and separates, among others, \emph{disjunctive} tasks, solved as soon as
+one member solves them, from \emph{conjunctive} tasks, limited by the weakest
+member. The prediction for disjunctive tasks is that a group adds little beyond
+its strongest member, and the prediction for conjunctive tasks is that adding
+members can reduce performance. A single-repository bug fix with a known failing
+test is close to disjunctive: any agent that produces the right patch resolves
+it.
+
+Where coordination does pay, the literature locates the mechanism in what the
+members know about each other rather than in the division of labour itself. A
+transactive memory system, mutual knowledge of who knows what
+\citep{wegner1987transactive}, is measurable
+\citep{lewis2003measuring} and in software teams specifically is among the
+sturdier correlates of performance \citep{faraj2000coordinating}. A second
+mechanism applies when members hold genuinely different information and the
+task requires pooling it \citep{stasser1985pooling}.
+
+Two consequences matter for how a benchmark should be read. A benchmark whose
+tasks are disjunctive should not be expected to show a team advantage, so a null
+result there is weak evidence about coordination in general. And a protocol that
+gives roles no way to learn each other's behaviour removes the mechanism by
+which an advantage would arise, so a null result there is evidence about the
+protocol rather than about role separation as an idea. We measure the second
+condition directly rather than assuming it, in Section~\ref{sec:budget}.
+\todo{Thompson's pooled/sequential/reciprocal interdependence taxonomy is the
+cleanest fit to that measurement; the citation is not yet verified and is held
+as a placeholder rather than cited from memory.}
+
+\paragraph{Multi-agent LLM systems and their evaluation.} Frameworks that assign
+roles to language model instances and route messages between them report gains
+on software tasks \citep{chatdev2024,autogen2023}. Those role assignments are
+specified by prompt: a single model is asked to behave as a planner, then as an
+implementer. Nothing prevents the implementer from reading what only the planner
+was meant to see, so a reported team score conflates following an instruction
+with operating under a constraint. Evaluation suites for such systems have begun
+to measure the process in addition to the outcome
+\citep{multiagentbench2025}, and post-hoc analysis has assembled taxonomies of
+how these systems fail \citep{cemri2025why}.
+
+This work is complementary to that analysis and differs in direction.
+\citet{cemri2025why} collects failures and organises them; we fix the compute
+budget, enforce the information partition, and ask whether the division of
+labour pays at all. Our contribution to that picture is not another taxonomy but
+the prior question of whether the measuring device works, and one mechanism
+measurement: the back-channel a transactive memory system would require exists
+in our harness, is advertised in the role prompts, and carries 1.0\% of the
+traffic.
+
+\paragraph{Benchmark construction and the validity of the grader.} Agentic
+coding benchmarks derived from merged pull requests share a construction in
+which the tests that demonstrate a bug are withheld from the agent and supplied
+by the harness at evaluation time, together with an explicit declaration of
+which tests must fail before the fix and pass after it. \todo{SWE-bench and its
+derivatives; citations pending verification.} Our audit shows that construction
+is doing more work than it is usually credited for. It makes three of our five
+criteria true by design, and corpora built outside that lineage do not inherit
+them: our own is the case in point, failing every instance of the criterion that
+a discriminating test be declared at all.
+
+There is a growing literature on whether agentic benchmarks measure what they
+claim. \todo{The ABC checklist for agentic benchmark design, and its reported
+error rate on an established corpus, are directly relevant here; citation
+pending verification.} Our audit is narrower and complementary: it is decidable
+from task metadata without running a model, it reports an undecidable verdict
+rather than guessing, and we report its false-positive rate before calibration,
+which was 61\%.
+
+\paragraph{What we take from this.} Two positions follow that we adopt rather
+than argue for at length. The claim worth making about enforced role separation
+is not that it measures collaboration, but that it separates prompt compliance
+from structural constraint, which is narrower and checkable. And the claim worth
+making about a null result is only as strong as the evidence that the instrument
+could have detected a positive one, which is why the audit precedes the
+experiment in this paper rather than following it.
 
 \section{Limitations}
 
