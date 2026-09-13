@@ -96,6 +96,37 @@ class AblationRun:
         return bool(self.score.get("pass", False))
 
 
+def _usage_snapshot(adapter) -> dict:
+    """Cumulative token counters off an adapter, or zeros if it keeps none.
+
+    Every adapter already accumulates usage, but nothing ever persisted it, so
+    a finished campaign could report turns and wall-clock and not tokens. That
+    left the compute-matching claim answerable only in turns: a reviewer asking
+    "matched turns, but was the token spend matched?" had no data to read.
+    """
+    try:
+        u = adapter.get_usage() or {}
+    except Exception:
+        return {"input_tokens": 0, "output_tokens": 0}
+    return {"input_tokens": int(u.get("input_tokens") or 0),
+            "output_tokens": int(u.get("output_tokens") or 0)}
+
+
+def _usage_delta(adapter, before: dict) -> dict:
+    """Tokens attributable to one run.
+
+    The adapter is built once per campaign and its counters are cumulative, so
+    a per-run figure is the difference against the snapshot taken before the
+    run. Recorded for failed and errored runs too: a run that spent zero tokens
+    is direct evidence it never reached the model.
+    """
+    after = _usage_snapshot(adapter)
+    d = {k: max(0, after.get(k, 0) - before.get(k, 0)) for k in
+         ("input_tokens", "output_tokens")}
+    d["total_tokens"] = d["input_tokens"] + d["output_tokens"]
+    return d
+
+
 class CredentialFailure(RuntimeError):
     """The provider rejected our credential, so no further run can measure anything."""
 
@@ -1450,6 +1481,7 @@ def run_full_ablation(
                     task_id=task_name,
                     seed=seed,
                 )
+                usage_before = _usage_snapshot(adapter)
 
                 try:
                     run_id, run_dir, task_dir = setup_run(
@@ -1508,6 +1540,7 @@ def run_full_ablation(
                                 "task_id": task_name, "seed": seed,
                                 "pass": False, "partial_score": 0.0,
                                 "error": str(e), "checks": [],
+                                "usage": _usage_delta(adapter, usage_before),
                                 "aborted_sweep": True,
                             }) + "\n")
                         raise CredentialFailure(
@@ -1543,6 +1576,10 @@ def run_full_ablation(
                     # previous sweep became unrescorable.
                     "checks": ((run_record.score.get("secondary") or {}).get("checks")
                                or run_record.score.get("checklist") or []),
+                    # Token spend for this run alone. Turn-matching is the
+                    # paper's claim; this is what lets the claim be checked on
+                    # the other axis of compute rather than asserted.
+                    "usage": _usage_delta(adapter, usage_before),
                 }
                 all_runs.append(run_entry)
 

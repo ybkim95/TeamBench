@@ -141,7 +141,14 @@ def main() -> int:
     print(f"[sweep] model={a.model} tasks={len(tasks)} budgets={a.budgets} "
           f"seeds={a.seeds} -> {total} runs", flush=True)
 
-    tag = a.model.replace("/", "_").replace("-", "").replace(".", "")
+    # A provider-routed id like "openrouter:anthropic/claude-sonnet-5" must not
+    # collapse onto the native "claude-sonnet-5" tag: the two reach the same
+    # weights through different adapters (Anthropic tool_use vs OpenAI function
+    # calling), so their cells are not interchangeable and must not overwrite
+    # or skip one another. The colon is dropped only because it is awkward in a
+    # filename, after the provider prefix has already made the tag distinct.
+    tag = (a.model.replace("/", "_").replace(":", "_")
+           .replace("-", "").replace(".", ""))
     for b in a.budgets:
         out = os.path.join(out_dir, f"budget{b}_{tag}.json")
         if os.path.isfile(out):

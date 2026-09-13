@@ -160,6 +160,7 @@ def main() -> int:
                 "raw": r.get("partial_score"), "pass": bool(r.get("pass")),
                 "admissible": adm, "disc": disc,
                 "turns": r.get("elapsed_sec"), "ierr": ierr,
+                "tok": ((r.get("usage") or {}).get("total_tokens")),
             }
 
     if not data:
@@ -204,6 +205,34 @@ def main() -> int:
                          "inadmissible": inad, "dead": dict(dead),
                          "usable": ndead == 0,
                          "n_attempted": len(allruns)})
+
+    # Turn-matching is enforced by TurnBudget, but a reviewer is entitled to ask
+    # whether equal turns meant equal spend. Report the other axis rather than
+    # assert it. Silent when the campaign predates usage capture.
+    tok_rows = [(b, c, v["tok"]) for b in data for c in data[b]
+                for v in data[b][c].values()
+                if not v["ierr"] and isinstance(v["tok"], (int, float)) and v["tok"]]
+    if tok_rows:
+        print("\ntoken spend at each budget (the other axis of compute):")
+        print("budget  condition    n   mean total tokens   median")
+        for b in sorted(data):
+            for cond in ("oracle", "full"):
+                xs = [t for bb, cc, t in tok_rows if bb == b and cc == cond]
+                if not xs:
+                    continue
+                print("%6d  %-10s %3d   %15.0f   %6.0f" % (
+                    b, "Solo" if cond == "oracle" else "Full Team",
+                    len(xs), statistics.mean(xs), statistics.median(xs)))
+        for b in sorted(data):
+            o = [t for bb, cc, t in tok_rows if bb == b and cc == "oracle"]
+            f = [t for bb, cc, t in tok_rows if bb == b and cc == "full"]
+            if o and f:
+                print("  budget %3d  Full Team / Solo token ratio %.2fx" % (
+                    b, statistics.mean(f) / statistics.mean(o)))
+    else:
+        print("\nno token usage recorded in this campaign "
+              "(predates usage capture); compute matching is verifiable on "
+              "turns only")
 
     # paired within-task comparison at each budget, which is the actual question
     print("\npaired Solo vs Full Team, same task, same budget:")
