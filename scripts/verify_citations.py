@@ -119,7 +119,7 @@ def arxiv(query: str, rows: int = 5) -> list:
 
 def semantic_scholar(query: str, rows: int = 5) -> list:
     u = "https://api.semanticscholar.org/graph/v1/paper/search?" + urllib.parse.urlencode(
-        {"query": query, "limit": rows, "fields": "title,year,externalIds,venue"})
+        {"query": query, "limit": rows, "fields": "title,year,externalIds,venue,authors"})
     raw = _get(u)
     if not raw:
         return []
@@ -131,10 +131,39 @@ def semantic_scholar(query: str, rows: int = 5) -> list:
     for d in data:
         ext = d.get("externalIds") or {}
         out.append({"title": d.get("title"), "year": d.get("year"),
+                    "authors": " ".join((a.get("name") or "")
+                                        for a in (d.get("authors") or [])),
                     "doi": ext.get("DOI"),
                     "arxiv": ("https://arxiv.org/abs/" + ext["ArXiv"]) if ext.get("ArXiv") else None,
                     "src": "semanticscholar"})
     return out
+
+
+def expected_from_key(key: str):
+    """(surname, year) encoded in a citation key like "steiner1972group".
+
+    Used when the check file does not state them. The key is authored by us and
+    is the most reliable statement of intent we have about which work is meant.
+    """
+    m = re.match(r"^([A-Za-z]+?)(\d{4})", key or "")
+    if not m:
+        return None, None
+    return m.group(1).lower(), int(m.group(2))
+
+
+def rekey(bibtex: str, key: str) -> str:
+    """Replace the index's bibtex key with ours.
+
+    Crossref returns its own key, e.g. @article{Ramsden_1973, ...}. Writing that
+    verbatim silently breaks every \\cite in the manuscript, and it breaks
+    exactly the entries that verified: unresolved ones kept our key because they
+    were synthesised locally. All 9 citations in the draft were undefined for
+    this reason while the log reported them verified.
+    """
+    if not bibtex:
+        return bibtex
+    return re.sub(r"^(\s*@\w+\s*\{)[^,]*,", r"\1%s," % key, bibtex.strip(),
+                  count=1)
 
 
 def bibtex_from_doi(doi: str):
@@ -162,8 +191,12 @@ def resolve(entry: dict) -> dict:
             if dp and dp[0] and dp[0][0]:
                 year = dp[0][0]
                 break
+        auth = " ".join(
+            "%s %s" % (a.get("given") or "", a.get("family") or "")
+            for a in (item.get("author") or []))
         out["candidates"].append({"title": title, "year": year,
-                                  "doi": item.get("DOI"), "src": "crossref"})
+                                  "doi": item.get("DOI"), "src": "crossref",
+                                  "authors": auth})
     for item in semantic_scholar(q):
         out["candidates"].append(item)
     for item in arxiv(q):
@@ -171,6 +204,7 @@ def resolve(entry: dict) -> dict:
         out["candidates"].append({"title": item.get("title"),
                                   "year": int(yr) if yr.isdigit() else None,
                                   "doi": None, "arxiv": item.get("id"),
+                                  "authors": " ".join(item.get("authors") or []),
                                   "src": "arxiv"})
 
     want = norm(entry.get("expect_title") or q)
@@ -195,15 +229,43 @@ def resolve(entry: dict) -> dict:
         out["refused"] = [k for k, v in _INDEX_REFUSED.items() if v]
     if best:
         c = best[1]
-        yr_ok = (entry.get("expect_year") is None or c.get("year") is None
-                 or abs(c["year"] - entry["expect_year"]) <= 1)
+        k_surname, k_year = expected_from_key(entry["key"])
+        want_year = entry.get("expect_year", k_year)
+        yr_ok = (want_year is None or c.get("year") is None
+                 or abs(c["year"] - want_year) <= 1)
+        # A title match is not an identity match. "Group Process and
+        # Productivity" returns both Steiner's 1972 book and a 1973 review of
+        # it in Physical Therapy by a different author; the review scores a
+        # perfect title Jaccard and lands inside the one-year tolerance, and it
+        # was written into the bibliography as the citation for Steiner. So the
+        # expected surname must actually appear among the returned authors.
+        # Only treat the key prefix as an author claim when it is not simply
+        # the name of the system being cited. Keys here are mixed: some encode
+        # a surname (steiner1972group) and some a system or benchmark
+        # (chatdev2024, gaia2023, multiagentbench2025). Deriving an author from
+        # the latter rejects correct entries, which a first version of this gate
+        # did for 3 of 19. The discriminator is whether the prefix appears in
+        # the title: "chatdev" does, "steiner" does not.
+        want_author = (entry.get("expect_author") or "").lower()
+        if not want_author and k_surname:
+            if k_surname not in norm(c.get("title") or ""):
+                want_author = k_surname
+        got_authors = norm(c.get("authors") or "")
+        au_ok = (not want_author) or (want_author in got_authors)
+        if not yr_ok:
+            st = "YEAR_MISMATCH"
+        elif not au_ok:
+            st = "AUTHOR_MISMATCH"
+        else:
+            st = "VERIFIED"
         out.update({"title": c.get("title"), "year": c.get("year"),
                     "doi": c.get("doi"), "source": c.get("src"),
-                    "status": "VERIFIED" if yr_ok else "YEAR_MISMATCH"})
-        if c.get("doi"):
-            out["bibtex"] = bibtex_from_doi(c["doi"])
-        elif c.get("arxiv"):
-            out["arxiv"] = c["arxiv"]
+                    "authors": c.get("authors"), "status": st})
+        if st == "VERIFIED":
+            if c.get("doi"):
+                out["bibtex"] = rekey(bibtex_from_doi(c["doi"]), entry["key"])
+            elif c.get("arxiv"):
+                out["arxiv"] = c["arxiv"]
     return out
 
 

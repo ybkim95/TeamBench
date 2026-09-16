@@ -38,8 +38,8 @@ without the reference fix and pass with it, and verify the result against seven
 admission gates. On the 48 tasks that survive, we then re-run the comparison the
 original paper could not settle: at matched compute a Planner/Executor/Verifier
 team solved one task in 144 paired comparisons that a single agent failed, the
-deficit widens as compute grows ($-0.104 \to -0.188$), and team runs damage the
-workspace three times as often. On the scale the original paper used, none of
+deficit widens as compute grows ($-0.104 \to -0.188$), and at the largest budget
+team runs damage the workspace almost three times as often (17\% against 6\%). On the scale the original paper used, none of
 this is visible: a sevenfold compute increase moves the reported score by 1.5
 points.
 \end{abstract}
@@ -125,7 +125,8 @@ factor of seven.
 At equal compute the team solved one task in 144 paired comparisons that the
 single agent failed. The deficit widens as the budget grows, from $-0.104$ to
 $-0.188$, which closes off ``the team needs more compute'' as an explanation.
-Team runs damage the workspace three times as often, rising with budget. And the
+Team runs damage the workspace more often at every budget, and the gap widens
+with it: 17\% against 6\% at the largest. And the
 mechanism the theory points to is directly measurable: of 2{,}778 inter-role
 messages, 99.0\% flow from Planner to Executor, and the Executor sent 2 messages
 back to the Planner across 144 runs despite being instructed to report status.

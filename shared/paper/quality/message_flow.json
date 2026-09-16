@@ -1,0 +1,24 @@
+{
+ "model": "gemini3flashpreview",
+ "condition": "full",
+ "budgets": [
+  20,
+  60,
+  140
+ ],
+ "runs": 144,
+ "run_dirs_missing": 0,
+ "messages_total": 2778,
+ "by_pair": {
+  "planner->executor": 2749,
+  "verifier->executor": 22,
+  "executor->verifier": 5,
+  "executor->planner": 2
+ },
+ "planner_to_executor": 2749,
+ "planner_to_executor_share": 0.9895608351331894,
+ "executor_to_planner": 2,
+ "runs_with_any_back_channel": 1,
+ "messages_per_run_mean": 19.291666666666668,
+ "planner_msg_distinct_fraction_median": 1.0
+}
