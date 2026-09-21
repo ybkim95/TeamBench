@@ -121,6 +121,57 @@ loginctl show-user "$USER" | grep Linger=yes || sudo loginctl enable-linger "$US
 ---
 
 
+
+## BLOCKER: long jobs die on Kerberos expiry (found 2026-09-21)
+
+The repository is on NFS mounted `sec=krb5p`, so every write needs a live
+Kerberos ticket. This killed a 288-run sweep after 6 runs with
+`OSError: [Errno 127] Key has expired` raised out of a checkpoint append.
+
+Three facts make it worse than it sounds:
+
+1. Tickets last **two days**. A 50-hour sweep outlives one.
+2. Once a ticket lapses it **cannot be renewed**, even though the renewable
+   window is ten days. `kinit -R` answers "Ticket expired while renewing
+   credentials". Renewal has to happen *before* expiry, periodically.
+3. The kernel caches a GSS context past expiry, so a job writes normally for
+   an hour or two and only then starts failing. The failure looks random and
+   arrives long after the real cause.
+
+### Fixed in two places
+
+| Layer | What it does |
+|---|---|
+| `harness/ablation.py::durable_append` | Retries the checkpoint append, then falls back to local disk and keeps going. A completed run is never lost to a filesystem error, and the campaign no longer dies here. Prints the exact `cat ... >> ...` needed to merge. |
+| `scripts/run_long_job.sh` | Preflight then `krenew`. Refuses to start when the ticket will not survive the job, in 0 seconds rather than 3 hours, and renews every 60s while it runs. |
+
+Launch long jobs through it:
+
+```bash
+kinit                      # needs your password; nothing below works without it
+scripts/run_long_job.sh --hours 50 --need-gb 12 -- \
+  .venv/bin/python -u scripts/run_budget_sweep.py \
+    --model openrouter:anthropic/claude-sonnet-5 \
+    --tasks-file shared/paper/quality/core_tasks.json \
+    --budgets 20 60 140
+```
+
+### Local disk is the other constraint
+
+`/tmp` is at 100% with 16G free, and the sweep needs roughly 9 to 12G of run
+directories. It fits, barely. The space is held by another project:
+
+    verifiers-curse-*   299 dirs   904 GB   (Sep 12-15)
+    health-cua-*          1 dir     32 GB
+    tb_runs_*             3 dirs   8.6 GB   <- TeamBench, keep: these back
+                                               scripts/message_flow.py
+    teambench_core        1 dir    9.9 GB   <- TeamBench staging cache, keep
+
+Do not delete `tb_runs_*`: they are the run directories the mechanism claim is
+computed from. The `verifiers-curse-*` trees belong to a different project and
+are the obvious place to reclaim space, but that is the owner's call.
+
+
 ## BLOCKER: the Anthropic credential is invalid (found 2026-09-13)
 
 `ANTHROPIC_API_KEY` in `.env` returns HTTP 401 `authentication_error`. It was

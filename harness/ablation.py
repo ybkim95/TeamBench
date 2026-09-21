@@ -25,8 +25,10 @@ Metrics computed:
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
+import tempfile
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -125,6 +127,55 @@ def _usage_delta(adapter, before: dict) -> dict:
          ("input_tokens", "output_tokens")}
     d["total_tokens"] = d["input_tokens"] + d["output_tokens"]
     return d
+
+
+def _fallback_path(primary: str) -> str:
+    """Local sidecar for a checkpoint whose real home is unwritable.
+
+    Deliberately on local disk: the whole point is to survive the network
+    filesystem being unavailable.
+    """
+    h = hashlib.sha1(os.path.abspath(primary).encode()).hexdigest()[:12]
+    d = os.path.join(tempfile.gettempdir(), "teambench_checkpoint_fallback")
+    os.makedirs(d, exist_ok=True)
+    return os.path.join(d, "%s__%s" % (h, os.path.basename(primary)))
+
+
+def durable_append(primary: str, line: str) -> None:
+    """Append one checkpoint line, and do not lose it to a filesystem error.
+
+    The repository lives on an NFS mount with sec=krb5p, so every write needs a
+    live Kerberos ticket. Tickets here last two days and cannot be renewed once
+    they lapse, and the kernel caches a GSS context for a while after that, so
+    a job runs normally and then dies mid-flight. That is what ended a 288-run
+    sweep after 6 runs: OSError Errno 127, "Key has expired", raised out of this
+    very append and taking the whole campaign with it.
+
+    A completed run is expensive and already paid for. Losing it because a
+    ticket lapsed is the wrong failure. So: retry briefly, then write to local
+    disk and keep going. The run is never lost and the campaign never dies here.
+    """
+    err = None
+    for attempt in range(3):
+        try:
+            with open(primary, "a") as f:
+                f.write(line)
+            return
+        except OSError as e:
+            err = e
+            time.sleep(1.5 * (attempt + 1))
+    fb = _fallback_path(primary)
+    try:
+        with open(fb, "a") as f:
+            f.write(line)
+        print("  [checkpoint] %s unwritable (%s); appended to %s instead. "
+              "Merge with: cat %s >> %s"
+              % (primary, err, fb, fb, primary), flush=True)
+    except OSError as e2:
+        # Both destinations gone. Say so loudly; do not pretend it was written.
+        print("  [checkpoint] LOST a completed run: primary %s (%s) and "
+              "fallback %s (%s) both unwritable" % (primary, err, fb, e2),
+              flush=True)
 
 
 class CredentialFailure(RuntimeError):
@@ -1534,8 +1585,7 @@ def run_full_ablation(
                     # revoked key turned 68 of 144 claude-sonnet-5 runs into
                     # fake zeros. Stop at the first one instead.
                     if _is_credential_failure(e):
-                        with open(checkpoint_path, "a") as cpf:
-                            cpf.write(json.dumps({
+                        durable_append(checkpoint_path, json.dumps({
                                 "condition": condition.value,
                                 "task_id": task_name, "seed": seed,
                                 "pass": False, "partial_score": 0.0,
@@ -1584,8 +1634,7 @@ def run_full_ablation(
                 all_runs.append(run_entry)
 
                 # --- Checkpoint: append completed run ---
-                with open(checkpoint_path, "a") as cpf:
-                    cpf.write(json.dumps(run_entry) + "\n")
+                durable_append(checkpoint_path, json.dumps(run_entry) + "\n")
 
     metrics = compute_ablation_metrics(condition_scores, condition_partial=condition_partial)
 
