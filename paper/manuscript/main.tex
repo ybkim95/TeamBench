@@ -5,6 +5,17 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{xcolor}
+% Long file paths in \texttt{} cannot break and run into the margin, by up to
+% 72pt in the appendix. \pth{} sets them in the same face but lets the line
+% break after a slash or an underscore.
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{url}
+\urlstyle{tt}
+% \path alone breaks after "/" only, which still leaves segments like
+% "run_budget_sweep.py" unbreakable and 28pt into the margin. xurl allows a
+% break anywhere in the path.
+\usepackage{xurl}
+\newcommand{\pth}[1]{\path{#1}}
 \usepackage[hidelinks]{hyperref}
 \usepackage[numbers,sort&compress]{natbib}
 
@@ -201,7 +212,7 @@ reference fix in place.
 The import check loaded a package-internal module as a detached top-level
 module:
 \begin{quote}\small
-\texttt{spec = spec\_from\_file\_location('mod', src\_path); exec\_module(...)}
+\pth{spec = spec_from_file_location('mod', src_path); exec_module(...)}
 \end{quote}
 Every relative import inside such a file raises
 \texttt{attempted relative import with no known parent package}. It failed with
@@ -472,6 +483,210 @@ documents the agents read.
 \paragraph{Our own protocol found our own defects.} Every count in
 Section~\ref{sec:inert} describes a benchmark we built and published. We do not
 know how many of these conditions are present in benchmarks we did not build.
+
+\appendix
+
+\section{Reproducibility statement}
+\label{app:repro}
+
+Everything the paper claims is recomputed by a script in the repository from
+artefacts that are also in it, and each claim below names the script that
+produces it.
+
+\begin{itemize}
+\item \textbf{The corpus.} \pth{scripts/build_verified_core.py} checks each
+      task out from upstream at its recorded base commit, resolves an
+      interpreter satisfying the project's \texttt{requires-python}, installs
+      the declared test dependencies, and injects the held-out tests at grade
+      time. The staging the harness itself uses is
+      \pth{harness/core_staging.py}, so the corpus a reader rebuilds is the
+      corpus the experiments ran on.
+\item \textbf{Admission.} \pth{scripts/task_admission_gate.py} evaluates
+      the seven gates of Appendix~\ref{app:gates} through the same
+      \texttt{evaluate\_task()} the harness calls. The ledger it writes records
+      every gate outcome per task, including the failures.
+\item \textbf{The audit.} \pth{scripts/audit_external_benchmark.py} applies
+      the five criteria of Appendix~\ref{app:audit}. The criteria were fixed in
+      source before any external corpus was downloaded.
+\item \textbf{The comparison.} \pth{scripts/run_budget_sweep.py} runs both
+      conditions at identical \texttt{total\_turns}, enforced by the shared
+      \texttt{TurnBudget} in \pth{harness/agent_loop.py}.
+      \pth{scripts/budget_curve.py} produces every number in
+      Table~\ref{tab:budget} and the paired sign test, and
+      \pth{scripts/make_figure1.py} recomputes Figure~\ref{fig:scale} from
+      the run checkpoints at build time rather than from typed-in values.
+\item \textbf{The mechanism.} \pth{scripts/message_flow.py} reads
+      \pth{messages/dialogue.jsonl} under the run directories named by the
+      sweep's own checkpoints, so the population is exactly the 144 runs the
+      claim is about.
+\end{itemize}
+
+\paragraph{What a rerun will and will not reproduce.} Grader outcomes are
+deterministic given a staged workspace, and gate G4 tests exactly that by
+grading the same directory twice. Agent behaviour is not: the runs are at
+temperature 0.2 against hosted models that change without notice, and we report
+seed 0 only. A rerun should reproduce the corpus, the gate verdicts, the audit
+verdicts and the analysis exactly, and should not be expected to reproduce
+individual run outcomes.
+
+\paragraph{Compute.} Every run records its own token usage, so the compute
+claim can be checked on tokens as well as on turns. Runs in campaigns that
+predate that instrumentation are reported as such by
+\pth{scripts/budget_curve.py} rather than as zero.
+
+\section{Ethics statement}
+\label{app:ethics}
+
+\paragraph{Human subjects.} No experiment in this paper collects data from
+human participants.
+
+\paragraph{Code we did not write.} \core{} is built from public repositories
+under their own licences, checked out at recorded commits and not redistributed;
+\pth{shared/paper/quality/upstream_licenses.json} records the licence of
+each. The benchmark ships the instructions and the grading harness, and a
+rebuild fetches the upstream code.
+
+\paragraph{Naming a benchmark's defects.} The audit is applied to corpora other
+groups built. Reporting that a benchmark is invalid when it is not would be a
+serious harm to the people who built it, which is why ``undecidable'' is a
+first-class verdict rather than a rounding of ``fail'', why the criteria were
+fixed in source before any data was downloaded, and why the calibration corpora
+were chosen as benchmarks with no known defect. The corpus in which the audit
+finds the most severe defects is our own.
+
+\paragraph{Agents that run code.} Agents execute shell commands inside a
+container with networking disabled. The guard checks that detect a damaged
+workspace exist because agents do damage workspaces: at the largest budget,
+17\% of team runs deleted a test or wiped a file.
+
+\paragraph{What a negative result licenses.} We report that one role structure
+underperformed a single agent on one corpus at matched compute, for one model
+at three budgets. That is not evidence that multi-agent systems do not work, and
+we have tried to keep the paper's claims inside what the measurements support.
+
+\section{The seven admission gates}
+\label{app:gates}
+
+A task enters \core{} only if all seven pass. Gate definitions are given in full
+in \pth{scripts/task_admission_gate.py}; the substance is below.
+
+\begin{description}
+\item[G1 pristine floor.] Stage the pristine workspace, make no edits, run the
+      real grader. Passes iff the task has at least one discriminative check, so
+      an empty submission scores zero on the checks that are actually scored.
+      Credit for doing nothing inflates every condition equally and compresses
+      the range.
+\item[G2 no free pass.] The same unedited workspace must not reach
+      \texttt{pass == true}.
+\item[G3 reference solution passes.] Apply the upstream reference patch and
+      grade. Passes iff it applies and scores 1.0. A task with no reference is
+      \emph{unknown}, not passing: it has not been shown to be solvable. Failure
+      is split into ``the grader rejects the maintainers' merged fix'', which is
+      a defect in the task, and ``the patch will not apply'', which says nothing
+      about the grader.
+\item[G4 determinism.] Grade the same staged directory twice and compare the
+      normalised documents. The second run sees the first run's side effects,
+      deliberately: a grader whose verdict depends on having been run before is
+      not deterministic in the sense the benchmark needs.
+\item[G5 hermeticity.] Static read of \texttt{grade.sh} for network or package
+      installation at grade time and for virtualenv paths absent from a clean
+      checkout. A lower bound: it cannot see network access performed by a test
+      suite the grader invokes.
+\item[G6 discriminative checks.] Discriminative checks must be at least half of
+      the checklist. A stricter count, checks that fail pristine \emph{and} pass
+      on the reference, is recorded alongside.
+\item[G7 terminates.] The grader finishes inside the harness's 300\,s cap. This
+      is wall clock on a loaded machine, so a G7 failure means ``did not finish
+      here'', not ``cannot finish''; each grade's duration is recorded.
+\end{description}
+
+\core{} passes six of the seven. We report the failing gate rather than relax
+its threshold: lowering G6 would admit 46 further tasks but only by deleting the
+checks that detect a damaged workspace.
+
+\section{The five audit criteria}
+\label{app:audit}
+
+Decidable from task metadata alone, fixed in source before any corpus was
+downloaded.
+
+\begin{description}
+\item[A1 discriminating test declared.] A test that fails before the fix is
+      named.
+\item[A2 fix touches source.] The reference patch changes a non-test file.
+\item[A3 tests held out.] The discriminating tests are supplied by the harness,
+      not shipped in the agent's workspace. Applies only to corpora mined from
+      pull requests; a bug-injection corpus has no test patch and is undecidable
+      here rather than failing.
+\item[A4 no contradictory labelling.] No test is listed as both fail-to-pass and
+      pass-to-pass.
+\item[A5 held-out tests discriminate.] Every declared fail-to-pass test lives in
+      a file the test patch actually touches.
+\end{description}
+
+A1, A2 and A5 are the metadata form of the fail-to-pass criterion. A3 is the
+condition whose absence let 40 of our tasks ship the acceptance criterion inside
+the agent's workspace and left 189 others unable to distinguish any two
+submissions.
+
+\paragraph{Calibration.} Before the audit was pointed at anything, it was run
+against corpora with no known defect and every disagreement was treated as a
+bug in the audit. Five were: dotted test labels, docstring labels, class and
+method in one dotted path, bug-injection corpora that legitimately have no test
+patch, and fixture-data patches. The false-positive rate was 61\% before that
+pass and is reported with the results.
+
+\section{\core{} composition}
+\label{app:core}
+
+48 tasks from 12 repositories, all Python.
+
+\begin{center}\small
+\begin{tabular}{lr@{\qquad}lr}
+\toprule
+repository & tasks & repository & tasks \\
+\midrule
+jinja       & 9 & pydantic  & 3 \\
+arrow       & 8 & starlette & 3 \\
+aiohttp     & 5 & mlflow    & 1 \\
+werkzeug    & 5 & narwhals  & 1 \\
+redis-py    & 4 & attrs     & 1 \\
+marshmallow & 4 &           &   \\
+celery      & 4 &           &   \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The ceiling of 229 candidates is set by how often upstream maintainers add a
+test alongside a fix. Repositories that build compiled extensions (165 tasks,
+ceiling 53) and those whose installation pulls a deep learning framework (94
+tasks, ceiling 23) are excluded and would need per-task container images.
+
+\section{Message flow}
+\label{app:messages}
+
+Counted by \pth{scripts/message_flow.py} over the 144 Full Team runs of the
+compute-matched sweep, from the dialogue logs of the run directories the sweep's
+checkpoints name. No run directory was missing.
+
+\begin{center}\small
+\begin{tabular}{lrr}
+\toprule
+direction & messages & share \\
+\midrule
+planner $\to$ executor  & 2{,}749 & 99.0\% \\
+verifier $\to$ executor &      22 &  0.8\% \\
+executor $\to$ verifier &       5 &  0.2\% \\
+executor $\to$ planner  &       2 &  0.1\% \\
+\midrule
+total                   & 2{,}778 & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+19.3 messages per run. The median fraction of a run's planner messages that are
+textually distinct is 1.00, so the count is not inflated by a planner repeating
+itself.
 
 \bibliographystyle{plainnat}
 \bibliography{references}
