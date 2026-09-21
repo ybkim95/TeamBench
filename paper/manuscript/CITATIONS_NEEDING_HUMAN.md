@@ -21,11 +21,11 @@ library catalogue and paste the record in.
 `steiner1972group` carries the paper's theoretical frame, so it is the one that
 most needs to be right.
 
-## A real choice, not a failure
+## Resolved
 
-| key | situation |
+| key | outcome |
 |---|---|
-| `thompson1967organizations` | The 1967 original has no DOI. Crossref has the 2017 Routledge reissue, with introductions by Zald and Scott, which is the same text and is verifiable. Either cite the 2017 edition, which the verifier accepts, or cite 1967 and confirm it by hand. |
+| `thompson2017organizations` | Settled. The 1967 original has no DOI, so we cite the 2017 Routledge reissue, which is the same text and verifies cleanly. The key was renamed from `thompson1967organizations`, because a key asserting 1967 against a 2017 record makes the verifier report YEAR_MISMATCH forever. A footnote in the paper says the taxonomy is from the 1967 original. |
 
 ## Pending, not doubted
 

@@ -420,9 +420,21 @@ gives roles no way to learn each other's behaviour removes the mechanism by
 which an advantage would arise, so a null result there is evidence about the
 protocol rather than about role separation as an idea. We measure the second
 condition directly rather than assuming it, in Section~\ref{sec:budget}.
-\todo{Thompson's pooled/sequential/reciprocal interdependence taxonomy is the
-cleanest fit to that measurement; the citation is not yet verified and is held
-as a placeholder rather than cited from memory.}
+
+What that measurement is measuring has a name.
+Thompson separates \emph{pooled} interdependence,
+where members contribute to a common pool without needing each other's output,
+from \emph{sequential}, where one member's output is another's input, and
+\emph{reciprocal}, where output passes back and forth \citep{thompson2017organizations}. The
+protocol we test is
+built as though the work were reciprocal: it gives the Executor a channel back
+to the Planner and instructs it to report status. What the logs show is
+sequential at best. Of 2{,}778 inter-role messages, 99.0\% travel from Planner
+to Executor and the return channel carries two. A structure paying the
+coordination cost of reciprocal interdependence while realising the information
+flow of sequential interdependence is the specific thing our null result is
+about.\footnote{The taxonomy is from the 1967 original; we cite the 2017
+reissue, which is the edition with a resolvable record.}
 
 \paragraph{Multi-agent LLM systems and their evaluation.} Frameworks that assign
 roles to language model instances and route messages between them report gains
@@ -491,8 +503,8 @@ as a reduced-$n$ estimate either. The compute-matched comparison is therefore
 sound for one model at three budgets and a second model at one budget, and on
 that evidence the honest reading is that the measurement instrument generalises
 while the size, and possibly the sign, of the coordination effect may not.
-\todo{Rerun the second model at 60 and 140 turns once a valid credential is
-available; the affected cells are quarantined, not deleted.}
+\todo{Fold in the second model's 60 and 140 turn cells; the rerun is in
+flight through a different provider after the original credential was revoked.}
 
 \paragraph{\core{} is small and narrow.} 48 tasks from 12 repositories, all
 Python. The ceiling of 229 is itself limited by how often upstream maintainers
