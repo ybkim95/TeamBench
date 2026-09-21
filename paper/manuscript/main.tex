@@ -19,8 +19,21 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[numbers,sort&compress]{natbib}
 
-\newcommand{\tb}{\textsc{TeamBench}}
-\newcommand{\core}{\textsc{TeamBench-Core}}
+% Double-blind switch. The benchmark this paper audits and rebuilds is a public
+% artifact of ours, so naming it identifies the authors. The self-reference
+% itself has to stay: that the corpus with the worst defects is our own is the
+% point of the ethics argument, and calling our own work someone else's would be
+% a misrepresentation. So the name is masked and the "our own" is kept.
+% Set \anonfalse for the camera-ready or a preprint.
+\newif\ifanon
+\anontrue
+\ifanon
+  \newcommand{\tb}{\textsc{Anon-Bench}}
+  \newcommand{\core}{\textsc{Anon-Core}}
+\else
+  \newcommand{\tb}{\textsc{TeamBench}}
+  \newcommand{\core}{\textsc{TeamBench-Core}}
+\fi
 \newcommand{\todo}[1]{\textcolor{red}{[#1]}}
 \newcommand{\cn}{\todo{CITATION NEEDED}}
 
@@ -83,7 +96,11 @@ missing is an instrument sharp enough to test the prediction, because a null
 result from a benchmark that cannot discriminate is not evidence of anything.
 
 \paragraph{The instrument was broken, and specifically so.} We audited the
-GitHub-derived half of our own prior benchmark. It was built by copying, for
+GitHub-derived half of our own prior benchmark.\ifanon\footnote{The benchmark's
+name is masked for review. It is a public artifact of ours, so naming it would
+identify the authors, and we keep the first person because the corpus in which
+this audit finds the most severe defects being our own is material to how the
+audit should be read.}\fi It was built by copying, for
 each merged bug-fix pull request, the files that pull request touched, at the
 commit before it. Two consequences follow, and they conceal each other.
 
@@ -488,6 +505,13 @@ know how many of these conditions are present in benchmarks we did not build.
 
 \section{Reproducibility statement}
 \label{app:repro}
+
+\ifanon
+\paragraph{Artifact.} Code, the admission ledger, the audit outputs and the run
+checkpoints are available to reviewers at \pth{ANONYMIZED-ARTIFACT-URL}, which
+carries no author-identifying content. The repository will be released under its
+real name on acceptance.
+\fi
 
 Everything the paper claims is recomputed by a script in the repository from
 artefacts that are also in it, and each claim below names the script that
