@@ -352,9 +352,23 @@ needs more compute'' is therefore not available as an explanation.
 \paragraph{Teams damage the workspace more.} Guard violations rise
 $1 \to 4 \to 8$ of 48 for the team against $1 \to 2 \to 3$ for the single agent.
 At 140 turns 17\% of team runs deleted a test or wiped a file, against 6\% of
-solo runs. Three roles means three hands editing a repository without seeing
-what the others did. \todo{This is a mechanism claim; support it with the
-failure taxonomy or soften it.}
+solo runs.
+
+The obvious explanation, that three roles means three hands editing a repository
+without seeing what the others did, is wrong, and the logs say so. Only two of
+the three roles can reach the workspace at all: the Planner holds a read tool
+scoped to the specification and the message directory and nothing else, while
+the Verifier's write tool is confined to the submission directory and reaches
+the workspace only through its shell. Attributing every workspace-mutating
+command in the 144 team runs to the role and phase that issued it
+(\pth{scripts/damage_attribution.py}), the Planner issues none, and in the 13
+runs a guard check marks as damaged every such command is the Executor's, with
+none from the Verifier. The damage is single-handed.
+
+We therefore report the effect without a mechanism. Something about running an
+Executor on a plan it did not form, with a brief rather than the specification
+and a back-channel it does not use, produces more damaged workspaces than a
+single agent with the same budget, and our measurements do not yet say what.
 
 \paragraph{The scale decides what is visible} (Figure~\ref{fig:scale}).
 \begin{center}\small
@@ -500,6 +514,9 @@ documents the agents read.
 \paragraph{Our own protocol found our own defects.} Every count in
 Section~\ref{sec:inert} describes a benchmark we built and published. We do not
 know how many of these conditions are present in benchmarks we did not build.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
 
 \appendix
 
@@ -711,8 +728,5 @@ total                   & 2{,}778 & \\
 19.3 messages per run. The median fraction of a run's planner messages that are
 textually distinct is 1.00, so the count is not inflated by a planner repeating
 itself.
-
-\bibliographystyle{plainnat}
-\bibliography{references}
 
 \end{document}
