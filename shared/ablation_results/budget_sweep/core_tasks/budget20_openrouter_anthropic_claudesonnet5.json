@@ -1,0 +1,5671 @@
+{
+  "model": "openrouter:anthropic/claude-sonnet-5",
+  "tasks": [
+    "GH103_redis-py_3998",
+    "GH1118_mlflow_22053",
+    "GH112_redis-py_3996",
+    "GH139_marshmallow_2894",
+    "GH140_marshmallow_2874",
+    "GH17_aiohttp_10151",
+    "GH25_aiohttp_12245",
+    "GH28_jinja_1852",
+    "GH29_aiohttp_12217",
+    "GH30_werkzeug_3109",
+    "GH32_jinja_1664",
+    "GH33_jinja_1663",
+    "GH35_jinja_1665",
+    "GH363_celery_10040",
+    "GH371_arrow_1194",
+    "GH37_pydantic_12816",
+    "GH381_celery_10013",
+    "GH394_arrow_1218",
+    "GH39_jinja_1762",
+    "GH405_narwhals_1515",
+    "GH415_arrow_852",
+    "GH442_arrow_1172",
+    "GH444_arrow_1184",
+    "GH46_pydantic_12951",
+    "GH47_jinja_1706",
+    "GH516_attrs_1513",
+    "GH525_arrow_1186",
+    "GH52_jinja_1702",
+    "GH539_redis-py_3969",
+    "GH540_redis-py_3968",
+    "GH54_pydantic_12817",
+    "GH558_marshmallow_2861",
+    "GH566_jinja_1537",
+    "GH569_celery_10023",
+    "GH56_werkzeug_3066",
+    "GH60_starlette_3148",
+    "GH613_celery_10038",
+    "GH626_werkzeug_3081",
+    "GH642_marshmallow_2854",
+    "GH64_werkzeug_3008",
+    "GH684_starlette_3144",
+    "GH71_starlette_3189",
+    "GH729_werkzeug_3038",
+    "GH732_arrow_1190",
+    "GH801_aiohttp_11861",
+    "GH802_aiohttp_11860",
+    "GH808_jinja_2062",
+    "GH97_arrow_1201"
+  ],
+  "seeds": [
+    0
+  ],
+  "completed": "2026-09-21T17:03:02.993361+00:00",
+  "metrics": {
+    "s_oracle": 0.0417,
+    "s_restricted": 0.0,
+    "s_full": 0.0417,
+    "s_no_verify": 0.0,
+    "s_no_plan": 0.0,
+    "p_oracle": 0.8204,
+    "p_restricted": 0.0,
+    "p_full": 0.82,
+    "p_no_verify": 0.0,
+    "p_no_plan": 0.0,
+    "necessity_gap": 0.8204,
+    "tni": 0.9995,
+    "team_uplift": 0.82,
+    "collab_efficiency": 0.9995,
+    "planning_value": 0.82,
+    "verification_value": 0.82,
+    "s_expertise_full": 0.0,
+    "s_expertise_no_analysis": 0.0,
+    "s_expertise_no_test": 0.0,
+    "s_expertise_oracle": 0.0,
+    "p_expertise_full": 0.0,
+    "p_expertise_no_analysis": 0.0,
+    "p_expertise_no_test": 0.0,
+    "p_expertise_oracle": 0.0,
+    "analysis_value": 0.0,
+    "testing_value": 0.0,
+    "expertise_tni": 0.0,
+    "interpretation": {
+      "tni": "Teamwork fully recovers the performance gap.",
+      "team_uplift": "Team adds +82.0% over single agent",
+      "collab_efficiency": "Team reaches 99.9% of oracle ceiling via collaboration",
+      "planning_value": "Planning adds +82.0% partial score",
+      "verification_value": "Verification adds +82.0% partial score"
+    }
+  },
+  "per_condition": {
+    "oracle": {
+      "passes": 2,
+      "total": 48,
+      "success_rate": 0.0417
+    },
+    "full": {
+      "passes": 2,
+      "total": 48,
+      "success_rate": 0.0417
+    }
+  },
+  "runs": [
+    {
+      "condition": "oracle",
+      "task_id": "GH103_redis-py_3998",
+      "seed": 0,
+      "run_id": "20260913_225917_3e40d5f2",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH103_redis-py_3998/20260913_225917_3e40d5f2",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 374.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "redis/asyncio/connection.py has at least 801 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "redis/connection.py has at least 1715 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in redis/asyncio/connection.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in redis/connection.py"
+        },
+        {
+          "id": "C11",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C12",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 191661,
+        "output_tokens": 3944,
+        "total_tokens": 195605
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH1118_mlflow_22053",
+      "seed": 0,
+      "run_id": "20260913_230534_ae3f3a85",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH1118_mlflow_22053/20260913_230534_ae3f3a85",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 203.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        }
+      ],
+      "usage": {
+        "input_tokens": 145397,
+        "output_tokens": 4401,
+        "total_tokens": 149798
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH112_redis-py_3996",
+      "seed": 0,
+      "run_id": "20260913_231119_bec6fe23",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH112_redis-py_3996/20260913_231119_bec6fe23",
+      "pass": false,
+      "partial_score": 0.43,
+      "elapsed_sec": 238.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": false,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": false,
+          "note": "redis/observability/__init__.py has at least 5 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 68250,
+        "output_tokens": 2799,
+        "total_tokens": 71049
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH139_marshmallow_2894",
+      "seed": 0,
+      "run_id": "20260913_231518_34688121",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH139_marshmallow_2894/20260913_231518_34688121",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 964.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/marshmallow/fields.py has at least 1042 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/marshmallow/fields.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 62141,
+        "output_tokens": 3058,
+        "total_tokens": 65199
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH140_marshmallow_2874",
+      "seed": 0,
+      "run_id": "20260913_233124_33e5b533",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH140_marshmallow_2874/20260913_233124_33e5b533",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 606.4,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": true,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/marshmallow/validate.py has at least 342 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/marshmallow/validate.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 76653,
+        "output_tokens": 3844,
+        "total_tokens": 80497
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH17_aiohttp_10151",
+      "seed": 0,
+      "run_id": "20260913_234132_e479758e",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH17_aiohttp_10151/20260913_234132_e479758e",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 519.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/web_protocol.py has at least 385 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/web_protocol.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "old buggy pattern removed: old '<=' comparison replaced with '<'"
+        }
+      ],
+      "usage": {
+        "input_tokens": 150436,
+        "output_tokens": 5561,
+        "total_tokens": 155997
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH25_aiohttp_12245",
+      "seed": 0,
+      "run_id": "20260921_044915_7632bc74",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH25_aiohttp_12245/20260921_044915_7632bc74",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 267.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/client.py has at least 872 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/client.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 232652,
+        "output_tokens": 6190,
+        "total_tokens": 238842
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH28_jinja_1852",
+      "seed": 0,
+      "run_id": "20260921_045404_77482e6d",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH28_jinja_1852/20260921_045404_77482e6d",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 645.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/compiler.py has at least 988 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/compiler.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 166036,
+        "output_tokens": 10886,
+        "total_tokens": 176922
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH29_aiohttp_12217",
+      "seed": 0,
+      "run_id": "20260921_050451_d5f689b9",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH29_aiohttp_12217/20260921_050451_d5f689b9",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 739.4,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/client.py has at least 825 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/client.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 230789,
+        "output_tokens": 3516,
+        "total_tokens": 234305
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH30_werkzeug_3109",
+      "seed": 0,
+      "run_id": "20260921_051733_1f387852",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH30_werkzeug_3109/20260921_051733_1f387852",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 642.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/routing/exceptions.py has at least 87 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "src/werkzeug/routing/matcher.py has at least 104 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/exceptions.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/matcher.py"
+        },
+        {
+          "id": "C11",
+          "ok": true,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 121314,
+        "output_tokens": 3956,
+        "total_tokens": 125270
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH32_jinja_1664",
+      "seed": 0,
+      "run_id": "20260921_052825_23740c3a",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH32_jinja_1664/20260921_052825_23740c3a",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 394.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/compiler.py has at least 990 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "src/jinja2/parser.py has at least 520 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/compiler.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/parser.py"
+        },
+        {
+          "id": "C11",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 177227,
+        "output_tokens": 5597,
+        "total_tokens": 182824
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH33_jinja_1663",
+      "seed": 0,
+      "run_id": "20260921_053509_0cbd1164",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH33_jinja_1663/20260921_053509_0cbd1164",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 848.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/loaders.py has at least 342 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/loaders.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 125409,
+        "output_tokens": 3185,
+        "total_tokens": 128594
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH35_jinja_1665",
+      "seed": 0,
+      "run_id": "20260921_054924_409cc022",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH35_jinja_1665/20260921_054924_409cc022",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 1018.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/idtracking.py has at least 160 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/idtracking.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 119136,
+        "output_tokens": 2993,
+        "total_tokens": 122129
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH363_celery_10040",
+      "seed": 0,
+      "run_id": "20260921_060626_707a1c3e",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH363_celery_10040/20260921_060626_707a1c3e",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 709.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "celery/backends/redis.py has at least 360 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in celery/backends/redis.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 81014,
+        "output_tokens": 3629,
+        "total_tokens": 84643
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH371_arrow_1194",
+      "seed": 0,
+      "run_id": "20260921_061827_ed5e0cca",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH371_arrow_1194/20260921_061827_ed5e0cca",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 777.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/arrow.py has at least 933 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/arrow.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 91231,
+        "output_tokens": 3137,
+        "total_tokens": 94368
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH37_pydantic_12816",
+      "seed": 0,
+      "run_id": "20260921_063134_7f669e2c",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH37_pydantic_12816/20260921_063134_7f669e2c",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 464.8,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "pydantic/main.py has at least 919 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in pydantic/main.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 175178,
+        "output_tokens": 7990,
+        "total_tokens": 183168
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH381_celery_10013",
+      "seed": 0,
+      "run_id": "20260921_063925_15923011",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH381_celery_10013/20260921_063925_15923011",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 393.8,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "celery/backends/redis.py has at least 357 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in celery/backends/redis.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 155326,
+        "output_tokens": 4169,
+        "total_tokens": 159495
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH394_arrow_1218",
+      "seed": 0,
+      "run_id": "20260921_064604_8404cefa",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH394_arrow_1218/20260921_064604_8404cefa",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 1143.6,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3320 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 49494,
+        "output_tokens": 2608,
+        "total_tokens": 52102
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH39_jinja_1762",
+      "seed": 0,
+      "run_id": "20260921_070516_b1485eb1",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH39_jinja_1762/20260921_070516_b1485eb1",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 822.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/filters.py has at least 939 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/filters.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 53281,
+        "output_tokens": 2877,
+        "total_tokens": 56158
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH405_narwhals_1515",
+      "seed": 0,
+      "run_id": "20260921_071905_fc2a35b2",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH405_narwhals_1515/20260921_071905_fc2a35b2",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 1266.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "narwhals/_pandas_like/series.py has at least 706 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "narwhals/dependencies.py has at least 196 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in narwhals/_pandas_like/series.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in narwhals/dependencies.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 71830,
+        "output_tokens": 2300,
+        "total_tokens": 74130
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH415_arrow_852",
+      "seed": 0,
+      "run_id": "20260921_074021_0f255742",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH415_arrow_852/20260921_074021_0f255742",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 1317.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/parser.py has at least 294 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/parser.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 47606,
+        "output_tokens": 2128,
+        "total_tokens": 49734
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH442_arrow_1172",
+      "seed": 0,
+      "run_id": "20260921_080228_621cf246",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH442_arrow_1172/20260921_080228_621cf246",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 1475.8,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3266 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 48146,
+        "output_tokens": 2330,
+        "total_tokens": 50476
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH444_arrow_1184",
+      "seed": 0,
+      "run_id": "20260921_082715_e12c5e3e",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH444_arrow_1184/20260921_082715_e12c5e3e",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 1282.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3240 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 49151,
+        "output_tokens": 2095,
+        "total_tokens": 51246
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH46_pydantic_12951",
+      "seed": 0,
+      "run_id": "20260921_084845_378aec7c",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH46_pydantic_12951/20260921_084845_378aec7c",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 1041.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "pydantic/_internal/_generate_schema.py has at least 1440 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in pydantic/_internal/_generate_schema.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 74474,
+        "output_tokens": 2511,
+        "total_tokens": 76985
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH47_jinja_1706",
+      "seed": 0,
+      "run_id": "20260921_090621_730fec03",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH47_jinja_1706/20260921_090621_730fec03",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 588.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/loaders.py has at least 344 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/loaders.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 173982,
+        "output_tokens": 3616,
+        "total_tokens": 177598
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH516_attrs_1513",
+      "seed": 0,
+      "run_id": "20260921_091614_1ac3c883",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH516_attrs_1513/20260921_091614_1ac3c883",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 870.1,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": true,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/attr/validators.py has at least 374 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/attr/validators.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 84495,
+        "output_tokens": 3069,
+        "total_tokens": 87564
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH525_arrow_1186",
+      "seed": 0,
+      "run_id": "20260921_093047_cf6d9a2f",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH525_arrow_1186/20260921_093047_cf6d9a2f",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 348.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3240 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 99666,
+        "output_tokens": 8290,
+        "total_tokens": 107956
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH52_jinja_1702",
+      "seed": 0,
+      "run_id": "20260921_093643_56def9a4",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH52_jinja_1702/20260921_093643_56def9a4",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 1308.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/runtime.py has at least 528 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/runtime.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 57429,
+        "output_tokens": 2330,
+        "total_tokens": 59759
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH539_redis-py_3969",
+      "seed": 0,
+      "run_id": "20260921_095835_fed3ce8d",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH539_redis-py_3969/20260921_095835_fed3ce8d",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 412.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "redis/asyncio/client.py has at least 953 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in redis/asyncio/client.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 139140,
+        "output_tokens": 6346,
+        "total_tokens": 145486
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH540_redis-py_3968",
+      "seed": 0,
+      "run_id": "20260921_100556_51aad247",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH540_redis-py_3968/20260921_100556_51aad247",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 293.6,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "redis/asyncio/connection.py has at least 793 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in redis/asyncio/connection.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 153225,
+        "output_tokens": 6168,
+        "total_tokens": 159393
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH54_pydantic_12817",
+      "seed": 0,
+      "run_id": "20260921_101057_156c448b",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH54_pydantic_12817/20260921_101057_156c448b",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 756.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "pydantic/main.py has at least 917 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in pydantic/main.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 163601,
+        "output_tokens": 2392,
+        "total_tokens": 165993
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH558_marshmallow_2861",
+      "seed": 0,
+      "run_id": "20260921_102338_2e1e4ed1",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH558_marshmallow_2861/20260921_102338_2e1e4ed1",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 572.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/marshmallow/constants.py has at least 11 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "no trivially-empty (pass-only) function bodies in source"
+        }
+      ],
+      "usage": {
+        "input_tokens": 95304,
+        "output_tokens": 5574,
+        "total_tokens": 100878
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH566_jinja_1537",
+      "seed": 0,
+      "run_id": "20260921_103312_58d84dc7",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH566_jinja_1537/20260921_103312_58d84dc7",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 200.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/nativetypes.py has at least 59 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/nativetypes.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 77471,
+        "output_tokens": 9043,
+        "total_tokens": 86514
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH569_celery_10023",
+      "seed": 0,
+      "run_id": "20260921_103634_84a0bc69",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH569_celery_10023/20260921_103634_84a0bc69",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 644.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "celery/fixups/django.py has at least 114 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in celery/fixups/django.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 222683,
+        "output_tokens": 6293,
+        "total_tokens": 228976
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH56_werkzeug_3066",
+      "seed": 0,
+      "run_id": "20260921_104721_ce766c24",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH56_werkzeug_3066/20260921_104721_ce766c24",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 503.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/sansio/multipart.py has at least 162 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/sansio/multipart.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 231836,
+        "output_tokens": 5795,
+        "total_tokens": 237631
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH60_starlette_3148",
+      "seed": 0,
+      "run_id": "20260921_105548_587028e7",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH60_starlette_3148/20260921_105548_587028e7",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 369.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "starlette/templating.py has at least 78 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in starlette/templating.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 121466,
+        "output_tokens": 4178,
+        "total_tokens": 125644
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH613_celery_10038",
+      "seed": 0,
+      "run_id": "20260921_110200_328996c0",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH613_celery_10038/20260921_110200_328996c0",
+      "pass": false,
+      "partial_score": 0.78,
+      "elapsed_sec": 628.6,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": false,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "celery/app/base.py has at least 762 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "celery/app/task.py has at least 618 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in celery/app/base.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in celery/app/task.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 132298,
+        "output_tokens": 2852,
+        "total_tokens": 135150
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH626_werkzeug_3081",
+      "seed": 0,
+      "run_id": "20260921_111233_599ba12e",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH626_werkzeug_3081/20260921_111233_599ba12e",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 558.8,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/sansio/multipart.py has at least 166 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/sansio/multipart.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 180668,
+        "output_tokens": 4883,
+        "total_tokens": 185551
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH642_marshmallow_2854",
+      "seed": 0,
+      "run_id": "20260921_112156_3d8daa27",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH642_marshmallow_2854/20260921_112156_3d8daa27",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 534.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/marshmallow/fields.py has at least 1040 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/marshmallow/fields.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 147451,
+        "output_tokens": 5414,
+        "total_tokens": 152865
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH64_werkzeug_3008",
+      "seed": 0,
+      "run_id": "20260921_113054_490793e9",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH64_werkzeug_3008/20260921_113054_490793e9",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 633.1,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/routing/map.py has at least 493 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/map.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 111535,
+        "output_tokens": 3759,
+        "total_tokens": 115294
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH684_starlette_3144",
+      "seed": 0,
+      "run_id": "20260921_114132_7d812b6a",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH684_starlette_3144/20260921_114132_7d812b6a",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 380.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "starlette/responses.py has at least 282 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in starlette/responses.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 139682,
+        "output_tokens": 3946,
+        "total_tokens": 143628
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH71_starlette_3189",
+      "seed": 0,
+      "run_id": "20260921_114755_71416058",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH71_starlette_3189/20260921_114755_71416058",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 1185.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "starlette/responses.py has at least 280 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in starlette/responses.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 70618,
+        "output_tokens": 2305,
+        "total_tokens": 72923
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH729_werkzeug_3038",
+      "seed": 0,
+      "run_id": "20260921_120743_32041430",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH729_werkzeug_3038/20260921_120743_32041430",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 425.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/routing/exceptions.py has at least 76 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "src/werkzeug/routing/matcher.py has at least 101 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/exceptions.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/matcher.py"
+        },
+        {
+          "id": "C11",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 86383,
+        "output_tokens": 3399,
+        "total_tokens": 89782
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH732_arrow_1190",
+      "seed": 0,
+      "run_id": "20260921_121452_63739e4e",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH732_arrow_1190/20260921_121452_63739e4e",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 731.6,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3239 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 121687,
+        "output_tokens": 3275,
+        "total_tokens": 124962
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH801_aiohttp_11861",
+      "seed": 0,
+      "run_id": "20260921_122707_9bc879cd",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH801_aiohttp_11861/20260921_122707_9bc879cd",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 1226.4,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/connector.py has at least 917 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/connector.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 82790,
+        "output_tokens": 2382,
+        "total_tokens": 85172
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH802_aiohttp_11860",
+      "seed": 0,
+      "run_id": "20260921_124742_abfc6814",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH802_aiohttp_11860/20260921_124742_abfc6814",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 562.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/connector.py has at least 907 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/connector.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 167297,
+        "output_tokens": 5134,
+        "total_tokens": 172431
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH808_jinja_2062",
+      "seed": 0,
+      "run_id": "20260921_125711_5e861e6b",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH808_jinja_2062/20260921_125711_5e861e6b",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 642.8,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/utils.py has at least 382 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/utils.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 177879,
+        "output_tokens": 4753,
+        "total_tokens": 182632
+      }
+    },
+    {
+      "condition": "oracle",
+      "task_id": "GH97_arrow_1201",
+      "seed": 0,
+      "run_id": "20260921_130756_569af097",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH97_arrow_1201/20260921_130756_569af097",
+      "pass": false,
+      "partial_score": 0.78,
+      "elapsed_sec": 493.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/__init__.py has at least 19 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "arrow/formatter.py has at least 70 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in arrow/formatter.py"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 96256,
+        "output_tokens": 3924,
+        "total_tokens": 100180
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH103_redis-py_3998",
+      "seed": 0,
+      "run_id": "20260921_131611_da085649",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH103_redis-py_3998/20260921_131611_da085649",
+      "pass": false,
+      "partial_score": 0.82,
+      "elapsed_sec": 240.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "redis/asyncio/connection.py has at least 801 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "redis/connection.py has at least 1715 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in redis/asyncio/connection.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in redis/connection.py"
+        },
+        {
+          "id": "C11",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C12",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 193683,
+        "output_tokens": 17744,
+        "total_tokens": 211427
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH1118_mlflow_22053",
+      "seed": 0,
+      "run_id": "20260921_132015_0b80040a",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH1118_mlflow_22053/20260921_132015_0b80040a",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 255.8,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        }
+      ],
+      "usage": {
+        "input_tokens": 163823,
+        "output_tokens": 16356,
+        "total_tokens": 180179
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH112_redis-py_3996",
+      "seed": 0,
+      "run_id": "20260921_132651_5e6be591",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH112_redis-py_3996/20260921_132651_5e6be591",
+      "pass": false,
+      "partial_score": 0.43,
+      "elapsed_sec": 208.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": false,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": false,
+          "note": "redis/observability/__init__.py has at least 5 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 150963,
+        "output_tokens": 15188,
+        "total_tokens": 166151
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH139_marshmallow_2894",
+      "seed": 0,
+      "run_id": "20260921_133021_05b434fc",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH139_marshmallow_2894/20260921_133021_05b434fc",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 242.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": true,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/marshmallow/fields.py has at least 1042 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/marshmallow/fields.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 152501,
+        "output_tokens": 18679,
+        "total_tokens": 171180
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH140_marshmallow_2874",
+      "seed": 0,
+      "run_id": "20260921_133426_c2651f00",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH140_marshmallow_2874/20260921_133426_c2651f00",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 208.6,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/marshmallow/validate.py has at least 342 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/marshmallow/validate.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 150500,
+        "output_tokens": 14800,
+        "total_tokens": 165300
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH17_aiohttp_10151",
+      "seed": 0,
+      "run_id": "20260921_133756_4f8c1a0a",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH17_aiohttp_10151/20260921_133756_4f8c1a0a",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 404.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/web_protocol.py has at least 385 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/web_protocol.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "old buggy pattern removed: old '<=' comparison replaced with '<'"
+        }
+      ],
+      "usage": {
+        "input_tokens": 178406,
+        "output_tokens": 32147,
+        "total_tokens": 210553
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH25_aiohttp_12245",
+      "seed": 0,
+      "run_id": "20260921_134443_0f9c18eb",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH25_aiohttp_12245/20260921_134443_0f9c18eb",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 484.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/client.py has at least 872 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/client.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 135812,
+        "output_tokens": 39488,
+        "total_tokens": 175300
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH28_jinja_1852",
+      "seed": 0,
+      "run_id": "20260921_135309_6f349d74",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH28_jinja_1852/20260921_135309_6f349d74",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 147.8,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/compiler.py has at least 988 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/compiler.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 60449,
+        "output_tokens": 7974,
+        "total_tokens": 68423
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH29_aiohttp_12217",
+      "seed": 0,
+      "run_id": "20260921_135538_c05a7f44",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH29_aiohttp_12217/20260921_135538_c05a7f44",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 490.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/client.py has at least 825 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/client.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 127918,
+        "output_tokens": 39737,
+        "total_tokens": 167655
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH30_werkzeug_3109",
+      "seed": 0,
+      "run_id": "20260921_140409_fa18a1df",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH30_werkzeug_3109/20260921_140409_fa18a1df",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 301.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/routing/exceptions.py has at least 87 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "src/werkzeug/routing/matcher.py has at least 104 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/exceptions.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/matcher.py"
+        },
+        {
+          "id": "C11",
+          "ok": true,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 189479,
+        "output_tokens": 22092,
+        "total_tokens": 211571
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH32_jinja_1664",
+      "seed": 0,
+      "run_id": "20260921_140912_914f8a2c",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH32_jinja_1664/20260921_140912_914f8a2c",
+      "pass": false,
+      "partial_score": 0.9,
+      "elapsed_sec": 524.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/compiler.py has at least 990 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "src/jinja2/parser.py has at least 520 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/compiler.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/parser.py"
+        },
+        {
+          "id": "C11",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 57958,
+        "output_tokens": 44857,
+        "total_tokens": 102815
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH33_jinja_1663",
+      "seed": 0,
+      "run_id": "20260921_141759_eea7374e",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH33_jinja_1663/20260921_141759_eea7374e",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 263.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/loaders.py has at least 342 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/loaders.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 155470,
+        "output_tokens": 20216,
+        "total_tokens": 175686
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH35_jinja_1665",
+      "seed": 0,
+      "run_id": "20260921_142224_7091d8c1",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH35_jinja_1665/20260921_142224_7091d8c1",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 282.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/idtracking.py has at least 160 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/idtracking.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 127095,
+        "output_tokens": 22780,
+        "total_tokens": 149875
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH363_celery_10040",
+      "seed": 0,
+      "run_id": "20260921_142709_7b7b72d4",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH363_celery_10040/20260921_142709_7b7b72d4",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 114.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "celery/backends/redis.py has at least 360 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in celery/backends/redis.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 57797,
+        "output_tokens": 5937,
+        "total_tokens": 63734
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH371_arrow_1194",
+      "seed": 0,
+      "run_id": "20260921_142907_821647ee",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH371_arrow_1194/20260921_142907_821647ee",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 241.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/arrow.py has at least 933 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/arrow.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 167682,
+        "output_tokens": 17985,
+        "total_tokens": 185667
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH37_pydantic_12816",
+      "seed": 0,
+      "run_id": "20260921_143311_867db133",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH37_pydantic_12816/20260921_143311_867db133",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 289.4,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "pydantic/main.py has at least 919 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in pydantic/main.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 184634,
+        "output_tokens": 23181,
+        "total_tokens": 207815
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH381_celery_10013",
+      "seed": 0,
+      "run_id": "20260921_143806_d2f9e29d",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH381_celery_10013/20260921_143806_d2f9e29d",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 215.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "celery/backends/redis.py has at least 357 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in celery/backends/redis.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 148510,
+        "output_tokens": 15506,
+        "total_tokens": 164016
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH394_arrow_1218",
+      "seed": 0,
+      "run_id": "20260921_144144_4a24b463",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH394_arrow_1218/20260921_144144_4a24b463",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 214.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3320 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 114334,
+        "output_tokens": 13255,
+        "total_tokens": 127589
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH39_jinja_1762",
+      "seed": 0,
+      "run_id": "20260921_144523_717604a4",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH39_jinja_1762/20260921_144523_717604a4",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 370.4,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/filters.py has at least 939 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/filters.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 156565,
+        "output_tokens": 32803,
+        "total_tokens": 189368
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH405_narwhals_1515",
+      "seed": 0,
+      "run_id": "20260921_145136_3295b5f3",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH405_narwhals_1515/20260921_145136_3295b5f3",
+      "pass": false,
+      "partial_score": 0.89,
+      "elapsed_sec": 260.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "narwhals/_pandas_like/series.py has at least 706 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "narwhals/dependencies.py has at least 196 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in narwhals/_pandas_like/series.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in narwhals/dependencies.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 197725,
+        "output_tokens": 20913,
+        "total_tokens": 218638
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH415_arrow_852",
+      "seed": 0,
+      "run_id": "20260921_145600_2b4ea365",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH415_arrow_852/20260921_145600_2b4ea365",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 277.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/parser.py has at least 294 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/parser.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 162133,
+        "output_tokens": 18805,
+        "total_tokens": 180938
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH442_arrow_1172",
+      "seed": 0,
+      "run_id": "20260921_150040_7d15e8d7",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH442_arrow_1172/20260921_150040_7d15e8d7",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 245.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3266 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 123926,
+        "output_tokens": 17347,
+        "total_tokens": 141273
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH444_arrow_1184",
+      "seed": 0,
+      "run_id": "20260921_150449_d5e53e43",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH444_arrow_1184/20260921_150449_d5e53e43",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 252.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3240 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 137427,
+        "output_tokens": 16985,
+        "total_tokens": 154412
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH46_pydantic_12951",
+      "seed": 0,
+      "run_id": "20260921_150905_0f85687e",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH46_pydantic_12951/20260921_150905_0f85687e",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 239.8,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "pydantic/_internal/_generate_schema.py has at least 1440 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in pydantic/_internal/_generate_schema.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 169374,
+        "output_tokens": 18109,
+        "total_tokens": 187483
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH47_jinja_1706",
+      "seed": 0,
+      "run_id": "20260921_151307_e7f18397",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH47_jinja_1706/20260921_151307_e7f18397",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 188.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/loaders.py has at least 344 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/loaders.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 130549,
+        "output_tokens": 13281,
+        "total_tokens": 143830
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH516_attrs_1513",
+      "seed": 0,
+      "run_id": "20260921_151617_6abcec0b",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH516_attrs_1513/20260921_151617_6abcec0b",
+      "pass": true,
+      "partial_score": 1.0,
+      "elapsed_sec": 167.1,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": true,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/attr/validators.py has at least 374 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/attr/validators.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 117286,
+        "output_tokens": 12794,
+        "total_tokens": 130080
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH525_arrow_1186",
+      "seed": 0,
+      "run_id": "20260921_151905_2a335157",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH525_arrow_1186/20260921_151905_2a335157",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 250.1,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3240 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 105664,
+        "output_tokens": 18618,
+        "total_tokens": 124282
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH52_jinja_1702",
+      "seed": 0,
+      "run_id": "20260921_152319_bb773a27",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH52_jinja_1702/20260921_152319_bb773a27",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 271.6,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/runtime.py has at least 528 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/runtime.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 139475,
+        "output_tokens": 21198,
+        "total_tokens": 160673
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH539_redis-py_3969",
+      "seed": 0,
+      "run_id": "20260921_152753_b3e6fcfb",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH539_redis-py_3969/20260921_152753_b3e6fcfb",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 161.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "redis/asyncio/client.py has at least 953 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in redis/asyncio/client.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 94980,
+        "output_tokens": 8427,
+        "total_tokens": 103407
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH540_redis-py_3968",
+      "seed": 0,
+      "run_id": "20260921_153102_01d99c0d",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH540_redis-py_3968/20260921_153102_01d99c0d",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 264.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "redis/asyncio/connection.py has at least 793 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in redis/asyncio/connection.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 170840,
+        "output_tokens": 19842,
+        "total_tokens": 190682
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH54_pydantic_12817",
+      "seed": 0,
+      "run_id": "20260921_153530_2c483bd1",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH54_pydantic_12817/20260921_153530_2c483bd1",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 287.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "pydantic/main.py has at least 917 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in pydantic/main.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 208553,
+        "output_tokens": 23589,
+        "total_tokens": 232142
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH558_marshmallow_2861",
+      "seed": 0,
+      "run_id": "20260921_154021_e3a207df",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH558_marshmallow_2861/20260921_154021_e3a207df",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 260.6,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/marshmallow/constants.py has at least 11 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "no trivially-empty (pass-only) function bodies in source"
+        }
+      ],
+      "usage": {
+        "input_tokens": 166214,
+        "output_tokens": 19221,
+        "total_tokens": 185435
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH566_jinja_1537",
+      "seed": 0,
+      "run_id": "20260921_154444_a2a56698",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH566_jinja_1537/20260921_154444_a2a56698",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 349.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/nativetypes.py has at least 59 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/nativetypes.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 175877,
+        "output_tokens": 24970,
+        "total_tokens": 200847
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH569_celery_10023",
+      "seed": 0,
+      "run_id": "20260921_155034_6d34a404",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH569_celery_10023/20260921_155034_6d34a404",
+      "pass": false,
+      "partial_score": 0.67,
+      "elapsed_sec": 318.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "celery/fixups/django.py has at least 114 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in celery/fixups/django.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "old buggy pattern removed: old pattern removed by fix"
+        }
+      ],
+      "usage": {
+        "input_tokens": 150058,
+        "output_tokens": 18266,
+        "total_tokens": 168324
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH56_werkzeug_3066",
+      "seed": 0,
+      "run_id": "20260921_155554_50824e9f",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH56_werkzeug_3066/20260921_155554_50824e9f",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 262.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/sansio/multipart.py has at least 162 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/sansio/multipart.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 110364,
+        "output_tokens": 13702,
+        "total_tokens": 124066
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH60_starlette_3148",
+      "seed": 0,
+      "run_id": "20260921_160018_0d831223",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH60_starlette_3148/20260921_160018_0d831223",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 241.2,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "starlette/templating.py has at least 78 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in starlette/templating.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 155265,
+        "output_tokens": 17850,
+        "total_tokens": 173115
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH613_celery_10038",
+      "seed": 0,
+      "run_id": "20260921_160422_914fafd6",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH613_celery_10038/20260921_160422_914fafd6",
+      "pass": false,
+      "partial_score": 0.78,
+      "elapsed_sec": 221.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": false,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "celery/app/base.py has at least 762 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "celery/app/task.py has at least 618 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in celery/app/base.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in celery/app/task.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 146681,
+        "output_tokens": 17542,
+        "total_tokens": 164223
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH626_werkzeug_3081",
+      "seed": 0,
+      "run_id": "20260921_160806_144026ad",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH626_werkzeug_3081/20260921_160806_144026ad",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 563.9,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/sansio/multipart.py has at least 166 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/sansio/multipart.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 70839,
+        "output_tokens": 36394,
+        "total_tokens": 107233
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH642_marshmallow_2854",
+      "seed": 0,
+      "run_id": "20260921_161732_62784843",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH642_marshmallow_2854/20260921_161732_62784843",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 360.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/marshmallow/fields.py has at least 1040 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/marshmallow/fields.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 101994,
+        "output_tokens": 27645,
+        "total_tokens": 129639
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH64_werkzeug_3008",
+      "seed": 0,
+      "run_id": "20260921_162334_ff9b2014",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH64_werkzeug_3008/20260921_162334_ff9b2014",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 278.5,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/routing/map.py has at least 493 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/map.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 169306,
+        "output_tokens": 22139,
+        "total_tokens": 191445
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH684_starlette_3144",
+      "seed": 0,
+      "run_id": "20260921_162817_1d102ed8",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH684_starlette_3144/20260921_162817_1d102ed8",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 208.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "starlette/responses.py has at least 282 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in starlette/responses.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 127643,
+        "output_tokens": 14328,
+        "total_tokens": 141971
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH71_starlette_3189",
+      "seed": 0,
+      "run_id": "20260921_163148_564a73dc",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH71_starlette_3189/20260921_163148_564a73dc",
+      "pass": false,
+      "partial_score": 0.88,
+      "elapsed_sec": 265.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "starlette/responses.py has at least 280 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in starlette/responses.py"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 190993,
+        "output_tokens": 21872,
+        "total_tokens": 212865
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH729_werkzeug_3038",
+      "seed": 0,
+      "run_id": "20260921_163617_91d3c84c",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH729_werkzeug_3038/20260921_163617_91d3c84c",
+      "pass": false,
+      "partial_score": 0.8,
+      "elapsed_sec": 276.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/werkzeug/routing/exceptions.py has at least 76 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "src/werkzeug/routing/matcher.py has at least 101 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/exceptions.py"
+        },
+        {
+          "id": "C10",
+          "ok": true,
+          "note": "key symbols still defined in src/werkzeug/routing/matcher.py"
+        },
+        {
+          "id": "C11",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 127407,
+        "output_tokens": 21431,
+        "total_tokens": 148838
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH732_arrow_1190",
+      "seed": 0,
+      "run_id": "20260921_164055_7383dc4c",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH732_arrow_1190/20260921_164055_7383dc4c",
+      "pass": false,
+      "partial_score": 0.75,
+      "elapsed_sec": 190.6,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/locales.py has at least 3239 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in arrow/locales.py"
+        },
+        {
+          "id": "C9",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 122856,
+        "output_tokens": 13800,
+        "total_tokens": 136656
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH801_aiohttp_11861",
+      "seed": 0,
+      "run_id": "20260921_164409_b3a74a9e",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH801_aiohttp_11861/20260921_164409_b3a74a9e",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 223.8,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/connector.py has at least 917 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/connector.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 70704,
+        "output_tokens": 13926,
+        "total_tokens": 84630
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH802_aiohttp_11860",
+      "seed": 0,
+      "run_id": "20260921_164758_ad7ce709",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH802_aiohttp_11860/20260921_164758_ad7ce709",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 295.0,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "aiohttp/connector.py has at least 907 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in aiohttp/connector.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 147833,
+        "output_tokens": 22711,
+        "total_tokens": 170544
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH808_jinja_2062",
+      "seed": 0,
+      "run_id": "20260921_165259_e30ef9f4",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH808_jinja_2062/20260921_165259_e30ef9f4",
+      "pass": false,
+      "partial_score": 0.86,
+      "elapsed_sec": 390.7,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "src/jinja2/utils.py has at least 382 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "key symbols still defined in src/jinja2/utils.py"
+        }
+      ],
+      "usage": {
+        "input_tokens": 123701,
+        "output_tokens": 33480,
+        "total_tokens": 157181
+      }
+    },
+    {
+      "condition": "full",
+      "task_id": "GH97_arrow_1201",
+      "seed": 0,
+      "run_id": "20260921_165932_70b19284",
+      "run_dir": "/tmp/claude-17609/-u-ybkim95-TeamBench/7c206a77-7dfb-4ecd-809d-2e54383eace8/scratchpad/sweep_runs/GH97_arrow_1201/20260921_165932_70b19284",
+      "pass": false,
+      "partial_score": 0.78,
+      "elapsed_sec": 209.3,
+      "failure_modes": [],
+      "error": null,
+      "checks": [
+        {
+          "id": "C1",
+          "ok": false,
+          "note": "test suite passes"
+        },
+        {
+          "id": "C2",
+          "ok": true,
+          "note": "source files are valid Python"
+        },
+        {
+          "id": "C3",
+          "ok": true,
+          "note": "test files present and intact"
+        },
+        {
+          "id": "C5",
+          "ok": true,
+          "note": "source modules import without error"
+        },
+        {
+          "id": "C6",
+          "ok": true,
+          "note": "no hardcoded magic / cheating markers in source"
+        },
+        {
+          "id": "C7",
+          "ok": true,
+          "note": "arrow/__init__.py has at least 19 lines (not wiped)"
+        },
+        {
+          "id": "C8",
+          "ok": true,
+          "note": "arrow/formatter.py has at least 70 lines (not wiped)"
+        },
+        {
+          "id": "C9",
+          "ok": true,
+          "note": "key symbols still defined in arrow/formatter.py"
+        },
+        {
+          "id": "C10",
+          "ok": false,
+          "note": "fix pattern present: fix introduces expected string"
+        }
+      ],
+      "usage": {
+        "input_tokens": 136310,
+        "output_tokens": 15715,
+        "total_tokens": 152025
+      }
+    }
+  ]
+}

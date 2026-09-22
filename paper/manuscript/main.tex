@@ -63,9 +63,11 @@ admission gates. On the 48 tasks that survive, we then re-run the comparison the
 original paper could not settle: at matched compute a Planner/Executor/Verifier
 team solved one task in 144 paired comparisons that a single agent failed, the
 deficit widens as compute grows ($-0.104 \to -0.188$), and at the largest budget
-team runs damage the workspace almost three times as often (17\% against 6\%). On the scale the original paper used, none of
-this is visible: a sevenfold compute increase moves the reported score by 1.5
-points.
+team runs damage the workspace almost three times as often (17\% against 6\%).
+On the scale the original paper used, none of this is visible: a sevenfold
+compute increase moves the reported score by 1.5 points. On a second model the
+deficit does not appear at the budget completed so far, so what we claim to
+generalise is the instrument and not the sign of the effect.
 \end{abstract}
 
 \section{Introduction}
@@ -351,6 +353,16 @@ two-sided sign test, $p = 7.6\times10^{-5}$).
 deficit is $-0.104$, $-0.118$ and $-0.188$ at 20, 60 and 140 turns. ``The team
 needs more compute'' is therefore not available as an explanation.
 
+\paragraph{Equal turns are not equal tokens, and the inequality runs the wrong
+way for the team.} \texttt{TurnBudget} equalises turns, which is what the
+conditions can be made to share, but a turn is not a fixed quantity of compute.
+Recording token usage per run shows the team spending more of it: at 20 turns on
+claude-sonnet-5, Full Team averages 160{,}650 tokens against Solo's 127{,}156, a
+ratio of $1.26$. So the team is not losing, or drawing, on a smaller compute
+allowance than the single agent; it is doing so on a larger one. The
+gemini-3-flash-preview campaign predates this instrumentation and we report it as
+turn-matched only, rather than assuming the ratio carries across models.
+
 \paragraph{Teams damage the workspace more.} Guard violations rise
 $1 \to 4 \to 8$ of 48 for the team against $1 \to 2 \to 3$ for the single agent.
 At 140 turns 17\% of team runs deleted a test or wiped a file, against 6\% of
@@ -487,26 +499,25 @@ experiment in this paper rather than following it.
 
 \section{Limitations}
 
-\paragraph{One model, and the second one does not yet agree.} The budget curve
-above uses a single model at seed 0, so the sign test is over task-to-task
-variation rather than over model or seed variation. A second model,
-claude-sonnet-5, was run on the identical protocol. At 20 turns, the one budget
-for which both conditions are complete, it shows \emph{no} team deficit: Solo and
-Full Team each solve 4 of 48, the paired discriminative difference is $+0.000$,
-and the discordant pairs split two each way. The 60 and 140 turn cells are not
-reported because the API credential was rejected partway through each of them,
-leaving 21 of 48 and 47 of 48 Full Team runs with no model response. Those runs
-are recorded as zeros and we exclude them rather than average them: read
-naively they would report a Full Team collapse to a raw mean of $0.019$
-alongside the highest discriminative mean in the table, from 47 runs that never
-reached the model and one that did. The dead runs are a contiguous suffix of the
-run order, so the surviving subset is biased by task identity and cannot serve
-as a reduced-$n$ estimate either. The compute-matched comparison is therefore
-sound for one model at three budgets and a second model at one budget, and on
-that evidence the honest reading is that the measurement instrument generalises
-while the size, and possibly the sign, of the coordination effect may not.
-\todo{Fold in the second model's 60 and 140 turn cells; the rerun is in
-flight through a different provider after the original credential was revoked.}
+\paragraph{One model, and the second one does not agree.} The budget curve above
+uses a single model at seed 0, so the sign test is over task-to-task variation
+rather than over model or seed variation. A second model, claude-sonnet-5, was
+run on the identical protocol and the identical 48 tasks. At 20 turns, complete
+at 96 of 96 runs, it shows \emph{no} team deficit: Solo and Full Team each solve
+2 of 48, both score $0.042$ on the discriminative scale, the paired difference is
+$+0.000$, and the two discordant pairs split one each way. Under the same
+comparison gemini-3-flash-preview has Full Team at 0 of 48 against Solo's 4, a
+paired difference of $-0.104$, and every discordant pair going to Solo. The
+divergence is not an artefact of one run: an earlier claude-sonnet-5 sweep
+through a different provider, with a different tool-calling format, also ended
+level at that budget.
+
+We therefore do not claim the coordination deficit is a property of
+Planner/Executor/Verifier structure in general. What replicates across both
+models is the instrument: the same 48 tasks discriminate, the same guards
+dominate the reported scale, and the same one-directional message flow appears.
+What does not replicate is the sign of the effect.
+\todo{Fold in the second model's 60 and 140 turn cells as they complete.}
 
 \paragraph{\core{} is small and narrow.} 48 tasks from 12 repositories, all
 Python. The ceiling of 229 is itself limited by how often upstream maintainers
